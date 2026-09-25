@@ -108,7 +108,8 @@ def install(topic, section_id, src, alt, caption=u"", based_on=(), slug=None, ro
            "alt": unicode_(alt), "caption": unicode_(caption or alt),
            "based_on": refs, "width": w, "height": h}
     sec.setdefault("images", []).append(rec)
-    io.open(dp, "w", encoding="utf-8").write(json.dumps(data, ensure_ascii=False, indent=2) + u"\n")
+    from generate import _save
+    _save(dp, data)
 
     mp = os.path.join(domain_dir, "images", "manifest.json")
     man = []

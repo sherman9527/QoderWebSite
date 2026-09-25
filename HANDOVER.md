@@ -10,45 +10,35 @@
 
 ## IN PROGRESS（正在做）
 
-- [ ] W-150 **新领域：Claude Opus 5.5 全面解读**（开发者 09-25 提）。要覆盖能力、费用、提升幅度、
-      RSI（自我改进）等，落点是**这一版的差异化到底在哪、对后续模型路线的启示、以及对硬件的需求**。
-      写之前要立的三条口径（不立就一定会写成宣传稿）：①**分数口径**——厂商自报与第三方复现分开列，
-      同一 benchmark 的不同子集/不同推理预算不是同一个数，对比表必须标来源与日期；
-      ②**费用口径**——每百万 token 单价、上下文长度、缓存/批处理折扣、限速窗口一起给，
-      只给"便宜了 X%"是假比较；③**RSI 不许写成"AI 已经能自我复制"**：只报公开可核的
-      自动化研究评测、人类监督点在哪、以及"哪一步仍然由人做"。
-      硬件那一段要给**量级与推导口径**（参数量级、推理 FLOP、显存/带宽、功耗区间），
-      明确哪些是厂商披露、哪些是公开估算；不预测股价、不给任何半导体标的的买卖建议。
-      与已有的「大模型」篇重叠：那篇讲机制与格局，这篇讲一个版本节点的横切面，
-      重叠处用引用而不是复述（大纲阶段就要划清）。
+（本段当前为空。取一条 TODO 移进来，这是并行会话的互斥标记。）
 
 
 ## TODO（待办）
 
+（下面第一条是 W-156；再往下是 W-155 / W-153 / W-154 / W-142 等存量）
+
+- [ ] W-156 **schema 报错把「哪条约束没过」藏掉了**（09-26 撞的）。
+      第 22 篇渲染失败，日志只给一行
+      `✗ data.json 不合 topic_data.schema.json： - sections/6/blocks/2：{'type': 'timeline', ...`
+      ——**截断的实例 repr，不含失败的约束名**。真实原因是两个 `year` 标签 17 字、
+      上限 16。我为了定位它写了三探针（先猜块级 `title` 非法、改了再渲染还是红），
+      其中"改了再渲染"那一步完全是白跑：猜错了约束，改错了字段。
+      要做：`generate.py` 打印 jsonschema 的 `e.path` + `e.validator` + `e.validator_value`
+      （三样都短），别再打印实例 repr。同源问题：`oneOf` 包着的块类型会把错误
+      归并成"整块不匹配任何分支"，要下钻到每个分支各报一次。
+      **为什么算工作项而不是小事**：报错不可定位，人就退化成"改改试试"，
+      而"试试"在这个仓库里意味着重跑一次渲染——本条的代价就是这么来的。
+
 - [ ] W-155 **正文里的 `[Sxx]` 标号没有任何一处校验它指向不存在的来源**（09-26 发现）。
-      ClaudeOpus55 篇一次量到 **29 处内嵌标号全部悬空**：研究模型自己写了
-      `[S1]` `[S5]` 这种编号，而真实来源 id 是补零的 `S021`——它对不上任何一条来源，
-      但渲染出来就是「看起来像引用」的字符，读者会以为这句话有出处。
-      G-06 只看块级 `source_ids` 是否存在、是否解析得到，从不看正文文本里的方括号。
+      ClaudeOpus55 篇一次量到 **29 处内嵌标号全部悬空**：研究模型自己写了 `[S1]` `[S5]`
+      这种编号，而真实来源 id 是补零的 `S021`——对不上任何一条来源，但渲染出来就是
+      「看起来像引用」的字符，读者会以为这句话有出处。G-06 只看块级 `source_ids`
+      是否存在、能否解析，**从不看正文文本里的方括号**。
       要做：① `validate` 加一条——正文与表格单元格里出现的 `[S\d+]` 必须能在 `sources`
-      里解析，否则 fail（这是断链，不是风格问题）；② 采集侧统一编号格式，
-      别让两种写法同时存在。
-      **本轮我自己犯的那次更值得记**：为了消掉 G-06 的一条 fail，我把这些悬空编号
-      原样抄进了块级 `source_ids`——闸门安静通过，账上多了 5 个指向不存在来源的引用。
+      里解析，否则 fail（这是断链，不是风格问题）；② 采集侧统一编号格式。
+      **本轮我自己犯的那次更值得记**：为了消掉一条 G-06 fail，我把这些悬空编号原样抄进
+      块级 `source_ids`——闸门安静通过，账上多了 5 个指向不存在来源的引用。
       那正是本仓库反复警告的「让检查变绿的补丁」，只不过这次是我写的。
-
-- [ ] W-151 **新领域：美国中期选举与全球资产**（开发者 09-25 提）。要求：当前支持率大背景、
-      两党各自手里的牌、不同选举结果对 A股/港股/美股/数字货币/黄金/石油 的传导。
-      **这一篇的边界比前两篇更硬，因为政治与投资建议两条线同时贴近**：
-      ①不预测谁赢——民调写清口径（抽样、时间窗、误差、Rasmussen/Temelra 与主流模型的
-      方法差异本身就是内容），只给"若 X 则 Y 通过哪条机制"的**条件表**；
-      ②不给任何标的的买卖建议、不给目标价，资产那一段只讲**传导机制与历史同类事件的读数口径**
-      （关税、退税、财政停摆、政府关门、联储独立性质疑各自影响哪条链条），
-      可证伪信号代替方向；③两党的"牌"要写成**制度性牌 vs 议程性牌**（参众规则、filibuster、
-      预算调和、行政令可撤销性、法院任期），不是政策口号清单；④中国资产部分涉及监管与
-      跨境数据口径，只报已公布规则与其生效时间，不做地缘政治推断。
-      政治内容按红线 R-09 走：不劝投、不评价候选人、不写"某某阵营更好"。
-
 
 - [ ] W-142 **`audit_images.py` 看不见"跑章"：主题级点名闸门在多主体领域形同虚设**。
       09-25 实测（大模型与加密货币篇）：`audit_images` 报 `✓ 配图 15 没点名 0 空章 0` 的同一份产物，
@@ -64,6 +54,17 @@
       本轮的修法是在**config 层**：把每章检索词从"领域里最热的实体"改回"这一章真正在讲的东西"
       （W-139 里我自己写错了，见该条 COMPLETE），机制章改画示意图。
       **09-25 量完了，两条词面判据都不成立，这条工单不该按原样做**：①判据"图注撞上章题里不属于 aliases 的词"→ 全站 332 张实拍里判跑章 **325 张（98%）**，纯噪声。原因不是实现坏，是**章题与照片之间没有词面桥**：本项目章题是论点句（"一条链看清楚：靶点到上市后，AI 现在真实渗透在哪几段"），照片只给实体名（"晶泰科技与礼来签署合作"），两者本就不该撞得上。②判据"同一条检索词挂在 ≥1/3 章节"→ 会误伤 MLCC（`贴片电容×11`）、积家（`积家手表×9`）、AI制药（`药明康德×6`）——单产品/单主体领域里全章复用同一个词是**对的**。剩下的处置：把"复用最高的词 × 几章"做成 `audit_images` 的一行**事实展示**（不判好坏、不参与 `--fix`），它当时就能让我看见自己把 `OpenAI` 挂了 5 章；语义那一维仍然只有人眼，AGENTS.md 第 6 步那句话是对的，别试图给它造一个代理指标。
+      **09-26 第三例，机制这次量清楚了**（第 22 篇 美国中期选举与全球资产）：大纲里 11 章的检索词
+      全是各章自己的东西（`投票站 排队 美国`、`炼油厂 储油 罐区`、`实验 记录 数据 表格`），
+      人写的词是诚实的——**是 `gated_queries` 把每条词都补成了 `美国国会 投票站 排队`**
+      （`scripts/images.py:428` 与 `:456`：`primary_subject` 从 aliases 里挑第一个可检索的主语，全篇共用一个）。
+      于是 11 章塌到同一个建筑：抓回 15 张，12 张是国会大厦外观（多张来自 `travel.qunar.com` 旅游攻略页）、
+      一张带商家水印的 `detail.1688.com` 金条商品图、一张人名头像卡却按检索词命名成
+      `15_美联储_总部_建筑.png`。前两例说的是"点名了领域 ≠ 点名了这一章"；
+      本例新增的是**前缀那一步本身**：它把"这章召不到图"稳定退化成"给这章放一张领域地标照"。
+      修法候选（先量再改，别直接调 `primary_subject` 的顺序）：给每条章节词配**该章自己的主语**
+      （章节级实体词），只有章级零召回才回落到领域主语。
+      本篇的处置：15 张全摘、11 章改画图（`scripts/diagrams/美国中期选举与全球资产.py`）。
 
 
 
@@ -77,6 +78,15 @@
       W-130/W-133/W-138 各手摘过一次，这已经是第四例，不再是单例。
       要做的是一条 `drop_image.py <领域> <文件>`：三处一起删 + 自动把来源页写进排除表 + 删完立刻
       跑 `validate` 的那一章（防止把某章摘空，G-03 会静默把整篇踢出索引——09-24 真踩过）。
+      **09-26 落了前半，后半没落，代价当场兑现了一次**：`scripts/drop_image.py` 做了
+      三处一起删 + dry-run 默认 + 名字打错一律报错 + 报出哪一章被摘空
+      （`tests/test_drop_image.py` 4 条先红后绿；第 22 篇一次摘掉 15 张跑题配图）。
+      **没做**的是"自动把来源页写进 `image_exclude_pages`"——我摘之前没想过要留那份清单，
+      摘完 manifest 里的 `source_page` 就随记录一起没了，那 15 张的来源页**现在只能从联络表上
+      截断的 `src=` 猜**。也就是说：这一条被漏掉的子句不是"少个便利"，它是那次删除的**唯一凭证**。
+      剩下的活：①`drop_image` 删记录前先把 `source_page` 追加进 config 的排除表；
+      ②删完跑该章闸门；③给第 22 篇补一份能命名的排除项（旅游攻略域 `travel.qunar.com`、
+      批发商品页 `detail.1688.com` 这类按 origin 排，MLCC 篇已有先例）。
 
 
 
@@ -87,7 +97,6 @@
 ### 已知没修（等第二例证据再动，别单例过拟合）
 - 同源单调：积家 11 张全部来自腕表之家系、娇兰多数来自花瓣图钉页。W-111 的来源页配额按 **URL** 数，同一站不同页判不出来；要做成闸门会大面积把已上架页面判死（W-97 那种机制），所以只在采集时生效。
 
-## TODO（待办）
 
 - [ ] W-153 **没有东西盯着「线上版主页过期」**。`dist/home/index.html` 是 gitignore 的中间产物，
       `record` 不重建它，`check` 与 G-14 也不读它。于是"20 篇都重发了、主页还链着旧指纹"
@@ -105,6 +114,9 @@
 ## COMPLETE（已完成）
 
 | 日期 | 编号 | 工作项 | 证据 |
+|---|---|---|---|
+| 2026-09-26 | W-151 | 第 22 篇「美国中期选举与全球资产」上线：11 章 / 8,211 汉字 / 16 分钟。边界按 R-09 与「不给方向」执行——民调只给口径不预测谁赢；两党的牌写成制度牌 vs 议程牌；资产段只写传导链与历史读数口径，最后一章把五条判断各绑到一个可查序列的驳回条件上。配图 15 张全摘（12 张国会大厦、1 张水印金条、1 张人名卡），11 章改画示意图 | <https://us-midterms-and-assets-gtqdc11h6po.qoder.website/> curl 200 / 208,523 B； served HTML 里 11 个 `src="images/*.png"` + 11 个「示意图 · 非实拍」角标；`validate.py --all` 22 篇 0 fail / 10 warn；`web_list.md` 22 行与 data.json 一致（G-14） |
+| 2026-09-26 | W-150 | **第 21 篇：Claude Opus 5.5 全面解读**。11 章、15 张图（5 张自画示意图 + 10 张实拍）、86 条来源。三条口径先立在大纲里再动笔：分数区分厂商自报与第三方复现并标子集/预算；费用连带上下文、缓存折扣、限速一起给，不许只报单价；RSI 只报可核观测与官方原话里的限定语，**不写「AI 已能自我复制」**，并逐条说清可验证性、算力来源、目标设定三件事。硬件一章只给推导链与「披露还是估算」的标注，不预测股价、不给任何标的建议。过程中抓到两件事：① 图片阶段 5 个抽象章一张图都没拿到（G-03 判空章）→ 改画图；② 研究模型在正文里写了 29 处 `[Sxx]` 标号，**全部指向不存在的来源**（真实 id 是补零的 `S021`），G-06 只看块级字段所以全绿——已重做那一章的研究并把修法记成 W-155 | 线上 <https://claude-opus-55-gtqdc11h6po.qoder.website/>（curl 200、202 KB）；该篇 `validate` 0 fail / 0 warn；全站 `validate --all` 21 领域 0 fail；`publish.py check` 账实一致、`playbook` 清空；示意图 `scripts/diagrams/ClaudeOpus55.py`（5 张，图上无任何数字与日期）；主页站同步重发 <https://knoweverything-gtqdc11h6po.qoder.website/>（200、15.4 MB、21 张卡片）；公开仓库快照快进推到 `b27d8d7`（211 文件，自查三项全 0）|
 | 2026-09-25 | W-152 | **推到公开仓库 + 发布链路的 agent 化**。开发者拍板：远端只推一条全新的单提交（本地 124 条不动、作者中性），`output/*/images/` 的第三方图片不入库。落地 `scripts/publish_public.py` + `config/public_exclude.txt`：临时 index 造 tree，不碰本地 HEAD/index/历史；推前自查三件事（没有 output 图 / 没有 `.pending`、`manifest.json` 一类现场文件 / 没有本机用户名与绝对路径），外加一条**防自欺**：排除若一条都没删掉就直接报错。`tests/golden/**` 的 13 张（4.2 MB）是测试夹具，**刻意保留**并写明理由。同时把发布这半条链路交给 agent：`publish.py playbook` 算出每篇的 projectId 与逐步参数、`docs/publishing-for-agents.md` 手册、README 与 AGENTS 第 10 步指过去。深度 review 抓到并修掉 4 条 Important + 1 条 Critical（详见 W-152 原条目与 memo 09-25） | 公开仓库 <https://github.com/sherman9527/QoderWebSite> 的 `main` = 单提交 `3ea38d76ba641cf62ae3865e2f7d5671bdb5d6e4`，author `KnowEverything <snapshot@local.invalid>`、API 里 `login` 为空（不关联任何账号）、parents 为 0；`contents/output/%E5%92%96%E5%95%A1` 只有 `data.json` 与 `咖啡.html`，**没有 images 目录**；快照 611 → 205 个文件（删 406），自查 `图片残留 0｜中间文件残留 0｜身份痕迹 0`；本地 `python -m pytest` = 395 passed rc=0，`validate --all` = 20 领域 0 fail |
 | 2026-09-25 | W-149 | **第 20 篇：名创优品 × 泡泡玛特**（开发者当天提的需求）。11 章、18 张图（5 张自画示意图 + 13 张实拍）、114 条来源。三条硬边界写在 angle 里并逐条验过：不给买卖建议/目标价/涨跌方向，「拐点」拆成经营、单店模型、估值三类各给可证伪观测条件；段永平一节只报披露记录与逐字原话，并给「跟随」在结构上不成立的四条（成本与时间尺度、仓位与流动性、披露滞后与选择性、他自己「看不懂就不做」的口径）；两家公司报表口径单列一章讲。**连带修掉一处模板级缺陷**：引用 chip 之间没有任何空白，`S0717S0720…` 排版上是一个不可断的词，挂十几条来源的标题被撑到 358px > 版心 345px，G-13 报 clipped-scroller。先试 `overflow-wrap` 会让编号从中间劈开（S071|7），正解是给每个 chip 前插 `<wbr/>` **造换行机会**；figcaption 同时补上漏掉的 overflow-wrap。模板指纹变了 → 20 篇全部重渲染重发 | 线上 <https://miniso-vs-popmart-gtqdc11h6po.qoder.website/>（curl 200、217 KB、18 图、11 章、114 来源锚点）；`validate --all` = **20 个领域 0 fail / 28 warn** rc=0；逐站 curl 全 200 且**线上 HTML 里 `<wbr` 计数 61–215**（证明修复真的发上去了，不只是本地绿）；边界正则扫描：方向/建议类 7 处命中全是页面自己的免责声明与来源标题原文，确定性判断 0 处、「就是拐点」0 处；`tests/test_render.py::test_source_chips_have_a_break_opportunity_between_them`；示意图 `scripts/diagrams/名创优品与泡泡玛特.py`（5 张，图上不写任何数字与日期，D-22）|
 | 2026-09-25 | W-148 | **发布账本记住「这是哪个站」**（由我自己一次真实误操作逼出来）。`data.json.site` 新增必填 `project_id`，`record` 不传就拒绝写；`pending` 把工作清单带上 projectId，agent 更新时不必再凭记忆认站。顺带补上第二条自证不了的问题：`record` 现在校验 URL 主机名必须由该篇 slug 派生（`<slug>-…`）。我把 18 条 URL 拼成过 `https://<slug>/<后缀>`，`check` 照样报「账实一致」——账本和 data.json 由同一次错误生成，两处自洽不等于对 | 先红后绿：`test_record_rejects_a_url_that_is_not_that_slugs_address`（第一版红在 `DID NOT RAISE`，因为我留了 `host == slug` 这个口子，而那正是我打错的形式）、`test_site_record_carries_the_project_it_belonged_to`、`test_pending_tells_the_agent_which_project_to_update`、`test_the_data_contract_allows_the_published_site_block`。`validate --all` = 19 个领域 0 fail / 9 warn rc=0；18 篇全部 `published: true` + `active_release_id` 非空 + 公网 curl 200 |
@@ -136,7 +148,6 @@
 | 2026-09-23 | W-117 | **Muse 篇上架**（开发者 09-23 新增需求：Meta Muse 深度解析 + 云电脑产业链）。11 章 6349 字 / 16 张配图 / 空章 0 / 没点名 0，`validate --all` = **14 个领域 0 fail**，索引 14 张卡片。六个问题各自成章，另加三章补地基（为什么需要一台云电脑、中游格局、单位经济）。两处划线的地方按线交付：投资机会章明写「没有哪家公司写出 Muse 的订单或金额，Meta 也未公开算力供应商名单；涨幅属市场定价，不能当成已供货」并带非投资建议声明；IPv4 章只讲机制与三层合规（RPKI/ROA/IRR、Cloudflare verified_bot、LinkedIn 8.2 与 GitHub D.9 条款原文含生效日期），并写明「把机房 IP 伪装成住宅 IP 正是灰产做法，也是本节不展开的部分」。主题 `muse-sandbox` + 记忆点 `sandbox_rack`（三轮才调对：格数不够在 1440 封面上漂成三行、线性同余会让亮格排成对角线） | 配图两轮：queue9 等到 03:17 没等到窗口，03:21 手测 `muse` 35/35 点名后立即补全；**联络表抓到一张真错**——`images/11_muse_大会.jpg` 是另一家叫 MUSE 的手术机器人公司（musemedical.cn）被配在沙箱章，`audit` 因为标题含 muse 而放过，正是上架前记在台账里预判的同名词坑；另摘 Meta 字标图，封面从自动选中的 Ubuntu 字标 splash 改声明为 App Store 榜单截图（「Muse from Meta」列在 ChatGPT 之上，直接证「爆火」）。证据：`.probe/sheet_Muse.png`、`.probe/muse_cover/Muse_2026-09-24_1440.png`、`python scripts/validate.py --all`（03:3x，14 领域 0 fail）；过程记录见 `memo.md` 09-24 03:3x 一节 |
 | 2026-09-23 | W-98 | **积家篇按 D-19 的判据上架（选 (c) 接受单图池）**。判据四条全中：配图 11 ≥8、11 章每章 ≥1、`没点名 0`、联络表人眼确认 11 张全是积家表（Reverso 方壳、Duomètre、陀飞轮框架、Polaris、鸟鸣三问、绿色玛瑙面 Reverso）。起效的还是那条词形杠杆——`积家手表`（中间不留空格）35 召回 / 35 点名 / 22 个来源页，而任何「积家 + 空格 + 词」都是 0。**接受已知代价**：11 章共用一个图池、全部来自腕表之家系，章节级相关性拿不到，这是引擎上限不是大纲问题。没有砍章（正文 9 章 6357 字是花过额度的） | `python scripts/audit_images.py 积家` = `✓ 配图 11 没点名 0 空章 0`；联络表 `.probe/sheet_积家.png`；`python scripts/validate.py --all` **rc=0，13 个领域 0 fail**——这是全站第一次全绿，索引从 11 张卡片涨到 **13 张** |
 | 2026-09-23 | W-116 | **R-04 的判据盲区，决定走「人眼抽查」而不是加规则**（开发者授权「你来决定」）。三条路里：(c) 上 OCR/图像分类被否——为一个纯静态、零外部依赖的产物引一个模型依赖，代价与收益不成比例；(a) 纯接受也被否——封面已经因此出过两张被裁掉半截字的卡片（W-119 就是它的产物）。选 (b)：把「配图有变动的领域，上架前必须出联络表用眼睛过一遍」写进 `AGENTS.md` 干活流程第 6 步，紧挨着「闸门是唯一裁判」那句，并写明为什么闸门不够（常柴柴油机、木工坊、永乐大钟、西铁城机芯——四次都是闸门全绿）。存量那 5-6 张品牌正确、只是长得像广告的**正文图保留**：读者看到的品牌没错，而最显眼的封面位已经换成非广告图 | `AGENTS.md` 第 6 步（同文件里可查）；决策与三条路的取舍记在 `memo.md` D-19；清单与图证：`.probe/sheet_AI眼镜.png`、`.probe/sheet_浪琴.png`、`.probe/sheet_LV.png` |
-|---|---|---|---|
 | 2026-09-23 | W-119 | **封面要能声明**。默认规则是「取最宽的一张」，而这条规则天然偏爱排行榜截图与宣传横幅——它们像素宽度最大。索引截图实测两张卡片被 `object-fit:cover` 裁掉半截文字：大模型篇用的是 3564px 的排行榜（卡片上是一排看不懂的表格），AI 眼镜篇用的是 3840px 的光波导渲染图（标题被切成「OOKTECH」）。`build_index.cover_of` 早就写了「先看 data.cover」的分支，但契约的根 `additionalProperties:false` 不认这个键——**那段代码是死的**，而且我第一次是直接往 data.json 手写 cover，被 G-10 当场判死（两个领域的产物差点没上架）。现在把图片形状抽成 `$defs/image`，根上加可选 `cover` 引用它，模板 `coverOf` 同规则；两处必须一致，否则卡片点进去会换一张图 | 测试先红在 `契约不接受声明封面`（schema）与 `声明的封面没上页面首屏`（模板）：`tests/test_contract.py::test_a_declared_cover_is_accepted_by_the_contract`、`..._must_still_be_a_real_image_shape`（缺 alt/source_page 的封面仍被拒——声明封面不是第二个不受契约管的图片来源，R-03 照样管）、`tests/test_render.py::test_a_declared_cover_wins_over_the_widest_image`（同时断言索引与页面用的是同一张）。两张封面改完重截索引核对：大模型 → H100 晶圆裸片照（我先换成 NVIDIA 门头照，看图才发现那是品牌 logo，撞 R-04，又换了一次——**这一步只有看图能发现**）；AI 眼镜 → 雷鸟 Air Plus 产品照。`.probe/index_full3/index_1440.png` |
 | 2026-09-23 | W-118 | **R-08 漏了：设了 cwd 也挡不住研究文件落进仓库根**。llm.py 早就把无头 CLI 的 cwd 设成 `.research-scratch/`（候选-H 落成的那条红线），但 CLI 找的是它自己眼里的「项目根」——从 cwd 往上走到有 `.git` 的那一层，于是抓到的网页还是写在仓库根。09-23 实测：AI 眼镜篇研究期间根目录多出一个 39KB 的 `cdt.html`（雷鸟 AR 眼镜文章），**是 git status 抓出来的，不是测试**。**归因要更正：这个机制不是今天发现的**——`memo.md` D-15（09-20）已经写下「子代理写绝对路径或 `../` 时 cwd 拦不住它，这不是 bug 能修掉的，必须假设会发生」，当时的处置是手工把散件挪进 `.probe/strays/`；今天做的只是把那份手工变成自动。——原有那条测试只断言了 cwd 参数等于 scratch，而那恰恰是被绕过的那一步。现在 `_run` 在调用前后各数一次根目录文件，把**本次新增的文件**搬进 `.research-scratch/escaped/` 并打一行说明；目录与既有文件一律不碰，搬不动就跳过（并发下另一个 worker 可能已经搬走了） | 测试先红在 `module 'llm' has no attribute 'ROOT'`，真判据是 `tests/test_llm.py::test_a_research_file_dropped_in_the_repo_root_is_pulled_into_scratch`（夹具里的 fake CLI 故意往仓库根写一个 cdt.html，断言它消失、出现在 escaped/、且既有的 AGENTS.md 没被搬走、日志说了文件名）；`pytest tests/test_llm.py` 29 项绿、全量 315 项 exit=0。现场文件已搬：`.research-scratch/escaped/cdt.html` |
 | 2026-09-23 | W-107 | **AI 眼镜篇生成并上架**（开发者 09-22 深夜新增需求）。11 章 6757 字 / 22 张配图 / 空章 0 / 没点名 0，`validate` = **0 fail / 1 warn**（warn 是 G-05 正文偏长，按 D-18 属可接受），索引从 10 张卡片涨到 **11 张**。开发者点名的每一项都落到了章节：产品名（雷鸟 X3 Pro·Rokid·XREAL·小米·夸克·联想·华为·Meta Ray-Ban）、SOC 与多芯架构（高通 AR1 / 恒玄 BES2800 / 展锐）、电池与续航口径（镜腿 200mAh 怎么分）、镜框与电致变色与近视配镜、光机之争含扫描激光（MicroOLED·MicroLED·LCoS）、镜片与光波导、**A股/港股/美股逐环点名且区分「公告里有客户名或金额」与「互动平台表态」**、技术路线对照、隐私与生态边界。检索词全部点名具体产品而不是抽象概念——这是当天从大模型篇学到的那条 | `python scripts/audit_images.py AI眼镜` = `✓ 配图 22 没点名 0 空章 0`（`.probe/queue2.log` 14:10）；联络表 `python scripts/contact_sheet.py AI眼镜` → `.probe/sheet_AI眼镜.png`（22 张逐张看过：真机图、波导光线追迹图、拆解 BOM 图各归其章）；几何 `node scripts/shot.mjs output/AI眼镜/AI眼镜_2026-09-23.html --widths 1440,375` → `brokenImgs 0 / zeroBoxImgs 0 / thinImgs []`；供应链章正文抽查见 `.probe` 当次输出（歌尔/蓝思/龙旗/立讯/高通/奇景/博士眼镜，每段带 source_ids） |
@@ -173,15 +184,12 @@
 | 2026-09-22 | W-89 | 共享夹具 `tests/fixtures/mini_data.json` 自己违反数据契约，修好了。**我第一版诊断是错的**：jsonschema 报错时会把整个对象回显一遍，我看到回显里有 `heading` 就判它「字段不被允许」，还动手删了——`quote.heading` 契约本来就认。真原因是两条：顶层 `cover` 不在契约里（模板 `TopicPage.tsx:126` 读它，但十个真产物一个都没有，等于那条分支从来没被走过），以及 `quote.text` 只有 8 字而契约 `minLength=10`。渲染测试只出页面、不跑 schema，所以这漂移一直躺着。**危害不是测试不干净，是照抄样板写出的 data.json 会被闸门判死。** | 新增契约测试 `test_the_shared_fixture_satisfies_the_data_contract`（夹具必须 0 schema 错，以后再漂移送红）；夹具改动是**最小文本级编辑**：`git diff --stat` = 1 插入 / 9 删除（第一版我用 `json.dumps(indent=1)` 重排了整个文件、566 行 diff，已回滚重做）；`python -m pytest -q` exit=0 |
 | 2026-09-22 | W-90 | `audit_images.redo()` 让重做变成黑箱：`capture_output=True` 加只回显最后 4 行，于是一次 20–50 分钟的重做**全程零输出**（09-21 实测日志 51 分钟停在 587 字节，判活只能摸 `images/` 的 mtime）；而且它按 utf-8 解码子进程输出，`generate.py` 重定向时写的是 cp936，那 4 行本身也是残缺的。改成不捕获、直接继承 stdout 流式输出，并用 `PYTHONIOENCODING=utf-8` 让子进程与父进程写同一句柄时编码一致 | `grep -n subprocess.run -A3 scripts/audit_images.py` 显示调用里已无 `capture_output`；`python scripts/audit_images.py 积家` 正常出报表；`pytest -q` exit=0。**注意**：正在跑的 LV/百达翡丽/积家 用的是改动前已加载的模块，下一次 `--fix` 才享受流式 |
 | 2026-09-22 | W-85b | **我上一条 W-85 的"完成"说早了**：只堵住了 `_drop_images` 那一处删除，还有第二处。`collect` 按内容哈希会**认回**上一轮已落盘的同一张图（复用旧文件名，不重新写盘），而 `do_images` 结尾把"抓到却没派上用场"的图一律删掉——认回来的那张也在名单里，可它不是本轮产物，**已落盘的 data.json 可能还指着它**。修法：`collect` 给每条结果带 `fresh`（本轮是否真的写了盘），清理循环只删 `fresh is not False` 的。跑在旧代码上的那次 LV 重做当场留下现行证据：`04_路易威登.gif`、`08_Neverfull.jpg` 被这样删掉、页面 2 个破链（是 `images.prev/` 的快照兜住了恢复路径） | 两条测试先红后绿：`test_a_redo_never_deletes_a_file_the_published_data_still_uses`（红在"重做进行中删掉了已落盘引用还指着的文件"，日志里还能看见第一次删除成功、后面 11 次全报"孤儿图删除失败"——文件已经没了）、`test_an_adopted_existing_file_is_marked_not_fresh`（钉住 `collect` 的 `fresh` 契约：本轮写的 True、认回的 False；少了这条，集成测试里的假 collect 自己填 fresh 就测不到真代码）；`python -m pytest -q` exit=0（266 项） |
-|---|---|---|---|
 | 2026-09-21 | W-87 | **新增 `bar_chart` 区块（评分图）**：走的是"每个数字自己挂来源"那条路，不是抓榜单截图——截图进页面等于把数字交给读者自己核，违反红线 R-02。打通六处并互相用契约测试钉住：`$defs/barChart`（每根柱子 `source_ids` 为 required + `minItems:1`，至少两根，`as_of` 限 `YYYY-MM`）、两份 schema 枚举、`outline.BLOCK_TYPES`、`blocks.ts`、`renderers.tsx` 的 BarChart、提示词的区块结构表。G-06 加了自己的分支（不复用 `need_refs`：那条只说"含数字但无来源"加一截文本，对图表没人知道是哪根柱子）；G-13 把 `.chart` 拉进右边界比对组、把 `.chart .lab/.val/.axis` 拉进对比度清单（W-82 的教训：新增可见文字必须被量）。柱长按 `value/max` 算并**不截断坐标轴**，图下标注刻度与最大值 | 5 条新测试先红后绿：`test_a_bar_chart_draws_every_number_with_its_own_source`、`test_bar_widths_are_proportional_to_the_values`（断言的是比例关系不是像素）、`test_a_bar_without_a_source_is_rejected_by_the_schema`（自带防空转前提：完整图必须先能过 schema，另测空数组与单柱）、`test_G06_requires_every_bar_in_a_chart_to_be_sourced`、`test_the_chart_block_is_measured_for_right_edge`；`cd web && npx tsc --noEmit` exit 0；`python -m pytest -q` exit 0；截图人眼验收 `.probe/shots/chart_{wide,phone}.png`（手机档换成"名+分一行、柱子满宽"） |
 | 2026-09-21 | W-86a | **大模型篇的大纲、主题与记忆点全部落地**（生成还没跑）。11 章：原理 / 怎么炼成 / 美国路线 / 中国路线 / 路线之争 / **Gemini 为什么强**（拆成多模态、架构规模、自有 TPU、数据配方与评测四层，并要求写明"哪层有公开证据、哪层只是推测"）/ **Jev 与 System One**（厂商宣称与独立验证强制分栏，"快 200 倍"必须标口径）/ **评分图怎么读**（bar_chart 落点）/ 价格与速度 / 怎么选 / 边界与风险。主题 `llm-attention`（品红 #B5177E + 孔雀绿 #2A9D8F）——不是拍脑袋：拿 G-11 自己的度量搜了 6 组候选，这组与既有 11 套的**最紧距离 65.8**（判死线 25），因为绿蓝金紫橙黑银红都已被占用。记忆点 `attention_matrix` 是 12×7 注意力方阵，亮格沿对角线 | `python -c "outline.load_for_topic('大模型')"` → 11 章、大纲 schema 0 错；主语词 8 个全部由 `aliases` 收进来（`subject_tokens` 实测）；`sweep_tokens` 现在 **24/24 过 G-13**（含 `llm-attention` 与 `-motif` 两态）；`test_the_real_theme_set_is_not_a_wall_of_twins` 覆盖 12 套主题仍绿；截图 `.probe/shots/cover_wide.png` |
 | 2026-09-21 | W-86b | 记忆点第一版是**错的**：`(r*5)%COLS` 的步长把亮格打成锯齿，看着像随机撒的，不像"注意力集中在对角线"。改成 `round(r·(COLS-1)/(ROWS-1))` 的真对角线。跟娇兰那次"两个黄点"是同一类问题——**只有截图看得见**，G-13 两态全绿也照样放过 | 改前/改后截图对比 `.probe/shots/cover_wide.png`；改后 `npx tsc --noEmit` exit 0、`pytest -q` exit 0 |
-|---|---|---|---|
 | 2026-09-21 | W-88 | **G-11 是一条永远全灭的闸门**：判据把 `bg` 也平均进 ΔE（两套主题共用纸白底是应该的，实测两片米白底只差 1.7），阈值 60 从没对着真色板量过——`--all` 报 42/55 对"雷同"，把 52 条真 G-03 fail 埋在里面，而 R-06 规定 `--all` 不全绿不许标任何领域完成。改成只看**身份色**（primary + accent）且**两个都近**才算雷同（均值会让一个极端色替另一个蒙混：劳斯莱斯 vs 积家 primary 61.5 / accent 12.3 就是"两种几乎一样的金"）；阈值 25 按 11 套真色板分布定（ΔE≈25 = 同色系换色调）。顺带堵一个静默漏洞：`palette_of` 以前把取不到的角色滤掉，字段数不同的两对直接 `continue` 跳过——那是"没测"混进"测过且通过"，现在按角色返回、取不到身份色就单独报。| 两条新测试先红：`test_G11_ignores_a_shared_background_when_identity_colors_differ`（夹具就是实测假阳性 劳力士 vs 浪琴：底色 1.7、主色 46，旧量法判"雷同 19.3<60"）、`test_the_real_theme_set_is_not_a_wall_of_twins`（红在 42 对）；`python scripts/validate.py --all` G-11 **34 → 0**，全站 fail **93 → 59**；`python -m pytest -q` exit=0（259 项）；红线 R-09 侧：`sweep_tokens` 11 主题 × 有/无封面共 **22/22 过 G-13**，另截图人眼看过去重色 |
 | 2026-09-21 | W-88b | 修完判据后露出**三对真·雷同主题**（不是阈值问题，是四套奢侈品主题在用同一张皮：奶油底 + 深中性主色 + 金强调色）：LV↔咖啡（12.6/18.4）、LV↔香奈儿（17.5/15.9）、浪琴↔积家（19.9/21.6）。按"改色板而不是改阈值"处理，且每一处都往品牌本来的样子靠：LV 主色 `#33261A`→`#6E5A38`（Monogram 涂层帆布是橄榄褐不是近黑，顺手把 `label` 从"焦糖花纹与炭黑"改对）、咖啡强调色 `#C98A28`→`#1E6B52`（生豆/咖啡叶的绿，把金色位让给真正拥有它的四个品牌）、浪琴强调色 `#8B97A3`→`#C8102E`（带翼沙漏的浪琴红，label 同步改），积家/香奈儿的深蓝与黑白原样不动 | 三对全部拉开：改后最紧的一对是 宾利 vs 浪琴 max=34.4（判死线 25）；`node scripts/shot.mjs` 1440 档实测三页 `brokenImgs:0 / zeroBoxImgs:0 / thinImgs:[]`，截图人眼确认（浪琴封面那张 GMT 恰好有橙色指针，新红色对上了）；`.probe/shots/crop_top_{咖啡,LV,浪琴}.png` |
 | 2026-09-21 | W-85 | `--redo-images` 从"先删再抓"改成非破坏式：`_drop_images`（删文件）换成 `_clear_image_refs`（只清内存引用），**旧图一张不删**；清空后不再立刻落盘（磁盘上那份 data.json 一直指着一直存在的文件）；孤儿清理 `_drop_orphan_images` 从配图阶段挪到**新页面渲染成功之后**。这样"任何时刻被硬杀"都成立，而不是只有"跑完之后"成立。快照记录落盘成 `images.prev/records.json`（带 section 与 query）。**台账里那条"write_manifest 不写 query"经实测是错的**：`咖啡/images/manifest.json` 有 query（8 键），百达翡丽/劳力士没有是因为它们的 data.json 记录产自 W-71 之前——字段本来就会随记录写出去，不需要改代码 | 三条新测试全部先红后绿：`test_a_hard_kill_in_the_middle_of_the_redo_leaves_the_page_whole`（红在"重做进行中落盘的 data.json 已经丢了旧引用"＋"旧图已被删除"＋"images.prev/ 里没有 records.json"）、`test_the_snapshot_records_keep_the_query_that_found_them`、`test_a_failed_render_keeps_the_images_the_published_page_uses`（红在渲染失败后 `01_stub.jpg…` 全没了）；`python -m pytest -q` exit=0。**动因是实测事故**：09-21 检查 output/ 时百达翡丽 data.json 引用 0 张、images/ 里 19 张、images.prev/ 里 17 张、已发布页面 18 个破链，最后一次写盘 02:27 |
-|---|---|---|---|
 | 2026-09-20 | W-82 | 两件"看起来坏"和"悄悄不测"一起修：① 索引里**无封面的卡片**以前只有一块 `aria-hidden` 的品牌色渐变，读者只能理解成"图裂了"（开发者在主页上就是这么报的）——现在改成排版封面：领域名大字压在渐变浅色带上，并**把 `.ph-word` 加进 G-13 的对比度清单**（新增可见文字必须被量，不然就是下一个漏网的）；② `sweep_tokens.py` 的主题清单是**写死的 10 个**，加第 11 个领域不会报错、只会静默不跑，"每套主题都过 G-13"于是变成假话——改成从 `web/src/tokens/index.ts` 解析 | `test_a_card_without_a_cover_is_typographic_not_an_empty_frame`（先红：无封面卡里没有排版层）+ `test_every_outline_token_exists_in_the_typescript_themes`（带自检：解析不出主题时不许一路绿灯）；`node scripts/measure-layout.mjs --file output/index.html` → 布局几何检查通过；`sweep_tokens` 现在解析出 11 套主题（含 `guerlain-abeille`）并跑 22 个产物 |
 | 2026-09-20 | W-81 | 一条列只剩一个右边界（开发者指出"字、图、表格向右不一样，看着不平整"）。三处一起改：① 内容列去掉预留的 `+24rem`（那 384px 就是表格比正文宽出来的量），② `--measure` 44→46rem 且 `.figs/.steps/.timeline` 不再单独 50rem、与表格卡片同宽，③ 外壳从 84.5rem 收到 62.5rem，封面右边缘与正文右边缘一起收口。**并且把闸门修到能守住它**：`G-13/measure-inconsistent` 以前只量 `.body > *`，而区块都包在 `.blk` 里 → 量到的全同宽、参差在下一层；现在把 `.tablewrap/.figs/.note/.cards/.facts/.steps/.timeline` 全拉进同一组比 | 拿 **git 里的旧版页面**跑新规则，它当场变红并给出开发者说的那件事的数字：`@1440 右差 356.8px`（`.body>*`/`.tablewrap`/`.cards`/`.facts`=1061、`.figs`/`.steps`/`.timeline`=800、`.note`=704）、`@1920/@2560 右差 384.0px`——**规则改完先证明它能抓旧版，再说新版通过**；新版 `劳斯莱斯`/`咖啡` 走 `--offline` 重渲染后 `0 fail / 1 warn`（warn 是已知的 W-33b 偏长），几何基线重录 375/1440/3762 三档，全量 `pytest -q` 绿 |
 | 2026-09-20 | W-33 | 文章页第六版**开发者已确认**（正文锁 44rem、目录进左栏、配图封顶 800px、小图不放大成糊图）：`python scripts/open.py` 打开 `output/咖啡/咖啡_2026-09-20.html` 与 `output/index.html` 后回"主页还行"、"咖啡的也不错"。几何侧的对照数据：375/1440/2171/3762 四档 0 破图 0 零盒 0 窄图，3762 档正文列宽锁在 1352px | 开发者原话（本轮对话）；`.probe/shots/咖啡_2026-09-20_{375,1440,2171,3762}.png`；`node scripts/shot.mjs` 输出的 `brokenImgs:0 / thinImgs:[] / wrap.w` |

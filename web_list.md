@@ -25,5 +25,6 @@
 | 爱马仕 | <https://hermes-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |
 | 百达翡丽 | <https://patek-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |
 | 积家 | <https://jaeger-lecoultre-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |
+| 美国中期选举与全球资产 | <https://us-midterms-and-assets-gtqdc11h6po.qoder.website/> | 2026-09-26 | public | 一致 |
 | 香奈儿 | <https://chanel-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |
 | 骁龙笔电 | <https://snapdragon-laptop-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |

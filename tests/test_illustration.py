@@ -97,6 +97,27 @@ def test_an_illustration_needs_something_to_be_based_on(tmp_path):
                    alt=u"示意图", caption=u"画的", based_on=[], root=str(d.parent))
 
 
+def test_installing_leaves_data_json_in_the_canonical_format(tmp_path):
+    """`data.json` 只有一个作者：`generate._save`（原子写、indent=1）。
+    这里曾经自己 `json.dumps(indent=2)` 写一遍——装一张图就把整份文件重排，
+    git 里多出上千行噪声 diff，真正改了什么反而看不见。09-26 在 publish.record
+    上踩过同一个坑，测试形状照搬那一条。"""
+    import generate as G
+    d = _domain(tmp_path)
+    dp = os.path.join(str(d), "data.json")
+    before = io.open(dp, encoding="utf-8").read()
+
+    AI.install(u"测试领域", "sec-01", str(_png(tmp_path)),
+               alt=u"示意图", caption=u"画的", based_on=[u"sec-01#x"], root=str(d.parent))
+
+    after = io.open(dp, "rb").read()
+    assert after != before.encode("utf-8"), u"install 什么都没写，这条测试是空转"
+    twin = os.path.join(str(tmp_path), "twin.json")
+    G._save(twin, json.loads(after.decode("utf-8")))
+    assert after == io.open(twin, "rb").read(), \
+        u"install 用的不是 _save 那套格式：整份文件被重排"
+
+
 def test_redoing_images_leaves_the_illustrations_alone(tmp_path):
     """`--redo-images` 清引用是为了让采集器重找，但采集器只会找回**照片**——
     把手画的剖面图引用一起清掉，等于把它交给渲染后的孤儿清理删掉。
