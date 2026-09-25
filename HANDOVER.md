@@ -10,28 +10,6 @@
 
 ## IN PROGRESS（正在做）
 
-- [ ] W-152 **推送到公开 GitHub 仓库**（开发者 09-25 提：深度 review + 脱敏 + 完善 README/脚本
-      告知其他 agent 怎么发布 + 推到 `sherman9527/QoderWebSite`）。
-      已做：`publish.py playbook`（每篇的 projectId 与逐步参数，4 条测试先红后绿）、
-      `docs/publishing-for-agents.md`（agent 手册）、README 与 AGENTS 第 10 步指过去、
-      `config/home_site.json` 给主页站 projectId 一个家、工作树 5 处本地用户名路径
-      换成 `<用户目录>`（`git grep` 已 0 命中）、
-      深度 review 抓到并修掉 4 条 Important + 1 条 Critical。
-      **开发者已拍板**：① 远端只推**一条全新的单提交历史**（本地 124 条不动）、作者用中性身份；
-      ② **图片不入库**——推源码 + 20 个 HTML 页面，排除 `output/*/images/` 与采集器的
-      `manifest.json` / `search-stats.json`。
-      落地成 `scripts/publish_public.py` + `config/public_exclude.txt`：
-      临时 index 造 tree，不碰本地 HEAD；推前自查三件事（没有 output 图 / 没有中间文件 / 没有本机身份痕迹），
-      并且**排除必须真的删掉了东西**——第一版被 `git ls-tree` 的中文路径转义骗过，
-      报了“图片残留 0”而实际一张没删，现在这种情况会主动报错。
-      实测快照 609 → 203 个文件，删 406。`tests/golden/**` 的 13 张（4.2 MB）
-      是测试夹具，**刻意保留**并写明理由，不是漏了。
-      **还欠真推**：本机 github.com 直连极慢（25 秒才 200，git 端口超时过一次）；
-      而且“匿名推送”在 GitHub 上做不到——写入要有该仓库的写权限凭据，
-      用谁的凭据推，Events 里的 pusher 就是谁（commit 作者可以中性，推的动作不行）。
-      另外目标仓库已存在且是**公开**的；若它已有 main 分支，推无关历史需要 force——
-      那是破坏性动作，要单独授权。
-
 - [ ] W-150 **新领域：Claude Opus 5.5 全面解读**（开发者 09-25 提）。要覆盖能力、费用、提升幅度、
       RSI（自我改进）等，落点是**这一版的差异化到底在哪、对后续模型路线的启示、以及对硬件的需求**。
       写之前要立的三条口径（不立就一定会写成宣传稿）：①**分数口径**——厂商自报与第三方复现分开列，
@@ -114,6 +92,7 @@
 ## COMPLETE（已完成）
 
 | 日期 | 编号 | 工作项 | 证据 |
+| 2026-09-25 | W-152 | **推到公开仓库 + 发布链路的 agent 化**。开发者拍板：远端只推一条全新的单提交（本地 124 条不动、作者中性），`output/*/images/` 的第三方图片不入库。落地 `scripts/publish_public.py` + `config/public_exclude.txt`：临时 index 造 tree，不碰本地 HEAD/index/历史；推前自查三件事（没有 output 图 / 没有 `.pending`、`manifest.json` 一类现场文件 / 没有本机用户名与绝对路径），外加一条**防自欺**：排除若一条都没删掉就直接报错。`tests/golden/**` 的 13 张（4.2 MB）是测试夹具，**刻意保留**并写明理由。同时把发布这半条链路交给 agent：`publish.py playbook` 算出每篇的 projectId 与逐步参数、`docs/publishing-for-agents.md` 手册、README 与 AGENTS 第 10 步指过去。深度 review 抓到并修掉 4 条 Important + 1 条 Critical（详见 W-152 原条目与 memo 09-25） | 公开仓库 <https://github.com/sherman9527/QoderWebSite> 的 `main` = 单提交 `3ea38d76ba641cf62ae3865e2f7d5671bdb5d6e4`，author `KnowEverything <snapshot@local.invalid>`、API 里 `login` 为空（不关联任何账号）、parents 为 0；`contents/output/%E5%92%96%E5%95%A1` 只有 `data.json` 与 `咖啡.html`，**没有 images 目录**；快照 611 → 205 个文件（删 406），自查 `图片残留 0｜中间文件残留 0｜身份痕迹 0`；本地 `python -m pytest` = 395 passed rc=0，`validate --all` = 20 领域 0 fail |
 | 2026-09-25 | W-149 | **第 20 篇：名创优品 × 泡泡玛特**（开发者当天提的需求）。11 章、18 张图（5 张自画示意图 + 13 张实拍）、114 条来源。三条硬边界写在 angle 里并逐条验过：不给买卖建议/目标价/涨跌方向，「拐点」拆成经营、单店模型、估值三类各给可证伪观测条件；段永平一节只报披露记录与逐字原话，并给「跟随」在结构上不成立的四条（成本与时间尺度、仓位与流动性、披露滞后与选择性、他自己「看不懂就不做」的口径）；两家公司报表口径单列一章讲。**连带修掉一处模板级缺陷**：引用 chip 之间没有任何空白，`S0717S0720…` 排版上是一个不可断的词，挂十几条来源的标题被撑到 358px > 版心 345px，G-13 报 clipped-scroller。先试 `overflow-wrap` 会让编号从中间劈开（S071|7），正解是给每个 chip 前插 `<wbr/>` **造换行机会**；figcaption 同时补上漏掉的 overflow-wrap。模板指纹变了 → 20 篇全部重渲染重发 | 线上 <https://miniso-vs-popmart-gtqdc11h6po.qoder.website/>（curl 200、217 KB、18 图、11 章、114 来源锚点）；`validate --all` = **20 个领域 0 fail / 28 warn** rc=0；逐站 curl 全 200 且**线上 HTML 里 `<wbr` 计数 61–215**（证明修复真的发上去了，不只是本地绿）；边界正则扫描：方向/建议类 7 处命中全是页面自己的免责声明与来源标题原文，确定性判断 0 处、「就是拐点」0 处；`tests/test_render.py::test_source_chips_have_a_break_opportunity_between_them`；示意图 `scripts/diagrams/名创优品与泡泡玛特.py`（5 张，图上不写任何数字与日期，D-22）|
 | 2026-09-25 | W-148 | **发布账本记住「这是哪个站」**（由我自己一次真实误操作逼出来）。`data.json.site` 新增必填 `project_id`，`record` 不传就拒绝写；`pending` 把工作清单带上 projectId，agent 更新时不必再凭记忆认站。顺带补上第二条自证不了的问题：`record` 现在校验 URL 主机名必须由该篇 slug 派生（`<slug>-…`）。我把 18 条 URL 拼成过 `https://<slug>/<后缀>`，`check` 照样报「账实一致」——账本和 data.json 由同一次错误生成，两处自洽不等于对 | 先红后绿：`test_record_rejects_a_url_that_is_not_that_slugs_address`（第一版红在 `DID NOT RAISE`，因为我留了 `host == slug` 这个口子，而那正是我打错的形式）、`test_site_record_carries_the_project_it_belonged_to`、`test_pending_tells_the_agent_which_project_to_update`、`test_the_data_contract_allows_the_published_site_block`。`validate --all` = 19 个领域 0 fail / 9 warn rc=0；18 篇全部 `published: true` + `active_release_id` 非空 + 公网 curl 200 |
 | 2026-09-25 | W-147 | **主页双变体：一份模板出本地版与线上版**（D-23 拆出的第二条）。`build_index.collect/build(variant="local"|"hosted")`：本地版行为一字未变（链相对路径、G-12 继续 `os.path.isfile()`）；线上版卡片链各篇 `data.json.site.url`、封面**内联 base64**、输出到 `dist/home/index.html`。**比计划预估小一圈：模板一行没改**——卡片本来就是 `href={e.href}`、封面本来就是 `<img src={e.cover.file}>`，data URI 直接可用，所以不触发 AGENTS 第 5 步的全站重渲染。有一篇没发布时线上版**直接报错退出**（`NotPublished`）而不是悄悄退回相对路径：退回会得到一个"一篇跳公网、一篇跳本地文件"的主页，公网站上后者必然 404，而它看起来完全正常。线上版输出路径从 `output_dir` 的上一层推，测试指到 tmp 就不会写进真实仓库——不再多一个"要记得 patch 的常量"。**一处主动缩掉的范围（写进文档，不当成已完成）**：计划里说给 G-12 加一条 hosted 分支去校验线上版主页——没做。`validate.py` 全站段只看 `output/index.html`，要判 `dist/home/index.html` 得先给闸门加"校验哪个文件"的通路，而线上版当时根本产不出来（没有任何已发布地址）。那三条不变性现在**由测试守、不由闸门守**，这个区别文档里明写了。| 测试先红后绿：`tests/test_index.py` 四条（线上版链已发布站点且封面是 `data:` / 缺 URL 时 `NotPublished` / 线上版仍零运行时 JS 且保留排序控件 / **本地版即使全部发布了也不许改链公网**）。`python -m pytest` = **`382 passed in 352.47s`，rc=0**；`validate --all` = **`19 个领域，0 fail / 9 warn`**，rc=0；实跑 `build_index.py --variant hosted` 在无发布记录时 rc=1 并打 `✗ AI制药 还没有已发布地址，线上版主页不能出`（不接管道量的 rc——本仓库明写过 `| tail` 会洗掉真实退出码）。另：中文文件名小包（2,265,752 字节）验证 `succeeded`、`canPublish: true` → 上次 `sites_artifact_unsafe` 确认是体积 |

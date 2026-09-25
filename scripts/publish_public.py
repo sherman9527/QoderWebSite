@@ -17,6 +17,7 @@
 """
 import argparse
 import io
+import json
 import os
 import re
 import subprocess
@@ -27,6 +28,7 @@ if hasattr(sys.stdout, "reconfigure"):
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXCLUDE_FILE = os.path.join(ROOT, "config", "public_exclude.txt")
+SNAPSHOT_STATE = os.path.join(ROOT, "config", "public_snapshot.json")
 SCRATCH = os.path.join(ROOT, ".probe")
 TMP_INDEX = os.path.join(SCRATCH, "public.index")
 DROPFILE = os.path.join(SCRATCH, "public_dropped.z")
@@ -130,6 +132,30 @@ def audit(ref, excludes):
     return tree, total, names, bad_img, scratch, leaks
 
 
+def last_snapshot_parent():
+    """上一次推出去的快照提交，可以当新快照的父。
+
+    为什么不 force-push 一条新的根提交：远端已经有历史了，force 会抹掉它。
+    记录的 sha 是我们自己 commit-tree 造出来的，对象就在本地库里，
+    所以接父不需要先 fetch 远端。对象丢了（换机器、gc 掉）就退回"无父"，
+    那种情况下要推得先 fetch 一次，脚本宁可明说不做。
+    """
+    if not os.path.isfile(SNAPSHOT_STATE):
+        return u""
+    try:
+        sha = (json.load(io.open(SNAPSHOT_STATE, encoding="utf-8")).get("last_commit") or u"").strip()
+    except ValueError:
+        return u""
+    if not sha:
+        return u""
+    r = subprocess.run(["git", "cat-file", "-e", sha], capture_output=True)
+    if r.returncode != 0:
+        sys.stderr.write(u"! 记录的上一次快照 %s 不在本地对象库里，"
+                         u"这次会试图再推一条根提交（远端已有历史，会被拒）\n" % sha[:10])
+        return u""
+    return sha
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=u"生成并（可选）推送公开快照")
     ap.add_argument("ref", nargs="?", default="HEAD")
@@ -163,18 +189,32 @@ def main(argv=None):
         print(u"✗ 需要 PUBLIC_GIT_NAME / PUBLIC_GIT_EMAIL（中性作者），不推。")
         return 1
     msg = (u"KnowEverything · 静态知识专题页生成器\n\n"
-           u"一条命令产出图文并茂、自包含、file:// 双击可开的 HTML 专题页；"
-           u"20 篇成品已各自发布成公开站点。\n\n"
+           u"一条命令产出图文并茂、自包含、file:// 双击可开的 HTML 专题页。\n"
            u"本仓库是干净快照（不含第三方图片与本机身份痕迹），"
            u"由 scripts/publish_public.py 生成。\n")
     env = {"GIT_AUTHOR_NAME": args.author_name, "GIT_AUTHOR_EMAIL": args.author_email,
            "GIT_COMMITTER_NAME": args.author_name, "GIT_COMMITTER_EMAIL": args.author_email}
-    commit = git("commit-tree", tree, "-m", msg, env=env).strip()
-    print(u"提交 %s" % commit[:10])
+    parent = last_snapshot_parent()
+    cmd = ["commit-tree", tree] + ([u"-p", parent] if parent else []) + [u"-m", msg]
+    commit = git(*cmd, env=env).strip()
+    print(u"提交 %s%s" % (commit[:10],
+                          u"（接在 %s 之后）" % parent[:10] if parent else u"（根提交）"))
     r = subprocess.run(["git", "push", args.push, "%s:refs/heads/%s" % (commit, args.branch)],
                        capture_output=True, text=True, encoding="utf-8", errors="replace")
     sys.stdout.write(r.stdout or u"")
     sys.stderr.write(r.stderr or u"")
+    if r.returncode == 0:
+        with io.open(SNAPSHOT_STATE, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(json.dumps({
+                "last_commit": commit, "last_tree": tree,
+                "branch": args.branch, "files": len(names),
+                "pushed_at": subprocess.run(
+                    ["git", "show", "-s", "--format=%cI", commit],
+                    capture_output=True, text=True).stdout.strip(),
+                "note": u"上一次推给公开仓库的快照。publish_public.py 用它当新快照的父，"
+                        u"这样更新是快进而不用 force-push。删掉这个文件就等于重新起一条历史。"},
+                ensure_ascii=False, indent=1) + u"\n")
+        print(u"已记录快照状态 → config/public_snapshot.json")
     return r.returncode
 
 

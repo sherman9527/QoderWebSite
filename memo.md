@@ -21,7 +21,7 @@
 - **不可达的外网数据源**：`commons.wikimedia.org`（连接超时）、`duckduckgo.com`（21s 超时）。任何依赖它们的方案在本环境直接不可用。
 - **可达的图片源**：`cn.bing.com/images/async?q=<kw>&first=0&count=N&qft=filterui:imagesize-large` → 200、12–35 条结果。
 - **不可用的图片源**：`image.baidu.com/search/acjson` → `{"antiFlag":1,"message":"Forbid spider access"}`。
-- 本机 `~/.npmrc` 原本只有 `strict-ssl=false`；Python 3.10 在 `C:\Python310`；Node v24.14.1 / npm 11.11.0。
+- 本机 `~/.npmrc` 原本只有 `strict-ssl=false`；Python 3.10 装在 `<Python 安装目录>`；Node v24.14.1 / npm 11.11.0。
 - ⚠️ 本环境 Git Bash 控制台输出中文会显示成乱码（cp936 与控制台编码问题），**不代表文件内容坏了**——判断编码要看文件，不要看终端。
 
 ### 本地 CLI（生成 HTML 的执行者，需求 5）
@@ -1382,3 +1382,8 @@ W-120 落地之后重做的必要性进一步下降。真要瘦身是 git 历史
 | J-34 | `python -m pytest`（模板修复 + 第 20 篇之后全量） | **`389 passed in 340.69s`，rc=0**（`.probe/w149_pytest.txt`）。其中新增一条钉 chip 断点：`test_source_chips_have_a_break_opportunity_between_them`；另一条 `test_headings_are_allowed_to_break_a_long_word` 被我的改动**弄坏了又修好**——它是「找文件里第一个 overflow-wrap:anywhere」来定位标题规则的，我在它前面插了 figcaption 规则，它就去看 figcaption 了。已改成按选择器匹配规则，不再依赖出现顺序 |
 | J-35 | 深度 review（子代理独立跑） | 报出 3 Critical / 7 Important / 4 Minor；它独立量到 `393 passed rc=0`。我修了 4 条 Important + 1 条 Critical（.gitignore 漏收 `.pending`/`.prev`） | 关键结论：swap 协议**在所有崩溃次序下都没弄坏已发布页与它的图**——这是本轮最高风险项，reviewer 逐点枚举后确认 |
 | J-36 | 修完后 `python -m pytest` / `validate --all` / `publish.py check` / `playbook` | **`395 passed in 325.40s` rc=0**；`20 个领域 0 fail / 9 warn` rc=0；`✓ 账实一致`；`✓ 没有待发布的篇` | 三条收紧测试都在（前缀匹配、假日期、假地址） |
+| 2026-09-25 | 公开快照的自查第一次跑报「图片残留 0」，实际一张都没删 | `git ls-tree` 默认把非 ASCII 路径转义成带引号的八进制串，于是排除正则与自查正则**同时**看不见中文路径——检查跟着被检查的对象一起瞎 | 所有列路径的地方统一 `-c core.quotePath=false`；再加一条不依赖正则的兜底：**排除前后文件数没变就直接报错**。自洽的检查要配一个它自己骗不了的量 |
+| 2026-09-25 | 修好引号问题后自查仍拦下 `scripts/publish_public.py` 自己，两次 | 第一次：身份正则里字面写着本机用户名，脚本自己命中自己；第二次：注释里写了一个真实的示例绝对路径形态 | 用户名从 `USERNAME`/`USER` 环境变量取，注释里只描述形态不写路径。**检查工具本身也是被检查的对象**——写「扫别人」的规则时，先扫一遍自己 |
+| 2026-09-25 | 本机 `git ls-remote github.com/...` 端口超时，但 `api.github.com` 正常、网页 25 秒能通 | 这台机器到 github.com 的路由不稳（仓库文档早就记了「GitHub 直连卡死，用 gh-proxy」，但代理只对**拉**有用，推必须直连） | 推之前先 `ls-remote` 探一次；真推走通了（约 1 分钟）。别把「拉不动」当成「推不动」，也别反过来 |
+| J-37 | `publish_public.py --push`（自查 + 构造 + 推） | 快照 611 → 205 文件、删 406；`图片残留 0｜中间文件残留 0｜身份痕迹 0`；推送 rc=0，`* [new branch] 3ea38d76… -> main` | 公开仓库现在只有一条匿名作者的根提交 |
+| J-38 | 推完用 API 复核（不看本地觉得成） | `commits/main`：author `KnowEverything <snapshot@local.invalid>`、`login` 为空、parents 0；`contents/output/咖啡` = `['data.json','咖啡.html']`（无 images） | **推成功 ≠ 推对**：远端要单独验一次内容与身份 |
