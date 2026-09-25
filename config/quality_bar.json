@@ -1,0 +1,62 @@
+{
+  "_comment": "质量闸门的可调阈值集中在这里，改这里不必改代码。见 openspec specs/quality-gates 与 AGENTS.md §7。",
+  "reading": {
+    "assumed_chinese_chars_per_minute": 500,
+    "figure_minutes_allowance": 2,
+    "target_minutes_default": 10,
+    "_derivation": "10 分钟 × 500 字/分钟 = 5000 字正文；给图表留 2 分钟，故下限取 4500、上限取 6500。此口径见 memo.md D-02。"
+  },
+  "words": {
+    "min_chars": 4500,
+    "max_chars": 6500,
+    "prose_min_chars": 40,
+    "hard_max_chars": 8500,
+    "_derivation": "10 分钟 × 500 字/分钟 = 5000 字正文，故目标区间 4500–6500。开发者 2026-09-19 判定：「超出 2000 字以内可接受」→ 6500 之上、8500 之内只 warn；超 8500 才 fail。每章预算由整页预算÷章数算出（见 generate.section_budget），耗时口径同样由开发者确认保持现状：不砍章节、不限制每章来源数。",
+    "overrun_tolerance_chars": 2000,
+    "_prose_min_note": "段落下限。必须与 topic_data.schema.json 的 prose.text.minLength 一致，由 test_prose_floor_in_config_and_schema_is_one_number_not_two 钉住。80 是按旧的每章 900–1400 字标定的；每章预算降到 ~450 后正常段落只有 60–75 字，会被误判。"
+  },
+  "structure": {
+    "min_sections": 5,
+    "max_sections": 20,
+    "min_images": 8,
+    "max_images": 24,
+    "min_blocks_per_section": 2
+  },
+  "images": {
+    "min_width": 640,
+    "min_bytes": 40960,
+    "preferred_bytes": 81920,
+    "dedupe": "sha256",
+    "min_bytes_per_pixel": 0.03,
+    "_bpp_note": "真实照片在 800×600 量级通常 ≥0.05 B/px；Bing 的'图片不可用'占位图是 8706B/800×600≈0.018，格式、尺寸、体积全都合格，只有密度能识破它。"
+  },
+  "theme": {
+    "min_palette_distance": 25,
+    "_comment": "身份色（primary + accent）的 CIE76 ΔE 两个都小于此值才算雷同，防止 10 页趋同。底色不参与——共用纸白底是可读性要求，不是趋同。25 这个数是 09-21 对着 11 套真色板量的（ΔE≈25 = 同一色系换色调），旧值 60 从没量过，实测把 42/55 对判死。见 memo.md D-03。"
+  },
+  "sourcing": {
+    "require_source_for_numbers": true,
+    "price_block_requires_as_of": true,
+    "blocked_source_domains": [
+      "baijiahao.baidu.com",
+      "toutiao.com",
+      "sohu.com/a",
+      "360kuai.com",
+      "yidianzixun.com"
+    ],
+    "blacklist_note": "采集/自媒体聚合站特征域名，常转载而不核实。名单保守，随打样结果增补；命中则该来源不被接受。"
+  },
+  "placeholders": [
+    "TODO",
+    "TBD",
+    "待补充",
+    "Lorem",
+    "占位",
+    "{{",
+    "}}",
+    "……待",
+    "XXX",
+    "[[",
+    "]]"
+  ]
+}

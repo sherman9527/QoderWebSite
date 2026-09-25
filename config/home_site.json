@@ -1,0 +1,7 @@
+{
+ "project_id": "01a0d73f-238b-7e3f-9c47-add2fbbc7902",
+ "site_id": "01a0d73f-238c-7f08-ab99-e9759cb88721",
+ "slug": "knoweverything",
+ "url": "https://knoweverything-gtqdc11h6po.qoder.website/",
+ "note": "主页站自己的身份记录。它不是一篇文章，没有 data.json 可住，所以 projectId 放这里；playbook 的最后一步会读它。改托管账号或重建主页时更新本文件。"
+}

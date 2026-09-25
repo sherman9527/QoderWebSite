@@ -1,0 +1,2389 @@
+{
+ "topic": "骁龙笔电",
+ "sections": [
+  {
+   "id": "why-now",
+   "title": "为什么是现在：三件事同时到位，才让笔电敢换指令集",
+   "anchor": "因",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "前提一：3nm 先到手机，隔近一年才到笔电",
+     "text": "2024 年 10 月 21 日，高通发布骁龙 8 Elite：台积电 3nm，两颗 4.32GHz 的 Oryon Prime 核加六颗 3.53GHz 性能核。笔电平台骁龙 X Elite 则仍停在 4nm、12 核、NPU 45 TOPS。同一代节点，笔电晚了近一年——2025 年 9 月 24 日的骁龙 X2 Elite 才上 3nm 级，最高 18 核、5GHz、NPU 80 TOPS、LPDDR5X-9523 最高 128GB。\n\n量级也是反的：PassMark 口径下，2025 年 3 月骁龙只占笔记本 CPU 的 0.3%；Mercury Research（2026 年 1 月报道）给出的 Arm 笔记本份额约 18%–19%，几乎都在苹果手里。先进产线的成本由手机出货摊，笔电是搭车的。",
+     "source_ids": [
+      "S014",
+      "S013",
+      "S015",
+      "S016",
+      "S017"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "前提二：转译层的边界，微软按日期写进文档",
+     "text": "别看形容词，看官方边界。微软 Learn（更新于 2025 年 11 月 6 日）写明：Windows 11 on Arm 同时模拟 x86 与 x64，靠 24H2 内置的 Prism；Windows 10 on Arm 只能模拟 x86。同页两条硬限制：模拟只覆盖用户态，驱动不支持，内核组件必须编成 Arm64；Prism 针对骁龙调优，部分性能特性只有骁龙 X 系列才有。转折点是 2025 年 12 月 1 日的累积更新 KB5070311——Prism 开始支持 AVX、AVX2 及 BMI、FMA、F16C 扩展，微软注明分批推送、按设备而异。此前依赖这些指令集的软件跑不起来；兼容的账按月在还，不是首发就结清。",
+     "source_ids": [
+      "S011",
+      "S012"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "前提三：系统定门槛，固件与生态照着补",
+     "text": "系统侧的推动落在条目上：X Elite 集成 Secure Processing Unit 运行微软 Pluton TPM，支持内存加密与 Secured-Core PC，另配一颗 Sensing Hub Micro NPU 在睡眠时唤醒——电源与安全基线照微软平台要求实现。生态承诺也有日期：反作弊方案 Easy Anti-Cheat 于 2025 年 3 月宣布年内支持 Windows on Arm，当时非官方兼容清单只有 675 款应用、121 款游戏。",
+     "source_ids": [
+      "S013",
+      "S016"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "三条前提的可复核锚点",
+     "rows": [
+      {
+       "k": "制程时间差",
+       "v": "手机 3nm（2024-10）→ 笔电 3nm（2025-09）",
+       "source_ids": [
+        "S014",
+        "S015"
+       ]
+      },
+      {
+       "k": "转译时点",
+       "v": "Prism 内置于 24H2；AVX/AVX2 自 2025-12-01 起分批上线",
+       "source_ids": [
+        "S011",
+        "S012"
+       ]
+      },
+      {
+       "k": "硬边界",
+       "v": "模拟仅用户态，驱动必须 Arm64 编译",
+       "source_ids": [
+        "S011"
+       ]
+      },
+      {
+       "k": "份额",
+       "v": "骁龙占笔记本 CPU 0.3%（PassMark，统计期 2025-03）",
+       "source_ids": [
+        "S016"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "任何一件退回去都会卡住",
+     "text": "这三条都是后面判断行情的钩子：节点若不再优先服务手机，笔电拿不到同级工艺，续航优势会被同代 x86 抹平；转译若停止补 AVX 这类指令集，专业软件与游戏立刻退回不可用；系统侧若撤回对 Arm 驱动与安全基线的承诺，没人肯重写驱动。它们都是可逆的商业选择，不是锁死的物理事实。",
+     "source_ids": [
+      "S011",
+      "S012",
+      "S016"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/01_Snapdragon_X_Elite.jpg",
+     "alt": "CES丨高通发布骁龙 Snapdragon X 处理器，抢占4000元级笔记本市场_CPU_什么值得买",
+     "caption": "CES丨高通发布骁龙 Snapdragon X 处理器，抢占4000元级笔记本市场_CPU_什么值得买",
+     "source_page": "https://post.smzdm.com/p/aqq8wnl2/",
+     "width": 1080,
+     "height": 654,
+     "query": "Snapdragon X Elite"
+    },
+    {
+     "file": "images/02_Snapdragon_X_Plus.jpg",
+     "alt": "高通发布Snapdragon X Elite 笔记本电脑芯片|高通|芯片|笔记本电脑_新浪新闻",
+     "caption": "高通发布Snapdragon X Elite 笔记本电脑芯片|高通|芯片|笔记本电脑_新浪新闻",
+     "source_page": "https://k.sina.com.cn/article_6678407719_18e106a27001012uzb.html",
+     "width": 800,
+     "height": 450,
+     "query": "Snapdragon X Plus"
+    }
+   ]
+  },
+  {
+   "id": "arm-vs-x86",
+   "title": "两种架构到底差在哪：不是「谁更快」，是谁在什么约束下更快",
+   "anchor": "构",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "解码不是主战场",
+     "source_ids": [
+      "S021",
+      "S022",
+      "S023"
+     ],
+     "text": "先划掉一个过时说法：x86 复杂所以费电。AMD 官方优化手册写明，Family 15h 这类 x86 核心并不直接执行 x86 指令，而是把变长编码的指令先解码成定长 macro-op，再拆成一次只做一个原始操作的 micro-op；Qualcomm 描述第 3 代 Oryon 时用的也是「每周期退休 9 条 micro-op」这种口径。ARM 在这一层的优势只剩前端解码：定长 4 字节更容易并行解码。Chips and Cheese 在 2021 年关掉 Zen 2 的微操作缓存做对照，纯解码路径只比走缓存多出约 4–10% 的核心功耗；同篇引 2013 年的学界测量，两类平台的性能与能耗差主要来自设计目标。所以「指令集决定一切」不成立，成立的是「谁在什么约束下更快」。"
+    },
+    {
+     "type": "prose",
+     "heading": "功耗墙：同一颗芯片是两个产品",
+     "source_ids": [
+      "S024",
+      "S026"
+     ],
+     "text": "笔电的性能天花板通常不是芯片上限，而是厂商给这一档定的功耗预算。AMD 对 Ryzen AI 9 HX 370 的官方口径是默认 28W、可配置 15–54W：同一个 SKU 覆盖 3.6 倍功耗区间，装进一公斤薄机和装进游戏本就是两颗芯片。骁龙这边同样按模式分档，见下表——只换功耗档，同一颗芯片的多核跑分能差 46%。所以挑笔电要先算每瓦性能，再看厂商给这一档留了多少散热余量。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "X2E-94-100（Zenbook A16）功耗档与多核跑分",
+     "rows": [
+      {
+       "k": "Whisper 档",
+       "v": "短/长时 52 W / 18 W，Cinebench 2024 多核 1203 分",
+       "source_ids": [
+        "S026"
+       ]
+      },
+      {
+       "k": "Standard 档",
+       "v": "75 W / 40 W，1619 分",
+       "source_ids": [
+        "S026"
+       ]
+      },
+      {
+       "k": "Performance 档",
+       "v": "97 W / 72 W，1761 分",
+       "source_ids": [
+        "S026"
+       ]
+      },
+      {
+       "k": "同测参照",
+       "v": "默认 55W 的 Ryzen 9 9955HX：2026 分",
+       "source_ids": [
+        "S025",
+        "S026"
+       ]
+      },
+      {
+       "k": "测试条件",
+       "v": "外接显示器、原生 ARM 版，2026-04-07",
+       "source_ids": [
+        "S026"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "大小核与调度",
+     "source_ids": [
+      "S023",
+      "S024",
+      "S027"
+     ],
+     "text": "分工决定日常手感。X2E-88-100 用 12 个 Prime 核（单核最高 4.7GHz、全核 4.0GHz）加 6 个 Performance 核（最高 3.4GHz），18 核 18 线程且不带 SMT，Qualcomm 给小核定的工作点在 2W 以下。AMD 的 HX 370 是 4 个 Zen 5（最高 5.1GHz）加 8 个 Zen 5c（最高 3.3GHz），12 核 24 线程。调度器把后台线程压给小核、把前台单线程留给大核，这才是薄机上「不烫但够用」的来源。"
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "骁龙占优",
+      "tone": "neutral",
+      "points": [
+       "单线程峰值 151 分对 Core Ultra X9 388H 的 129.8 分（Cinebench 2024 单核，同实验室）",
+       "长时上限不足 20W 时多核仍领先对手高性能档，满载约 30 dB(A)"
+      ]
+     },
+     "right": {
+      "title": "x86 仍然占优",
+      "tone": "neutral",
+      "points": [
+       "高并发持续满载：给到 55W 以上并用满 SMT 线程的 HX 级机型仍在 ARM 之上",
+       "峰值频率 5.4GHz 对 5.0GHz，同核数线程翻倍"
+      ]
+     },
+     "verdict": "两边各自赢在一段约束里：换指令集换的是功耗曲线，不是绝对速度。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/03_功耗档曲线.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：性能释放是功耗档的函数——两条曲线在均衡档相交，交点以左安静的一方占优",
+     "caption": "按正文的定性结论绘制；轴上不标 TOPS/瓦特/分数，量化数据走正文带来源的表格",
+     "based_on": [
+      "arm-vs-x86#同一颗芯片在不同功耗墙下的性能差异",
+      "arm-vs-x86#单线程峰值与多线程持续负载"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "benefits",
+   "title": "好处里哪些是真的：待机、续航、静音、常连接，逐个看依据",
+   "anchor": "好",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "两个官方口径",
+     "text": "轻载续航最容易核对，也最容易看错，因为厂商同时给两个数。同一份微软电池测试页上，13.8 英寸骁龙版是视频播放 20 小时、网页 16 小时；同尺寸 Intel 版反过来，视频 23 小时、网页 14 小时。两个口径方向相反，“骁龙必然更久”在这里站不住。",
+     "source_ids": [
+      "S033"
+     ]
+    },
+    {
+     "type": "card_grid",
+     "heading": "逐项看依据",
+     "cards": [
+      {
+       "kicker": "看实现",
+       "title": "待机与唤醒",
+       "body": "秒开和合盖不断线来自 Windows 的 Modern Standby（S0 低功率空闲）。微软对硬件的要求写得很硬：SoC 内外每个器件都要各自进入低功耗态，压不压得下去取决于外设驱动，任何一个后台“激活者”都能把整机顶在激活态。合盖掉电是整机的账，不是指令集的账。",
+       "source_ids": [
+        "S031",
+        "S032"
+       ]
+      },
+      {
+       "kicker": "小时级",
+       "title": "轻载续航",
+       "body": "厂商标称与第三方实测要分开看。华硕给 Zenbook A14 写的是连续视频播放超过 33 小时，脚注条件是本地影片、Wi-Fi 开着但未连接；换成刷网页，统一口径的实测落在 15 小时上下，与同方法的 x86 机型差一两个小时，不是倍数。",
+       "source_ids": [
+        "S035",
+        "S037"
+       ]
+      },
+      {
+       "kicker": "轻载才成立",
+       "title": "噪音",
+       "body": "“轻任务下低于 25 分贝”是华硕的说法，而它宣传的恰好是提高风扇背压的散热方案——这台机有风扇。要真正无声得挑明确无风扇的型号，那类型号给出的持续功耗档通常更低。",
+       "source_ids": [
+        "S035"
+       ]
+      },
+      {
+       "kicker": "选装",
+       "title": "常连接",
+       "body": "蜂窝不是标配：联想 T14s 骁龙版官方规格把 5G 列为可选模块（带 eSIM），同一页也允许无 WWAN；微软今年的商用线上，可选 5G 标在 13.8 英寸 Intel 配置，脚注写明 5G 并非所有地区可用。",
+       "source_ids": [
+        "S036",
+        "S034"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "不吃香的地方",
+     "text": "持续重载是最先掉队的一项，厂商自己的数据也承认边界：华硕那份 Zenbook A14 对 MacBook Pro 的多核跑分，注明测于接通电源、风扇性能档。外接显卡、依赖 x86 专有指令或专用驱动的软件，换指令集并不解决。",
+     "source_ids": [
+      "S035"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "自己复核",
+     "text": "先翻脚注：那个小时数测的是本地视频还是网页、亮度定在多少尼特、Wi-Fi 是只开不连还是已连接。再用管理员命令行跑 powercfg /sleepstudy，看合盖期间掉了多少电、是谁把机器叫醒的。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/09_Snapdragon_X_Plus.jpg",
+     "alt": "Snapdragon X Elite 2：性能提升高达22%-太平洋科技",
+     "caption": "Snapdragon X Elite 2：性能提升高达22%-太平洋科技",
+     "source_page": "https://notebook.pconline.com.cn/1916/19166492.html",
+     "width": 824,
+     "height": 570,
+     "query": "Snapdragon X Plus"
+    }
+   ]
+  },
+  {
+   "id": "costs",
+   "title": "代价：兼容性、驱动、游戏与专业软件，转译是要交税的",
+   "anchor": "价",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先分清：哪一层有转译，哪一层没有",
+     "text": "Windows 11 用 Prism 把 x86 与 x64 的用户态代码即时翻译成 Arm64 指令，结果按模块缓存，下次启动直接复用。但它覆盖不到内核：微软文档写明内核态组件与驱动必须本身就是 Arm64 的产物，没有例外。这条线决定了下面的检查项。"
+    },
+    {
+     "type": "prose",
+     "heading": "RT 那次到底败在哪",
+     "text": "把 Windows RT 当反面教材前，得先看清它败在哪一层。它不是慢，是装不进已有的 Win32 程序，能跑的只有商店应用与预装 Office，生态被一次性切断。今天变的是转译那一层——Prism 出厂就在系统里，大量系统组件按 Arm64EC 重编，让 x64 应用用到的系统代码跑原生速度。没变的只有一条：内核那一层从来没有转译，驱动照样得重写。"
+    },
+    {
+     "type": "prose",
+     "heading": "性能税要自己量",
+     "text": "通用的「转译掉百分之几」并不存在：缓存友好循环、纯浮点、多线程屏障同步、自改机器码的程序，代价不在一个口径上。同一款软件装两遍，ARM64 与 x64 版各一份，用你自己的工程文件计时。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "四类代价，逐条给能自己复核的查法",
+     "rows": [
+      {
+       "k": "必然出问题的软件",
+       "v": "凡往内核塞东西的：反作弊、加密狗、行业软件授权服务。",
+       "source_ids": [
+        "S041",
+        "S042"
+       ]
+      },
+      {
+       "k": "驱动去哪查",
+       "v": "厂商支持页搜型号加 ARM64，查不到按不可用处理；安装器本身也不能是 x86/x64 的。",
+       "source_ids": [
+        "S042",
+        "S0411"
+       ]
+      },
+      {
+       "k": "插件为何加载不上",
+       "v": "Arm64 进程只加载 Arm64 二进制，Arm64EC 与 x64 才能混装。",
+       "source_ids": [
+        "S045"
+       ]
+      },
+      {
+       "k": "转译档位在哪",
+       "v": "右键 exe，属性 → 兼容性，四档由松到严，越严越慢。",
+       "source_ids": [
+        "S043"
+       ]
+      },
+      {
+       "k": "指令集门槛",
+       "v": "AVX、AVX2、FMA、F16C 自 Windows 11 24H2 起支持，旧版本可退回。",
+       "source_ids": [
+        "S043"
+       ]
+      },
+      {
+       "k": "开发者要交什么",
+       "v": "签名没有 ARM64 专属要求，要的是产物：VS 17.4 起可原生出包，头里见 AA64 才算，提交另带 ARM64。",
+       "source_ids": [
+        "S044"
+       ]
+      },
+      {
+       "k": "性能税有公认数吗",
+       "v": "微软只承认有开销；第三方逐款实测的最新一批发布于 2025 年 12 月。",
+       "source_ids": [
+        "S042",
+        "S049"
+       ]
+      },
+      {
+       "k": "游戏与专业软件",
+       "v": "Epic 2025 年 3 月让 Fortnite 上了骁龙；Adobe 有专页列创意套件的 ARM 限制。",
+       "source_ids": [
+        "S048",
+        "S0410"
+       ]
+      },
+      {
+       "k": "那次失败的代价",
+       "v": "Surface RT 2012 年 10 月上市，微软次年 7 月计提约 9 亿美元。",
+       "source_ids": [
+        "S046",
+        "S047"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "装了就能用",
+      "tone": "pro",
+      "points": [
+       "只跑用户态的应用",
+       "不靠特定指令扩展的",
+       "不加载外部插件的工具"
+      ]
+     },
+     "right": {
+      "title": "得等厂商重写",
+      "tone": "con",
+      "points": [
+       "内核态驱动与反作弊",
+       "靠 x64 插件混装的宿主",
+       "要 x87 高精度的老程序"
+      ]
+     },
+     "verdict": "先看它有没有越过用户态这条线。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/13_Surface_Laptop.jpg",
+     "alt": "首批Win11 AI PC：微软发布Surface Pro/Laptop，搭载骁龙X芯片",
+     "caption": "首批Win11 AI PC：微软发布Surface Pro/Laptop，搭载骁龙X芯片",
+     "source_page": "https://laoyaoba.com/n/904812",
+     "width": 1116,
+     "height": 1299,
+     "query": "Surface Laptop"
+    }
+   ]
+  },
+  {
+   "id": "ecosystem",
+   "title": "生态现在到底缺什么：应用、驱动、开发者，三层分开看",
+   "anchor": "态",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "应用层：原生版已经不是缺口，清单才是",
+     "text": "「生态不行」这句判断没法证伪，得拆开看。\n\n应用层其实已经过了及格线。微软给企业采购看的 Arm 设备常见问题页逐个点名：Word、Excel、PowerPoint、Outlook、Teams、OneDrive、Chrome、Spotify、Zoom、WhatsApp、Blender、Affinity、DaVinci Resolve 都在原生运行。可另一份微软自己写给 IT 管理员的部署指南，仍把 Illustrator、Premiere Pro、After Effects、InDesign 列为非原生，Google Drive 客户端与 VMware 列为不兼容。两份微软文档的口径能差上好几个月。\n\n所以这一层缺的不是原生版本数，是一份口径一致、有人维护的清单。别信任何一侧的概括，拿你要用的那个名字去查、去验它实际发给你的那份包。"
+    },
+    {
+     "type": "prose",
+     "heading": "驱动与固件层：唯一没有退路的一层",
+     "text": "转译只到用户态。微软文档写得很直：内核不提供任何模拟，内核驱动与用户态打印驱动必须重编成 Arm64，而且不能用 x86 或 x64 的安装程序去装一个 Arm64 驱动。所以外设厂商要交的不只是一份驱动，还有一份重写过的 installer。\n\n责任链是断开的：系统和转译归微软，SoC 与板级支持归芯片厂，驱动和它的安装程序归硬件或软件发布者，而驱动固件落到机器上走的是 Windows Update 这一条通道——企业侧的 WSUS 不能给 Arm 设备分发它。最硬的一段在签名口：微软对打印驱动提交改成默认拦截加逐份人工审查，例外类别里明写着「新增 Arm64 版本」，理由就是加速 Arm64 采用；同一份文档还留了一句关键限制，x64 上被拒之后尚可自签名、让客户手动装，而 Arm 设备不支持把证书部署进受信任发布者存储，兜底路径直接不存在。这一层没有任何一方对「某月某日全部补齐」负责。"
+    },
+    {
+     "type": "prose",
+     "heading": "开发者层：能构建，但要多养一条流水线",
+     "text": "构建侧基本补齐：Visual Studio 有了能在 Arm 机器上原生编译并调试 Arm64 的正式版，LLVM/Clang 提供官方 Arm64 Windows 发布，.NET 与 vcpkg 都能原生跑；GCC 与 MinGW 则至今挂在 Linaro 的「进行中」清单上。\n\n多出来的成本在测试与分发两处。Arm64 虚拟机不能在 x64 机器上创建，跑测试要么找 Arm 真机、要么上云端 Arm 虚机；分发上，进了微软商店系统会自动挑 Arm64 包，官网自己发就得靠 User-Agent Client Hints 判断访客架构。同一个软件，商店里那份是原生、官网上默认推给你 x64，是常事。"
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "苹果换架构时手里的三样",
+      "tone": "pro",
+      "points": [
+       "装载期转译：只含 Intel 指令的二进制由系统自动整份翻成 Arm64、落盘缓存后就地启动，作用于整个进程及其动态加载模块；不碰内核扩展与 x86 虚拟机",
+       "一份文件两套指令集：官方要求把 App、扩展、插件、框架、命令行工具都做成 universal binary，而不是只有主程序",
+       "起点和终点都写在纸面上：宣布迁移时给了完成时限，多年后又明确挂出「最后一个支持 Rosetta 的版本」与只剩老游戏保留的说法"
+      ]
+     },
+     "right": {
+      "title": "骁龙 + Windows 现有的、缺的",
+      "tone": "neutral",
+      "points": [
+       "运行期转译：分块即时编译再按模块缓存，还能逐个应用调严格度；覆盖面靠系统版本推进，不靠厂商承诺",
+       "一份文件两套视图有（Arm64X），但官方文档把它定位给中间件、插件和 System32 组件，普通应用用不上",
+       "没有终点：官方口径始终是「必须重建」，从未给出某个版本之后 x64 不再运行；内核态更没有可等的转译路径",
+       "分发不自动：脱离商店就要发布者自己识别架构，长尾软件的原生版到不了用户手里"
+      ]
+     },
+     "verdict": "缺的是第二层。应用长尾会被转译覆盖面和原生占比的趋势慢慢吃掉，那是量的问题；驱动、签名通道与分发识别是结构问题，不补上不会自己消失。"
+    },
+    {
+     "type": "card_grid",
+     "heading": "把「生态」拆成可查的时点",
+     "cards": [
+      {
+       "kicker": "清单一",
+       "title": "软件侧：微软两份文档互不一致",
+       "body": "同一时间，一份点名 Blender、DaVinci Resolve 已原生，另一份把 InDesign、Premiere Pro 列为非原生。以你要用的那个软件为准。",
+       "metrics": [
+        {
+         "label": "微软 Arm 设备 FAQ",
+         "value": "约九成应用使用量预计来自原生版（ms.date 2026-07-14）",
+         "source_ids": [
+          "S051"
+         ]
+        },
+        {
+         "label": "微软 IT 部署指南",
+         "value": "ms.date 2025-06-25，页面更新 2026-03-10",
+         "source_ids": [
+          "S057"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "清单二",
+       "title": "工具与转译侧：补齐时点",
+       "body": "工具链可用得比机器晚，驱动工具链尤其明显——过去只能在 x64 机器上交叉编译再拷到 Arm 上测。",
+       "metrics": [
+        {
+         "label": "首个原生编译调试 Arm64 的 VS",
+         "value": "Visual Studio 2022 17.4",
+         "source_ids": [
+          "S052",
+          "S053",
+          "S0512"
+         ]
+        },
+        {
+         "label": "vcpkg 原生运行覆盖",
+         "value": "1,700 多个 C++ 库",
+         "source_ids": [
+          "S0512"
+         ]
+        },
+        {
+         "label": "Prism 与 AVX/AVX2 模拟",
+         "value": "Windows 11 24H2 起",
+         "source_ids": [
+          "S055",
+          "S056"
+         ]
+        },
+        {
+         "label": "支持在 Arm64 机上开发测试驱动的 WDK",
+         "value": "10.0.26100.1，2024-05-22 发布",
+         "source_ids": [
+          "S054"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "清单三",
+       "title": "签名与分发侧：通道收窄",
+       "body": "驱动能不能到你机器上，取决于微软的提交闸门与 Windows Update 这条路，而不只取决于厂商愿不愿意做。",
+       "metrics": [
+        {
+         "label": "打印驱动提交默认拦截并人工审查",
+         "value": "2026-01-15 起；例外类别含「新增 Arm64 版本」",
+         "source_ids": [
+          "S0510"
+         ]
+        },
+        {
+         "label": "Arm 设备自签名兜底",
+         "value": "不支持部署证书到受信任发布者存储",
+         "source_ids": [
+          "S0510"
+         ]
+        },
+        {
+         "label": "驱动固件分发通道",
+         "value": "Windows Update；WSUS 不能向 Arm 设备分发",
+         "source_ids": [
+          "S0511"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "清单四",
+       "title": "苹果侧的时间锚点",
+       "body": "对照用的不是好坏，是有没有人给出日期。",
+       "metrics": [
+        {
+         "label": "宣布迁移并给出完成时限",
+         "value": "2020-06-22，「约两年」",
+         "source_ids": [
+          "S0517"
+         ]
+        },
+        {
+         "label": "universal binary 的最低 Xcode",
+         "value": "Xcode 12.2 起",
+         "source_ids": [
+          "S0514"
+         ]
+        },
+        {
+         "label": "最后一个支持 Rosetta 的系统",
+         "value": "macOS 27；macOS 28 起仅保留部分老游戏",
+         "source_ids": [
+          "S0515",
+          "S0516"
+         ]
+        },
+        {
+         "label": "Rosetta 的 SIMD 边界",
+         "value": "可译 AVX/AVX2，不支持 AVX512",
+         "source_ids": [
+          "S0513"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "清单五",
+       "title": "两条你能自己做的验法",
+       "body": "不查清单也能判断：看有没有转译面板，看二进制头写的是什么。",
+       "metrics": [
+        {
+         "label": "原生与否的界面证据",
+         "value": "被模拟的 x86/x64 程序才出现「更改模拟设置」",
+         "source_ids": [
+          "S056"
+         ]
+        },
+        {
+         "label": "命令行验法",
+         "value": "dumpbin /headers 首行应为 AA64 machine (ARM64)",
+         "source_ids": [
+          "S053",
+          "S059"
+         ]
+        },
+        {
+         "label": "要注意的历史包袱",
+         "value": "只标 ARM 不标 ARM64 的包，32 位 Arm 支持正被移除",
+         "source_ids": [
+          "S059"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/04_生态三层.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：生态缺口分三层——应用层在补、驱动层最薄、开发者层决定前两层会不会自己长出来",
+     "caption": "强调色标的是该篇判断（哪一层最卡），不是客观分级；逐条原生支持状态见正文带来源的清单",
+     "based_on": [
+      "ecosystem#ARM64 原生版本公告",
+      "ecosystem#跨平台框架支持状态"
+     ],
+     "width": 1500,
+     "height": 950
+    },
+    {
+     "file": "images/57_Surface_Laptop.png",
+     "alt": "28 小时办公续航！微软 Surface Laptop 7 携手高通骁龙 X 王者归来_笔记本电脑_什么值得买",
+     "caption": "28 小时办公续航！微软 Surface Laptop 7 携手高通骁龙 X 王者归来_笔记本电脑_什么值得买",
+     "source_page": "https://post.smzdm.com/p/a3xg9m2n/",
+     "width": 1080,
+     "height": 720,
+     "query": "Surface Laptop"
+    }
+   ]
+  },
+  {
+   "id": "price",
+   "title": "骁龙便宜吗：芯片口径和整机口径是两件事，混着说必然误导",
+   "anchor": "价",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先把口径钉死",
+     "text": "「骁龙便宜吗」得拆成两问：芯片和授权卖多少钱；同款机器换架构后标价变了没有。前者高通从不公布，只能定性；后者可以逐台比价。"
+    },
+    {
+     "type": "price_table",
+     "as_of": "2026-09",
+     "columns": [
+      "机型与配置",
+      "ZOL 报价"
+     ],
+     "rows": [
+      {
+       "cells": [
+        "MagicBook Art 14 骁龙版 X Elite/32GB/1TB",
+        "参考 ￥8299（经销 6649-7884）"
+       ],
+       "source_ids": [
+        "S064"
+       ]
+      },
+      {
+       "cells": [
+        "同款酷睿版 Ultra 7 155H/32GB/1TB",
+        "参考 ￥8999"
+       ],
+       "source_ids": [
+        "S065"
+       ]
+      },
+      {
+       "cells": [
+        "同款酷睿版 Ultra 5 125H/16GB/1TB",
+        "经销 ￥7799"
+       ],
+       "source_ids": [
+        "S065"
+       ]
+      },
+      {
+       "cells": [
+        "Surface Pro 11 骁龙 X Elite/16GB/1TB",
+        "￥13288"
+       ],
+       "source_ids": [
+        "S066"
+       ]
+      },
+      {
+       "cells": [
+        "Surface Pro 10 商用版 Ultra 7 165U/16GB/1TB",
+        "￥16488"
+       ],
+       "source_ids": [
+        "S067"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "整机侧：同配置更低，入口价更高",
+     "text": "荣耀两台同屏同存储，ARM 版低 700 元；微软两台同 13 英寸、同 16GB/1TB 差 3200 元，但 Pro 10 走商用渠道，只看方向。比起步价则反过来：酷睿版有 16GB 低配，骁龙版只出 32GB/1TB 一档。价差来自产品线定位和内存组合，不是指令集。"
+    },
+    {
+     "type": "prose",
+     "heading": "内存绑定方式决定谁被涨价打中",
+     "text": "骁龙机型清一色板载内存：联想 PSREF 写明 T14s Gen 6 骁龙版板上焊接、无插槽、不可升级；同厂 T14 Gen 6 英特尔版可选 DDR5 SODIMM 插槽、最高 64GB。绑定就是买多少用多少，内存涨价全额进成本。TrendForce 2026 年 3 月测算：DRAM 与 SSD 通常占笔记本 BOM 约 15%，1Q26 预计超 30%；900 美元机型仅内存就可能推高售价 30% 以上，叠加同期英特尔部分入门级笔电 CPU 提价超 15%，上调接近 40%。"
+    },
+    {
+     "type": "note",
+     "tone": "myth",
+     "title": "移动芯片摊薄成本，推不出笔电更便宜",
+     "text": "手机芯片便宜来自海量出货、不配独显，这套逻辑要过三道关：OEM 把骁龙 X Elite 摆在产品线顶端、平台绑定大容量内存、Windows 阵营没有苹果的整机定价权。2024 年 8 月国内在售骁龙X机型最便宜的宏碁非凡 Go Pro 也要 6599 元，ThinkPad T14s 10999 元、戴尔 Latitude 7455 12999 元起。"
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "芯片口径只能引高通自己的整机表态",
+     "text": "安蒙在 2024 年 7 月底季度财务会上承诺：2025 年骁龙X笔记本零售价低至 700 美元，不牺牲 NPU 性能。兑现靠的是 2026 年 5 月的骁龙 C——价格带划到 300 美元及以上，但不用定制 Oryon 核心、NPU 不足 40 TOPS 不算 Copilot+，首批宏碁 Aspire Go 15 内存上限 8GB。降的是芯片档位，不是同档芯片的价格。"
+    },
+    {
+     "type": "prose",
+     "heading": "使用成本：算得出，但小到不用计",
+     "text": "骁龙版 60Wh 电池、厂商标称 1080P 视频播放 15.22 小时。按每天 8 小时、一年 250 天算约 131 次满放、7.9 度电；北京居民一档电价 0.4883 元/千瓦时，一年电费约 3.8 元。续航减半也补不回 700 元差价。这是估算：标称续航不是你的负载。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/07_两个价格口径.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：芯片口径与整机口径之间隔着授权、内存绑定、渠道几段，两端没有稳定换算",
+     "caption": "图上不写任何价格；逐条官方售价与统计时点见正文带来源的表格",
+     "based_on": [
+      "price#同型号 ARM 版与 x86 版官方售价",
+      "price#内存绑定对价格的影响"
+     ],
+     "width": 1500,
+     "height": 950
+    },
+    {
+     "file": "images/59_Surface_Laptop.jpg",
+     "alt": "【IT之家评测室】微软 Surface Laptop 第 7 版 15 英寸首发体验",
+     "caption": "【IT之家评测室】微软 Surface Laptop 第 7 版 15 英寸首发体验",
+     "source_page": "https://k.sina.cn/article_1826017320_6cd6d02802001bwcm.html",
+     "width": 700,
+     "height": 467,
+     "query": "Surface Laptop"
+    }
+   ]
+  },
+  {
+   "id": "local-agent",
+   "title": "跑本地 agent 有优势吗：NPU 算力、内存带宽、功耗墙三个约束一起看",
+   "anchor": "脑",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "TOPS 和 token/s 不是一回事",
+     "text": "标称 TOPS 是整数运算峰值，厂商还常把三路加总成「平台 TOPS」：AMD 官方页就把 HX 370 写成 NPU 50、整体 80 TOPS 两个数。解码是自回归的，每吐一个 token 都要把整套权重从内存读一遍，卡住速度的是带宽而非 TOPS。高通简报里 X1E-78-100 是 45 TOPS，2025 年 9 月的 X2 Elite 系列提到 80 TOPS，两代内存规格几乎没动。",
+     "source_ids": [
+      "S074",
+      "S071",
+      "S075",
+      "S072",
+      "S073"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "四个平台的官方口径",
+     "rows": [
+      {
+       "k": "骁龙 X1E-78-100",
+       "v": "Hexagon NPU 45 TOPS；LPDDR5X-8448 双通道约 135.2 GB/s；TDP 35 W／PL2 45 W",
+       "source_ids": [
+        "S071",
+        "S072"
+       ]
+      },
+      {
+       "k": "骁龙 X2 Elite 系列",
+       "v": "18 核，NPU 标称 80 TOPS（2025-09-24 发布）",
+       "source_ids": [
+        "S075"
+       ]
+      },
+      {
+       "k": "AMD Ryzen AI 9 HX 370",
+       "v": "NPU 最高 50 TOPS，平台整体最高 80 TOPS；LPDDR5X-8000 双通道，最大 256 GB",
+       "source_ids": [
+        "S074"
+       ]
+      },
+      {
+       "k": "Intel Core Ultra 7 258V",
+       "v": "NPU 47 TOPS；LPDDR5X-8533 约 136.5 GB/s，最大 32 GB；基础 17 W／最大 37 W",
+       "source_ids": [
+        "S073"
+       ]
+      },
+      {
+       "k": "Copilot+ PC 门槛",
+       "v": "微软口径：NPU 须 >40 TOPS",
+       "source_ids": [
+        "S076"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "可复核的实测：换个量化格式，prefill 差 5 倍",
+     "text": "llama.cpp 讨论区 #8273 留了一组同机可比数字（2024 年 7 月，Surface Pro 11，CPU 后端，llama-bench -p 512 -n 128）：同一个 8B 模型，Q4_K_M 是 pp512 32.31、tg128 11.15 token/s；重打包成 Q4_0_4_8 后 prefill 涨到 173.87，解码只涨到 15.90。那颗 45 TOPS 的 NPU 全程没参与。提示词处理吃算力、解码吃带宽，两套优化不通用。",
+     "source_ids": [
+      "S077",
+      "S072"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "带宽、容量、功率：三道墙一起量",
+     "text": "4.33 GB 权重除以 135.2 GB/s，解码的算术上限就在 30 token/s 量级；实测十几 token/s，说明另有损耗。容量更硬：NVIDIA 那篇硬件极限研究给 Llama-405B 算过，单用户 64K 上下文吃 15.75 GB KV cache，32 用户批胀到 504 GB、整机至少 881 GB；同篇里 HBM3e 系统每人吞吐约 750 token/s，还要把带宽从 4 TB/s 扫到 120 TB/s 才推得动。功率也分两档：X1E-78-100 是 TDP 35 W、PL2 45 W，短时档撑不过十分钟。",
+     "source_ids": [
+      "S077",
+      "S0710",
+      "S072",
+      "S073"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "软件栈：这一条没过，硬件等于不存在",
+     "text": "2024 年实测作者的原话是没有 GPU/NPU 支持、Windows arm64 还在路上；有人把跑快的 Q4_0_4_8 丢进 LM Studio，认得到却加载不了。到 2026 年 9 月 b11160，llama.cpp 的 ARM64 包里有 win-cpu 与 win-opencl-adreno，却没有 NPU 预编译包；Ollama v0.34.4 同样只发通用 arm64 包。NPU 要按官方文档自建：装 Hexagon SDK 6.6、给 HTP 算子库签名、开测试签名，可能要关 Secure Boot。微软指南另有前提：多数 NPU 只吃 INT8 低位宽，模型得先转换量化。",
+     "source_ids": [
+      "S077",
+      "S079",
+      "S078",
+      "S076"
+     ]
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "真划算的活",
+      "tone": "pro",
+      "points": [
+       "短时小模型：8B 级 Q4 做工具调用与改写，十几 token/s 够用",
+       "隐私与离线：文本不出机器，不必等网络往返",
+       "现成清单：骁龙 AI Hub、Foundry Local 已为 NPU 转换好"
+      ]
+     },
+     "right": {
+      "title": "不划算的活",
+      "tone": "con",
+      "points": [
+       "长上下文：405B 单用户 64K 就吃 15.75 GB",
+       "大模型与并发：整机 881 GB 起步，258V 上限只有 32 GB",
+       "新算子：运行时没覆盖就加载失败"
+      ]
+     },
+     "verdict": "判据是三条同时成立：装得进内存、带宽撑得住目标 token/s、格式与算子在运行时清单里。",
+     "source_ids": [
+      "S0710",
+      "S073",
+      "S076",
+      "S078",
+      "S0711"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "本章结论挂在四个变量上",
+     "text": "量化格式与算子覆盖；内存位宽与容量上限（今天笔电约 135 GB/s）；NPU 路径是否对开源权重开放；持续功率与散热档。任一变动，本节数字全部重测。",
+     "source_ids": [
+      "S077",
+      "S072",
+      "S079",
+      "S078"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/08_三约束短板.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：能跑多大的模型由 NPU 算力、内存带宽、功耗墙三约束里最短那块定",
+     "caption": "按正文三约束论证绘制；哪一块最短是本篇判断，实测吞吐见正文带来源与测试条件的表格",
+     "based_on": [
+      "local-agent#NPU 标称算力与运行时",
+      "local-agent#内存带宽对本地推理的影响"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "competition",
+   "title": "这条路的真正成果是逼对手改设计：x86 阵营这一年做了什么",
+   "anchor": "争",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "x86 这一年具体改了三处",
+     "text": "2024 年 9 月 3 日，Intel 发布 Core Ultra 200V（Lunar Lake）：8 核取消超线程，最多 32GB LPDDR5X 直接封进芯片基板，NPU 单独提供 47 TOPS，封装功耗档落在 17–30W，官方口径是 20 小时以上续航。x86 第一次把「低电压加片上内存」这套 ARM 打法做进量产笔电芯片。\n\n之后是补作业：2026 年 1 月 5 日 CES 公布的 Core Ultra Series 3（Panther Lake）换到 Intel 18A 节点，Ars Technica 称它是英特尔多年来最好的笔记本处理器；AMD 在 2026 年 1 月公布、3 月 2 日正式上市的 Ryzen AI 400 把 NPU 拉到 60 TOPS。"
+    },
+    {
+     "type": "prose",
+     "heading": "哪些是被逼的，哪些本来就在路上",
+     "text": "判据是时间顺序，加厂商自己的话。\n\nNPU 这一项是被门槛逼的：微软 2024 年 5 月 20 日给 Copilot+ 定的入门条件是 NPU 算力 40 TOPS，此后一年两家移动线全部补齐。但 AMD 的移动 NPU 早在 2023 年 1 月的 Ryzen 7040 一代就出现了，比那道门槛早 16 个月，这条只能算它自己的路线。\n\n片上内存更像应激反应：2024 年 11 月 1 日，Intel 方面把 Lunar Lake 的集成内存说成「昂贵的一次性方案」，理由是毛利，并明确后续型号回到主板内存。自我否认本身就是证据。18A 制程与 chiplet 拼装则属于 Intel 自己的路标，跟指令集之争无关。"
+    },
+    {
+     "type": "prose",
+     "heading": "苹果是先例，也是压力的一半",
+     "text": "2020 年 11 月 10 日苹果发布 M1，官方新闻稿里最硬的两个数字是 MacBook Air 无线上网 15 小时、影片播放 18 小时，以及因此省掉的散热风扇。它证明的不是 ARM 跑得更快，而是 ARM 能同时拿到续航和静音。Windows 阵营的压力因此来自两侧：头顶是苹果的能效标杆，旁边是高通 2025 年 5 月点名 Intel 的广告。2020 年 12 月，Intel 客户计算业务的 Gregory Bryant 已经说过「只有偏执狂才能生存」，公开欢迎来自 AMD 与苹果的竞争。"
+    },
+    {
+     "type": "card_grid",
+     "heading": "竞争最后落到三件可核对的事",
+     "cards": [
+      {
+       "kicker": "续航",
+       "title": "34 小时的机型已经出现",
+       "body": "CNET 2026 年 8 月 3 日的标题是「34 小时的笔记本来了」；PCWorld 用同一套跨平台视频播放续航口径实测一台 Panther Lake 机型，结论是拿不到宣传的 30 小时。下一章要算的就是这个差额。",
+       "metrics": [
+        {
+         "label": "实测续航",
+         "value": "未达宣传 30 小时",
+         "source_ids": [
+          "S0816",
+          "S0817"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "价格",
+       "title": "入门档被拉到 700 美元",
+       "body": "高通 2024 年 8 月预告 2025 年会有低至 700 美元档的骁龙笔电。架构之争最后落成的是同配置价格差。",
+       "metrics": [
+        {
+         "label": "预告入门价",
+         "value": "700 美元",
+         "source_ids": [
+          "S0818"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "噪音",
+       "title": "无风扇不再只是苹果的特权",
+       "body": "17–30W 的功耗档加上片上内存，让 x86 轻薄本也能做无风扇或低转速设计；下一章核对满载分贝与降频幅度。",
+       "metrics": [
+        {
+         "label": "封装功耗档",
+         "value": "17–30W",
+         "source_ids": [
+          "S082",
+          "S081"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/29_Surface_Laptop.png",
+     "alt": "微软 Surface Laptop Studio 国行发售：最高 i7+3050Ti12188元起_笔记本电脑_什么值得买",
+     "caption": "微软 Surface Laptop Studio 国行发售：最高 i7+3050Ti12188元起_笔记本电脑_什么值得买",
+     "source_page": "https://post.smzdm.com/p/akxv7qrk/",
+     "width": 800,
+     "height": 800,
+     "query": "Surface Laptop"
+    }
+   ]
+  },
+  {
+   "id": "models",
+   "title": "最新机型举例：逐台给发布时间、配置与官方口径，并标注时效",
+   "anchor": "机",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先定规矩",
+     "text": "只收厂商官网查得到规格页的机型，每台五项：上市时间、SoC 零件号、内存与存储、标称续航及测试条件、售价与地区。查不到的留空。"
+    },
+    {
+     "type": "card_grid",
+     "heading": "三档差别不在快慢，在你为哪一项付钱",
+     "cards": [
+      {
+       "kicker": "入门轻薄档",
+       "title": "三星 Galaxy Book4 Edge 15.6 英寸",
+       "body": "八核无独显，先被砍的是核数与核显。",
+       "metrics": [
+        {
+         "label": "上市",
+         "value": "2024 年 9 月，15 英寸机型上市",
+         "source_ids": [
+          "S092"
+         ]
+        },
+        {
+         "label": "SoC",
+         "value": "骁龙 X，8 核，X1-26-100",
+         "source_ids": [
+          "S091"
+         ]
+        },
+        {
+         "label": "内存与存储",
+         "value": "16GB + 512GB",
+         "source_ids": [
+          "S091"
+         ]
+        },
+        {
+         "label": "标称续航",
+         "value": "27 小时，1080p 视频、150 尼特、关 Wi-Fi",
+         "source_ids": [
+          "S093"
+         ]
+        },
+        {
+         "label": "官方售价",
+         "value": "999.99 美元，美国在售，标价保至 2026-10-24",
+         "source_ids": [
+          "S091"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "主流商务档",
+       "title": "微软 Surface Laptop 13.8 英寸（第 7 版）",
+       "body": "网页那条全程联网，与上一条不可横比。",
+       "metrics": [
+        {
+         "label": "上市",
+         "value": "2024 年 5 月，官方资料页",
+         "source_ids": [
+          "S096"
+         ]
+        },
+        {
+         "label": "SoC",
+         "value": "骁龙 X Plus，10 核，X1P64100",
+         "source_ids": [
+          "S094"
+         ]
+        },
+        {
+         "label": "内存与存储",
+         "value": "16GB + 256GB",
+         "source_ids": [
+          "S094"
+         ]
+        },
+        {
+         "label": "标称续航",
+         "value": "20 小时视频 / 13 小时网页（150 尼特、联网、2024-04 预生产机测）",
+         "source_ids": [
+          "S094"
+         ]
+        },
+        {
+         "label": "官方售价",
+         "value": "1,349.99 美元，美国商用商店，抓取时缺货",
+         "source_ids": [
+          "S095"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "2026 新平台档",
+       "title": "联想 ThinkPad T14s Gen 7 骁龙版",
+       "body": "联想官网拦下抓取，价格栏空着。",
+       "metrics": [
+        {
+         "label": "规格页",
+         "value": "2026-08-28，上市日无官方来源",
+         "source_ids": [
+          "S097"
+         ]
+        },
+        {
+         "label": "SoC",
+         "value": "X2E-80-100（12 核，4.7GHz）或 X2P-42-100（6 核）",
+         "source_ids": [
+          "S097"
+         ]
+        },
+        {
+         "label": "内存与存储",
+         "value": "16 或 32GB 焊死 + 256GB 至 1TB",
+         "source_ids": [
+          "S097"
+         ]
+        },
+        {
+         "label": "标称续航",
+         "value": "本地视频 27.93 小时 @150 尼特（58Wh，测的是六核 16GB 触控机）",
+         "source_ids": [
+          "S097"
+         ]
+        },
+        {
+         "label": "官方售价",
+         "value": "未取到官方标价"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "口径与失效顺序",
+     "rows": [
+      {
+       "k": "同型号两个 SKU",
+       "v": "联想把 T14s Gen 7 拆成两份规格页：骁龙版 2026-08-28、Intel 版 2026-09-21（Core Ultra 5 325）。型号名一样，指令集不同。",
+       "source_ids": [
+        "S097",
+        "S098"
+       ]
+      },
+      {
+       "k": "标称值绑配置",
+       "v": "上代 T14s Gen 6 骁龙版标 34.9 小时，测的是 12 核 32GB 低功耗非触控屏；同代 Intel 版标 34.0 小时、MobileMark 30 只有 19.1 小时。差在屏与配置。",
+       "source_ids": [
+        "S099",
+        "S098"
+       ]
+      },
+      {
+       "k": "大屏档的价差",
+       "v": "同系 15 英寸 X Elite：16GB + 512GB 售 1,749.99 美元，64GB + 1TB 售 3,349.99 美元（美国在售）。",
+       "source_ids": [
+        "S095"
+       ]
+      },
+      {
+       "k": "第三方口径",
+       "v": "Mashable 以 1080p 循环、亮度 50% 实测 Surface Laptop 7 接近 23 小时（2024-08-02）；评测机 32GB + 1TB 售 1,999 美元。渠道商品页本轮全部拒抓，不做渠道价对比。",
+       "source_ids": [
+        "S0910"
+       ]
+      },
+      {
+       "k": "到货节奏",
+       "v": "高通说 X2 整机第一季度末到货，价格沿用上代区间：Elite 一千美元、Plus 八百、X 六百起。",
+       "source_ids": [
+        "S0911"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "这份清单会怎么过期",
+     "text": "最先失效的是价格与地区可用性：1,349.99 美元那条配置本轮抓取已缺货，三星标价只保到 2026-10-24。其次是配置与颜色。最稳的是上市时间与 SoC 零件号——X1E-80-100 写进规格页就不会改。复核顺序：先认零件号定代次，再读续航脚注，最后看价格。\n\n截至 2026-09，配置与价格随时间变化，以官方页为准。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/33_Surface_Laptop.jpg",
+     "alt": "微软Surface Laptop官方图赏_新浪图片",
+     "caption": "微软Surface Laptop官方图赏_新浪图片",
+     "source_page": "https://photo.sina.cn/album_5_37825_79550.htm",
+     "width": 640,
+     "height": 361,
+     "query": "Surface Laptop"
+    },
+    {
+     "file": "images/65_Snapdragon_X_Plus.jpg",
+     "alt": "高通发布骁龙 Snapdragon X 处理器，锁定4000元级笔记本市场，核心/AI性能缩水不严重 - 发烧友",
+     "caption": "高通发布骁龙 Snapdragon X 处理器，锁定4000元级笔记本市场，核心/AI性能缩水不严重 - 发烧友",
+     "source_page": "https://www.fashaoyou.net/archives/50178",
+     "width": 750,
+     "height": 465,
+     "query": "Snapdragon X Plus"
+    }
+   ]
+  },
+  {
+   "id": "who-should-buy",
+   "title": "谁适合谁不适合：给检查项，不给结论",
+   "anchor": "选",
+   "blocks": [
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "十分钟跑完的三个检查",
+     "text": "一问原生版：微软 Learn 指定的兼容性入口是 worksonwoa.com（微软供数，自述 7000 余条）。「原生」过关，「转译」待实测。\n\n二问驱动：规则写死了——内核态驱动与用户态打印驱动必须按 Arm64 编译，x86/x64 安装包装不上 Arm64 驱动。外设与内网件去厂商官网找 Arm64 条目，打印机查 mopria.org。\n\n三问损失：同机同负载，前后各跑一遍。"
+    },
+    {
+     "type": "card_grid",
+     "heading": "四类画像：卡点、现在就买的条件、再等一代的条件",
+     "cards": [
+      {
+       "kicker": "画像一 · 重度移动办公与文字",
+       "title": "卡点在内网那一侧",
+       "body": "Word、Teams、Chrome、Zoom 有 ARM64 原生版（微软支持页自列）。要查的是 VPN 客户端、UKey 与老打印驱动。",
+       "metrics": [
+        {
+         "label": "现在就买",
+         "value": "内网三件均查到 Arm64 驱动",
+         "source_ids": [
+          "S102",
+          "S103"
+         ]
+        },
+        {
+         "label": "再等一代",
+         "value": "任一件只发 x64 安装包",
+         "source_ids": [
+          "S103"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "画像二 · 创作与工程软件",
+       "title": "Adobe 系过了，CAD 没过",
+       "body": "Photoshop、Lightroom、Blender 在原生名单里；AutoCAD 标为不支持，该条更新到 2025-02。插件与二开接口也要逐个查。",
+       "metrics": [
+        {
+         "label": "现在就买",
+         "value": "主包与全部插件均有 ARM64 版",
+         "source_ids": [
+          "S105",
+          "S106"
+         ]
+        },
+        {
+         "label": "再等一代",
+         "value": "主流程有一环只能转译",
+         "source_ids": [
+          "S106"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "画像三 · 游戏",
+       "title": "反作弊是硬墙，与性能无关",
+       "body": "微软支持页原话：依赖未为 Arm 制作的反作弊驱动的游戏不能跑。Valorant 标为不支持，该条更新到 2024-07。",
+       "metrics": [
+        {
+         "label": "现在就买",
+         "value": "常玩的全标为原生或转译",
+         "source_ids": [
+          "S105",
+          "S106"
+         ]
+        },
+        {
+         "label": "再等一代",
+         "value": "有一款用厂商自建反作弊",
+         "source_ids": [
+          "S102"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "画像四 · 本地 AI 试验",
+       "title": "45 TOPS 是硅片，不是框架",
+       "body": "微软文档给骁龙 X 系列 NPU 的口径是 45 TOPS；但框架的 NPU 后端接上才算数，否则算力空转。",
+       "metrics": [
+        {
+         "label": "现在就买",
+         "value": "模型与后端有 Windows ARM64 构建",
+         "source_ids": [
+          "S101"
+         ]
+        },
+        {
+         "label": "再等一代",
+         "value": "只能退回 CPU 跑，NPU 闲置",
+         "source_ids": [
+          "S101",
+          "S104"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "这样测才是同一口径",
+      "tone": "pro",
+      "points": [
+       "续航要分场景：UL Procyon 电池基准分开记录视频播放、空闲、办公",
+       "对照去 UL 公开分数库，页面标题自带月份",
+       "性能税只认差值：同机同负载比原生与转译两轮"
+      ]
+     },
+     "right": {
+      "title": "别把这些当依据",
+      "tone": "con",
+      "points": [
+       "发布会对比页：负载、功耗档、亮度通常不同",
+       "别人的机型：内存、散热、功耗墙不同就不可迁移",
+       "只跑一轮：转译缓存会改写结果"
+      ]
+     },
+     "verdict": "原生约占四成，一成多标不支持；测不出损失只说明负载没触到限制。"
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "免责",
+     "text": "这一章不构成购买建议。清单、驱动与转译行为随版本变化，本页条目均标了抓取日期；下单前回到上述入口当天复核，以自己实测为准。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/38_Surface_Laptop.jpg",
+     "alt": "微软发布全新12英寸Surface Pro和13英寸Surface Laptop 搭载8核ARM平台骁龙X处理器_凤凰网",
+     "caption": "微软发布全新12英寸Surface Pro和13英寸Surface Laptop 搭载8核ARM平台骁龙X处理器_凤凰网",
+     "source_page": "https://pingce.ifeng.com/c/8j9nzj6Pm4t",
+     "width": 1430,
+     "height": 804,
+     "query": "Surface Laptop"
+    }
+   ]
+  },
+  {
+   "id": "falsify",
+   "title": "什么信号出现，这篇就该改写",
+   "anchor": "伪",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先回看：这类迁移是怎么失败的",
+     "text": "死亡信号不是跑分，是兼容欠债到期。Windows RT 跑不了既有 x86 桌面程序，开发者与 OEM 散场，微软在 2013 年 7 月为滞销的 Surface RT 计提 9 亿美元存货减值。Chromebook 的 ARM 尝试烂得更慢：2012 年 10 月推出，十余年后用户报告它的 Linux 容器层只走 x86 路径，ARM 机型反而更慢。厂商承诺补齐，用户付税。",
+     "source_ids": [
+      "S111",
+      "S112",
+      "S113",
+      "S1117",
+      "S1118"
+     ]
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "证伪「能效优势真实」",
+      "tone": "con",
+      "points": [
+       "同功耗档续航被 x86 追平：Panther Lake（Core Ultra）被称多年来最好的移动 CPU，复测能效接近 Lunar Lake",
+       "同一评测法下骁龙机型领先连续两季收窄",
+       "份额预测不作数：2022 年那句 Arm 到 2026 年占 PC 三成即为先例"
+      ]
+     },
+     "right": {
+      "title": "证伪「生态在补齐」",
+      "tone": "con",
+      "points": [
+       "头部软件撤回 ARM64 原生包：看清单条目状态回退，不看累计新增",
+       "OEM 缩减 SKU：官方机型清单与配置器里骁龙选项变少",
+       "微软停止 Prism 演进：生态承诺的书面凭证是 2026-08-25 那篇开发者博客，断档即为信号"
+      ]
+     },
+     "verdict": "清单、SKU、评测三条线同时停止向前，就该改写。"
+    },
+    {
+     "type": "prose",
+     "heading": "第三组：瓶颈也许不在能效，在内存",
+     "text": "如果瓶颈在内存容量，卖点就换了。IDC 两篇博客把内存短缺延续到 2027 年写成前提，并把 2026 年 PC 出货下滑约 11% 归因于它；ASUS 与 HP 在 2026 年 4 月推出的 Snapdragon X2 笔电把内存给到 48GB——卖点正从跑得动变成装得下。运行时侧是二值信号：llama.cpp 与 Ollama 每版还带不带 Windows ARM64 构建。",
+     "source_ids": [
+      "S1110",
+      "S1111",
+      "S1114",
+      "S1115",
+      "S1116",
+      "S1120"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "去哪盯、多久盯一次",
+     "text": "季度盯四类：调研机构出货摘要（留意 ARM 份额的统计期与口径）、高通机型清单数 SKU、两份兼容清单比对记净变化、微软开发者博客与转译层 FAQ 看节奏。事件驱动两类：运行时发版时看 Windows ARM64 构建是否缺失；续航横评攒两季再判趋势。"
+    },
+    {
+     "type": "prose",
+     "heading": "那么现在最站得住的是哪句话",
+     "text": "截至 2026 年 9 月，被证据撑住的是同电池下更长的轻载续航、常连接待机——不是跑分，也不是 NPU 标称算力。它最可能错在把阶段性领先当成结构性优势：x86 这代正在补能效，一旦续航互有胜负，只剩待机与无线模块——这两项靠固件就能追。那时要改的不是措辞，是结论。",
+     "source_ids": [
+      "S1112",
+      "S1113",
+      "S114",
+      "S115",
+      "S116",
+      "S1119"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/05_欠债到期时间线.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：兼容欠债时间线——2012 Chromebook ARM 与 2013 Surface RT 两次已发生的退场，对照本篇当前依赖的三条前提及各自的推翻信号",
+     "caption": "两个年份与两条退场见正文带来源的段落；季度与事件两类监控清单也在正文，图上不重复",
+     "based_on": [
+      "falsify#Windows RT 计提存货减值",
+      "falsify#Chromebook Linux 容器层只走 x86",
+      "falsify#运行时是否继续出 Windows ARM64 构建"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S011",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation",
+   "label": "微软 Learn《How emulation works on Arm》，页面 ms.date 标注 2025-11-06：Windows 11 on Arm 同时模拟 x86 与 x64、Prism 随 24H2 内置且不需另装组件、Windows 10 on Arm 只能模拟 x86、模拟仅覆盖用户态且不支持驱动、Prism 针对骁龙调优",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S012",
+   "url": "https://support.microsoft.com/en-au/topic/december-1-2025-kb5070311-os-builds-26200-7309-and-26100-7309-preview-5cd455bf-3291-47fa-b0bf-e5f60d0ea7af",
+   "label": "微软官方更新日志 KB5070311（2025-12-01，OS Build 26100.7309/26200.7309），[Prism] 条目写明 Windows on Arm 设备新增对使用 AVX、AVX2 及 BMI/FMA/F16C 扩展应用的模拟支持，并注明分批推送、按设备与市场而异",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Support"
+  },
+  {
+   "id": "S013",
+   "url": "https://docs.qualcomm.com/doc/87-71417-1/87-71417-1_REV_F_Snapdragon_X_Elite_Product_Brief.pdf",
+   "label": "高通官方 Snapdragon X Elite 产品简介（87-71417-1 Rev F）PDF：4nm SoC、12 核 Oryon、Hexagon NPU 45 TOPS、LPDDR5X-8448、Secure Processing Unit 运行 Microsoft Pluton TPM、Secured-Core PC、Sensing Hub 内置 Micro NPU 可在睡眠时唤醒",
+   "retrieved": "2026-09-24",
+   "publisher": "Qualcomm"
+  },
+  {
+   "id": "S014",
+   "url": "https://www.androidcentral.com/phones/qualcomm-announces-snapdragon-8-elite-chip",
+   "label": "Android Central 2024-10-21 骁龙 8 Elite 发布报道：台积电 3nm，2×4.32GHz Prime + 6×3.53GHz 性能核、LPDDR5X；对比表列出上一代 8 Gen 3 为台积电 4nm",
+   "retrieved": "2026-09-24",
+   "publisher": "Android Central"
+  },
+  {
+   "id": "S015",
+   "url": "https://www.tomshardware.com/pc-components/cpus/qualcomms-new-snapdragon-x2-elite-extreme-and-elite-chips-for-pcs-stretch-up-to-a-record-5-ghz-3nm-arm-chips-sport-new-oryon-prime-cores",
+   "label": "Tom's Hardware 2025-09-24 骁龙 X2 Elite 发布报道：3 纳米级工艺、最高 18 核、最高 5GHz、NPU 80 TOPS（INT8）、LPDDR5X-9523、最高 128GB、Extreme 192-bit/228GB/s，整机排期 2026 上半年",
+   "retrieved": "2026-09-24",
+   "publisher": "Tom's Hardware"
+  },
+  {
+   "id": "S016",
+   "url": "https://www.techpowerup.com/334093/fortnite-and-anti-cheat-to-get-windows-on-arm-support-despite-abysmal-adoption-rates",
+   "label": "TechPowerUp 2025-03-14 报道：引 PassMark 数据，骁龙处理器占笔记本市场 0.3%、占整体 CPU 0.1%；Easy Anti-Cheat 宣布 2025 年内支持 Windows on Arm；非官方兼容清单当时为 675 款应用、其中 121 款游戏",
+   "retrieved": "2026-09-24",
+   "publisher": "TechPowerUp / PassMark"
+  },
+  {
+   "id": "S017",
+   "url": "https://www.techpowerup.com/345493/apple-silicon-approaches-amds-laptop-market-share-only-five-years-in",
+   "label": "TechPowerUp 2026-01-22 报道：引 Mercury Research 出货份额数据、Bernstein Research 分析，苹果自研芯片笔记本份额约 18%–19%，AMD 约 21%–22%，Intel 60% 以上",
+   "retrieved": "2026-09-24",
+   "publisher": "TechPowerUp / Mercury Research"
+  },
+  {
+   "id": "S021",
+   "url": "https://www.amd.com/content/dam/amd/en/documents/archived-tech-docs/software-optimization-guides/47414_15h_sw_opt_guide.pdf",
+   "label": "AMD 官方《Software Optimization Guide for AMD Family 15h Processors》(47414 Rev 3.08, 2014-01) §1.4.2：x86 指令先解码成定长 macro-op，再拆成 micro-op",
+   "retrieved": "2026-09-24",
+   "publisher": "AMD"
+  },
+  {
+   "id": "S022",
+   "url": "https://chipsandcheese.com/p/arm-or-x86-isa-doesnt-matter",
+   "label": "Chester Lam, 2021-07-13：关掉 Zen 2 微操作缓存后的解码功耗对照（约 4–10% 核心功耗），并引述 2013 年威斯康星大学 Blem 等人的 RISC/CISC 测量",
+   "retrieved": "2026-09-24",
+   "publisher": "Chips and Cheese"
+  },
+  {
+   "id": "S023",
+   "url": "https://chipsandcheese.com/p/qualcomms-snapdragon-x2-elite",
+   "label": "George Cozma, 2025-11-19：骁龙 X2 Elite 架构说明会纪要——12 Prime + 6 Performance 核、解码/重命名/退休 9 宽、小核工作点低于 2W",
+   "retrieved": "2026-09-24",
+   "publisher": "Chips and Cheese"
+  },
+  {
+   "id": "S024",
+   "url": "https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-9-hx-370.html",
+   "label": "AMD 官方规格页：Ryzen AI 9 HX 370 默认 TDP 28W、cTDP 15-54W、4x Zen 5 + 8x Zen 5c、12 核 24 线程",
+   "retrieved": "2026-09-24",
+   "publisher": "AMD"
+  },
+  {
+   "id": "S025",
+   "url": "https://www.amd.com/en/products/processors/laptop/ryzen/9000-series/amd-ryzen-9-9955hx.html",
+   "label": "AMD 官方规格页：Ryzen 9 9955HX 16 核 32 线程、默认 TDP 55W、cTDP 55-75W、最高 5.4GHz",
+   "retrieved": "2026-09-24",
+   "publisher": "AMD"
+  },
+  {
+   "id": "S026",
+   "url": "https://www.notebookcheck.net/Qualcomm-Snapdragon-X2-Elite-Extreme-Analysis-Benchmarks-Efficiency-Serious-rival-for-Apple-and-a-problem-for-AMD-Intel.1266974.0.html",
+   "label": "Andreas Osthoff, 2026-04-07 实测：Zenbook A16/A14 三档功耗上限表与 Cinebench 2024 单核/多核成绩（外接显示器、原生 ARM 版）",
+   "retrieved": "2026-09-24",
+   "publisher": "Notebookcheck"
+  },
+  {
+   "id": "S027",
+   "url": "https://www.notebookcheck.net/Qualcomm-Snapdragon-X2-Elite-X2E-88-100-Processor-Benchmarks-and-Specs.1138774.0.html",
+   "label": "骁龙 X2 Elite X2E-88-100 规格条目：12 Prime 最高 4.7GHz、6 Performance 最高 3.4GHz、18 核 18 线程、2025-09-29 发布",
+   "retrieved": "2026-09-24",
+   "publisher": "Notebookcheck"
+  },
+  {
+   "id": "S028",
+   "url": "https://www.notebookcheck.net/Qualcomm-s-Snapdragon-X2-Elite-leaves-Intel-AMD-in-the-dust-even-at-low-power-limits.1272885.0.html",
+   "label": "Andreas Osthoff, 2026-04-14：Whisper 模式长时功耗上限低于 20W 时多核仍领先对手高性能档，满载噪音约 30 dB(A)",
+   "retrieved": "2026-09-24",
+   "publisher": "Notebookcheck"
+  },
+  {
+   "id": "S031",
+   "url": "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/modern-standby",
+   "label": "微软官方硬件设计文档《Modern Standby》：S0 低功率空闲、类手机的即时开机与保持联网、activator 可阻塞回idle、SleepStudy 工具",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S032",
+   "url": "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/prepare-hardware-for-modern-standby",
+   "label": "微软官方文档《Prepare hardware for modern standby》：SoC 内外每个器件都必须各自进入低功耗态，待机续航取决于外设电源管理是否做对",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S033",
+   "url": "https://support.microsoft.com/en-US/surface/battery/surface-battery-testing-and-estimated-performance",
+   "label": "微软 Surface 电池测试与预估性能页，逐机型写明测试条件与测月（1080p .mov 本地播放、150 尼特、Wi-Fi 已连接、12 站点网页浏览）",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Support"
+  },
+  {
+   "id": "S034",
+   "url": "https://www.microsoft.com/en-us/surface/business/surface-laptop-for-business-models",
+   "label": "微软 Surface Laptop for Business 机型对比页，脚注 20 写明“5G 并非所有地区可用”，并把选装 5G 标在 13.8 英寸 Intel 配置上",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft"
+  },
+  {
+   "id": "S035",
+   "url": "https://www.asus.com/us/laptops/for-home/zenbook/asus-zenbook-a14-ux3407/",
+   "label": "华硕 Zenbook A14 官方页：宣称连续视频播放超 33 小时，脚注为 1080p 本地视频、Wi-Fi 开启但未连接、150 cd/m²、2025 年 12 月测；另有“轻任务下低于 25 分贝”、风扇背压提升，以及与 MacBook Pro 的多核跑分注明测于接电+性能风扇档",
+   "retrieved": "2026-09-24",
+   "publisher": "ASUS"
+  },
+  {
+   "id": "S036",
+   "url": "https://psref.lenovo.com/syspool/Sys/PDF/ThinkPad/ThinkPad_T14s_Gen_6_Snapdragon/ThinkPad_T14s_Gen_6_Snapdragon_Spec.PDF",
+   "label": "联想 PSREF 官方规格书（ThinkPad T14s Gen 6 Snapdragon，文档标注 2026-07-27）：58Wh、JEITA-BAT 3.0 视频/空闲 19.32/37.37 小时@200 尼特，5G 为可选模块 Quectel RM520N-GL 含 eSIM，同页亦提供“不支持 WWAN”",
+   "retrieved": "2026-09-24",
+   "publisher": "Lenovo"
+  },
+  {
+   "id": "S037",
+   "url": "http://finance.sina.com.cn/tech/roll/2024-06-23/doc-inaztwcz6337972.shtml",
+   "label": "新浪科技转载快科技 2024-06-24 稿，转述 Tom's Hardware 四款骁龙本的统一实测：150 尼特、连 Wi-Fi 刷网页至放电结束，OmniBook X 15 小时 48 分/59Wh、Surface Laptop 13.8 15 小时 37 分/54Wh、i7-1355U 版 X1 Carbon 第十一代 13 小时 45 分/57Wh",
+   "retrieved": "2026-09-24",
+   "publisher": "新浪科技 / 快科技"
+  },
+  {
+   "id": "S041",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation",
+   "label": "微软官方文档 How emulation works on Arm：Prism 随 Windows 11 24H2 引入，把 x86/x64 用户态代码即时编译成 Arm64 并按模块缓存；原文写明转译只支持用户态，任何内核态组件必须编译为 Arm64",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S042",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/faq",
+   "label": "微软官方 Windows on Arm 开发者 FAQ：原文 kernel-mode drivers and user-mode print drivers MUST be built as native Arm64，且不能用 x86/x64 安装程序在 Arm64 设备上装驱动；另一条问答承认转译带来性能开销",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S043",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-program-compat-troubleshooter",
+   "label": "微软官方排障文档 Adjust Emulation Settings on Arm（页面日期 2025-12-05）：右键 exe → 属性 → 兼容性 → Windows on Arm；Default/Safe/Strict/Very strict 四档以性能换兼容；AVX、AVX2、BMI、FMA、F16C 自 Windows 11 24H2 起由 Prism 支持",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S044",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/add-arm-support",
+   "label": "微软官方开发者指南 Add Arm support to your Windows app：Visual Studio 2022 17.4 是首个可原生构建调试 Arm64 的 GA 版本；用 dumpbin /headers 确认 AA64 machine (ARM64)；上商店要在 Partner Center 提交里加入 ARM64 二进制，自研安装包需确认框架支持",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S045",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/arm64ec",
+   "label": "微软官方 Arm64EC 文档（2026-03-24 更新）：x64 或 Arm64EC 进程可加载 x64 与 Arm64EC 二进制，Arm64 进程只能加载 Arm64 二进制；Arm64EC 需 Windows 11 SDK；系统自身大量组件按 Arm64EC 编译",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S046",
+   "url": "https://www.theguardian.com/technology/2013/jul/19/microsoft-900-million-charge-surface",
+   "label": "卫报 2013-07-19 报道，标题即「微软对 Surface RT 平板计提 9 亿美元」",
+   "retrieved": "2026-09-24",
+   "publisher": "The Guardian"
+  },
+  {
+   "id": "S047",
+   "url": "https://gizmodo.com/microsoft-surface-rt-review-this-is-technological-hear-5953866",
+   "label": "Gizmodo 2012-10-23 的 Surface RT 当年评测，记录了这一版装不进现有 Win32 软件、只能用商店应用与预装 Office 的核心限制",
+   "retrieved": "2026-09-24",
+   "publisher": "Gizmodo"
+  },
+  {
+   "id": "S048",
+   "url": "https://onlineservices.epicgames.com/news/online-services-and-fortnite-are-now-available-on-windows-on-snapdragon",
+   "label": "Epic 官方新闻页（检索结果标注 2025-03-13）：标题口径为 Epic Online Services 与 Fortnite 已可在 Windows on Snapdragon 上运行；正文需登录，未据其展开任何数字断言",
+   "retrieved": "2026-09-24",
+   "publisher": "Epic Games"
+  },
+  {
+   "id": "S049",
+   "url": "https://rkblog.dev/posts/pc-hardware/pc-on-arm/x86_versus_arm_native_game/",
+   "label": "第三方硬件评测站长文（检索结果标注 2025-12-15）：在 Snapdragon X Elite 上把同一批游戏分别按原生 Arm64 与 x64 转译运行、逐款记录帧率；本章只引用其存在与时点，未复述具体数值",
+   "retrieved": "2026-09-24",
+   "publisher": "RkBlog"
+  },
+  {
+   "id": "S0410",
+   "url": "https://helpx.adobe.com/x-productkb/multi/windows-arm-support.html",
+   "label": "Adobe 官方支持页 Support for ARM-based Windows devices：逐个列出旗下创意软件在 ARM 版 Windows 上的支持状态与限制",
+   "retrieved": "2026-09-24",
+   "publisher": "Adobe Help Center"
+  },
+  {
+   "id": "S0411",
+   "url": "https://support.microsoft.com/en-us/windows/experience/platform-variants/windows-arm-based-pcs-faq",
+   "label": "微软官方 Windows Arm-based PCs FAQ：面向普通用户的 Arm 版 Windows 能与不能、已知限制与自查入口",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Support"
+  },
+  {
+   "id": "S051",
+   "url": "https://learn.microsoft.com/en-us/surface/surface-arm-faq",
+   "label": "微软 Learn《Arm 版 Surface 设备 FAQ》，ms.date 2026-07-14（已抓取正文）：逐个点名已原生运行的软件、约九成使用量将来自原生版的预测、驱动/游戏/传真扫描/杀毒等限制清单",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S052",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/faq",
+   "label": "微软 Learn《Windows on Arm FAQ》，ms.date 2025-11-06（已抓取正文）：内核驱动与用户态打印驱动必须原生 Arm64；不能用 x86/x64 安装程序装 Arm64 驱动；Visual Studio 与 VS Code 均提供 Arm 原生版",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S053",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/add-arm-support",
+   "label": "微软 Learn《为你的 Windows 应用添加 Arm 支持》，ms.date 2025-11-06（已抓取正文）：VS2022 17.4 为首个原生编译调试 Arm64 的 GA 版本、LLVM/Clang 12+、.NET 5.0.8/6/7、GCC 由 Linaro 推进中、Arm64 虚机不能在 x64 硬件创建、商店与官网两条分发路径、User-Agent Client Hints",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S054",
+   "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/develop/building-arm64-drivers",
+   "label": "微软 Learn《用 WDK 构建 Arm64 驱动》，ms.date 2025-11-21（已抓取正文）：WDK 10.0.26100.1 于 2024-05-22 发布，首次支持在 Arm64 机器上开发/测试/部署驱动，此前仅 x86 KMDF/UMDF2 驱动可模拟运行",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S055",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation",
+   "label": "微软 Learn《Arm 上的模拟如何工作》，ms.date 2025-11-06（已抓取正文）：Prism 随 Windows 11 24H2 引入、运行期 JIT 分块编译并按模块缓存、针对骁龙调优、仅支持用户态不含驱动",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S056",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-program-compat-troubleshooter",
+   "label": "微软 Learn《在 Arm 上调整模拟设置》，ms.date 2025-12-05（已抓取正文）：AVX、AVX2、BMI、FMA、F16C 自 Windows 11 24H2 起才被 Prism 支持；逐应用的 Default/Safe/Strict/Very strict 四档",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S057",
+   "url": "https://learn.microsoft.com/en-us/microsoft-365/education/guide/1-windows/windows-arm",
+   "label": "微软 Learn《Windows ARM 芯片注意事项（M365 教育部署指南）》，ms.date 2025-06-25、页面更新 2026-03-10（已抓取正文）：另一份逐软件清单——已原生浏览器与办公组件，非原生的 Illustrator/Premiere Pro/After Effects/InDesign，不兼容的 VMware/Google Drive 客户端与反作弊游戏",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S058",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/arm64x-pe",
+   "label": "微软 Learn《Arm64X PE 文件》，ms.date 2025-11-06（已抓取正文）：单一文件同时呈现 x64/Arm64 视图，文档把它定位给中间件、插件与 System32 系统组件，普通应用多数用不到",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S059",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/arm32-to-arm64",
+   "label": "微软 Learn《从 Arm32 迁移到 Arm64》，ms.date 2025-11-06（已抓取正文）：32 位 Arm 支持将在后续 Windows 11 版本连同 sysarm32 移除；dumpbin /headers 应显示 AA64 machine (ARM64)",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S0510",
+   "url": "https://learn.microsoft.com/en-us/windows-hardware/drivers/print/legacy-printer-driver-submission-process",
+   "label": "微软 Learn《提交传统打印机驱动》，ms.date 2026-04-01、更新 2026-08-17（已抓取正文）：2026-01-15 起 WHQL 与 Attestation 打印驱动提交默认被拦、逐份人工审查；ARM64Addition 为明列例外类别（理由 accelerating ARM64 adoption）；同时含 x86/AMD64 的 Arm64 新驱动会被拒；备注「ARM devices don't support deploying a certificate to the Trusted Publishers certificate store」",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S0511",
+   "url": "https://learn.microsoft.com/en-us/surface/surface-pro-arm-app-management",
+   "label": "微软 Learn《部署与管理 Arm 版 Surface》，ms.date 2026-07-14（子代理抓取）：Arm 设备的驱动与固件按 Windows Update 通道更新，WSUS 不能向 Arm 设备分发驱动固件；Surface Pro 11 与 Surface Laptop 7（骁龙 X Elite）2024-09-10 起出货",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S0512",
+   "url": "https://learn.microsoft.com/en-us/visualstudio/install/visual-studio-on-arm-devices",
+   "label": "微软 Learn《Arm 设备上的 Visual Studio》，ms.date 2025-08-25（子代理抓取）：17.4 为首个原生 Arm64 GA；文档称 vcpkg 亦原生运行并覆盖 1,700 多个 C++ 库；17.4 之前的版本不建议在 Arm 上使用",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S0513",
+   "url": "https://developer.apple.com/documentation/apple-silicon/about-the-rosetta-translation-environment",
+   "label": "苹果官方文档《关于 Rosetta 转译环境》（子代理经 JSON 镜像抓取正文）：仅含 Intel 指令的二进制由 macOS 自动启动 Rosetta 翻译、翻译完成后以翻译产物就地启动；转译作用于整个进程及其动态加载模块；不转译内核扩展与 x86_64 平台虚拟机；可转译含 JIT 的 App；翻译 AVX/AVX2 但不支持 AVX512",
+   "retrieved": "2026-09-24",
+   "publisher": "Apple Developer"
+  },
+  {
+   "id": "S0514",
+   "url": "https://developer.apple.com/documentation/apple-silicon/building-a-universal-macos-binary",
+   "label": "苹果官方文档《构建通用 macOS 二进制》（子代理抓取）：要求把 App、扩展、插件、框架、命令行工具都做成 universal binary，Xcode 12.2 起，用 lipo 合并",
+   "retrieved": "2026-09-24",
+   "publisher": "Apple Developer"
+  },
+  {
+   "id": "S0515",
+   "url": "https://developer.apple.com/news/?id=w5ngl9k2",
+   "label": "苹果开发者新闻（2026-09-01，子代理抓取）：macOS 27 是最后一个支持 Rosetta 的版本，此后仅 Intel 专属 App 不再在 Apple 芯片 Mac 上运行，少数无人维护的老游戏保留；macOS 26.4 起用户会收到系统提示",
+   "retrieved": "2026-09-24",
+   "publisher": "Apple Developer"
+  },
+  {
+   "id": "S0516",
+   "url": "https://support.apple.com/en-us/102527",
+   "label": "苹果官方支持页《Rosetta》（子代理抓取）：Rosetta 可用于 macOS 27 及更早的 Apple 芯片 Mac，macOS 28 起仅对部分老旧游戏保留",
+   "retrieved": "2026-09-24",
+   "publisher": "Apple Support"
+  },
+  {
+   "id": "S0517",
+   "url": "https://www.apple.com/newsroom/2020/06/apple-announces-mac-transition-to-apple-silicon/",
+   "label": "苹果新闻编辑室 2020-06-22（子代理抓取）：宣布迁移并写明「约两年完成」，提出 Universal 2 应用二进制",
+   "retrieved": "2026-09-24",
+   "publisher": "Apple Newsroom"
+  },
+  {
+   "id": "S061",
+   "url": "https://news.mydrivers.com/1/994/994974.htm",
+   "label": "快科技 2024-08-02 报道：列出当年国内在售骁龙X机型起售价（宏碁非凡Go Pro 6599元、华硕无畏Pro15 8199元、Surface Laptop 7 8388元起、Surface Pro 11 8688元起、Yoga Air 14s 9969元起、ThinkPad T14s 10999元起、戴尔Latitude 7455 12999元起），并引用高通CEO安蒙在季度财务会议上关于2025年零售价低至700美元的表态",
+   "retrieved": "2026-09-24",
+   "publisher": "快科技"
+  },
+  {
+   "id": "S062",
+   "url": "https://www.ithome.com/0/956/785.htm",
+   "label": "IT之家 2026-05-28：高通发布骁龙C平台，官方划定300美元及以上整机价格带；高通向媒体确认NPU不足40 TOPS不支持Copilot+，首批宏碁Aspire Go 15最高8GB内存、53Wh电池",
+   "retrieved": "2026-09-24",
+   "publisher": "IT之家"
+  },
+  {
+   "id": "S063",
+   "url": "https://www.ithome.com/0/799/105.htm",
+   "label": "IT之家 2024-09-28：荣耀MagicBook Art 14骁龙版上架，骁龙X Elite X1E-80-100/32GB LPDDR5x/1TB，1.02千克、60Wh，厂商标称1080P视频播放15.22小时，售价8299元",
+   "retrieved": "2026-09-24",
+   "publisher": "IT之家"
+  },
+  {
+   "id": "S064",
+   "url": "https://detail.zol.com.cn/notebook/index2112192.shtml",
+   "label": "ZOL中关村在线报价页：荣耀MagicBook Art 14 骁龙版（骁龙X Elite/32GB/1TB）参考报价8299元、商家报价6649-7884元、京东6999元；14.6英寸3120x2080、1.02Kg（抓取于2026-09-24）",
+   "retrieved": "2026-09-24",
+   "publisher": "ZOL中关村在线"
+  },
+  {
+   "id": "S065",
+   "url": "https://detail.zol.com.cn/notebook/index2079223.shtml",
+   "label": "ZOL中关村在线报价页：荣耀MagicBook Art 14 酷睿版（Ultra 7 155H/32GB/1TB）参考报价8999元；同页产品型号表另列 Ultra 5 125H/32GB/1TB 8499元、Ultra 5 125H/16GB/1TB 7799元；上市时间2024年7月12日（抓取于2026-09-24）",
+   "retrieved": "2026-09-24",
+   "publisher": "ZOL中关村在线"
+  },
+  {
+   "id": "S066",
+   "url": "https://detail.zol.com.cn/notebook/index2018330.shtml",
+   "label": "ZOL中关村在线报价页：微软Surface Pro 第11版（骁龙）各配置经销商报价，含骁龙X Elite/16GB/1TB/OLED 13288元、X Elite/16GB/512GB/OLED 11088元、X Plus/16GB/512GB/LCD 8688元；屏幕尺寸13英寸（抓取于2026-09-24）",
+   "retrieved": "2026-09-24",
+   "publisher": "ZOL中关村在线"
+  },
+  {
+   "id": "S067",
+   "url": "https://detail.zol.com.cn/notebook/index1991897.shtml",
+   "label": "ZOL中关村在线报价页：微软Surface Pro 10 商用版（英特尔酷睿Ultra）经销商报价，Ultra 7 165U/16GB/1TB 16488元、16GB/256GB 14088元、32GB/1TB 19688元；屏幕尺寸13英寸（抓取于2026-09-24）",
+   "retrieved": "2026-09-24",
+   "publisher": "ZOL中关村在线"
+  },
+  {
+   "id": "S068",
+   "url": "https://psref.lenovo.com/syspool/Sys/PDF/ThinkPad/ThinkPad_T14s_Gen_6_Snapdragon/ThinkPad_T14s_Gen_6_Snapdragon_Spec.PDF",
+   "label": "联想PSREF官方规格表 ThinkPad T14s Gen 6 (Snapdragon)：内存为板上焊接、不可升级、无插槽，LPDDR5X-8448",
+   "retrieved": "2026-09-24",
+   "publisher": "Lenovo PSREF"
+  },
+  {
+   "id": "S069",
+   "url": "https://psref.lenovo.com/syspool/Sys/PDF/ThinkPad/ThinkPad_T14_Gen_6_Intel/ThinkPad_T14_Gen_6_Intel_Spec.PDF",
+   "label": "联想PSREF官方规格表 ThinkPad T14 Gen 6 (Intel)：内存可选DDR5 SODIMM/CSODIMM插槽、双通道，最高64GB DDR5-5600（同页另列板上焊接配置）",
+   "retrieved": "2026-09-24",
+   "publisher": "Lenovo PSREF"
+  },
+  {
+   "id": "S0610",
+   "url": "https://www.trendforce.com/presscenter/news/20260310-12959.html",
+   "label": "TrendForce 2026-03-10 新闻稿：DRAM+SSD正常占笔记本BOM约15%、1Q26预计超30%；900美元主流机型仅内存涨价就可能推高零售价30%以上，叠加CPU提价可达近40%；英特尔已对部分入门级与旧世代笔电CPU提价超15%",
+   "retrieved": "2026-09-24",
+   "publisher": "TrendForce"
+  },
+  {
+   "id": "S0611",
+   "url": "https://www.beijing.gov.cn/zhengce/gfxwj/202012/W020201201332914812668.pdf",
+   "label": "北京市销售电价表（官方PDF）：居民生活用电试行阶梯电价一档1-240千瓦时、不满1千伏0.4883元/千瓦时",
+   "retrieved": "2026-09-24",
+   "publisher": "北京市人民政府"
+  },
+  {
+   "id": "S081",
+   "url": "https://www.intel.com/content/www/us/en/newsroom/news/core-ultra-200v-series-mobile.html",
+   "label": "Intel 官方新闻稿：Core Ultra 200V（Lunar Lake）发布，含片上 LPDDR5X、NPU 4 与续航口径",
+   "retrieved": "2026-09-24",
+   "publisher": "Intel Newsroom"
+  },
+  {
+   "id": "S082",
+   "url": "https://wccftech.com/intel-lunar-lake-v-cpus-8-cores-4-p-4-lp-e-8-xe2-gpu-cores-32-gb-lpddr5x-17-30w-tdp/",
+   "label": "发布前规格报道：标题即列出 8 核 4P+4LP-E、32GB LPDDR5X、17–30W TDP",
+   "retrieved": "2026-09-24",
+   "publisher": "Wccftech"
+  },
+  {
+   "id": "S083",
+   "url": "https://www.intel.com/content/www/us/en/newsroom/news/artificial-intelligence/ces-2026-intel-core-ultra-series-3-debut-first-built-on-intel-18a.html",
+   "label": "Intel 官方新闻稿：CES 2026 上 Core Ultra Series 3（Panther Lake）首发于 Intel 18A",
+   "retrieved": "2026-09-24",
+   "publisher": "Intel Newsroom"
+  },
+  {
+   "id": "S084",
+   "url": "https://arstechnica.com/gadgets/2026/02/intel-panther-lake-core-ultra-review-intels-best-laptop-cpu-in-a-very-long-time/",
+   "label": "第三方评测：标题称 Panther Lake 是英特尔多年来最好的笔记本处理器",
+   "retrieved": "2026-09-24",
+   "publisher": "Ars Technica"
+  },
+  {
+   "id": "S085",
+   "url": "https://www.pcmag.com/news/amd-ryzen-ai-400-series-ai-power-hits-laptops-and-mini-pcs-ces-2026",
+   "label": "CES 2026 报道：AMD Ryzen AI 400 系列，60 TOPS 算力进入笔记本",
+   "retrieved": "2026-09-24",
+   "publisher": "PCMag"
+  },
+  {
+   "id": "S086",
+   "url": "https://www.techpowerup.com/346918/amd-launches-ryzen-ai-400-series-processors-for-mobile-and-desktop",
+   "label": "AMD 正式发布 Ryzen AI 400 系列（移动与桌面）",
+   "retrieved": "2026-09-24",
+   "publisher": "TechPowerUp"
+  },
+  {
+   "id": "S087",
+   "url": "https://blogs.microsoft.com/blog/2024-05-20/introducing-copilot-pcs/",
+   "label": "微软官方博客：Copilot+ PC 定义与 NPU 算力门槛（40 TOPS）",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft"
+  },
+  {
+   "id": "S088",
+   "url": "https://www.amd.com/en/newsroom/press-releases/2023-1-4-amd-extends-its-leadership-with-the-introduction-o.html",
+   "label": "AMD 官方新闻稿：2023 年 1 月 CES 移动处理器产品线，含带 XDNA NPU 的 Ryzen 7040",
+   "retrieved": "2026-09-24",
+   "publisher": "AMD"
+  },
+  {
+   "id": "S089",
+   "url": "https://www.techradar.com/pro/amds-most-exciting-mobile-ryzen-launch-in-2023-was-about-how-powerful-its-xdna-2-npu-will-be-a-300-improvement-in-ai-performance-is-a-game-changer",
+   "label": "2023 年 AMD 移动处理器已搭载 XDNA NPU 的报道",
+   "retrieved": "2026-09-24",
+   "publisher": "TechRadar"
+  },
+  {
+   "id": "S0810",
+   "url": "https://www.tomshardware.com/pc-components/cpus/lunar-lakes-integrated-memory-is-an-expensive-one-off-intel-rejects-the-approach-for-future-cpus-due-to-margin-impact",
+   "label": "英特尔高管称 Lunar Lake 片上内存是「昂贵的一次性方案」，因毛利放弃、未来型号不再沿用",
+   "retrieved": "2026-09-24",
+   "publisher": "Tom's Hardware"
+  },
+  {
+   "id": "S0811",
+   "url": "https://www.apple.com/newsroom/2020/11/apple-unleashes-m1/",
+   "label": "苹果官方新闻稿：Apple 发布 M1 芯片",
+   "retrieved": "2026-09-24",
+   "publisher": "Apple Newsroom"
+  },
+  {
+   "id": "S0812",
+   "url": "https://www.apple.com/newsroom/2020/11/introducing-the-next-generation-of-mac/",
+   "label": "苹果官方新闻稿：搭载 M1 的 MacBook Air 续航与无风扇设计",
+   "retrieved": "2026-09-24",
+   "publisher": "Apple Newsroom"
+  },
+  {
+   "id": "S0813",
+   "url": "https://www.tomsguide.com/computing/cpus/qualcomm-slams-intel-chips-in-new-snapdragon-ads-and-it-may-have-a-point",
+   "label": "高通新广告点名 Intel 芯片",
+   "retrieved": "2026-09-24",
+   "publisher": "Tom's Guide"
+  },
+  {
+   "id": "S0814",
+   "url": "https://www.notebookcheck.net/Intel-s-Gregory-Bryant-says-only-the-paranoid-survive-welcomes-competition-from-AMD-Apple-and-others.509093.0.html",
+   "label": "英特尔客户计算负责人 Gregory Bryant：「只有偏执狂才能生存」，欢迎 AMD、苹果等竞争",
+   "retrieved": "2026-09-24",
+   "publisher": "Notebookcheck"
+  },
+  {
+   "id": "S0815",
+   "url": "https://www.cnet.com/tech/computing/the-34-hour-laptop-is-here-heres-why-battery-life-has-exploded-in-recent-years/",
+   "label": "报道：34 小时续航的机型出现，以及这两年续航变长的原因",
+   "retrieved": "2026-09-24",
+   "publisher": "CNET"
+  },
+  {
+   "id": "S0816",
+   "url": "https://www.pcworld.com/article/3034214/intel-core-ultra-x9-388h-review-epic-graphics-battery-life.html",
+   "label": "PCWorld 用其跨平台视频播放续航口径实测 Panther Lake 机型（Core Ultra X9 388H），标题为「拿不到 30 小时runtime」",
+   "retrieved": "2026-09-24",
+   "publisher": "PCWorld"
+  },
+  {
+   "id": "S0817",
+   "url": "https://www.pcworld.com/article/3063975/netflix-is-my-new-no-lie-laptop-battery-test.html",
+   "label": "PCWorld 说明其跨平台（Mac 与 Windows 通用）视频播放续航测试方法",
+   "retrieved": "2026-09-24",
+   "publisher": "PCWorld"
+  },
+  {
+   "id": "S0818",
+   "url": "https://www.notebookcheck.net/Qualcomm-promises-Snapdragon-X-series-PCs-at-as-low-as-700-for-2025.870385.0.html",
+   "label": "高通预告 2025 年出现低至 700 美元档的骁龙 X 系列 PC",
+   "retrieved": "2026-09-24",
+   "publisher": "Notebookcheck"
+  },
+  {
+   "id": "S071",
+   "url": "https://docs.qualcomm.com/doc/87-71417-1/87-71417-1_REV_F_Snapdragon_X_Elite_Product_Brief.pdf",
+   "label": "高通官方 Snapdragon X Elite 产品简报 PDF（Rev F）：逐 SKU 标出 Hexagon NPU 45 TOPS、LPDDR5x 8448 MT/s、12 核与加速频率",
+   "retrieved": "2026-09-24",
+   "publisher": "Qualcomm"
+  },
+  {
+   "id": "S072",
+   "url": "https://www.techpowerup.com/cpu-specs/snapdragon-x1e-78-100.c4102",
+   "label": "TechPowerUp CPU 数据库 X1E-78-100 规格页：NPU 45 TOPS、双通道 LPDDR5X 内存带宽 135.2 GB/s、TDP 35 W / PL2 45 W",
+   "retrieved": "2026-09-24",
+   "publisher": "TechPowerUp"
+  },
+  {
+   "id": "S073",
+   "url": "https://www.techpowerup.com/cpu-specs/core-ultra-7-258v.c3795",
+   "label": "TechPowerUp CPU 数据库 Core Ultra 7 258V 规格页：NPU 47 TOPS、LPDDR5X-8533 双通道 136.5 GB/s、最大 32 GB、17 W 基础 / 37 W 最大",
+   "retrieved": "2026-09-24",
+   "publisher": "TechPowerUp"
+  },
+  {
+   "id": "S074",
+   "url": "https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-9-hx-370.html",
+   "label": "AMD 官方 Ryzen AI 9 HX 370 规格页：AI Engine 栏并列 Overall TOPS up to 80 与 NPU TOPS up to 50，内存 LPDDR5x-8000 双通道、最大 256 GB",
+   "retrieved": "2026-09-24",
+   "publisher": "AMD"
+  },
+  {
+   "id": "S075",
+   "url": "https://uk.pcmag.com/processors/160248/tops-of-the-heap-qualcomm-unveils-snapdragon-x2-elite-extreme-cpu-with-18-cores-massive-npu",
+   "label": "PCMag 2025-09-24 高通峰会报道：X2 Elite Extreme 为 18 核、配 80 TOPS NPU，三款新芯片共用该 NPU",
+   "retrieved": "2026-09-24",
+   "publisher": "PCMag"
+  },
+  {
+   "id": "S076",
+   "url": "https://learn.microsoft.com/en-us/windows/ai/npu-devices/",
+   "label": "微软 Copilot+ PCs 开发者指南：把 Copilot+ 定义为 NPU 每秒超 40 万亿次操作；说明多数 NPU 只支持 INT8 低位宽、模型需先转换量化（Olive、高通 AI Hub），并给出在设备 NPU 上测量模型性能的方法",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S077",
+   "url": "https://github.com/ggml-org/llama.cpp/discussions/8273",
+   "label": "llama.cpp 官方讨论区 Snapdragon X Elite/Plus 实测串（2024-07 起）：Surface Pro 11 上 llama-bench -p 512 -n 128 的 pp/tg 数字、Q4_K_M 与 Q4_0_4_8 量化格式对比、以及「没有 GPU/NPU 支持」的当时结论",
+   "retrieved": "2026-09-24",
+   "publisher": "ggml-org / GitHub"
+  },
+  {
+   "id": "S078",
+   "url": "https://github.com/ggml-org/llama.cpp/blob/master/docs/backend/snapdragon/windows.md",
+   "label": "llama.cpp 官方 Snapdragon Windows 构建文档：Hexagon NPU 后端需 Hexagon SDK 6.6、HTP 算子库 .cat 签名与 bcdedit 测试签名（可能需关 Secure Boot），Adreno GPU 后端不需要",
+   "retrieved": "2026-09-24",
+   "publisher": "ggml-org / GitHub"
+  },
+  {
+   "id": "S079",
+   "url": "https://github.com/ggml-org/llama.cpp/releases",
+   "label": "llama.cpp 官方发布页（经 GitHub Releases API 核对）：b11160（2026-09-24）的 Windows ARM64 预编译包为 win-cpu-arm64 与 win-opencl-adreno-arm64，未提供 NPU 预编译包；Ollama v0.34.4（2026-09-23）提供 ollama-windows-arm64.zip",
+   "retrieved": "2026-09-24"
+  },
+  {
+   "id": "S0710",
+   "url": "https://arxiv.org/html/2507.14397v1",
+   "label": "NVIDIA Research 论文《Bandwidth, Compute, Synchronization, and Capacity are all you need》：自回归解码下高带宽决定每人吞吐；Llama-405B 单用户 64K 上下文 15.75 GB KV cache、32 用户 504 GB、整机至少 881 GB；HBM3e 系统约 750 token/s 上限、带宽扫描区间 4–120 TB/s",
+   "retrieved": "2026-09-24"
+  },
+  {
+   "id": "S0711",
+   "url": "https://arxiv.org/html/2502.11007v1",
+   "label": "本地—云 LLM 推理卸载研究（LCIO）：本地部署受算力、内存与能耗约束，云端不保证实时服务且产生通信与使用成本，据此做逐轮卸载决策",
+   "retrieved": "2026-09-24"
+  },
+  {
+   "id": "S101",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/overview",
+   "label": "微软 Learn《Windows on Arm》文档主页（页面标注更新于 2026-06-25，2026-09-24 抓取）：明确把 worksonwoa.com（Windows on Arm Ready Software）列为「检查应用是否支持 Arm」的入口；并写明骁龙 X 系列处理器提供 45 TOPS NPU 算力",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S102",
+   "url": "https://support.microsoft.com/en-us/windows/experience/platform-variants/windows-arm-based-pcs-faq",
+   "label": "微软支持《Windows Arm 版 PC 常见问题》（2026-09-24 抓取）：限制清单原文——驱动须为 Arm 版 PC 设计、依赖未为 Arm 制作的反作弊驱动的游戏不能跑、部分第三方杀毒装不上、Windows Fax and Scan 不可用；另列出已转原生的应用（Chrome、Slack、Zoom、Blender、Affinity、DaVinci Resolve 等）、Prism 随 Windows 11 24H2、打印机可查 mopria.org",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Support"
+  },
+  {
+   "id": "S103",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/faq",
+   "label": "微软 Learn《Windows on Arm FAQ》（页面标注更新于 2025-11-07）：规则原文——内核态驱动与用户态打印驱动必须编译为 Arm64 原生二进制，且不能用 x86/x64 安装程序去装 Arm64 驱动；并给出 C:\\Program Files 与 C:\\Program Files (x86) 分别对应 x64/Arm64 与 x86 应用的归属",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S104",
+   "url": "https://learn.microsoft.com/en-us/windows/arm/apps-on-arm-x86-emulation",
+   "label": "微软 Learn《Arm 上的转译如何工作》（页面标注更新于 2025-11-07）：转译只支持用户态代码、不支持驱动，内核态组件必须编译为 Arm64；Prism 随 Windows 11 24H2 引入并针对骁龙调优",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S105",
+   "url": "https://www.worksonwoa.com/en/",
+   "label": "微软供数的 Windows on Arm 兼容性站（2026-09-24 抓取），页面自述 Over 7,000 verified applications，逐条标注应用与游戏的原生/转译状态",
+   "retrieved": "2026-09-24",
+   "publisher": "Windows on Arm Ready Software"
+  },
+  {
+   "id": "S106",
+   "url": "https://windowsonarm.org/",
+   "label": "社区软件兼容性清单（2026-09-24 两次抓取、统计一致）：原生 39.48%、转译 29.51%、Beta 支持 1.37%、不支持 6.72%、审查中 22.91%；逐条带更新日期，其中 AutoCAD 标为 Not supported（该条 2025-02-18）、Valorant 标为 Not supported（该条 2024-07-23）",
+   "retrieved": "2026-09-24",
+   "publisher": "Windows on ARM Software Compatibility List"
+  },
+  {
+   "id": "S107",
+   "url": "https://benchmarks.ul.com/procyon/battery-life-benchmark",
+   "label": "UL Solutions Procyon 电池寿命基准产品页（2026-09-24 抓取）：方法为分场景测量并分别出profile——视频播放、空闲、办公三类，可命令行运行并导出 Excel/XML/PDF",
+   "retrieved": "2026-09-24",
+   "publisher": "UL Solutions Benchmarks"
+  },
+  {
+   "id": "S108",
+   "url": "https://benchmarks.ul.com/compare/best-cpus",
+   "label": "UL Solutions 公开处理器分数库（2026-09-24 抓取，页面标题为 Best Processors - September 2026，即按月份滚动更新的公开榜单）",
+   "retrieved": "2026-09-24",
+   "publisher": "UL Solutions Benchmarks"
+  },
+  {
+   "id": "S111",
+   "url": "https://learn.microsoft.com/en-us/lifecycle/products/windows-rt",
+   "label": "微软生命周期官方页，列出 Windows RT 的支持起止日期",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S112",
+   "url": "https://arstechnica.com/information-technology/2013/07/microsoft-takes-900-million-hit-for-unsold-surface-rts-in-4q13-earnings/",
+   "label": "2013-07-18 报道：微软因 Surface RT 滞销在 4Q13 计提 9 亿美元存货减值",
+   "retrieved": "2026-09-24",
+   "publisher": "Ars Technica"
+  },
+  {
+   "id": "S113",
+   "url": "https://www.pingwest.com/how-windows-rt-get-alienated/",
+   "label": "2013-08 回顾《Windows RT 是如何变得「众叛亲离」的》：旧 x86 桌面程序跑不了、开发者与 OEM 都不跟进",
+   "retrieved": "2026-09-24",
+   "publisher": "品玩"
+  },
+  {
+   "id": "S114",
+   "url": "https://blogs.windows.com/windowsdeveloper/2026-08-25/expanding-the-windows-on-arm-app-ecosystem/",
+   "label": "微软 Windows 开发者博客 2026-08-25 关于扩展 Windows on Arm 应用生态的文章，生态承诺的书面凭证",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft"
+  },
+  {
+   "id": "S115",
+   "url": "https://worksonwoa.com/",
+   "label": "Windows on Arm 原生应用与游戏兼容清单，可按条目看新增与撤回",
+   "retrieved": "2026-09-24",
+   "publisher": "Works on WoA"
+  },
+  {
+   "id": "S116",
+   "url": "https://windowsonarm.org/",
+   "label": "社区维护的 Windows on ARM 软件兼容清单，逐条标注运行状态",
+   "retrieved": "2026-09-24",
+   "publisher": "Windows on ARM"
+  },
+  {
+   "id": "S117",
+   "url": "https://support.microsoft.com/en-us/windows/experience/platform-variants/windows-arm-based-pcs-faq",
+   "label": "微软 Windows Arm 版 PC FAQ，说明 Prism 转译层的支持范围",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Support"
+  },
+  {
+   "id": "S118",
+   "url": "https://www.tomshardware.com/news/arm-socs-to-grab-30-percent-of-pc-market-by-2026-analyst",
+   "label": "2022-11 报道的分析师预测：Arm SoC 到 2026 年拿下 PC 市场 30%",
+   "retrieved": "2026-09-24",
+   "publisher": "Tom's Hardware"
+  },
+  {
+   "id": "S119",
+   "url": "https://counterpointresearch.com/en/reports/ai-advanced-pcs-to-surpass-half-of-global-shipments-in-2026",
+   "label": "Counterpoint 2025-09-08 报告：AI 进阶 PC 到 2026 年将超全球出货一半",
+   "retrieved": "2026-09-24",
+   "publisher": "Counterpoint Research"
+  },
+  {
+   "id": "S1110",
+   "url": "https://www.idc.com/resource-center/blog/global-memory-shortage-crisis-market-analysis-and-the-potential-impact-on-the-smartphone-and-pc-markets-in-2026/",
+   "label": "IDC 2025-12-18 博客：全球内存短缺对 2026 年手机与 PC 市场的影响",
+   "retrieved": "2026-09-24",
+   "publisher": "IDC"
+  },
+  {
+   "id": "S1111",
+   "url": "https://www.idc.com/resource-center/blog/pc-market-enters-volatile-territory-as-memory-shortage-persists-through-2027/",
+   "label": "IDC 2026-06 博客：内存短缺持续到 2027 年，2026 年 PC 出货下滑约 11%",
+   "retrieved": "2026-09-24",
+   "publisher": "IDC"
+  },
+  {
+   "id": "S1112",
+   "url": "https://arstechnica.com/gadgets/2026/02/intel-panther-lake-core-ultra-review-intels-best-laptop-cpu-in-a-very-long-time/",
+   "label": "2026-02-02 Panther Lake（Core Ultra）笔记本评测：多年来最好的 Intel 移动 CPU",
+   "retrieved": "2026-09-24",
+   "publisher": "Ars Technica"
+  },
+  {
+   "id": "S1113",
+   "url": "https://www.notebookcheck.net/Almost-Lunar-Lake-levels-Intel-keeps-its-Panther-Lake-promise-of-efficiency.1400099.0.html",
+   "label": "2026-09-15 实测：Panther Lake 能效接近 Lunar Lake 水平",
+   "retrieved": "2026-09-24",
+   "publisher": "Notebookcheck"
+  },
+  {
+   "id": "S1114",
+   "url": "https://www.ubergizmo.com/2026/04/asus-hp-snapdragon-x2-laptops/",
+   "label": "2026-04：ASUS 与 HP 推出 Snapdragon X2 笔电，内存配置给到 48GB",
+   "retrieved": "2026-09-24",
+   "publisher": "Ubergizmo"
+  },
+  {
+   "id": "S1115",
+   "url": "https://github.com/ggml-org/llama.cpp/releases",
+   "label": "llama.cpp 官方发布页，逐版核对是否仍提供 windows-arm64 构建",
+   "retrieved": "2026-09-24",
+   "publisher": "ggml-org"
+  },
+  {
+   "id": "S1116",
+   "url": "https://docs.qualcomm.com/doc/80-62010-1/topic/run-llama-cpp.html",
+   "label": "高通官方文档：在 Windows on Snapdragon 上运行 llama.cpp",
+   "retrieved": "2026-09-24",
+   "publisher": "Qualcomm Docs"
+  },
+  {
+   "id": "S1117",
+   "url": "https://m.expreview.com/21684.html",
+   "label": "2012-10-19 报道：Google 阵营推出 ARM 架构 Chromebook",
+   "retrieved": "2026-09-24",
+   "publisher": "超能网"
+  },
+  {
+   "id": "S1118",
+   "url": "https://support.google.com/chromebook/thread/288266921/arm-chromebook-slower-since-os-updated-to-linux-x86?hl=en",
+   "label": "Google 官方支持论坛帖：ARM Chromebook 在系统更新后 Linux 层走 x86 路径，机型反而变慢",
+   "retrieved": "2026-09-24",
+   "publisher": "Google Support Community"
+  },
+  {
+   "id": "S1119",
+   "url": "https://www.qualcomm.com/snapdragon/laptops",
+   "label": "高通官方 Snapdragon X 系列笔电机型清单，SKU 数量的直接口径",
+   "retrieved": "2026-09-24",
+   "publisher": "Qualcomm"
+  },
+  {
+   "id": "S1120",
+   "url": "https://github.com/ollama/ollama/releases",
+   "label": "Ollama 官方发布页，核对 Windows 构建是否持续跟进",
+   "retrieved": "2026-09-24",
+   "publisher": "ollama"
+  },
+  {
+   "id": "S091",
+   "url": "https://www.samsung.com/us/computing/galaxy-books/galaxy-book4-edge/buy/galaxy-book4-edge-15-6-qualcomm-snapdragon-x-512gb-sapphire-blue-a-copilot-pc-sku-np750xqb-ka2us/",
+   "label": "三星美国官网商品页（SKU NP750XQB-KA2US，15.6 英寸，处理器选项写为 Snapdragon X 3.0GHz、8 核 X1-26-100，16GB + 512GB）。页内 JSON-LD：price 999.99 USD、availability InStock、priceValidUntil 2026-10-24。2026-09-24 抓取",
+   "retrieved": "2026-09-24",
+   "publisher": "Samsung.com US"
+  },
+  {
+   "id": "S092",
+   "url": "https://news.samsung.com/global/galaxy-book4-edge-samsungs-next-gen-ai-pc-now-available-with-15-inch-display",
+   "label": "三星全球新闻编辑室 2024-09-04 新闻稿：Galaxy Book4 Edge 15 英寸机型上市，搭载骁龙 X Plus 8 核平台",
+   "retrieved": "2026-09-24",
+   "publisher": "Samsung Newsroom"
+  },
+  {
+   "id": "S093",
+   "url": "https://www.samsung.com/us/computing/galaxy-books/galaxy-book4-edge/",
+   "label": "三星美国官网 Galaxy Book4 Edge 系列页。正文写 up to 22 hours of video playback，脚注 9 拆为 16 英寸 22 小时、14 英寸 20 小时、15.6 英寸 27 小时，条件是本地 1080p 视频、默认播放器全屏、150 尼特、默认耳机音量、关闭 Wi-Fi 与移动网络。2026-09-24 抓取",
+   "retrieved": "2026-09-24",
+   "publisher": "Samsung.com US"
+  },
+  {
+   "id": "S094",
+   "url": "https://learn.microsoft.com/en-us/surface/tech-specs/surface-laptop-snapdragon-tech-specs",
+   "label": "微软官方 Surface Laptop 第 7 版（骁龙 X 系列）技术规格页，页内标注 ms.date 2025-02-26、updated 2025-09-29。给出 X1P64100（X Plus 10 核）与 X1E80100（X Elite 12 核）、16/32/64GB LPDDR5x、256GB/512GB/1TB，以及 13.8 英寸 20 小时视频 / 13 小时网页、15 英寸 22 小时 / 15 小时；脚注写明 2024 年 4 月用预生产机、150 尼特、关闭自动亮度、保持联网测得",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Learn"
+  },
+  {
+   "id": "S095",
+   "url": "https://www.microsoft.com/en-us/d/surface-laptop-for-business-138-and-15-inch-7th-edition-snapdragon/8tkcbz02bdvk",
+   "label": "微软美国商用商店该机型商品页，页内 AggregateOffer 为 USD 1,349.99 至 3,349.99；逐条 offer：13.8 英寸 X Plus 10 核 16GB+256GB 报 1,349.99 且 OutOfStock、15 英寸 X Elite 16GB+512GB 报 1,749.99 InStock、15 英寸 64GB+1TB 报 3,349.99。2026-09-24 抓取",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft Store"
+  },
+  {
+   "id": "S096",
+   "url": "https://news.microsoft.com/wp-content/uploads/prod/sites/691/2024/05/Surface-Laptop-Fact-Sheet.pdf",
+   "label": "微软新闻站托管的 Surface Laptop（第 7 版）官方资料页 PDF，上传路径含 2024/05、文档属性日期 2024-05-17；正文列出 13.8 与 15 英寸两个尺寸、骁龙 X Elite 与 X Plus、16/32/64GB 与 256GB/512GB/1TB",
+   "retrieved": "2026-09-24",
+   "publisher": "Microsoft News"
+  },
+  {
+   "id": "S097",
+   "url": "https://psref.lenovo.com/syspool/Sys/PDF/ThinkPad/ThinkPad_T14s_Gen_7_Snapdragon/ThinkPad_T14s_Gen_7_Snapdragon_Spec.PDF",
+   "label": "联想官方 PSREF：ThinkPad T14s Gen 7（Snapdragon），页眉日期 August 28 2026。骁龙 X2 Elite X2E-80-100（12 核、单核 4.7GHz、80 TOPS NPU）或 X2 Plus X2P-42-100（6 核）；16GB 或 32GB LPDDR5X-9523 焊死；256GB/512GB/1TB M.2 2242 PCIe 4.0；58Wh；本地 1080p 视频 150 尼特最高 27.93 小时、JEITA-BAT 3.0 视频 22.02 小时 @200 尼特，脚注注明测试机为 X2P-42-100 加 16GB 加触控屏加最佳能效模式",
+   "retrieved": "2026-09-24",
+   "publisher": "Lenovo PSREF"
+  },
+  {
+   "id": "S098",
+   "url": "https://psref.lenovo.com/syspool/Sys/PDF/ThinkPad/ThinkPad_T14s_Gen_7_Intel/ThinkPad_T14s_Gen_7_Intel_Spec.PDF",
+   "label": "联想官方 PSREF：ThinkPad T14s Gen 7（Intel），页眉日期 September 21 2026，处理器 Core Ultra 5 325 / 335；标称 MobileMark 30 最高 19.1 小时 @250 尼特、本地视频 34.0 小时 @150 尼特",
+   "retrieved": "2026-09-24",
+   "publisher": "Lenovo PSREF"
+  },
+  {
+   "id": "S099",
+   "url": "https://psref.lenovo.com/syspool/Sys/PDF/ThinkPad/ThinkPad_T14s_Gen_6_Snapdragon/ThinkPad_T14s_Gen_6_Snapdragon_Spec.PDF",
+   "label": "联想官方 PSREF：ThinkPad T14s Gen 6（Snapdragon），页眉日期 July 27 2026。X1E-78-100（12 核）/ X1P-42-100（8 核），16/32/64GB，58Wh；本地 1080p 视频 150 尼特最高 34.9 小时，脚注测试机为 X1E-78-100 加 32GB 加 WUXGA 低功耗非触控屏",
+   "retrieved": "2026-09-24",
+   "publisher": "Lenovo PSREF"
+  },
+  {
+   "id": "S0910",
+   "url": "https://mashable.com/review/microsoft-surface-laptop-7",
+   "label": "Mashable 2024-08-02 的 Surface Laptop 7 评测：总分 4.8/5；续航口径为 1080p《Tears of Steel》循环、亮度固定 50%，实测接近 23 小时；评测机为 X Elite + 32GB + 1TB，标价 1,999 美元",
+   "retrieved": "2026-09-24",
+   "publisher": "Mashable"
+  },
+  {
+   "id": "S0911",
+   "url": "https://www.theverge.com/tech/853851/qualcomm-snapdragon-x2-plus-elite-laptops-price-ces-2026",
+   "label": "The Verge 2026-01-05（CES 2026）：高通称 X2 Elite 与 X2 Plus 整机约在第一季度末到货；高通称定价沿用上一代区间，Elite 一千美元起、Plus 八百美元、X 六百美元起；并提到可能出现无风扇设计",
+   "retrieved": "2026-09-24",
+   "publisher": "The Verge"
+  }
+ ],
+ "category": "人工智能",
+ "tags": [
+  "骁龙",
+  "Windows on ARM",
+  "ARM 笔记本",
+  "NPU",
+  "能效比",
+  "转译兼容",
+  "本地 agent",
+  "Copilot+ PC"
+ ],
+ "subtitle": "笔记本为什么开始换骁龙：ARM 的能效账与转译的代价、生态到底缺什么、它便不便宜、跑本地 agent 是不是真优势，以及该盯哪几个信号判断这条路走不走得通",
+ "reader": "写给正在挑笔记本、或者手里有 AI 应用要判断能不能在本地跑的人：想知道换架构到底换了什么、哪些提升是真的、哪些是营销词，以及用什么判据自己复核",
+ "theme": {
+  "token": "snapdragon-obsidian",
+  "hero_motif": "perf_per_watt",
+  "hero_note": "这条路的争论全在每瓦性能上：横轴是性能、纵轴是功耗，画的是一条等能效斜线，而不是任何一方的绝对优势。"
+ },
+ "generated_date": "2026-09-25",
+ "data_as_of": "2026-09",
+ "research_mode": "online",
+ "reading_minutes": 17,
+ "cover": {
+  "file": "images/01_Snapdragon_X_Elite.jpg",
+  "alt": "CES丨高通发布骁龙 Snapdragon X 处理器，抢占4000元级笔记本市场_CPU_什么值得买",
+  "caption": "CES丨高通发布骁龙 Snapdragon X 处理器，抢占4000元级笔记本市场_CPU_什么值得买",
+  "source_page": "https://post.smzdm.com/p/aqq8wnl2/",
+  "width": 1080,
+  "height": 654,
+  "query": "Snapdragon X Elite"
+ },
+ "created_date": "2026-09-24",
+ "site": {
+  "url": "https://snapdragon-laptop-gtqdc11h6po.qoder.website/",
+  "project_id": "01a0d72d-73a8-7cd0-a097-406086f6db49",
+  "slug": "snapdragon-laptop",
+  "content_sha": "041fb53bcbdc1649",
+  "published_date": "2026-09-25",
+  "access": "public"
+ }
+}

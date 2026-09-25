@@ -1,0 +1,272 @@
+{
+  "topic": "LV",
+  "category": "箱包时装",
+  "tags": [
+    "路易威登",
+    "Monogram",
+    "硬箱",
+    "联名",
+    "涨价",
+    "全球购物",
+    "保值"
+  ],
+  "aliases": [
+    "路易威登",
+    "LV",
+    "Vuitton"
+  ],
+  "subtitle": "一只会装的箱子：路易威登的历史、Monogram、配货涨价与全球买法",
+  "reader": "背着 Neverfull 却说不清 LV 凭什么从行李箱做到世界第一奢侈品牌的人",
+  "theme": {
+    "token": "lv-monogram",
+    "hero_motif": "monogram_tile",
+    "hero_note": "开场用一块可平铺的 Monogram 花纹作母题，配焦糖棕与帆布米，让'图案即资产'一眼可见"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：一个捆行李的学徒如何改变旅行",
+      "anchor": "史",
+      "angle": "抓技术原点：平顶箱、白金属锁、可叠放——LV 的起点是解决运输问题，而不是装饰问题；再讲到Arnault 与 LVMH 的资本故事",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "路易威登 古董 旅行箱",
+        "Louis Vuitton 1854 店铺 历史",
+        "Bernard Arnault 百货 收购"
+      ],
+      "fact_prompts": [
+        "Louis Vuitton 创立年份与地点、创始人此前的学徒经历",
+        "T-lock 与平顶箱推出的年份",
+        "LVMH 成立年份与 Arnault 收购 Christian Dior 的时间"
+      ]
+    },
+    {
+      "id": "monogram",
+      "title": "Monogram：为防假冒而生的图案，成了最值钱的资产",
+      "anchor": "纹",
+      "angle": "讲清 1896 年设计初衷是防伪，四叶花与 LV 字母的组合逻辑，以及 Damier、Epi、Multi-Pass 等衍生图案各自定位",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "LV Monogram 花纹 细节",
+        "Damier 棋盘格 帆布",
+        "Epi 皮革 纹路"
+      ],
+      "fact_prompts": [
+        "Monogram 图案设计年份与设计者",
+        "Damier 棋盘格推出年份",
+        "LV 主要帆布与皮革材质（Monogram/Damier/Epi/Taïga/Mahina）特性"
+      ]
+    },
+    {
+      "id": "icons",
+      "title": "经典包款谱系：Speedy、Neverfull、Alma、Keepall、Capucines、Petite Malle",
+      "anchor": "包",
+      "angle": "每只包给一个真实起点（Speedy 原为旅行袋、Capucines 才是真正的高端线），并说明为什么有的包是走量、有的是立牌子",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "compare",
+        "price_table"
+      ],
+      "image_queries": [
+        "LV Speedy 手袋",
+        "LV Neverfull 托特包",
+        "LV Capucines 与 Petite Malle"
+      ],
+      "fact_prompts": [
+        "Speedy 与 Keepall 的推出年份与原命名",
+        "Capucines 系列推出年份与定位",
+        "Petite Malle 的设计来源"
+      ]
+    },
+    {
+      "id": "limited",
+      "title": "限量与联名：为什么一只涂鸦 LV 能被抢空",
+      "anchor": "限",
+      "angle": "把联名讲成策略：Stephen Sprouse 荧光涂鸦、Yayoi Kusama 波点、Supreme、Nike Air Force 1 拍卖——说明品牌如何用合作刷新客群年龄",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "timeline",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "LV Supreme 联名",
+        "Yayoi Kusama 草间弥生 LV 波点",
+        "LV Nike Air Force 1 拍卖"
+      ],
+      "fact_prompts": [
+        "LV × Supreme 联名发布年份",
+        "草间弥生两次合作的年份",
+        "Virgil Abloh 主导的 Nike Air Force 1 联名拍卖成交价与年份"
+      ]
+    },
+    {
+      "id": "creative-directors",
+      "title": "创意总监与成衣线：从 Vuitton 到 Pharrell",
+      "anchor": "人",
+      "angle": "男装这条线最能解释 LV 如何变'潮流奢侈品'：Marc Jacobs 十八年、Kim Jones、Virgil Abloh、Pharrell Williams 各自改变了什么",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote"
+      ],
+      "image_queries": [
+        "Marc Jacobs 路易威登 秀场",
+        "Virgil Abloh LV 男装 秀",
+        "Pharrell Williams Louis Vuitton"
+      ],
+      "fact_prompts": [
+        "Marc Jacobs 任 LV 创意总监的起止年份",
+        "Virgil Abloh 上任与离任时间及影响",
+        "Pharrell Williams 接任男装创意总监年份"
+      ]
+    },
+    {
+      "id": "quota-price",
+      "title": "配货、涨价与稀缺：LV 到底算不算'硬通货'",
+      "anchor": "价",
+      "angle": "关键区分：LV 与香奈儿/爱马仕的配货强度不同层级；讲涨价节奏、哪些款真的保值、哪些一到手就打折",
+      "block_types": [
+        "prose",
+        "price_table",
+        "compare",
+        "note"
+      ],
+      "image_queries": [
+        "LV 涨价 公价 对比",
+        "路易威登 专柜 排队",
+        "二手 LV 包 回收"
+      ],
+      "fact_prompts": [
+        "Neverfull 与 Speedy 近五年公价变化",
+        "LV 是否存在系统性配货、与香奈儿爱马仕的差异",
+        "LV 经典款二手保值率的常见区间"
+      ]
+    },
+    {
+      "id": "shopping",
+      "title": "全球最划算买法：价差、退税、免税与积分",
+      "anchor": "地",
+      "angle": "给可执行清单：哪国公价低、欧洲退税怎么算、日韩为何反而贵、机场免税的坑（不能退税收据）",
+      "block_types": [
+        "prose",
+        "price_table",
+        "steps",
+        "card_grid"
+      ],
+      "image_queries": [
+        "巴黎 LV 门店 购物",
+        "退税 Tax Free 单据 欧洲",
+        "免税店 奢侈品 机场"
+      ],
+      "fact_prompts": [
+        "同一款包在中国/法国/美国/日本/韩国的公价差异",
+        "法国退税比例与门槛",
+        "欧洲退税与日本退税的机制差异"
+      ]
+    },
+    {
+      "id": "trunk",
+      "title": "硬箱与定制：品牌真正的技术底座",
+      "anchor": "箱",
+      "angle": "讲今天仍然存在的定制业务（车内冰箱箱、宠物箱、网球拍箱），说明'奢侈'在这里其实是工程能力",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "steps",
+        "price_table"
+      ],
+      "image_queries": [
+        "LV 定制 硬箱 内饰",
+        "路易威登 旅行箱 制作工坊",
+        "LV 特殊定制 trunk"
+      ],
+      "fact_prompts": [
+        "LV 硬箱定制流程与大致工期",
+        "硬箱价格区间",
+        "LV 历史上著名定制案例"
+      ]
+    },
+    {
+      "id": "workshops",
+      "title": "工坊与产地：Made in France 之外的真相",
+      "anchor": "造",
+      "angle": "诚实回答常被问的问题：LV 在法国、美国、西班牙、意大利亦设工坊；产地不等于品质下降，讲清品控体系",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "compare"
+      ],
+      "image_queries": [
+        "LV 工坊 法国 工匠",
+        "Made in France 标签 皮具",
+        "路易威登 基金会 建筑"
+      ],
+      "fact_prompts": [
+        "LV 主要工坊所在国家与城市",
+        "LV 对产地标签的处理方式",
+        "Louis Vuitton Foundation 成立时间与建筑师"
+      ]
+    },
+    {
+      "id": "care-auth",
+      "title": "保养与真伪：日期码、芯片与常见造假点",
+      "anchor": "辨",
+      "angle": "实用章：日期码读法（已取消年份字母的现行体系）、走线对称度、五金重量、内袋标签；以及日常保养如何延长帆布寿命",
+      "block_types": [
+        "prose",
+        "steps",
+        "note",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "LV 日期码 内标",
+        "包 走线 对称 鉴定",
+        "LV 帆布 保养"
+      ],
+      "fact_prompts": [
+        "LV 日期码体系与现行读法",
+        "常见 LV 造假点与鉴定观察项",
+        "官方是否提供鉴定服务"
+      ]
+    },
+    {
+      "id": "business",
+      "title": "商业机器：LV 如何撑起 LVMH，以及过度营销的反噬",
+      "anchor": "商",
+      "angle": "收口章：营收与门店密度、爆款逻辑对品牌稀缺性的稀释、以及'人手一只'与'奢侈'之间的结构性矛盾",
+      "block_types": [
+        "prose",
+        "fact_strip",
+        "compare",
+        "timeline"
+      ],
+      "image_queries": [
+        "LVMH 财报 数据",
+        "路易威登 全球门店",
+        "奢侈品 过度 曝光"
+      ],
+      "fact_prompts": [
+        "Louis Vuitton 品牌在 LVMH 中的营收占比与最新财年数据",
+        "LVMH 最新年报营收与利润",
+        "奢侈品行业对'稀缺性稀释'的讨论"
+      ]
+    }
+  ],
+  "image_exclude_pages": [
+    "https://post.smzdm.com/p/akpno2r/",
+    "http://item.secoo.com/47769488.shtml"
+  ],
+  "slug": "louis-vuitton"
+}

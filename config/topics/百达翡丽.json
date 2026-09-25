@@ -1,0 +1,266 @@
+{
+  "topic": "百达翡丽",
+  "category": "腕表",
+  "tags": [
+    "百达翡丽",
+    "Nautilus",
+    "复杂功能",
+    "机芯",
+    "印记",
+    "拍卖",
+    "传承"
+  ],
+  "aliases": [
+    "Patek"
+  ],
+  "subtitle": "没有人能真正拥有百达翡丽：历史、复杂功能、印记、拍卖价与等待名单",
+  "reader": "知道它最贵、但说不清贵在哪一层的人",
+  "theme": {
+    "token": "patek-calatrava",
+    "hero_motif": "calatrava_cross",
+    "hero_note": "以卡卓巴十字（Calatrava 十字）与金棕、墨绿构成开场母题，取'家族传承'的纹章感而非炫富感"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：流亡贵族、制表师与一百八十年的独立持有",
+      "anchor": "史",
+      "angle": "Anton Norbert de Patek 是波兰流亡贵族、Adrien Philippe 发明了表冠上链——两个互补的起点；重点讲 1932 年 Stern 家族接手并持有至今，这是它稀缺性的制度基础",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote"
+      ],
+      "image_queries": [
+        "百达翡丽 创始人",
+        "Antoni Patek",
+        "Patek 肖像"
+      ],
+      "fact_prompts": [
+        "Patek Philippe 创立年份与两位创始人背景",
+        "表冠上链机构的发明者与年份",
+        "Stern 家族何时收购并至今持有任何代",
+        "品牌总部与工坊所在城市"
+      ]
+    },
+    {
+      "id": "collections",
+      "title": "系列谱系：Calatrava、Nautilus、Aquanaut、Grand Complications、Twenty-4",
+      "anchor": "系",
+      "angle": "按'正装—运动—复杂—女表'四条线讲清楚每个系列承担的角色，别把型号当成营销词堆砌",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "keyvalue_table",
+        "compare"
+      ],
+      "image_queries": [
+        "百达翡丽 Calatrava",
+        "百达翡丽 Aquanaut",
+        "Patek Philippe 表款"
+      ],
+      "fact_prompts": [
+        "Calatrava 参考号 96 的推出年份与设计渊源",
+        "Nautilus 由谁设计、哪一年推出、灵感来源",
+        "Aquanaut 与 Twenty-4 的推出年份与定位"
+      ]
+    },
+    {
+      "id": "nautilus",
+      "title": "Nautilus 现象：一只钢表如何被炒到超复杂功能的价格",
+      "anchor": "热",
+      "angle": "本领域最出圈的一章：5711 停产与仅存 120 周年的过渡、5711/1A 蓝盘公价与二级市场价的分裂、以及'钢比金贵'的逻辑",
+      "block_types": [
+        "prose",
+        "price_table",
+        "fact_strip",
+        "timeline"
+      ],
+      "image_queries": [
+        "百达翡丽 Nautilus",
+        "Patek 5711 蓝盘",
+        "百达翡丽 拍卖"
+      ],
+      "fact_prompts": [
+        "5711/1A 停产宣布年份与继任 5711 彩金版本",
+        "5711/1A 停产前中国或欧洲公价",
+        "5711 二手市场溢价的典型倍数与拍卖记录",
+        "Nautilus 120 周年纪念款型号与成交价"
+      ]
+    },
+    {
+      "id": "complications",
+      "title": "复杂功能：万年历、三问、追针计时与陀飞轮",
+      "anchor": "复",
+      "angle": "科普向讲清每个复杂功能解决什么问题（万年历对抗齿轮不知道闰年、三问是给看不见表盘的人读时的），并给出品牌代表型号",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "steps",
+        "card_grid"
+      ],
+      "image_queries": [
+        "百达翡丽 万年历",
+        "百达翡丽 三问",
+        "Patek 机芯"
+      ],
+      "fact_prompts": [
+        "Patek Philippe 在陀飞轮上的实际立场与历史专利",
+        "三问报时机构的工作原理",
+        "Sky Moon Tourbillon 与 Grandmaster Chime 的复杂功能数量"
+      ]
+    },
+    {
+      "id": "grandmaster",
+      "title": "巅峰之作：Grandmaster Chime 与 175 周年纪念",
+      "anchor": "峰",
+      "angle": "讲 6300A 不锈钢限量 7 只如何拍成史上最贵腕表之一，说明'唯一性'才是顶级制表的定价单位",
+      "block_types": [
+        "prose",
+        "fact_strip",
+        "timeline",
+        "quote"
+      ],
+      "image_queries": [
+        "Grandmaster Chime 6300A 拍卖",
+        "百达翡丽 175周年 纪念表",
+        "Only Watch 拍卖 腕表"
+      ],
+      "fact_prompts": [
+        "6300A Only Watch 拍卖成交价与年份、拍卖行",
+        "该表拥有的复杂功能数量",
+        "百达翡丽 175 周年纪念款发布年份"
+      ]
+    },
+    {
+      "id": "movement-seal",
+      "title": "机芯与印记：百达翡丽印记为什么比日内瓦印记更严",
+      "anchor": "印",
+      "angle": "把两种认证摊开比较：检验范围（整表 vs 机芯）、走时公差、是否装壳后复测。这是理解'贵得有依据'的关键一章",
+      "block_types": [
+        "prose",
+        "compare",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "百达翡丽印记 Patek Seal",
+        "日内瓦印记 机芯 打磨",
+        "腕表 走时 校表仪"
+      ],
+      "fact_prompts": [
+        "Patek Philippe Seal 启用的年份与取代了什么",
+        "百达印记的走时公差标准（每日秒差）",
+        "Geneva Seal 与 PP Seal 在检验范围上的具体差异"
+      ]
+    },
+    {
+      "id": "craft",
+      "title": "手工修饰：倒角、珍珠纹、玑镂与珐琅",
+      "anchor": "艺",
+      "angle": "让读者知道放大镜下该看什么：内角倒角为何难、手工纹饰与机雕的差别、以及品牌为何保留珐琅与镶嵌工坊",
+      "block_types": [
+        "prose",
+        "steps",
+        "card_grid"
+      ],
+      "image_queries": [
+        "百达翡丽 打磨",
+        "Patek 珐琅 表盘",
+        "百达翡丽 机芯 倒角"
+      ],
+      "fact_prompts": [
+        "手工倒角与机加工倒角的判别特征",
+        "大明火珐琅表盘的制作工序与失败率",
+        "玑镂 guilloché 工艺的历史"
+      ]
+    },
+    {
+      "id": "waiting",
+      "title": "等待名单与配货：如何从品牌手里买到表",
+      "anchor": "买",
+      "angle": "实用章：收藏史如何决定你拿到表的顺序、为什么品牌不直接卖高价而是用稀缺、经销商与拍卖行的替代路径",
+      "block_types": [
+        "prose",
+        "note",
+        "steps",
+        "compare"
+      ],
+      "image_queries": [
+        "百达翡丽 专柜",
+        "Patek 精品店",
+        "百达翡丽 预展"
+      ],
+      "fact_prompts": [
+        "热门款通常需要的购买方式",
+        "品牌对稀缺性的公开表述",
+        "授权经销商体系如何运作"
+      ]
+    },
+    {
+      "id": "prices",
+      "title": "价格带：从入门 Calatrava 到千万级复杂功能",
+      "anchor": "价",
+      "angle": "给一张诚实的阶梯表：公价区间、二手折价规律、哪些款是'入场券'、哪些是收藏标的",
+      "block_types": [
+        "prose",
+        "price_table",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "百达翡丽 价格表 公价",
+        "腕表 入门 Calatrava 价格",
+        "复杂功能 腕表 价格"
+      ],
+      "fact_prompts": [
+        "当前入门款 Calatrava 与 Aquanaut 的中国公价区间",
+        "万年历款与三问款的公价量级",
+        "百达翡丽近年涨价幅度"
+      ]
+    },
+    {
+      "id": "value",
+      "title": "保值与售后：保养成本、维修周期与'代际'经济账",
+      "anchor": "养",
+      "angle": "讲拥有成本：一次完整保养多少钱、要等多久、停产型号零件供应政策，以及'没有人能真正拥有'这句话在经济上意味着什么",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "compare",
+        "note"
+      ],
+      "image_queries": [
+        "百达翡丽 保养",
+        "Patek 服务中心",
+        "百达翡丽 维修"
+      ],
+      "fact_prompts": [
+        "百达翡丽完整保养的大致费用与周期",
+        "品牌对历史型号零件供应的政策",
+        "机械表建议保养间隔"
+      ]
+    },
+    {
+      "id": "museum",
+      "title": "博物馆与收藏文化：为什么它是'可传承的资产'",
+      "anchor": "藏",
+      "angle": "收口：日内瓦与纽约的博物馆、二手市场与拍卖数据如何共同构成'传世'叙事，以及这套叙事里被夸大的部分",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "timeline"
+      ],
+      "image_queries": [
+        "百达翡丽 博物馆 日内瓦",
+        "Patek Philippe Watch Art Grand Exhibition",
+        "古董 钟表 收藏 拍卖"
+      ],
+      "fact_prompts": [
+        "Patek Philippe Museum 所在地与创立年份",
+        "品牌著名广告语'没有人能真正拥有'的出处年份",
+        "古董百达翡丽的拍卖表现"
+      ]
+    }
+  ],
+  "slug": "patek"
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>知识专题索引</title>
+<meta name="description" content="按类别归档的科普长文索引，每篇约十分钟读完。">
+<!--template-fingerprint:{"blocks":["prose","keyvalue_table","timeline","price_table","card_grid","steps","quote","fact_strip","compare","note"],"rev":"ke-template-1"}-->
+<!--index-document-->
+<style>:root{
+  --pad:clamp(1.1rem, 4vw, 5rem);
+  --cap:168rem;
+  --col:min(100% - var(--pad) * 2, var(--cap));
+  /* 文章版心与索引版心是两回事：索引是照片墙，越宽越好；
+     文章是长文，宽度用来放"结构"（目录栏 + 图），不是用来拉长句子。 */
+  /* 84.5rem = 目录栏 14 + 间距 2.5 + 正文列 44 + 图表余量 24。
+     外壳正好等于「一栏 + 正文列」，封面标题才可能和正文左边缘对齐。 */
+  --shell:min(100% - var(--pad) * 2, 84.5rem);
+  --rail:14rem;
+  --measure:44rem;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;color:#1F1F23;
+  font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',system-ui,sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid #FF2442;outline-offset:2px;border-radius:6px}
+
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid #EFEFF1}
+.bar-in{width:var(--col);margin:0 auto;padding:.7rem 0;display:flex;align-items:center;gap:1rem}
+.brand{display:flex;align-items:center;gap:.45rem;font-size:1.02rem;font-weight:600;flex:none}
+.brand i{width:1.35rem;height:1.35rem;border-radius:5px;background:#FF2442;color:#fff;
+  display:grid;place-items:center;font-style:normal;font-size:.72rem;font-weight:700}
+.tabs{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;font-size:.85rem;padding:.3rem .8rem;border-radius:999px;color:#73737B;
+  white-space:nowrap;font-weight:500;overflow-wrap:anywhere}
+.tab:hover{color:#1F1F23;background:#F5F5F6}
+.tab i{font-style:normal;font-size:.7rem;opacity:.6;margin-left:.25rem}
+.tally{flex:none;font-size:.74rem;color:#73737B;font-family:ui-monospace,Consolas,monospace}
+
+.head{width:var(--col);margin:0 auto;padding:clamp(1.2rem,2.5vw,2.2rem) 0 .2rem}
+.head h1{font-size:clamp(1.5rem,2.2vw,2.4rem);font-weight:600;letter-spacing:-.015em;margin:0}
+.head p{margin:.3rem 0 0;color:#73737B;font-size:.86rem;max-width:56ch}
+
+.grp{width:var(--col);margin:0 auto;padding:clamp(1.2rem,2.2vw,2rem) 0 0}
+.feed{display:grid;gap:clamp(.7rem,1.2vw,1.1rem);
+  grid-template-columns:repeat(auto-fill,minmax(min(19rem,100%),1fr))}
+
+.card{display:flex;flex-direction:column;min-width:0;position:relative;
+  border:1px solid #EFEFF1;border-radius:12px;overflow:hidden;background:#fff;
+  transition:transform .16s ease,box-shadow .16s ease}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 28px -14px rgba(20,20,25,.28)}
+a[id^="cat-"]{scroll-margin-top:4.2rem}
+.ph{position:relative;background:var(--soft,#F2F2F4);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.badge{position:absolute;left:.5rem;bottom:.5rem;font-size:.68rem;font-weight:600;
+  padding:.16rem .5rem;border-radius:999px;background:rgba(255,255,255,.9);color:var(--brand,#1F1F23);
+  box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.cat-chip{position:absolute;right:.5rem;top:.5rem;font-size:.66rem;font-weight:600;
+  padding:.16rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff}
+.bd{padding:.6rem .7rem .72rem;flex:1;display:flex;flex-direction:column}
+.t{margin:0;font-size:clamp(.92rem,1vw,1.08rem);font-weight:600;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  overflow-wrap:anywhere}
+.m{display:flex;align-items:center;gap:.3rem;margin-top:.42rem;font-size:.72rem;color:#73737B}
+.m i{font-style:normal}
+.m .sep{width:2px;height:2px;border-radius:50%;background:#D5D5D9}
+.tg{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.45rem;min-width:0}
+.tg span{font-size:.68rem;padding:.1rem .45rem;border-radius:999px;background:#F5F5F6;
+  color:#5A5A63;overflow-wrap:anywhere}
+.empty{width:var(--col);margin:2.5rem auto;padding:0;color:#73737B;font-size:.9rem}
+
+footer.ft{width:var(--col);margin:3rem auto 0;padding:1.2rem 0;
+  border-top:1px solid #EFEFF1;color:#73737B;font-size:.74rem;line-height:1.8}
+footer.ft code{font-family:ui-monospace,Consolas,monospace;font-size:.95em}
+@media (max-width:640px){:root{--pad:.95rem}}
+@media (max-width:640px){
+  .bar-in{padding:.6rem 0;gap:.6rem}
+  .tally{display:none}
+  .feed{grid-template-columns:repeat(auto-fill,minmax(min(15rem,100%),1fr))}
+}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes rise{from{opacity:0;transform:translateY(.5rem)}to{opacity:1;transform:none}}
+  .head{animation:rise .4s cubic-bezier(.2,.7,.3,1) both}
+}
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in"><span class="brand"><i>知</i>知识专题</span><nav class="tabs" aria-label="类别"><a class="tab" href="#cat-饮食风物">饮食风物<i>1</i></a><a class="tab" href="#cat-腕表">腕表<i>1</i></a><a class="tab" href="#cat-箱包时装">箱包时装<i>1</i></a></nav><span class="tally">3 篇 · 14 标签</span></div></div><div class="head"><h1>十分钟读完一个领域</h1><p>按类别归档的科普长文。每篇都带来源与价格时点，点开卡片看完整专题页。</p></div><section class="grp"><div class="feed"><a class="card" href="咖啡/咖啡_2026-09-19.html" id="cat-饮食风物" style="--brand:#4A2C17;--soft:#F2E4D0"><div class="ph" style="aspect-ratio:3/4"><img src="咖啡/images/01_咖啡烘焙_滚筒_豆.jpg" alt="咖啡 配图 1" loading="lazy"/><span class="badge">咖啡</span><span class="cat-chip">饮食风物</span></div><div class="bd"><h3 class="t">咖啡：从起源到价格的十分钟专题</h3><div class="m"><i>2 分钟</i><span class="sep"></span><i>6 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#咖啡</span><span>#烘焙</span><span>#冲煮</span><span>#精品</span></div></div></a><a class="card" href="百达翡丽/百达翡丽_2026-09-19.html" id="cat-腕表" style="--brand:#C6A15B;--soft:#1D352C"><div class="ph" style="aspect-ratio:1/1"><div style="position:absolute;inset:0;background:linear-gradient(150deg, #C6A15B 0%, #1D352C 60%, #6FA88C 100%)" aria-hidden="true"></div><span class="badge">百达翡丽</span><span class="cat-chip">腕表</span></div><div class="bd"><h3 class="t">百达翡丽：从起源到价格的十分钟专题</h3><div class="m"><i>1 分钟</i><span class="sep"></span><i>6 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#百达翡丽</span><span>#Nautilus</span><span>#复杂功能</span><span>#拍卖</span></div></div></a><a class="card" href="香奈儿/香奈儿_2026-09-19.html" id="cat-箱包时装" style="--brand:#0B0B0C;--soft:#EFEEEA"><div class="ph" style="aspect-ratio:4/5"><img src="香奈儿/images/01_香奈儿_手袋_实物.jpg" alt="香奈儿 配图 1" loading="lazy"/><span class="badge">香奈儿</span><span class="cat-chip">箱包时装</span></div><div class="bd"><h3 class="t">香奈儿：从起源到价格的十分钟专题</h3><div class="m"><i>2 分钟</i><span class="sep"></span><i>6 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#香奈儿</span><span>#手袋</span><span>#配货</span><span>#涨价</span></div></div></a></div></section><footer class="ft"><div>共 <b>3</b> 篇专题（3 个类别），由 <code>scripts/generate.py</code> 生成、<code>scripts/build_index.py</code> 汇总；每篇均通过 <code>scripts/validate.py</code> 质量闸门。更新于 2026-09-19</div><div>内容为科普整理，不构成购买建议；价格与政策随时间变化，请以官方与来源链接为准。</div></footer>
+</body>
+</html>

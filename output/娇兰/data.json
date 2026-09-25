@@ -1,0 +1,2559 @@
+{
+ "topic": "娇兰",
+ "sections": [
+  {
+   "id": "history",
+   "title": "品牌史：圣奥诺雷街 42 号，与三代调香师",
+   "anchor": "史",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先把门牌说清楚",
+     "text": "创始门店的地址常被记错：不是圣奥诺雷街，而是里沃利街；娇兰挂在圣奥诺雷街的其实是旺多姆精品店那一家。创始人当年的名头也不算“调香师”，而是 parfumeur vinaigrier——香水兼盥洗醋商，货架上是英国护肤水、牙粉和自家香花水。店面先迁和平街，再落到香榭丽舍。"
+    },
+    {
+     "type": "timeline",
+     "items": [
+      {
+       "year": "1828",
+       "title": "里沃利街 42 号",
+       "text": "第一家店开业，主营护肤与盥洗用品，香水只是货架一角",
+       "source_ids": [
+        "S011",
+        "S012"
+       ]
+      },
+      {
+       "year": "1830",
+       "title": "一支普通科隆水",
+       "text": "Eau de Cologne 配方此时已在售，还没有 Impériale 这个名字",
+       "source_ids": [
+        "S013"
+       ]
+      },
+      {
+       "year": "1853",
+       "title": "改名与御用授权",
+       "text": "欧仁妮大婚，这瓶科隆水作新婚礼物进宫；她一度要求独家供应，娇兰随即拿到“陛下特许调香师”头衔，配方自此挂上 Impériale，中文名“帝王之水”",
+       "source_ids": [
+        "S011",
+        "S012",
+        "S013"
+       ]
+      },
+      {
+       "year": "1889",
+       "title": "Aimé：Jicky",
+       "text": "创始人之子把天然与合成分子混在一起，被视为第一支现代香水",
+       "source_ids": [
+        "S012"
+       ]
+      },
+      {
+       "year": "1914",
+       "title": "香榭丽舍 68 号",
+       "text": "旗舰店落在这里，至今仍是品牌地址本身",
+       "source_ids": [
+        "S012",
+        "S011"
+       ]
+      },
+      {
+       "year": "1912—1925",
+       "title": "Jacques：三连",
+       "text": "雅克·娇兰（1874—1963）依次写下 L’Heure Bleue、Mitsouko、Shalimar",
+       "source_ids": [
+        "S015",
+        "S012"
+       ]
+      },
+      {
+       "year": "1959—1965",
+       "title": "Jean-Paul：男香线",
+       "text": "1937 年生、1955 年入行，22 岁作出 Vétiver，1965 年 Habit Rouge",
+       "source_ids": [
+        "S016",
+        "S012"
+       ]
+      },
+      {
+       "year": "1994",
+       "title": "LVMH 取得控制权",
+       "text": "家族失去独立经营权，次年库贝瓦旧厂关闸，产能并入 Orphin 新厂",
+       "source_ids": [
+        "S012",
+        "S018"
+       ]
+      },
+      {
+       "year": "2008",
+       "title": "专属调香师外聘",
+       "text": "蒂埃里·瓦瑟接任，第五位、也是第一位外姓的专属调香师",
+       "source_ids": [
+        "S017"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "“三代”这个说法要打折",
+     "text": "品牌自己与 LVMH 的口径都是“五代调香师”。各定下一支代表作的是艾梅、雅克、让-保罗三人；常被并列进来的“Pierre”并非专属调香师。"
+    },
+    {
+     "type": "prose",
+     "heading": "被收走之后，家族还剩什么",
+     "text": "交易在二十世纪九十年代中期落定，金额见下方数据条。让-保罗的专属调香师席位又延续了十几年，配方与产线陆续并入集团；雅克时代的多支原作以原始配比存于凡尔赛的 Osmothèque 档案馆，可回推老版。对你手上那支而言结论很直白：瓶身印 Guerlain 不等于家族在场，认年份要看批次与配方改版。"
+    },
+    {
+     "type": "fact_strip",
+     "facts": [
+      {
+       "value": "356 号",
+       "label": "圣奥诺雷街上的娇兰门牌（旺多姆精品店）",
+       "source_ids": [
+        "S011"
+       ]
+      },
+      {
+       "value": "69 只",
+       "label": "蜂印瓶镀金蜜蜂数，纹样取自旺多姆圆柱",
+       "source_ids": [
+        "S014"
+       ]
+      },
+      {
+       "value": "19.58 亿法郎",
+       "label": "1994 年 LVMH 取得控制权的交易额",
+       "source_ids": [
+        "S018"
+       ]
+      },
+      {
+       "value": "1100+",
+       "label": "1828 年以来累计嗅觉创作",
+       "source_ids": [
+        "S011"
+       ]
+      }
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/07_Guerlain.webp",
+     "alt": "法国娇兰Guerlain : 精致护肤 珠宝彩妆与香氛世家 Guerlain-花瓣网",
+     "caption": "法国娇兰Guerlain : 精致护肤 珠宝彩妆与香氛世家 Guerlain-花瓣网",
+     "source_page": "https://huaban.com/pins/5858444324",
+     "width": 658,
+     "height": 658,
+     "query": "Guerlain Champs-Elysees maison"
+    },
+    {
+     "file": "images/19_娇兰_创始人.jpg",
+     "alt": "Guerlain娇兰官方旗舰店",
+     "caption": "Guerlain娇兰官方旗舰店",
+     "source_page": "https://huaban.com/pins/4493171400/",
+     "width": 658,
+     "height": 1097,
+     "query": "娇兰 创始人"
+    }
+   ]
+  },
+  {
+   "id": "shalimar",
+   "title": "一千零一夜：东方香调的样板，和被改过的配方",
+   "anchor": "夜",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "它凭什么算样板",
+     "text": "1925 年，娇兰把一支新香水送上巴黎的装饰艺术博览会。它叫 Shalimar，名字来自拉合尔的沙利玛花园，梵语意为“爱的殿堂”，是沙·贾汗为蒙塔兹·玛哈尔所建。\n\n突破来自一种新分子：1921 年化学顾问 Justin du Pont 带来的乙基香兰素，强度约为香兰素的 10 倍。Jacques Guerlain 把它与香草酊（香草荚浸酒精至少 3 周）并用，在 Jicky 骨架上抽掉芳香调、换上约 30% 的柑橘。后来的东方调几乎都拿这支当尺子。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "前中后调，和查得到与查不到的部分",
+     "rows": [
+      {
+       "k": "前调",
+       "v": "佛手柑为主，柑橘多到被称“过量”",
+       "source_ids": [
+        "S021",
+        "S028"
+       ]
+      },
+      {
+       "k": "中调",
+       "v": "玫瑰、茉莉、鸢尾",
+       "source_ids": [
+        "S021",
+        "S024"
+       ]
+      },
+      {
+       "k": "基调",
+       "v": "香草（乙基香兰素＋香草酊）、零陵香豆、香脂",
+       "source_ids": [
+        "S021",
+        "S024"
+       ]
+      },
+      {
+       "k": "香草与佛手柑占比",
+       "v": "配比从未公布。可查的只有“约 30% 柑橘”的开发自述，以及冷压佛手柑油今天被 IFRA 限在 0.4% 以内（致光毒性）",
+       "source_ids": [
+        "S021",
+        "S027"
+       ]
+      },
+      {
+       "k": "动物香",
+       "v": "老版的天然灵猫与海狸香，今天由合成动物香与白麝香替下",
+       "source_ids": [
+        "S021",
+        "S028",
+        "S0210"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "timeline",
+     "items": [
+      {
+       "year": "1925",
+       "title": "首发",
+       "text": "以淡香水面世，与香精并行",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "year": "1937",
+       "title": "古龙水",
+       "text": "装在“怀表”瓶里的 Eau de Cologne",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "year": "1986",
+       "title": "今日的 EDP",
+       "text": "Parfum de Toilette 的瓶由 Pochet & du Courval 制",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "year": "2007",
+       "title": "三档同时换号",
+       "text": "EDT、EDP、EDC 换成 3470M／3469M／3799M。那位前员工说，娇兰大部分改版都在 2007 之后",
+       "source_ids": [
+        "S022"
+       ]
+      },
+      {
+       "year": "2011",
+       "title": "EDP 再改",
+       "text": "EDP 换号 05051M；Thierry Wasser 的 Parfum Initial 把鸢尾加到远超原版、佛手柑收小、灵猫保留",
+       "source_ids": [
+        "S022",
+        "S025"
+       ]
+      },
+      {
+       "year": "2013–2014",
+       "title": "逐档跟进",
+       "text": "EDT 07999、EDP 07833、Parfum 8860",
+       "source_ids": [
+        "S022"
+       ]
+      },
+      {
+       "year": "2022",
+       "title": "拆件重做",
+       "text": "Millésime Tonka：Thierry Wasser 与 Delphine Jelk 把零陵香豆单独放大",
+       "source_ids": [
+        "S026"
+       ]
+      },
+      {
+       "year": "2025",
+       "title": "百年纪念版",
+       "text": "Delphine Jelk 做 L'Essence：马达加斯加香草酊、玫瑰净油、鸢尾，加上百年前不存在的麝香",
+       "source_ids": [
+        "S023",
+        "S024",
+        "S029"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "手上这支和三十年前的是同一支吗",
+     "text": "大概率不是，而且不必靠鼻子猜。2003 年后盒身要印致敏原清单，娇兰同时在角落印一个递增的配方号：一号一份食谱，号变了就是改过版。再和批号前两位读出的生产年份对一下，就知道这瓶属于哪一版。\n\n改的方向也一致：老版靠天然灵猫与更冲的佛手柑撑深度，今天由合成动物香、白麝香和受光毒性限制的柑橘油接手，甜度更整齐，“脏”的那层退到后面。想贴近原版骨架，选浓香精而不是淡香水。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/21_Guerlain_Shalimar.jpg",
+     "alt": "Guerlain Shalimar Eau De Toilette Vaporisateur Spray For Women, 1.6 oz ...",
+     "caption": "Guerlain Shalimar Eau De Toilette Vaporisateur Spray For Women, 1.6 oz ...",
+     "source_page": "https://www.walmart.com/ip/Guerlain-Shalimar-Eau-De-Toilette-Vaporisateur-Spray-For-Women-1-6-oz/37653361",
+     "width": 1500,
+     "height": 1500,
+     "query": "Guerlain Shalimar"
+    },
+    {
+     "file": "images/22_娇兰_一千零一夜.webp",
+     "alt": "Guerlain娇兰官方旗舰店-花瓣网",
+     "caption": "Guerlain娇兰官方旗舰店-花瓣网",
+     "source_page": "https://huaban.com/pins/5204094258",
+     "width": 658,
+     "height": 1097,
+     "query": "娇兰 一千零一夜"
+    }
+   ]
+  },
+  {
+   "id": "vol-de-nuit",
+   "title": "午夜飞行：为一次夜航写下的绿意醛香",
+   "anchor": "航",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "一次夜航换来的冷香",
+     "text": "1933 年，Jacques Guerlain 交出午夜飞行。娇兰中国官网把源头归于他的朋友、作家圣埃克絮佩里 1931 年的小说《午夜飞行》，写一群为夜间邮政航线送命的人；官网另点了飞行员 Hélène Boucher 的名字，把它定位成「献给冒险者的香水」。流传更广的「儿媳 Suzy Guerlain 坐完夜航回家出题」这一版，官方页面和曾任娇兰创作总监的 Delacourte 的叙述里都没有，只能当家族轶事。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "午夜飞行身份卡",
+     "rows": [
+      {
+       "k": "创作年份",
+       "v": "1933，与法国航空成立同年",
+       "source_ids": [
+        "S032",
+        "S033"
+       ]
+      },
+      {
+       "k": "调香师",
+       "v": "Jacques Guerlain",
+       "source_ids": [
+        "S033"
+       ]
+      },
+      {
+       "k": "香调归属",
+       "v": "东方调、副木质；官方称琥珀柑苔调",
+       "source_ids": [
+        "S033",
+        "S031"
+       ]
+      },
+      {
+       "k": "在售规格",
+       "v": "中外两端均只有淡香水 75ml",
+       "source_ids": [
+        "S031",
+        "S037"
+       ]
+      },
+      {
+       "k": "瓶身",
+       "v": "Raymond Guerlain 与 Baccarat 制，烟灰玻璃八面斜切",
+       "source_ids": [
+        "S032"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "配方骨架：鸢尾在，没药不在",
+     "text": "它和一千零一夜共用同一套娇兰底子——鸢尾、香草、檀香，差别全在开场：醛香压住古蓬香脂与苦橙叶，把前调削成金属感的青绿；中调叠水仙、茉莉、紫罗兰、丁香；后调才是橡木苔、香木与薄粉感的鸢尾根。常被写成「没药」的那一味，官方香调表、Delacourte 的清单和 Fragrantica 转引表里都查不到；官方点名的树脂气息来自古蓬香脂，它给的正是那股青绿。Delacourte 的态度是这支要等：「你必须和它一起睡一晚」。"
+    },
+    {
+     "type": "price_table",
+     "as_of": "2026-09",
+     "columns": [
+      "名称（浓度）",
+      "规格",
+      "中国大陆官网标价"
+     ],
+     "rows": [
+      {
+       "cells": [
+        "午夜飞行 淡香水 EDT",
+        "75ml",
+        "¥ 1,270"
+       ],
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "cells": [
+        "一千零一夜 淡香水 EDT",
+        "50ml",
+        "¥ 1,010"
+       ],
+       "source_ids": [
+        "S035"
+       ]
+      },
+      {
+       "cells": [
+        "蓝色时刻 淡香精 EDP",
+        "30ml",
+        "¥ 930"
+       ],
+       "source_ids": [
+        "S036"
+       ]
+      },
+      {
+       "cells": [
+        "姬琪 淡香精 EDP",
+        "同系列起价",
+        "¥ 1,550 起"
+       ],
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "cells": [
+        "蝴蝶夫人 淡香水 EDT",
+        "同系列起价",
+        "¥ 1,270 起"
+       ],
+       "source_ids": [
+        "S031"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "为什么它比同门更挑场合",
+     "text": "同门三支性格相反：一千零一夜靠香草与琥珀散暖，蓝色时刻是鸢尾加香草的粉质甜，午夜飞行反着来——干、青绿，底里带皮革与动物气息。温度一高就发闷，夏天白天压不住场，秋冬和傍晚才合拍；Now Smell This 的评测者说想不出怎么在春夏穿它。按上表折算每毫升，它是三支正装里最便宜的一档，中国官网却只给一个规格：淡香水 75ml，没有浓香精。Delacourte 自述更偏爱 extrait，理由是浓度和组成真的不同，那一档已不在常规线上。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/25_Guerlain_Vol_de_Nuit.jpg",
+     "alt": "@Guerlain法国娇兰 的个人主页 - 微博-花瓣网",
+     "caption": "@Guerlain法国娇兰 的个人主页 - 微博-花瓣网",
+     "source_page": "https://huaban.com/pins/5280345773",
+     "width": 658,
+     "height": 823,
+     "query": "Guerlain Vol de Nuit"
+    },
+    {
+     "file": "images/26_娇兰_午夜飞行.webp",
+     "alt": "Guerlain娇兰官方旗舰店-花瓣网",
+     "caption": "Guerlain娇兰官方旗舰店-花瓣网",
+     "source_page": "https://huaban.com/pins/5214750210",
+     "width": 658,
+     "height": 1097,
+     "query": "娇兰 午夜飞行"
+    }
+   ]
+  },
+  {
+   "id": "classics",
+   "title": "另外四支经典：Jicky、蓝色时刻、蝴蝶兰、香根电光",
+   "anchor": "典",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "「娇兰＝东方调」这个标签装不下这四支",
+     "text": "很多人对娇兰的第一印象是东方调：香草、安息香、琥珀。可把这四支摆在一起，标签就露了馅——它们分属四个家族：Jicky 是蕨香，L'Heure Bleue 是花香琥珀，Mitsouko 是果香西普，Chamade 是绿意花香。真正共通的只有底调里那点香兰素与零陵香豆，也就是所谓 Guerlinade 的指纹。"
+    },
+    {
+     "type": "timeline",
+     "items": [
+      {
+       "year": "1889",
+       "title": "Jicky",
+       "text": "Aimé Guerlain 写给一段无果的年少恋情；Olfastory 记为蕨香、副调东方。",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "year": "1912",
+       "title": "L'Heure Bleue",
+       "text": "Jacques Guerlain。写的不是花也不是果，是日落之后、天没黑的那段时间；娇兰第一支用上醛。",
+       "source_ids": [
+        "S043"
+       ]
+      },
+      {
+       "year": "1919",
+       "title": "Mitsouko",
+       "text": "Jacques Guerlain。名字来自 Claude Farrère 小说《La Bataille》的女主角；娇兰中国官网的中文名是「蝴蝶夫人」。",
+       "source_ids": [
+        "S045",
+        "S046"
+       ]
+      },
+      {
+       "year": "1969",
+       "title": "Chamade",
+       "text": "出自 Jean-Paul Guerlain，不是 Pierre：第三代其实是 Jacques。也是他第一次没有导师在旁完成的作品。",
+       "source_ids": [
+        "S047",
+        "S044"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "Jicky 凭什么算第一支现代香水",
+     "text": "不是因为早，而是配方逻辑换了。在它之前，香水基本是模仿自然：一支玫瑰、一支橙花。1889 年 Aimé Guerlain 把当时还算新的香豆素与香兰素写成主角，再压上香柠檬、薰衣草和麝猫香，写的不是某朵花，而是一种先清凉、后甜暖的矛盾情绪。Persolaise 补了另一层：它的骨架沿用 Houbigant《Fougère Royale》的蕨香结构，但 Aimé 往里加了香兰素——合成原料从点缀变成承重墙，这一步才是「现代」。"
+    },
+    {
+     "type": "card_grid",
+     "heading": "今天还在产的与只剩一条线的：家族与在售浓度",
+     "cards": [
+      {
+       "kicker": "1889 · Aimé Guerlain",
+       "title": "Jicky",
+       "body": "香柠檬、薰衣草开场，底是香豆素、零陵香豆、香兰素与麝猫香。",
+       "metrics": [
+        {
+         "label": "家族",
+         "value": "蕨香 / 副调东方",
+         "source_ids": [
+          "S041"
+         ]
+        },
+        {
+         "label": "在售",
+         "value": "淡香精 EDP",
+         "source_ids": [
+          "S041",
+          "S042"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "1912 · Jacques Guerlain",
+       "title": "L'Heure Bleue 1912",
+       "body": "茴香、佛手柑开场，康乃馨、橙花在中段，鸢尾、香草、安息香收尾。",
+       "metrics": [
+        {
+         "label": "家族",
+         "value": "花香琥珀 / 东方",
+         "source_ids": [
+          "S043"
+         ]
+        },
+        {
+         "label": "在售",
+         "value": "EDP 75 ml 与 EDT",
+         "source_ids": [
+          "S043"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "1919 · Jacques Guerlain",
+       "title": "Mitsouko 蝴蝶夫人",
+       "body": "香柠檬开场，合成桃子配茉莉与玫瑰，底是树苔、广藿香、香根草。",
+       "metrics": [
+        {
+         "label": "家族",
+         "value": "西普 / 果香",
+         "source_ids": [
+          "S045",
+          "S046"
+         ]
+        },
+        {
+         "label": "在售",
+         "value": "EDP、EDT、Extrait 三档",
+         "source_ids": [
+          "S045"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "1969 · Jean-Paul Guerlain",
+       "title": "Chamade",
+       "body": "醛香、佛手柑、galbanum 与黑加仑芽，底是安息香、香根草、香草。",
+       "metrics": [
+        {
+         "label": "家族",
+         "value": "绿意花香 / 东方",
+         "source_ids": [
+          "S047"
+         ]
+        },
+        {
+         "label": "在售",
+         "value": "条目只记到淡香水 EDT",
+         "source_ids": [
+          "S047"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "手上那支和老版差在哪",
+     "text": "四支都还在产，但没有一支是你记忆里的那瓶。Mitsouko 在 2013 年由娇兰自家调香师 Thierry Wasser 重调过，橡木苔受限后，成分表上写的是树苔提取物。L'Heure Bleue 的变化更微妙：2000 年后的版本鸢尾更薄、茴香更安静。2026 年娇兰另推了一支全新的 L'Heure Bleue，并把 1912 年那支在官网上改名 L'Heure Bleue 1912、归进 Les Légendaires 历史系列。先认准名字后面有没有 1912，再谈版本。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/11_Guerlain.jpg",
+     "alt": "Guerlain娇兰官方旗舰店",
+     "caption": "Guerlain娇兰官方旗舰店",
+     "source_page": "https://huaban.com/pins/4252011065",
+     "width": 658,
+     "height": 1097,
+     "query": "Guerlain L'Heure Bleue"
+    },
+    {
+     "file": "images/29_娇兰_Jicky.jpg",
+     "alt": "法国娇兰在中国正式开启“蜜蜂学院”项目|娇兰|蜜蜂|法国_新浪新闻",
+     "caption": "法国娇兰在中国正式开启“蜜蜂学院”项目|娇兰|蜜蜂|法国_新浪新闻",
+     "source_page": "https://k.sina.com.cn/article_5617185887_14ecf745f00100vyu2.html",
+     "width": 1000,
+     "height": 981,
+     "query": "娇兰 Jicky"
+    }
+   ]
+  },
+  {
+   "id": "concentrations",
+   "title": "浓香与淡香：Extrait、EDP、EDT、Cologne 差在哪",
+   "anchor": "浓",
+   "blocks": [
+    {
+     "type": "price_table",
+     "as_of": "2026-09",
+     "columns": [
+      "Shalimar 版本",
+      "香精占比（行业区间）",
+      "皮肤留香（大致）",
+      "备注"
+     ],
+     "rows": [
+      {
+       "cells": [
+        "Extrait de Parfum",
+        "约 20–30%",
+        "约 6–8 小时以上",
+        "1925 年的原版，香草、皮革最足"
+       ],
+       "source_ids": [
+        "S055",
+        "S0510",
+        "S051",
+        "S052",
+        "S0511"
+       ]
+      },
+      {
+       "cells": [
+        "Eau de Parfum",
+        "约 15–20%",
+        "约 4–8 小时",
+        "官网在售，介于两者之间"
+       ],
+       "source_ids": [
+        "S056",
+        "S054",
+        "S051",
+        "S052"
+       ]
+      },
+      {
+       "cells": [
+        "Eau de Toilette",
+        "约 5–15%",
+        "约 2–4 小时",
+        "官网在售；另有更浓的 L'Essence（EDP Intense）"
+       ],
+       "source_ids": [
+        "S057",
+        "S058",
+        "S051",
+        "S052",
+        "S053"
+       ]
+      },
+      {
+       "cells": [
+        "Eau de Cologne",
+        "约 2–5%",
+        "约 1–2 小时",
+        "娇兰的古龙端放在独立古龙系列，非 Shalimar 主线"
+       ],
+       "source_ids": [
+        "S051",
+        "S052",
+        "S053"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "占比改变的不只是时长",
+     "text": "香精在酒精里的占比，决定的不只是“闻多久”，还有“闻到什么”。占比高的那一端，酒精少、香膏多、挥发慢，中后调的香草、皮革、树脂被拉长，反过来压过开场；占比低的那一端，佛手柑和柑橘这类轻前调一开始很亮，却因为酒精多、跑得快，没多久骨架就散。\n\n所以同一支香，Extrait 和 EDP 常常“不像同一支”——这不是玄学，是前中后调的比例被重新配平了。"
+    },
+    {
+     "type": "prose",
+     "heading": "留香也不能只怪浓度",
+     "text": "重分子本来就比轻分子耐放：木质、东方、香草、香根草，比柑橘、醛、绿色花香撑得久。于是一支 Extrait 柑橘古龙，未必比一支 EDP 东方调更持久。一千零一夜本身偏东方调，香草和皮革打底，各档都普遍比同档的清新调扛时间——这也是很多人觉得它 EDP 就能撑住白天、Extrait 到夜里还在的原因。"
+    },
+    {
+     "type": "prose",
+     "heading": "娇兰怎么标浓度",
+     "text": "娇兰不公布每一档的确切油比，但命名沿用行业通行的高低顺序：Extrait（香精）最浓，往下依次是 EDP、EDT，最淡是 Cologne。它也是少数仍把 Extrait 与古龙两个极端都留在货架上的品牌之一，官网把 Shalimar 铺到 Extrait、EDP、EDT，外加定位更浓的 L'Essence。你手上那支算哪一档，取决于它是哪一版、哪一年出厂。"
+    },
+    {
+     "type": "steps",
+     "title": "同名不同浓度，怎么挑、怎么比",
+     "items": [
+      {
+       "n": 1,
+       "title": "折算到每毫升",
+       "text": "官方定价随浓度同向变化：浓度越高、同容量越贵。别只盯瓶身总价，下单前把价格除以毫升再比 Extrait 和 EDP——高浓度的“贵”，多半贵在单价。",
+       "spec": "娇兰 Shalimar 系列页可核对在售各档"
+      },
+      {
+       "n": 2,
+       "title": "拿不准从 EDP 起步",
+       "text": "EDP 保留了 Extrait 的香草—皮革骨架，留香又够一个白天，比 Extrait 好驾驭，又比 EDT 更贴近原版气质。",
+       "spec": "对应上表 EDP 一行"
+      },
+      {
+       "n": 3,
+       "title": "比新旧先对齐浓度",
+       "text": "想判断这瓶和新版差在哪，先拿同浓度对比：老版 EDP 对现版 EDP。跨浓度比较，很容易把“浓度造成的差别”误读成“配方被改了”。",
+       "spec": "对齐浓度再谈改配"
+      }
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/31_Guerlain_advertisement_poste.webp",
+     "alt": "@Guerlain法国娇兰 的个人主页 - 微博-花瓣网",
+     "caption": "@Guerlain法国娇兰 的个人主页 - 微博-花瓣网",
+     "source_page": "https://huaban.com/pins/6450395391",
+     "width": 658,
+     "height": 858,
+     "query": "Guerlain advertisement poster"
+    },
+    {
+     "file": "images/32_娇兰_香精_Extrait.jpg",
+     "alt": "法国娇兰品牌大使许凯现身深圳茂业天地 诠释“轻出于兰”",
+     "caption": "法国娇兰品牌大使许凯现身深圳茂业天地 诠释“轻出于兰”",
+     "source_page": "https://www.vogue.com.cn/beauty/brand_news/news_111131da75dee2d2.html",
+     "width": 1000,
+     "height": 1500,
+     "query": "娇兰 香精 Extrait"
+    }
+   ]
+  },
+  {
+   "id": "versions",
+   "title": "新版与老版：配方到底被什么改过",
+   "anchor": "版",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "三条来路，只有一条有档可查",
+     "text": "娇兰经典款在专柜看着一样，配方换过好几轮。改动有三条来路：IFRA 的原料限制、集团的配方号管理、调香师换代。前两条有档可查，第三条多只有说法。"
+    },
+    {
+     "type": "prose",
+     "heading": "IFRA 与欧盟改掉的原料和年份",
+     "source_ids": [
+      "S061",
+      "S062",
+      "S063",
+      "S064"
+     ],
+     "text": "橡苔是馥奇与西普的骨架。IFRA 最早一项橡苔标准出自 1988 年；2008 年第 43 修正案要求净油中 atranol 与 chloroatranol 各自低于 100ppm；第 49 修正案（2020 年 1 月）把成品中橡苔上限压到 0.10%。欧盟更硬：2017/1410 号条例（2017 年 8 月 2 日）禁用这两个成分，2019 年 8 月 23 日起不得再投放市场。麝香一侧：ambrette 2006 年禁用、musk xylene 2009 年禁用。"
+    },
+    {
+     "type": "prose",
+     "heading": "可查到的改版年份",
+     "source_ids": [
+      "S065",
+      "S068"
+     ],
+     "text": "时间表来自一位前娇兰员工的信（2018 年公开）：娇兰大部分改版发生在 2007 年之后。按配方号看，一千零一夜淡香水 2008、2013 年换过，EDP 2011、2013 年，Extrait 2014 年；午夜飞行只有淡香与浓香两档，2013、2015 年各一次；蝴蝶夫人 2007、2012、2017 年三次，改版后被记录为用合成 Veramoss 顶替缺掉的黑橡苔。也要留一手：配方号变了可能只是 2003 年起强制的全成分标注重排，未必是味道变了。"
+    },
+    {
+     "type": "compare",
+     "source_ids": [
+      "S067",
+      "S069"
+     ],
+     "left": {
+      "title": "查得到动过手的部分",
+      "tone": "pro",
+      "points": [
+       "法规与供应确实动了：致敏原料被替换或压到痕量，苔底与动物香两头变薄",
+       "香料产地也换过，有长年使用者把迈索尔檀香的替换估在 1980 年前后",
+       "同一支分浓度改的年份不同：淡香水、EDP、Extrait 各自有配方号，不能一句话打包"
+      ]
+     },
+     "right": {
+      "title": "多半是叙事的差异",
+      "tone": "con",
+      "points": [
+       "“新版变差了”是拿老版当尺子，而改版的那代人正是把旧版做成经典的人",
+       "集团压成本的传言查不到文件",
+       "瓶身字体与液体色泽的变化常被当成配方变化"
+      ]
+     },
+     "verdict": "先定年份，再比同浓度，剩下的差异才谈得上真假。"
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "先给手上这瓶定年",
+     "source_ids": [
+      "S066"
+     ],
+     "text": "先定年，再谈差异。批号第一位是年份、第二位是月份：2008 至 2017 年为数字加 N 至 Z（8R01 即 2008 年 10 月）。外盒：没条码多半早于 1990 年，没全成分表早于 2004 年前后；黑金盒 1984 至 1999 年，双 G 标志 2000 至 2007 年，之后是素色小圆标。"
+    },
+    {
+     "type": "note",
+     "tone": "glossary",
+     "title": "品牌自己重配过的旧作",
+     "source_ids": [
+      "S0610",
+      "S065"
+     ],
+     "text": "2014 年 1 月起，娇兰放出九支由调香师 Thierry Wasser 按档案原始配方重配的旧作，包括 1877 年的 Pao Rosa、1906 年的 Après L'Ondée 浓香、1937 年的 Cachet Jaune 古龙水。Eau de Shalimar（2008）、Parfum Initial（2011）、Souffle de Parfum（2014）是新浓度，不是对旧配方的还原。"
+    },
+    {
+     "type": "note",
+     "tone": "myth",
+     "title": "查不到出处的两个说法",
+     "source_ids": [
+      "S065",
+      "S062"
+     ],
+     "text": "“一千零一夜 1985 年由 Jean-Paul Guerlain 重改过”在论坛传得很广，但可查的娇兰改版时间表从 2007 年才开始，1985 年那次没有任何页面支撑；“橡苔 2011 年被限”同样查无出处。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/13_Guerlain.webp",
+     "alt": "Guerlain (@guerlain) · Instagram 照片和视频-花瓣网",
+     "caption": "Guerlain (@guerlain) · Instagram 照片和视频-花瓣网",
+     "source_page": "https://huaban.com/pins/6238347951",
+     "width": 658,
+     "height": 823,
+     "query": "Guerlain Meteorites powder"
+    },
+    {
+     "file": "images/35_娇兰_复刻_限量.jpg",
+     "alt": "【娇兰精华】娇兰 Guerlain 帝皇蜂姿双效修护精华露50ml【行情 报价 价格 评测】-京东",
+     "caption": "【娇兰精华】娇兰 Guerlain 帝皇蜂姿双效修护精华露50ml【行情 报价 价格 评测】-京东",
+     "source_page": "https://huaban.com/pins/3981730814",
+     "width": 658,
+     "height": 1236,
+     "query": "娇兰 复刻 限量"
+    }
+   ]
+  },
+  {
+   "id": "bottles",
+   "title": "规格与瓶身：蜜蜂瓶、Coffret 与每毫升单价",
+   "anchor": "瓶",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "容量档位并不统一",
+     "text": "娇兰主线不共用一张容量表。一千零一夜 EDP 在售 30、50、90ml 三档；Mon Guerlain 是 30、50、100ml；Aqua Allegoria 从 40ml 起，往上是 75、125ml，再加 200ml 补充液。香精支在这家站只列了 30ml 一档，没有大瓶可选——想在这支上省钱，只能换浓度，不能换容量。柜台不会替你把 90ml 拆成两支 50ml，规格一旦定死，可比的就只剩每毫升价格。"
+    },
+    {
+     "type": "price_table",
+     "as_of": "2026-09",
+     "columns": [
+      "规格",
+      "在售价",
+      "每毫升"
+     ],
+     "rows": [
+      {
+       "cells": [
+        "一千零一夜 EDP 30ml",
+        "52.99 €",
+        "1.77 €"
+       ],
+       "source_ids": [
+        "S071"
+       ]
+      },
+      {
+       "cells": [
+        "一千零一夜 EDP 50ml",
+        "69.29 €",
+        "1.39 €"
+       ],
+       "source_ids": [
+        "S071"
+       ]
+      },
+      {
+       "cells": [
+        "一千零一夜 EDP 90ml",
+        "103.00 €",
+        "1.14 €"
+       ],
+       "source_ids": [
+        "S071"
+       ]
+      },
+      {
+       "cells": [
+        "一千零一夜 EDP 补充液 50ml",
+        "63.99 €",
+        "1.28 €"
+       ],
+       "source_ids": [
+        "S075"
+       ]
+      },
+      {
+       "cells": [
+        "一千零一夜 Extrait 30ml",
+        "285.00 €",
+        "9.50 €"
+       ],
+       "source_ids": [
+        "S072"
+       ]
+      },
+      {
+       "cells": [
+        "Mon Guerlain EDP 30ml",
+        "48.50 €",
+        "1.62 €"
+       ],
+       "source_ids": [
+        "S073"
+       ]
+      },
+      {
+       "cells": [
+        "Mon Guerlain EDP 100ml",
+        "93.76 €",
+        "0.94 €"
+       ],
+       "source_ids": [
+        "S073"
+       ]
+      },
+      {
+       "cells": [
+        "Aqua Allegoria Mandarine Basilic EDT 40ml",
+        "46.99 €",
+        "1.17 €"
+       ],
+       "source_ids": [
+        "S074"
+       ]
+      },
+      {
+       "cells": [
+        "Aqua Allegoria Mandarine Basilic EDT 125ml",
+        "92.11 €",
+        "0.74 €"
+       ],
+       "source_ids": [
+        "S074"
+       ]
+      },
+      {
+       "cells": [
+        "Aqua Allegoria Mandarine Basilic EDT 补充液 200ml",
+        "112.06 €",
+        "0.56 €"
+       ],
+       "source_ids": [
+        "S074"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "大瓶确实省，省在每毫升",
+     "text": "按同店同一天的标价换算，一千零一夜 EDP 的 30ml 比 90ml 每毫升贵 54%，Mon Guerlain 的 30ml 比 100ml 贵 72%，Aqua Allegoria 的 40ml 是 200ml 补充液的 2.1 倍。补充液的存在本身就是官方承认这件事：同一支 EDP，50ml 瓶装 69.29 欧、补充液 63.99 欧，每毫升再低 7.6%；瓶子留下了，你只为里头的液体付钱。小瓶多出来的那部分买的是开瓶、铺货和试错，不是料子。"
+    },
+    {
+     "type": "prose",
+     "heading": "蜜蜂瓶不解释溢价",
+     "text": "1853 年 Pierre-François-Pascal Guerlain 为拿破仑三世与欧仁妮皇后的婚礼做出 Eau de Cologne Impériale，瓶身缀金蜂、取旺多姆圆柱造型，这个样式沿用到今天的 heritage 与 prestige 级线上，主线 EDP 用的是各自的现代瓶。但瓶子不是定价理由：Impériale 100ml 卖 68.25 欧，每毫升 0.68 欧，比 30ml 的一千零一夜低六成，也低于 Mon Guerlain 的 100ml。真正推高单价的是浓度与系列定位，蜜蜂瓶决定的是它摆在你桌上像什么。"
+    },
+    {
+     "type": "prose",
+     "heading": "按每毫升做决定的三步",
+     "text": "第一步定容量：一年用不到两支的人，50ml 与 90ml 的差价会被剩下；天天用的才值得吃大瓶。第二步比渠道：同一支 EDP 的 30ml，德国电商 52.99 欧、法国电商 45.50 欧，每毫升差 16%——渠道差往往比容量差更好拿。第三步别混浓度：Extrait 每毫升 9.5 欧，是 90ml EDP 的 8 倍多，这是浓度定价，不是同一支涨价。最后一条前提是大瓶用得完，放了三四年的柑橘调氧化之后，省下的每毫升没有意义。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "Coffret 与蜂瓶：三个换算",
+     "rows": [
+      {
+       "k": "礼盒装什么",
+       "v": "50ml EDP + 5ml 随身装 + 75ml 身体乳，外包装署名花艺师 Edith Carron，文案以送母亲为主",
+       "source_ids": [
+        "S077"
+       ]
+      },
+      {
+       "k": "礼盒怎么算",
+       "v": "同商家 66.42 欧，单支 50ml 63.00 欧——多 3.42 欧买另两件",
+       "source_ids": [
+        "S077",
+        "S076"
+       ]
+      },
+      {
+       "k": "蜂瓶在哪",
+       "v": "Impériale 等 heritage 与 prestige 级线；主线 EDP 用各自现代瓶",
+       "source_ids": [
+        "S079",
+        "S0710",
+        "S078"
+       ]
+      }
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/15_Guerlain.webp",
+     "alt": "@Guerlain法国娇兰 的个人主页 - 微博-花瓣网",
+     "caption": "@Guerlain法国娇兰 的个人主页 - 微博-花瓣网",
+     "source_page": "https://huaban.com/pins/4748678670",
+     "width": 658,
+     "height": 826,
+     "query": "Guerlain bee bottle"
+    },
+    {
+     "file": "images/37_娇兰_蜜蜂瓶_Abeille.webp",
+     "alt": "Guerlain娇兰官方旗舰店-花瓣网",
+     "caption": "Guerlain娇兰官方旗舰店-花瓣网",
+     "source_page": "https://huaban.com/pins/5883173760",
+     "width": 658,
+     "height": 1097,
+     "query": "娇兰 蜜蜂瓶 Abeille"
+    }
+   ]
+  },
+  {
+   "id": "ingredients",
+   "title": "原料与产地：格拉斯的五月玫瑰、茉莉与香根草",
+   "anchor": "材",
+   "blocks": [
+    {
+     "type": "fact_strip",
+     "facts": [
+      {
+       "value": "4–6 周",
+       "label": "五月玫瑰的采收窗口",
+       "hint": "峰值 5 月 15–25 日",
+       "source_ids": [
+        "S081"
+       ]
+      },
+      {
+       "value": "1 000 公斤",
+       "label": "花瓣换一公斤玫瑰净油",
+       "hint": "另一口径 400 公斤出 600 克",
+       "source_ids": [
+        "S081",
+        "S084"
+       ]
+      },
+      {
+       "value": "800 公斤",
+       "label": "鲜花换一公斤茉莉净油",
+       "hint": "约 640 万朵",
+       "source_ids": [
+        "S081",
+        "S082"
+       ]
+      },
+      {
+       "value": "50 000 欧元",
+       "label": "一公斤格拉斯茉莉净油",
+       "hint": "约埃及价十倍",
+       "source_ids": [
+        "S082"
+       ]
+      },
+      {
+       "value": "150 公斤",
+       "label": "香根草根茎出一升油",
+       "hint": "根长满 18 个月才挖",
+       "source_ids": [
+        "S086"
+       ]
+      },
+      {
+       "value": "1 000 → 40 公顷",
+       "label": "格拉斯花田：1950 年到今天",
+       "hint": "多被大屋长约锁走",
+       "source_ids": [
+        "S088",
+        "S082"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "先纠正一件事：娇兰在格拉斯没有地契",
+     "text": "“从 19 世纪起在格拉斯包田”，公开资料不支持。有田的是别家：香奈儿与 Pégomas 的 Mul 家族、迪奥签下的 Domaine de Manon 与 Clos de Callian、兰蔻 2020 年买的 4 公顷 Domaine de la Rose。娇兰只把格拉斯写成茉莉与千叶玫瑰的产地，从没写成自家农场；可追溯的只有配方——1828 年创立之初，创始人就用五月玫瑰制香精。",
+     "source_ids": [
+      "S089",
+      "S0810",
+      "S085"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "品种：五月玫瑰就是千叶玫瑰",
+     "text": "两个中文名同指 Rosa × centifolia，叫五月玫瑰只因它在五月开。与它对立的是产自保加利亚、土耳其的大马士革玫瑰：千叶玫瑰蜜甜带蜂蜡，大马士革果香酸亮。娇兰两种都用，1 号玫瑰调里同时有格拉斯千叶玫瑰精油、保加利亚大马士革玫瑰精油与玫瑰水。",
+     "source_ids": [
+      "S083",
+      "S084",
+      "S085"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "娇兰公开点名的原料与产地",
+     "rows": [
+      {
+       "k": "千叶玫瑰",
+       "v": "格拉斯；黎明前采、当天提炼",
+       "source_ids": [
+        "S085"
+       ]
+      },
+      {
+       "k": "大花茉莉",
+       "v": "格拉斯与意大利卡拉布里亚混采",
+       "source_ids": [
+        "S085"
+       ]
+      },
+      {
+       "k": "香柠檬",
+       "v": "卡拉布里亚，卡普亚家族 11 月初采",
+       "source_ids": [
+        "S085"
+       ]
+      },
+      {
+       "k": "香根鸢尾",
+       "v": "3 年种、3 年根茎干燥，共 6 年",
+       "source_ids": [
+        "S085"
+       ]
+      },
+      {
+       "k": "香草",
+       "v": "冷浸 21 天成酊，奥尔芬工厂手工",
+       "source_ids": [
+        "S085"
+       ]
+      },
+      {
+       "k": "香根草",
+       "v": "海地 Les Cayes，年产量约 150 吨",
+       "source_ids": [
+        "S086",
+        "S087"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "为什么同一支配方每年有细微差别",
+     "text": "花期只有几周、天气决定含香量、当季的花只能当季用，这三层都不由人。五月玫瑰须上午 11 点前下刀，茉莉 8 到 10 月夜间开放、天亮前手工采。娇兰的对策是跨产地混采加陈化年数，而不是把花压成标准件，所以年份差仍会留在瓶里：与老版的距离未必来自配方改动。",
+     "source_ids": [
+      "S084",
+      "S081",
+      "S085"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "可以去查的一个词",
+     "text": "“格拉斯原料”可查证：2020 年 11 月法国 INPI 批下 Absolue Pays de Grasse 地理标志，种植、采收、萃取都要落在滨海阿尔卑斯等三省之内。",
+     "source_ids": [
+      "S081"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/17_Guerlain.webp",
+     "alt": "Guerlain (@guerlain) · Instagram 照片和视频-花瓣网",
+     "caption": "Guerlain (@guerlain) · Instagram 照片和视频-花瓣网",
+     "source_page": "https://huaban.com/pins/6244759467",
+     "width": 658,
+     "height": 823,
+     "query": "Guerlain Grasse rose harvest"
+    },
+    {
+     "file": "images/39_娇兰_格拉斯_五月玫瑰.webp",
+     "alt": "Guerlain娇兰官方旗舰店-花瓣网",
+     "caption": "Guerlain娇兰官方旗舰店-花瓣网",
+     "source_page": "https://huaban.com/pins/6483777957",
+     "width": 658,
+     "height": 1097,
+     "query": "娇兰 格拉斯 五月玫瑰"
+    }
+   ]
+  },
+  {
+   "id": "price",
+   "title": "价格：专柜、免税、限量与老版收藏价",
+   "anchor": "价",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "第一层：大陆专柜，930 元是入场券",
+     "text": "娇兰在中国大陆的执行价与官网同步，一千零一夜系列当前列 4 款，最便宜的一档是 30ml 淡香精，玫瑰香款要贵出一截，四款里并不含 Extrait 纯香精。午夜飞行更特殊：娇兰中国官网的产品清单里查不到它，也就没有可对标的大陆公价，想在国内买到只能走海淘或免税。至于 L'Art & la Matière（艺术沙龙），它压根不在同一个价格带里——入门就是三千多元的 100ml 大档，编号香精再往上走一档。"
+    },
+    {
+     "type": "price_table",
+     "as_of": "2026-09",
+     "columns": [
+      "渠道",
+      "型号与规格",
+      "标价"
+     ],
+     "rows": [
+      {
+       "cells": [
+        "大陆专柜/官网",
+        "一千零一夜淡香精（EDP）30ml / 50ml",
+        "930 元 / 1,230 元"
+       ],
+       "source_ids": [
+        "S091",
+        "S092"
+       ]
+      },
+      {
+       "cells": [
+        "大陆专柜/官网",
+        "一千零一夜淡香精（玫瑰香）",
+        "1,330 元起"
+       ],
+       "source_ids": [
+        "S096"
+       ]
+      },
+      {
+       "cells": [
+        "大陆专柜/官网",
+        "一千零一夜淡香水（EDT）50ml",
+        "1,010 元"
+       ],
+       "source_ids": [
+        "S093"
+       ]
+      },
+      {
+       "cells": [
+        "大陆专柜/官网",
+        "一千零一夜世纪精粹淡香精 30ml / 50ml",
+        "950 元 / 1,280 元"
+       ],
+       "source_ids": [
+        "S094",
+        "S095",
+        "S0914"
+       ]
+      },
+      {
+       "cells": [
+        "帕尔马机场免税（Avolta）",
+        "Shalimar EDP 90ml",
+        "156.00 欧"
+       ],
+       "source_ids": [
+        "S0910"
+       ]
+      },
+      {
+       "cells": [
+        "大陆专柜/官网",
+        "L'Art & la Matière 广藿夜巴黎淡香精 100ml",
+        "3,150 元"
+       ],
+       "source_ids": [
+        "S098"
+       ]
+      },
+      {
+       "cells": [
+        "大陆专柜/官网",
+        "L'Art & la Matière 编号香精 6 支 / 六款臻选礼盒",
+        "各 5,300 元 / 6,360 元"
+       ],
+       "source_ids": [
+        "S097"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "第二层：免税与海外，省的是税不是全部",
+     "text": "免税那一层的差价要看品类。证券日报 2020 年实测海南免税与专柜：额度提到每人每年 10 万元之后，腕表只差 7.7%、珠宝近 20%、部分美妆能到近 40%，香水落在哪一头取决于容量档和当地税率。但免税不等于便宜：德国《图片报》2019 年比价 Heinemann，同款 100ml 淡香水比网购最低价还高 44%，算上运费网购仍平均便宜 13%；Skyscanner 的调查里，免税店只有香水和香烟是真便宜。回到娇兰，同一支一千零一夜淡香精，帕尔马机场免税的 90ml 比大陆专柜的 50ml 贵不了多少——差价一半来自税，一半来自你多买的那 40ml。"
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "大陆专柜",
+      "tone": "neutral",
+      "points": [
+       "全国统一价，无折扣季",
+       "刻字与礼盒包装含在价内",
+       "售后可验，串货风险低",
+       "容量档偏小，大档不一定有"
+      ]
+     },
+     "right": {
+      "title": "免税与海外",
+      "tone": "neutral",
+      "points": [
+       "香水是免税少数真便宜的品类",
+       "以大档为主，单支总价更高",
+       "退换与质保在境外",
+       "老版与限量款主要在此流通"
+      ]
+     },
+     "verdict": "只买一支日常穿，专柜的确定性值这个价差；要囤大瓶或找大陆没上的款，免税和海外才有意义。"
+    },
+    {
+     "type": "prose",
+     "heading": "第三层：停产老版，公价在这里失效",
+     "text": "停产的老版走第三套定价，公价在这里失效。据《消费者报道》2026 年 2 月的统计，娇兰与迪奥的老香在 eBay 和国内二手平台上都有人按“收藏物”而非“日用品”出价：缺盖、喷头损坏、瓶身氧化的照样挂着上千元的价签。为纪念香榭丽舍门店重开而作的“前所未有”（Plus Que Jamais，2005）早已停产，复刻版又因销量不佳停产的“风之歌”（Sous le Vent）同样一物难求。至于 1925 年那支一千零一夜的原味，官方给出的替代答案是世纪精粹——它用的是今天的原料与法规，卖的是新款的钱，不是老瓶的钱。"
+    },
+    {
+     "type": "price_table",
+     "as_of": "2026-02",
+     "columns": [
+      "二手/收藏市场",
+      "对象",
+      "成交价或在售报价"
+     ],
+     "rows": [
+      {
+       "cells": [
+        "eBay",
+        "蝴蝶夫人（Mitsouko，1919）经典款 30ml 装",
+        "售价超 2,000 元"
+       ],
+       "source_ids": [
+        "S0913"
+       ]
+      },
+      {
+       "cells": [
+        "eBay",
+        "迪奥绿毒（1994）50ml 装",
+        "如今可高达 200 至 300 美元，折合过千元人民币；当年约 85 至 90 美元"
+       ],
+       "source_ids": [
+        "S0913"
+       ]
+      },
+      {
+       "cells": [
+        "国内二手平台",
+        "娇兰等品牌停产香，单瓶",
+        "千元以上，品相从全新到缺盖氧化不等"
+       ],
+       "source_ids": [
+        "S0913"
+       ]
+      }
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/19_Guerlain.webp",
+     "alt": "Guerlain.jpg (2500×3126)-花瓣网",
+     "caption": "Guerlain.jpg (2500×3126)-花瓣网",
+     "source_page": "https://huaban.com/pins/6080223628",
+     "width": 658,
+     "height": 823,
+     "query": "Guerlain Champs-Elysees maison"
+    },
+    {
+     "file": "images/41_娇兰_专柜_价格.webp",
+     "alt": "Guerlain娇兰官方旗舰店-花瓣网",
+     "caption": "Guerlain娇兰官方旗舰店-花瓣网",
+     "source_page": "https://huaban.com/pins/6466057392",
+     "width": 658,
+     "height": 1169,
+     "query": "娇兰 专柜 价格"
+    }
+   ]
+  },
+  {
+   "id": "buying",
+   "title": "怎么买：试香、分装、保存与老版真伪",
+   "anchor": "购",
+   "blocks": [
+    {
+     "type": "steps",
+     "title": "试香的观察时间点",
+     "items": [
+      {
+       "n": 1,
+       "title": "纸上初筛",
+       "text": "裸肤或无香乳液打底，瓶口离纸喷一次，一次别超过 3–5 支。",
+       "spec": "喷距 10–20 厘米",
+       "source_ids": [
+        "S101"
+       ]
+      },
+      {
+       "n": 2,
+       "title": "回闻",
+       "text": "第一下闻前调，20–30 分钟后回闻同一张纸，结构差异这时才显出来。",
+       "source_ids": [
+        "S101"
+       ]
+      },
+      {
+       "n": 3,
+       "title": "上皮肤",
+       "text": "只剩 2–3 支才上肤，手腕或肘内侧各一处，别搓。皮肤约 37°C，挥发比纸快，中后调会提前出来。",
+       "source_ids": [
+        "S101"
+       ]
+      },
+      {
+       "n": 4,
+       "title": "等尾调",
+       "text": "别在十分钟内定。量级上 eau de parfum 约 5 小时、eau de toilette 约 3 小时，尾调在这之后。",
+       "source_ids": [
+        "S101"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "分装省了钱，也加了三个变量",
+     "text": "原厂瓶是密封系统，分装不是。氧化：瓶越空坏得越快，只剩 20% 容量时，顶部氧气空间是装到八成的四倍。容器：塑料瓶别超过 6 个月，玻璃磨口瓶 2–3 年，带泵头的玻璃分装瓶 6 个月到 2 年。浓度：酒精与轻前调先跑掉，剩下的更稠、更偏尾调。",
+     "source_ids": [
+      "S102",
+      "S103"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "家里怎么存",
+     "text": "避光、恒温、少开盖。原盒是现成的遮光层，放阴凉抽屉，目标 15–21°C、湿度 50% 以下；浴室湿度常在 60–80% 且温度反复波动，是最糟的位置。瓶子直立、别摇。未开封可放 5 年，开封后 1–2 年开始变化；柑橘与花香 1–3 年就走样，木质与东方调可到十年以上。",
+     "source_ids": [
+      "S102",
+      "S103"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "变质的三处信号",
+     "text": "气味发酸、带醋酸或金属感；前调整段消失，只剩平直后调；液体变浑或有沉淀。但含香草与柑橘油的料本就会变深棕，单看颜色不算坏。",
+     "source_ids": [
+      "S103"
+     ]
+    },
+    {
+     "type": "steps",
+     "title": "老版真伪：四处可查",
+     "items": [
+      {
+       "n": 1,
+       "title": "批号",
+       "text": "3–11 位，瓶底与盒底必须一致，印刷或激光刻、非贴纸。娇兰 1976 年起首位字母表年份、次位表月份，MH0AA1 即 1990 年 1 月；2002 年后改为数字开头四位，如 3N01 为 2013 年。",
+       "source_ids": [
+        "S104",
+        "S105"
+       ]
+      },
+      {
+       "n": 2,
+       "title": "盒子",
+       "text": "无条码基本早于 1990，绿点 1993 年后才有，长成分表要 2004–2005 年之后。长成分表配一支号称 1970 年代的瓶，即为矛盾。",
+       "source_ids": [
+        "S105"
+       ]
+      },
+      {
+       "n": 3,
+       "title": "瓶底",
+       "text": "真品玻璃厚重均匀、无气泡。注意 1990 年代有些瓶底只刻批号、标签只印巴黎地址，两种都正常。",
+       "source_ids": [
+        "S105",
+        "S106"
+       ]
+      },
+      {
+       "n": 4,
+       "title": "喷头",
+       "text": "按下应是一记细雾，盖帽有卡扣感。喷溅、渗漏、滴水，或斜喷打湿手腕，是最常见的暴露点。",
+       "source_ids": [
+        "S106"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "myth",
+     "title": "能解码不等于真品",
+     "text": "解码站给的是生产日期，不是真伪：抄一个真批号就能印几千瓶。批号一致只能证伪、不能证真；没批号也别判假，灰市撕标确实存在。",
+     "source_ids": [
+      "S104",
+      "S105"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/43_Guerlain_advertisement_poste.jpg",
+     "alt": "MON GUERLAIN EAU DE PARFUM",
+     "caption": "MON GUERLAIN EAU DE PARFUM",
+     "source_page": "https://www.sephora.com.mx/products/guerlain-mon-guerlain-9081.html",
+     "width": 2000,
+     "height": 2000,
+     "query": "Guerlain advertisement poster"
+    },
+    {
+     "file": "images/44_娇兰_香水_试香.webp",
+     "alt": "Guerlain娇兰官方旗舰店-花瓣网",
+     "caption": "Guerlain娇兰官方旗舰店-花瓣网",
+     "source_page": "https://huaban.com/pins/6439063230",
+     "width": 658,
+     "height": 1097,
+     "query": "娇兰 香水 试香"
+    }
+   ]
+  },
+  {
+   "id": "wear",
+   "title": "怎么穿：季节、场合，与它在皮肤上的变化",
+   "anchor": "穿",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先量皮肤，再谈场合",
+     "text": "同一支娇兰涂在不同人身上，散出去的分子比例并不相同，这件事被实测过。勒阿弗尔大学团队把一组香料分子涂在志愿者前臂上，再逐项量皮肤，结果分成两条规律：轻而易发散的分子，蒸发速度跟着皮肤表面粗糙度走；重而亲脂的分子，跟着含水量与经皮失水走。前一条管刚喷完那一阵有多亮，后一条管几小时后你还剩什么。"
+    },
+    {
+     "type": "prose",
+     "heading": "酸碱与体温：差别出在哪一层",
+     "text": "常被引用的解释是“皮肤酸碱不同”，但这份数据里，真正拉开统计差异的是含水量与皮脂，pH 的组间差异反而达不到显著。至于性别差异，男性前臂表面更酸的说法来自文献，作者自己的样本没重现出来。“我是酸性皮肤所以闻起来不一样”站不住，干和糙才是变量。另一半原因是温度：皮温同时抬高头调与尾调的蒸发速度，同一个剂量在温暖的手腕上和凉的小臂内侧不是一回事。"
+    },
+    {
+     "type": "quote",
+     "text": "喷涂于皮肤，脉搏跳动处为佳。",
+     "who": "法国娇兰中国官网一千零一夜淡香水（50 毫升装）产品页“用法”栏原文",
+     "source_ids": [
+      "S113",
+      "S114"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "季节是蒸发题，不是礼仪题",
+     "text": "娇兰不给季候表，官方只留上面那一句，剩下的都是浓度与用量的事。一千零一夜是东方调底子，香草压着香脂，热天会被皮温推出你想要的半径，秋冬室内反而刚好。绿意与醛香相反：低温把扩散压薄，午夜飞行在十月的街头压不出多少存在感，这不是缺点。蓝色时刻被品牌自己写成琥珀花香调、鸢尾交织香草，两头都沾，最吃皮肤含水量。Jicky 那类柑橘骨架压香草底子的老配方，按同一条逻辑取舍，不必照搬礼仪表。"
+    },
+    {
+     "type": "card_grid",
+     "heading": "用量：把喷数当剂量算",
+     "cards": [
+      {
+       "kicker": "换算",
+       "title": "一次按压是可以数的",
+       "body": "喷头是机械部件，输出量相对稳定，所以“多按两下”可以换算成毫升与钱。",
+       "metrics": [
+        {
+         "label": "单次按压量",
+         "value": "约 0.1 ml",
+         "source_ids": [
+          "S115"
+         ]
+        },
+        {
+         "label": "100 ml 全瓶喷数",
+         "value": "800–1200 喷",
+         "source_ids": [
+          "S115"
+         ]
+        },
+        {
+         "label": "喷洒距离",
+         "value": "15–20 cm",
+         "source_ids": [
+          "S115"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "浓度",
+       "title": "浓度决定起跳喷数",
+       "body": "香水房 Marc-Antoine Barrois 的用量表按浓度起跳：浓度越高，需要的喷数越少；淡香水散得快，中途要补。",
+       "metrics": [
+        {
+         "label": "Extrait（香基 20%–30%）",
+         "value": "1–2 喷",
+         "source_ids": [
+          "S115"
+         ]
+        },
+        {
+         "label": "淡香水 EDT",
+         "value": "3–4 喷",
+         "source_ids": [
+          "S115"
+         ]
+        },
+        {
+         "label": "EDT 留香",
+         "value": "2–3 小时",
+         "source_ids": [
+          "S115"
+         ]
+        },
+        {
+         "label": "官网在售一千零一夜规格",
+         "value": "50 ml",
+         "source_ids": [
+          "S113"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "场合",
+       "title": "场合对应喷数与位置",
+       "body": "同一份表的分场口径：密闭通勤最省，晚间外出最放得开，位置选在衣物覆盖处还是颈部，决定别人离你多远才闻得到。",
+       "metrics": [
+        {
+         "label": "办公室",
+         "value": "1–2 喷 / 胸口",
+         "source_ids": [
+          "S115"
+         ]
+        },
+        {
+         "label": "公共交通",
+         "value": "1 喷 / 手腕",
+         "source_ids": [
+          "S115"
+         ]
+        },
+        {
+         "label": "晚间外出",
+         "value": "3–4 喷 / 颈部",
+         "source_ids": [
+          "S115"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "季节",
+       "title": "夏天减，冬天加",
+       "body": "热量加快蒸发，夏天减喷数比换香型省事；冷空气压低扩散，冬天可给浓调多加一两喷。干皮落在低蒸发那一侧，先抹无香身体乳再喷。",
+       "metrics": [
+        {
+         "label": "季节口径来源",
+         "value": "厂商用量指南",
+         "source_ids": [
+          "S115"
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "type": "card_grid",
+     "heading": "本章数字的出处",
+     "cards": [
+      {
+       "kicker": "皮肤实测",
+       "title": "志愿者前臂数据",
+       "body": "上两节提到的量，全部来自同一篇论文的同一张表。",
+       "metrics": [
+        {
+         "label": "样本量",
+         "value": "10 人",
+         "source_ids": [
+          "S111"
+         ]
+        },
+        {
+         "label": "皮肤 pH 均值",
+         "value": "5.0 ± 0.4（个体 4.0–5.3）",
+         "source_ids": [
+          "S111"
+         ]
+        },
+        {
+         "label": "皮温均值",
+         "value": "30 ± 0.9 ℃（个体 29.0–31.4 ℃）",
+         "source_ids": [
+          "S111"
+         ]
+        },
+        {
+         "label": "角质层含水量",
+         "value": "34.9 ± 5.4（判为干性）",
+         "source_ids": [
+          "S111"
+         ]
+        },
+        {
+         "label": "经皮失水",
+         "value": "7.3 ± 1.5 g/m²/h",
+         "source_ids": [
+          "S111"
+         ]
+        },
+        {
+         "label": "组间显著性",
+         "value": "含水量 p = 0.011；皮脂 p = 0.002；pH p = 0.097",
+         "source_ids": [
+          "S111"
+         ]
+        },
+        {
+         "label": "文献中的男女前臂 pH",
+         "value": "4.5 ± 0.2 对 5.3 ± 0.5；4.3 ± 0.4 对 5.6 ± 0.4",
+         "source_ids": [
+          "S111"
+         ]
+        },
+        {
+         "label": "发表时点",
+         "value": "2025 年（Int J Cosmet Sci 47 卷 6 期）",
+         "source_ids": [
+          "S111"
+         ]
+        }
+       ]
+      },
+      {
+       "kicker": "品牌侧",
+       "title": "年代与香调标注",
+       "body": "年份、香调与备案信息按官方页面记录。",
+       "metrics": [
+        {
+         "label": "一千零一夜创作年份 / 作者",
+         "value": "1925 年，Jacques Guerlain",
+         "source_ids": [
+          "S112"
+         ]
+        },
+        {
+         "label": "品牌定位语",
+         "value": "史上第一支东方调",
+         "source_ids": [
+          "S112"
+         ]
+        },
+        {
+         "label": "蓝色时刻官方香调标注",
+         "value": "琥珀花香调（鸢尾、香草）",
+         "source_ids": [
+          "S114"
+         ]
+        },
+        {
+         "label": "中国进口备案编号",
+         "value": "国妆网备进字（沪）2023009253 / 2026001936",
+         "source_ids": [
+          "S113",
+          "S114"
+         ]
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/47_Guerlain_Shalimar.jpg",
+     "alt": "Shalimar 90 ml Eau de parfum Guerlain pas cher, comparez les prix ...",
+     "caption": "Shalimar 90 ml Eau de parfum Guerlain pas cher, comparez les prix ...",
+     "source_page": "https://www.envie2parfum.fr/guerlain/eau-de-parfum/shalimar-90-ml/857",
+     "width": 786,
+     "height": 1000,
+     "query": "Guerlain Shalimar"
+    },
+    {
+     "file": "images/48_娇兰_香水_使用.webp",
+     "alt": "Guerlain娇兰官方旗舰店一月新年首页 娇兰首页-花瓣网",
+     "caption": "Guerlain娇兰官方旗舰店一月新年首页 娇兰首页-花瓣网",
+     "source_page": "https://huaban.com/pins/5928310349",
+     "width": 658,
+     "height": 1096,
+     "query": "娇兰 香水 使用"
+    }
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S011",
+   "url": "https://www.lvmh.com/en/our-maisons/perfumes-cosmetics/guerlain",
+   "label": "LVMH 官方品牌页（娇兰条目）：创始人第一家店地址写作 42, rue de Rivoli；1853 年为拿破仑三世与欧仁妮婚礼呈上 Eau de Cologne Impériale 作为新婚礼物；“five successive generations of Guerlain perfumers”；现任专属调香师 Thierry Wasser；“+1100 olfactory creations since 1828”；页脚给出两处门店地址 Maison Guerlain – 68 avenue des Champs-Élysées 与 Guerlain Vendôme Boutique – 356 rue Saint-Honoré",
+   "retrieved": "2026-09-23",
+   "publisher": "LVMH"
+  },
+  {
+   "id": "S012",
+   "url": "https://www.shcourbevoie.fr/guerlain-et-courbevoie-1894-1995-un-siecle-dhistoire-commune/",
+   "label": "库贝瓦历史学会厂史：1828 年在 42 rue de Rivoli 以 parfumeur vinaigrier 身份开店；1842 年迁 15 rue de la Paix；1853 年向欧仁妮献 Eau de Cologne Impériale 并获“Parfumeur breveté de sa Majesté”；1864 年由 Aimé 与 Gabriel 接班；1889 Aimé 作 Jicky；1895 Jacques 首作；1912 L'Heure Bleue、1919 Mitsouko、1925 Shalimar；1914 迁 68 avenue des Champs-Élysées；Jean-Paul 1959 年 22 岁作 Vétiver、1962 Chant d'Arômes、1965 Habit Rouge、1969 Chamade；1993 建 Orphin 厂；1994 年归入 LVMH；1995 年库贝瓦厂关闭",
+   "retrieved": "2026-09-23",
+   "publisher": "Société Historique de Courbevoie"
+  },
+  {
+   "id": "S013",
+   "url": "https://blog.delacourte.com/egeries-de-guerlain-de-l-imperatrice-eugenie-a-nora-arnezeder-1ere-partie/",
+   "label": "Sylvaine Delacourte（前娇兰全球市场总监）博客：Eau de Cologne Impériale 的配方创建于 1830 年，1853 年吸引欧仁妮皇后、她先要求独家供应，此后换来“parfumeur breveté de Sa Majesté”头衔；橙花油过量；蜜蜂瓶由 Pochet et Du Courval 制作；亦记 1842 年前后和平街店",
+   "retrieved": "2026-09-23",
+   "publisher": "blog.delacourte.com"
+  },
+  {
+   "id": "S014",
+   "url": "https://www.comitecolbert.cn/members/guerlain/",
+   "label": "柯尔贝委员会官方会员页：蜂印瓶为庆祝欧仁妮与拿破仑三世婚礼而作，瓶身装饰 69 只镀金帝皇蜂，灵感来自旺多姆圆柱，自 1853 年起成为标志瓶；Guerlinade 六香由“品牌的五代调香师”反复重释；1914 年香榭丽舍大街 68 号开业",
+   "retrieved": "2026-09-23",
+   "publisher": "Comité Colbert"
+  },
+  {
+   "id": "S015",
+   "url": "https://blog.delacourte.com/en/jacques-guerlain-biography-of-a-perfumery-genius/",
+   "label": "Jacques Guerlain 传记：Jacques Edouard Guerlain（1874.10.7–1963.5.2），L'Heure Bleue 1912、Mitsouko 1919、Shalimar 1925、Vol de Nuit 1933；1897 年起两年间 Jacques 与 Pierre 分担经理与首席调香师职责、1899 年 Jacques 独任；其多支原作以原始配方存于凡尔赛香水学院附属的 Osmothèque",
+   "retrieved": "2026-09-23",
+   "publisher": "blog.delacourte.com"
+  },
+  {
+   "id": "S016",
+   "url": "https://www.olfastory.com/parfumeur/jean-paul-guerlain",
+   "label": "Jean-Paul Guerlain 传：1937 年 1 月 9 日生于巴黎十六区，1955 年进入家族企业、由外祖父 Jacques 带入行；创作 Vétiver、Habit Rouge、Chamade、Eau de Guerlain、Jardin de Bagatelle、Samsara；45 年职业生涯 43 支香水",
+   "retrieved": "2026-09-23",
+   "publisher": "Olfactory / Olfastory"
+  },
+  {
+   "id": "S017",
+   "url": "https://osmetheca.be/parfumeurs/thierry-wasser.html",
+   "label": "Thierry Wasser 条目：1961 年生于瑞士 Montreux，2008 年 5 月接替 Jean-Paul Guerlain，为该 maison 第五位专属调香师、首位非创始家族成员",
+   "retrieved": "2026-09-23",
+   "publisher": "Osmetheca"
+  },
+  {
+   "id": "S018",
+   "url": "https://www.lemonde.fr/archives/article/1994-05-01/une-transaction-de-1-958-milliard-de-francs-guerlain-rejoint-l-empire-arnault_3827875_1819218.html",
+   "label": "《世界报》1994-05-01 档案条目，标题即给出交易金额“Une transaction de 1,958 milliard de francs”；正文有访问限制，本次仅取到标题与日期，故金额只作标题级引用",
+   "retrieved": "2026-09-23",
+   "publisher": "Le Monde"
+  },
+  {
+   "id": "S031",
+   "url": "https://www.guerlain.com.cn/p/les-legendaire-patrimony-g014312conf-.html",
+   "label": "娇兰中国官网「LES LÉGENDAIRES 娇兰午夜飞行淡香水」商品页：瓶｜75ML 标价 ¥1,270；官方文案写明取材自圣埃克絮佩里 1931 年小说、点出冒险女性 Hélène Boucher、称其为「神秘的琥珀柑苔调」、前调古蓬香脂赋予青绿树脂气息、中调水仙与茉莉；同页相关商品列出姬琪淡香精 ¥1,550 起、蝴蝶夫人淡香水 ¥1,270 起",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain 中国官网"
+  },
+  {
+   "id": "S032",
+   "url": "https://blog.delacourte.com/en/vol-de-nuit-2/",
+   "label": "Sylvaine Delacourte（任娇兰香水创作总监 15 年）专文：前调古蓬香脂配苦橙叶、中调紫罗兰/丁香/茉莉/玫瑰/龙胆/水仙、后调香草/树脂/鸢尾/檀香/广藿/橡木苔；1933 年与法国航空成立同年；瓶身由 Raymond Guerlain 与 Baccarat 完成，烟灰玻璃八面斜切；她自述更偏爱 extrait；Vol de Nuit Evasion 为机场限定特别版",
+   "retrieved": "2026-09-23",
+   "publisher": "Delacourte Paris"
+  },
+  {
+   "id": "S033",
+   "url": "https://www.olfastory.com/en/perfume/vol-de-nuit",
+   "label": "香水百科条目：1933 年推出、Jacques Guerlain 调香、香调家族东方调（副木质）、浓度 Eau de Toilette；金字塔含香柠檬/柠檬/橘子、古蓬香脂、橙花、茉莉，后调橡木苔/香草/檀香/鸢尾",
+   "retrieved": "2026-09-23",
+   "publisher": "Olfastory"
+  },
+  {
+   "id": "S034",
+   "url": "https://australianperfumejunkies.com/2015-08-07/vol-de-nuit-guerlain-review-giveaway/",
+   "label": "评测博文转引 Fragrantica 香调表：前调佛手柑、古蓬香脂、醛、橘子、柠檬、水仙、苦橙叶；中调茉莉、水仙、玫瑰、紫罗兰、鸢尾、丁香；后调香木、鸢尾根、香草、琥珀、麝香、檀香、橡木苔、辛香——该表同样未列没药",
+   "retrieved": "2026-09-23",
+   "publisher": "Australian Perfume Junkies"
+  },
+  {
+   "id": "S035",
+   "url": "https://www.guerlain.com.cn/p/shalimar-g011361-.html",
+   "label": "娇兰中国官网「法国娇兰一千零一夜淡香水 50ml」商品页，瓶｜50ML 标价 ¥1,010",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain 中国官网"
+  },
+  {
+   "id": "S036",
+   "url": "https://www.guerlain.com.cn/p/lheure-bleue-g062452-.html",
+   "label": "娇兰中国官网「娇兰蓝调淡香精 30ml」（L'Heure Bleue，蓝色时刻）商品页，瓶｜30ML 标价 ¥930，官方描述为鸢尾交织香草的琥珀花香调",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain 中国官网"
+  },
+  {
+   "id": "S037",
+   "url": "https://www.cultbeauty.co.uk/p/guerlain-les-legendaires-vol-de-nuit-eau-de-toilette-75ml/13904175/",
+   "label": "英国零售商 Cult Beauty 商品页，SKU 名称为「GUERLAIN Les Légendaires Vol De Nuit Eau de Toilette 75ml」，页面未见其他浓度或规格",
+   "retrieved": "2026-09-23",
+   "publisher": "Cult Beauty"
+  },
+  {
+   "id": "S038",
+   "url": "https://nstperfume.com/2007-06-28/guerlain-vol-de-nuit-fragrance-review/",
+   "label": "Now Smell This 评测：称这支的醛含量不至于走向老气，但「无法想象在春夏穿它」，因为太甜太持久的甜腻感把人困住——是场合限制的实测说法",
+   "retrieved": "2026-09-23",
+   "publisher": "Now Smell This"
+  },
+  {
+   "id": "S021",
+   "url": "https://blog.delacourte.com/zh-tw/shalimar-guerlain-legendary-perfume/",
+   "label": "Sylvaine Delacourte（曾任娇兰香水创意总监 15 年）香水指南繁中页：1925 年巴黎装饰艺术博览会首发、命名取自拉合尔沙利玛花园（梵语“爱的殿堂”）与沙·贾汗和蒙塔兹·玛哈尔、1921 年 Justin du Pont 提供乙基香兰素（强度约为香兰素 10 倍）、香草酊至少浸 3 周、在 Jicky 骨架上换上约 30% 柑橘、佛手柑“过量”的前调与玫瑰/茉莉/鸢尾/零陵香豆/香脂/皮革、1925 年淡香水与香精并行、1937 年“怀表”瓶古龙水、1986 年 Pochet & du Courval 为 Parfum de Toilette 制瓶",
+   "retrieved": "2026-09-23",
+   "publisher": "Delacourte Paris"
+  },
+  {
+   "id": "S022",
+   "url": "https://www.raidersofthelostscent.blog/2018/01/a-letter-from-ex-guerlain-employee.html",
+   "label": "一位前娇兰员工的来信＋逐支配方号清单：2003–2004 年起盒身印致敏原与递增配方号、一个号对应一份配方、批号前两位读生产年份；Shalimar 条目为 2007 年前 915M(EDT)/922M(EDP)/921M(Parfum)、2007 年 3470M/3469M/3799M、2008 年 EDT、2011 年 EDP 05051M、2013 年 07999 与 07833、2014 年 Parfum 8860，并称娇兰大部分改版发生在 2007 年之后",
+   "retrieved": "2026-09-23",
+   "publisher": "Raiders of the Lost Scent"
+  },
+  {
+   "id": "S023",
+   "url": "https://www.voguearabia.com/article/shalimar-guerlain-100-years-thierry-wasser",
+   "label": "百周年时娇兰首席调香师 Thierry Wasser 访谈：1925 年推出、被称为世界上第一支琥珀调、结构是佛手柑的明亮对香草与香脂的深度、真正的革命来自乙基香兰素、2025 年以 L’Essence 纪念",
+   "retrieved": "2026-09-23",
+   "publisher": "Vogue Arabia"
+  },
+  {
+   "id": "S024",
+   "url": "https://theblendjournal.com/fashion-beauty/guerlain-shalimar-story",
+   "label": "2025-12-08 百周年专题：香调为佛手柑＋玫瑰/茉莉/鸢尾＋香草与零陵香豆，并指出这套组合即 Guerlinade 的基础；Delphine Jelk 用马达加斯加香草酊、玫瑰净油、鸢尾与百年前不存在的新麝香做出 L’Essence",
+   "retrieved": "2026-09-23",
+   "publisher": "The Blend (Future plc)"
+  },
+  {
+   "id": "S025",
+   "url": "https://persolaise.com/2011/07/reviews-shalimar-parfum-initial-from.html",
+   "label": "2011-07-15 香评：Thierry Wasser 的 Shalimar Parfum Initial 鸢尾剂量远高于原版、佛手柑收小、灵猫基本保留",
+   "retrieved": "2026-09-23",
+   "publisher": "Persolaise"
+  },
+  {
+   "id": "S026",
+   "url": "https://persolaise.com/2022/10/guerlain-shalimar-millesime-tonka-review-thierry-wasser-2022.html",
+   "label": "页面标注 Shalimar Millésime Tonka 为 Thierry Wasser 与 Delphine Jelk 作品，2022 年 10 月评测",
+   "retrieved": "2026-09-23",
+   "publisher": "Persolaise"
+  },
+  {
+   "id": "S027",
+   "url": "https://www.scentree.co/en/Bergamot_oil_expressed.html",
+   "label": "原料库条目（CAS 89957-91-5）引用 IFRA 标准：冷压佛手柑油因致光毒性受限，所列各品类用量上限 0.4%",
+   "retrieved": "2026-09-23",
+   "publisher": "ScenTree"
+  },
+  {
+   "id": "S028",
+   "url": "https://perfumepolytechnic.wordpress.com/2015-01-19/shalimar-showdown-the-originals-and-the-flankers-battle-it-out/",
+   "label": "2015-01-19 八支 Shalimar 横评：1925 年由 Jacques Guerlain 创作、常被称为“东方调之王/参照物”、相当于 Jicky 加大量香草、香精版灵猫最冲而淡香水的佛手柑最尖",
+   "retrieved": "2026-09-23",
+   "publisher": "Perfume Polytechnic"
+  },
+  {
+   "id": "S029",
+   "url": "https://persolaise.com/2025/09/guerlain-shalimar-lessence-review-delphine-jelk-2025.html",
+   "label": "2025-09-24 页面：Shalimar L’Essence 由 Delphine Jelk 调制，为百周年推出的限定支线",
+   "retrieved": "2026-09-23",
+   "publisher": "Persolaise"
+  },
+  {
+   "id": "S0210",
+   "url": "https://www.scento.com/blog/guerlain-vintage-vs-modern-scent-evolution",
+   "label": "娇兰老版与现版对比：天然灵猫、海狸香等动物香已被合成替代品与白麝香替下，现代 Guerlinade 以香兰素、香豆素与白麝香收尾",
+   "retrieved": "2026-09-23",
+   "publisher": "Scento"
+  },
+  {
+   "id": "S051",
+   "url": "https://id.loccitane.com/blogs/provence-story/perfume-level",
+   "label": "七档香水浓度与对应留存的科普页（标题即 Concentration & Longevity）",
+   "retrieved": "2026-09-23",
+   "publisher": "L'Occitane"
+  },
+  {
+   "id": "S052",
+   "url": "https://premierepeau.com/blogs/news/perfume-concentration-levels-explained",
+   "label": "各浓度档真实香精占比说明",
+   "retrieved": "2026-09-23",
+   "publisher": "Première Peau"
+  },
+  {
+   "id": "S053",
+   "url": "https://blog.delacourte.com/en/perfume-and-concentration/",
+   "label": "EDC / EDT / EDP / Extrait 浓度与留香对照",
+   "retrieved": "2026-09-23",
+   "publisher": "De La Courte"
+  },
+  {
+   "id": "S054",
+   "url": "https://www.facebook.com/Perfume/posts/1391922342965815/",
+   "label": "搜索结果片段：Eau de Parfum 约 15–20%，留香通常 6–8 小时",
+   "retrieved": "2026-09-23",
+   "publisher": "Perfume (Facebook)"
+  },
+  {
+   "id": "S055",
+   "url": "https://www.guerlain.com/us/en-us/p/shalimar-extract-P012190.html",
+   "label": "娇兰官方：Shalimar Extrait 产品页",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain"
+  },
+  {
+   "id": "S056",
+   "url": "https://www.guerlain.com/us/en-us/p/shalimar-eau-de-parfum-P011355.html",
+   "label": "娇兰官方：Shalimar Eau de Parfum 产品页",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain"
+  },
+  {
+   "id": "S057",
+   "url": "https://www.guerlain.com/us/en-us/p/shalimar-eau-de-toilette-P012202.html",
+   "label": "娇兰官方：Shalimar Eau de Toilette 产品页",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain"
+  },
+  {
+   "id": "S058",
+   "url": "https://www.guerlain.com/us/en-us/p/shalimar-lessence---eau-de-parfum-intense-P014923.html",
+   "label": "娇兰官方：Shalimar L'Essence（EDP Intense）产品页",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain"
+  },
+  {
+   "id": "S059",
+   "url": "https://www.guerlain.com/us/en-us/fragrance/woman/collections/shalimar/",
+   "label": "娇兰官方：Shalimar 系列页（列出各在售浓度）",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain"
+  },
+  {
+   "id": "S0510",
+   "url": "https://www.fragrantica.com/perfume/Guerlain/Shalimar-Parfum-33557.html",
+   "label": "Fragrantica：Shalimar Parfum 条目，标注为 1925 年的原版香型",
+   "retrieved": "2026-09-23",
+   "publisher": "Fragrantica"
+  },
+  {
+   "id": "S0511",
+   "url": "https://www.olfastory.com/en/perfume/guerlain-shalimar-extrait-de-parfum",
+   "label": "Shalimar Extrait 香调构成与历史（香草、皮革打底）",
+   "retrieved": "2026-09-23",
+   "publisher": "Olfastory"
+  },
+  {
+   "id": "S0512",
+   "url": "https://beauty.dhgate.com/guerlain-shalimar-history-scent-and-how-to-choose-the-right-version/",
+   "label": "Shalimar 各浓度版本历史与挑选指南",
+   "retrieved": "2026-09-23",
+   "publisher": "DHgate Beauty"
+  },
+  {
+   "id": "S041",
+   "url": "https://www.olfastory.com/en/perfume/jicky",
+   "label": "香水百科条目：Jicky 的年份 1889、调香师 Aimé Guerlain、香调家族（蕨香／副调东方）、香调表与在售浓度",
+   "retrieved": "2026-09-23",
+   "publisher": "Olfastory"
+  },
+  {
+   "id": "S042",
+   "url": "https://persolaise.com/2014/01/the-osmotheque-reviews-jicky-from.html",
+   "label": "独立香评：Osmothèque 复刻版与市售版对比，指出 Jicky 沿用 Fougère Royale 的蕨香骨架并加入合成香兰素，且现役版仍在售但原料受限",
+   "retrieved": "2026-09-23",
+   "publisher": "Persolaise"
+  },
+  {
+   "id": "S043",
+   "url": "https://www.olfastory.com/en/perfume/lheure-bleue",
+   "label": "香水百科条目：L'Heure Bleue 1912／Jacques Guerlain、花香琥珀家族与香调表、娇兰第一支含醛、2026 年改名 L'Heure Bleue 1912 及 75 ml EDP 与 EDT 在售",
+   "retrieved": "2026-09-23",
+   "publisher": "Olfastory"
+  },
+  {
+   "id": "S044",
+   "url": "https://osmetheca.be/en/journal/lheure-bleue-1912-twilight-poetry.html",
+   "label": "专题长文（2026-06-05）：娇兰三代谱系（1828 年创店的 Pierre-François-Pascal、Aimé、Jacques）、IFRA 与原料供应导致多次重调、2000 年后鸢尾更薄茴香更安静、2021 年归入 Les Légendaires",
+   "retrieved": "2026-09-23",
+   "publisher": "Osmetheca"
+  },
+  {
+   "id": "S045",
+   "url": "https://www.olfastory.com/en/perfume/mitsouko",
+   "label": "香水百科条目：Mitsouko 1919／Jacques Guerlain、果香西普与合成桃子、名字出自《La Bataille》、2013 年 Thierry Wasser 重调、成分表用树苔提取物、现售 EDP／EDT／extrait",
+   "retrieved": "2026-09-23",
+   "publisher": "Olfastory"
+  },
+  {
+   "id": "S046",
+   "url": "https://www.guerlain.com.cn/landing/history",
+   "label": "娇兰中国官网品牌史：1919 年「蝴蝶夫人」Mitsouko，雅克·娇兰调制，散发西普香调",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain 中国"
+  },
+  {
+   "id": "S047",
+   "url": "https://www.olfastory.com/en/perfume/chamade",
+   "label": "香水百科条目：Chamade 1969／Jean-Paul Guerlain（第一次没有Jacques在旁时的作品）、绿意花香东方、醛香加galbanum与黑加仑芽、记录浓度为淡香水",
+   "retrieved": "2026-09-23",
+   "publisher": "Olfastory"
+  },
+  {
+   "id": "S081",
+   "url": "https://premierepeau.com/blogs/news/grasse-perfume-capital",
+   "label": "格拉斯产区长文：五月玫瑰采收 5 月中至 6 月初共 4–6 周、峰值 5 月 15–25 日；约 1,000 公斤花瓣出 1 公斤玫瑰净油；茉莉 8–10 月，约 800 公斤花出 1 公斤净油（约 640 万朵）；2020 年 11 月 INPI 批准 Absolue Pays de Grasse 地理标志，须在滨海阿尔卑斯、瓦尔、上普罗旺斯阿尔卑斯三省种植采收萃取，首批七家企业获认证",
+   "retrieved": "2026-09-23",
+   "publisher": "Première Peau"
+  },
+  {
+   "id": "S082",
+   "url": "https://premierepeau.com/blogs/news/jasmine-flower-perfumery-absolute",
+   "label": "茉莉专文：约 8,000 朵出一克净油；格拉斯茉莉只剩几十公顷且几乎全部被两三家大屋长约锁走；格拉斯茉莉净油超 50,000 欧元一公斤，约埃及价十倍",
+   "retrieved": "2026-09-23",
+   "publisher": "Première Peau"
+  },
+  {
+   "id": "S083",
+   "url": "https://premierepeau.com/blogs/news/rose-otto-vs-rose-absolute",
+   "label": "玫瑰精油与净油对比：蒸馏精油约需 4,000 公斤鲜花出一公斤，溶剂萃取用料约为其十分之一；格拉斯与摩洛哥用 Rosa × centifolia（五月玫瑰），保加利亚、土耳其用 Rosa × damascena",
+   "retrieved": "2026-09-23",
+   "publisher": "Première Peau"
+  },
+  {
+   "id": "S084",
+   "url": "https://horace.com/fr/guides-rose-parfumerie",
+   "label": "法国品牌 Horace 玫瑰指南：香水只用两种玫瑰——rose de mai 与 rose de Damas；五月玫瑰须上午 11 点前采，到正午含香量掉四成；其出率口径为 400 公斤花出 600 克净油",
+   "retrieved": "2026-09-23",
+   "publisher": "Horace"
+  },
+  {
+   "id": "S085",
+   "url": "https://www.vogue.com.cn/beauty/brand_news/news_18g5a5013480ae03.html",
+   "label": "娇兰官方资料（艺术沙龙 L'Art & La Matière 香精系列）：娇兰香基六种原料为香草、玫瑰、香柠檬、鸢尾、零陵香豆、茉莉；1 号玫瑰调并用玫瑰水、保加利亚大马士革玫瑰精油与格拉斯千叶玫瑰精油，千叶玫瑰一个月花期、黎明前采、一天内提炼；30 号茉莉混采法国格拉斯与意大利卡拉布里亚；11 号香柠檬由卡拉布里亚卡普亚家族每年 11 月初采收；鸢尾 3 年种植加 3 年根茎干燥；香草冷浸 21 天制酊、在法国奥尔芬工厂手工处理；品牌 1828 年创立",
+   "retrieved": "2026-09-23",
+   "publisher": "VOGUE 时尚网 / 娇兰品牌新闻稿"
+  },
+  {
+   "id": "S086",
+   "url": "https://www.lesourceur.com/en/vetiver/",
+   "label": "香根草产地与参数：种满 18 个月后旱季挖根，150 公斤根茎、约 24 小时蒸馏得 1 升精油；全球年产量约 150 吨，海地占近一半；波本（留尼汪）偏土腥细致、海地偏木质、爪哇偏烟熏",
+   "retrieved": "2026-09-23",
+   "publisher": "Le Sourceur"
+  },
+  {
+   "id": "S087",
+   "url": "https://premierepeau.com/blogs/news/vetiver-from-haiti-geopolitics-of-a-root",
+   "label": "海地香根草：根生长 18–24 个月后采收，单次蒸馏 18–36 小时；海地约占全球产量一半，主产区在 Les Cayes 一带",
+   "retrieved": "2026-09-23",
+   "publisher": "Première Peau"
+  },
+  {
+   "id": "S088",
+   "url": "https://www.fleurs-exception-grasse.com/la-genese/",
+   "label": "Fleurs d'Exception du Pays de Grasse 协会（2006 年成立）自述：20 世纪初当地年处理 2,000 吨玫瑰、1,800 吨茉莉；花田从 1950 年的 1,000 多公顷降到今天 40 公顷",
+   "retrieved": "2026-09-23",
+   "publisher": "Les Fleurs d'Exception du Pays de Grasse"
+  },
+  {
+   "id": "S089",
+   "url": "https://masterparfums.com/grasse-capitale-parfum/",
+   "label": "格拉斯产业综述：香奈儿、迪奥、娇兰、爱马仕等与当地花农维持长期供应关系，其中香奈儿与 Pégomas 的 Mul 家族为数十年的独家合作",
+   "retrieved": "2026-09-23",
+   "publisher": "Master Parfums"
+  },
+  {
+   "id": "S0810",
+   "url": "https://www.lavoixduparfum.fr/fleur-a-parfum-grasse-sous-les-roses-de-mai/",
+   "label": "格拉斯花田归属实况：迪奥与 Domaine de Manon、Clos de Callian 独家（五月玫瑰与茉莉全季收成）；兰蔻 2020 年取得 4 公顷的 Domaine de la Rose；香奈儿在 30 公顷上种五种香料植物",
+   "retrieved": "2026-09-23",
+   "publisher": "La Voix du Parfum"
+  },
+  {
+   "id": "S071",
+   "url": "https://www.parfumdreams.de/GUERLAIN/Damenduefte/Shalimar/Eau-de-Parfum-Spray/index_14404.aspx",
+   "label": "德国电商 parfumdreams 一千零一夜 EDP 商品页，结构化数据按容量列出 30/50/90ml 在售价（页面生成时间 2026-09-23）",
+   "retrieved": "2026-09-23",
+   "publisher": "Parfumdreams"
+  },
+  {
+   "id": "S072",
+   "url": "https://www.parfumdreams.de/GUERLAIN/Damenduefte/Shalimar/Extrait/index_14412.aspx",
+   "label": "同站一千零一夜 Extrait 商品页，仅 30ml 一档",
+   "retrieved": "2026-09-23",
+   "publisher": "Parfumdreams"
+  },
+  {
+   "id": "S073",
+   "url": "https://www.parfumdreams.de/GUERLAIN/Damenduefte/Mon-GUERLAIN/Eau-de-Parfum-Spray/index_64883.aspx",
+   "label": "同站 Mon Guerlain EDP 商品页，30/50/100ml 在售价",
+   "retrieved": "2026-09-23",
+   "publisher": "Parfumdreams"
+  },
+  {
+   "id": "S074",
+   "url": "https://www.parfumdreams.de/GUERLAIN/Damenduefte/Aqua-Allegoria/Eau-de-Toilette-Spray/index_14279.aspx",
+   "label": "同站 Aqua Allegoria Mandarine Basilic EDT 商品页，40/75/125ml 与 200ml 补充液（Nachfüllung）",
+   "retrieved": "2026-09-23",
+   "publisher": "Parfumdreams"
+  },
+  {
+   "id": "S075",
+   "url": "https://www.parfumdreams.de/GUERLAIN/Damenduefte/Shalimar/Eau-de-Parfum-Spray-Nachfuellung/index_14406.aspx",
+   "label": "同站一千零一夜 EDP 补充液 50ml 价格",
+   "retrieved": "2026-09-23",
+   "publisher": "Parfumdreams"
+  },
+  {
+   "id": "S076",
+   "url": "https://www.news-parfums.com/en/guerlain/40339-guerlain-shalimar-eau-de-parfum-3346470113602.html",
+   "label": "法国香水商 News Parfums 一千零一夜 EDP 页，30ml 45,50€ / 50ml 63,00€ / 90ml 86,00€",
+   "retrieved": "2026-09-23",
+   "publisher": "News Parfums"
+  },
+  {
+   "id": "S077",
+   "url": "https://www.news-parfums.com/en/coffret/46447-coffret-shalimar-eau-de-parfum-3346471000826.html",
+   "label": "同站 Coffret 页：50ml EDP + 5ml 随身装 + 75ml 身体乳，66.42€，外包装署名 Edith Carron",
+   "retrieved": "2026-09-23",
+   "publisher": "News Parfums"
+  },
+  {
+   "id": "S078",
+   "url": "https://www.news-parfums.com/en/guerlain/34772-guerlain-the-waters-eau-de-cologne-imperiale-3346470217669.html",
+   "label": "同站 Eau de Cologne Impériale 商品页：100ml 68.25€，描述为瓶身取旺多姆圆柱造型、蜜蜂是帝国象征、因欧仁妮皇后而起",
+   "retrieved": "2026-09-23",
+   "publisher": "News Parfums"
+  },
+  {
+   "id": "S079",
+   "url": "https://www.lvmh.com/en/our-maisons/perfumes-cosmetics/guerlain",
+   "label": "LVMH 官方品牌页：1853 年为拿破仑三世与欧仁妮皇后婚礼创作 Eau de Cologne Impériale；自 1828 年起约 1100 部作品",
+   "retrieved": "2026-09-23",
+   "publisher": "LVMH"
+  },
+  {
+   "id": "S0710",
+   "url": "https://www.scento.com/brand/guerlain",
+   "label": "分装零售商 Scento 的娇兰品牌页：写明 1853 年 Impériale 是蜜蜂瓶的起源，并称 L'Art & la Matière 与蜜蜂瓶 prestige 线定位高于一般 designer 线",
+   "retrieved": "2026-09-23",
+   "publisher": "Scento"
+  },
+  {
+   "id": "S061",
+   "url": "https://ifrafragrance.org/standards-library",
+   "label": "IFRA 官方标准库条目：Oakmoss extracts（CAS 9000-50-4 等）标注第 49 修正案、2020-01 生效，香水类（Category 4）上限 0.10%；同页列出 Musk ambrette（Prohibited，2006-01，第 40 修正案）、Musk xylene（Prohibited，2009-01，第 44 修正案）、Musk ketone（Specification，2010-01）",
+   "retrieved": "2026-09-23",
+   "publisher": "IFRA"
+  },
+  {
+   "id": "S062",
+   "url": "https://mag.bynez.com/en/perfume/oakmoss-an-exemplary-case-of-ifras-role/",
+   "label": "Nez 香水评论刊对 IFRA 科学事务副总裁 Matthias Vey 的访谈：橡苔最早的 IFRA 标准出自 1988 年，atranol/chloroatranol 纯度指标由 2008 年第 43 修正案设定，橡苔自 2003 年起列入欧盟 26 种须标注致敏原",
+   "retrieved": "2026-09-23",
+   "publisher": "Nez, la revue olfactive"
+  },
+  {
+   "id": "S063",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R1410",
+   "label": "欧盟委员会条例 (EU) 2017/1410（2017 年 8 月 2 日）：依 SCCS 2012 年 6 月 26–27 日意见把 atranol、chloroatranol 与 HICC 列入化妆品禁用附件 II，2019 年 8 月 23 日起禁止投放市场、2021 年 8 月 23 日起禁止提供",
+   "retrieved": "2026-09-23",
+   "publisher": "EUR-Lex"
+  },
+  {
+   "id": "S064",
+   "url": "https://assilnature.com/oakmoss-ifra-restrictions/",
+   "label": "原料商技术页引用 IFRA 橡苔标准：提取物中 atranol 与 chloroatranol 各低于 100ppm（0.01%），脱氢松香酸不超过 1000ppm",
+   "retrieved": "2026-09-23",
+   "publisher": "Assil Nature"
+  },
+  {
+   "id": "S065",
+   "url": "https://www.raidersofthelostscent.blog/2018/01/a-letter-from-ex-guerlain-employee.html",
+   "label": "2018 年 1 月公开的一封前娇兰员工来信（2019 年 10 月更新逐支清单）：娇兰大部分改版发生在 2007 年之后，并给出逐支配方号与年份——Shalimar EdT 2008/2013、EdP 2011/2013、Parfum 2014，Vol de Nuit 仅有 EdT 与 Parfum 两档、2013 与 2015 年改版，Mitsouko 2007/2012/2017",
+   "retrieved": "2026-09-23",
+   "publisher": "Raiders of the Lost Scent"
+  },
+  {
+   "id": "S066",
+   "url": "https://www.raidersofthelostscent.blog/2013/10/how-to-recognize-guerlain-perfumes.html",
+   "label": "娇兰老瓶识别页（原 2013 年、2026 年更新）：批号首位年份、次位月份，2008–2017 年为数字加 N–Z（8R01＝2008 年 10 月），2018 年起重排 A–M；无条码早于 1990 年、无全成分表早于 2004–2005 年；黑金盒 1984–1999、双 G 标志 2000–2007、2007 年后素色小圆标",
+   "retrieved": "2026-09-23",
+   "publisher": "Raiders of the Lost Scent"
+  },
+  {
+   "id": "S067",
+   "url": "https://basenotes.com/threads/guerlain-and-how-to-identify-reformulations.448160/",
+   "label": "Basenotes 娇兰改版辨识讨论：配方号变动可能只源于 2003–2004 年起强制的全成分标注重排，不等于液体气味改变",
+   "retrieved": "2026-09-23",
+   "publisher": "Basenotes"
+  },
+  {
+   "id": "S068",
+   "url": "https://boisdejasmin.com/2010/12/guerlain-perfume-vintage-and-modern-comparisons.html",
+   "label": "Bois de Jasmin 娇兰新老版本对比：Jicky 的动物的香 accord 原以硝基麝香与天然 civet 构建、其后被替换；Mitsouko 改版后黑橡苔缺席、以合成 Veramoss 顶替（2013 年前后）",
+   "retrieved": "2026-09-23",
+   "publisher": "Bois de Jasmin"
+  },
+  {
+   "id": "S069",
+   "url": "https://kafkaesqueblog.com/2022-04-10/guerlain-vol-de-nuit-modern-parfum/",
+   "label": "长期使用者对现产 Vol de Nuit 浓香的评测（2022 年 4 月，样品购于 2021 年初）：前调仍列橡苔但绿意被明显压低；并把娇兰改用非迈索尔檀香的时间估在 1980/1982 年前后",
+   "retrieved": "2026-09-23",
+   "publisher": "Kafkaesque"
+  },
+  {
+   "id": "S0610",
+   "url": "https://auparfum.bynez.com/guerlain-fait-renaitre-son-patrimoine-1335",
+   "label": "Nez 旗下 Auparfum 2014 年 1 月 29 日报道：娇兰自 2014 年 1 月起在香榭丽舍 68 号放出九支由 Thierry Wasser 依档案原始配方重配的旧作，含 Pao Rosa（1877）、Après L'Ondée 浓香（1906）、Cachet Jaune 古龙水（1937）",
+   "retrieved": "2026-09-23",
+   "publisher": "Auparfum / Nez"
+  },
+  {
+   "id": "S101",
+   "url": "https://www.scento.com/blog/skin-vs-blotter-best-perfume-testing",
+   "label": "闻香纸与皮肤试香对比：喷距、回闻时间点、皮肤测试处数与留香时长，含调香师 Sylvaine Delacourte 的引述",
+   "retrieved": "2026-09-23",
+   "publisher": "Scento"
+  },
+  {
+   "id": "S102",
+   "url": "https://www.scento.com/blog/ultimate-guide-storing-perfume-samples",
+   "label": "香水样本与分装保存指南：温度与湿度阈值、顶空氧气比例、塑料瓶与玻璃瓶可存放时长、各香调寿命",
+   "retrieved": "2026-09-23",
+   "publisher": "Scento"
+  },
+  {
+   "id": "S103",
+   "url": "https://marcantoinebarrois.com/blogs/guide/does-perfume-expire",
+   "label": "香水保质指南：开封与未开封时长、氧化机理、酸味/浑浊/变色等变质信号，以及变色不等于变质",
+   "retrieved": "2026-09-23",
+   "publisher": "Marc-Antoine Barrois"
+  },
+  {
+   "id": "S104",
+   "url": "https://www.scento.com/blog/how-to-spot-fake-perfumes-using-batch-codes",
+   "label": "批号真伪检查：字符长度、瓶盒必须一致、激光雕刻与贴纸的区别、解码器只能证伪不能证真",
+   "retrieved": "2026-09-23",
+   "publisher": "Scento"
+  },
+  {
+   "id": "S105",
+   "url": "https://www.raidersofthelostscent.blog/2013/10/how-to-recognize-guerlain-perfumes.html",
+   "label": "娇兰老版识别长文（2013 年初发、2026 年更新）：1976 年起字母批号的年月读法、条码/绿点/长成分表的引入年份、瓶底只刻批号与只印 Paris 地址的标签、灰市撕标",
+   "retrieved": "2026-09-23",
+   "publisher": "Raiders of the Lost Scent"
+  },
+  {
+   "id": "S106",
+   "url": "https://www.parfumelle.com/blogs/scent-journal/how-to-spot-a-fake-perfume",
+   "label": "真伪检查清单：玻璃厚薄与气泡、泵头雾化质量（喷溅/渗漏/滴水）、盖帽卡扣手感、液体澄清度",
+   "retrieved": "2026-09-23",
+   "publisher": "Parfumelle"
+  },
+  {
+   "id": "S091",
+   "url": "https://www.guerlain.com.cn/p/shalimar-g011353-.html",
+   "label": "娇兰中国官网产品页：一千零一夜淡香精 30ml，标价 930 元（2026-09-23 取价）",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S092",
+   "url": "https://www.guerlain.com.cn/p/shalimar-g011354-.html",
+   "label": "娇兰中国官网产品页：一千零一夜淡香精 50ml，标价 1,230 元",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S093",
+   "url": "https://www.guerlain.com.cn/p/shalimar-g011361-.html",
+   "label": "娇兰中国官网产品页：一千零一夜淡香水 50ml，标价 1,010 元",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S094",
+   "url": "https://www.guerlain.com.cn/p/shalimar-g014921-.html",
+   "label": "娇兰中国官网产品页：一千零一夜世纪精粹淡香精 30ml，标价 950 元",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S095",
+   "url": "https://www.guerlain.com.cn/p/shalimar-g014922-.html",
+   "label": "娇兰中国官网产品页：一千零一夜世纪精粹淡香精 50ml，标价 1,280 元",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S096",
+   "url": "https://www.guerlain.com.cn/list/80",
+   "label": "娇兰中国官网一千零一夜系列列表页：共 4 个结果，玫瑰款 1,330 元起，无 Extrait 纯香精档",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S097",
+   "url": "https://www.guerlain.com.cn/list/175",
+   "label": "娇兰中国官网艺术沙龙（L'ART & LA MATIÈRE）列表页：13 个结果，编号香精各 5,300 元、六款臻选礼盒 6,360 元",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S098",
+   "url": "https://www.guerlain.com.cn/p/lart-la-matiere-ghybl-.html",
+   "label": "娇兰中国官网产品页：艺术沙龙广藿夜巴黎香型淡香精 100ml，标价 3,150 元",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S099",
+   "url": "https://www.guerlain.com.cn/sitemap.xml",
+   "label": "娇兰中国官网 sitemap：全站产品页中查不到午夜飞行条目",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S0910",
+   "url": "https://mallorca.shopdutyfree.com/en/49/guerlain-shalimar-90ml-eau-de-parfum",
+   "label": "帕尔马机场免税店（Avolta）商品页：Shalimar EDP 90ml 标价 156.00 欧",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S0911",
+   "url": "http://www.zqrb.cn/finance/hangyedongtai/2020-07-08/A1594172636062.html",
+   "label": "证券日报 2020-07-08：海南离岛免税额度升至每人每年 10 万元，实测腕表差价 7.7%、珠宝近 20%、部分美妆近 40%",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S0912",
+   "url": "https://www.hunantoday.cn/news/xhn/201907/15535240.html",
+   "label": "新湖南转携程 2019-07-29：引德国《图片报》对 Heinemann 的比价（同款 100ml 淡香水贵 44%、含运费网购仍便宜 13%）与 Skyscanner 调查",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S0913",
+   "url": "https://time-weekly.com/post/327271",
+   "label": "时代在线转《消费者报道》2026-02-02：绝版香水收藏市场行情，娇兰蝴蝶夫人 30ml 装 eBay 超 2,000 元、国内停产香单瓶千元以上",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S0914",
+   "url": "https://cn.concall.com/article/detail/article_id/4087",
+   "label": "ConCall 2025-09-24：一千零一夜由 Jacques Guerlain 于 1925 年创作，世纪精粹（Millesime）由 Delphine Jelk 调制",
+   "retrieved": "2026-09-23"
+  },
+  {
+   "id": "S111",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12666731/",
+   "label": "Hadjiefstathiou 等，《Exploring the impact of fragrance molecular and skin properties on the evaporation profile of fragrances》，Int J Cosmet Sci 2025;47(6):981–995，勒阿弗尔 Normandie 大学 URCOM。全文页含 10 位志愿者前臂的 pH、皮温、TEWL、角质层含水量实测表（Table 3）与方差分析 p 值",
+   "retrieved": "2026-09-23",
+   "publisher": "PubMed Central / NIH"
+  },
+  {
+   "id": "S112",
+   "url": "https://www.lvmh.com/en/our-maisons/perfumes-cosmetics/guerlain",
+   "label": "LVMH 集团官网娇兰品牌页：1828 年创立、Jacques Guerlain 于 1925 年创作 Shalimar 并称其为史上第一支东方调、Baccarat 水晶瓶",
+   "retrieved": "2026-09-23",
+   "publisher": "LVMH"
+  },
+  {
+   "id": "S113",
+   "url": "https://www.guerlain.com.cn/p/shalimar-g011361-.html",
+   "label": "法国娇兰中国官网产品页（娇兰一千零一夜淡香水 50ml）：页面字段含 label_usage“喷涂于皮肤，脉搏跳动处为佳。”、原产国法国、label_capacity 50ml、经销商路威酩轩香水化妆品（上海）有限公司、备案编号 国妆网备进字（沪）2023009253",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain 中国官网"
+  },
+  {
+   "id": "S114",
+   "url": "https://www.guerlain.com.cn/p/lheure-bleue-g062452conf-.html",
+   "label": "法国娇兰中国官网蓝调淡香精（L'Heure Bleue）产品页：品牌文案“令人沉醉的琥珀花香调……鸢尾香蕴交织香草芬芳，余韵悠远”，用法同“喷涂于皮肤，脉搏跳动处为佳”，备案编号 国妆网备进字（沪）2026001936",
+   "retrieved": "2026-09-23",
+   "publisher": "Guerlain 中国官网"
+  },
+  {
+   "id": "S115",
+   "url": "https://marcantoinebarrois.com/blogs/guide/how-many-sprays-of-perfume",
+   "label": "香水房 Marc-Antoine Barrois 官方用量指南：单次按压约 0.1ml、100ml 约 800–1200 喷、Extrait（香基 20%–30%）1–2 喷、EDT 3–4 喷且留香 2–3 小时、喷洒距离 15–20cm、按场合（办公室/晚间外出/公共交通）给喷数与部位、夏减冬增、干皮先抹无香保湿",
+   "retrieved": "2026-09-23",
+   "publisher": "Maison Marc-Antoine Barrois"
+  }
+ ],
+ "category": "香水美妆",
+ "tags": [
+  "娇兰",
+  "一千零一夜",
+  "午夜飞行",
+  "东方香调",
+  "格拉斯",
+  "蜜蜂瓶",
+  "香水"
+ ],
+ "subtitle": "从圣奥诺雷街 42 号到一千零一夜：娇兰的经典香水、新旧版本、浓香淡香、规格产地与价格",
+ "reader": "想买第一支娇兰、或想知道手上那支和老版差在哪的人",
+ "theme": {
+  "token": "guerlain-abeille",
+  "hero_motif": "bee_comb_axis",
+  "hero_note": "以蓝釉金蜂的蜜蜂瓶剪影与蜂巢六边形构成母题，取“皇室授权”与“格拉斯田间”两层意象。"
+ },
+ "generated_date": "2026-09-25",
+ "data_as_of": "2026-09",
+ "research_mode": "online",
+ "reading_minutes": 17,
+ "created_date": "2026-09-23",
+ "site": {
+  "url": "https://guerlain-gtqdc11h6po.qoder.website/",
+  "project_id": "01a0d72d-1214-7b2e-a34a-fb8b007ead46",
+  "slug": "guerlain",
+  "content_sha": "5ef9cfb9e25f0d0f",
+  "published_date": "2026-09-25",
+  "access": "public"
+ }
+}

@@ -1,0 +1,276 @@
+{
+  "topic": "百达翡丽",
+  "category": "腕表",
+  "tags": [
+    "百达翡丽",
+    "Nautilus",
+    "复杂功能",
+    "拍卖"
+  ],
+  "cover": null,
+  "subtitle": "百达翡丽：从起源到价格的十分钟专题",
+  "reader": "跑测试的人",
+  "lede": "这段导语用来验证页面级串联文案的渲染位置。",
+  "generated_date": "2026-09-19",
+  "theme": {
+    "token": "patek-calatrava"
+  },
+  "data_as_of": "2026-09",
+  "research_mode": "online",
+  "sections": [
+    {
+      "id": "sec-prose",
+      "title": "正文与引言",
+      "anchor": "文",
+      "intro": "这一章验证 prose 与 quote。",
+      "images": [],
+      "blocks": [
+        {
+          "type": "prose",
+          "heading": "小标题",
+          "text": "第一段正文，需要满足 schema 的最短长度要求，因此这里补足足够的汉字内容以便通过校验。第二段用空行分隔，模板应拆成两个 <p> 呈现。\n\n第二段正文，验证多段落切分逻辑是否生效。"
+        },
+        {
+          "type": "quote",
+          "text": "一句有出处的话。",
+          "who": "某人",
+          "when": "1931",
+          "source_ids": [
+            "S1"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-tables",
+      "title": "表格类区块",
+      "anchor": "表",
+      "images": [],
+      "blocks": [
+        {
+          "type": "keyvalue_table",
+          "caption": "键值对照",
+          "rows": [
+            {
+              "k": "创立",
+              "v": "1832 年",
+              "source_ids": [
+                "S1"
+              ]
+            },
+            {
+              "k": "总部",
+              "v": "某地"
+            }
+          ]
+        },
+        {
+          "type": "price_table",
+          "as_of": "2026-09",
+          "columns": [
+            "型号",
+            "公价"
+          ],
+          "rows": [
+            {
+              "cells": [
+                "入门款",
+                "3.2 万元"
+              ],
+              "source_ids": [
+                "S2"
+              ]
+            },
+            {
+              "cells": [
+                "进阶款",
+                "7.8 万元"
+              ],
+              "note": "含选装",
+              "source_ids": [
+                "S2"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sec-timeline",
+      "title": "时间线",
+      "anchor": "史",
+      "blocks": [
+        {
+          "type": "timeline",
+          "items": [
+            {
+              "year": "1931",
+              "title": "起点",
+              "text": "第一件作品诞生。",
+              "source_ids": [
+                "S1"
+              ]
+            },
+            {
+              "year": "1983",
+              "title": "转折",
+              "text": "换帅后重新定位。"
+            },
+            {
+              "year": "2020s",
+              "title": "当代",
+              "text": "进入新阶段。"
+            }
+          ]
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "sec-cards",
+      "title": "卡片与步骤",
+      "anchor": "卡",
+      "blocks": [
+        {
+          "type": "card_grid",
+          "heading": "三种选择",
+          "cards": [
+            {
+              "kicker": "入门",
+              "title": "卡选一",
+              "body": "这一张卡说明适合什么人、为什么值得买。",
+              "metrics": [
+                {
+                  "label": "价格",
+                  "value": "3 万起",
+                  "source_ids": [
+                    "S2"
+                  ]
+                }
+              ]
+            },
+            {
+              "kicker": "进阶",
+              "title": "卡选二",
+              "body": "这一张卡说明上一档换来的是什么。"
+            }
+          ]
+        },
+        {
+          "type": "steps",
+          "title": "操作步骤",
+          "items": [
+            {
+              "n": 1,
+              "title": "准备",
+              "text": "先把材料齐备。",
+              "spec": "92℃"
+            },
+            {
+              "n": 2,
+              "title": "执行",
+              "text": "按顺序操作即可。"
+            },
+            {
+              "n": 3,
+              "title": "收尾",
+              "text": "记录结果。"
+            }
+          ]
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "sec-facts",
+      "title": "事实条与对照",
+      "anchor": "据",
+      "blocks": [
+        {
+          "type": "fact_strip",
+          "facts": [
+            {
+              "value": "1200+",
+              "label": "已开发机芯",
+              "source_ids": [
+                "S1"
+              ]
+            },
+            {
+              "value": "±2 秒",
+              "label": "厂内公差",
+              "hint": "每日",
+              "source_ids": [
+                "S2"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "compare",
+          "left": {
+            "title": "适合买",
+            "tone": "pro",
+            "points": [
+              "在意机芯",
+              "预算有限"
+            ]
+          },
+          "right": {
+            "title": "不适合买",
+            "tone": "con",
+            "points": [
+              "在意转手价"
+            ]
+          },
+          "verdict": "结论：把预算花在你在意的维度上。"
+        }
+      ],
+      "images": []
+    },
+    {
+      "id": "sec-notes",
+      "title": "提示区块",
+      "anchor": "醒",
+      "blocks": [
+        {
+          "type": "note",
+          "tone": "myth",
+          "title": "误解",
+          "text": "深色不等于浓，萃取不足才会苦。"
+        },
+        {
+          "type": "note",
+          "tone": "tip",
+          "text": "建议先买好的磨豆机，再考虑咖啡机。"
+        },
+        {
+          "type": "note",
+          "tone": "warn",
+          "text": "珍稀皮革存在动物福利争议，购买前自行判断。"
+        },
+        {
+          "type": "note",
+          "tone": "glossary",
+          "title": "名词",
+          "text": "公价指品牌官方零售价，不含税与选装。"
+        }
+      ],
+      "images": []
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "url": "https://example.com/one",
+      "label": "来源一",
+      "publisher": "示例出版社",
+      "retrieved": "2026-09-19"
+    },
+    {
+      "id": "S2",
+      "url": "https://example.com/two",
+      "label": "来源二"
+    }
+  ]
+}

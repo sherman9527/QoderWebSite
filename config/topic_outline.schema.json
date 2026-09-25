@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://knoweverything.local/config/topic_outline.schema.json",
+  "title": "领域大纲配置",
+  "type": "object",
+  "required": [
+    "topic",
+    "category",
+    "tags",
+    "theme",
+    "reading_target_minutes",
+    "sections"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "topic": {
+      "type": "string",
+      "minLength": 1,
+      "description": "领域名，同时用作产物目录与文件名前缀"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "开场副标题，一句话交代这页讲什么"
+    },
+    "reader": {
+      "type": "string",
+      "description": "目标读者画像"
+    },
+    "theme": {
+      "type": "object",
+      "required": [
+        "token"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$",
+          "description": "指向 web/src/tokens/<token>.ts 的主题标识"
+        },
+        "hero_motif": {
+          "type": "string",
+          "description": "本页唯一记忆点的类型标识，例如 roast_axis / movement_lineart / quota_ratio"
+        },
+        "hero_note": {
+          "type": "string",
+          "description": "给设计者的一句话说明这个记忆点要表达什么"
+        }
+      }
+    },
+    "reading_target_minutes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 60,
+      "description": "目标阅读时长，用于换算正文篇幅闸门"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "angle",
+          "block_types",
+          "image_queries",
+          "fact_prompts"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$",
+            "description": "章节稳定标识，供 --only 与闸门定位使用"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "anchor": {
+            "type": "string",
+            "description": "章节目录里显示的单字锚点，例如 史/牌/价"
+          },
+          "angle": {
+            "type": "string",
+            "minLength": 8,
+            "description": "这一章的讲述角度，决定内容取舍，不是标题的同义复述"
+          },
+          "block_types": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "$ref": "#/$defs/blockType"
+            }
+          },
+          "min_words": {
+            "type": "integer",
+            "minimum": 100
+          },
+          "max_words": {
+            "type": "integer",
+            "minimum": 100
+          },
+          "image_queries": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 2
+            }
+          },
+          "fact_prompts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 4
+            },
+            "description": "联网取料阶段要查证的具体问题，每个都期待一个可溯源答案"
+          }
+        }
+      }
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1,
+      "description": "索引主页的一级归类，例如 腕表 / 箱包时装 / 汽车 / 饮食风物"
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "归档与检索用标签；索引页按 tag 做二次筛选"
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "description": "领域的其他称呼（尤其中英文品牌名）。配图检索与相关性判定要求图片点名领域本身，而大纲检索词里未必写全：自动推导只收「在 3 章以上检索词里出现过的拉丁词」，rolex / hermes 这种只在 2 章出现的就漏了。写在这里属于领域数据，不必改代码。"
+    },
+    "image_exclude_pages": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^https?://"
+      },
+      "description": "人工排除的来源页（前缀匹配）。联络表肉眼抓到的错图——同名公司的会议照、品牌字标面板——标题里往往带着品牌词，评分与闸门都拦不住；没有这个声明位，下一次 --redo-images 会把它原样抓回来（W-120）。"
+    },
+    "image_primary_subject": {
+      "type": "string",
+      "minLength": 1,
+      "description": "第二档「品牌单词」检索与补检索词要用的名字。默认取领域名拆出来的第一个够长的词——`Muse产业逻辑` 就会退到 `muse`，而中文图搜里 muse 是英国摇滚乐队与一家同名手术机器人，它们的标题确实带着 muse，点名闸门拦不住，只能一张张往排除表里加。声明一个本来就在 aliases 里的词即可，声明不认识的词不生效。"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+      "description": "发布到托管之后的地址前缀。必须人写：自动转写（拼音/哈希）会让地址没人能念也没人能预期，而一旦发出去就改不掉——改名等于换 URL。"
+    }
+  },
+  "$defs": {
+    "blockType": {
+      "type": "string",
+      "enum": [
+        "prose",
+        "keyvalue_table",
+        "timeline",
+        "price_table",
+        "card_grid",
+        "steps",
+        "quote",
+        "fact_strip",
+        "bar_chart",
+        "compare",
+        "note"
+      ]
+    }
+  }
+}

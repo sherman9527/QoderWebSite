@@ -1,0 +1,1019 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://knoweverything.local/config/topic_data.schema.json",
+  "title": "领域内容数据（渲染输入）",
+  "type": "object",
+  "required": [
+    "topic",
+    "category",
+    "generated_date",
+    "theme",
+    "sections",
+    "sources"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "topic": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "reader": {
+      "type": "string"
+    },
+    "lede": {
+      "type": "string",
+      "description": "页面级导语，由单独一次调用生成以串联全篇语气"
+    },
+    "generated_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "created_date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+      "description": "这篇第一次上架是哪天。写一次、重渲染不改（索引排序用它，不用 generated_date）。W-145 之后一篇只留一页、文件名不带日期，没有别的地方能反推它。"
+    },
+    "theme": {
+      "type": "object",
+      "required": [
+        "token"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "token": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "hero_motif": {
+          "type": "string"
+        },
+        "hero_note": {
+          "type": "string"
+        }
+      }
+    },
+    "cover": {
+      "$ref": "#/$defs/image",
+      "description": "声明式封面。不写则退回「最宽的一张」——那条规则会选中排行榜截图与宣传横幅（它们的像素宽度天然最大），索引卡片上就被裁掉半截文字。"
+    },
+    "data_as_of": {
+      "type": "string",
+      "description": "全页时效声明，例如 2026-09"
+    },
+    "research_mode": {
+      "type": "string",
+      "enum": [
+        "online",
+        "offline",
+        "replay"
+      ],
+      "description": "内容是否经过联网查证；offline 时页面须出现未查证声明"
+    },
+    "sections": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "blocks"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9-]*$"
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "anchor": {
+            "type": "string"
+          },
+          "intro": {
+            "type": "string"
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/image"
+            }
+          },
+          "blocks": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "type"
+              ],
+              "properties": {
+                "type": {
+                  "$ref": "#/$defs/blockType"
+                }
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/prose"
+                },
+                {
+                  "$ref": "#/$defs/keyvalueTable"
+                },
+                {
+                  "$ref": "#/$defs/timeline"
+                },
+                {
+                  "$ref": "#/$defs/priceTable"
+                },
+                {
+                  "$ref": "#/$defs/cardGrid"
+                },
+                {
+                  "$ref": "#/$defs/steps"
+                },
+                {
+                  "$ref": "#/$defs/quote"
+                },
+                {
+                  "$ref": "#/$defs/factStrip"
+                },
+                {
+                  "$ref": "#/$defs/barChart"
+                },
+                {
+                  "$ref": "#/$defs/compare"
+                },
+                {
+                  "$ref": "#/$defs/note"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "description": "全页来源登记表，正文按 id 引用",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "url"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          },
+          "url": {
+            "type": "string",
+            "pattern": "^https?://"
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "publisher": {
+            "type": "string"
+          },
+          "retrieved": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "category": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string"
+      }
+    },
+    "reading_minutes": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "生成阶段用 validate.reading_minutes 算好；模板只显示，不再自己数"
+    },
+    "site": {
+      "type": "object",
+      "required": [
+        "url",
+        "project_id",
+        "content_sha"
+      ],
+      "additionalProperties": false,
+      "description": "这一篇发布到托管之后的记录。权威源在这里，`web_list.md` 只是它的派生物。`content_sha` 是发出去那份包的字节的哈希汇总——它让「本地比线上新」这件事可见，否则卡片上「在线看」会指向一个不知道是哪版的版本。`project_id` 必填：URL 说不出它属于哪个站，下一次更新就得凭记忆认站，而这件事我已经错过一次（把访问策略改到了另一个草稿站上）。",
+      "properties": {
+        "url": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "project_id": {
+          "type": "string",
+          "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+          "description": "托管侧的 projectId（prepare_site / get_site 返回）。更新这一篇时用它定位站点"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "content_sha": {
+          "type": "string"
+        },
+        "published_date": {
+          "type": "string"
+        },
+        "access": {
+          "type": "string",
+          "enum": [
+            "private",
+            "selected",
+            "public",
+            "organization"
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "blockType": {
+      "type": "string",
+      "enum": [
+        "prose",
+        "keyvalue_table",
+        "timeline",
+        "price_table",
+        "card_grid",
+        "steps",
+        "quote",
+        "fact_strip",
+        "bar_chart",
+        "compare",
+        "note"
+      ]
+    },
+    "sourceRef": {
+      "type": "object",
+      "required": [
+        "source_ids"
+      ],
+      "properties": {
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "prose": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "prose"
+        },
+        "heading": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 40
+        },
+        "emphasis": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "keyvalueTable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "rows"
+      ],
+      "properties": {
+        "type": {
+          "const": "keyvalue_table"
+        },
+        "heading": {
+          "type": "string",
+          "description": "区块小标题；模板统一渲染成 <h3>"
+        },
+        "caption": {
+          "type": "string"
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "k",
+              "v"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "k": {
+                "type": "string",
+                "minLength": 1
+              },
+              "v": {
+                "type": "string",
+                "minLength": 1
+              },
+              "has_number": {
+                "type": "boolean"
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]{1,4}$"
+                }
+              }
+            }
+          }
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "timeline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "timeline"
+        },
+        "heading": {
+          "type": "string",
+          "description": "区块小标题；模板统一渲染成 <h3>"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "year",
+              "text"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "year": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 16,
+                "description": "时间轴左栏的显示标签，模板原样印出、没有任何代码解析或按它排序。所以只约束「短」，不用正则枚举合法写法——1931 / 2023/24 / 约1900 / 前5世纪 / 1960年代 / 2022.11–2023.9 都是对的写法"
+              },
+              "title": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 4
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]{1,4}$"
+                }
+              }
+            }
+          }
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "priceTable": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "as_of",
+        "columns",
+        "rows"
+      ],
+      "properties": {
+        "type": {
+          "const": "price_table"
+        },
+        "heading": {
+          "type": "string",
+          "description": "区块小标题；模板统一渲染成 <h3>"
+        },
+        "as_of": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}$",
+          "description": "价格时点，需求 2 时效口径"
+        },
+        "columns": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string"
+          }
+        },
+        "rows": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "cells",
+              "source_ids"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "cells": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string"
+                }
+              },
+              "note": {
+                "type": "string"
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]{1,4}$"
+                }
+              }
+            }
+          }
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "cardGrid": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "cards"
+      ],
+      "properties": {
+        "type": {
+          "const": "card_grid"
+        },
+        "columns": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4
+        },
+        "cards": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "title",
+              "body"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "kicker": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string",
+                "minLength": 6
+              },
+              "metrics": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "label",
+                    "value"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "label": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "string"
+                    },
+                    "source_ids": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "pattern": "^S[0-9]{1,4}$"
+                      }
+                    }
+                  }
+                }
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]{1,4}$"
+                }
+              }
+            }
+          }
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        },
+        "heading": {
+          "type": "string"
+        }
+      }
+    },
+    "steps": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "items"
+      ],
+      "properties": {
+        "type": {
+          "const": "steps"
+        },
+        "heading": {
+          "type": "string",
+          "description": "区块小标题；模板统一渲染成 <h3>"
+        },
+        "title": {
+          "type": "string"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object",
+            "required": [
+              "n",
+              "text"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "n": {
+                "type": [
+                  "integer",
+                  "string"
+                ]
+              },
+              "title": {
+                "type": "string"
+              },
+              "text": {
+                "type": "string",
+                "minLength": 4
+              },
+              "spec": {
+                "type": "string"
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]{1,4}$"
+                }
+              }
+            }
+          }
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "quote": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "quote"
+        },
+        "heading": {
+          "type": "string",
+          "description": "区块小标题；模板统一渲染成 <h3>"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 10
+        },
+        "who": {
+          "type": "string"
+        },
+        "when": {
+          "type": "string"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "factStrip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "facts"
+      ],
+      "properties": {
+        "type": {
+          "const": "fact_strip"
+        },
+        "heading": {
+          "type": "string",
+          "description": "区块小标题；模板统一渲染成 <h3>"
+        },
+        "facts": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": [
+              "value",
+              "label",
+              "source_ids"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "value": {
+                "type": "string",
+                "minLength": 1
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "hint": {
+                "type": "string"
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]{1,4}$"
+                }
+              }
+            }
+          }
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "barChart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "bars"
+      ],
+      "properties": {
+        "type": {
+          "const": "bar_chart"
+        },
+        "heading": {
+          "type": "string",
+          "description": "图表小标题；要说清是哪一份评测、谁跑的、什么时候——没有这三样，分数就是没头没尾的断言"
+        },
+        "unit": {
+          "type": "string",
+          "description": "数值单位，标在柱子末端（分 / % / 元 / 秒）"
+        },
+        "max": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "刻度上限；省略则按最大柱值算。不要为了放大差距而截断坐标轴"
+        },
+        "as_of": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}$",
+          "description": "榜单时点 YYYY-MM；评测每月都在变，没有时点的分数等于没有分数"
+        },
+        "bars": {
+          "type": "array",
+          "minItems": 2,
+          "description": "至少两根才有比较意义",
+          "items": {
+            "type": "object",
+            "required": [
+              "label",
+              "value",
+              "source_ids"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "value": {
+                "type": "number"
+              },
+              "note": {
+                "type": "string"
+              },
+              "source_ids": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]{1,4}$"
+                }
+              }
+            }
+          }
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "compare": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "left",
+        "right"
+      ],
+      "properties": {
+        "type": {
+          "const": "compare"
+        },
+        "heading": {
+          "type": "string",
+          "description": "区块小标题；模板统一渲染成 <h3>"
+        },
+        "left": {
+          "type": "object",
+          "required": [
+            "title",
+            "points"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "tone": {
+              "type": "string",
+              "enum": [
+                "pro",
+                "con",
+                "neutral"
+              ]
+            },
+            "points": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "right": {
+          "type": "object",
+          "required": [
+            "title",
+            "points"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "tone": {
+              "type": "string",
+              "enum": [
+                "pro",
+                "con",
+                "neutral"
+              ]
+            },
+            "points": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "verdict": {
+          "type": "string"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "note": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "tone",
+        "text"
+      ],
+      "properties": {
+        "type": {
+          "const": "note"
+        },
+        "heading": {
+          "type": "string",
+          "description": "区块小标题；模板统一渲染成 <h3>"
+        },
+        "tone": {
+          "type": "string",
+          "enum": [
+            "tip",
+            "warn",
+            "myth",
+            "glossary"
+          ]
+        },
+        "title": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string",
+          "minLength": 10
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "required": [
+        "file",
+        "alt"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "file": {
+          "type": "string",
+          "pattern": "^images/[0-9]{2}_.+\\.(jpg|jpeg|png|gif|webp)$"
+        },
+        "alt": {
+          "type": "string",
+          "minLength": 2
+        },
+        "caption": {
+          "type": "string"
+        },
+        "source_page": {
+          "type": "string",
+          "pattern": "^https?://"
+        },
+        "kind": {
+          "enum": [
+            "photo",
+            "illustration"
+          ],
+          "description": "缺省即 photo（引用图，必须有 source_page，红线 R-03）。illustration 是本项目自己画的示意图：它没有来源页，所以禁止带 source_page（带了就能冒充引用图），改为必须带 based_on。开发者 2026-09-24 授权改此条，见 memo D-22。"
+        },
+        "based_on": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 2
+          },
+          "minItems": 1,
+          "description": "示意图：画的是正文里哪几条已溯源事实，形如 `章节id#要点`。这是它的追责路径——画错了要能指出它声称画的是什么；空着就等于放行一张没人能对证的图。"
+        },
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "query": {
+          "type": "string",
+          "description": "这张图是被哪条检索词搜出来的。跑题图要能分清是检索词没点名领域（改大纲能救）还是点名了但检索引擎就给脏页（改规则也没用）——没有这个字段就只能靠推理。"
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "illustration"
+              }
+            },
+            "required": [
+              "kind"
+            ]
+          },
+          "then": {
+            "required": [
+              "based_on"
+            ],
+            "not": {
+              "required": [
+                "source_page"
+              ]
+            }
+          },
+          "else": {
+            "required": [
+              "source_page"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

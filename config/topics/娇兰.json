@@ -1,0 +1,281 @@
+{
+  "topic": "娇兰",
+  "category": "香水美妆",
+  "tags": [
+    "娇兰",
+    "一千零一夜",
+    "午夜飞行",
+    "东方香调",
+    "格拉斯",
+    "蜜蜂瓶",
+    "香水"
+  ],
+  "aliases": [
+    "Guerlain"
+  ],
+  "subtitle": "从圣奥诺雷街 42 号到一千零一夜：娇兰的经典香水、新旧版本、浓香淡香、规格产地与价格",
+  "reader": "想买第一支娇兰、或想知道手上那支和老版差在哪的人",
+  "theme": {
+    "token": "guerlain-abeille",
+    "hero_motif": "bee_comb_axis",
+    "hero_note": "以蓝釉金蜂的蜜蜂瓶剪影与蜂巢六边形构成母题，取“皇室授权”与“格拉斯田间”两层意象。"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：圣奥诺雷街 42 号，与三代调香师",
+      "anchor": "史",
+      "angle": "1828 年 Pierre-François Pascal Guerlain 开店、1853 年为欧仁妮皇后调出“皇家蜜蜂水”拿到皇室授权、之后三代家族调香师（Jacques、Pierre、Jean-Paul）各自定下的一支代表作，以及 1994 年被 LVMH 收走之后“家族”与“品牌”的关系怎么变。",
+      "block_types": [
+        "prose",
+        "timeline",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "Guerlain Champs-Elysees maison",
+        "娇兰 创始人",
+        "Guerlain 香水瓶 1853",
+        "娇兰 门店 巴黎"
+      ],
+      "fact_prompts": [
+        "1828 年创立时的地址与首支配方",
+        "1853 年欧仁妮皇后委托的是哪支香水、为何改名",
+        "三代家族调香师各自代表作与年份",
+        "哪一年被 LVMH 收购、调香师任期到什么时候结束"
+      ]
+    },
+    {
+      "id": "shalimar",
+      "title": "一千零一夜：东方香调的样板，和被改过的配方",
+      "anchor": "夜",
+      "angle": "1925 年 Jacques Guerlain 以娇兰的“东方调”模板做出来的这支，佛手柑—香草—零陵香豆的骨架后来成了整个品类的参照物。要讲清它的前中后调、历次改版动了什么、以及今天买的和 30 年前的是不是同一支。",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "timeline"
+      ],
+      "image_queries": [
+        "Guerlain Shalimar",
+        "娇兰 一千零一夜",
+        "Shalimar 香精 瓶",
+        "娇兰 Shalimar 广告"
+      ],
+      "fact_prompts": [
+        "1925 年推出时的调香师与命名来源",
+        "前中后调的具体香料清单",
+        "香草与佛手柑在配方里的占比区间",
+        "历次改版（年份、动了哪味原料）"
+      ]
+    },
+    {
+      "id": "vol-de-nuit",
+      "title": "午夜飞行：为一次夜航写下的绿意醛香",
+      "anchor": "航",
+      "angle": "1933 年 Suzy Guerlain 坐夜航航班后提出的题目，Jacques Guerlain 用鸢尾、没药和绿意醛香答的这支。它和一千零一夜是同门但性格相反——一个暖、一个冷。这一章要给出配方骨架、现存浓度、以及为什么它比前两支更挑场合。",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "price_table"
+      ],
+      "image_queries": [
+        "Guerlain Vol de Nuit",
+        "娇兰 午夜飞行",
+        "Vol de Nuit 香水瓶",
+        "娇兰 午夜飞行 广告"
+      ],
+      "fact_prompts": [
+        "1933 年推出的委托人与灵感来源",
+        "主调香料（鸢尾、没药等）与香调归属",
+        "今天在售的浓度与容量",
+        "中国大陆官方现价与同门两支的价差"
+      ]
+    },
+    {
+      "id": "classics",
+      "title": "另外四支经典：Jicky、蓝色时刻、蝴蝶兰、香根电光",
+      "anchor": "典",
+      "angle": "Jicky（1889）是第一支“用合成原料写情绪”的现代香水；L'Heure Bleue（1912）写黄昏；Mitsouko（1919）用西桃醛做出桃子的腐烂感；Chamade（1969）是第三代 Pierre 的作品。四支放一起，才看得懂“娇兰=东方调”这个标签有多不完整。",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "timeline"
+      ],
+      "image_queries": [
+        "Guerlain L'Heure Bleue",
+        "娇兰 Jicky",
+        "Guerlain Mitsouko 瓶",
+        "娇兰 蓝色时刻",
+        "娇兰 Chamade"
+      ],
+      "fact_prompts": [
+        "四支各自的年份与调香师",
+        "每支的香调家族与关键原料",
+        "今天还在生产的有哪几支、什么浓度",
+        "Jicky 为什么被称为第一支现代香水"
+      ]
+    },
+    {
+      "id": "concentrations",
+      "title": "浓香与淡香：Extrait、EDP、EDT、Cologne 差在哪",
+      "anchor": "浓",
+      "angle": "同一支名字下四个浓度不是“浓一点淡一点”这么简单：香精百分比决定留香时长，也决定前中后调的比例——同一支 EDP 和 Extrait 闻起来经常不像同一支。娇兰是少数还保留 Extrait 与 Cologne 两端的品牌，这一章给区间和实测留香。",
+      "block_types": [
+        "prose",
+        "price_table",
+        "steps"
+      ],
+      "image_queries": [
+        "Guerlain advertisement poster",
+        "娇兰 香精 Extrait",
+        "香水 EDP EDT 区别",
+        "娇兰 古龙水"
+      ],
+      "fact_prompts": [
+        "四档浓度的香精百分比区间（行业口径与娇兰口径）",
+        "各档在皮肤上的实测留香时长范围",
+        "娇兰今天为一千零一夜实际出到哪几档",
+        "同名不同浓度的官方价差"
+      ]
+    },
+    {
+      "id": "versions",
+      "title": "新版与老版：配方到底被什么改过",
+      "anchor": "版",
+      "angle": "改配方有三条来路：IFRA 的原料限制（橡苔、动物香等）、集团的成本结构、以及调香师换代。老版贵是因为“旧的一批”不可再生，但哪些差异是真的、哪些只是怀旧叙事，要按能查到的改动年份来分。",
+      "block_types": [
+        "prose",
+        "compare",
+        "note"
+      ],
+      "image_queries": [
+        "Guerlain Meteorites powder",
+        "娇兰 老版 香水瓶",
+        "Guerlain vintage 配方",
+        "娇兰 复刻 限量"
+      ],
+      "fact_prompts": [
+        "IFRA 限制掉的关键原料与生效年份",
+        "一千零一夜/午夜飞行可查到的改版年份",
+        "老版与新版可辨识的差异点（瓶身、批号、包装）",
+        "品牌自己出过的复刻或限量版本名称"
+      ]
+    },
+    {
+      "id": "bottles",
+      "title": "规格与瓶身：蜜蜂瓶、Coffret 与每毫升单价",
+      "anchor": "瓶",
+      "angle": "Bee Bottle 的蓝釉金蜂是 1853 年为皇后设计的“水瓶”造型延续下来的，今天只在部分系列上出现——它是限量溢价的一部分，不是所有规格都有的包装。这一章把容量、瓶型、单价排开，回答“买大瓶到底省不省”。",
+      "block_types": [
+        "prose",
+        "price_table",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "Guerlain bee bottle",
+        "娇兰 蜜蜂瓶 Abeille",
+        "Guerlain Coffret 套装",
+        "娇兰 香水瓶 设计"
+      ],
+      "fact_prompts": [
+        "主流容量档位（30/50/75/100ml 等）与官方价",
+        "换算后的每毫升单价与最大差价",
+        "Bee Bottle 的起源年份与现在用在哪些系列",
+        "Coffret 套装包含什么、是否更划算"
+      ]
+    },
+    {
+      "id": "ingredients",
+      "title": "原料与产地：格拉斯的五月玫瑰、茉莉与香根草",
+      "anchor": "材",
+      "angle": "娇兰从 19 世纪起在格拉斯包田，五月玫瑰与茉莉的采收窗口只有几周，这决定了“同一支配方每年味道有细微差别”。产地、品种、采收时间、浸膏出率这四件事讲清楚，才讲得清贵在哪里。",
+      "block_types": [
+        "prose",
+        "fact_strip",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "Guerlain Grasse rose harvest",
+        "格拉斯 五月玫瑰 采收",
+        "娇兰 茉莉 田间",
+        "Guerlain 香根草"
+      ],
+      "fact_prompts": [
+        "娇兰在格拉斯的专属田起始年份与面积",
+        "五月玫瑰与千叶玫瑰的区别、各自用在哪些作品",
+        "生产 1 公斤浸膏需要多少公斤鲜花",
+        "现在仍从法国/其他产地采购的关键原料清单"
+      ]
+    },
+    {
+      "id": "price",
+      "title": "价格：专柜、免税、限量与老版收藏价",
+      "anchor": "价",
+      "angle": "同一支的三个价：中国大陆专柜价、免税与海外价差、以及停产老版在二手市场的成交价。限量系列（L'Art & la Matière）另成一个价格带。把这三层摆开，才知道“娇兰贵”贵在哪一层。",
+      "block_types": [
+        "prose",
+        "price_table",
+        "compare"
+      ],
+      "image_queries": [
+        "Guerlain Champs-Elysees maison",
+        "娇兰 专柜 价格",
+        "Guerlain 免税 香水",
+        "娇兰 老版 拍卖"
+      ],
+      "fact_prompts": [
+        "一千零一夜与午夜飞行当前官方容量价格表",
+        "海南离岛免税/欧洲免税与专柜的典型价差",
+        "L'Art & la Matière 限量系列的价格带",
+        "老版（如 20 年前的 Extrait）二手成交价区间与来源"
+      ]
+    },
+    {
+      "id": "buying",
+      "title": "怎么买：试香、分装、保存与老版真伪",
+      "anchor": "购",
+      "angle": "香水是少数“买前无法验证、买后不可退”的品类。这一章给可操作的部分：怎么试（闻香纸与皮肤各测什么）、分装的风险在哪、家里怎么存才不加速变质、以及想买老版时能查的几处真伪点。",
+      "block_types": [
+        "prose",
+        "steps",
+        "note"
+      ],
+      "image_queries": [
+        "Guerlain advertisement poster",
+        "香水 试香 闻香纸",
+        "香水 分装 喷瓶",
+        "香水 保存 避光"
+      ],
+      "fact_prompts": [
+        "正确的试香步骤与观察时间点",
+        "分装的三个主要风险（氧化、污染、浓度变化）",
+        "家庭保存的条件与变质可辨识信号",
+        "老版香水的真伪检查点（批号、瓶底、喷头）"
+      ]
+    },
+    {
+      "id": "wear",
+      "title": "怎么穿：季节、场合，与它在皮肤上的变化",
+      "anchor": "穿",
+      "angle": "东方调在夏天会闷、绿意调在冬天会薄；同一支在不同人的皮肤酸碱与体温上走向不同。这一章不讲礼仪，讲可验证的：喷点、用量、季节适配，以及为什么会“闻起来不像别人身上那支”。",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "quote"
+      ],
+      "image_queries": [
+        "Guerlain Shalimar",
+        "娇兰 香水 使用",
+        "东方香调 冬季",
+        "香水 皮肤 变化"
+      ],
+      "fact_prompts": [
+        "四支经典各自适合的季节与场合",
+        "喷点数量与留香时长的关系",
+        "皮肤 pH 与体温如何改变气味走向",
+        "品牌自己给的用量建议"
+      ]
+    }
+  ],
+  "slug": "guerlain"
+}

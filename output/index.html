@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>知识专题索引</title>
+<meta name="description" content="按类别归档的科普长文索引，每篇约十分钟读完。">
+<!--template-fingerprint:{"blocks":["prose","keyvalue_table","timeline","price_table","card_grid","steps","quote","fact_strip","bar_chart","compare","note"],"rev":"ke-template-1"}-->
+<!--index-document-->
+<style>:root{
+  --pad:clamp(1.1rem, 4vw, 5rem);
+  --cap:168rem;
+  --col:min(100% - var(--pad) * 2, var(--cap));
+  /* 文章版心与索引版心是两回事：索引是照片墙，越宽越好；
+     文章是长文，宽度用来放"结构"（目录栏 + 正文列），不是用来拉长句子。
+     一条列只有一个右边界：封面、正文、图、表、卡片全部收在同一个边上。
+     以前正文 44rem、图 50rem、表格/卡片撑满"正文 + 24rem 余量"，
+     三条边差到 384px，开发者实测反馈"看上去很不平整"（W-81）。
+     外壳 = 目录栏 14 + 间距 2.5 + 正文列 46，正好等于「一栏 + 正文列」，
+     封面标题才和正文左边缘对齐、右边缘也一起收口。 */
+  --shell:min(100% - var(--pad) * 2, 62.5rem);
+  --rail:14rem;
+  --measure:46rem;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#FFFFFF;color:#1F1F23;
+  font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',system-ui,sans-serif;
+  font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid #FF2442;outline-offset:2px;border-radius:6px}
+
+.bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid #EFEFF1}
+.bar-in{width:var(--col);margin:0 auto;padding:.7rem 0;display:flex;align-items:center;gap:1rem}
+.brand{display:flex;align-items:center;gap:.45rem;font-size:1.02rem;font-weight:600;flex:none}
+.brand i{width:1.35rem;height:1.35rem;border-radius:5px;background:#FF2442;color:#fff;
+  display:grid;place-items:center;font-style:normal;font-size:.72rem;font-weight:700}
+.tabs{display:flex;gap:.35rem;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;font-size:.85rem;padding:.3rem .8rem;border-radius:999px;color:#73737B;
+  white-space:nowrap;font-weight:500;overflow-wrap:anywhere}
+.tab:hover{color:#1F1F23;background:#F5F5F6}
+.tab i{font-style:normal;font-size:.7rem;opacity:.6;margin-left:.25rem}
+.tally{flex:none;font-size:.74rem;color:#73737B;font-family:ui-monospace,Consolas,monospace}
+
+.head{width:var(--col);margin:0 auto;padding:clamp(1.2rem,2.5vw,2.2rem) 0 .2rem}
+.head h1{font-size:clamp(1.5rem,2.2vw,2.4rem);font-weight:600;letter-spacing:-.015em;margin:0}
+.head p{margin:.3rem 0 0;color:#73737B;font-size:.86rem;max-width:56ch}
+
+.sortbar{width:var(--col);margin:0 auto;padding:.7rem 0 0;display:flex;align-items:center;
+  gap:.4rem;font-size:.76rem;color:#73737B;flex-wrap:wrap}
+.sortbar input{position:absolute;width:1px;height:1px;opacity:0}
+.sortbar label{font-size:.75rem;padding:.22rem .62rem;border-radius:999px;
+  border:1px solid #EFEFF1;color:#73737B;cursor:pointer;white-space:nowrap}
+.sortbar label:hover{color:#1F1F23;background:#F5F5F6}
+.sortbar input:checked+label{background:#1F1F23;border-color:#1F1F23;color:#fff}
+.sortbar input:focus-visible+label{outline:2px solid #FF2442;outline-offset:2px}
+
+.grp{width:var(--col);margin:0 auto;padding:clamp(1.2rem,2.2vw,2rem) 0 0}
+.feed{display:grid;gap:clamp(.7rem,1.2vw,1.1rem);
+  grid-template-columns:repeat(auto-fill,minmax(min(19rem,100%),1fr))}
+
+.card{display:flex;flex-direction:column;min-width:0;position:relative;order:var(--desc,0);
+  border:1px solid #EFEFF1;border-radius:12px;overflow:hidden;background:#fff;
+  transition:transform .16s ease,box-shadow .16s ease}
+/* 排序是纯 CSS：DOM 已经是创建时间升序，默认 --desc 显示"最新在前"，
+   勾"最早在前"就把 order 换成 --asc。不支持 :has() 的浏览器退化成"最新在前"，
+   只是切换失效——不为了一个排序按钮给自包含产物引运行时 JS。
+   祖先必须写 body 而不是 .feed：radio 在 .sortbar 里，不是 .feed 的后代，
+   「.feed:has(#sort-old:checked)」永远匹配不上（真浏览器里验过一次，顺序纹丝不动）。 */
+body:has(#sort-old:checked) .card{order:var(--asc,0)}
+.card:hover{transform:translateY(-2px);box-shadow:0 12px 28px -14px rgba(20,20,25,.28)}
+a[id^="cat-"]{scroll-margin-top:4.2rem}
+.ph{position:relative;background:var(--soft,#F2F2F4);overflow:hidden}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+/* 无封面时的排版层：字压在渐变的浅色带（soft 停在 60%）上，
+   所以用主题自己的 primary 就够读，不需要额外描边。 */
+.ph-word{position:absolute;left:.6rem;right:.6rem;top:58%;transform:translateY(-50%);
+  text-align:center;font-size:clamp(1.45rem,3.2vw,2.5rem);font-weight:700;line-height:1.15;
+  letter-spacing:.01em;color:var(--brand,#1F1F23);overflow-wrap:anywhere;pointer-events:none}
+.badge{position:absolute;left:.5rem;bottom:.5rem;font-size:.68rem;font-weight:600;
+  padding:.16rem .5rem;border-radius:999px;background:rgba(255,255,255,.9);color:var(--brand,#1F1F23);
+  box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.cat-chip{position:absolute;right:.5rem;top:.5rem;font-size:.66rem;font-weight:600;
+  padding:.16rem .5rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff}
+/* 排序键必须看得见，否则读者只会觉得卡片顺序莫名其妙。 */
+.cdate{position:absolute;left:.5rem;top:.5rem;font-size:.64rem;font-weight:600;
+  padding:.16rem .45rem;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;
+  font-family:ui-monospace,Consolas,monospace}
+.bd{padding:.6rem .7rem .72rem;flex:1;display:flex;flex-direction:column}
+.t{margin:0;font-size:clamp(.92rem,1vw,1.08rem);font-weight:600;line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  overflow-wrap:anywhere}
+.m{display:flex;align-items:center;gap:.3rem;margin-top:.42rem;font-size:.72rem;color:#73737B}
+.m i{font-style:normal}
+.m .sep{width:2px;height:2px;border-radius:50%;background:#D5D5D9}
+.tg{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.45rem;min-width:0}
+.tg span{font-size:.68rem;padding:.1rem .45rem;border-radius:999px;background:#F5F5F6;
+  color:#5A5A63;overflow-wrap:anywhere}
+.empty{width:var(--col);margin:2.5rem auto;padding:0;color:#73737B;font-size:.9rem}
+
+footer.ft{width:var(--col);margin:3rem auto 0;padding:1.2rem 0;
+  border-top:1px solid #EFEFF1;color:#73737B;font-size:.74rem;line-height:1.8}
+footer.ft code{font-family:ui-monospace,Consolas,monospace;font-size:.95em}
+@media (max-width:640px){:root{--pad:.95rem}}
+@media (max-width:640px){
+  .bar-in{padding:.6rem 0;gap:.6rem}
+  .tally{display:none}
+  .feed{grid-template-columns:repeat(auto-fill,minmax(min(15rem,100%),1fr))}
+}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes rise{from{opacity:0;transform:translateY(.5rem)}to{opacity:1;transform:none}}
+  .head{animation:rise .4s cubic-bezier(.2,.7,.3,1) both}
+}
+</style>
+</head>
+<body>
+<div class="bar"><div class="bar-in"><span class="brand"><i>知</i>知识专题</span><nav class="tabs" aria-label="类别"><a class="tab" href="#cat-箱包时装">箱包时装<i>3</i></a><a class="tab" href="#cat-腕表">腕表<i>4</i></a><a class="tab" href="#cat-汽车">汽车<i>2</i></a><a class="tab" href="#cat-饮食风物">饮食风物<i>1</i></a><a class="tab" href="#cat-人工智能">人工智能<i>7</i></a><a class="tab" href="#cat-香水美妆">香水美妆<i>1</i></a><a class="tab" href="#cat-电子元件">电子元件<i>1</i></a><a class="tab" href="#cat-消费零售">消费零售<i>1</i></a></nav><span class="tally">20 篇 · 129 标签</span></div></div><div class="head"><h1>十分钟读完一个领域</h1><p>按类别归档的科普长文。每篇都带来源与价格时点，点开卡片看完整专题页。</p></div><div class="sortbar" role="group" aria-label="按创建时间排序"><span>按创建时间</span><input type="radio" name="sort" id="sort-new" checked=""/><label for="sort-new">最新在前</label><input type="radio" name="sort" id="sort-old"/><label for="sort-old">最早在前</label></div><section class="grp"><div class="feed"><a class="card" href="LV/LV.html" id="cat-箱包时装" style="--brand:#6E5A38;--soft:#F5E9D8;--asc:0;--desc:19"><div class="ph" style="aspect-ratio:3/4"><img src="LV/images/12_路易威登.jpg" alt="路易威登（Louis Vuitton) 品牌的历史 - 知乎" loading="lazy"/><span class="badge">LV</span><span class="cat-chip">箱包时装</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">一只会装的箱子：路易威登的历史、Monogram、配货涨价与全球买法</h3><div class="m"><i>15 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#路易威登</span><span>#Monogram</span><span>#硬箱</span><span>#联名</span></div></div></a><a class="card" href="劳力士/劳力士.html" id="cat-腕表" style="--brand:#0F6B3D;--soft:#DFF0E5;--asc:1;--desc:18"><div class="ph" style="aspect-ratio:1/1"><img src="劳力士/images/09_劳力士_Submariner_潜水表_历史.jpg" alt="高清图|劳力士日志型系列日志型41系列126333-62613图片|腕表之家xbiao.com" loading="lazy"/><span class="badge">劳力士</span><span class="cat-chip">腕表</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">一只防水表如何成为硬通货：劳力士的历史、型号、认证、溢价与配货</h3><div class="m"><i>16 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#劳力士</span><span>#蚝式</span><span>#迪通拿</span><span>#水鬼</span></div></div></a><a class="card" href="劳斯莱斯/劳斯莱斯.html" id="cat-汽车" style="--brand:#C7CDD6;--soft:#212A48;--asc:2;--desc:17"><div class="ph" style="aspect-ratio:4/5"><img src="劳斯莱斯/images/05_劳斯莱斯_欢庆女神_立标.jpg" alt="【劳斯莱斯汽车全部】劳斯莱斯汽车全部_新闻_导购_评测_科技_文化-易车网" loading="lazy"/><span class="badge">劳斯莱斯</span><span class="cat-chip">汽车</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">星空顶之下：劳斯莱斯的历史、幻影与库里南、Bespoke 定制、价格与真正的持有成本</h3><div class="m"><i>17 分钟</i><span class="sep"></span><i>10 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#劳斯莱斯</span><span>#幻影</span><span>#库里南</span><span>#星空顶</span></div></div></a><a class="card" href="咖啡/咖啡.html" id="cat-饮食风物" style="--brand:#4A2C17;--soft:#F2E4D0;--asc:3;--desc:16"><div class="ph" style="aspect-ratio:3/4"><img src="咖啡/images/07_咖啡_水洗_处理站.jpg" alt="10年咖啡师为咖啡正名 - 知乎" loading="lazy"/><span class="badge">咖啡</span><span class="cat-chip">饮食风物</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">从一颗樱桃到一杯特调：咖啡的古往今来、产区、烘焙、机器与钱</h3><div class="m"><i>15 分钟</i><span class="sep"></span><i>12 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#咖啡</span><span>#烘焙</span><span>#冲煮</span><span>#精品</span></div></div></a><a class="card" href="宾利/宾利.html" style="--brand:#0B3B24;--soft:#DDE8E0;--asc:4;--desc:15"><div class="ph" style="aspect-ratio:5/4"><img src="宾利/images/01_宾利_Cricklewood_工厂_历史.jpg" alt="宾利亮相2022成都车展，在华20周年限量定制车型全球首秀 【图】- 车云网" loading="lazy"/><span class="badge">宾利</span><span class="cat-chip">汽车</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">与劳斯莱斯分家之后：宾利的历史、车型、Mulliner 定制、选配价与贬值现实</h3><div class="m"><i>16 分钟</i><span class="sep"></span><i>10 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#宾利</span><span>#欧陆GT</span><span>#添越</span><span>#Mulliner</span></div></div></a><a class="card" href="浪琴/浪琴.html" style="--brand:#4A5A6A;--soft:#E4E9EF;--asc:5;--desc:14"><div class="ph" style="aspect-ratio:1/1"><img src="浪琴/images/45_浪琴_康卡斯.jpg" alt="浪琴_浪琴表推出全新康卡斯潜水系列双色腕表|腕表之家xbiao.com" loading="lazy"/><span class="badge">浪琴</span><span class="cat-chip">腕表</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">带翼沙漏：浪琴的历史、名匠与康卡斯、斯沃琪集团里的定位与价格现实</h3><div class="m"><i>16 分钟</i><span class="sep"></span><i>9 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#浪琴</span><span>#名匠</span><span>#康卡斯</span><span>#奥运计时</span></div></div></a><a class="card" href="爱马仕/爱马仕.html" style="--brand:#E1610F;--soft:#FBE7D2;--asc:6;--desc:13"><div class="ph" style="aspect-ratio:3/4"><img src="爱马仕/images/13_爱马仕_工匠_手工缝制.jpg" alt="爱马仕仍然是最保值的奢侈品牌 – NOWRE现客" loading="lazy"/><span class="badge">爱马仕</span><span class="cat-chip">箱包时装</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">马具工坊出身、一只包要等三年：爱马仕的工艺、配货、价格与拍卖场</h3><div class="m"><i>17 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#爱马仕</span><span>#铂金包</span><span>#凯莉包</span><span>#配货</span></div></div></a><a class="card" href="百达翡丽/百达翡丽.html" style="--brand:#C6A15B;--soft:#1D352C;--asc:7;--desc:12"><div class="ph" style="aspect-ratio:4/5"><img src="百达翡丽/images/58_百达翡丽_Antoni.jpg" alt="百达翡丽_百达翡丽倾情挚献17款新品杰作，结合创新技术与工艺美学，为丰富多元的时计系列再添佳作|腕表之家xbiao.com" loading="lazy"/><span class="badge">百达翡丽</span><span class="cat-chip">腕表</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">没有人能真正拥有百达翡丽：历史、复杂功能、印记、拍卖价与等待名单</h3><div class="m"><i>16 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#百达翡丽</span><span>#Nautilus</span><span>#复杂功能</span><span>#机芯</span></div></div></a><a class="card" href="香奈儿/香奈儿.html" style="--brand:#0B0B0C;--soft:#EFEEEA;--asc:8;--desc:11"><div class="ph" style="aspect-ratio:3/4"><img src="香奈儿/images/18_香奈儿_奢侈品_价格指数.jpg" alt="香奈儿品牌形象大使身穿CHANEL 2019“巴黎-纽约”高级手工坊系列外套|大使|手工坊|香奈儿_新浪新闻" loading="lazy"/><span class="badge">香奈儿</span><span class="cat-chip">箱包时装</span><time class="cdate" dateTime="2026-09-20">09-20</time></div><div class="bd"><h3 class="t">从女帽店到配货规则：香奈儿的历史、限量款、价格与全球最划算买法</h3><div class="m"><i>16 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#香奈儿</span><span>#手袋</span><span>#香水</span><span>#配货</span></div></div></a><a class="card" href="积家/积家.html" style="--brand:#1F3A5F;--soft:#DCE7F0;--asc:9;--desc:10"><div class="ph" style="aspect-ratio:1/1"><img src="积家/images/22_积家_Reverso_马球.jpg" alt="积家_积家“Reverso马球俱乐部”瞩目亮相2025年中国国际进口博览会 致敬Reverso翻转系列隽永美学与传奇起源|腕表之家xbiao.com" loading="lazy"/><span class="badge">积家</span><span class="cat-chip">腕表</span><time class="cdate" dateTime="2026-09-22">09-22</time></div><div class="bd"><h3 class="t">制表师的制表师：积家的历史、Reverso 翻转、机芯自产与价格现实</h3><div class="m"><i>14 分钟</i><span class="sep"></span><i>9 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#积家</span><span>#Reverso</span><span>#自产机芯</span><span>#翻转</span></div></div></a><a class="card" href="AI眼镜/AI眼镜.html" id="cat-人工智能" style="--brand:#1466C8;--soft:#E6EEFB;--asc:10;--desc:9"><div class="ph" style="aspect-ratio:4/5"><img src="AI眼镜/images/01_雷鸟_X3_Pro_眼镜_佩戴.jpg" alt="雷鸟Air Plus深度评测：从“玩”到“生产力”_AR设备_什么值得买" loading="lazy"/><span class="badge">AI眼镜</span><span class="cat-chip">人工智能</span><time class="cdate" dateTime="2026-09-23">09-23</time></div><div class="bd"><h3 class="t">从音频眼镜到全彩光波导：多芯架构、200mAh 电池、镜框里的供应链，以及 A股与美股各自卡在哪一环</h3><div class="m"><i>17 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#AI眼镜</span><span>#智能眼镜</span><span>#AR眼镜</span><span>#光波导</span></div></div></a><a class="card" href="Muse/Muse.html" style="--brand:#0A6E6E;--soft:#DCEEF0;--asc:11;--desc:8"><div class="ph" style="aspect-ratio:3/4"><img src="Muse/images/31_muse.jpg" alt="Meta puso humanos en llamadas del agente IA Muse: 98% éxito – El ..." loading="lazy"/><span class="badge">Muse</span><span class="cat-chip">人工智能</span><time class="cdate" dateTime="2026-09-23">09-23</time></div><div class="bd"><h3 class="t">一个智能体一台云电脑：为什么是 Linux、怎么几分钟拉起上万个沙箱、出口 IP 从哪来、以及这轮 CPU 需求里 A股与美股各在哪一环</h3><div class="m"><i>15 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#Meta Muse</span><span>#云电脑</span><span>#AI Agent</span><span>#沙箱</span></div></div></a><a class="card" href="大模型/大模型.html" style="--brand:#B5177E;--soft:#F6E7F1;--asc:12;--desc:7"><div class="ph" style="aspect-ratio:5/4"><img src="大模型/images/08_H100.png" alt="全球哄抢H100！英伟达成GPU霸主，首席科学家揭秘成功四要素 - 智源社区" loading="lazy"/><span class="badge">大模型</span><span class="cat-chip">人工智能</span><time class="cdate" dateTime="2026-09-23">09-23</time></div><div class="bd"><h3 class="t">从预测下一个字到路线之争：中美顶尖模型各自押了什么、Gemini 为什么突然变强、Jev 这种不生成文本的模型算不算第三条路</h3><div class="m"><i>16 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#大模型</span><span>#LLM</span><span>#Transformer</span><span>#路线之争</span></div></div></a><a class="card" href="娇兰/娇兰.html" id="cat-香水美妆" style="--brand:#4B2A5B;--soft:#F0E7F3;--asc:13;--desc:6"><div class="ph" style="aspect-ratio:1/1"><img src="娇兰/images/43_Guerlain_advertisement_poste.jpg" alt="MON GUERLAIN EAU DE PARFUM" loading="lazy"/><span class="badge">娇兰</span><span class="cat-chip">香水美妆</span><time class="cdate" dateTime="2026-09-23">09-23</time></div><div class="bd"><h3 class="t">从圣奥诺雷街 42 号到一千零一夜：娇兰的经典香水、新旧版本、浓香淡香、规格产地与价格</h3><div class="m"><i>17 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#娇兰</span><span>#一千零一夜</span><span>#午夜飞行</span><span>#东方香调</span></div></div></a><a class="card" href="MLCC/MLCC.html" id="cat-电子元件" style="--brand:#9C3F27;--soft:#E7DFD4;--asc:14;--desc:5"><div class="ph" style="aspect-ratio:3/4"><img src="MLCC/images/41_贴片电容.jpg" alt="贴片电容材质的区别与电容的主要作用_电容材质cog,npo,x7r,x5r-CSDN博客" loading="lazy"/><span class="badge">MLCC</span><span class="cat-chip">电子元件</span><time class="cdate" dateTime="2026-09-24">09-24</time></div><div class="bd"><h3 class="t">一颗两毫米的米色方块里叠了多少层：MLCC 的材料与工艺、这轮涨价到底是谁在买、AI 服务器改的是数量还是规格结构、国外龙头各卡在哪一段、国内差距在哪，以及判断行情还能走多久该盯哪几个指标</h3><div class="m"><i>16 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#MLCC</span><span>#多层陶瓷电容器</span><span>#电子陶瓷</span><span>#钛酸钡</span></div></div></a><a class="card" href="Muse产业逻辑/Muse产业逻辑.html" style="--brand:#502B3A;--soft:#EFE8C4;--asc:15;--desc:4"><div class="ph" style="aspect-ratio:4/5"><img src="Muse产业逻辑/images/41_润泽科技_数据中心.jpg" alt="润泽科技：未来将伴随着人工智能 国家算力的不断发展大展宏图_财富号_东方财富网" loading="lazy"/><span class="badge">Muse产业逻辑</span><span class="cat-chip">人工智能</span><time class="cdate" dateTime="2026-09-24">09-24</time></div><div class="bd"><h3 class="t">从 Meta Muse 倒推价值链：架构怎么分层、钱停在哪一层、中国凭什么能长出一个这样的 app，以及哪些硬件是「Agent 执行层」的生意而不是 AI 推理服务器的生意</h3><div class="m"><i>17 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#Meta Muse</span><span>#产业逻辑</span><span>#Agent 架构</span><span>#阿里云无影</span></div></div></a><a class="card" href="骁龙笔电/骁龙笔电.html" style="--brand:#101A33;--soft:#DDE4F0;--asc:16;--desc:3"><div class="ph" style="aspect-ratio:3/4"><img src="骁龙笔电/images/01_Snapdragon_X_Elite.jpg" alt="CES丨高通发布骁龙 Snapdragon X 处理器，抢占4000元级笔记本市场_CPU_什么值得买" loading="lazy"/><span class="badge">骁龙笔电</span><span class="cat-chip">人工智能</span><time class="cdate" dateTime="2026-09-24">09-24</time></div><div class="bd"><h3 class="t">笔记本为什么开始换骁龙：ARM 的能效账与转译的代价、生态到底缺什么、它便不便宜、跑本地 agent 是不是真优势，以及该盯哪几个信号判断这条路走不走得通</h3><div class="m"><i>17 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#骁龙</span><span>#Windows on ARM</span><span>#ARM 笔记本</span><span>#NPU</span></div></div></a><a class="card" href="AI制药/AI制药.html" style="--brand:#3D4E8C;--soft:#DFE3EF;--asc:17;--desc:2"><div class="ph" style="aspect-ratio:1/1"><img src="AI制药/images/36_晶泰科技.jpg" alt="晶泰科技与礼来签署药物发现合作，以AI+实验机器人驱动首创新药管线研发" loading="lazy"/><span class="badge">AI制药</span><span class="cat-chip">人工智能</span><time class="cdate" dateTime="2026-09-25">09-25</time></div><div class="bd"><h3 class="t">假设变便宜了，验证一分钟都没变便宜</h3><div class="m"><i>17 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#AI 制药</span><span>#创新药</span><span>#临床前</span><span>#监管</span></div></div></a><a class="card" href="名创优品与泡泡玛特/名创优品与泡泡玛特.html" id="cat-消费零售" style="--brand:#123B2E;--soft:#E4EBE4;--asc:18;--desc:1"><div class="ph" style="aspect-ratio:4/5"><img src="名创优品与泡泡玛特/images/05_名创优品.jpg" alt="名创优品：10元店如何做到营收50亿？靠这4点_TMT观察网" loading="lazy"/><span class="badge">名创优品与泡泡玛特</span><span class="cat-chip">消费零售</span><time class="cdate" dateTime="2026-09-25">09-25</time></div><div class="bd"><h3 class="t">一家把情绪价值做成 39 元，一家把它做成稀缺；两家共用同一个词，用的是两种生意</h3><div class="m"><i>19 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#名创优品</span><span>#泡泡玛特</span><span>#潮玩</span><span>#性价比零售</span></div></div></a><a class="card" href="大模型与加密货币/大模型与加密货币.html" style="--brand:#22252B;--soft:#DDE2F0;--asc:19;--desc:0"><div class="ph" style="aspect-ratio:3/4"><img src="大模型与加密货币/images/03_椭圆曲线.jpg" alt="椭圆曲线密码学【科普】 | 学习软件编程" loading="lazy"/><span class="badge">大模型与加密货币</span><span class="cat-chip">人工智能</span><time class="cdate" dateTime="2026-09-25">09-25</time></div><div class="bd"><h3 class="t">它证明了一个东西存在，这和把它算出来是两件事</h3><div class="m"><i>17 分钟</i><span class="sep"></span><i>11 章</i><span class="sep"></span><i>2026-09</i></div><div class="tg"><span>#大模型</span><span>#千禧年难题</span><span>#密码学</span><span>#后量子</span></div></div></a></div></section><footer class="ft"><div>共 <b>20</b> 篇专题（8 个类别），由 <code>scripts/generate.py</code> 生成、<code>scripts/build_index.py</code> 汇总；每篇均通过 <code>scripts/validate.py</code> 质量闸门。更新于 2026-09-25</div><div>内容为科普整理，不构成购买建议；价格与政策随时间变化，请以官方与来源链接为准。</div></footer>
+</body>
+</html>

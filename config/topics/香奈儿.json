@@ -1,0 +1,264 @@
+{
+  "topic": "香奈儿",
+  "category": "箱包时装",
+  "tags": [
+    "香奈儿",
+    "手袋",
+    "香水",
+    "配货",
+    "涨价",
+    "全球购物",
+    "经典款"
+  ],
+  "aliases": [
+    "Chanel"
+  ],
+  "subtitle": "从女帽店到配货规则：香奈儿的历史、限量款、价格与全球最划算买法",
+  "reader": "想买一只经典款、却被配货和涨价搞糊涂的人",
+  "theme": {
+    "token": "chanel-noir",
+    "hero_motif": "chain_and_camellia",
+    "hero_note": "只用黑、白、米三色与一条包带菱格链作为开场母题，让'克制'本身成为记忆点"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：从康朋街女帽店到战后重生",
+      "anchor": "史",
+      "angle": "抓三个转折：Coco 开店把女性从束腰里解放出来、1954 复出被法国媒体围攻、1983 Lagerfeld 接手把品牌变成符号机器",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote"
+      ],
+      "image_queries": [
+        "Coco Chanel 肖像 历史",
+        "香奈儿 康朋街31号 公寓",
+        "Karl Lagerfeld 香奈儿 秀场"
+      ],
+      "fact_prompts": [
+        "Chanel 第一家店开设年份与地点",
+        "Chanel N°5 发布年份与设计者",
+        "Karl Lagerfeld 上任创意总监的年份",
+        "Virginie Viard 接任与离任时间"
+      ]
+    },
+    {
+      "id": "no5",
+      "title": "N°5 与香水线：一支香水如何成为品牌现金牛",
+      "anchor": "香",
+      "angle": "讲配方结构（醛香）、命名由来（第 5 个样品）、以及为什么香水是大多数人唯一真正买得起的香奈儿",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "Chanel N°5 香水瓶",
+        "香奈儿 香水 广告 历史",
+        "恩尼斯·鲍 调香师"
+      ],
+      "fact_prompts": [
+        "N°5 的调香师与醛类香调的由来",
+        "N°5 命名原因的可查证说法",
+        "香奈儿香水线主要 SKU 与容量价格"
+      ]
+    },
+    {
+      "id": "bags",
+      "title": "2.55、Classic Flap 与限量款：包袋谱系",
+      "anchor": "包",
+      "angle": "把 2.55(1955.2) 与 Classic Flap 的区别讲清（锁扣、链条、logo），再说明'限量款'实际通过季节色/材质/尺寸制造稀缺",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "compare",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "Chanel 2.55 reissue 包",
+        "Chanel Classic Flap 菱格 链条",
+        "香奈儿 限量款 季节 手袋"
+      ],
+      "fact_prompts": [
+        "2.55 命名与发布年月",
+        "Classic Flap 与 2.55 Reissue 在锁扣链条上的具体区别",
+        "香奈儿常见包型尺寸（Mini/小/中/大）与对应名称"
+      ]
+    },
+    {
+      "id": "quota",
+      "title": "配货政策：为什么买一只包要先买别的东西",
+      "anchor": "配",
+      "angle": "这是本领域最该讲透的一章：配货的运作机制、比例从哪来、SA 逻辑、哪些品类算配货、以及品牌官方从不承认它存在这件事本身",
+      "block_types": [
+        "prose",
+        "compare",
+        "note",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "香奈儿 专柜 手袋 陈列",
+        "奢侈品 配货 收据",
+        "精品店 SA 服务"
+      ],
+      "fact_prompts": [
+        "配货比例在消费者报告中的常见区间与差异来源",
+        "哪些品类通常被计入配货（成衣/珠宝/家居）",
+        "配货是否存在任何官方书面政策"
+      ]
+    },
+    {
+      "id": "price-rise",
+      "title": "涨价史：一只 CF 十年涨了几轮",
+      "anchor": "涨",
+      "angle": "用时间序列讲涨价节奏与背后逻辑（汇率、原材料、稀缺定位、二手价倒逼），并给出'涨价不等于保值'的关键区分",
+      "block_types": [
+        "prose",
+        "price_table",
+        "timeline",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "Chanel Classic Flap 价格 历史",
+        "香奈儿 涨价 公告",
+        "奢侈品 价格指数"
+      ],
+      "fact_prompts": [
+        "Classic Flap 中号近 5-8 年各时点的公价与币种",
+        "香奈儿近年涨价频率与幅度",
+        "涨价后二手市场价格是否同步（举具体包款）"
+      ]
+    },
+    {
+      "id": "shopping",
+      "title": "全球最划算购物地：退税、汇率与价差实测",
+      "anchor": "地",
+      "angle": "给出可执行结论：哪国公价最低、退税后实际差多少、哪些品类有价差、什么时候该在哪买；必须区分'标价低'与'到手低'",
+      "block_types": [
+        "prose",
+        "price_table",
+        "card_grid",
+        "compare"
+      ],
+      "image_queries": [
+        "巴黎 香奈儿 专柜 购物",
+        "免税店 奢侈品 购物",
+        "欧洲 退税 单据"
+      ],
+      "fact_prompts": [
+        "同一只 CF 在中国大陆/欧洲/美国/日本/韩国的公价对比",
+        "欧洲购物退税比例与最低消费门槛",
+        "汇率波动如何影响实际到手价差"
+      ]
+    },
+    {
+      "id": "atelier",
+      "title": "高级手工坊与工艺：菱格、链条、山茶花怎么来的",
+      "anchor": "工",
+      "angle": "讲 pinceau 羽笔画、Lesage 刺绣工坊、Goossens 金工，说明 'parce que je le vaux' 之外贵在哪道工序",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "steps"
+      ],
+      "image_queries": [
+        "香奈儿 高级手工坊 Lesage 刺绣",
+        "手工坊 羽笔画 pinceau",
+        "香奈儿 高定 秀场"
+      ],
+      "fact_prompts": [
+        "香奈儿收购的高级手工坊（métiers d'art）名单与时间",
+        "菱格纹 quilting 的工艺与来源",
+        "高级手工坊系列（Métiers d'Art）始于哪一年"
+      ]
+    },
+    {
+      "id": "secondhand",
+      "title": "二手与保值：哪些款真的能卖回去",
+      "anchor": "二",
+      "angle": "给判断框架：经典色+常规尺寸+黑金/黑银最保值；异形限量与浅色系折价重。附主流平台行情",
+      "block_types": [
+        "prose",
+        "compare",
+        "price_table",
+        "note"
+      ],
+      "image_queries": [
+        "二手 香奈儿 包 中古店",
+        "奢侈品 鉴定 中古 市场",
+        "vintage Chanel bag"
+      ],
+      "fact_prompts": [
+        "中古店对 CF 常见成色的回收折扣区间",
+        "哪些香奈儿款式二手折价最严重",
+        "日本中古市场与欧洲的价差现象"
+      ]
+    },
+    {
+      "id": "product-lines",
+      "title": "产品线与价格带：从口红到高定的阶梯",
+      "anchor": "线",
+      "angle": "画一张'入门到顶级'的价格阶梯，让读者知道自己预算对应哪一层，不必硬凑配货",
+      "block_types": [
+        "prose",
+        "price_table",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "香奈儿 彩妆 口红 产品",
+        "香奈儿 珠宝 Coco Crush",
+        "香奈儿 成衣 秀场"
+      ],
+      "fact_prompts": [
+        "香奈儿各品类入门价位（香水/口红/小包/成衣/珠宝/高定）",
+        "Coco Crush 与高级珠宝线定位差异"
+      ]
+    },
+    {
+      "id": "symbols",
+      "title": "符号体系与真伪：双C、菱格、链条与鉴定要点",
+      "anchor": "辨",
+      "angle": "讲品牌如何把三个元素变成可识别符号，再给一套实用的鉴别观察点（皮牌、五金、链条、镭射标/芯片）",
+      "block_types": [
+        "prose",
+        "steps",
+        "note",
+        "card_grid"
+      ],
+      "image_queries": [
+        "香奈儿 双C logo 细节",
+        "Chanel 防伪 芯片 皮牌",
+        "奢侈品 鉴定 五金 细节"
+      ],
+      "fact_prompts": [
+        "香奈儿是否使用芯片防伪、哪一年开始",
+        "真伪鉴别的关键观察点有哪些",
+        "双C logo 的官方来源说法"
+      ]
+    },
+    {
+      "id": "debates",
+      "title": "争议与当代议题：皮草、动物皮革、明星营销与可持续",
+      "anchor": "争",
+      "angle": "科普页不能只唱赞歌：讲 2018 年宣布停用皮草、珍稀皮革政策的收紧、以及配货制度的公平性争议",
+      "block_types": [
+        "prose",
+        "timeline",
+        "compare"
+      ],
+      "image_queries": [
+        "香奈儿 皮草 禁用 声明",
+        "珍稀皮革 短吻鳄 手袋",
+        "奢侈品 可持续 报告"
+      ],
+      "fact_prompts": [
+        "香奈儿宣布停用皮草的年份与具体范围",
+        "珍稀皮革（鳄魚/蜥蜴）政策的现状",
+        "品牌近年在可持续上的公开承诺"
+      ]
+    }
+  ],
+  "slug": "chanel"
+}

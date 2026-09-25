@@ -1,0 +1,246 @@
+{
+  "topic": "劳斯莱斯",
+  "category": "汽车",
+  "tags": [
+    "劳斯莱斯",
+    "幻影",
+    "库里南",
+    "星空顶",
+    "Bespoke",
+    "欢庆女神",
+    "持有成本"
+  ],
+  "aliases": [
+    "Rolls-Royce",
+    "Rolls Royce"
+  ],
+  "subtitle": "星空顶之下：劳斯莱斯的历史、幻影与库里南、Bespoke 定制、价格与真正的持有成本",
+  "reader": "在人生目标清单上写着它、但没算过养它一年要花多少的人",
+  "theme": {
+    "token": "rolls-argenteal",
+    "hero_motif": "starlight_headliner",
+    "hero_note": "以星空顶的纤点光源阵与帕德嫩神庙格栅剪影开场，配色是星银与午夜蓝，取仪式感与静谧而非速度"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：一个贵族、一个工程师与一段不对等的合作",
+      "anchor": "史",
+      "angle": "Charles Rolls 是没落贵族、Henry Royce 是自学出身的工程师，1904 年曼彻斯特那顿晚餐是全部起点；重点讲 Royce 的控制狂如何定义了'最好的车'的标准",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote"
+      ],
+      "image_queries": [
+        "Charles Rolls 肖像",
+        "Henry Royce 工程师 肖像",
+        "1904 劳斯莱斯 银影 历史"
+      ],
+      "fact_prompts": [
+        "劳斯莱斯创立年份、地点与两位创始人背景",
+        "Silver Ghost 银影名字的由来与年份",
+        "欢庆女神立标的委托人与启用年份"
+      ]
+    },
+    {
+      "id": "spirit",
+      "title": "欢庆女神：一只立标的身价与失窃率",
+      "anchor": "标",
+      "angle": "讲清它的委托起源（Montagu 勋爵的秘密爱情）、镀金与磨砂合金版本差异、防盗底座机制，以及它如何成为品牌全部溢价的具体化身",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "keyvalue_table",
+        "note"
+      ],
+      "image_queries": [
+        "欢庆女神 立标 细节",
+        "Spirit of Ecstasy 镀金",
+        "劳斯莱斯 格栅 帕德嫩神庙"
+      ],
+      "fact_prompts": [
+        "欢庆女神立标正式启用年份与设计者",
+        "立标材质与选配版本",
+        "被盗后更换的官方价格量级"
+      ]
+    },
+    {
+      "id": "models",
+      "title": "车型谱系：幻影、古思特、库里南、闪灵",
+      "anchor": "型",
+      "angle": "四条线各自的服务对象：Phantom 是顶级礼宾、Ghost 是'自己开的劳斯莱斯'、Cullinan 是真正走量的 SUV、Spectre 是电动化门面",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "compare",
+        "price_table"
+      ],
+      "image_queries": [
+        "劳斯莱斯 幻影 Phantom",
+        "劳斯莱斯 古思特 Ghost",
+        "库里南 Cullinan SUV 与 闪灵 Spectre"
+      ],
+      "fact_prompts": [
+        "Phantom、Ghost、Cullinan、Spectre 各自推出年份",
+        "库里南对品牌销量的占比影响",
+        "闪灵是否为品牌首款纯电动车"
+      ]
+    },
+    {
+      "id": "magic-carpet",
+      "title": "魔毯悬挂与静谧工程：为什么它开起来'不像在动'",
+      "anchor": "静",
+      "angle": "劳斯莱斯的核心技术叙事不是马力而是'离地感'：立体摄像机预读路面、防侧倾断开杆、双层夹胶与数百公斤隔音材——用数据解释'悬浮'不是形容词",
+      "block_types": [
+        "prose",
+        "steps",
+        "fact_strip",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "空气悬挂 立体摄像机 底盘",
+        "劳斯莱斯 隔音 双层玻璃",
+        "车内 静谧 分贝 测试"
+      ],
+      "fact_prompts": [
+        "魔毯悬挂（Planar suspension）工作原理",
+        "车内噪音分贝实测水平",
+        "全车隔音材料重量与双层玻璃厚度"
+      ]
+    },
+    {
+      "id": "starlight",
+      "title": "星空顶与皮革：一双手、一头牛、一千二百根光纤",
+      "anchor": "艺",
+      "angle": "把最出名的两项配置拆开算工时：星空顶手工排纤、真皮来自低纬度无蚊虫地区以免疤痕；说明'手工'在劳斯莱斯是可计量的成本",
+      "block_types": [
+        "prose",
+        "steps",
+        "card_grid",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "星空顶 光纤 手工 排布",
+        "劳斯莱斯 真皮 裁皮",
+        "Goodwood 工坊 工匠"
+      ],
+      "fact_prompts": [
+        "星空顶所需工时与光纤根数",
+        "内饰皮革所需牛皮头数与产地要求",
+        "整车手工装配总工时"
+      ]
+    },
+    {
+      "id": "bespoke",
+      "title": "Bespoke 定制：从车身双色到后排冰箱里的酒杯",
+      "anchor": "定",
+      "angle": "定制是劳斯莱斯真正的生意：讲清定制部门运作方式、常见与极端案例（画在内饰上的家族纹章、按宠物毛色配皮），以及定制如何轻松翻倍车价",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "price_table",
+        "quote"
+      ],
+      "image_queries": [
+        "劳斯莱斯 Bespoke 定制 内饰",
+        "车漆 双色 手绘 腰线",
+        "后排 香槟柜 内饰"
+      ],
+      "fact_prompts": [
+        "Bespoke 部门成立年份与运作方式",
+        "手绘腰线的工时与执行人",
+        "典型定制项目加价量级"
+      ]
+    },
+    {
+      "id": "prices",
+      "title": "价格：指导价、选配与到手价的三重落差",
+      "anchor": "价",
+      "angle": "本章解决最实际的困惑：为什么'指导价'几乎没有参考意义。逐项拆开购置税、选配、保险、上牌的叠加，给真实到手估算",
+      "block_types": [
+        "prose",
+        "price_table",
+        "keyvalue_table",
+        "note"
+      ],
+      "image_queries": [
+        "劳斯莱斯 价格 选配单",
+        "豪车 落地价 计算",
+        "经销商 展厅 交付"
+      ],
+      "fact_prompts": [
+        "幻影、古思特、库里南、闪灵当前中国指导价区间",
+        "常见选装与定制项目价格量级",
+        "指导价与实际成交价的典型差距"
+      ]
+    },
+    {
+      "id": "v12-ev",
+      "title": "V12 的黄昏与电动转型",
+      "anchor": "机",
+      "angle": "劳斯莱斯是少数坚持 V12 到最后的品牌；讲清 6.75L/6.75T 的血统、自产 V12 的换代，以及'只造电动'的宣布与实际推迟",
+      "block_types": [
+        "prose",
+        "timeline",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "V12 发动机 劳斯莱斯",
+        "电动车 平台 电池",
+        "劳斯莱斯 工厂 产线"
+      ],
+      "fact_prompts": [
+        "劳斯莱斯自产 V12 的引入年份与规格",
+        "品牌宣布未来只生产电动车的年份与后续调整",
+        "闪灵的电池与续航参数"
+      ]
+    },
+    {
+      "id": "value",
+      "title": "保值与持有成本：一年要烧多少钱",
+      "anchor": "值",
+      "angle": "必须给数字：折旧、保险、保养、轮胎、油费；同时讲清为何劳斯莱斯二手折价比宾利温和、以及'接送机车队'式高使用率车型的价格规律",
+      "block_types": [
+        "prose",
+        "price_table",
+        "compare",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "豪车 保险 费用",
+        "劳斯莱斯 二手车 价格",
+        "大保养 维修 费用"
+      ],
+      "fact_prompts": [
+        "劳斯莱斯年保养与保险费用量级",
+        "三年与五年保值率数据",
+        "与宾利、迈巴赫的折价对比"
+      ]
+    },
+    {
+      "id": "culture",
+      "title": "符号与争议：炫耀、'new money'与老钱审美",
+      "anchor": "文",
+      "angle": "收口章：劳斯莱斯如何成为财富的速记符号、它在流行文化中的位置、以及围绕'过度消费'的持续批评",
+      "block_types": [
+        "prose",
+        "compare",
+        "quote",
+        "card_grid"
+      ],
+      "image_queries": [
+        "劳斯莱斯 流行文化 音乐录影带",
+        "老钱 审美 低调 奢华",
+        "豪华车 社会 争议"
+      ],
+      "fact_prompts": [
+        "劳斯莱斯在流行文化中的代表案例",
+        "品牌如何应对可持续性批评",
+        "客户结构（自用 vs 带司机）比例说法"
+      ]
+    }
+  ],
+  "slug": "rolls-royce"
+}

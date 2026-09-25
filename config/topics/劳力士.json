@@ -1,0 +1,263 @@
+{
+  "topic": "劳力士",
+  "category": "腕表",
+  "tags": [
+    "劳力士",
+    "蚝式",
+    "迪通拿",
+    "水鬼",
+    "二级溢价",
+    "认证",
+    "保值"
+  ],
+  "aliases": [
+    "Rolex"
+  ],
+  "subtitle": "一只防水表如何成为硬通货：劳力士的历史、型号、认证、溢价与配货",
+  "reader": "被'绿水鬼''熊猫迪'这些外号绕晕、想知道真实价格结构的人",
+  "theme": {
+    "token": "rolex-oyster",
+    "hero_motif": "crown_and_bezel",
+    "hero_note": "以皇冠标志与表圈齿纹的剪影开场，配深冠绿与钢灰，强调'工具表'的工业感而非珠宝感"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：从伦敦的进口商到日内瓦的蚝式",
+      "anchor": "史",
+      "angle": "Hans Wilsdorf 是英国出生的钟表进口商而非瑞士制表匠——这个起点解释了劳力士为何把'可靠性营销'放在第一位；重点讲 1926 蚝式防水壳与 1945 日志型",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "Hans Wilsdorf 肖像 劳力士",
+        "Oyster 防水表壳 1926 历史",
+        "Mercedes Gleitze 游泳 劳力士"
+      ],
+      "fact_prompts": [
+        "Rolex 创立年份与地点、创始人背景",
+        "Oyster 防水表壳推出年份与专利",
+        "Mercedes Gleitze 横渡英吉利海峡与劳力士广告的年份",
+        "劳力士基金会成立年份与用途"
+      ]
+    },
+    {
+      "id": "inventions",
+      "title": "三项硬专利：蚝式表壳、恒动摆陀、旋入式表冠",
+      "anchor": "创",
+      "angle": "劳力士的护城河不是复杂功能而是耐用性工程。讲清 Perpetual 自动陀为何双向、Triplock 三重防水如何实现 100 米以上",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "steps"
+      ],
+      "image_queries": [
+        "恒动 摆陀 机芯 结构",
+        "Triplock 旋入式表冠",
+        "蚝式 表壳 剖面"
+      ],
+      "fact_prompts": [
+        "Perpetual 自动上链专利年份",
+        "Triplock 表冠的三重密封结构与防水深度",
+        "劳力士 Chronergy 擒纵的推出年份与优势"
+      ]
+    },
+    {
+      "id": "models",
+      "title": "型号谱系：Submariner、Datejust、GMT-Master、Daytona、Day-Date、Explorer",
+      "anchor": "型",
+      "angle": "每个型号回到它的职业 origin：潜水的、飞行的、赛道的、总统的；把外号（水鬼、熊猫迪、百事圈）与参考号一一对应",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "keyvalue_table",
+        "compare"
+      ],
+      "image_queries": [
+        "Submariner 潜水表 历史",
+        "Daytona 熊猫迪 腕表",
+        "GMT-Master 百事圈 表圈"
+      ],
+      "fact_prompts": [
+        "Submariner、GMT-Master、Daytona、Day-Date、Explorer 各自推出年份",
+        "Day-Date 为何只在贵金属产线",
+        "常见外号与官方参考号对应关系"
+      ]
+    },
+    {
+      "id": "certification",
+      "title": "认证体系：COSC、超天文台与 1957 年的转折",
+      "anchor": "认",
+      "angle": "讲清为什么劳力士 1957 年后停止申请多数表款的第三方天文台证书（自建厂内标准 + 成本），以及 Superlative Chronometer 的 ±2 秒/日意味着什么",
+      "block_types": [
+        "prose",
+        "compare",
+        "note",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "天文台认证 COSC 证书",
+        "超天文台 Superlative Chronometer 绿色印章",
+        "腕表 校表 精度测试"
+      ],
+      "fact_prompts": [
+        "劳力士与 Kew-Teddington 天文台认证的历史与停止大规模申请的年份",
+        "Superlative Chronometer 公差标准（每日秒差）",
+        "COSC 认证公差标准"
+      ]
+    },
+    {
+      "id": "materials",
+      "title": "自产金与钢：为什么劳力士能自己炼金",
+      "anchor": "材",
+      "angle": "2 万吨级金炉、904L（蚝式钢）而非行业通用的 316L、以及 Everose 玫瑰金抗褪色配方——讲'垂直整合'到底带来什么",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "card_grid"
+      ],
+      "image_queries": [
+        "劳力士 金 铸造 工坊",
+        "904L 蚝式钢 表壳",
+        "Everose 玫瑰金 色板"
+      ],
+      "fact_prompts": [
+        "劳力士自炼金的比例与铸造厂地点",
+        "904L 蚝式钢相比 316L 的差异",
+        "Everose 合金专利与抗褪色成分"
+      ]
+    },
+    {
+      "id": "production",
+      "title": "产能与不公开：每年约 100 万只的数字从哪来",
+      "anchor": "产",
+      "angle": "劳力士从不公布产量；讲清'100 万只'这一常见数字的来源（基金会与媒体估算）、以及品牌刻意保持信息不透明本身如何制造稀缺",
+      "block_types": [
+        "prose",
+        "fact_strip",
+        "note"
+      ],
+      "image_queries": [
+        "劳力士 工厂 日内瓦",
+        "腕表 装配 流水线",
+        "瑞士 钟表 出口 数据"
+      ],
+      "fact_prompts": [
+        "劳力士年产量的常见估算区间及其出处",
+        "瑞士钟表业联合会近年出口数据",
+        "劳力士为何不加入 SIHP 或公开销量的说法"
+      ]
+    },
+    {
+      "id": "premium",
+      "title": "二级市场溢价与配货：钢为什么比金贵",
+      "anchor": "溢",
+      "angle": "本领域最实用的一章：哪些型号公价与成交价倒挂（迪通拿、GMT、水鬼）、等待名单与'收藏史'机制、以及溢价泡沫何时会破",
+      "block_types": [
+        "prose",
+        "price_table",
+        "compare",
+        "timeline"
+      ],
+      "image_queries": [
+        "腕表 二级 市场 溢价",
+        "劳力士 专柜 等待 名单",
+        "拍卖 腕表 成交"
+      ],
+      "fact_prompts": [
+        "热门钢款（126710BLRO、116500LN）公价与二手成交价对比",
+        "2022 年腕表二级市场回调的幅度",
+        "劳力士涨价年份与幅度"
+      ]
+    },
+    {
+      "id": "prices",
+      "title": "价格带：从入门 Oyster Perpetual 到贵金属满钻",
+      "anchor": "价",
+      "angle": "给一张可查的阶梯表：公价区间、入门门槛在哪、以及'同价位的其他品牌给什么'的横向对照",
+      "block_types": [
+        "prose",
+        "price_table",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "Oyster Perpetual 彩色表盘",
+        "劳力士 价格 公价",
+        "贵金属 满钻 腕表"
+      ],
+      "fact_prompts": [
+        "当前 OP 各尺寸公价区间",
+        "Datejust、Submariner、Daytona、Day-Date 的大致公价量级"
+      ]
+    },
+    {
+      "id": "counterfeit",
+      "title": "真伪与翻新：重刻表壳、拼装表与检测点",
+      "anchor": "辨",
+      "angle": "劳力士是造假重灾区，且真表被翻新重刻也普遍。给出可操作的观察点（表冠护桥刻字、内影圈激光刻、机芯打磨、序列号规则）",
+      "block_types": [
+        "prose",
+        "steps",
+        "note"
+      ],
+      "image_queries": [
+        "劳力士 内影圈 激光刻 序列",
+        " counterfeit 假表 对比",
+        "腕表 机芯 真伪 鉴定"
+      ],
+      "fact_prompts": [
+        "劳力士随机序列号体系起始年份",
+        "常见造假与翻新手法",
+        "官方是否提供鉴定服务"
+      ]
+    },
+    {
+      "id": "service",
+      "title": "保养与持有：服务网络、报价与'一台机器传三代'",
+      "anchor": "养",
+      "angle": "劳力士真正被低估的是全球售后网络与残值；给保养周期、费用区间、以及为何过度保养反而伤表",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "compare"
+      ],
+      "image_queries": [
+        "劳力士 服务中心 维修",
+        "机芯 保养 清洗",
+        "腕表 服务 手册"
+      ],
+      "fact_prompts": [
+        "劳力士官方保养服务价格区间与周期建议",
+        "劳力士建议的检修间隔",
+        "官方服务中心分布"
+      ]
+    },
+    {
+      "id": "culture",
+      "title": "文化符号：从探险赞助到'成功者标配'的代价",
+      "anchor": "文",
+      "angle": "收口章：劳力士如何通过赞助（Sirimal、深潜、网球、F1）把自己绑在'成就'上；以及这种强符号带来的审美疲劳与争议",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote",
+        "card_grid"
+      ],
+      "image_queries": [
+        "劳力士 深潜器 Trieste 1960",
+        "Rolex 赞助 网球 F1",
+        "探险 腕表 历史"
+      ],
+      "fact_prompts": [
+        "Trieste 深潜号与劳力士的实验年份",
+        "Rolex 主要长期赞助的领域与代表人物",
+        "Deepsea Challenge 相关年份"
+      ]
+    }
+  ],
+  "slug": "rolex"
+}

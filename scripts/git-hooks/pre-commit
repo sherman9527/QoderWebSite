@@ -1,0 +1,8 @@
+#!/bin/sh
+# 提交前跑回归。质量闸门（validate.py --all）要开真浏览器，太慢，不放这里——
+# 它是 AGENTS.md 工作流第 5 步，由 generate.py verify 阶段和人工执行。
+PYTHONIOENCODING=utf-8 python -m pytest -q || {
+  echo ""
+  echo "pre-commit：回归未通过，提交已阻止。（装钩子：cp scripts/git-hooks/pre-commit .git/hooks/）"
+  exit 1
+}

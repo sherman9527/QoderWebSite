@@ -1,0 +1,26 @@
+{
+  "name": "knoweverything-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "黄金模板真身：React 组件树既服务工作台预览，也被 scripts/render.mjs 用 SSR 打成自包含静态 HTML",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "esbuild": "^0.24.0",
+    "playwright-core": "^1.49.1",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11"
+  }
+}

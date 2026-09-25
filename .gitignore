@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.probe/
+.research-scratch/
+.playwright-mcp/
+web/node_modules/
+web/dist/
+.qoder/settings.local.json
+*.log
+scratch_*/
+images.prev/
+
+# 发布暂存区：从 output/ 复制并改成 ASCII 文件名的包，不是产物
+dist/
+
+# 换名协议的现场文件：`.pending` 是**闸门没过的那一份**，`.prev` 是回滚凭据。
+# 少了这两行，一次失败渲染之后 `git add -A` 就会把未验证的页面收进提交。
+*.html.pending
+*.html.prev
+
+# 公开快照专属：第三方图片不进这个仓库（原因见 docs/publishing-for-agents.md）
+output/*/images/

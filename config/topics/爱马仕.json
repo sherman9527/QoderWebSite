@@ -1,0 +1,266 @@
+{
+  "topic": "爱马仕",
+  "category": "箱包时装",
+  "tags": [
+    "爱马仕",
+    "铂金包",
+    "凯莉包",
+    "配货",
+    "工坊工艺",
+    "皮革",
+    "拍卖"
+  ],
+  "aliases": [
+    "Hermès",
+    "Hermes"
+  ],
+  "subtitle": "马具工坊出身、一只包要等三年：爱马仕的工艺、配货、价格与拍卖场",
+  "reader": "见过铂金包价格、但不知道它凭什么的人",
+  "theme": {
+    "token": "hermes-orange",
+    "hero_motif": "saddle_stitch",
+    "hero_note": "以爱马仕橙礼盒与马鞍针脚的斜纹作为开场母题，把'手工'两字变成可见的东西"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：从巴黎马具店到马术象征",
+      "anchor": "史",
+      "angle": "解释为什么一家做马具的公司定义了当代奢侈品：Thierry Hermès 创业、马鞍与钉扣、机车时代转型、后代把品牌推向皮具",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote"
+      ],
+      "image_queries": [
+        "Thierry Hermès 创始人 画像",
+        "爱马仕 马鞍 马具 历史",
+        "Hermès 巴黎 店铺 历史"
+      ],
+      "fact_prompts": [
+        "Thierry Hermès 创立品牌年份与最初业务",
+        "爱马仕橙何时成为品牌包装色",
+        "Jean-Louis Dumas 任内对品牌的影响与去世时间"
+      ]
+    },
+    {
+      "id": "birkin-kelly",
+      "title": "铂金包与凯莉包：两只包的由来与差别",
+      "anchor": "包",
+      "angle": "讲两个真实起源故事（Jane Birkin 飞机上的抱怨、Grace Kelly 遮孕肚），再给出尺寸/肩带/开口/锁扣的可操作区别",
+      "block_types": [
+        "prose",
+        "compare",
+        "card_grid",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "Jane Birkin 铂金包 历史照片",
+        "Grace Kelly 凯莉包 杂志封面",
+        "Hermès Birkin Kelly 对比"
+      ],
+      "fact_prompts": [
+        "Birkin 包诞生年份与由来故事",
+        "Kelly 包命名来源与原始年代",
+        "Birkin 与 Kelly 在肩带、开口、手柄上的具体区别"
+      ]
+    },
+    {
+      "id": "quota",
+      "title": "配货与等待：为什么有钱也买不到",
+      "anchor": "配",
+      "angle": "本领域最实用的一章：讲清配货比例的运作逻辑、常见被计入品类、为什么品牌坚持称'自由组合'、以及不同门店的差异",
+      "block_types": [
+        "prose",
+        "compare",
+        "note",
+        "price_table"
+      ],
+      "image_queries": [
+        "爱马仕 门店 陈列 包袋",
+        "奢侈品 配货 消费记录",
+        "Hermès boutique 内部"
+      ],
+      "fact_prompts": [
+        "消费者与媒体报告的 Birkin 典型配货比例区间",
+        "哪些品类通常被计入配货",
+        "爱马仕官方如何表述这一政策"
+      ]
+    },
+    {
+      "id": "craft",
+      "title": "工坊与工艺：一人一包、马鞍针法与 18 小时",
+      "anchor": "工",
+      "angle": "拆解一只包的时间成本：裁皮、缝制、五金、磨边；解释马鞍针法为何无法被机器替代、以及'匠人署名'制度",
+      "block_types": [
+        "prose",
+        "steps",
+        "fact_strip",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "爱马仕 工匠 手工缝制",
+        "马鞍针法 saddle stitch",
+        "爱马仕 工坊 裁皮"
+      ],
+      "fact_prompts": [
+        "一只 Birkin 的官方工时说法",
+        "马鞍针法（saddle stitch）的结构特点",
+        "每位工匠独立完成整包与署名/刻印制度"
+      ]
+    },
+    {
+      "id": "leather",
+      "title": "皮革词典：Togo、Epsom、Clemence、Box、Ostrich、Crocodile",
+      "anchor": "皮",
+      "angle": "把让人头晕的皮料名讲成可决策的表：纹路、软硬、耐刮、重量、遇水反应、适合哪类使用者",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "compare"
+      ],
+      "image_queries": [
+        "Togo 皮革 纹理",
+        "Epsom 皮革 纹路",
+        "爱马仕 鳄鱼皮 手袋"
+      ],
+      "fact_prompts": [
+        "Togo/Epsom/ Clemence/Box/Swift 各自的产地、纹理与特性",
+        "珍稀皮革（鳄鱼/蜥蜴/鸵鸟）的当前政策",
+        "哪类皮最耐刮、哪类最容易出划痕"
+      ]
+    },
+    {
+      "id": "beyond-bags",
+      "title": "不止于包：丝巾、瓷器、马鞍、香水与家具",
+      "anchor": "物",
+      "angle": "说明'配货'能落到哪些实际好物上，顺带讲品牌为何坚持做低毛利品类（这是它稀缺叙事的一部分）",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "price_table"
+      ],
+      "image_queries": [
+        "爱马仕 丝巾 carré 90",
+        "爱马仕 瓷器 餐盘",
+        "Hermès 香水 与 家具"
+      ],
+      "fact_prompts": [
+        "爱马仕丝巾的标准尺寸与印刷工序数",
+        "丝巾最早推出的年份",
+        "爱马仕主要非皮具品类与入门价位"
+      ]
+    },
+    {
+      "id": "prices",
+      "title": "价格与涨价：公价、二手溢价与'越涨越买'",
+      "anchor": "价",
+      "angle": "用数据讲 Birkin 的公价十年曲线，解释为什么它是少数跑赢通胀的消费品、以及公价与到手价的分裂",
+      "block_types": [
+        "prose",
+        "price_table",
+        "fact_strip",
+        "timeline"
+      ],
+      "image_queries": [
+        "爱马仕 Birkin 价格 上涨",
+        "Hermès 财报 门店",
+        "奢侈品 价格指数 图表"
+      ],
+      "fact_prompts": [
+        "Birkin 30 Togo 近十年公价变化区间",
+        "爱马仕皮具年涨价幅度与近年动作",
+        "Birkin 二手成交价高于公价的证据与年份"
+      ]
+    },
+    {
+      "id": "auction",
+      "title": "拍卖与收藏：喜马拉雅钻石 Birkin 为什么会拍出天价",
+      "anchor": "拍",
+      "angle": "讲收藏市场的定价机制（稀缺材质+特殊刻印+名人来源），给出几笔有记录的成交",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "喜马拉雅 钻石 Birkin 拍卖",
+        "爱马仕 拍卖行 成交",
+        "Hermès 稀有包 收藏"
+      ],
+      "fact_prompts": [
+        "喜马拉雅铂金包拍卖成交价与年份、拍卖行",
+        "其他创纪录的爱马仕包拍卖成交",
+        "拍卖市场如何评估包的刻印年份"
+      ]
+    },
+    {
+      "id": "shopping",
+      "title": "全球购物地：哪里更容易拿到包、价差与退税",
+      "anchor": "地",
+      "angle": "务实对比：巴黎与东京的货量差异、中东与亚洲价差、中古店作为替代路径；给决策表而非空话",
+      "block_types": [
+        "prose",
+        "price_table",
+        "card_grid",
+        "steps"
+      ],
+      "image_queries": [
+        "巴黎 爱马仕 门店 排队",
+        "东京 中古店 爱马仕",
+        "退税 购物 单据 欧洲"
+      ],
+      "fact_prompts": [
+        "各国 Birkin 公价差异",
+        "欧洲退税比例与操作门槛",
+        "日本中古店的爱马仕价格与品相体系"
+      ]
+    },
+    {
+      "id": "codes",
+      "title": "刻印、年份码与真伪：读懂包上的小字母",
+      "anchor": "辨",
+      "angle": "讲清爱马仕年份刻印体系（字母圈与方框的更替）与常见鉴别观察点，避免把营销话术当依据",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "note"
+      ],
+      "image_queries": [
+        "爱马仕 刻印 年份 字母",
+        "Hermès 皮牌 stamp",
+        "奢侈品 鉴定 刻印"
+      ],
+      "fact_prompts": [
+        "爱马仕年份刻印体系如何循环、圆框与方框代表什么",
+        "常见真伪鉴别要点有哪些"
+      ]
+    },
+    {
+      "id": "controversy",
+      "title": "争议：动物福利、可持续与稀缺营销的道德代价",
+      "anchor": "争",
+      "angle": "不回避：鳄鱼养殖与剥皮的争议、马术材质批评、以及'人为稀缺'对消费者的实际压力",
+      "block_types": [
+        "prose",
+        "compare",
+        "timeline"
+      ],
+      "image_queries": [
+        "鳄鱼 养殖 皮革 争议",
+        "爱马仕 可持续 报告",
+        "动物福利 奢侈品 抗议"
+      ],
+      "fact_prompts": [
+        "爱马仕因鳄鱼皮受到哪些具体批评与年份",
+        "品牌公开的动物福利与溯源承诺",
+        "珍稀皮革使用现状"
+      ]
+    }
+  ],
+  "image_exclude_pages": [
+    "https://www.xbiao.com/hermes/69361.html"
+  ],
+  "slug": "hermes"
+}

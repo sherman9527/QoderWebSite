@@ -1,0 +1,218 @@
+{
+  "topic": "浪琴",
+  "category": "腕表",
+  "tags": [
+    "浪琴",
+    "名匠",
+    "康卡斯",
+    "奥运计时",
+    "入门机械表",
+    "预算"
+  ],
+  "aliases": [
+    "Longines"
+  ],
+  "subtitle": "带翼沙漏：浪琴的历史、名匠与康卡斯、斯沃琪集团里的定位与价格现实",
+  "reader": "预算两三万、在浪琴与欧米茄之间摇摆的人",
+  "theme": {
+    "token": "longines-winged",
+    "hero_motif": "winged_hourglass",
+    "hero_note": "以带翼沙漏徽标与银灰、酒红构成开场母题，取'计时工具'的中性感而非珠宝感"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：圣伊米耶的 1832 与带翼沙漏",
+      "anchor": "史",
+      "angle": "Auguste Agassiz 的家族作坊起步、'Longines' 1889 年注册为最早一批受保护表名之一、带翼沙漏标志的启用年份——讲清它是'有档案的品牌'而非营销品牌",
+      "block_types": [
+        "prose",
+        "timeline",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "浪琴 创始人",
+        "Longines 工厂",
+        "Auguste Agassiz"
+      ],
+      "fact_prompts": [
+        "浪琴创立年份与地点",
+        "Longines 名称注册年份",
+        "带翼沙漏标志启用年份",
+        "浪琴加入斯沃琪集团的时间"
+      ]
+    },
+    {
+      "id": "timing",
+      "title": "计时遗产：奥运会官方计时与航空计时",
+      "anchor": "计",
+      "angle": "浪琴最硬的历史资产：1932 年起担任冬奥会/世锦赛官方计时、与航空先驱的飞行计时表合作；这是它比同价位品牌更有故事的地方",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "timeline",
+        "quote"
+      ],
+      "image_queries": [
+        "浪琴 奥运 官方计时 历史",
+        "飞行 计时表 航空 怀表",
+        "1932 洛杉矶奥运会 计时"
+      ],
+      "fact_prompts": [
+        "浪琴首次担任奥运会官方计时的年份与赛事",
+        "浪琴为航空先驱提供的计时设备历史",
+        "品牌与马术/滑雪的赞助渊源"
+      ]
+    },
+    {
+      "id": "master",
+      "title": "名匠系列：正装入门的实际选择",
+      "anchor": "名",
+      "angle": "讲清名匠为什么是销量担当（麦粒纹表盘、蓝钢针、日历、价位）、哪些子款值得、以及它的机芯档次",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "price_table",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "浪琴 名匠 麦粒纹 表盘",
+        "名匠 八针月相 腕表",
+        "蓝钢指针 腕表 细节"
+      ],
+      "fact_prompts": [
+        "名匠系列推出年份与代表型号",
+        "名匠当前公价区间与机芯型号",
+        "八针月相款的功能构成"
+      ]
+    },
+    {
+      "id": "sport",
+      "title": "康卡斯、先行者与深海潜水线",
+      "anchor": "运",
+      "angle": "运动线常被低估：HydroConquest（康卡斯）与 Spirit 先行者系列的对标逻辑，以及它们与欧米茄海马/超霸的实际差距在哪",
+      "block_types": [
+        "prose",
+        "compare",
+        "price_table",
+        "card_grid"
+      ],
+      "image_queries": [
+        "浪琴 康卡斯 潜水表",
+        "Longines Spirit 先行者 腕表",
+        "潜水表 表圈 细节"
+      ],
+      "fact_prompts": [
+        "康卡斯 HydroConquest 推出年份与防水深度",
+        "Spirit 先行者系列推出年份与天文台认证情况",
+        "浪琴 Ultra-Chron 的推出年份与高频机芯"
+      ]
+    },
+    {
+      "id": "movement",
+      "title": "机芯与集团定位：自产还是通用？",
+      "anchor": "芯",
+      "angle": "诚实回答最常见的疑问：浪琴主力使用集团平台机芯（ETA/斯沃琪体系改良），少数款用硅游丝高频机芯；这不丢人，但决定了它卖不到欧米茄的价",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "compare",
+        "note"
+      ],
+      "image_queries": [
+        "自动机芯 摆陀 结构",
+        "硅游丝 摆轮",
+        "ETA 机芯 平台"
+      ],
+      "fact_prompts": [
+        "浪琴主力机芯型号与是否自产",
+        "L888.4 等机芯的振程与动力储存",
+        "浪琴与欧米茄在机芯认证上的差异"
+      ]
+    },
+    {
+      "id": "value",
+      "title": "价格带与保值：为什么'买浪琴不亏'是半对半错",
+      "anchor": "价",
+      "angle": "拆开讲：公价友好（同集团里性价比高）、二手折价明显（识别度与溢不及欧米茄），给一张'哪些款二手掉得少'的实际清单",
+      "block_types": [
+        "prose",
+        "price_table",
+        "compare",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "浪琴 公价 二手 价格",
+        "腕表 二手 回收 折价",
+        "奢侈品 钟表 保值"
+      ],
+      "fact_prompts": [
+        "浪琴主力款公价区间",
+        "浪琴二手市场典型折价率",
+        "与欧米茄、泰格豪雅、天文台级别品牌的保值对比"
+      ]
+    },
+    {
+      "id": "vs",
+      "title": "同级横评：浪琴 vs 欧米茄 vs 百年灵 vs 泰格豪雅",
+      "anchor": "比",
+      "angle": "给决策矩阵而不是排名：预算、场景（正装/运动）、是否在意天文台认证、是否在意转手价，四个维度选出的答案完全不同",
+      "block_types": [
+        "prose",
+        "compare",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "同级 腕表 对比 摆拍",
+        "天文台认证 表款 对比",
+        "腕表 试戴 比较"
+      ],
+      "fact_prompts": [
+        "各品牌主力区间价格带",
+        "天文台认证在各品牌的覆盖情况"
+      ]
+    },
+    {
+      "id": "care",
+      "title": "保养与常见故障：便宜表也要养",
+      "anchor": "养",
+      "angle": "务实章：保养报价、防水圈老化周期、自动表上链效率与佩戴习惯的关系",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "steps"
+      ],
+      "image_queries": [
+        "腕表 保养 维修 费用",
+        "防水 橡胶圈 老化",
+        "机芯 清洗 保养"
+      ],
+      "fact_prompts": [
+        "浪琴保养服务价格区间与建议间隔",
+        "机械表防水圈更换周期"
+      ]
+    },
+    {
+      "id": "who",
+      "title": "谁该买浪琴：三句话的结论",
+      "anchor": "择",
+      "angle": "收口：在意品牌历史与价格友好、不需要社交识别度的，浪琴很值；在意天文台认证与转手价的，加预算上欧米茄更划算",
+      "block_types": [
+        "prose",
+        "compare",
+        "card_grid"
+      ],
+      "image_queries": [
+        "腕表 佩戴 正装",
+        "商务 手表 搭配",
+        "表盒 收藏"
+      ],
+      "fact_prompts": [
+        "浪琴主要客群画像与热销尺寸",
+        "近年品牌主推方向与代言"
+      ]
+    }
+  ],
+  "slug": "longines"
+}

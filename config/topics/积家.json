@@ -1,0 +1,229 @@
+{
+  "topic": "积家",
+  "category": "腕表",
+  "tags": [
+    "积家",
+    "Reverso",
+    "自产机芯",
+    "翻转",
+    "正装表",
+    "性价比"
+  ],
+  "aliases": [
+    "Jaeger",
+    "LeCoultre",
+    "积家表"
+  ],
+  "subtitle": "制表师的制表师：积家的历史、Reverso 翻转、机芯自产与价格现实",
+  "reader": "听过名字、但在专柜前发现它和劳力士同价而犹豫的人",
+  "theme": {
+    "token": "jaeger-reverso",
+    "hero_motif": "reverso_flip",
+    "hero_note": "用可翻转的矩形框作为开场母题（呼应 Reverso），配钢蓝与银灰，走工程师的冷静感"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：大钟、LeCoultre 山谷作坊与两次合并",
+      "anchor": "史",
+      "angle": "起源是'给大钟做部件'的村庄作坊；1932 年 Jaeger 与 LeCoultre 合并。讲清'合并'而非'收购'这一点，因为它解释了品牌双重署名",
+      "block_types": [
+        "prose",
+        "timeline",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 历史 创始人",
+        "LeCoultre 山谷 工坊",
+        "积家 大钟 显示"
+      ],
+      "fact_prompts": [
+        "LeCoultre 创立年份与地点",
+        "Jacques-David LeCoultre 发明分钟重复与'千分尺'测微仪的年份",
+        "Jaeger 与 LeCoultre 合并年份",
+        "Jaeger-LeCoultre 品牌名正式使用的时间"
+      ]
+    },
+    {
+      "id": "reverso",
+      "title": "Reverso：为马球赛而生的一只表",
+      "anchor": "翻",
+      "angle": "1931 年防止马球比赛中表镜碎裂的可翻转壳，如何变成装饰艺术（Art Deco）的图标；讲清设计动作为什么决定了 90 年不过时",
+      "block_types": [
+        "prose",
+        "steps",
+        "card_grid",
+        "price_table"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 Reverso",
+        "积家 翻转 表壳",
+        "积家 Reverso 马球"
+      ],
+      "fact_prompts": [
+        "Reverso 诞生年份、起源故事与最初客户",
+        "Reverso 表壳的尺寸比例依据",
+        "翻转机构由多少零件组成"
+      ]
+    },
+    {
+      "id": "movements",
+      "title": "机芯自产：1200 多枚机芯与 Duomètre 双动力",
+      "anchor": "芯",
+      "angle": "积家最被低估的资产：给百达翡丽、爱彼、江诗丹顿供过机芯的历史；Duomètre 双发条盒解决'走时与复杂功能抢能量'的真问题",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "compare"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 机芯",
+        "积家 Duomètre",
+        "积家 101 机芯"
+      ],
+      "fact_prompts": [
+        "积家历史上开发的机芯数量与专利数量",
+        "Calibre 101 的尺寸与为何被用于女王腕表",
+        "Duomètre 双发条设计要解决的技术问题",
+        "积家曾为哪些品牌供应机芯"
+      ]
+    },
+    {
+      "id": "complications",
+      "title": "复杂功能王国：Master 系列、陀飞轮与三问",
+      "anchor": "杂",
+      "angle": "积家是少数能把万年历做到相对平价的品牌；讲清 Gyrotourbillon 与球型陀飞轮的差别，避免把陀飞轮当'高级'的万能标签",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "price_table"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 陀飞轮",
+        "积家 万年历 表盘",
+        "积家 超卓复杂功能"
+      ],
+      "fact_prompts": [
+        "Gyrotourbillon 与普通陀飞轮结构差异",
+        "积家超卓复杂功能表款的复杂功能数量",
+        "Master Ultra Thin 系列的厚度记录"
+      ]
+    },
+    {
+      "id": "collections",
+      "title": "产品线：Master、Polaris、Rene 与 AMVO 赛车联名",
+      "anchor": "列",
+      "angle": "按用途给选择路径：正装买 Master Ultra Thin、运动买 Polaris、跨界买 AMVO，并指出各线在材质与价格上的实际差异",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "compare",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 Master Ultra Thin",
+        "积家 Polaris",
+        "积家 AMVO"
+      ],
+      "fact_prompts": [
+        "Polaris 系列复活年份与原款年代",
+        "积家与阿斯顿马丁联名起始年份",
+        "Master 系列定位与代表型号"
+      ]
+    },
+    {
+      "id": "prices",
+      "title": "价格与二手现实：为什么折扣比劳力士大得多",
+      "anchor": "价",
+      "angle": "本章最有实用价值：公价、二手折价率、'高识别度低溢价'的品牌特征，以及这对买家其实是机会的论证",
+      "block_types": [
+        "prose",
+        "price_table",
+        "compare",
+        "note"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 公价 标签",
+        "积家 二手 价格",
+        "积家 表行 柜台"
+      ],
+      "fact_prompts": [
+        "Reverso Classic 与 Master Ultra Thin 当前公价区间",
+        "积家二手市场典型折价率与劳力士对比",
+        "品牌近年调价动作"
+      ]
+    },
+    {
+      "id": "positioning",
+      "title": "档次定位：积家在制表等级里的真实位置",
+      "anchor": "位",
+      "angle": "破除迷思：'制表师的制表师'是营销还是事实？用集团内定位（历峰）、价格带、复杂功能能力三条线定位，并与宝珀、真力时横向比较",
+      "block_types": [
+        "prose",
+        "compare",
+        "keyvalue_table"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 展厅",
+        "积家 腕表 陈列",
+        "积家 制表 工坊"
+      ],
+      "fact_prompts": [
+        "积家所属集团与收购时间",
+        "积家与宝珀、真力时、百年灵的价格与技术定位对比"
+      ]
+    },
+    {
+      "id": "care",
+      "title": "保养与拥有成本：维修周期与常见故障",
+      "anchor": "养",
+      "angle": "厚底翻转壳的磨损、自动上链效率、以及保养报价与周期——把'买得起也要养得起'讲清楚",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "steps"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 维修 工作台",
+        "积家 保养 机芯",
+        "积家 表壳 磨损"
+      ],
+      "fact_prompts": [
+        "积家完整保养的费用与工时区间",
+        "机械表建议保养间隔",
+        "Reverso 翻转机构常见问题"
+      ]
+    },
+    {
+      "id": "buying",
+      "title": "购买建议：什么人适合买积家，什么人不适合",
+      "anchor": "择",
+      "angle": "收口给判断而非结论：追求识别度与转手溢价的、买劳力士；在意机芯、低调与性价比的、积家明显更划算",
+      "block_types": [
+        "prose",
+        "compare",
+        "card_grid"
+      ],
+      "image_queries": [
+        "积家手表",
+        "积家 试戴",
+        "积家 表盘 细节",
+        "积家 收藏 展示柜"
+      ],
+      "fact_prompts": [
+        "积家各系列的适配场景与手腕尺寸建议",
+        "品牌近年主推方向"
+      ]
+    }
+  ],
+  "slug": "jaeger-lecoultre"
+}

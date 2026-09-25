@@ -1,0 +1,1893 @@
+{
+ "topic": "AI制药",
+ "sections": [
+  {
+   "id": "what-happened",
+   "title": "先说清那件事到底是什么：一种功能未知的酶系统，不是药",
+   "anchor": "件",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先说清那件事到底是什么",
+     "source_ids": [
+      "S011"
+     ],
+     "text": "2026 年 9 月 23 日，Anthropic 新成立的生命科学团队发布了一条消息：Claude 自主发现了一种此前未被刻画的酶系统，命名为 ART（array-associated reverse transcriptases，阵列关联逆转录酶），主要存在于噬菌体——也就是感染细菌的病毒——之中。它的结构由三部分组成：一个逆转录酶、紧挨着它的一个伴侣基因、以及一长段间隔均匀的 DNA 重复序列阵列。这套重复的排布方式，让人联想到 CRISPR 阵列。\n\n检索的规模也不小。官方给出的数字是：大约 950 个 agent 跑了 21 小时、消耗约 2.1 亿 token，从 20 万多条逆转录酶序列中挑出 3500 个新候选系统，再收敛到它们认为最有意思的 20 个。"
+    },
+    {
+     "type": "prose",
+     "heading": "三条必须说清的边界",
+     "source_ids": [
+      "S011"
+     ],
+     "text": "第一，它不是药，也不是候选药物。原文明确写着 we don't yet know its function（我们还不知道它的功能），理解 ART 主要功能的工作仍在进行。把这条新闻读成\"AI 发现了新药\"，是越过了证据。\n\n第二，这不是随口一句换来的。给 Claude 的是一个有方向的检索任务——在海量 DNA 序列库里找有意思的逆转录酶新例子；而官方原话是 All of the lab work is performed by human scientists（所有实验室工作都由人类科学家完成），它的介入仅限于最初的 prompt。这个团队也只从事 BSL-1、BSL-2 的低生物安全风险研究，不处理可感染人类的病原体。"
+    },
+    {
+     "type": "prose",
+     "heading": "\"AI 造药\"的说法从哪来",
+     "source_ids": [
+      "S011"
+     ],
+     "text": "所谓\"药\"的潜力，是隔着两步的类比。CRISPR 最初也只是某些细菌 DNA 里一段不寻常的重复序列，很多年后才成为基因编辑类药物的基础。ART 如今处在 CRISPR 的那个起点，而不是某个已经成型的治疗。\n\n审阅过该 pre-print 的 CRISPR 先驱、MIT 与 Broad Institute 的 Feng Zhang 给的原话是：这一发现 genuinely intriguing and merits further investigation——真正耐人寻味，值得进一步研究。请注意他的措辞：值得进一步研究，不等于已被证实有用。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/02_ART三段结构.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：ART 酶系统的三段结构——逆转录酶、伴侣基因、间隔均匀的非编码重复阵列，都画在同一段噬菌体 DNA 上",
+     "caption": "按正文对官方发布与 pre-print 的转述绘制；图上不写规模数字与日期",
+     "based_on": [
+      "what-happened#ART 由三部分组成",
+      "what-happened#we don't yet know its function",
+      "what-happened#CRISPR 最初也是一段不寻常的重复序列"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "funnel",
+   "title": "底层逻辑：AI 把假设的单价打下来，验证的成本一分没动",
+   "anchor": "底",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "最后一跳，不是算力那一跳",
+     "source_ids": [
+      "S021"
+     ],
+     "text": "Anthropic 在 2026 年 9 月 23 日公开了新建生命科学实验室的第一批结果：一次未表征蛋白家族的全库扫描，每一层都留着数字；终点那句才是要害——一轮筛查可能只留下一个值得上实验台的候选，一个都不留是常态。\n\n省下来的是算力，没省的是判断。原文承认假设产出太快，“假设本身成了研究对象”：团队追问的是几百份报告里凭什么这份值得测、那份被搁下，再把答案写回给模型的指令。"
+    },
+    {
+     "type": "fact_strip",
+     "facts": [
+      {
+       "value": "20 万+",
+       "label": "扫描到的逆转录酶",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "value": "3,500 个",
+       "label": "AI 挑出的新候选系统",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "value": "20 份",
+       "label": "最可信候选的人类可读报告",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "value": "1 个",
+       "label": "值得进实验室的候选",
+       "hint": "原文：也可能一个都没有",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "value": "21 小时",
+       "label": "约 950 个 agent、2.1 亿 token",
+       "hint": "专家同等分析要数周到数月",
+       "source_ids": [
+        "S021"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "假设的单价跌了，验证的单价没有",
+     "source_ids": [
+      "S022",
+      "S023",
+      "S024"
+     ],
+     "text": "成本账能对上。DiMasi 等人 2016 年调查 10 家药企的 106 个新药：一个获批新药的现金投入均值 13.95 亿美元，按 10.5% 折现到上市前 25.58 亿美元（2013 美元），剔通胀后仍年涨 8.5%。这些钱花在细胞、动物、受试者和三期试验上，不花在列候选清单。\n\n假设那侧的降价也真发生过：Exscientia 与住友制药的 DSP-1181 在 2020 年 1 月 30 日宣布进入日本 I 期，公告写着探索性研究不到 12 个月、常规平均 4.5 年；Insilico 的 rentosertib（INS018_055）从靶点发现到 I 期不到 30 个月，称约为传统流程一半。"
+    },
+    {
+     "type": "prose",
+     "heading": "验证端的日历一格没让",
+     "source_ids": [
+      "S025",
+      "S026",
+      "S027"
+     ],
+     "text": "同一个分子在 ClinicalTrials.gov 上是另一套刻度：I 期 NCT05154240 于 2022 年 2 月 21 日启动、实招 78 人；IIa 期 NCT05938920（随机双盲安慰剂对照）2023 年 6 月 19 日启动、实招 71 人，结果直到 2025 年 12 月 2 日才贴出；III 期 NCT07687459 于 2026 年 9 月 9 日启动，计划 320 人，预计 2029 年 10 月 30 日结束。生成端省下的两年半，验证端要用三年还回去——瓶颈没被消除，是被搬移，并因要测的东西变多而加剧。"
+    },
+    {
+     "type": "prose",
+     "heading": "反例：查得到期别的才列",
+     "source_ids": [
+      "S028",
+      "S029",
+      "S0210",
+      "S0211"
+     ],
+     "text": "说 AI 分子没进过临床是错的。zasocitinib（TAK-279，武田，2026 年《药理学评论》归入 Schrödinger 物理加机器学习路线）III 期 NCT06671483 于 2025 年 3 月 3 日启动、计划 1,088 人、设活性与安慰剂对照；头对头 deucravacitinib 的 NCT06973291 已完成、实招 606 人。Recursion 旗下 Exscientia AI Ltd. 的 EXS74539（REC-4539）在 2026 年 4 月 13 日开 I 期剂量爬坡 NCT07517198，计划 40 人、无对照。该库检索为 0 条的 DSP-0565 不列。"
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "限度：只有最便宜那一段变好了",
+     "source_ids": [
+      "S0212"
+     ],
+     "text": "一篇 2026 年系统综述的对照是：约 90% 进入临床的候选拿不到批准，AI 发现或设计的分子总体获批概率仍在行业基线 8%–12%；被反复引用的 I 期成功率 80%–90% 属于最早也最便宜那一段，IIa 期约 40%，传统为 30%–40%，未拉开差距。BenevolentAI 在核心药物失败后裁掉约 30% 员工。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/03_alphafold.png",
+     "alt": "Alphafold2：Highly accurate protein structure prediction with AlphaFold ...",
+     "caption": "Alphafold2：Highly accurate protein structure prediction with AlphaFold ...",
+     "source_page": "https://blog.csdn.net/weixin_43135178/article/details/128085079",
+     "width": 2886,
+     "height": 1239,
+     "query": "AlphaFold"
+    },
+    {
+     "file": "images/29_英矽智能.jpg",
+     "alt": "新冠口服药研发再获新进展！英矽智能自有AI平台赋能下第二款药物即将进入临床试验阶段_手机新浪网",
+     "caption": "新冠口服药研发再获新进展！英矽智能自有AI平台赋能下第二款药物即将进入临床试验阶段_手机新浪网",
+     "source_page": "https://finance.sina.cn/2023-02-21/detail-imyhniyr1939038.d.html",
+     "width": 640,
+     "height": 426,
+     "query": "英矽智能"
+    },
+    {
+     "file": "images/05_瓶颈搬移.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：假设生成端变便宜、验证端一格没让，瓶颈不是被消除而是被搬移",
+     "caption": "按正文的漏斗与成本论证绘制；月数、期别与 NCT 编号见正文带来源的条目",
+     "based_on": [
+      "funnel#一轮筛查可能只留下一个值得上实验台的候选",
+      "funnel#生成端省下的时间在验证端还回去"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "how-it-enters",
+   "title": "头部模型实际是怎么进药企的：从文书和数据接口，不是从实验台",
+   "anchor": "进",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "那扇门长什么样：连接器和技能",
+     "text": "不必预测 AI 会不会走进药企——这件事已经有公开答案，写在厂商自己的发布页上。2025 年 10 月 20 日 Anthropic 上线 Claude for Life Sciences，2026 年 1 月 11 日同一条产品线扩容。两篇公告里没有一处是「模型发明了什么药」，全部内容只有两类：连接器（让模型直连企业已在用的平台）和 Agent Skills（把某道工序做成可复用的指令包）。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "公告点名的接入对象（除标注外均为 2026-01-11 新增）",
+     "rows": [
+      {
+       "k": "ClinicalTrials.gov",
+       "v": "美国临床试验注册库：管线、招募计划、中心选择与方案设计",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "Medidata",
+       "v": "试验运营：读历史入组数据与研究中心绩效",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "Open Targets",
+       "v": "治疗靶点的系统性识别与优先级排序",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "ChEMBL",
+       "v": "生物活性化合物与药物数据库，支撑早期发现",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "bioRxiv / medRxiv",
+       "v": "正式发表前的预印本",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "ToolUniverse",
+       "v": "600 多个经审核的科学工具",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "Owkin Pathology Explorer",
+       "v": "分析组织图像、识别细胞与勾画肿瘤",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "初版已接上",
+       "v": "Benchling（实验室信息学）、10x Genomics（单细胞与空间）、PubMed（3500 万篇以上文献）、BioRender、Synapse.org、Wiley",
+       "source_ids": [
+        "S032",
+        "S031"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "范围转移：这句自述比任何评测分都重要",
+     "text": "扩容公告的原文是：初版聚焦临床前研发（生物信息学、生成假设与方案），现在把重点扩展到开发链条的临床试验运营与注册阶段。注意搬移的方向——不是往湿实验搬，是往文档与数据最密的那一段搬。被做成技能的全是这类环节：临床方案草案生成（含终点建议，并考虑注册路径、竞争格局与相关 FDA 指南）、检验仪器数据转 Allotrope 格式、scVI-tools 与 Nextflow 流程化生信部署、事前授权审核模板、FHIR 医疗数据互操作开发。"
+    },
+    {
+     "type": "prose",
+     "heading": "官方自己划的三条边界",
+     "text": "同一页写明限制：机构与支付方侧走 HIPAA-ready 的产品形态；明确声明不用用户的健康数据训练模型；面向个人健康数据时内置情境声明、承认自身不确定性，并引导用户去咨询专业人员。"
+    },
+    {
+     "type": "note",
+     "tone": "myth",
+     "title": "跑赢人类基准，等于能做研发决策？",
+     "text": "官方页给过一组分数：在考察实验方案理解与写作的 Protocol QA 上，Claude Sonnet 4.5 得 0.83，人类基线 0.79。它只说明「读对、写对方案文本」这一项达标，并没有也无从说明化合物是否有效、试验是否安全。把这两件事混为一谈，是对这套产品最常见的误读。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/31_晶泰科技.jpg",
+     "alt": "晶泰科技与优时比签署大分子药物发现AI平台授权协议 - 晶泰科技 XtalPi",
+     "caption": "晶泰科技与优时比签署大分子药物发现AI平台授权协议 - 晶泰科技 XtalPi",
+     "source_page": "https://www.xtalpi.com/晶泰科技与优时比签署大分子药物发现平台授权协/",
+     "width": 974,
+     "height": 548,
+     "query": "晶泰科技"
+    },
+    {
+     "file": "images/32_药明康德.jpg",
+     "alt": "药明康德：美国工厂裁员，全球业务调整！_摩熵医药(原药融云)",
+     "caption": "药明康德：美国工厂裁员，全球业务调整！_摩熵医药(原药融云)",
+     "source_page": "https://www.pharnexcloud.com/zixun/sx_7855",
+     "width": 850,
+     "height": 478,
+     "query": "药明康德"
+    }
+   ]
+  },
+  {
+   "id": "chain-and-value",
+   "title": "一条链看清楚：靶点到上市后，AI 现在真实渗透在哪几段",
+   "anchor": "链",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "链条的形状，与两种成本",
+     "text": "主链：靶点识别与验证 → 苗头化合物 → 先导优化 → 临床前（GLP 动物毒理）→ I／II／III 期 → 注册审批 → 上市后。越往后，动作越从生成与排序变成验证一个已经定下来的分子。"
+    },
+    {
+     "type": "timeline",
+     "items": [
+      {
+       "year": "全链",
+       "title": "换一个批准要多久",
+       "text": "查尔斯河年报转引口径：平均 10–15 年、试 1 万–1.5 万个分子、最高 26 亿美元（不含时间成本）。",
+       "source_ids": [
+        "S045"
+       ]
+      },
+      {
+       "year": "1",
+       "title": "靶点识别与验证",
+       "text": "不确定性：是否因果、可否干预。综述称光攒证据就要好几年。AI 动作：排优先级。",
+       "source_ids": [
+        "S046"
+       ]
+      },
+      {
+       "year": "2",
+       "title": "苗头与先导优化",
+       "text": "不确定性：活性真假，溶解度、hERG、暴露能否同时达标。AI 动作：生成候选——但筛检仍要合成实物。",
+       "source_ids": [
+        "S046"
+       ]
+      },
+      {
+       "year": "3",
+       "title": "临床前 GLP 毒理",
+       "text": "不确定性：活体毒性，且数据须 GLP 合规。ICH M3(R2)：两个种属（其一非啮齿类），最短 2 周支持 2 周内人体试验；6 个月啮齿类加 9 个月非啮齿类才支持长期给药。",
+       "source_ids": [
+        "S043",
+        "S044"
+       ]
+      },
+      {
+       "year": "4",
+       "title": "I 期",
+       "text": "法条定义（21 CFR 312.21）：首次进入人体，一般 20 至 80 人。AI 动作：处理数据、生成文书。",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "year": "5",
+       "title": "II 期",
+       "text": "最大的坎：BIO 统计 2011–2020 年 4,933 次转换，通过 28.9%；I 期到获批总概率 7.9%、平均 10.5 年。AI 动作：排优先级选适应症。",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "year": "6",
+       "title": "III 期到上市后",
+       "text": "1,928 次转换通过 57.8%，1,453 次递交通过 90.6%。上市后换成罕见不良事件与真实世界有效性。",
+       "source_ids": [
+        "S041"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "同一个分子的三种证据",
+     "rows": [
+      {
+       "k": "厂商宣称",
+       "v": "作者自述：临床前候选提名压到 18 个月、完成 0／1 期不到 30 个月",
+       "source_ids": [
+        "S047"
+       ]
+      },
+      {
+       "k": "同行评议",
+       "v": "IIa 期：中国 21 个中心、71 人、给药 12 周；边界自述为样本小、人群同质、随访短，并承认 AI 发现药 II 期失败率与非 AI 无差别、无一走完 III 期",
+       "source_ids": [
+        "S047"
+       ]
+      },
+      {
+       "k": "登记可查",
+       "v": "ClinicalTrials.gov 上该药 4 条记录：1 期与 IIa 期已完成，2 条招募中",
+       "source_ids": [
+        "S048"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "产业链六层，只写功能",
+     "rows": [
+      {
+       "k": "算力与模型层",
+       "v": "供训练与推理，不下湿实验"
+      },
+      {
+       "k": "科学数据层",
+       "v": "公共入口：2.6 亿条结构、4,112 万条摘要",
+       "source_ids": [
+        "S049",
+        "S0410"
+       ]
+      },
+      {
+       "k": "软件与信息学层",
+       "v": "接实验记录与流程"
+      },
+      {
+       "k": "CRO 与动物设施层",
+       "v": "受监管毒理与疾病模型；年报口径 60% 以上外包，起点业务是实验动物医学",
+       "source_ids": [
+        "S045"
+       ]
+      },
+      {
+       "k": "AI 原生公司层",
+       "v": "自建管线，把算力产出换成临床资产",
+       "source_ids": [
+        "S047"
+       ]
+      },
+      {
+       "k": "传统药企层",
+       "v": "出适应症判断与注册商业化"
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "错位：AI 便宜的段不在花钱的段旁边",
+     "text": "错位就在这儿：压价集中在设想与排序，而这两层公开、边际成本接近零；验证段的成本由法条和活体决定——ICH 把动物试验时长绑在人体给药时长上，模型再大也不松动，何况它外包给少数重资产供应商。通过概率呢？上面那行同行评议已经回答：单价降了，验证的成本一分没动。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/35_药明康德.png",
+     "alt": "学霸夫妻创办千亿制药巨头，“医药界华为”药明康德面临的挑战-36氪",
+     "caption": "学霸夫妻创办千亿制药巨头，“医药界华为”药明康德面临的挑战-36氪",
+     "source_page": "https://36kr.com/p/2057572642869123",
+     "width": 773,
+     "height": 464,
+     "query": "药明康德"
+    },
+    {
+     "file": "images/36_晶泰科技.jpg",
+     "alt": "晶泰科技与礼来签署药物发现合作，以AI+实验机器人驱动首创新药管线研发",
+     "caption": "晶泰科技与礼来签署药物发现合作，以AI+实验机器人驱动首创新药管线研发",
+     "source_page": "https://wenhui.whb.cn/zhuzhan/cs/20230531/523770.html",
+     "width": 1866,
+     "height": 1280,
+     "query": "晶泰科技"
+    }
+   ]
+  },
+  {
+   "id": "animal-and-clinical",
+   "title": "实验猴和临床试验是必须的吗：把'必须'拆成法条与科学两层",
+   "anchor": "猴",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "法条写的是证据类别，不是物种",
+     "text": "美国药品法原文里的「临床前试验（包括动物试验）」改成「nonclinical tests」：体外、计算、化学体外与非人活体并列，器官芯片、计算机建模、生物打印逐项列名，动物只是其中一项。被强制的是证据类别，不是猴。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "四份文本各写到哪一步",
+     "rows": [
+      {
+       "k": "美国 · 法律",
+       "v": "公法 117-328 第 3209 节（2022-12-29 生效）改 505 条原文，新增 (z) 款定义 nonclinical test",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "k": "美国 · 规章",
+       "v": "21 CFR 312.23(a)(8) 仍要求「涉及实验动物或体外」的药理毒理资料，周期随临床研究时长和性质变化",
+       "source_ids": [
+        "S052"
+       ]
+      },
+      {
+       "k": "ICH · M3(R2)",
+       "v": "2009-06-11 Step 4 版表 2：适应症用药超过 3 个月，上市需啮齿类 6 个月加非啮齿类 9 个月重复给药毒性试验",
+       "source_ids": [
+        "S053"
+       ]
+      },
+      {
+       "k": "欧盟",
+       "v": "指令 2001/83/EC 附件 I 第 III 部分（2001 年文本）：临床试验须先行「在动物上」的药理毒理试验；2010/63/EU 第 8 条：用非人灵长类须论证其他种属达不到目的",
+       "source_ids": [
+        "S054",
+        "S055"
+       ]
+      },
+      {
+       "k": "中国",
+       "v": "实施条例（国务院令第 828 号，2026-05-15 施行）第 7 条强制的是机构资质：注册用非临床安全性评价须由经资格认定机构实施；M3(R2) 经 2021 年第 131 号公告适用",
+       "source_ids": [
+        "S056",
+        "S057"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "这张保单保的是什么",
+     "text": "ICH M3(R2) 把首次人体剂量的锚点定在「最合适动物种属」测得的 NOAEL：活体数据买的是「第一次给人用多少」，不是「这药对人有效」。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "失手与开口，各自有数",
+     "rows": [
+      {
+       "k": "FDA 自陈",
+       "v": "2025-12-02 公告：很多过了动物毒理的产品最终未获批，主因人体安全或疗效问题",
+       "source_ids": [
+        "S059"
+       ]
+      },
+      {
+       "k": "动物数据被高估",
+       "v": "16 项系统综述、525 篇动物卒中研究里仅 10 篇（2%）报告梗死体积无显著效应；校正发表偏倚后疗效从 31.3% 降至 23.8%",
+       "source_ids": [
+        "S0512"
+       ]
+      },
+      {
+       "k": "已开口 · 给药前毒理",
+       "v": "2025-04-10 路线图：IND 起即鼓励提交 NAMs 数据",
+       "source_ids": [
+        "S058"
+       ]
+      },
+      {
+       "k": "已开口 · 猴试验",
+       "v": "2025-12-02 草案（案卷 FDA-2025-D-4634）点名哪些单抗可取消或缩短六个月猴试验；典型单抗项目或用到 100 只以上猴、每只约 5 万美元",
+       "source_ids": [
+        "S059",
+        "S0510"
+       ]
+      },
+      {
+       "k": "已开口 · 质检",
+       "v": "2026-03-18 草案为 NAM 验证定四条原则；美国药典〈86〉重组试剂法（2025-05）替代家兔热原试验",
+       "source_ids": [
+        "S0511"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "判据：谁说了算",
+     "text": "替代是否成立，取决于监管机构是否接受这一证据类型，不取决于模型自评有多准。ICH M3(R2) 开头就把条件写明：新方法须经验证并被所有 ICH 监管部门接受，才能替代现行标准方法。截至检索，FDA 两份文件仍是草案。所谓「美国已取消动物试验要求」是误读：改掉的是「必须在动物身上做」这句措辞，非临床证据照旧是受理门槛。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/39_药明康德.jpg",
+     "alt": "药明康德之后，药明生物海外资产也开卖了 - 经济观察网 － 专业财经新闻网站",
+     "caption": "药明康德之后，药明生物海外资产也开卖了 - 经济观察网 － 专业财经新闻网站",
+     "source_page": "https://www.eeo.com.cn/2025/0107/705492.shtml",
+     "width": 1280,
+     "height": 719,
+     "query": "药明康德"
+    },
+    {
+     "file": "images/40_英矽智能.jpg",
+     "alt": "英矽智能（Insilico Medicine）介绍 - 知乎",
+     "caption": "英矽智能（Insilico Medicine）介绍 - 知乎",
+     "source_page": "https://zhuanlan.zhihu.com/p/640650764",
+     "width": 2596,
+     "height": 1448,
+     "query": "英矽智能"
+    }
+   ]
+  },
+  {
+   "id": "regulation",
+   "title": "监管已经动了哪些：只写发布出来的文件与状态",
+   "anchor": "管",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "只列已发生的",
+     "text": "这一章不预测：下面每条都已挂在监管机构官网上，逐条标性质、日期与状态。另有一句结构性的话——审评的对象是证据，不是模型。监管问的是模型在这个用途下交上来的材料可不可信，模型本身涨了多少能力不在问题清单里。"
+    },
+    {
+     "type": "timeline",
+     "items": [
+      {
+       "year": "2020-01",
+       "title": "中国 · 真实世界证据",
+       "text": "国家药监局以 2020 年第 1 号通告发布真实世界证据支持药物研发与审评的指导原则，性质为试行。",
+       "source_ids": [
+        "S066"
+       ]
+      },
+      {
+       "year": "2022-03",
+       "title": "中国 · AI 器械审评",
+       "text": "国家药监局器审中心发布人工智能医疗器械注册审查指导原则，属正式指导原则。",
+       "source_ids": [
+        "S0610"
+       ]
+      },
+      {
+       "year": "2024-09",
+       "title": "欧盟 · 反思文件",
+       "text": "EMA 通过药品全生命周期中使用 AI 的反思文件，9 月 30 日首次发布；草案征询期为 2023 年 7 月至 12 月。",
+       "source_ids": [
+        "S065"
+       ]
+      },
+      {
+       "year": "2025-01",
+       "title": "美国 · 两份草案",
+       "text": "FDA 同月挂出两份草案：AI 器械软件全生命周期、支持药品监管决策的 AI 考量，标注不用于实施。",
+       "source_ids": [
+        "S063",
+        "S062"
+       ]
+      },
+      {
+       "year": "2025-08",
+       "title": "美国 · 变更管理定稿",
+       "text": "FDA 发布 AI 器械软件预定变更控制计划最终指南。",
+       "source_ids": [
+        "S064"
+       ]
+      },
+      {
+       "year": "2025-12",
+       "title": "美国 · 真实世界证据定稿",
+       "text": "FDA 发布医疗器械真实世界证据最终指南，替代 2017 年 8 月 31 日那版。",
+       "source_ids": [
+        "S067"
+       ]
+      },
+      {
+       "year": "2026-09",
+       "title": "中国 · 重启修订",
+       "text": "器审中心 9 月 14 日就 2026 年修订版征求意见、截止 10 月 12 日；9 月 16 日再就多病种辅助决策临床评价征求意见。",
+       "source_ids": [
+        "S068",
+        "S069"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "变更管理、验证材料与外推边界",
+     "text": "变更管理已有定稿可依。FDA 2025 年 8 月的最终指南要求预定变更控制计划写清三件事：计划做哪些修改、开发与验证这些修改的方法学、每次修改的影响评估，适用 510(k)、De Novo、PMA 三条路径。药品那边对应的是一套按风险定级的可信度框架：先固定用途，再定要交多少验证材料。而这些文件都没为跨人群外推画数值红线，边界在个案申报里论证。"
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "厂商侧一条易被跳过的公告",
+     "text": "Anthropic 在 2026 年 9 月 17 日上线 Life Sciences Verification Program，官方原文写的是向生命科学从业者开放 Mythos、Opus、Sonnet 模型，配一套对生物学相关工作更宽松的护栏；计划处于 beta，先面向团队与机构。申请要过研究资质、安全标准、伦理监督三项核验。分两档：Standard Use 覆盖多数生命科学工作、一年一续；High-risk Use 按单个项目、半年一续，官方描述为移除所有拦截生命科学请求的护栏。厂商自陈的理由是访问被劫持、内部人员、长程智能体误用三类威胁。此处只照原文，不推断意图。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/43_英矽智能.jpg",
+     "alt": "进一步赋能AI驱动的药物研发，英矽智能发布第6代智能机器人实验室_摩熵医药(原药融云)",
+     "caption": "进一步赋能AI驱动的药物研发，英矽智能发布第6代智能机器人实验室_摩熵医药(原药融云)",
+     "source_page": "https://www.pharnexcloud.com/zixun/sx_5643",
+     "width": 1080,
+     "height": 718,
+     "query": "英矽智能"
+    },
+    {
+     "file": "images/44_药明康德.png",
+     "alt": "武汉药明康德新药开发有限公司招聘公告 - 武汉科技职业学院",
+     "caption": "武汉药明康德新药开发有限公司招聘公告 - 武汉科技职业学院",
+     "source_page": "http://www.whkjz.com/news_view.aspx?nid=2&typeid=4&id=1416",
+     "width": 1200,
+     "height": 800,
+     "query": "药明康德"
+    }
+   ]
+  },
+  {
+   "id": "simulation",
+   "title": "仿真平台会不会出现：它替代的是哪一层验证",
+   "anchor": "仿",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先摆形态：谁在用，用在哪一层",
+     "text": "仿真不是一个平台，是散在链条上的一批工具。设计与筛选这一头：InSilico Medicine 的 INS018_055（rentosertib）I 期 2022 年 2 月 21 日启动、实招 78 人、同年 12 月 2 日完成；武田的 zasocitinib 银屑病关节炎 III 期 2025 年 3 月 3 日启动、计划 1,088 人，仍在招募。结构预测这一头，限度很具体：一篇 2026 年《Current Opinion in Structural Biology》综述指出，AlphaFold 一类蛋白结构预测模型要靠盲测来划能力边界，而蛋白与配体结合的数据量还不够用。",
+     "source_ids": [
+      "S076",
+      "S077",
+      "S071"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "判据是申报资格，不是模型精度",
+     "text": "仿真能否顶替实验，判据是该层结论可否写进申报材料，不是模型跑得多准。计算真正替代掉一个具体试验的地方在毒理：ICH M7(R2)（2023 年 4 月 3 日采纳）第 6 节要求用两种互补的 (Q)SAR 方法预测细菌回复突变试验结果，一种是专家规则型、一种是统计型，且须遵循 OECD 通用验证原则；两者都无结构警示，即判定该杂质无致突变担忧、不再建议追加试验。边界同样清楚：只管杂质定性，不管疗效与关键安全性。",
+     "source_ids": [
+      "S072"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "临床层：接受了框架，没接受替代",
+     "text": "临床这一层，监管接受的是评估方法，不是免除对照。ICH M15（模型引导的药物开发总则）2024 年 12 月 30 日出草案，2026 年 6 月 3 日转正，建立的是 MIDD 证据的评估框架、术语与提交要求。FDA 的外部对照试验指南至今停在草案：联邦公报到检索时点只有 2023 年 2 月 1 日一条公告，没有正式版。一篇 2026 年综述复核了 2018 至 2025 年 FDA 批准的 33 个儿科肿瘤药，MIDD 用在剂量选择与非临床要求削减上——试验变小，不是消失。",
+     "source_ids": [
+      "S073",
+      "S074",
+      "S075",
+      "S078"
+     ]
+    },
+    {
+     "type": "compare",
+     "heading": "分层看：哪一层已经让位",
+     "left": {
+      "title": "仿真已是常规工具",
+      "tone": "neutral",
+      "points": [
+       "分子设计与候选圈选：生成式模型排优先级",
+       "杂质致突变性定性：两条互补 (Q)SAR 一致阴性可免做一项体外试验",
+       "剂量选择：儿科肿瘤里支撑削减非临床数据要求"
+      ]
+     },
+     "right": {
+      "title": "仍要求活体与人体数据",
+      "tone": "neutral",
+      "points": [
+       "关键安全性终点：未检索到允许以计算替代的条款",
+       "疗效终点：要求写在试验设计上，不写在模型精度上",
+       "外部对照：FDA 侧仍是草案，不是可默认走的路"
+      ]
+     },
+     "verdict": "被替代的是「先测哪个」，不是「测不测」。",
+     "source_ids": [
+      "S071",
+      "S072",
+      "S075",
+      "S078"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "减少用量不等于取消",
+     "text": "那条免除条款针对细菌回复突变试验——体外试验，不是动物试验；也未检索到以计算替代重复给药毒理与安全药理动物数据的条款。准确写法是「减少动物用量」，不是「取消动物实验」。",
+     "source_ids": [
+      "S072"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/04_alphafold_DNA.webp",
+     "alt": "AlphaFold 3-扩散彻底改变了分子结构预测",
+     "caption": "AlphaFold 3-扩散彻底改变了分子结构预测",
+     "source_page": "https://www.lthpc.com/index.php/cms/shenduxuexi/111.html",
+     "width": 800,
+     "height": 418,
+     "query": "AlphaFold"
+    }
+   ]
+  },
+  {
+   "id": "speed",
+   "title": "上市流程会加速吗：瓶颈搬移之后，哪一段先受压",
+   "anchor": "速",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "压力不落三段同处",
+     "text": "第二章只留一条线索：假设变多、验证单价不动，先扛不住的不会是找分子。至于是哪一段，只能拿三段的公开统计对照——松紧并不一样。"
+    },
+    {
+     "type": "prose",
+     "heading": "审评队列：指标是绿的",
+     "text": "批准量十年平线，目标也没被挤破：优先六个月、标准十个月内出决定，上一财年十项审评绩效全部达标。涨的是需事前批准的生产变更，五年多了三成。这一段被变更压，不被新分子压。"
+    },
+    {
+     "type": "fact_strip",
+     "facts": [
+      {
+       "value": "50 / 46",
+       "label": "CDER 新药批准数",
+       "hint": "2024、2025",
+       "source_ids": [
+        "S081",
+        "S082"
+       ]
+      },
+      {
+       "value": "8.0 / 12.0 个月",
+       "label": "原研申请审评中位时长",
+       "hint": "优先 / 标准，FY2025",
+       "source_ids": [
+        "S083"
+       ]
+      },
+      {
+       "value": "38 / 8 人",
+       "label": "抗癌试验中位每月入组",
+       "hint": "非孤儿 / 超罕见孤儿",
+       "source_ids": [
+        "S085"
+       ]
+      },
+      {
+       "value": "352 / 275",
+       "label": "FDA 五年新增审评人力承诺与到位",
+       "hint": "PDUFA VII",
+       "source_ids": [
+        "S083"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "验证队列：紧张量得出",
+     "text": "一篇二〇二〇年系统综述把病人招募列为试验延迟首因，并转引业界估计：约八成研究达不到预设入组量与时限。覆盖二〇〇〇至二〇二二年获批抗癌药的分析显示，入组速率主要由站点数与参与国家数推动；合格成人肿瘤患者真正进组的只有百分之三到五。"
+    },
+    {
+     "type": "prose",
+     "heading": "反压：AI 压的是钱不是月",
+     "text": "每个获批药从非临床到上市后平均现金支出约一点七亿美元，算入失败与资本成本接近八点八亿——大头在临床。AI 眼下落在文书、数据接口与入组前筛人，压的是成本与错误率；入组快慢取决于合格病人与研究护士，随访长度取决于疾病自然史。这两项没有公开的前后对照。"
+    },
+    {
+     "type": "prose",
+     "heading": "盯这些信号",
+     "text": "季度量：原研申请件数、标准审评中位时长、审评机构招聘完成率、新开试验数及其中位完成时长、入组速率是否分层改善（罕见病先动，指向站点与匹配）。事件看：下轮用户费谈判是否加人、有无\"同一适应症、AI 起草者入组更快\"的对照、加速批准与替代终点用量是否上升。\n\n改写条件：新药递交上台阶且标准审评中位时长越过十二个月，压力点移到审评队列；AI 匹配抬高入组速率两成以上，本章判断降级。"
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "为什么不写年数",
+     "text": "审评端有逐件计量的公开台账，验证端只有跨研究的转引估计，支付与准入端没拿到可核实时长。把任一段的改善外化成\"整体提前几年\"会超出证据。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/49_英矽智能.jpg",
+     "alt": "一沪bio应丨英矽智能崭露AI药物研发强劲实力选择上海相信中国 研究开发 | 华源医药网",
+     "caption": "一沪bio应丨英矽智能崭露AI药物研发强劲实力选择上海相信中国 研究开发 | 华源医药网",
+     "source_page": "http://www.hyey.com/contents/85/13152.html",
+     "width": 1000,
+     "height": 667,
+     "query": "英矽智能"
+    },
+    {
+     "file": "images/07_alphafold.webp",
+     "alt": "AlphaFold 更新显著提高了对接、核酸和 PTMS 的准确性",
+     "caption": "AlphaFold 更新显著提高了对接、核酸和 PTMS 的准确性",
+     "source_page": "https://www.lthpc.com/cms/jishufenxiang/96.html",
+     "width": 800,
+     "height": 418,
+     "query": "AlphaFold"
+    }
+   ]
+  },
+  {
+   "id": "listed-companies",
+   "title": "上市公司逐家看：有业务证据的与只是概念的，分开列",
+   "anchor": "股",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "分级口径",
+     "text": "口径只认三条硬证据：登记库查得到期别（A）、公告写明对方或金额（B）、年报分部里能单独认出这笔收入（C）。其余表述一律归 D。下面按美股、港股、A股分列，每家标注所在环节与证据日期。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "有业务证据：美股",
+     "rows": [
+      {
+       "k": "Recursion（RXRX）AI原生biotech · A级",
+       "v": "FY2025年报列5个临床项目，REC-4881治家族性腺瘤性息肉病读出1b/2期阳性；已登记的II期SYCAMORE（NCT05085561，REC-994治脑海绵状畸形）2025-06-30完成，与另两个项目一并在2025年5月停止或转对外合作。",
+       "source_ids": [
+        "S091",
+        "S092"
+       ]
+      },
+      {
+       "k": "Schrödinger（SDGR）软件 · C级",
+       "v": "FY2025年报按软件与药研两个分部报收入：总额2.559亿美元，药研5637万、同比增107%，软件1.995亿、增11%。",
+       "source_ids": [
+        "S093"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "有业务证据：港股",
+     "rows": [
+      {
+       "k": "英矽智能（3696.HK）AI原生biotech · A级",
+       "v": "rentosertib治特发性肺纤维化：IIa期71例、22家中国中心，2025-06-03登《自然·医学》；III期NCT07687459招募中，2026-09-09起在北京协和医院与上海市肺科医院给药，疗程52周，主要终点预计2029-10-30读出。",
+       "source_ids": [
+        "S094",
+        "S095",
+        "S096",
+        "S097"
+       ]
+      },
+      {
+       "k": "晶泰控股（2228.HK）软件+CRO · B、C级",
+       "v": "2025-06-30公告与辉瑞共建分子模拟平台，对方具名、未披露金额；FY2025分部可拆：药物发现5.379亿元、同比增418.9%，AI4S智慧解决方案2.647亿元；另有一笔5100万美元管线授权首付（对方未具名），2026上半年再收1900万美元。",
+       "source_ids": [
+        "S099",
+        "S0910",
+        "S0911"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "A股：核对过的都卡在C级门外",
+     "rows": [
+      {
+       "k": "恒瑞医药（600276.SH）传统药企",
+       "v": "2025年报摘要写明AI已融入靶点发现、大分子与多肽设计、小分子生成与优化，但没给AI收入或AI产品口径——无法从披露口径中分离。",
+       "source_ids": [
+        "S0912"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "D级：这是概念联想，不是业务证据",
+     "rows": [
+      {
+       "k": "泓博医药（301230.SZ）CRO",
+       "v": "2026-08-11互动平台，投资者称它是A股稀缺的AI赋能药物发现CRO，追问DiOrion平台商业化与海外大药企合作；董秘只答不存在应披露未披露重大事项，进展请留意即将披露的定期报告。无金额、无登记号。",
+       "source_ids": [
+        "S0913",
+        "S0915"
+       ]
+      },
+      {
+       "k": "英矽智能的基石名单",
+       "v": "2025-12-30挂牌时基石投资者含礼来与腾讯——那是买它的股票，不是买它的药。",
+       "source_ids": [
+        "S098"
+       ]
+      },
+      {
+       "k": "中鼎股份（000887.SZ）非药企·口径示例",
+       "v": "2026-08-10与腾讯云签3年战略合作框架协议，次日自行澄清：仅为意向、尚无实质落地内容、未达强制披露标准。",
+       "source_ids": [
+        "S0914"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "这页不是投资建议",
+     "text": "本章口径：A看临床登记、B看具名或含金额的合作公告、C看年报分部、D只是宣传稿与问答。不给排名、不给估值与目标价、不暗示买卖。统计截止2026-09-25；此后新登记的试验、新签的公告都会让上表过期。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/51_晶泰科技.png",
+     "alt": "晶泰科技与韩国东亚公司签署合作，共同研发免疫与炎症领域新药 - 晶泰科技 XtalPi",
+     "caption": "晶泰科技与韩国东亚公司签署合作，共同研发免疫与炎症领域新药 - 晶泰科技 XtalPi",
+     "source_page": "https://www.xtalpi.com/晶泰科技与韩国东亚公司签署合作共同研发免疫与/",
+     "width": 822,
+     "height": 462,
+     "query": "晶泰科技"
+    },
+    {
+     "file": "images/52_药明康德.jpg",
+     "alt": "药明康德今日在上交所挂牌上市",
+     "caption": "药明康德今日在上交所挂牌上市",
+     "source_page": "https://company.cnstock.com/company/scp_gsxw/201805/4219023.htm",
+     "width": 1620,
+     "height": 1080,
+     "query": "药明康德"
+    }
+   ]
+  },
+  {
+   "id": "incumbents",
+   "title": "对传统制药公司的启示：给检查项，不给建议",
+   "anchor": "示",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先把判断说清楚",
+     "source_ids": [
+      "S101"
+     ],
+     "text": "最像壁垒的那一段最先被打穿：靶点到候选分子。但成败不在这里。BIO 与 Informa 统计 2011 至 2020 年的 12,728 次阶段转换：I 期走到美国获批的总体概率只有 7.9%，II 期转正率 28.9% 是四个临床阶段里最低的；而 NDA/BLA 交上去后（计入重新提交）的获批概率有 90.6%。假设变便宜，稀缺性就从发现挪向验证与转化。"
+    },
+    {
+     "type": "prose",
+     "heading": "先看三条：数据、砍管线、文书",
+     "source_ids": [
+      "S102",
+      "S103",
+      "S104"
+     ],
+     "text": "一、数据是否机器可读、有无合规出口。EMA 的 AI 全生命周期思考文件（2024 年 9 月采纳）要求数据来源、清洗、标注、增广按 GxP 可追溯记录——读数散在研究员本地表里的企业接不进这条链。\n\n二、敢不敢早期砍管线。外部候选会上涨，临床开发带宽（中心数、入组速度、审评沟通窗口）不会——天花板就是 28.9%。\n\n三、注册与医学写作是否数字化。ICH 的 M11（2025 年 11 月 19 日采纳）把试验方案本身变成可电子交换的结构化数据元素——文书段既是 AI 先进去的一段，也是对手最先压缩成本的一段。"
+    },
+    {
+     "type": "prose",
+     "heading": "再看两条：外包弹性、证据转化",
+     "source_ids": [
+      "S107",
+      "S102"
+     ],
+     "text": "四、外包研究与动物设施是成本项还是弹性项。美国 2022 年底立法放行替代方法，FDA 2025 年 4 月宣布对单抗等药逐步取消动物试验要求，但《Trends in Biotechnology》2026 年 1 月指出 IND 法规 21 CFR Part 312 并未同步改——合同能扩，审批口径不会自己扩。\n\n五、能否把模型输出变成可申报的证据。同一份 EMA 文件要求持有人验证、监测并记录模型表现，非透明模型需给出 SHAP、LIME 等可解释性度量，关键分析预先固定模型与统计计划。"
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "机制没搞懂时，“快”是幻觉",
+     "source_ids": [
+      "S105",
+      "S106"
+     ],
+     "text": "AI 设计的 TNIK 抑制剂 rentosertib 的 II a 期肺纤维化试验 2025 年 6 月发表于 Nature Medicine：71 人、12 周，主要终点只是不良事件率，疗效来自次要终点（60 mg 组肺活量改善 +98.4 毫升，安慰剂 −20.3 毫升）。Bender 与 Cortes-Ciriano 2021 年的综述把进展稀少归因于数据质量与对生物系统理解的不足：模型能给相关性，给不出可申报的因果。"
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "AI 打得动的",
+      "tone": "pro",
+      "points": [
+       "生成与排序候选，比合成与动物实验便宜",
+       "方案、总结类文书可批量起草校对",
+       "历史数据机器可读后能被重新提问"
+      ]
+     },
+     "right": {
+      "title": "AI 打不动的",
+      "tone": "con",
+      "points": [
+       "人体证据靠入组与终点，不靠算力",
+       "注册与药物警戒的口径由法规定",
+       "产能与支付谈判不在计算图里",
+       "承担失败的资本在资产负债表上"
+      ]
+     },
+     "verdict": "被削掉的只有“想到分子”一格，其余四格反而更值钱。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/55_药明康德.jpg",
+     "alt": "药明康德：美国将药明康德列入“中国军工企业”名单是错的 - 经济观察网 － 专业财经新闻网站",
+     "caption": "药明康德：美国将药明康德列入“中国军工企业”名单是错的 - 经济观察网 － 专业财经新闻网站",
+     "source_page": "https://www.eeo.com.cn/2026/0609/908775.shtml",
+     "width": 2160,
+     "height": 1080,
+     "query": "药明康德"
+    }
+   ]
+  },
+  {
+   "id": "falsify",
+   "title": "什么信号出现，这篇就该改写",
+   "anchor": "号",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "第一类：III 期阳性读出，唯一能动结论的一条",
+     "source_ids": [
+      "S111",
+      "S112",
+      "S113"
+     ],
+     "text": "AI 设计的分子在 III 期拿到阳性疗效读出，是唯一能推翻本篇「验证段没变便宜」判断的证据。最靠后的一格：登记条目 NCT07687459（rentosertib，TNIK 抑制剂，特发性肺纤维化）2026-09-10 首例给药，仍在招募，预计 320 人、用药 52 周，主要终点 2029-10-30 完成，结果字段为空。每季回查这条登记：结果有没有上传、主终点是不是疗效指标。"
+    },
+    {
+     "type": "prose",
+     "heading": "第二类：只认已发布的监管文本",
+     "source_ids": [
+      "S114",
+      "S115",
+      "S116"
+     ],
+     "text": "FDA 的 AI 监管决策指南，2025 年 1 月仍是草案，评论 2025-04-07 截止；2026 年 4 月的「AI 优化早期临床试验」试点计划停在信息征求。EMA 2024 年 9 月通过的是反思文件，2025 年 3 月 AIM-NASH 病理判读工具的资格意见写明由人类病理医生监督。只有一种算信号：条款接受模型生成的数据单独支撑关键安全性或疗效结论。"
+    },
+    {
+     "type": "prose",
+     "heading": "第三类：用量下降，还要能归因",
+     "source_ids": [
+      "S117",
+      "S118"
+     ],
+     "text": "英国 HC 391（2025 数据年）有两个方向的数：活体动物科学程序 254 万项，比上一年的 264 万再降，为 1986 年 ASPA 以来最低，实验程序同比少 8%；但非人灵长类实验程序 2,236 项，增 15%，首次使用的猴子从 1,478 只变 1,845 只。报告自己把波动归给科研方向与经费环境。要成信号，得看猴、犬在法规毒理用途上连年下降且能拆到替代方法。"
+    },
+    {
+     "type": "prose",
+     "heading": "第四类：把「发现新机制」和「做出药」分开",
+     "source_ids": [
+      "S119",
+      "S1110"
+     ],
+     "text": "TNIK 此前未被关联到纤维化，那是发现；进入 III 期才算药的开端。IIa 期 71 人随机双盲，主要终点是不良事件发生率（安全性）；肺功能改善只是次要读数，60 mg 组 12 周均值 +98.4 mL，18 人对安慰剂 17 人。六个蛋白时钟算出的「生物学年龄下降」同样是模型预测值。"
+    },
+    {
+     "type": "prose",
+     "heading": "第五类偏软：看条款，不看发布会",
+     "source_ids": [
+      "S116"
+     ],
+     "text": "头部厂商为生命科学单设的护栏若回调，也别由新闻稿判断。可查的是准入条款：外部研究者调用分子生成与实验编排接口的权限是收紧还是放开、安全事件分级口径有没有改写。"
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "这几类不算信号",
+     "source_ids": [
+      "S1111"
+     ],
+     "text": "模型在公开基准上涨分、厂商自陈的效率提升百分比、「某公司已用大模型做药」，都不构成结论变更——它们全在验证段之前。一项同行评议复核（《Drug Discovery Today》2024 年）里：AI 发现分子 I 期通过率 80% 到 90%，高于行业历史均值；II 期约 40%，与均值相当（样本有限）。优势恰在验证刚开始处消失。"
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "时效声明",
+     "source_ids": [
+      "S111",
+      "S115",
+      "S117"
+     ],
+     "text": "核对截止 2026-09-25：临床登记与结果字段以当日查询为准，动物统计引至 2025 数据年，监管条款引至两份联邦公报与 EMA 官网；哪一格更新就改对应段落。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/59_英矽智能.jpg",
+     "alt": "总潜在价值最高可达12亿美元！人工智能新药研发公司“英矽智能”再获重磅合作|人工智能|药物研发|美元_新浪新闻",
+     "caption": "总潜在价值最高可达12亿美元！人工智能新药研发公司“英矽智能”再获重磅合作|人工智能|药物研发|美元_新浪新闻",
+     "source_page": "https://k.sina.com.cn/article_5617041192_14ecd3f2802001bu0w.html",
+     "width": 1280,
+     "height": 720,
+     "query": "英矽智能"
+    },
+    {
+     "file": "images/09_alphafold.png",
+     "alt": "理解AlphaFold2 - 知乎",
+     "caption": "理解AlphaFold2 - 知乎",
+     "source_page": "https://zhuanlan.zhihu.com/p/570610949",
+     "width": 1980,
+     "height": 1330,
+     "query": "AlphaFold"
+    }
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S031",
+   "url": "https://www.anthropic.com/news/healthcare-life-sciences",
+   "label": "Anthropic 官方发布页《Advancing Claude in healthcare and the life sciences》(2026-01-11)：新增连接器清单、Agent Skills、范围转移自述、HIPAA 与训练数据承诺原文",
+   "retrieved": "2026-09-25",
+   "publisher": "Anthropic"
+  },
+  {
+   "id": "S032",
+   "url": "https://www.anthropic.com/news/claude-for-life-sciences",
+   "label": "Anthropic 官方发布页《Claude for Life Sciences》(2025-10-20)：初版连接器清单、Protocol QA 基准分数、首批科学技能",
+   "retrieved": "2026-09-25",
+   "publisher": "Anthropic"
+  },
+  {
+   "id": "S011",
+   "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+   "label": "Anthropic 官方发布页，2026 年 9 月 23 日，宣布新成立的生命科学团队与 ART 发现，含全部数字、边界表述与 Feng Zhang 引述",
+   "retrieved": "2026-09-25",
+   "publisher": "Anthropic"
+  },
+  {
+   "id": "S021",
+   "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+   "label": "Anthropic 官方发布页（2026-09-23）：950 个 agent、21 小时、2.1 亿 token、20 万+ 逆转录酶、3,500 个新候选系统、20 份人类可读报告，以及“一轮筛查可能只剩一个值得测的候选，也可能一个都没有”“假设本身成了研究对象”原文",
+   "retrieved": "2026-09-25",
+   "publisher": "Anthropic"
+  },
+  {
+   "id": "S022",
+   "url": "https://www.sumitomo-pharma.com/news/20200130.html",
+   "label": "住友制药 2020-01-30 公告：AI 生成的 DSP-1181 在日本启动 I 期；探索性研究阶段不到 12 个月，常规做法平均 4.5 年",
+   "retrieved": "2026-09-25",
+   "publisher": "Sumitomo Pharma"
+  },
+  {
+   "id": "S023",
+   "url": "https://insilico.com/blog/first_phase2",
+   "label": "Insilico 2023-07-01：INS018_055 首例给药进 II 期；2021 年 2 月选定临床前候选（立项后 18 个月）、靶点发现到 I 期不到 30 个月、约为传统一半时间",
+   "retrieved": "2026-09-25",
+   "publisher": "Insilico Medicine"
+  },
+  {
+   "id": "S024",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/26928437/",
+   "label": "DiMasi/Grabowski/Hansen, J Health Econ 2016：106 个随机抽样新药的现金投入 $1.395B、资本化 $2.558B（2013 美元）、实际年增 8.5%",
+   "retrieved": "2026-09-25",
+   "publisher": "PubMed"
+  },
+  {
+   "id": "S025",
+   "url": "https://clinicaltrials.gov/study/NCT05154240",
+   "label": "INS018_055 I 期登记：2022-02-21 启动、实招 78 人、2022-12-02 完成；申办方 InSilico Medicine Hong Kong Limited",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S026",
+   "url": "https://clinicaltrials.gov/study/NCT05938920",
+   "label": "INS018_055 IIa 期登记：随机、双盲、安慰剂对照，2023-06-19 启动、实招 71 人、主要终点 2024-08-08、结果首次张贴 2025-12-02",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S027",
+   "url": "https://clinicaltrials.gov/study/NCT07687459",
+   "label": "rentosertib III 期登记：2026-09-09 启动、计划 320 人、预计 2029-10-30 结束",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S028",
+   "url": "https://clinicaltrials.gov/study/NCT06671483",
+   "label": "zasocitinib（TAK-279）III 期：2025-03-03 启动、计划 1,088 人、安慰剂与活性双对照；申办方 Takeda",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S029",
+   "url": "https://clinicaltrials.gov/study/NCT06973291",
+   "label": "zasocitinib 头对头 deucravacitinib 的 III 期：已完成、实招 606 人",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S0210",
+   "url": "https://clinicaltrials.gov/study/NCT07517198",
+   "label": "EXS74539（REC-4539）I 期剂量爬坡：2026-04-13 启动、计划 40 人、开放标签；申办方 Exscientia AI Ltd.（Recursion Pharmaceuticals 全资子公司）",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S0211",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/41389441/",
+   "label": "Pharmacological Reviews 2026 综述：把 zasocitinib 归入 Schrödinger 物理+机器学习设计路线并已进入 III 期；记录 Recursion–Exscientia 合并",
+   "retrieved": "2026-09-25",
+   "publisher": "PubMed"
+  },
+  {
+   "id": "S0212",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13304925/",
+   "label": "Pharmaceuticals (Basel) 2026-06-10（19(6):916）系统综述：约 90% 临床候选未获批、获批概率 8%–12% 基线、AI 分子 I 期 80%–90% 与 IIa 约 40%、传统 IIa 30%–40%、BenevolentAI 裁员 30%",
+   "retrieved": "2026-09-25",
+   "publisher": "PMC"
+  },
+  {
+   "id": "S041",
+   "url": "https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf",
+   "label": "BIO 与 Informa Pharma Intelligence《Clinical Development Success Rates and Contributing Factors 2011–2020》全文 PDF（数据源 Biomedtracker／Pharmaprojects／Trialve）：各期转换成功率与转换次数、I 期到获批平均时长",
+   "retrieved": "2026-09-25",
+   "publisher": "BIO / Informa Pharma Intelligence"
+  },
+  {
+   "id": "S042",
+   "url": "https://www.ecfr.gov/api/versioner/v1/full/2025-09-01/title-21.xml?part=312&section=312.21",
+   "label": "eCFR 全文接口返回的 21 CFR 312.21（2025-09-01 版）原文：I／II／III 期法定定义与受试者人数区间",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. General Services Administration / eCFR"
+  },
+  {
+   "id": "S043",
+   "url": "https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf",
+   "label": "ICH M3(R2) 非临床安全性研究指导原则（Step 4，2009-06-11）全文 PDF：重复给药毒理的种属数与给药时长如何绑定临床时长",
+   "retrieved": "2026-09-25",
+   "publisher": "ICH"
+  },
+  {
+   "id": "S044",
+   "url": "https://www.ecfr.gov/api/versioner/v1/full/2025-09-01/title-21.xml?part=58",
+   "label": "eCFR 全文接口返回的 21 CFR Part 58 原文：GLP 适用于支撑上市许可申请的安全性数据",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. General Services Administration / eCFR"
+  },
+  {
+   "id": "S045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1100682/000110068226000022/crl-20251227.htm",
+   "label": "Charles River Laboratories 2025 财年 10-K（2026-02-18 提交）正文：转引多项研究的 10–15 年／最高 26 亿美元（不含时间成本）／1 万–1.5 万个分子；受监管安全性评价市场 60% 以上外包；120 多个基地、20 多个国家；起点业务为实验动物医学与科学",
+   "retrieved": "2026-09-25",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S046",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3058157/",
+   "label": "British Journal of Pharmacology 综述《Principles of early drug discovery》开放全文：靶点识别与验证→筛选→苗头→先导优化→候选分子的分段定义，及 12–15 年／10 亿美元以上口径",
+   "retrieved": "2026-09-25",
+   "publisher": "PMC / Br J Pharmacol (2011)"
+  },
+  {
+   "id": "S047",
+   "url": "https://www.nature.com/articles/s41591-025-03743-2",
+   "label": "Nature Medicine 2025-06-03 随机双盲 IIa 期论文（生成式 AI 发现的 TNIK 抑制剂 rentosertib／INS018_055 治 IPF）：作者自述候选提名 18 个月、完成 0/1 期不到 30 个月；21 个中国研究中心、128 筛 71 随机、给药 12 周；作者自陈局限；并陈述 AI 发现药物 II 期失败率与非 AI 无差别、尚无一个走完 III 期",
+   "retrieved": "2026-09-25",
+   "publisher": "Nature Medicine"
+  },
+  {
+   "id": "S048",
+   "url": "https://clinicaltrials.gov/api/v2/studies?format=json&pageSize=100&query.term=INS018_055",
+   "label": "ClinicalTrials.gov API v2 检索 INS018_055 的登记记录（4 条）：NCT05154240（Phase 1）与 NCT05938920（Phase IIa）为 COMPLETED，NCT05975983 与 NCT07687459 为 RECRUITING",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. National Library of Medicine"
+  },
+  {
+   "id": "S049",
+   "url": "https://alphafold.ebi.ac.uk/",
+   "label": "AlphaFold 蛋白结构数据库首页自述：2.6 亿条蛋白结构预测，开放获取",
+   "retrieved": "2026-09-25",
+   "publisher": "EMBL-EBI / DeepMind"
+  },
+  {
+   "id": "S0410",
+   "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=SRC:MED&format=json&pageSize=1",
+   "label": "Europe PMC REST 接口对 SRC:MED（MEDLINE）返回 hitCount = 41,119,497（2026-09-24 取值）",
+   "retrieved": "2026-09-25",
+   "publisher": "EMBL-EBI"
+  },
+  {
+   "id": "S061",
+   "url": "https://www.anthropic.com/news/life-sciences-verification-program",
+   "label": "Anthropic 官方公告《Introducing the Life Sciences Verification Program》，页面日期 Sep 17, 2026。原文写有 \"gives life science professionals access to our Mythos, Opus, and Sonnet models with a refined set of safeguards more permissive for biology-related work\"、\"launching in beta, initially for teams and institutions\"、三项核验（research credentials / security standards / ethical research oversight）、Standard Use 一年一续与 High-risk Use 按单项目半年一续（\"removes all safeguards that block life sciences requests\"）、以及自陈的三类威胁模型与\"从实时拦截转为离线监控\"",
+   "retrieved": "2026-09-25",
+   "publisher": "Anthropic"
+  },
+  {
+   "id": "S062",
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/considerations-use-artificial-intelligence-support-regulatory-decision-making-drug-and-biological",
+   "label": "FDA 指南检索页：Considerations for the Use of Artificial Intelligence To Support Regulatory Decision-Making for Drug and Biological Products。页面标注 Draft Guidance、JANUARY 2025、Level 1、\"Not for implementation. Contains non-binding recommendations\"、docket FDA-2024-D-4689、Content current as of 01/06/2025；摘要称该指南提供\"a risk-based credibility assessment framework…for a particular context of use (COU)\"",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA"
+  },
+  {
+   "id": "S063",
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/artificial-intelligence-enabled-device-software-functions-lifecycle-management-and-marketing",
+   "label": "FDA 指南检索页：Artificial Intelligence-Enabled Device Software Functions: Lifecycle Management and Marketing Submission Recommendations。标注 Draft Guidance、JANUARY 2025、docket FDA-2024-D-4488、\"Not for implementation. Contains non-binding recommendations\"",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA"
+  },
+  {
+   "id": "S064",
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/marketing-submission-recommendations-predetermined-change-control-plan-artificial-intelligence",
+   "label": "FDA 指南检索页：Marketing Submission Recommendations for a Predetermined Change Control Plan for AI-Enabled Device Software Functions。标注 Final、AUGUST 2025、docket FDA-2022-D-2628；正文明确 PCCP 需描述 planned device modifications、开发验证实施这些修改的方法学、以及影响评估，适用 510(k)、De Novo、PMA",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA"
+  },
+  {
+   "id": "S065",
+   "url": "https://www.ema.europa.eu/en/use-artificial-intelligence-ai-medicinal-product-lifecycle-scientific-guideline",
+   "label": "EMA 文件页：Reflection paper on the use of AI in the medicinal product lifecycle，编号 EMA/CHMP/CVMP/83833/2023，状态 Adopted，First published 30/09/2024；同页 Document history 记录草案公开征询日期 19/07/2023 至 31/12/2023",
+   "retrieved": "2026-09-25",
+   "publisher": "EMA"
+  },
+  {
+   "id": "S066",
+   "url": "https://www.nmpa.gov.cn/xxgk/ggtg/ypggtg/ypqtggtg/20200107151901190.html",
+   "label": "国家药品监督管理局官网通告页：《国家药监局关于发布真实世界证据支持药物研发与审评的指导原则（试行）的通告（2020年第1号）》，2020-01-07 发布",
+   "retrieved": "2026-09-25",
+   "publisher": "NMPA"
+  },
+  {
+   "id": "S067",
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/use-real-world-evidence-support-regulatory-decision-making-medical-devices",
+   "label": "FDA 指南检索页：Use of Real-World Evidence to Support Regulatory Decision-Making for Medical Devices。标注 Final、DECEMBER 2025、docket FDA-2023-D-4395，正文写明\"supersedes the final guidance of the same name, issued August 31, 2017\"",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA"
+  },
+  {
+   "id": "S068",
+   "url": "https://www.cmde.org.cn/flfg/zdyz/zqyjg/20260914160636102.html",
+   "label": "国家药监局器审中心（CMDE）官网征求意见稿通知，发布时间 2026-09-14：就《人工智能医疗器械注册审查指导原则（2026年修订版）（征求意见稿）》公开征求意见，要求于 2026 年 10 月 12 日前反馈；并注明系按注册审查指导原则制修订计划组织修订",
+   "retrieved": "2026-09-25",
+   "publisher": "NMPA 医疗器械技术审评中心"
+  },
+  {
+   "id": "S069",
+   "url": "https://www.cmde.org.cn/flfg/zdyz/zqyjg/20260916105408164.html",
+   "label": "CMDE 官网通知，发布时间 2026-09-16：就《人工智能多病种辅助决策医疗器械临床评价注册审查指导原则（征求意见稿）》等 2 项指导原则公开征求意见，反馈截止 2026 年 10 月 14 日",
+   "retrieved": "2026-09-25",
+   "publisher": "NMPA 医疗器械技术审评中心"
+  },
+  {
+   "id": "S0610",
+   "url": "http://m.cnpharm.com/c/2022-03-09/819658.shtml",
+   "label": "中国食品药品网（国家药监局直属媒体）2022-03-09 报道：国家药监局器审中心发布《人工智能医疗器械注册审查指导原则》。注：器审中心官网该条 2022 年通告原文页在本网络未能直连取到，故此条为机构直属媒体报道而非 agency 页面本身",
+   "retrieved": "2026-09-25",
+   "publisher": "中国食品药品网"
+  },
+  {
+   "id": "S071",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13047289/",
+   "label": "《Current Opinion in Structural Biology》2026 年综述：基于结构的药物设计中蛋白结构预测模型（PSPM）的能力边界，主张用盲测（blind challenges）划界，并指出蛋白—配体数据仍不足以支撑药物发现（DOI 10.1016/j.sbi.2026.103257，PMID 41924828）",
+   "retrieved": "2026-09-25",
+   "publisher": "Current Opinion in Structural Biology / NIHPA"
+  },
+  {
+   "id": "S072",
+   "url": "https://database.ich.org/sites/default/files/ICH_M7(R2)_Guideline_Step4_2023_0216_0.pdf",
+   "label": "ICH M7(R2) 正式指南全文 PDF（2023 年 4 月 3 日采纳，Step 4）。第 6 节 Hazard Assessment Elements 原文要求两种互补 (Q)SAR 方法（一种 expert rule-based、一种 statistical-based）、遵循 OECD 通用验证原则，并写明两者均无结构警示时 no further testing is recommended（Class 5）",
+   "retrieved": "2026-09-25",
+   "publisher": "ICH"
+  },
+  {
+   "id": "S073",
+   "url": "https://www.govinfo.gov/content/pkg/FR-2024-12-30/html/2024-31027.htm",
+   "label": "联邦公报 89 FR 106504（2024-12-30）：ICH M15《General Principles for Model-Informed Drug Development》草案指南公告，Docket FDA-2024-D-5580，评论截止 2025 年 2 月 28 日",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. Federal Register / FDA"
+  },
+  {
+   "id": "S074",
+   "url": "https://www.govinfo.gov/content/pkg/FR-2026-06-03/html/2026-11112.htm",
+   "label": "联邦公报 91 FR 33179（2026-06-03）：M15 成为 final guidance for industry 的公告，原文称其 establishes a harmonized assessment framework … for the MIDD evidence，并提供监管沟通、报告与提交方面的建议；明确 finalize 了 2024 年 12 月 30 日的草案",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. Federal Register / FDA"
+  },
+  {
+   "id": "S075",
+   "url": "https://www.govinfo.gov/content/pkg/FR-2023-02-01/html/2023-02094.htm",
+   "label": "联邦公报 88 FR 6748（2023-02-01）：FDA《Considerations for the Design and Conduct of Externally Controlled Trials for Drug and Biological Products》草案指南公告，Docket FDA-2022-D-2983，评论截止 2023 年 5 月 2 日；属 FDA 真实世界证据（RWE）项目系列",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. Federal Register / FDA"
+  },
+  {
+   "id": "S076",
+   "url": "https://clinicaltrials.gov/study/NCT05154240",
+   "label": "ClinicalTrials.gov 登记记录 NCT05154240：INS018_055 的 I 期试验，lead sponsor 为 InSilico Medicine Hong Kong Limited，实际开始 2022-02-21、实际完成 2022-12-02，入组 78 人（ACTUAL），状态 COMPLETED",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S077",
+   "url": "https://clinicaltrials.gov/study/NCT06671483",
+   "label": "ClinicalTrials.gov 登记记录 NCT06671483：武田（Takeda）zasocitinib 银屑病关节炎 III 期随机双盲、安慰剂与活性对照试验，实际开始 2025-03-03，计划入组 1,088 人（ESTIMATED），状态 RECRUITING",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S078",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13398400/",
+   "label": "《Journal of Clinical Pharmacology》2026 年综述：复核 2018—2025 年间 FDA 批准的 33 个儿科肿瘤用药，讨论削减非临床数据要求、模型引导的药物开发在剂量选择与研究设计中的作用，以及真实世界数据与外部对照的新兴使用",
+   "retrieved": "2026-09-25",
+   "publisher": "Journal of Clinical Pharmacology"
+  },
+  {
+   "id": "S081",
+   "url": "https://www.fda.gov/drugs/novel-drug-approvals-fda/novel-drug-approvals-2024",
+   "label": "FDA CDER 官方页：2024 年批准 50 个新药（美国从未批准或上市过的活性成分）",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA"
+  },
+  {
+   "id": "S082",
+   "url": "https://www.fda.gov/drugs/novel-drug-approvals-fda/novel-drug-approvals-2025",
+   "label": "FDA CDER 官方页：2025 年批准 46 个新药",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA"
+  },
+  {
+   "id": "S083",
+   "url": "https://www.fda.gov/media/191112/download",
+   "label": "FDA《PDUFA 绩效报告（FY2025）》PDF：表3 各类原研申请与补充申请件数（FY2020–FY2025）、FY2024 十项审评绩效结果、图1 申请量、图2 中位审评时长、PDUFA VII 新增 352 个 FTE 人力承诺与截至 2025-09-30 到位 275 个",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA"
+  },
+  {
+   "id": "S084",
+   "url": "https://www.fda.gov/files/drugs/published/new-drug-therapy-2025-annual-report.pdf",
+   "label": "FDA《2024 年新药物治疗批准年度报告》PDF：10 个目标中 94%（47/50）在 PDUFA 目标日期或之前获批；优先/标准审评 6 个月与 10 个月目标",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA CDER"
+  },
+  {
+   "id": "S085",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/39085451/",
+   "label": "Targeted Oncology 2024（19卷5期）：Drugs@FDA 2000–2022 年 170 个抗癌药、292 项随机 + 163 项单臂试验；随机试验中位每月入组非孤儿 38 人、超罕见孤儿 8 人；入组与站点数、参与国家数正相关",
+   "retrieved": "2026-09-25",
+   "publisher": "Springer / PubMed"
+  },
+  {
+   "id": "S086",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7673977/",
+   "label": "J Med Internet Res 2020 系统综述与 meta 分析（筛 3,861 篇、纳入 61 篇）：病人招募是试验延迟首要原因，约 80% 试验达不到预设入组目标与时限（转引业界估计），延迟损失被引为最高每天 800 万美元",
+   "retrieved": "2026-09-25",
+   "publisher": "JMIR / PMC"
+  },
+  {
+   "id": "S087",
+   "url": "https://www.fightcancer.org/policy-resources/barriers-patient-enrollment-therapeutic-clinical-trials-cancer",
+   "label": "美国癌症协会 ACS CAN 2018 全景报告（页面含 PDF 下载）：约 20% 的癌症治疗性试验因入组不足而失败；建议为站点维持专职研究人力",
+   "retrieved": "2026-09-25",
+   "publisher": "American Cancer Society Cancer Action Network"
+  },
+  {
+   "id": "S088",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9189774/",
+   "label": "2022 年医疗提供者焦点小组质性研究：70% 美国人对参加试验持正面态度，但合格成人肿瘤患者实际入组仅 3%–5%；机构层面障碍为站点人力与后勤支持不足",
+   "retrieved": "2026-09-25",
+   "publisher": "Contemporary Clinical Trials Communications / PMC"
+  },
+  {
+   "id": "S089",
+   "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2820562",
+   "label": "JAMA Network Open 2024 经济评估：2000–2018 年美国获批新药从非临床到上市后平均现金支出 1.727 亿美元（2018 年美元），计入失败为 5.158 亿、再计入资本成本为 8.793 亿美元",
+   "retrieved": "2026-09-25",
+   "publisher": "JAMA Network"
+  },
+  {
+   "id": "S0810",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/32845329/",
+   "label": "JAMA Network Open 2020 横断面研究：2000–2019 年在 ClinicalTrials.gov 启动的 245,999 项介入性试验，54.9% 完成；中位完成时长企业 sponsor 1.2 年、NIH/美政府 3.4 年、其他 2.1 年",
+   "retrieved": "2026-09-25",
+   "publisher": "JAMA Network / PubMed"
+  },
+  {
+   "id": "S051",
+   "url": "https://www.govinfo.gov/content/pkg/PLAW-117publ328/html/PLAW-117publ328.htm",
+   "label": "美国公法 117-328（Consolidated Appropriations Act, 2023，2022-12-29）全文；SEC. 3209「Animal Testing Alternatives」修订 FD&C Act 505(i) 并新增 (z) 款 nonclinical test 定义",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. Government Publishing Office"
+  },
+  {
+   "id": "S052",
+   "url": "https://www.ecfr.gov/current/title-21/chapter-I/subchapter-D/part-312/subpart-B/section-312.23",
+   "label": "21 CFR 312.23(a)(8) 现行文本：IND 须提交「涉及实验动物或体外」的药理毒理资料，且试验种类与周期随拟开展临床研究的时长和性质变化",
+   "retrieved": "2026-09-25",
+   "publisher": "eCFR"
+  },
+  {
+   "id": "S053",
+   "url": "https://database.ich.org/sites/default/files/M3_R2__Guideline.pdf",
+   "label": "ICH M3(R2) Step 4 版（2009-06-11）PDF 全文：1.1 替代方法条款、5.1/5.2 节表 1 与表 2、第 6 节首次人体剂量与 NOAEL",
+   "retrieved": "2026-09-25",
+   "publisher": "ICH"
+  },
+  {
+   "id": "S054",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32001L0083",
+   "label": "欧盟指令 2001/83/EC（OJ L 311，2001-11-28）全文；附件 I 第 III 部分 A 节要求临床试验先行完成在动物上的药理毒理试验",
+   "retrieved": "2026-09-25",
+   "publisher": "EUR-Lex"
+  },
+  {
+   "id": "S055",
+   "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32010L0063",
+   "label": "欧盟指令 2010/63/EU（科研用途动物保护）全文；第 8 条限定非人灵长类使用条件，第 47 条规定替代方法的开发与验证义务",
+   "retrieved": "2026-09-25",
+   "publisher": "EUR-Lex"
+  },
+  {
+   "id": "S056",
+   "url": "https://www.mee.gov.cn/zcwj/gwywj/202601/t20260128_1142757.shtml",
+   "label": "《中华人民共和国药品管理法实施条例》（国务院令第 828 号，2026-01-16 公布、2026-05-15 施行）全文，来源标注为中国政府网；第六条、第七条",
+   "retrieved": "2026-09-25",
+   "publisher": "中国政府网（地方网站转载）"
+  },
+  {
+   "id": "S057",
+   "url": "https://www.nmpa.gov.cn/yaopin/ypggtg/20211103170924114.html",
+   "label": "国家药监局 2021 年第 131 号公告：适用《M3（R2）及问答（R2）：支持药物进行临床试验和上市的非临床安全性研究及问答》，自发布之日起开始的非临床安全性研究适用",
+   "retrieved": "2026-09-25",
+   "publisher": "NMPA"
+  },
+  {
+   "id": "S058",
+   "url": "https://www.fda.gov/news-events/press-announcements/fda-announces-plan-phase-out-animal-testing-requirement-monoclonal-antibodies-and-other-drugs",
+   "label": "FDA 2025-04-10 公告：发布减少动物试验路线图，IND 申请立即鼓励提交 NAMs 数据",
+   "retrieved": "2026-09-25",
+   "publisher": "FDA"
+  },
+  {
+   "id": "S059",
+   "url": "https://www.fda.gov/news-events/press-announcements/fda-releases-draft-guidance-reducing-testing-non-human-primates-monoclonal-antibodies",
+   "label": "FDA 2025-12-02 公告：六个月非人灵长类毒性试验可在哪些单抗上取消或缩短；典型单抗非临床项目或用 100 只以上 NHP、每只约 5 万美元；并称许多过了动物毒理的产品因人体安全或疗效问题未获批",
+   "retrieved": "2026-09-25",
+   "publisher": "FDA"
+  },
+  {
+   "id": "S0510",
+   "url": "https://www.fda.gov/regulatory-information/search-fda-guidance-documents/monoclonal-antibodies-streamlined-nonclinical-safety-studies",
+   "label": "FDA 指南检索页：「Monoclonal Antibodies: Streamlined Nonclinical Safety Studies」为 draft guidance，案卷 FDA-2025-D-4634，征求意见中",
+   "retrieved": "2026-09-25",
+   "publisher": "FDA"
+  },
+  {
+   "id": "S0511",
+   "url": "https://www.fda.gov/news-events/press-announcements/fda-releases-draft-guidance-alternatives-animal-testing-drug-development",
+   "label": "FDA 2026-03-18 公告：NAM 验证草案指南与四条原则；同文提及 USP〈86〉重组试剂细菌内毒素法（2025 年 5 月）与热原/内毒素问答指南 level 2 修订",
+   "retrieved": "2026-09-25",
+   "publisher": "FDA"
+  },
+  {
+   "id": "S0512",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/20361022/",
+   "label": "McCann 等，PLoS Biology 2010（PMID 20361022）：16 项系统综述、525 篇动物卒中研究，仅 10 篇（2%）报告梗死体积无显著效应；校正发表偏倚后疗效由 31.3% 降至 23.8%",
+   "retrieved": "2026-09-25",
+   "publisher": "PubMed"
+  },
+  {
+   "id": "S091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1601830/000160183026000039/rxrx-20251231.htm",
+   "label": "Recursion FY2025 年报（10-K，2026-02-25 报送）：5 个临床项目 + 2 个临床前；REC-4881 在 FAP 的 1b/2 期阳性；2025 年 5 月砍掉 REC-2282/REC-994/REC-3964 转对外合作",
+   "retrieved": "2026-09-25",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S092",
+   "url": "https://clinicaltrials.gov/study/NCT05085561",
+   "label": "ClinicalTrials.gov NCT05085561（SYCAMORE，REC-994-201）：II 期随机双盲安慰剂对照治脑海绵状畸形，2022-03-17 开始、2025-06-30 完成，登记主体 Recursion Pharmaceuticals Inc.",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S093",
+   "url": "https://www.sec.gov/Archives/edgar/data/1490978/000149097826000010/sdgr-20251231.htm",
+   "label": "Schrödinger FY2025 年报（10-K）：明确 Software 与 Drug Discovery 两个可报告分部；分部收入 255,869 / 56,369 / 199,500 千美元",
+   "retrieved": "2026-09-25",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S094",
+   "url": "https://clinicaltrials.gov/study/NCT07687459",
+   "label": "ClinicalTrials.gov NCT07687459（INS018-055-301）：III 期随机双盲安慰剂对照，rentosertib 治 IPF，52 周，2026-09-09 实际开始、RECRUITING、主要终点预计 2029-10-30",
+   "retrieved": "2026-09-25",
+   "publisher": "ClinicalTrials.gov"
+  },
+  {
+   "id": "S095",
+   "url": "https://insilico.com/news/tnrecuxsc1-insilico-announces-nature-medicine-publi",
+   "label": "英矽智能 2025-06-03 公告：GENESIS-IPF IIa 期 71 例、22 家中国中心，双盲安慰剂对照 12 周",
+   "retrieved": "2026-09-25",
+   "publisher": "Insilico Medicine"
+  },
+  {
+   "id": "S096",
+   "url": "https://insilico.com/news/isn1009261-insilico-medicine-doses-first-patient-genesis-ipf-3",
+   "label": "英矽智能 2026-09-10 公告：GENESIS-IPF-3（NCT07687459 / CTR20262475）首例给药，北京协和医院与上海市肺科医院同日入组",
+   "retrieved": "2026-09-25",
+   "publisher": "Insilico Medicine"
+  },
+  {
+   "id": "S097",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/40461817/",
+   "label": "《自然·医学》论文：生成式 AI 发现的 TNIK 抑制剂治特发性肺纤维化的 IIa 期随机对照试验",
+   "retrieved": "2026-09-25",
+   "publisher": "PubMed"
+  },
+  {
+   "id": "S098",
+   "url": "https://insilico.com/news_sc/yv1sumnn21-aibiotech-ipo",
+   "label": "英矽智能 2025-12-30 港交所挂牌公告：股份代码 3696.HK，募资 22.77 亿港元，15 家基石投资者含礼来公司与腾讯",
+   "retrieved": "2026-09-25",
+   "publisher": "Insilico Medicine"
+  },
+  {
+   "id": "S099",
+   "url": "https://www.prnewswire.com/apac/zh/news-releases/-2025--302724955.html",
+   "label": "晶泰控股 2025 年度业绩（2026-03-25）：营业收入 802.6 百万元，药物发现解决方案 537.9 百万元（+418.9%）、AI4S 智慧解决方案 264.7 百万元（+62.6%）",
+   "retrieved": "2026-09-25",
+   "publisher": "PR Newswire"
+  },
+  {
+   "id": "S0910",
+   "url": "https://www.prnasia.com/story/544562-1.shtml",
+   "label": "晶泰控股 2026 年中期业绩（2026-08-19）：上年同期确认管线授权首付款 51.0 百万美元，本期收到第二笔 19.0 百万美元",
+   "retrieved": "2026-09-25",
+   "publisher": "美通社"
+  },
+  {
+   "id": "S0911",
+   "url": "https://finance.sina.com.cn/jjxw/2025-06-30/doc-infcvyah9804413.shtml",
+   "label": "2025-06-30 晶泰科技与辉瑞扩大战略合作、共建新一代分子模拟平台（原文注：晶泰在官方公众号发布，未披露金额）",
+   "retrieved": "2026-09-25",
+   "publisher": "新浪财经转载财经网"
+  },
+  {
+   "id": "S0912",
+   "url": "https://paper.cnstock.com/html/2026-03/26/content_2192029.htm",
+   "label": "恒瑞医药 2025 年年度报告摘要：自陈大力发展 AIDD，AI 已融入靶点发现、大分子与多肽设计、小分子生成与优化；全文未给 AI 相关收入口径",
+   "retrieved": "2026-09-25",
+   "publisher": "上海证券报"
+  },
+  {
+   "id": "S0913",
+   "url": "https://i.ifeng.com/c/8vVP4oHkChz",
+   "label": "泓博医药 2026-08-11 互动平台答复：投资者称其为「A 股稀缺的 AI 赋能药物发现 CRO/CDMO」并追问 DiOrion 平台商业化，董秘答不存在应披露未披露重大事项",
+   "retrieved": "2026-09-25",
+   "publisher": "凤凰网转载证券之星（源自深交所互动易）"
+  },
+  {
+   "id": "S0914",
+   "url": "https://m.21jingji.com/article/20260812/herald/b91296bf04677112e75ecdc360ca625b.html",
+   "label": "中鼎股份 2026-08-12 澄清公告：8 月 10 日与腾讯云所签 3 年合作协议「仅为合作意向的框架协议，尚无实质落地的合作内容，未达到强制信息披露标准」",
+   "retrieved": "2026-09-25",
+   "publisher": "21 财经"
+  },
+  {
+   "id": "S0915",
+   "url": "https://irm.cninfo.com.cn/",
+   "label": "深交所互动易（D 级证据的原始载体：投资者提问与公司答复）",
+   "retrieved": "2026-09-25",
+   "publisher": "深圳证券交易所"
+  },
+  {
+   "id": "S101",
+   "url": "https://go.bio.org/rs/490-EHZ-999/images/ClinicalDevelopmentSuccessRates2011_2020.pdf",
+   "label": "BIO、Informa Pharma Intelligence 与 QLS Advisors 报告《Clinical Development Success Rates and Contributing Factors 2011-2020》（2021 年 2 月）：12,728 次阶段转换、I 期到获批总体概率 7.9%、II 期转正率 28.9%（四个临床阶段最低）、NDA/BLA 提交后计入重新提交的获批概率 90.6%",
+   "retrieved": "2026-09-25",
+   "publisher": "BIO / Informa / QLS Advisors"
+  },
+  {
+   "id": "S102",
+   "url": "https://www.ema.europa.eu/system/files/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle-en.pdf",
+   "label": "EMA《关于 AI 在药品全生命周期中使用的思考文件》（EMA/CHMP/CVMP/83833/2023）正文：要求数据来源与清洗、转化、标注、增广按 GxP 完全可追溯记录；验证、监测并记录模型表现是持有人的责任；非透明模型需用 SHAP、LIME 等可解释性度量；关键分析沿用预先固定的统计分析计划与冻结模型",
+   "retrieved": "2026-09-25",
+   "publisher": "European Medicines Agency"
+  },
+  {
+   "id": "S103",
+   "url": "https://www.ema.europa.eu/en/about-us/how-we-work/data-regulation-big-data-other-sources/artificial-intelligence",
+   "label": "EMA 人工智能专题页：写明该思考文件由 CHMP 与 CVMP 于 2024 年 9 月采纳，另发布面向欧洲药品监管网络工作人员的 LLM 使用指导原则",
+   "retrieved": "2026-09-25",
+   "publisher": "European Medicines Agency"
+  },
+  {
+   "id": "S104",
+   "url": "https://database.ich.org/sites/default/files/ICH_Step4_M11_Final_Guideline_2025_1119.pdf",
+   "label": "ICH M11《Clinical Electronic Structured Harmonised Protocol（CESHARP）》最终版，标注 2025 年 11 月 19 日采纳；正文以各家方案格式不一造成检索与审评困难为由，规定用结构化数据元素与可互操作标准电子交换试验方案",
+   "retrieved": "2026-09-25",
+   "publisher": "ICH"
+  },
+  {
+   "id": "S105",
+   "url": "https://www.nature.com/articles/s41591-025-03743-2",
+   "label": "Nature Medicine（2025-06-03）AI 生成 TNIK 抑制剂 rentosertib（ISM001-055）II a 期随机双盲试验（NCT05938920）：71 人、12 周，主要终点为治疗期不良事件率，60 mg 每日一次组用力呼气肺活量变化 +98.4 毫升、安慰剂 −20.3 毫升",
+   "retrieved": "2026-09-25",
+   "publisher": "Nature Medicine"
+  },
+  {
+   "id": "S106",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/33508423/",
+   "label": "Bender & Cortes-Ciriano《Artificial intelligence in drug discovery: what is realistic, what are illusions? Part 2: a discussion of chemical and biological data》Drug Discov Today 2021;26(4):1040-1052：该领域进展稀少的一个原因内在于所用数据，并需要补足对生物系统的理解",
+   "retrieved": "2026-09-25",
+   "publisher": "Drug Discovery Today"
+  },
+  {
+   "id": "S107",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12834477/",
+   "label": "Gerke 等《The FDA's Plan to Phase Out Animal Testing》Trends in Biotechnology 2026;44(8):2178-2181：FDA Modernization Act 2.0 作为 CAA 第 3209 条于 2022-12-29 通过，FDA 2025 年 4 月宣布对单抗等药物逐步取消动物试验要求，但 21 CFR Part 312 的 IND 法规文本尚未同步修改，NAMs 数据目前只是被鼓励提交",
+   "retrieved": "2026-09-25",
+   "publisher": "Trends in Biotechnology"
+  },
+  {
+   "id": "S111",
+   "url": "https://clinicaltrials.gov/study/NCT07687459",
+   "label": "ClinicalTrials.gov 登记条目 NCT07687459（研究编号 INS018-055-301，申办方 InSilico Medicine Hong Kong Limited）：Phase 3、RECRUITING、起始 2026-09-09、预计入组 320 人、主要终点与完成日期均估算为 2029-10-30、hasResults=false。字段于 2026-09-25 经其官方 API /api/v2/studies/NCT07687459 核对",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. National Library of Medicine"
+  },
+  {
+   "id": "S112",
+   "url": "https://insilico.com/news/xmjsn4l091-insilico-initiates-phase-iii-clinical-tr",
+   "label": "英矽智能 2026-07-07 新闻稿：启动 rentosertib（原 ISM001-055 / INS018_055，口服 TNIK 抑制剂）治疗特发性肺纤维化的 III 期研究（CTR20262475、NCT07687459），预计 320 人、给药 52 周；并写明 GENESIS-IPF IIa 的 60 mg QD 组 12 周 FVC 均值 +98.4 mL",
+   "retrieved": "2026-09-25",
+   "publisher": "Insilico Medicine"
+  },
+  {
+   "id": "S113",
+   "url": "https://insilico.com/news/isn1009261-insilico-medicine-doses-first-patient-genesis-ipf-3",
+   "label": "英矽智能 2026-09-10 新闻稿：GENESIS-IPF-3 在北京协和医学院北京协和医院完成首例给药，上海肺科医院同日入组；首席研究者称顺利情况下从 III 期启动到获批需三到四年",
+   "retrieved": "2026-09-25",
+   "publisher": "Insilico Medicine"
+  },
+  {
+   "id": "S114",
+   "url": "https://www.federalregister.gov/documents/2025-01-07/2024-31542/considerations-for-the-use-of-artificial-intelligence-to-support-regulatory-decision-making-for-drug",
+   "label": "美国联邦公报 90 FR 1157（2025-01-07）：FDA《Considerations for the Use of Artificial Intelligence To Support Regulatory Decision-Making for Drug and Biological Products》草案指南可用性与评论征求，评论截止 2025-04-07（条目与摘要经 federalregister.gov API 核对）",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA / Federal Register"
+  },
+  {
+   "id": "S115",
+   "url": "https://www.federalregister.gov/documents/2026-04-29/2026-08281/ai-enabled-optimization-of-early-phase-clinical-trials-pilot-program-request-for-information",
+   "label": "美国联邦公报 91 FR 23100（2026-04-29）：FDA《AI-Enabled Optimization of Early-Phase Clinical Trials Pilot Program》信息征求，评论截止 2026-05-29；范围为试验效率、安全性监测、剂量选择与早期 go/no-go 决策，非以模型替代证据",
+   "retrieved": "2026-09-25",
+   "publisher": "U.S. FDA / Federal Register"
+  },
+  {
+   "id": "S116",
+   "url": "https://www.ema.europa.eu/en/about-us/how-we-work/data-regulation-big-data-other-sources/artificial-intelligence",
+   "label": "EMA 人工智能专页：药品生命周期使用 AI 的反思文件由 CHMP 与 CVMP 于 2024 年 9 月通过；2025 年 3 月对 AI 病理判读工具 AIM-NASH 出具首份资格意见，页面表述为「由人类病理医生监督下产生的临床试验证据」；另载 EMA 与 FDA 关于 AI 药物开发的十条共同原则",
+   "retrieved": "2026-09-25",
+   "publisher": "European Medicines Agency"
+  },
+  {
+   "id": "S117",
+   "url": "https://assets.publishing.service.gov.uk/media/6a8f04b63b22fb169dc18e63/animals-in-scientific-procedures-2025-accessible.pdf",
+   "label": "英国内政部《Annual Statistics of Scientific Procedures on Living Animals, Great Britain 2025》（HC 391，2026 年印制）PDF 全文：2025 年总程序 254 万（2024 年 264 万）、实验程序同比降 8%、实验程序中特殊保护物种占 1%（约 1.7 万）；食蟹猴 2,115、狨猴与柽柳猴 71、恒河猴 50，合计 2,236 项、同比增 15%，首次使用的非人灵长类由 1,478 增至 1,845",
+   "retrieved": "2026-09-25",
+   "publisher": "UK Home Office"
+  },
+  {
+   "id": "S118",
+   "url": "https://www.gov.uk/government/statistics/scientific-procedures-on-living-animals-great-britain-2024/annual-statistics-of-scientific-procedures-on-living-animals-great-britain-2024",
+   "label": "英国内政部 2024 年度统计页：2024 年大不列颠科学程序 264 万项（2001 年以来最低），历史高点为 2015 年的 414 万；报告说明用量受科研方向、经济气候与全球技术趋势影响，且 2014 年起统计口径有调整",
+   "retrieved": "2026-09-25",
+   "publisher": "UK Home Office"
+  },
+  {
+   "id": "S119",
+   "url": "https://www.nature.com/articles/s41591-025-03743-2",
+   "label": "Xu Z 等，《Nature Medicine》2025 年（s41591-025-03743-2）rentosertib IIa 期随机双盲安慰剂对照结果：71 人分 30 mg QD/BID、60 mg QD 与安慰剂（18/18/18/17），主要终点为至少一次治疗期不良事件的比例，FVC 为次要终点，60 mg QD 组 12 周均值 +98.4 mL（95% CI 10.9–185.9）、安慰剂 −20.3 mL（95% CI −116.1–75.6）；登记号 NCT05938920",
+   "retrieved": "2026-09-25",
+   "publisher": "Nature Medicine"
+  },
+  {
+   "id": "S1110",
+   "url": "https://insilico.com/news/rnt0709261-rentosertib-proteomic-aging-clocks",
+   "label": "英矽智能 2026-09-07 新闻稿：用 rentosertib IIa 期 42 例 IPF 患者的纵向 Olink 蛋白组数据，由六个独立开发的蛋白衰老时钟（ProtAge、OrganAge、PAC 等）评估「预测生物学年龄」变化——读数对象是模型输出",
+   "retrieved": "2026-09-25",
+   "publisher": "Insilico Medicine"
+  },
+  {
+   "id": "S1111",
+   "url": "https://doi.org/10.1016/j.drudis.2024.104009",
+   "label": "Jayatunga M K、Ayers M、Bruens L、Jayanth D、Meier C，《Drug Discovery Today》2024;29(6):104009（PMID 38692505，作者任职于波士顿咨询）：对 AI 原生生技公司临床管道的首次分析——I 期通过率 80%–90%（高于行业历史均值），II 期约 40%（与历史均值相当，样本量有限）",
+   "retrieved": "2026-09-25",
+   "publisher": "Elsevier"
+  }
+ ],
+ "category": "人工智能",
+ "tags": [
+  "AI 制药",
+  "创新药",
+  "临床前",
+  "监管",
+  "产业链"
+ ],
+ "subtitle": "假设变便宜了，验证一分钟都没变便宜",
+ "reader": "关心 AI 与医药交叉点的投资者、从业者与读者",
+ "theme": {
+  "token": "indigo-coral",
+  "hero_motif": "hypothesis_funnel",
+  "hero_note": "AI制药篇的封面：一条逐段收窄的漏斗。它不是装饰——20 万个候选被 AI 生成出来只要 21 小时，最后进实验室的只有 1 个，而那一步靠的是人的判断。假设变便宜了，验证一分没动，所以漏斗的最后一格用强调色标出：全篇的论点就是这一格。"
+ },
+ "generated_date": "2026-09-25",
+ "data_as_of": "2026-09",
+ "research_mode": "online",
+ "reading_minutes": 17,
+ "cover": {
+  "file": "images/36_晶泰科技.jpg",
+  "alt": "晶泰科技与礼来签署药物发现合作，以AI+实验机器人驱动首创新药管线研发",
+  "caption": "晶泰科技与礼来签署药物发现合作，以AI+实验机器人驱动首创新药管线研发",
+  "source_page": "https://wenhui.whb.cn/zhuzhan/cs/20230531/523770.html",
+  "width": 1866,
+  "height": 1280,
+  "query": "晶泰科技"
+ },
+ "created_date": "2026-09-25",
+ "site": {
+  "url": "https://ai-pharma-gtqdc11h6po.qoder.website/",
+  "project_id": "01a0d72d-6d74-7eba-84c8-e97f9a26edb2",
+  "slug": "ai-pharma",
+  "content_sha": "7807e418dff7580d",
+  "published_date": "2026-09-25",
+  "access": "public"
+ }
+}

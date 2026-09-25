@@ -1,0 +1,7 @@
+# 需求 7/8 + 红线 R-07：国内镜像优先 → 官方源其次 → 源码编译最后。
+# 主源清华，备源阿里（清华偶发缺包时 pip 会自动回退到备源）。
+--index-url https://pypi.tuna.tsinghua.edu.cn/simple
+--extra-index-url https://mirrors.aliyun.com/pypi/simple/
+
+pytest>=8.0
+jsonschema>=4.21

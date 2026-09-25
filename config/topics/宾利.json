@@ -1,0 +1,244 @@
+{
+  "topic": "宾利",
+  "category": "汽车",
+  "tags": [
+    "宾利",
+    "欧陆GT",
+    "添越",
+    "Mulliner",
+    "勒芒",
+    "选配",
+    "贬值"
+  ],
+  "aliases": [
+    "Bentley"
+  ],
+  "subtitle": "与劳斯莱斯分家之后：宾利的历史、车型、Mulliner 定制、选配价与贬值现实",
+  "reader": "在宾利与劳斯莱斯之间纠结、又担心三年后残值的人",
+  "theme": {
+    "token": "bentley-racing",
+    "hero_motif": "matrix_grille",
+    "hero_note": "以直立矩阵格栅与'飞翼 B'剪影开场，配英国赛车绿与皮革酒红，走运动而非仪式的调性"
+  },
+  "reading_target_minutes": 10,
+  "sections": [
+    {
+      "id": "history",
+      "title": "品牌史：Cricklewood 的发动机与'要造快的车'",
+      "anchor": "史",
+      "angle": "W.O. Bentley 的原话是造'一辆快车，一辆好车'；讲清宾利的起点是赛车与工程，而非礼仪，这是它与劳斯莱斯根本分野",
+      "block_types": [
+        "prose",
+        "timeline",
+        "quote"
+      ],
+      "image_queries": [
+        "W.O. Bentley 创始人 肖像",
+        "宾利 Cricklewood 工厂 历史",
+        "Bentley 3 Litre 老爷车"
+      ],
+      "fact_prompts": [
+        "宾利创立年份、地点与创始人背景",
+        "Bentley 3 Litre 推出年份与意义",
+        "宾利被劳斯莱斯收购、后被大众集团接手的年份链"
+      ]
+    },
+    {
+      "id": "le-mans",
+      "title": "勒芒：Speed Six 与 2003 年爆冷夺冠",
+      "anchor": "赛",
+      "angle": "1920 年代 Speed Six 的'子弹箱'车厢故事，与 2003 年 Speed 8 以私人车队身份击败奥迪——赛车血统如何被大众重新激活",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "timeline",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "Bentley Speed Six 历史赛车",
+        "Bentley Speed 8 Le Mans 2003",
+        "勒芒 24 小时 赛车"
+      ],
+      "fact_prompts": [
+        "宾利赢得勒芒的年份与次数",
+        "Speed 8 夺冠年份与赛车技术来源",
+        "Speed Six 被称为 Box Seat 的原因"
+      ]
+    },
+    {
+      "id": "models",
+      "title": "车型谱系：欧陆 GT、飞驰、添越",
+      "anchor": "型",
+      "angle": "三条线各自的任务：Continental GT 是驾驶者之车、Flying Spur 是司乘兼顾、Bentayga 是利润来源；讲清为什么 SUV 救了这个品牌",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "compare",
+        "price_table"
+      ],
+      "image_queries": [
+        "宾利 欧陆 GT Continental",
+        "宾利 飞驰 Flying Spur",
+        "宾利 添越 Bentayga SUV"
+      ],
+      "fact_prompts": [
+        "欧陆 GT、飞驰、添越各自推出年份",
+        "Bentayga 对宾利销量结构的影响",
+        "当前车型的动力配置"
+      ]
+    },
+    {
+      "id": "w12-ev",
+      "title": "W12 的告别与电气化：混动、燃油末代与政策压力",
+      "anchor": "机",
+      "angle": "W12 是宾利最后的大排量图腾；讲清停产时点、插混方案（Bentayga/Hybrid）、以及纯电计划为何反复推迟",
+      "block_types": [
+        "prose",
+        "keyvalue_table",
+        "timeline",
+        "note"
+      ],
+      "image_queries": [
+        "W12 发动机 宾利",
+        "插电混动 宾利 Bentayga Hybrid",
+        "电池 电动车 平台"
+      ],
+      "fact_prompts": [
+        "W12 发动机停产年份与末代限量车型",
+        "宾利电气化时间表与推迟情况",
+        "混动版本的动力构成"
+      ]
+    },
+    {
+      "id": "craft",
+      "title": "手工内饰：木饰、钻石滚花与一张真皮要几头牛",
+      "anchor": "艺",
+      "angle": "把'手工'落到具体工序：整张木饰取自同一棵树以保证纹路连续、皮革需去蚊虫叮咬痕、机加工滚花的钻石纹切法——这才是贵价的实物依据",
+      "block_types": [
+        "prose",
+        "steps",
+        "fact_strip",
+        "card_grid"
+      ],
+      "image_queries": [
+        "宾利 木饰 贴片 工艺",
+        "真皮 内饰 裁皮",
+        "钻石滚花 金属 细节"
+      ],
+      "fact_prompts": [
+        "一辆宾利内饰所需牛皮数量的官方说法",
+        "木饰单张选材与工序",
+        "Naim 音响与滚花工艺的引入时间"
+      ]
+    },
+    {
+      "id": "mulliner",
+      "title": "Mulliner 定制：从改装厂到品牌定制部门",
+      "anchor": "定",
+      "angle": "讲清 Mulliner 的历史身份（车身制造厂）与今天的定制范围（配色、木纹、刺绣、限量车款），以及定制如何变成主要利润来源",
+      "block_types": [
+        "prose",
+        "card_grid",
+        "price_table",
+        "timeline"
+      ],
+      "image_queries": [
+        "宾利 Mulliner 定制 内饰",
+        "定制 车漆 色板",
+        "Mulliner Bacalar 限量"
+      ],
+      "fact_prompts": [
+        "Mulliner 成为宾利定制部门的时间",
+        "Mulliner 限量车型案例与售价",
+        "定制选配对整车价格的典型影响比例"
+      ]
+    },
+    {
+      "id": "prices",
+      "title": "价格与选配：指导价只是起点",
+      "anchor": "价",
+      "angle": "本章解决最实际的困惑：指导价与实际成交差价往往上百万，逐项拆选配逻辑与必选建议",
+      "block_types": [
+        "prose",
+        "price_table",
+        "keyvalue_table",
+        "note"
+      ],
+      "image_queries": [
+        "宾利 价格 选配单",
+        "豪华车 配置 选装",
+        "豪车 交付 展厅"
+      ],
+      "fact_prompts": [
+        "欧陆 GT、飞驰、添越当前中国指导价区间",
+        "常见选装项目价格量级",
+        "选配占整车价格的典型比例"
+      ]
+    },
+    {
+      "id": "depreciation",
+      "title": "贬值与养车成本：三年后还剩多少",
+      "anchor": "值",
+      "angle": "必须讲透：宾利二手折价明显高于劳斯莱斯，保养、保险、轮胎、油耗的年持有成本清单；给'什么时候最划算买二手'的结论",
+      "block_types": [
+        "prose",
+        "price_table",
+        "compare",
+        "fact_strip"
+      ],
+      "image_queries": [
+        "二手 超豪华车 贬值",
+        "豪车轮毂 轮胎 更换",
+        "车辆 保险 保养 费用"
+      ],
+      "fact_prompts": [
+        "宾利三年与五年保值率数据",
+        "一次大保养与轮胎更换的费用量级",
+        "与劳斯莱斯二手折价的差异"
+      ]
+    },
+    {
+      "id": "vs-rolls",
+      "title": "宾利 vs 劳斯莱斯：到底差在哪",
+      "anchor": "比",
+      "angle": "一句话可记：劳斯莱斯卖'被服务'，宾利卖'自己开'。再从底盘调校、车身刚性、后座体验、识别度、残值五个维度展开",
+      "block_types": [
+        "prose",
+        "compare",
+        "card_grid"
+      ],
+      "image_queries": [
+        "宾利 劳斯莱斯 对比",
+        "超豪华轿车 后排",
+        "驾驶 方向盘 操控"
+      ],
+      "fact_prompts": [
+        "两品牌当前所属集团与总部",
+        "主要车型定位差异",
+        "年销量对比"
+      ]
+    },
+    {
+      "id": "ownership",
+      "title": "车主画像与争议：炫耀税、环保批评与'低调的张扬'",
+      "anchor": "议",
+      "angle": "收口章：大排量豪华车在电动时代面临的舆论与政策压力，以及品牌如何用混动与定制回应",
+      "block_types": [
+        "prose",
+        "compare",
+        "timeline"
+      ],
+      "image_queries": [
+        "豪华车 环保 争议",
+        "碳排放 政策 汽车",
+        "宾利 工厂 可持续"
+      ],
+      "fact_prompts": [
+        "宾利工厂的碳中和承诺与进展",
+        "针对超豪华车的主要政策与舆论压力",
+        "品牌近年可持续举措"
+      ]
+    }
+  ],
+  "slug": "bentley"
+}
