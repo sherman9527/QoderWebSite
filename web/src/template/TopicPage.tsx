@@ -95,6 +95,36 @@ function Motif({ token }: { token?: string }) {
       </div>
     );
   }
+  if (token === "majority_line") {
+    /* 中期选举篇：25 格席位，中间那道线是多数门槛。
+       资产关心的从来不是"谁票多"，而是**哪一院跨过那条线、跨过多格**——
+       所以线比颜色重要。两色不指定阵营（红线 R-09：不写哪一党更好），
+       格子上也不标任何席位数字：席位是随时点变的量化断言，带来源地活在正文里（R-02）。 */
+    return (
+      <div className="motif motif-seats" aria-hidden="true">
+        {Array.from({ length: 25 }).map((_, i) => (
+          <i key={i} className={(i < 12 ? "a" : "b") + (i === 12 ? " line" : "")} />
+        ))}
+      </div>
+    );
+  }
+  if (token === "thinking_budget") {
+    /* Claude Opus 5.5 篇：一条横杠就是同一道题的推理预算。左边三格是「立刻答」，
+       右边二十一格是「先想清楚再答」——这一版真正的差别不在模型更大，
+       而在预算被允许花在哪，所以能力数字必须先问"这次给了多少思考预算"。
+       格子上不标任何数值（R-02）：标了它就是一张没有来源的图表。 */
+    return (
+      <div className="motif motif-budget" aria-hidden="true">
+        {Array.from({ length: 24 }).map((_, i) => (
+          <i
+            key={i}
+            className={i < 3 ? "quick" : "think"}
+            style={{ opacity: i < 3 ? 0.3 : 0.5 + (i - 3) * 0.02 }}
+          />
+        ))}
+      </div>
+    );
+  }
   if (token === "shelf_vs_blindbox") {
     /* 名创 × 泡泡玛特：左边三排货架——每一格都和隔壁那格一样，这是性价比零售的护城河
        （可复制、可预期、赚周转）；右边二十格盲盒，其中三格亮着，哪一格亮事先不知道，

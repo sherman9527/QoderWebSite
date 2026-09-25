@@ -408,6 +408,52 @@ export const THEMES: Record<string, ThemeTokens> = {
     heroMotif: "shelf_vs_blindbox",
     numberedSections: false,
   },
+  "petrol-amber": {
+    /* Claude Opus 5.5 篇：深 petrol 是机房夜里的那点蓝绿，琥珀是负载表上发亮的格子。
+       选色时踩到一个更硬的事实：现有 20 套里**找不到两条腿都离得远的组合**——
+       量过之后最好的这套也只做到 min ΔE 13.7（最近的是浪琴的钢蓝主色）。
+       G-11 只拦"两条腿都 <25"，所以它放得过"主色几乎一样、只换强调色"的撞脸；
+       我不拿这个当许可：真正的区分交给记忆点（思考预算那条横杠）与字形。
+       与名创篇的货架绿：主色 ΔE 23.1（同一色系，G-11 不拦这种），
+       但强调色琥珀与盲盒黄差到 32.2，加上记忆点完全不同，两页不会被认成同一个牌子。 */
+    id: "petrol-amber",
+    label: "Claude Opus 5.5 · 机房蓝绿与琥珀",
+    bg: "#F5F8F9",
+    surface: "#E7EEF1",
+    ink: "#131A1E",
+    muted: "#5C6B72",
+    rule: "#D6E1E6",
+    primary: "#124559",
+    accent: "#F2A65A",
+    soft: "#DCE9EE",
+    displayFamily: SANS,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "thinking_budget",
+    numberedSections: false,
+  },
+  "ballot-navy": {
+    /* 美国中期选举篇：选战深蓝与票绿。两色**不指定哪边是哪个党**——
+       记忆点画的是"多数门槛线"，不是阵营归属（红线 R-09：不写哪一党更好）。
+       配色是量出来的：21 套现有主题里，这套的 G-11 裕度 47.2（最近的是香奈儿的墨黑），
+       最紧的一条腿是 indigo-coral 的主色（ΔE 12.7，同为深蓝）——
+       但它的强调色是橙，两页不会读成同一个牌子。 */
+    id: "ballot-navy",
+    label: "中期选举 · 选战深蓝与票绿",
+    bg: "#F7F8FB",
+    surface: "#EBEEF6",
+    ink: "#12161F",
+    muted: "#5A6274",
+    rule: "#DCE0EA",
+    primary: "#16326B",
+    accent: "#3FA34D",
+    soft: "#E1EBE2",
+    displayFamily: SERIF,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "majority_line",
+    numberedSections: false,
+  },
 };
 
 export function themeOf(token: string | undefined): ThemeTokens {

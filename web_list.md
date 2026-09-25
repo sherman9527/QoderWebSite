@@ -8,6 +8,7 @@
 |---|---|---|---|---|
 | AI制药 | <https://ai-pharma-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |
 | AI眼镜 | <https://ai-glasses-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |
+| ClaudeOpus55 | <https://claude-opus-55-gtqdc11h6po.qoder.website/> | 2026-09-26 | public | 一致 |
 | LV | <https://louis-vuitton-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |
 | MLCC | <https://mlcc-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |
 | Muse | <https://muse-app-gtqdc11h6po.qoder.website/> | 2026-09-25 | public | 一致 |

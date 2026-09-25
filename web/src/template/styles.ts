@@ -313,6 +313,23 @@ blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);ma
 .motif-guide i.hot{opacity:.95}
 .motif-guide i.alt{background:var(--accent)}
 
+/* 多数门槛线：25 格席位，第 13 格左边那道粗线就是"过半"的位置 */
+.motif-seats{display:flex;align-items:stretch;gap:.14rem;height:2.4rem}
+.motif-seats i{flex:1 1 0;min-width:0;border-radius:2px}
+.motif-seats i.a{background:var(--primary);opacity:.85}
+.motif-seats i.b{background:var(--accent);opacity:.85}
+.motif-seats i.line{border-left:3px solid var(--ink);margin-left:-.07rem}
+.cover-noimg .motif-seats{height:100%;align-items:center;padding:1.2rem;gap:.3rem}
+.cover-noimg .motif-seats i{height:55%}
+
+/* 思考预算：左三格「立刻答」，右二十一格「先想清楚再答」 */
+.motif-budget{display:flex;align-items:stretch;gap:.16rem;height:2.4rem}
+.motif-budget i{flex:1 1 0;min-width:0;border-radius:2px;background:var(--accent);
+  border:1px solid var(--rule)}
+.motif-budget i.quick{background:var(--primary);border-color:var(--primary)}
+.cover-noimg .motif-budget{height:100%;align-items:center;padding:1.2rem;gap:.3rem}
+.cover-noimg .motif-budget i{height:55%}
+
 /* 货架 vs 盲盒：左半三排货架（每格一样），右半一格一格盲盒（三格亮着），共用一条基线 */
 .motif-duel{display:flex;align-items:flex-end;gap:1rem;height:2.4rem;
   border-bottom:2px solid var(--primary)}
