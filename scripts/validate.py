@@ -175,6 +175,18 @@ def _inline_sids(text):
     return out
 
 
+_STYLE_RE = re.compile(r"<(style|script)\b.*?</\1>", re.S | re.I)
+_TAG_RE = re.compile(r"<[^>]+>")
+
+
+def _visible_text(html):
+    """页面上读者真正看得见的文字：去掉样式与脚本整块、再去掉标签。
+
+    读原始 HTML 会误伤属性值（`alt`、`src` 里出现方括号不算印在页面上），
+    而这条检查的意义恰好是"读者能不能点开它"。"""
+    return _TAG_RE.sub(" ", _STYLE_RE.sub(" ", html or ""))
+
+
 def reading_minutes(data, bar=None):
     """「约 N 分钟读完」的唯一算法：正文汉字 ÷ 读速 + 每张图 0.15 分钟。
 
@@ -483,6 +495,21 @@ def g06_sourcing(ctx):
     out = []
     bar = ctx.bar["sourcing"]
     ids = {s.get("id") for s in ctx.data.get("sources", [])}
+    # 页面级：模板里任何一个引用位只要没走 <Refs>，读者看到的就是纸面上的方括号编号。
+    # 这条**只能**读渲染产物——09-26 线上 21 篇印着 587 处 `[S033]`，而 data.json
+    # 里内嵌标号是 0 处、下面的数据级检查全绿，根因在 CardGrid 的 metrics 自己拼了字符串。
+    printed = _visible_text(ctx.html)
+    hits = [m for m in _BRACKET_RE.finditer(printed)
+            if _SID_IN_BRACKET.search(m.group(1))]
+    for m in hits[:3]:
+        where = printed[max(0, m.start() - 26):m.end() + 6].strip()
+        out.append(Finding(g06_sourcing, ctx.rel_page,
+                           u"页面上印着点不开的来源编号 %s（…%s…）。引用一律由块级 "
+                           u"source_ids 交给模板渲染成链接，模板里不要自己拼方括号"
+                           % (m.group(0), where)))
+    if len(hits) > 3:
+        out.append(Finding(g06_sourcing, ctx.rel_page,
+                           u"同类印在页面上的来源编号还有 %d 处" % (len(hits) - 3)))
     blocked = [d.lower() for d in bar.get("blocked_source_domains", [])]
     for s in ctx.data.get("sources", []):
         url = (s.get("url") or "").lower()

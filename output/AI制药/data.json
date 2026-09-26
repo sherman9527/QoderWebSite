@@ -1868,7 +1868,7 @@
   "hero_motif": "hypothesis_funnel",
   "hero_note": "AI制药篇的封面：一条逐段收窄的漏斗。它不是装饰——20 万个候选被 AI 生成出来只要 21 小时，最后进实验室的只有 1 个，而那一步靠的是人的判断。假设变便宜了，验证一分没动，所以漏斗的最后一格用强调色标出：全篇的论点就是这一格。"
  },
- "generated_date": "2026-09-25",
+ "generated_date": "2026-09-26",
  "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 17,
@@ -1886,7 +1886,7 @@
   "url": "https://ai-pharma-gtqdc11h6po.qoder.website/",
   "project_id": "01a0d72d-6d74-7eba-84c8-e97f9a26edb2",
   "slug": "ai-pharma",
-  "content_sha": "7807e418dff7580d",
+  "content_sha": "3a87768b34f6c199",
   "published_date": "2026-09-25",
   "access": "public"
  }

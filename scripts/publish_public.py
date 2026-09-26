@@ -114,14 +114,23 @@ def is_scraped_img(name):
     return is_img(name) and name.startswith("output/")
 
 
+def is_scratch(name):
+    """现场文件：生成/换名/托管过程中掉在仓库里的中间物，一个都不是产物。
+
+    `.qoder.site` 是 `prepare_site` 写回仓库根的站点描述符，里面**内嵌整份
+    index.html 的 base64**——收进快照等于白白多带一份页面副本，
+    而它一次重发就能生成 22 个（09-26 实测）。
+    """
+    return (name.endswith((".html.pending", ".html.prev", ".qoder.site"))
+            or (name.startswith("output/")
+                and name.endswith(("manifest.json", "search-stats.json"))))
+
+
 def audit(ref, excludes):
     tree, total = build_tree(ref, excludes)
     names = paths(tree)
     bad_img = [n for n in names if is_scraped_img(n)]
-    scratch = [n for n in names
-               if n.endswith((".html.pending", ".html.prev"))
-               or (n.startswith("output/")
-                   and n.endswith(("manifest.json", "search-stats.json")))]
+    scratch = [n for n in names if is_scratch(n)]
     leaks = []
     for n in names:
         if is_img(n):

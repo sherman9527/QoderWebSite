@@ -940,7 +940,10 @@
     {
      "type": "prose",
      "heading": "可撤销性：一纸新令就够了",
-     "text": "2025 年 1 月 20 日签署的行政令 14148 号，用一份从 (a) 排到 (zzz) 的清单撤销前任的 67 项行政令与 11 项总统备忘录，1 月 28 日才刊登在联邦公报上。一场交接可以在一天内清掉另一场交接四年攒下的行政层承诺。判例与成文法没这么容易翻：前者要等新案或修法，后者要再赢一次投票。"
+     "text": "2025 年 1 月 20 日签署的行政令 14148 号，用一份从 (a) 排到 (zzz) 的清单撤销前任的 67 项行政令与 11 项总统备忘录，1 月 28 日才刊登在联邦公报上。一场交接可以在一天内清掉另一场交接四年攒下的行政层承诺。判例与成文法没这么容易翻：前者要等新案或修法，后者要再赢一次投票。",
+     "source_ids": [
+      "S052"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -2569,7 +2572,7 @@
   "url": "https://us-midterms-and-assets-gtqdc11h6po.qoder.website/",
   "project_id": "01a0da10-49c0-702e-aadc-ecd1f6a2f9e2",
   "slug": "us-midterms-and-assets",
-  "content_sha": "958e3ffad4fcfc86",
+  "content_sha": "a1d59ed573cd4baa",
   "published_date": "2026-09-26",
   "access": "public"
  }

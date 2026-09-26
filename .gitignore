@@ -19,5 +19,8 @@ dist/
 *.html.pending
 *.html.prev
 
+# 托管平台 prepare_site 写回的站点描述符（内嵌整页 base64，不是产物）
+*.qoder.site
+
 # 公开快照专属：第三方图片不进这个仓库（原因见 docs/publishing-for-agents.md）
 output/*/images/

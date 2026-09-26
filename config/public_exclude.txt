@@ -17,3 +17,7 @@ output/[^/]+/.*\.html\.(pending|prev)$
 
 # 主题产物的构建中间物
 web/dist/
+
+# 托管平台写回仓库根的站点描述符（prepare_site 生成）。
+# 里面内嵌整份 index.html 的 base64：一个文件等于一份页面副本，而且一次重发就掉 22 个。
+\.qoder\.site$

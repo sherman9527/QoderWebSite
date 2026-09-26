@@ -207,7 +207,7 @@ function CardGrid({ block, src }: { block: Block; src: SrcIndex }) {
                 {asArr(c.metrics).map((m: any, j: number) => (
                   <span key={j}>
                     {m.label} {m.value}
-                    {m.source_ids?.length ? ` [${m.source_ids.join(",")}]` : ""}
+                    <Refs ids={m.source_ids} src={src} />
                   </span>
                 ))}
               </div>

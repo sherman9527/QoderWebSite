@@ -60,7 +60,10 @@ python scripts/publish.py pack <领域>
 对清单里每一条：
 
 1. `prepare_site(projectRoot, webDirectory, slug, displayName[, projectId])`
-   —— 带 `projectId` 是更新，不带是建新站。**同一个 `actionId` 重试，不要新建 action。**
+   —— 带 `projectId` 是更新，不带是建新站。**同一个 `actionId` 重试，不要新建 action**——
+   但这句话只对"同一份上传"成立：本地重新出包之后 `actionId` 必须换一个新的，
+   旧 actionId 撞见上一份未发布的草稿会报 `sites_duplicate_draft`，
+   而那份草稿的 artifact 是**旧字节**，复用它等于把刚修的缺陷再发一遍。
 2. `get_publish_status(actionId)` 轮询到 `canPublish: true`。
    `queued` / `running` / 验证 Operation 存在，都**不是** ready。
 3. `publish_site(actionId)`。
@@ -112,6 +115,7 @@ python scripts/build_index.py --variant hosted     # → dist/home/index.html
 | 改了 `data.json` 的一个新字段，`validate --all` 立刻整篇判死 | `topic_data.schema.json` 是 `additionalProperties: false`，契约没同步；而 G-10 判死会让索引**静默跳过**该篇 | 写产物的代码和约束产物的契约必须同一次改 |
 | 线上页面里有 1 个 `<script>` | 托管平台注入的水印脚本，不是我们的产物 | "零运行时 JS"只能在**本地文件**上判；线上要判的是状态码、字节数、关键标记 |
 | 中文图片名会不会出问题 | 不会。曾疑过，实测证伪（2.27 MB + 中文名的包上传、验证、服务全正常） | 什么都不用做；`pack` 只报告非 ASCII 文件名，**不改名** |
+| `data.json` 干净、闸门全绿，线上却印着点不开的来源编号 | 09-26 实测：21 篇共 587 处 `[S033]`，全部由模板里一处没走 `<Refs>` 的引用位拼出来。**只读 data 的闸门永远看不见模板的错** | 现在 G-06 会读渲染产物；重发包之前先 `node scripts/measure-layout.mjs --file …` 并肉眼过一张元素级截图 |
 | 单包上限 | 50 MiB（实测 29.78 MB 通过） | 超了就拆文章，不要压图 |
 | 站点总数配额 | 实测 21 个站未触发 `sites_total` | 真撞了再谈合站，届时 slug 形状要重新定 |
 

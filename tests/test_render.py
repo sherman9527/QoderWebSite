@@ -288,6 +288,44 @@ def test_source_chips_have_a_break_opportunity_between_them(rendered):
         assert "<wbr" in before, u"chip 前面没有换行机会：%r" % before
 
 
+def _render_metric_card(tmp_path):
+    """夹具里那张带 source_ids 的卡片指标，两种写法都要测到。"""
+    data = json.loads(io.open(FIX, encoding="utf-8").read())
+    cards = next(b for s in data["sections"] for b in s["blocks"]
+                 if b.get("type") == "card_grid")["cards"]
+    cards[0]["metrics"].append(
+        {u"label": u"全球份额前五", u"value": u"日系合计约65%",
+         u"source_ids": [u"S1", u"S2"]})
+    return _render(tmp_path, data, u"卡片指标")
+
+
+def test_a_card_metric_cites_with_a_link_not_a_printed_label(tmp_path):
+    """卡片指标条的来源必须是 chip，不是印在纸面上的方括号编号。
+
+    2026-09-26 重发复核时 curl 线上 21 篇，量到 587 处
+    `非洲占全球产量 13.6% [S033]`、`全球份额前五 日系合计约65% [S031,S034]`。
+    根因是 renderers.tsx 里唯一一处没走 <Refs> 的引用位（CardGrid 的 metrics），
+    它把 source_ids 直接 join(",") 拼成字符串——编号对得上 sources，
+    所以 G-06 看不见它（它判"标号对不对得上"），而读者点不开它。
+    """
+    html = _render_metric_card(tmp_path)
+    mets = "".join(re.findall(r'<div class="mets">(.*?)</div>', html, re.S))
+    assert "约65%" in mets, u"夹具没渲染出来，这条会空转"
+    assert not re.search(r"\[\s*S\d", mets), \
+        u"指标条把来源印成了方括号文字：%s" % re.findall(r"\[[^\]]{0,20}\]", mets)
+    chips = re.findall(r'<a[^>]*href="#src-(S\d)"', mets)
+    assert chips == ["S2", "S1", "S2"], u"两条指标各自该挂自己的 chip，实际 %s" % chips
+
+
+def test_a_card_metric_ref_is_clickable_and_no_raw_label_survives(tmp_path):
+    """整页兜底：模板里再有第二个不走 <Refs> 的引用位，这条会抓到——
+    光测 mets 一处，等于只钉住我今天看见的那个洞。"""
+    html = _render_metric_card(tmp_path)
+    assert not re.search(r"\[\s*S\d{1,4}\s*(?:,\s*S\d{1,4}\s*)*\]", html), \
+        u"页面上还印着点不开的来源标号：%s" % re.findall(
+            r"\[S[^\]]{0,24}\]", html)[:6]
+
+
 def test_table_scroller_scrolls_horizontally(rendered):
     """回归：overflow 两值写法是 "x y"，我写成 hidden auto，
     于是宽表被裁掉且用户无法横向滚动——表格右侧列直接消失。"""

@@ -345,7 +345,12 @@
     {
      "type": "prose",
      "heading": "先分清两只包",
-     "text": "2.55 的型号名就是它的发布日期。这只包当年的革新不在外观，而在那条肩带——它把手腾了出来；原版还是双翻盖，内层多一道盖皮撑住包型，内袋一共七个。柜员口中的 2.55 和客人想要的 CF 并不是同一只包，先看清三次改动的年份。"
+     "text": "2.55 的型号名就是它的发布日期。这只包当年的革新不在外观，而在那条肩带——它把手腾了出来；原版还是双翻盖，内层多一道盖皮撑住包型，内袋一共七个。柜员口中的 2.55 和客人想要的 CF 并不是同一只包，先看清三次改动的年份。",
+     "source_ids": [
+      "S031",
+      "S033",
+      "S036"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -508,7 +513,12 @@
     {
      "type": "prose",
      "heading": "所以“买不到”分两种",
-     "text": "常年在售的是 Timeless 线的 Classic Flap 与 2.55 Reissue；季节款只在当季投放，过季就不补。于是同一型号会有两种价差来源：一是官方涨价，二是这个颜色材质组合已经停产。下单前先确认它属于哪一类，再谈值不值。"
+     "text": "常年在售的是 Timeless 线的 Classic Flap 与 2.55 Reissue；季节款只在当季投放，过季就不补。于是同一型号会有两种价差来源：一是官方涨价，二是这个颜色材质组合已经停产。下单前先确认它属于哪一类，再谈值不值。",
+     "source_ids": [
+      "S031",
+      "S033",
+      "S036"
+     ]
     }
    ],
    "images": [
@@ -1078,7 +1088,11 @@
     {
      "type": "prose",
      "heading": "菱格不是印花，是车出来的",
-     "text": "2.55 的灵感来自马术：骑师与马夫外套上的绗缝被搬上皮革，所以菱格是缝出来的，不是压花或印花。\n\n三个法语工序名可以拿去问店员：piqué retourné（先车后翻）、point droit de couturière（机缝直针）、points de bride（短线脚）。做包不在高定工坊，而在巴黎以北的 Ateliers de Verneuil-en-Halatte。"
+     "text": "2.55 的灵感来自马术：骑师与马夫外套上的绗缝被搬上皮革，所以菱格是缝出来的，不是压花或印花。\n\n三个法语工序名可以拿去问店员：piqué retourné（先车后翻）、point droit de couturière（机缝直针）、points de bride（短线脚）。做包不在高定工坊，而在巴黎以北的 Ateliers de Verneuil-en-Halatte。",
+     "source_ids": [
+      "S073",
+      "S076"
+     ]
     },
     {
      "type": "steps",
@@ -2650,7 +2664,7 @@
   "hero_motif": "chain_and_camellia",
   "hero_note": "只用黑、白、米三色与一条包带菱格链作为开场母题，让'克制'本身成为记忆点"
  },
- "generated_date": "2026-09-25",
+ "generated_date": "2026-09-26",
  "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 16,
@@ -2659,7 +2673,7 @@
   "url": "https://chanel-gtqdc11h6po.qoder.website/",
   "project_id": "01a0d72c-d98c-7ba8-a17c-0e6ff18a60df",
   "slug": "chanel",
-  "content_sha": "d81141ddb6201572",
+  "content_sha": "de2fc53d7472d9a1",
   "published_date": "2026-09-25",
   "access": "public"
  }

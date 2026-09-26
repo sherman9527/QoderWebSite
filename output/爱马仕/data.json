@@ -288,7 +288,11 @@
     {
      "type": "prose",
      "heading": "包不在货架上",
-     "text": "铂金包、凯莉包和 Constance 属于内部所说的配额包：不上货架、不进官网购物车，一家店分到几只、给谁，由销售和店长定（S8）。你能做的只有先攒记录。PurseBop 说这是一份跟着门店走的消费档案，关联店花过的钱累在一起，销售给包前要先报经理批（S2）。\n\n比例从来没有官方数字：买手社区的通行理解是 1:1，部分地区报到 1:1.5 至 1:2（S2）；前爱马仕销售 Joanna Uzunova 对《财富》说，她本人达到的是 1:1（S1）。中国市场各口径更宽：1:0.5 到 1:2（S3）。"
+     "text": "铂金包、凯莉包和 Constance 属于内部所说的配额包：不上货架、不进官网购物车，一家店分到几只、给谁，由销售和店长定（S8）。你能做的只有先攒记录。PurseBop 说这是一份跟着门店走的消费档案，关联店花过的钱累在一起，销售给包前要先报经理批（S2）。\n\n比例从来没有官方数字：买手社区的通行理解是 1:1，部分地区报到 1:1.5 至 1:2（S2）；前爱马仕销售 Joanna Uzunova 对《财富》说，她本人达到的是 1:1（S1）。中国市场各口径更宽：1:0.5 到 1:2（S3）。",
+     "source_ids": [
+      "S032",
+      "S033"
+     ]
     },
     {
      "type": "prose",
@@ -2435,7 +2439,7 @@
   "hero_motif": "saddle_stitch",
   "hero_note": "以爱马仕橙礼盒与马鞍针脚的斜纹作为开场母题，把'手工'两字变成可见的东西"
  },
- "generated_date": "2026-09-25",
+ "generated_date": "2026-09-26",
  "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 17,
@@ -2444,7 +2448,7 @@
   "url": "https://hermes-gtqdc11h6po.qoder.website/",
   "project_id": "01a0d72c-11eb-74d5-9178-d732514e54fa",
   "slug": "hermes",
-  "content_sha": "7df69e5b75596353",
+  "content_sha": "2b33c498bc8dd50b",
   "published_date": "2026-09-25",
   "access": "public"
  }

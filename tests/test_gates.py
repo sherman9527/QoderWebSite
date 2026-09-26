@@ -700,6 +700,32 @@ def test_G06_checks_inline_markers_in_non_prose_blocks_too(passing_ctx):
             u"%s 在非 prose 块里没被判：\n%s" % (sid, "\n".join(hits))
 
 
+def test_G06_rejects_a_source_label_printed_as_plain_text(passing_ctx):
+    """来源编号印在页面上就必须是链接——这一条只有读**渲染产物**才看得见。
+
+    data.json 里 0 处内嵌标号、G-06 的数据级检查全绿，而线上 21 篇仍印着 587 处
+    `[S033]`：编号是模板自己拼的（CardGrid 的 metrics 那处没走 <Refs>）。
+    所以判据不能挂在 data 上——挂在 data 上的那条永远看不见模板的错。
+    """
+    ctx = copy.copy(passing_ctx)
+    ctx.html = passing_ctx.html.replace(
+        "</body>", '<div class="mets"><span>非洲占全球产量 13.6% [S1]</span></div></body>')
+    hits = [str(x) for x in run(by_id("G-06"), ctx)]
+    assert any("印" in h and "S1" in h for h in hits), \
+        u"页面上不可点的 [S1] 没被判：\n%s" % "\n".join(hits)
+
+
+def test_G06_is_silent_about_links_and_plain_numbers(passing_ctx):
+    """反向：`<a class="ref">S1</a>` 与 `[2024]`、`[约65%]` 都不是这条要抓的东西。
+    判据写成"页面文本里有方括号"会变成全站噪声源。"""
+    ctx = copy.copy(passing_ctx)
+    ctx.html = passing_ctx.html.replace(
+        "</body>",
+        '<p>读数 <a href="#src-S1" class="ref">S1</a> 与 [2024] [约65%] [注3]</p></body>')
+    hits = [str(x) for x in run(by_id("G-06"), ctx)]
+    assert not any("印" in h for h in hits), u"正常链接或普通方括号被误判：%s" % hits
+
+
 def test_G06_says_out_loud_when_prose_carries_unsourced_numbers(passing_ctx):
     """G-06 里那条 `elif t == "prose" and has_num and not b.get("source_ids")`
     的函数体曾经是 `pass`——它检测到了正确的东西，然后什么都不做。

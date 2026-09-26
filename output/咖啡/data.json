@@ -612,7 +612,11 @@
     {
      "type": "prose",
      "heading": "金杯区间从哪来",
-     "text": "萃取率 18%–22%、TDS 1.15%–1.35% 这两个框，出自 1957 年 Coffee Brewing Institute 的 Lockhart 报告，后来被 SCA 写进金杯标准：基准粉水 55 g/L、容差 ±10%（约 1:18），接触水温 93 °C ±3，滴滤总接触 4–8 分钟——超过 8 分钟在设备认证里直接判不合格。落到图上，18% 以下偏酸、薄、缺甜感；22% 以上出干口、苦涩和木质尾韵。"
+     "text": "萃取率 18%–22%、TDS 1.15%–1.35% 这两个框，出自 1957 年 Coffee Brewing Institute 的 Lockhart 报告，后来被 SCA 写进金杯标准：基准粉水 55 g/L、容差 ±10%（约 1:18），接触水温 93 °C ±3，滴滤总接触 4–8 分钟——超过 8 分钟在设备认证里直接判不合格。落到图上，18% 以下偏酸、薄、缺甜感；22% 以上出干口、苦涩和木质尾韵。",
+     "source_ids": [
+      "S061",
+      "S065"
+     ]
     },
     {
      "type": "price_table",
@@ -2485,7 +2489,7 @@
   "hero_motif": "roast_axis",
   "hero_note": "开场用一条从浅焙到深焙的萃取色带，把'烘焙度'这个抽象概念变成一眼可读的视觉轴"
  },
- "generated_date": "2026-09-25",
+ "generated_date": "2026-09-26",
  "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 15,
@@ -2494,7 +2498,7 @@
   "url": "https://coffee-gtqdc11h6po.qoder.website/",
   "project_id": "01a0d72d-041c-70b9-bc00-329566fbfdfa",
   "slug": "coffee",
-  "content_sha": "db62f9257b1d3092",
+  "content_sha": "9d198ed62c92992e",
   "published_date": "2026-09-25",
   "access": "public"
  }

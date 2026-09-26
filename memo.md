@@ -1,17 +1,17 @@
-> 2026-09-26 04:2x 更新。**上一版停在 09-25 07:1x（写着"19 篇、正在发第一篇"，那天连 `publish_site` 都还坏着）——stale 的快照比没有快照更坏，所以每次收工都要重写这一段。**
+> 2026-09-26 17:0x 更新。**上一版停在 09-26 04:2x（写着"正在发第一篇"）。stale 的快照比没有快照更坏，所以每次收工都要重写这一段。**
 
 | 项 | 状态 |
 |---|---|
 | 阶段 | **22 篇全部上线**（第 22 篇「美国中期选举与全球资产」09-26 发完）。一篇一个站、只留最新版（W-145/146/147 收口）；主页两个变体都已发布：本地 `output/index.html` 与线上 `dist/home/index.html` |
 | 产物 | `output/index.html` **22 张卡片**，href 全是 `<领域>/<领域>.html`。类别 9 个：人工智能 8、腕表 4、箱包时装 3、汽车 2、饮食风物 1、香水美妆 1、消费零售 1、电子元件 1、宏观与资产 1 |
-| 线上 | 主页 <https://knoweverything-gtqdc11h6po.qoder.website/>（curl 200 / 15,361,505 B，22 卡、21 个 `data:` 封面、0 个 `<script>`）+ 22 个文章站全部 `public`、全部 curl 200。账本 `web_list.md` 22 行，G-14 判账实一致 |
+| 线上 | 主页 <https://knoweverything-gtqdc11h6po.qoder.website/>（curl 200 / 15,356,629 B，22 卡、21 个 `data:` 封面、0 个 `<script>`、22 条文章站链接）+ 22 个文章站全部 `public`、全部 curl 200。**09-26 这一轮 22 篇 + 主页全部重发到 W-159 版**：逐篇 `template-fingerprint` 本地与线上相等，页面里点不开的来源标号 587 → 0。账本 `web_list.md` 22 行，G-14 判账实一致，`playbook` 已清空 |
 | 公开仓库 | <https://github.com/sherman9527/QoderWebSite>：单提交快照、作者匿名、图片不入库。`publish_public.py --push` 走快进（父提交记在 `config/public_snapshot.json`，**改了远端就要告诉工具**，否则 non-fast-forward） |
-| 闸门 | `validate.py --all` 14 条（G-01…G-14）= **`22 个领域，0 fail / 10 warn`**（十条全是 G-05 偏长，D-11/D-18 容忍） |
-| 测试 | `python -m pytest`（**别再敲 `-q`**，见"别碰"）= **`400 passed in 353.16s`，rc=0**。比上一版多 36 条：playbook 四条、`record` 主机名与 project_id 五条、`drop_image` 四条、`add_illustration` 字节格式一条，其余是发布与主页变体 |
-| 正在跑 | 无。IN PROGRESS 段清空 |
-| 下一步 | ① W-156：schema 报错要打印 `path + validator + validator_value`，别再打印截断的实例 repr（今天为定位一个 `maxLength` 白跑了一次渲染）。② W-143 后半：`drop_image` 删记录前先把 `source_page` 写进排除表——**今天这条没做，15 个来源页随删除一起消失了**。③ W-142 的修法候选已量化到行号（`images.py:428/456` 的领域主语前缀）。④ W-155（`[Sxx]` 悬空标号无人校验）、W-153（没有东西盯着线上版主页过期）、W-154 |
+| 闸门 | `validate.py --all` 14 条（G-01…G-14）= **`22 个领域，0 fail / 31 warn`**：21 条 G-06 是 W-157 的 prose 数字欠账（118 块），10 条 G-05 偏长（D-11/D-18 容忍）。**G-14 归零**——线上就是最新那份 |
+| 测试 | `python -m pytest`（**别再敲 `-q`**，见"别碰"）= **`428 passed in 369.05s`，rc=0**。比上一版多 28 条：W-155/W-157 的引用与 remap 一批、G-13 图片夹具一批、W-159 四条（页面级标号 + 指标 chip）、W-160 两条（描述符排除与自查同源） |
+| 正在跑 | 无。IN PROGRESS 只剩 **W-157**（118 块 prose 数字欠账，工具挂不上，要人读原文或重做该节研究；明细 `.probe/w157_debt.json`） |
+| 下一步 | ① W-157 按篇推进，先做欠账最少的（宾利 1、AI制药 2、百达翡丽 2）。② W-158：`gated_queries` 的章节级主语，**先量再改**。③ 公开快照要重推一次（W-159 改了 22 篇产物）。④ 两件事等开发者拍板：`memo.md`/`HANDOVER.md` 要不要继续进公开快照；空站 `llm-crypto-notes` 删不删 |
 | 未决问题 | ①`memo.md` / `HANDOVER.md` 要不要继续进公开快照（现在进，已验证无身份痕迹）；②空站 `llm-crypto-notes` 是早期误建，还没删 |
-| 别碰 | `images.prev/` 是中间态，发布成功才删；`.probe/queue*.sh` **不要在跑的时候改**（bash 按字节偏移续读脚本）；**改过 `web/src/` 先跑 `node scripts/render.mjs --print-fingerprint` 再跑闸门**（模板没编译成功时 G-08 报的是"N 个产物全部过期"，看着像产物问题——在 CSS 模板字面量里用反引号包选择器就会这样）；`data.json` 里人声明的 `cover` 会被 `--offline` 保留；**`generate.py` 重定向到文件写的是 GBK 不是 UTF-8**（要 `encoding='gbk'` 读回再转，否则 grep 中文永不命中）；**`pytest.ini` 的 `addopts` 已含 `-q`，再敲 `pytest -q` 等于 `-qq`，"N passed" 那行会被整个吞掉**——今天因此报过一个不存在的测试数（写进 MLCC 那次提交的"354 项"就是这么来的，已更正为 348）；判绿一律 `> 文件 2>&1` + `echo rc=$?`，**不要接管道**（管道的 rc 是最后一个命令的，会把真实 rc 洗成 0）；**搬动脚本后要原位跑一遍**——`ROOT` 少一层 `dirname` 就是这么漏过去的；**python 源码里别在双引号串内嵌双引号**（`u"所以"能不能""` 是 SyntaxError，今天第三次踩引号类坑）；**`image_primary_subject` 声明成单一产品名会让整页退到那一个产品**——AI制药 第一轮 14 张里 13 张是 AlphaFold，品牌词要配多个实测活的簇轮换；**`grep -c` 数的是行数不是出现次数**——产物是单行 HTML，`grep -c 示意图` 对 11 张图永远返回 1；要数出现次数用 `grep -o ... \| wc -l`（今天差点据此报"线上只有 2 张图"）；**`git ls-tree` 默认转义非 ASCII**——所有按路径匹配的检查都要 `-c core.quotePath=false`，否则中文路径的正则永不命中而检查"全绿" |
+| 别碰 | `images.prev/` 是中间态，发布成功才删；`.probe/queue*.sh` **不要在跑的时候改**（bash 按字节偏移续读脚本）；**改过 `web/src/` 先跑 `node scripts/render.mjs --print-fingerprint` 再跑闸门**（模板没编译成功时 G-08 报的是"N 个产物全部过期"，看着像产物问题——在 CSS 模板字面量里用反引号包选择器就会这样）；`data.json` 里人声明的 `cover` 会被 `--offline` 保留；**`generate.py` 重定向到文件写的是 GBK 不是 UTF-8**（要 `encoding='gbk'` 读回再转，否则 grep 中文永不命中）；**`pytest.ini` 的 `addopts` 已含 `-q`，再敲 `pytest -q` 等于 `-qq`，"N passed" 那行会被整个吞掉**——今天因此报过一个不存在的测试数（写进 MLCC 那次提交的"354 项"就是这么来的，已更正为 348）；判绿一律 `> 文件 2>&1` + `echo rc=$?`，**不要接管道**（管道的 rc 是最后一个命令的，会把真实 rc 洗成 0）；**搬动脚本后要原位跑一遍**——`ROOT` 少一层 `dirname` 就是这么漏过去的；**python 源码里别在双引号串内嵌双引号**（`u"所以"能不能""` 是 SyntaxError，今天第三次踩引号类坑）；**`image_primary_subject` 声明成单一产品名会让整页退到那一个产品**——AI制药 第一轮 14 张里 13 张是 AlphaFold，品牌词要配多个实测活的簇轮换；**`grep -c` 数的是行数不是出现次数**——产物是单行 HTML，`grep -c 示意图` 对 11 张图永远返回 1；要数出现次数用 `grep -o ... \| wc -l`（今天差点据此报"线上只有 2 张图"）；**`git ls-tree` 默认转义非 ASCII**——所有按路径匹配的检查都要 `-c core.quotePath=false`，否则中文路径的正则永不命中而检查"全绿"；**Sites 插件按 `projectRoot` 只记一个绑定**（`~/.qoder/plugins/data/qoder-sites-builtin/site-bindings/<digest(root)>/<digest(scope)>.qoder.site`），绑定指向 A 站时 prepare B 站一律 `sites_document_ambiguous`，仓库根出现 >1 个 `.qoder.site` 也是同一个码——这个仓库是"23 个站共用一个根"，天生跟它冲突，**每轮 prepare 前跑 `.probe/ke-clear.sh`**（移走不删，描述符里内嵌整页 base64）；**子代理会话没有 MCP 工具**，发布的写半条链路（prepare/publish）只有主 agent 能走，委派出去会 0 动作返回；**本地重新出包之后必须换 actionId**（actionId 绑的是那一份上传，复用旧的就是拿旧字节去发）；**只读 `data.json` 的闸门看不见模板的错**——读者看得见的一切都要读渲染产物（W-159 那 587 处就是这个形状） |
 
 
 ## 环境与工具事实（本机实测，不是推测）
@@ -1426,3 +1426,46 @@ W-120 落地之后重做的必要性进一步下降。真要瘦身是 git 历史
 | 2026-09-26 | `measure-layout.mjs` 对一张 404 图的页面报「布局几何检查通过」、rc=0 | `waitForFunction(...).catch(() => {})` 咽掉超时，而下面每条检查都写 `if (!im.complete || !im.naturalWidth) continue`——没加载的图被跳过，不是被判失败 | 改成把「没加载成的数量与文件名」交回调用方并 push 一条 `images-not-loaded` 问题。**漏检比误伤更阴：它永远绿**（同一个根因在 `shot.mjs` 上已经造成过两次跑出 4 与 6） |
 | J-56 | W-135b + W-153：`node scripts/measure-layout.mjs --file output/咖啡/咖啡.html` / `python -m pytest tests/test_browser.py tests/test_publish.py` / `python scripts/validate.py --all` | 404 图页面：修前 rc=0 报「布局几何检查通过」，修后 rc=1 报 `images-not-loaded`×7 视口；`4 passed` + `19 passed`；全站 **22 个领域 0 fail / 32 warn**，`images-not-loaded` **0 条** | 台账担心的「会让 16 篇重新暴露」没有发生。**另外：那条后台命令报 rc=1 是我的 `grep -c` 在 0 匹配时返回 1，不是闸门失败**——判绿要读被判定那条命令自己的 rc，别把链尾工具的退出码当成结论（这条仓库里已经记过两次同族错误） |
 | 2026-09-26 | **测试套件里所有「量图」的闸门从未跑过**：G-13 的 `img-upscale`、`fig-wall` 对 22 篇产物一次都没判过 | 各处夹具用 `b"ÿØÿà" + bytes(50000)` 当图片——magic bytes 对、字节不是 JPEG，浏览器解出来 `naturalWidth=0`，而每条检查都写 `if (!im.complete || !im.naturalWidth) continue`。**「让检查跳过」和「让检查通过」在测试里长得一模一样** | 新增 `conftest.write_image()`（PIL 真写一张 1500×950），换掉喂给 G-13 的 5 处夹具；顺带发现 `make_passing_html` 的裸 `<img>` 缺真实模板的宽度约束，一并补上。**判据**：夹具必须能被它所在的那条检查看见——写一个「检查跳过的输入」等于没写测试 |
+| 2026-09-26 | 用「数字出现在来源 label 里」当凭据自动挂 source_ids，第一版把 20 块判成可挂，其中 **10 块只靠一个年份对上** | `1904`、`2025` 这种四位数在 label 里到处撞；年份出现在来源里 ≠ 这段内容来自那个来源 | 改成只认**有形状的数字**（带小数点、带百分号、带千分位，或四位以上且不是 1300–2099）。两三位数（40、15、199）也不算凭据——它们同样到处撞 |
+| 2026-09-26 | 收紧规则之后仍然漏：一块满是百分比的段落被判成「全部数字都对得上」，而它的主张（60%–70%、138%）根本不在那个来源里 | 数字正则 `\d[\d,，.]*` **不含 `%`**，于是 `60%` 被切成 `60`（两位、无形状）直接丢弃；`has_shape` 里那句 `tok.endswith('%')` 永远不成立。**检查器看不见的那一类，就等于那一类不存在**——和今天 G-13 的 `continue` 是同一个结构 | 正则改成 `\d[\d,，.]*%?` 并让去百分号后的位数也参与判断；重扫后 auto 从 20 降到 16 |
+| 2026-09-26 | bash 循环传中文领域名给 `generate.py`，17 篇全部 rc=2「未知领域」，但 `printf` 打出来的名字看着是对的 | Git Bash 传参的编码改道；错误长得像成功 | 改成 Python 驱动（`subprocess.run` 参数列表，Windows 上按 Unicode 传）。**判据**：批量脚本的循环体不要放 bash 里传非 ASCII 参数；跑完必须数一下「成功篇数 == 预期篇数」，不能只看每条的 rc |
+
+
+## 2026-09-26 下午 W-159：闸门全绿的线上页面，还在印 587 个点不开的来源编号
+
+重发 19 篇之后按 runbook 做 curl 复核（悬空标号确实 0 处，W-155 的账没记错），
+却在 `class="mets"` 里量到 `非洲占全球产量 13.6% [S033]`、`全球份额前五 日系合计约65% [S031,S034]`
+——**21 篇共 587 处**。编号本身对得上 `sources`，所以 G-06 的数据级检查看不见它；
+`data.json` 里内嵌标号是 0 处，所以任何读 data 的检查都看不见它。
+根因在模板：`web/src/template/renderers.tsx:210` 是全站 9 个引用位里唯一没走 `<Refs>` 的，
+它把 `source_ids` 直接 `join(",")` 拼成字符串。
+
+**这一类的形状**：数据是对的、闸门是绿的、页面是错的。
+判据补一条：**凡是"读者看得见的东西"，检查必须读渲染产物，不能只读它的输入。**
+
+### 测试日志
+
+| # | 命令 | 实际输出 | 结论 |
+|---|---|---|---|
+| T-71 | `python -m pytest tests/test_render.py -k card_metric`（改模板之前） | `2 failed`：`指标条把来源印成了方括号文字：['[S2]', '[S1,S2]']` | ✅ 先红，且红在病灶上 |
+| T-72 | `python -m pytest tests/test_gates.py -k printed_as_plain_text`（改 validate 之前） | `1 failed`：`页面上不可点的 [S1] 没被判`（hits 为空） | ✅ 先红。同批的反向守卫 `silent_about_links` **实现前就是绿的**——它是防误伤的守卫测试，不是缺陷复现 |
+| T-73 | 改 `renderers.tsx:210` → `<Refs ids={m.source_ids} src={src} />`，再跑 T-71 | `2 passed` | ✅ 指标条改成 chip |
+| T-74 | `python -m pytest`（全量） | `428 passed in 369.05s`，rc=0（上一版 424） | ✅ 没打破别的 |
+| T-75 | `python .probe/w159_rerender.py`（22 篇 `--offline`） | `失败 0 篇：[]`，每篇 rc=0 | ✅ 换名协议下重渲染，全部过闸门 |
+| T-76 | 重渲染后全站数标号 | `页面里印出的来源标号: 0 []` | ✅ 587 → 0 |
+| T-77 | `python scripts/validate.py --all` | `22 个领域，0 fail / 53 warn`（21 条 G-06 欠账 + 10 条 G-05 偏长 + 22 条 G-14 线上是旧版） | ✅ 0 fail。G-13 一条没报 = 指标条加链接没跑版 |
+| T-78 | `node scripts/measure-layout.mjs --file output/MLCC/MLCC.html`、`--file output/积家/积家.html`（标号最密的两篇） | 两次 `布局几何检查通过`，rc=0 | ✅ 溢出这条风险量过了 |
+| T-79 | `node .probe/w159_crop.mjs output/MLCC/MLCC.html 375` + 读图 | 元素级截图里 `全球份额前五 日系合计约65% S031 S034` 正常换行、chip 之间有缝 | ✅ 人眼过了一遍。**第一版脚本量完坐标再滚动再截，截到的是别处的内容**——改成 `locator.screenshot()` |
+| T-80 | 22 篇 prepare→publish→curl 复核 | 22/22 线上 `印出的标号=0`；`template-fingerprint` 本地与线上**逐篇相等**（`指纹不一致 0 个`） | ✅ 发出去的就是这份 |
+| T-81 | `python .probe/w159_record.py` → `python scripts/publish.py check` | `{"recorded": 22, "failed": []}` → `✓ 账实一致` | ✅ 账本跟上 |
+| T-82 | `python -m pytest tests/test_publish_public.py`（W-160） | 先 `2 failed`（`module 'publish_public' has no attribute 'is_scratch'`、排除清单没盖住），补完 `2 passed` | ✅ 先红后绿 |
+| T-83 | `python scripts/publish_public.py`（dry-run） | `公开树 8be11de101：216 个文件（排除前 652，删掉 436）｜图片残留 0｜中间文件残留 0｜身份痕迹 0` | ✅ 排除规则没把自查一起废掉 |
+
+### 环境事实（重新发现一次要花掉一小时）
+
+| 症状 | 真相 | 怎么办 |
+|---|---|---|
+| `prepare_site` 一律报 `sites_document_ambiguous`，22 篇全报、换 slug 也没用 | Sites 插件按 **projectRoot 只记一个绑定**：`~/.qoder/plugins/data/qoder-sites-builtin/site-bindings/<digest(root)>/<digest(scope)>.qoder.site`。绑定指向 A 站时 prepare B 站就是这个码。另一个触发条件：**仓库根有 >1 个 `.qoder.site` 描述符** | 每轮 prepare 前跑 `.probe/ke-clear.sh`（移走，不删——描述符里内嵌整页 base64）。**这个仓库是"多站共用一个根"，天生跟插件的一对一假设冲突** |
+| 派子代理执行发布，回 `PUBLISHED=0/22`，理由 `no_sites_mcp_tools_in_session` | **子代理会话没有 MCP 工具**，Sites 的写半条链路只有主 agent 能调。发布可以委派轮询，不能委派 prepare/publish | 别再试。要省上下文就只委派读（轮询、curl 复核） |
+| `prepare_site` 报 `sites_duplicate_draft` | actionId 绑的是**那一份上传**。本地重新出包之后复用旧 actionId 就是拿旧字节去发 | 每轮重发换一批新 actionId（`.probe/w159_batch.py` 就是这么产的） |
+| `publish.py pack home` rc=2 `没有 config/topics/home.json` | 主页不是一篇文章，没有 data.json。`build_index.py --variant hosted` 已经直接产出 `dist/home/index.html`（封面内联 base64） | 主页站的 `webDirectory` 就填 `dist/home`，**不要 pack** |

@@ -103,7 +103,10 @@
     {
      "type": "prose",
      "heading": "口径写在注脚里，不在标题里",
-     "text": "系统卡把口径塞在表格注脚：默认配置是 adaptive thinking 开到 max effort、默认采样、五次试验取平均，Terminal-Bench 4.0 另用 xhigh，竞品分数取自各家自己发的材料或榜单。一侧是厂商自报、一侧是复跑，本来就不在同一把尺上。同一注脚还承认 CursorBench 由 Cursor 自行测报，官方表照录其数。"
+     "text": "系统卡把口径塞在表格注脚：默认配置是 adaptive thinking 开到 max effort、默认采样、五次试验取平均，Terminal-Bench 4.0 另用 xhigh，竞品分数取自各家自己发的材料或榜单。一侧是厂商自报、一侧是复跑，本来就不在同一把尺上。同一注脚还承认 CursorBench 由 Cursor 自行测报，官方表照录其数。",
+     "source_ids": [
+      "S014"
+     ]
     },
     {
      "type": "compare",
@@ -390,12 +393,22 @@
     {
      "type": "prose",
      "heading": "第四栏是限速：API 按分钟计，订阅按五小时计",
-     "text": "API 限额按组织所在档位（Start、Build、Scale）设定，计量指标为每分钟请求数 RPM、每分钟输入 token ITPM、每分钟输出 token OTPM，超任意一项返回 429 并附 retry-after。档位自动分配，充值或购买不把你推上去；用到当前额度 50% 以上可在 Console 申请提额。各档具体数字只在 Console 与 API 文档表格里，本次网络打不开该页，不引用。\n\n订阅侧是另一套口径：五小时会话限额加每周限额。发布页称这一版提高了 Pro、Max、Team 与席位制 Enterprise 的五小时限额，并给出可自行决定何时使用的 limit reset。"
+     "text": "API 限额按组织所在档位（Start、Build、Scale）设定，计量指标为每分钟请求数 RPM、每分钟输入 token ITPM、每分钟输出 token OTPM，超任意一项返回 429 并附 retry-after。档位自动分配，充值或购买不把你推上去；用到当前额度 50% 以上可在 Console 申请提额。各档具体数字只在 Console 与 API 文档表格里，本次网络打不开该页，不引用。\n\n订阅侧是另一套口径：五小时会话限额加每周限额。发布页称这一版提高了 Pro、Max、Team 与席位制 Enterprise 的五小时限额，并给出可自行决定何时使用的 limit reset。",
+     "source_ids": [
+      "S032",
+      "S035"
+     ]
     },
     {
      "type": "prose",
      "heading": "同一道题花的钱不同：思考预算是成本变量",
-     "text": "官方把 effort 写进成本建议：帮助中心写「更高的 effort 用更多 token」，常规任务选更低档。发布页的成本—精度图按 low、med、high、xhigh、max 五档标点，也给出跨档结论：默认 effort（medium）的 Opus 5.5 在 FrontierCode v1.1 上以约五分之一的每任务成本超过 GPT-6 Astra 的最高 effort；Deloitte 在同页称低思考档以高思考档一半的输出量达到同等质量。\n\n两条推高 token 的设定要一并读：这一版不再提供关闭 thinking 的选项；2026 年 8 月 31 日及之后创建的 API 账号带 preserved thinking，禁止编辑历史上下文提取推理。"
+     "text": "官方把 effort 写进成本建议：帮助中心写「更高的 effort 用更多 token」，常规任务选更低档。发布页的成本—精度图按 low、med、high、xhigh、max 五档标点，也给出跨档结论：默认 effort（medium）的 Opus 5.5 在 FrontierCode v1.1 上以约五分之一的每任务成本超过 GPT-6 Astra 的最高 effort；Deloitte 在同页称低思考档以高思考档一半的输出量达到同等质量。\n\n两条推高 token 的设定要一并读：这一版不再提供关闭 thinking 的选项；2026 年 8 月 31 日及之后创建的 API 账号带 preserved thinking，禁止编辑历史上下文提取推理。",
+     "source_ids": [
+      "S031",
+      "S032",
+      "S034",
+      "S039"
+     ]
     },
     {
      "type": "note",
@@ -2102,7 +2115,7 @@
   "url": "https://claude-opus-55-gtqdc11h6po.qoder.website/",
   "project_id": "01a0d99e-0bc9-7e28-9bcf-ef6dac1d193e",
   "slug": "claude-opus-55",
-  "content_sha": "a4166f804736f008",
+  "content_sha": "eb0333c1b3028060",
   "published_date": "2026-09-26",
   "access": "public"
  }
