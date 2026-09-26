@@ -279,3 +279,51 @@ def test_slug_is_declared_not_inferred(tree):
         P.pack(u"咖啡", root=str(tree))
     assert not os.path.isdir(str(tree / "dist" / "coffee")), \
         u"缺 slug 却已经建出包目录——半成品会被下一次 prepare_site 误用"
+
+
+# ---------------------------------------------------------------- W-153
+def _published(tree, topic, slug, url):
+    _topic(tree, topic, slug)
+    dp = tree / "output" / topic / "data.json"
+    data = json.loads(dp.read_text(encoding="utf-8"))
+    data["site"] = {"url": url, "project_id": "01a0d72c-8734-704e-9710-e0b07be48b20",
+                    "slug": slug, "content_sha": "abc", "published_date": "2026-09-25",
+                    "access": "public"}
+    dp.write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
+def _home(tree, hrefs):
+    d = tree / "dist" / "home"
+    d.mkdir(parents=True, exist_ok=True)
+    cards = u"".join(u'<a class="card" href="%s">x</a>' % h for h in hrefs)
+    (d / "index.html").write_text(u"<html><body>%s</body></html>" % cards, encoding="utf-8")
+
+
+def test_check_home_names_a_card_that_points_at_the_wrong_place(tree):
+    """主页恰恰是人唯一会点进去的那个链接。`dist/home/` 是 gitignore 的中间产物，
+    `record` 不重建它、G-14 也不读它——于是"文章都重发了、主页还链着旧地址"
+    这件事没有任何一处会报警。"""
+    _published(tree, u"咖啡", "coffee", "https://coffee-gtqdc11h6po.qoder.website/")
+    P.write_ledger(root=str(tree))
+    _home(tree, ["https://coffee-OLDHOST.example.com/"])
+    msgs = P.check_home(root=str(tree))
+    assert any(u"咖啡" in m or "coffee" in m for m in msgs), \
+        u"链错地址没被报出来：%s" % (msgs,)
+
+
+def test_check_home_is_quiet_when_the_build_matches_the_ledger(tree):
+    _published(tree, u"咖啡", "coffee", "https://coffee-gtqdc11h6po.qoder.website/")
+    P.write_ledger(root=str(tree))
+    _home(tree, ["https://coffee-gtqdc11h6po.qoder.website/"])
+    assert P.check_home(root=str(tree)) == []
+
+
+def test_a_missing_hosted_build_is_a_note_not_drift(tree):
+    """`dist/home/index.html` 本来就要到发布前才构建。
+    把它算进 `check()` 的 drift 会让 rc=1，于是"还没构建"变成"账对不上"——
+    那是逼人去关闸门。"""
+    _published(tree, u"咖啡", "coffee", "https://coffee-gtqdc11h6po.qoder.website/")
+    P.write_ledger(root=str(tree))
+    msgs = P.check_home(root=str(tree))
+    assert msgs, u"没构建也该说一句，不然没人知道自己缺这一步"
+    assert P.check(root=str(tree)) == [], u"缺构建被算成了 drift（会让 rc=1）"

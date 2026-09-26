@@ -950,3 +950,97 @@ def test_save_keeps_the_last_good_data_when_a_write_fails(tmp_path):
 
     assert json.load(io.open(p, encoding="utf-8")) == good, "失败的写覆盖了上一份好数据"
     assert os.listdir(str(tmp_path)) == ["data.json"], "临时文件没清掉"
+
+
+# ---------------------------------------------------------------- W-155
+def _sec_with_inline():
+    return {"sources": [{"id": "S1", "url": "https://a.example/1", "label": u"甲来源"},
+                        {"id": "S2", "url": "https://b.example/2", "label": u"乙来源"}],
+            "blocks": [{"type": "prose",
+                        "text": u"实测轻至 40 克[S1]，第二家 49 克[S2]。",
+                        "source_ids": ["S1", "S2"]}]}
+
+
+def test_remap_strips_inline_markers_instead_of_renumbering_them():
+    """模型在正文里手写 [S1] 时，**不能**顺手改成 S031。
+    章节自己编号的顺序与"这句话到底引了哪一条"没有任何东西保证对得上；
+    改号等于把"指向不存在的来源"洗成"指向一个可能错的来源"——
+    闸门会放过，读者被骗。所以只删不改。"""
+    gs = []
+    blocks, dropped = G._remap_sources(_sec_with_inline(), gs, "03")
+    text = blocks[0]["text"]
+    assert "[S" not in text, u"内嵌标号还留在正文里：%s" % text
+    assert u"40 克" in text and u"49 克" in text, u"删标号时把正文删坏了：%s" % text
+    assert blocks[0]["source_ids"] == ["S031", "S032"], \
+        u"块级 source_ids 该照常重编号：%s" % blocks[0]["source_ids"]
+    assert dropped == 2, u"要报数：悄悄删掉引用是另一种撒谎（量到 %r）" % (dropped,)
+
+
+def test_remap_leaves_text_that_only_looks_like_a_marker():
+    """`[2024]`、`[SS1]`、`[约65%]` 不是来源标号，一个都不许动。
+    误删正文比留一个假标号更难查——它不会红，只会少字。"""
+    sec = {"sources": [{"id": "S1", "url": "https://a.example/1", "label": u"甲"}],
+           "blocks": [{"type": "prose",
+                       "text": u"2024 年（[2024]）与 [SS1]、[约65%]、[注3] 都要原样留着",
+                       "source_ids": ["S1"]}]}
+    blocks, dropped = G._remap_sources(sec, [], "03")
+    assert dropped == 0
+    assert u"[2024]" in blocks[0]["text"] and u"[SS1]" in blocks[0]["text"]
+    assert u"[约65%]" in blocks[0]["text"] and u"[注3]" in blocks[0]["text"]
+
+
+def test_remap_reports_markers_it_dropped_from_nested_blocks():
+    """标号不只出现在 prose：卡片正文、表格单元格、timeline 条目一样会。
+    只扫 prose 等于给假引用留了三个入口。"""
+    sec = {"sources": [{"id": "S1", "url": "https://a.example/1", "label": u"甲"}],
+           "blocks": [
+               {"type": "card_grid", "cards": [{"title": u"甲", "body": u"见 [S1]"}]},
+               {"type": "keyvalue_table", "rows": [{"k": u"份额", "v": u"65% [S1]"}]},
+           ]}
+    blocks, dropped = G._remap_sources(sec, [], "03")
+    assert dropped == 2, u"嵌套块里的标号没被清（%r）" % (dropped,)
+    assert u"[S1]" not in json.dumps(blocks, ensure_ascii=False)
+
+
+def test_remap_moves_an_unlisted_inline_marker_into_block_sources():
+    """标号从文字里删掉之前，先把它变成块级引用——
+    这些编号是模型按**自己那一章的来源表**排的，前缀+序号是确定的，
+    逐条对过标签能确认它引的就是那一条。直接删等于把真引用也扔了。"""
+    sec = {"sources": [{"id": "S1", "url": "https://a.example/1", "label": u"甲来源"},
+                       {"id": "S2", "url": "https://b.example/2", "label": u"乙来源"}],
+           "blocks": [{"type": "prose", "text": u"实测 40 克[S1]，另一家 49 克[S2]。",
+                       "source_ids": ["S1"]}]}
+    blocks, moved = G._remap_sources(sec, [], "03")
+    assert blocks[0]["source_ids"] == ["S031", "S032"], \
+        u"S2 该被并进块级来源：%s" % blocks[0]["source_ids"]
+    assert u"[S" not in blocks[0]["text"]
+    assert moved == 2, u"要报数：这一章有几处引用从文字搬到了字段上（%r）" % (moved,)
+
+
+def test_remap_drops_a_marker_that_points_at_no_chapter_source():
+    """映射不出来就只能删：正文里写了 `[S9]` 而本章来源表只有两条，
+    没有东西保证它指谁。这种必须**不**进 source_ids，否则就是凭空造引用。"""
+    sec = {"sources": [{"id": "S1", "url": "https://a.example/1", "label": u"甲"},
+                       {"id": "S2", "url": "https://b.example/2", "label": u"乙"}],
+           "blocks": [{"type": "prose", "text": u"实测 40 克[S9]。", "source_ids": []}]}
+    blocks, moved = G._remap_sources(sec, [], "03")
+    assert blocks[0]["source_ids"] in ([], None) or blocks[0].get("source_ids") == [], \
+        u"指不到任何来源的标号被写进了 source_ids：%s" % blocks[0].get("source_ids")
+    assert u"[S" not in blocks[0]["text"]
+
+
+def test_remap_reaches_markers_inside_lists_of_strings():
+    """compare 的一侧是一串 `points`，steps 的说明也可能是列表。
+    只走 dict 的字符串值会整类漏掉它们——第一版就是这么漏了 9 处，
+    而且漏得安静：函数照样报"处理了 N 处"。"""
+    sec = {"sources": [{"id": "S1", "url": "https://a.example/1", "label": u"甲"}],
+           "blocks": [{"type": "compare",
+                       "left": {"title": u"厂商口径", "points": [u"提速 40 倍 [S1]", u"输出免费 [S1]"]},
+                       "right": {"title": u"独立验证", "points": [u"无第三方跑分"]},
+                       "verdict": u"厂商数字可复算"}]}
+    blocks, moved = G._remap_sources(sec, [], "07")
+    blob = json.dumps(blocks, ensure_ascii=False)
+    assert u"[S" not in blob, u"列表里的标号没被清掉：%s" % blob[:200]
+    assert moved == 2, u"报数要算上列表里的：%r" % (moved,)
+    assert blocks[0].get("source_ids") == ["S071"], \
+        u"清掉的引用该挂在所在块上：%s" % blocks[0].get("source_ids")

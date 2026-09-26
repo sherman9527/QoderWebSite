@@ -139,3 +139,29 @@ def test_report_and_exit_code_agree(tmp_path, monkeypatch, capsys):
     out = capsys.readouterr().out
     assert bad == [u"香奈儿"]
     assert out.splitlines()[0].startswith(u"✓") and out.splitlines()[1].startswith(u"✗"), out
+
+
+def test_reuse_is_reported_as_a_fact_and_merges_case_variants(cfg):
+    """W-142 的处置：把"同一条检索词挂在几章"做成一行**事实**，不判好坏、不参与 --fix。
+    两条词面判据都量过、都不成立（判据①误判 98%，判据②会误伤单产品领域），
+    所以这一维不升格成闸门——但当时要是有这一行，我就看不见自己把 `OpenAI` 挂了 5 章。
+    `anthropic` 与 `Anthropic` 是同一条词：分开数会把复用度算低，恰好违背这条的存在理由。
+    没有 `query` 字段的图（那轮跑在字段落地之前）一律不计——
+    不知道来路就说不知道，不猜。"""
+    def q(img, query):
+        img = dict(img)
+        img["query"] = query
+        return img
+
+    data = {"sections": [
+        _sec("a", u"甲章", [q(_img("images/01.jpg", u"OpenAI 总部", "https://openai.com/news"), u"OpenAI")]),
+        _sec("b", u"乙章", [q(_img("images/02.jpg", u"OpenAI 融资", "https://openai.com/blog"), u"OpenAI")]),
+        _sec("c", u"丙章", [q(_img("images/03.jpg", u"openai 模型", "https://openai.com/api"), u"openai")]),
+        _sec("d", u"丁章", [_img("images/04.jpg", u"别的", "https://example.com/x")]),
+    ]}
+    r = A.audit_data(cfg, data)
+    top = dict(r["reused"])
+    assert top, u"有 query 的图该量出复用：%s" % (r["reused"],)
+    assert len(top) == 1, u"大小写变体被拆成两条：%s" % (r["reused"],)
+    assert list(top.values()) == [3], u"复用章数算错了（无 query 的那张不该计入）：%s" % (r["reused"],)
+    assert not r["empty"], u"这条只是事实展示，不该改变合格判定"

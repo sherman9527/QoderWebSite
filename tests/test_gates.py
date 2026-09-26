@@ -14,7 +14,7 @@ import shutil
 import pytest
 
 import validate as V
-from conftest import make_passing_data, make_passing_html
+from conftest import make_passing_data, make_passing_html, write_image
 
 ALL_GATES = V.DOMAIN_GATES
 
@@ -583,7 +583,7 @@ def test_G03_flags_the_same_image_used_by_multiple_sections(quality_bar, tmp_pat
     for s in data["sections"]:
         for im in s["images"]:
             (tmp_path / im["file"].replace("/", os.sep)).parent.mkdir(parents=True, exist_ok=True)
-            io.open(os.path.join(str(tmp_path), im["file"].replace("/", os.sep)), "wb").write(b"\xff\xd8\xff\xe0" + bytes(50000))
+            write_image(os.path.join(str(tmp_path), im["file"].replace("/", os.sep)))
     html = make_passing_html(data)
     ctx = V.Ctx(u"重复", str(tmp_path), "x.html", html, data, quality_bar)
     fails = [f for f in (by_id("G-03").check(ctx) or []) if f.level == "fail"]
@@ -647,3 +647,76 @@ def test_G05_still_fails_when_grossly_over(passing_ctx):
     got = run(by_id("G-05"), ctx)
     assert [f for f in got if f.level == "fail"], \
         u"超硬上限 %d 还不判死，10 分钟就彻底没人管了" % hard
+
+
+# ---------------------------------------------------------------- W-155
+# 正文里手写的 [Sxx] 与块级 source_ids 是两套东西：前者直接印在页面上，
+# 读者会以为那句话有出处。09-26 全站量到 99 处，全部悬空，5 个已上线页面带着它们。
+def test_G06_rejects_a_dangling_inline_marker(passing_ctx):
+    data = copy.deepcopy(passing_ctx.data)
+    data["sections"][0]["blocks"][0]["text"] += u"（读数见 [S9]）"
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    hits = [str(x) for x in run(by_id("G-06"), ctx)]
+    assert any("S9" in h and "内嵌" in h for h in hits), \
+        u"正文里指向不存在来源的 [S9] 没被判：\n%s" % "\n".join(hits)
+
+
+def test_G06_accepts_an_inline_marker_that_resolves(passing_ctx):
+    """夹具的 sources 里有 S1。能解析的内嵌标号不是错——
+    把它一起判死，等于逼人删掉真引用。"""
+    data = copy.deepcopy(passing_ctx.data)
+    data["sections"][0]["blocks"][0]["text"] += u"（读数见 [S1]）"
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    hits = [str(x) for x in run(by_id("G-06"), ctx)]
+    assert not any("内嵌" in h for h in hits), u"能解析的标号被误判：%s" % hits
+
+
+def test_G06_ignores_brackets_that_are_not_source_ids(passing_ctx):
+    """`[2024]`、`[注3]`、`[S]` 都不是来源标号。判据必须只认 `S` + 数字，
+    否则这条闸门会变成全站噪声源（本项目已经有一条 90% 时间在响的闸门了）。"""
+    data = copy.deepcopy(passing_ctx.data)
+    data["sections"][0]["blocks"][0]["text"] += u" [2024] [注3] [S] [SS1] [1S]"
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    hits = [str(x) for x in run(by_id("G-06"), ctx)]
+    assert not any("内嵌" in h for h in hits), u"非来源形状的方括号被误判：%s" % hits
+
+
+def test_G06_checks_inline_markers_in_non_prose_blocks_too(passing_ctx):
+    """timeline / price_table / card_grid 里的文字同样会印到页面上。
+    只扫 prose 等于留了个后门。夹具里有 timeline 与 price_table，各测一处。"""
+    data = copy.deepcopy(passing_ctx.data)
+    tl = next(b for s in data["sections"] for b in s["blocks"] if b.get("type") == "timeline")
+    tl["items"][0]["text"] += u"（口径见 [S77]）"
+    pt = next(b for s in data["sections"] for b in s["blocks"] if b.get("type") == "price_table")
+    pt["rows"][0]["cells"][-1] += u" [S78]"
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    hits = [str(x) for x in run(by_id("G-06"), ctx)]
+    for sid in (u"S77", u"S78"):
+        assert any(sid in h and "内嵌" in h for h in hits), \
+            u"%s 在非 prose 块里没被判：\n%s" % (sid, "\n".join(hits))
+
+
+def test_G06_says_out_loud_when_prose_carries_unsourced_numbers(passing_ctx):
+    """G-06 里那条 `elif t == "prose" and has_num and not b.get("source_ids")`
+    的函数体曾经是 `pass`——它检测到了正确的东西，然后什么都不做。
+    09-26 量到全站 635 个 prose 块里有 195 个带数字且无块级来源，全被这个 pass 咽掉。
+    现在报一条 warn（每页一条带计数，不是每块一条：195 行的日志一周就会被人跳过）。"""
+    data = copy.deepcopy(passing_ctx.data)
+    n = 0
+    for s in data["sections"]:
+        for b in s["blocks"]:
+            if b.get("type") == "prose":
+                b.pop("source_ids", None)
+                b["text"] = u"实测重量 40 克，视场角 30 度。"
+                n += 1
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    hits = [x for x in run(by_id("G-06"), ctx)]
+    assert hits, u"带数字又没来源的 prose 块仍然完全静默"
+    assert all(getattr(x, "level", "fail") == "warn" for x in hits), \
+        u"这是存量欠账不是新坏掉的东西，判 fail 会把 22 篇全部踢出索引"
+    assert any(str(n) in str(x) for x in hits), u"要报数，不然没人知道规模：%s" % [str(x) for x in hits]

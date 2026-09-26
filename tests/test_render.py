@@ -12,7 +12,7 @@ import subprocess
 import pytest
 
 import validate as V
-from conftest import make_passing_html
+from conftest import make_passing_html, write_image
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 FIX = os.path.join(ROOT, "tests", "fixtures", "mini_data.json")
@@ -349,7 +349,7 @@ def test_gates_agree_with_a_real_rendered_page(tmp_path, rendered, quality_bar):
     (d / "images").mkdir(parents=True)
     for s in full["sections"]:
         for im in s["images"]:
-            (d / im["file"]).write_bytes(b"\xff\xd8\xff\xe0" + bytes(50000))
+            write_image(d / im["file"])         # 必须是浏览器解得开的图，见 conftest.write_image
     # 目录布局照真实 output/ 摆：W-145 之后一篇一页、文件名不带日期，
     # 用日期名会让 G-01 先判死，这条测试就变成在测文件名而不是测闸门一致性。
     page = d / ("%s.html" % full["topic"])

@@ -10,7 +10,7 @@ import pytest
 
 import build_index as BI
 import validate as V
-from conftest import make_passing_data
+from conftest import make_passing_data, write_image
 
 
 def _make_site(tmp_path, monkeypatch, gate=None):
@@ -28,7 +28,7 @@ def _make_site(tmp_path, monkeypatch, gate=None):
             for im in s["images"]:
                 im.setdefault("width", 1600)
                 im.setdefault("height", 900)
-                (d / im["file"]).write_bytes(b"\xff\xd8\xff\xe0" + bytes(50000))
+                write_image(d / im["file"])     # 解得开的图，见 conftest.write_image
         (d / "data.json").write_text(
             json.dumps(data, ensure_ascii=False), encoding="utf-8")
         (d / ("%s.html" % topic)).write_text(

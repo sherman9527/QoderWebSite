@@ -14,6 +14,7 @@ import subprocess
 
 import outline
 import validate as V
+from conftest import write_image
 from test_gates import by_id
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -59,7 +60,7 @@ def test_new_domain_data_renders_and_clears_gates(tmp_path):
         for im in s.get("images") or []:
             im.setdefault("width", 1600)
             im.setdefault("height", 900)
-            (d / im["file"]).write_bytes(b"\xff\xd8\xff\xe0" + bytes(60000))
+            write_image(d / im["file"])         # 解得开的图，见 conftest.write_image
     dp = d / "data.json"
     dp.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
     page = d / (u"抹茶_2026-09-19.html")

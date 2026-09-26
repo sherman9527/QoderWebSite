@@ -75,7 +75,7 @@ def _candidates(root):
         # 改稳定名之后它和 collect() 各判各的，结果是"有产物但全被闸门挡下"
         # 被误判成"还没有产物"——索引静默变空而退出码是 0。
         # 是既有的 test_build_refuses_to_silently_empty_the_index 把它抓出来的。
-        if V.published_pages(d, topic):
+        if V.published_pages(d):
             out.append(topic)
     return out
 
@@ -155,7 +155,7 @@ def collect(date=None, output_dir=None, variant="local"):
         data = json.load(io.open(dp, encoding="utf-8"))
         # 一篇只有一页，名字稳定（W-145）。真出现多页时不在这里判——G-01 会判死，
         # 上面那个 _publishable 就会把这个领域跳过，两处判据不必各写一遍。
-        pages = V.published_pages(d, topic)
+        pages = V.published_pages(d)
         if not pages:
             continue
         fails = _publishable(topic, root)

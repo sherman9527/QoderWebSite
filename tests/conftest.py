@@ -192,9 +192,33 @@ def make_passing_html(data, fingerprint=None):
     for s in data["sections"]:
         for im in s.get("images", []):
             imgs.append('<img src="%s" alt="%s" loading="lazy">' % (im["file"], im["alt"]))
+    # `img{max-width:100%}` 不是装饰：真实模板把图包在 `.figs .ratio` 里，
+    # 宽度由容器定。夹具以前写的是裸 `<img>`，而图又是解不开的字节，
+    # 于是"图会不会把页面顶出横向滚动条"这条检查从来没在夹具上跑过。
+    # 09-26 让 G-13 真的去量图之后，它立刻以 `clipped-scroller` 红了——
+    # 红的是夹具缺那条约束，不是产物有问题。
     return ("<!DOCTYPE html>\n<html lang=\"zh-CN\"><head><meta charset=\"UTF-8\">"
-            "<!--template-fingerprint:%s-->\n<style>:root{--bg:#fff}</style>\n</head>"
+            "<!--template-fingerprint:%s-->\n"
+            "<style>:root{--bg:#fff}img{max-width:100%%;height:auto;display:block}</style>\n</head>"
             "<body><section>%s</section></body></html>" % (fp, "".join(imgs)))
+
+
+def write_image(path, w=1500, h=950):
+    """写一张**浏览器真能解码**的图。
+
+    以前各处夹具直接 `write_bytes(b"\\xff\\xd8\\xff\\xe0" + bytes(50000))`——
+    那是一串 NUL，不是 JPEG。G-13 里所有量图的检查都写着
+    `if (!im.complete || !im.naturalWidth) continue`，于是这些检查
+    **在整个测试套件的历史上从来没有跑过一次**。
+    09-26 把「图没加载成」从静默跳过改成报失败，五道测试立刻红——
+    红的是夹具，不是产物。尺寸取真实产物那一档（1500×950），
+    免得夹具比产物更宽容，检查又变成空转。
+    """
+    from PIL import Image
+    img = Image.new("RGB", (w, h), (196, 188, 176))
+    p = str(path)
+    img.save(p, "JPEG" if p.lower().endswith((".jpg", ".jpeg")) else "PNG")
+    return p
 
 
 @pytest.fixture
@@ -208,7 +232,7 @@ def passing_ctx(tmp_path, quality_bar):
     (out_dir / "images").mkdir(parents=True)
     for s in data["sections"]:
         for im in s["images"]:
-            (out_dir / im["file"]).write_bytes(b"\xff\xd8\xff\xe0" + b"0" * 50000)
+            write_image(out_dir / im["file"])
     page = out_dir / ("%s.html" % topic)
     page.write_text(make_passing_html(data), encoding="utf-8")
     # 注入只带 words_range 的假大纲，避免测试依赖 config/topics/ 下的真实领域

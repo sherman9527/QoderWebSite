@@ -38,12 +38,33 @@ def _load(path, default):
         return default
 
 
-def drop(topic, target, root=None, apply=False):
-    """摘一张图。返回 {"file", "section", "emptied_sections", "applied"}。
+def _exclude_page(topic, url, config_root):
+    """把来源页写进大纲的 `image_exclude_pages`。空 url 不写——
+    自画示意图按 R-03 禁止带 source_page，写个空串进去等于污染排除表。"""
+    url = unicode_(url or u"").strip()
+    if not url:
+        return False
+    path = os.path.join(config_root, "config", "topics", u"%s.json" % topic)
+    if not os.path.isfile(path):
+        raise DropError(u"找不到大纲 %s：来源页 %s 没处可记，先补上它再摘图" % (path, url))
+    cfg = _load(path, {})
+    pages = cfg.get("image_exclude_pages") or []
+    if url in pages:
+        return False
+    pages.append(url)
+    cfg["image_exclude_pages"] = pages
+    from generate import _save
+    _save(path, cfg)
+    return True
+
+
+def drop(topic, target, root=None, apply=False, config_root=None):
+    """摘一张图。返回 {"file", "section", "emptied_sections", "applied", "excluded"}。
 
     名字打错一律报错，不静默跳过：一次"成功"的误删报告比删错更难查。
     """
     root = root or os.path.join(ROOT, "output")
+    config_root = config_root or ROOT
     domain_dir = os.path.join(root, topic)
     dp = os.path.join(domain_dir, "data.json")
     if not os.path.isfile(dp):
@@ -67,10 +88,16 @@ def drop(topic, target, root=None, apply=False):
 
     mp = os.path.join(domain_dir, "images", "manifest.json")
     man = _load(mp, [])
-    in_man = any(_norm(m.get("file") or u"") == want for m in man)
+    rows = [m for m in man if _norm(m.get("file") or u"") == want]
+    in_man = bool(rows)
+    # 来源页必须在删记录**之前**取：manifest 一写回去就没有第二次机会。
+    # 09-26 就是先删了才想到这件事，15 个来源页随记录一起消失，只能按 origin 补。
+    source_page = unicode_(rows[0].get("source_page") or u"") if rows else \
+        unicode_(rec.get("source_page") or u"")
     if not apply:
         return {"file": want, "section": sec.get("id"), "emptied_sections": [],
-                "applied": False, "in_manifest": in_man}
+                "applied": False, "in_manifest": in_man, "source_page": source_page,
+                "excluded": False}
 
     sec["images"] = [im for im in sec["images"] if _norm(im.get("file") or u"") != want]
     emptied = [s.get("id") for s in data.get("sections") or [] if not (s.get("images") or [])]
@@ -80,15 +107,16 @@ def drop(topic, target, root=None, apply=False):
 
     if in_man:
         man = [m for m in man if _norm(m.get("file") or u"") != want]
-        io.open(mp, "w", encoding="utf-8").write(
-            json.dumps(man, ensure_ascii=False, indent=1) + u"\n")
+        _save(mp, man)          # 同样走原子写：半截 manifest.json 会让下一次重做误判
 
     fp = os.path.join(domain_dir, want)
     if os.path.isfile(fp):
         os.remove(fp)
 
+    excluded = _exclude_page(topic, source_page, config_root)
     return {"file": want, "section": sec.get("id"), "emptied_sections": emptied,
-            "applied": True, "in_manifest": in_man}
+            "applied": True, "in_manifest": in_man, "source_page": source_page,
+            "excluded": excluded}
 
 
 def main(argv=None):
@@ -98,13 +126,16 @@ def main(argv=None):
     ap.add_argument("--apply", action="store_true", help=u"真的删；默认只报告")
     a = ap.parse_args(argv)
     emptied = []
+    excluded = 0
     try:
         for t in a.files:
             res = drop(a.topic, t, apply=a.apply)
             emptied += res["emptied_sections"]
-            sys.stdout.write(u"%s %s ← 章节 %s%s\n" % (
+            excluded += 1 if res.get("excluded") else 0
+            sys.stdout.write(u"%s %s ← 章节 %s%s%s\n" % (
                 u"已摘" if res["applied"] else u"将摘", res["file"], res["section"],
-                u"（摘完这章就没图了）" if res["emptied_sections"] else u""))
+                u"（摘完这章就没图了）" if res["emptied_sections"] else u"",
+                u"，来源页已记进排除表" if res.get("excluded") else u""))
     except DropError as e:
         sys.stderr.write(u"✗ %s\n" % e)
         return 2
@@ -112,6 +143,11 @@ def main(argv=None):
         sys.stdout.write(u"! 若全部执行，这些章会变空：%s\n" % u"、".join(emptied))
     if not a.apply:
         sys.stdout.write(u"（dry-run，什么都没动；加 --apply 才删）\n")
+    elif excluded or emptied:
+        # 不在这里跑闸门：HTML 还引用着刚删掉的文件，此刻跑必然报破链——
+        # 那是顺序造成的假故障，不是真问题。规格里"删完立刻 validate 该章"这条是错的。
+        sys.stdout.write(u"→ 下一步：generate.py \"%s\" --offline（重渲染换名，之后闸门才有意义）\n"
+                         % a.topic)
     return 0
 
 

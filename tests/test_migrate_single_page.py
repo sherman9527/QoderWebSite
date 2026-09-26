@@ -101,3 +101,20 @@ def test_a_topic_with_no_dated_page_is_skipped_not_crashed(out):
     _topic(out, u"咖啡", [u"2026-09-24"])
     assert M.main([str(out), "--apply"]) == 0
     assert os.path.isdir(str(out / "杂项目录"))
+
+
+def test_the_migration_writes_data_json_in_the_canonical_format(out):
+    """`data.json` 只有一个作者：`generate._save`（原子写、indent=1）。
+    迁移脚本自己 `io.open(...).write(json.dumps(indent=2))`，犯的是它要修的那类错——
+    一次迁移把 19 份 data.json 全部重排，git 里几千行噪声，真正改的字段看不见。
+    非原子写更阴：中途被杀就留一个半截 JSON，而它旁边那些日期页**已经删了**。"""
+    import generate as G
+    d = _topic(out, u"测试领域", [u"2026-01-01", u"2026-01-09"])
+    plan = M.plan(str(out))[0]
+    M.apply_plan(plan, lambda *a, **k: None)
+
+    after = io.open(str(d / "data.json"), "rb").read()
+    twin = str(out / "twin.json")
+    G._save(twin, json.loads(after.decode("utf-8")))
+    assert after == io.open(twin, "rb").read(), \
+        u"迁移写的不是 _save 那套格式：整份文件被重排"

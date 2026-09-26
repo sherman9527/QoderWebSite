@@ -159,6 +159,22 @@ def _block_text(b):
     return ""
 
 
+_BRACKET_RE = re.compile(r"\[([^\]\[]{1,80})\]")
+# 前后不接字母数字：`[SS1]` 里不能捞出 "S1"，`[1S]` 里不能捞出 "S"。
+_SID_IN_BRACKET = re.compile(r"(?<![A-Za-z0-9])S\d{1,4}(?![0-9])")
+
+
+def _inline_sids(text):
+    """一段可见文字里出现的所有 `[Sxx]` 来源标号。
+
+    要连 `[S031,S034]` 这种并列写法一起认——那是渲染器给 fact_strip 生成的形状，
+    人写进正文也一样合法。只认 `\[S\d+\]` 会漏掉它，等于留了个后门。"""
+    out = []
+    for inner in _BRACKET_RE.findall(text or ""):
+        out += _SID_IN_BRACKET.findall(inner)
+    return out
+
+
 def reading_minutes(data, bar=None):
     """「约 N 分钟读完」的唯一算法：正文汉字 ÷ 读速 + 每张图 0.15 分钟。
 
@@ -286,7 +302,7 @@ def g01_naming(ctx):
                            u"应位于 %s/ 之下" % expect_tail))
     # 只留最新版这件事靠闸门守，不靠约定：多出来的一页长得和正常状态一模一样，
     # 没人会去看目录，于是日期页会在某次手工复制之后悄悄堆回来。
-    extra = sorted(f for f in published_pages(ctx.out_dir, ctx.topic) if f != want)
+    extra = sorted(f for f in published_pages(ctx.out_dir) if f != want)
     if extra:
         out.append(Finding(g01_naming, expect_tail,
                            u"这个领域目录下有多余的页面，只允许 %s；多出来：%s"
@@ -346,11 +362,13 @@ def _page_image_refs(out_dir):
     return got
 
 
-def published_pages(out_dir, topic):
+def published_pages(out_dir):
     """这个领域目录下**已发布**的页面文件名（排序后）。
 
     W-145 之后只该有一个 `<领域>.html`。返回清单而不是布尔，是因为 G-01 要报出
     多出来的那些叫什么——"目录里有东西不对"这种话没法修。
+    （以前它收一个从不使用的 `topic` 参数。签名骗人比签名难看更坏：
+    读代码的人会以为这里按领域筛过，于是调用方也就不用自己筛了。）
     """
     try:
         names = os.listdir(out_dir)
@@ -485,12 +503,22 @@ def g06_sourcing(ctx):
             if r not in ids:
                 out.append(Finding(g06_sourcing, where, u"引用了不存在的来源 id %s" % r))
 
+    naked_prose = []
     for sec in ctx.data.get("sections", []):
         where0 = "%s#%s" % (ctx.rel_page, sec.get("id"))
         for bi, b in enumerate(sec.get("blocks", [])):
             where = "%s blk%d(%s)" % (where0, bi, b.get("type"))
             t = b.get("type")
             text = _block_text(b)
+            # 无条件扫，不挂在"这块有没有数字"上：内嵌标号本身就是引用声明，
+            # 一个不带数字的 `[S9]` 一样是在假装出处。
+            # 放在 need_refs 里是不够的——那条只在带数字的块上被调用。
+            for sid in dict.fromkeys(_inline_sids(text)):
+                if sid not in ids:
+                    out.append(Finding(
+                        g06_sourcing, where,
+                        u"正文内嵌的 [%s] 在 sources 里不存在。它印出来就是假凭证："
+                        u"要么改成真实 id，要么删掉标号让块级 source_ids 承担引用" % sid))
             has_num = bool(HAS_NUMBER_RE.search(text))
             if t in ("price_table",):
                 if bar.get("price_block_requires_as_of", True) and not re.match(
@@ -537,8 +565,18 @@ def g06_sourcing(ctx):
                         if HAS_NUMBER_RE.search(str(m.get("value", ""))):
                             need_refs(where, m)
             elif t == "prose" and has_num and not b.get("source_ids"):
-                # 纯叙述里夹带具体数字也要求可溯源；区间/年代泛指由 NUMBER_RE 的上下文决定
-                pass
+                # 纯叙述里夹带具体数字也要求可溯源。这里曾经是一个 `pass`：
+                # 检测写对了，动作没写，于是全站 195 个 prose 块的欠账静默了两周。
+                naked_prose.append(u"%s blk%d" % (sec.get("id"), bi))
+    if naked_prose:
+        # 一条带计数的 warn，不是每块一条：195 行的日志一周之内就会被人整段跳过，
+        # 那和 `pass` 没有区别。要明细跑 `python scripts/validate.py <领域> --verbose`
+        # 或直接看这条里的前 5 个。
+        out.append(Finding(g06_sourcing, ctx.rel_page,
+                           u"%d 个 prose 块带数字但没有块级 source_ids（前 5 个：%s）。"
+                           u"数字未挂来源按 R-02 应当不写或改成明确区间" % (
+                               len(naked_prose), u"、".join(naked_prose[:5])),
+                           level="warn"))
     if ctx.data.get("research_mode") != "online":
         out.append(Finding(g06_sourcing, ctx.rel_page,
                            u"research_mode=%r，正文数字未经联网查证" % ctx.data.get("research_mode"),
@@ -739,6 +777,10 @@ def g14_ledger(ctx):
                                u"线上是旧版（本地指纹 %s ≠ 已发布 %s）——"
                                u"重发这一篇，或把卡片上的发布日改到读者看得懂"
                                % (x.get("sha"), x.get("url")), level="warn"))
+    # W-153：主页是读者唯一会点进去的那个链接，而 `dist/home/` 是 gitignore 的
+    # 中间产物，以前没有任何一处盯着它是否过期。warn——没构建是正常状态。
+    for msg in PUB.check_home(root=ROOT, output=OUTPUT):
+        out.append(Finding(g14_ledger, "dist/home/index.html", msg, level="warn"))
     return out
 
 
@@ -779,7 +821,7 @@ def build_ctx(topic, output_dir=None, page=None):
     """
     out_dir = os.path.join(output_dir or OUTPUT, topic)
     if page is None:
-        pages = published_pages(out_dir, topic)
+        pages = published_pages(out_dir)
         if not pages:
             return None, [Finding(g01_naming, "output/%s" % topic, u"没有找到产物页面")]
         page = os.path.join(out_dir, pages[-1])

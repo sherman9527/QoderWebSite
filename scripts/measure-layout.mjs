@@ -70,6 +70,18 @@ async function forceLoadImages(page) {
     () => [...document.images].every((i) => i.complete),
     null, { timeout: 15000 },
   ).catch(() => {});
+  // 以前到这就结束了，而且上面那个 `.catch(() => {})` 把超时咽掉——
+  // 于是"图没加载成"不是失败，是**静默跳过**：下面每条量几何的检查都写着
+  // `if (!im.complete || !im.naturalWidth) continue`，没加载的图直接被略过，
+  // 报告照样说"通过"。漏检比误伤更阴，因为它永远绿。
+  // 现在把没加载的数量交回调用方，由它决定报什么。
+  return await page.evaluate(() => {
+    const bad = [...document.images].filter((i) => !i.complete || !i.naturalWidth);
+    return {
+      count: bad.length,
+      srcs: bad.slice(0, 3).map((i) => (i.currentSrc || i.src).split("/").pop().slice(0, 40)),
+    };
+  });
 }
 
 async function measurePage(file) {
@@ -83,8 +95,15 @@ async function measurePage(file) {
     for (const w of WIDTHS) {
       await page.setViewportSize({ width: w, height: 900 });
       await page.evaluate(() => document.fonts && document.fonts.ready);
-      await forceLoadImages(page);
+      const load = await forceLoadImages(page);
       const tag = `@${w}px`;
+      if (load.count) {
+        problems.push({
+          gate: "images-not-loaded", tag,
+          detail: `${load.count} 张图没加载成（${load.srcs.join("、") || "?"}）`
+            + `——所有量几何的检查都会跳过它们，此时报"通过"是假绿`,
+        });
+      }
 
       const r = await page.evaluate(
         ({ COL_GROUPS, PROSE_SELECTORS, PROSE_MAX_PX, CONTRAST_SELECTORS }) => {

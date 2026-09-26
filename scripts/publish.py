@@ -407,6 +407,33 @@ def check(root=ROOT, output=None):
     return []
 
 
+def check_home(root=ROOT, output=None):
+    """线上版主页的卡片链接与账本对得上吗。返回提示清单（**不是** drift）。
+
+    为什么单独一条函数而不是塞进 `check()`：`dist/home/index.html` 是 gitignore 的
+    中间产物，`record` 不重建它、G-14 也不读它——于是"文章都重发了、主页还链着旧指纹"
+    这件事没有任何一处会报警，而主页恰恰是人唯一会点进去的那个链接。
+    但它**没构建**是正常状态（发布前才构建），算进 drift 会让 rc=1，
+    把"还没做那一步"变成"账对不上"——那是逼人去关闸门。
+    """
+    output = output or os.path.join(root, "output")
+    rows = ledger_rows(root, output)
+    if not rows:
+        return []
+    home = os.path.join(root, "dist", "home", "index.html")
+    if not os.path.isfile(home):
+        return [u"还没有线上版主页（跑 `python scripts/build_index.py --variant hosted`）"]
+    html = io.open(home, encoding="utf-8").read()
+    hrefs = set(url for url in re.findall(r'class="card"\s+href="([^"]+)"', html))
+    want = set(r["url"] for r in rows)
+    out = []
+    for url in sorted(want - hrefs):
+        out.append(u"主页上没有链向 %s 的卡片——主页是旧版，重跑 hosted 变体再重发主页站" % url)
+    for url in sorted(hrefs - want):
+        out.append(u"主页链着 %s，但账本里没有这条——主页指向了一个没有记录站" % url)
+    return out
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=u"发布半边：出包 / 记 URL / 核对账本")
     sub = ap.add_subparsers(dest="cmd")
@@ -491,6 +518,8 @@ def main(argv=None):
             drift = check()
             for d in drift:
                 sys.stdout.write(u"✗ %s\n" % d)
+            for note in check_home():
+                sys.stdout.write(u"! %s\n" % note)
             if not drift:
                 sys.stdout.write(u"✓ 账实一致\n")
             return 1 if drift else 0

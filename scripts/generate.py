@@ -10,6 +10,7 @@
   · 产物必须自包含静态 HTML，由 React 模板 SSR 出来，不在这里拼字符串。
 """
 import argparse
+import collections
 import concurrent.futures
 import datetime as dt
 import io
@@ -98,6 +99,9 @@ SECTION_TMPL = u"""你在为中文知识科普专题页《{topic}》撰写其中
 3. 每个数字型断言（价格、年份、数量、尺寸、排名、评分）都必须挂 source_ids，
    source 里必须是你**真的检索到的**可点开 URL。查不到就不要写那个数字，
    或者改成明确的区间/不确定表述。绝不许编造来源。
+   **引用只写在块级 `source_ids` 里，正文文字里不要出现 `[S1]` 这种标号**——
+   它会被原样印到页面上，而读者点不开；章节内你自己编的 S1/S2 在合并时会被重编号，
+   只有 `source_ids` 字段会被改，写在文字里的不会。
 4. 只使用这些区块类型：{blocks}
 5. 语言：简体中文，客观科普口吻，第二人称适度使用；不要营销腔，不要"令人惊叹"式形容。
 6. 这一章要写"具体"的东西：型号名、地名、年份、做法参数、价格数字，而不是一般性道理。
@@ -111,7 +115,8 @@ SECTION_TMPL = u"""你在为中文知识科普专题页《{topic}》撰写其中
  ]}}
 
 block 结构约定（严格按此写，否则会被拒）：
-- prose: {{type,heading?,text}}  text 用 \\n\\n 分段
+- prose: {{type,heading?,text,source_ids}}  text 用 \\n\\n 分段；
+  这一章引用了哪几条来源，就写在 prose 的 source_ids 里（契约支持，别写进文字）
 - keyvalue_table: {{type,caption?,rows:[{{k,v,source_ids?}}]}}
 - timeline: {{type,items:[{{year:"1931",title?,text,source_ids}}]}}
 - price_table: {{type,as_of:"YYYY-MM",columns:[...],rows:[{{cells:[...],source_ids:[...] }}]}}  每个价格行必须有来源
@@ -191,13 +196,116 @@ def _validate_section_json(text):
     return None
 
 
+def _strip_inline_marks(text, mapping=None):
+    """删掉正文里的 `[Sxx]` 标号，返回 (新文本, 能映射到真实 id 的列表, 删掉的个数)。
+
+    为什么不直接改号留在文字里：章节自己编的 S1/S2 会被印到页面上，而读者点不开——
+    引用必须活在 `source_ids` 字段里，那才是模板会渲染成可点开芯片的地方。
+    所以能映射的**并进所在块的 source_ids**（保住引用），映射不出的一律丢掉
+    （没有东西保证它指谁，写进去就是凭空造引用）。
+    混着别的字的方括号（`[约65%]`、`[注3]`）一个都不许动。
+    """
+    mapping = mapping or {}
+    resolved = []
+    n = [0]
+
+    def repl(m):
+        inner = m.group(1)
+        sids = V._SID_IN_BRACKET.findall(inner)
+        if not sids:
+            return m.group(0)
+        n[0] += len(sids)
+        for s in sids:
+            if mapping.get(s):
+                resolved.append(mapping[s])
+        rest = V._SID_IN_BRACKET.sub(u"", inner)
+        rest = re.sub(u"[,，、/；;\\s]+", u" ", rest).strip()
+        return (u"[%s]" % rest) if rest else u""
+
+    out = re.sub(u"\\[([^\\]\\[]{1,80})\\]", repl, text)
+    out = re.sub(u"\\s+([。，、；：）])", u"\\1", out)
+    return re.sub(u" {2,}", u" ", out), resolved, n[0]
+
+
+def _clean_markers(node, mapping):
+    """递归清掉一个子树里的标号，返回 (处理数, 没能挂出去的 id)。
+
+    字符串既可能是 dict 的值，也可能直接躺在 list 里（`compare.left.points`
+    就是一串句子）。只走 dict 会整类漏掉后者，而且漏得安静——计数照样往上报。
+    子节点挂不出去的 id 往上一层汇，最后由所在的块兜住，保证"删掉的引用"不凭空消失。
+    """
+    resolved = []
+    moved = 0
+    if isinstance(node, dict):
+        for k, v in list(node.items()):
+            if isinstance(v, (dict, list)):
+                m2, loose = _clean_markers(v, mapping)
+                moved += m2
+                resolved += loose
+            elif isinstance(v, type(u"")):
+                new, got, n = _strip_inline_marks(v, mapping)
+                if n:
+                    node[k] = new
+                    moved += n
+                    resolved += got
+    elif isinstance(node, list):
+        for i, v in enumerate(node):
+            if isinstance(v, (dict, list)):
+                m2, loose = _clean_markers(v, mapping)
+                moved += m2
+                resolved += loose
+            elif isinstance(v, type(u"")):
+                new, got, n = _strip_inline_marks(v, mapping)
+                if n:
+                    node[i] = new
+                    moved += n
+                    resolved += got
+    if not resolved:
+        return moved, []
+    refs = node.get("source_ids") if isinstance(node, dict) else None
+    if isinstance(refs, list):
+        for sid in dict.fromkeys(resolved):
+            if sid not in refs:
+                refs.append(sid)
+        return moved, []
+    if isinstance(node, dict) and "type" in node:      # 这是一个块，契约允许挂来源
+        node["source_ids"] = list(dict.fromkeys(resolved))
+        return moved, []
+    return moved, list(dict.fromkeys(resolved))
+
+
+def _strip_block_markers(blocks, mapping):
+    """清掉所有块里的标号，返回处理数。块级挂不上的引用由块自己兜住。"""
+    moved = 0
+    for b in blocks or []:
+        n, loose = _clean_markers(b, mapping)
+        moved += n
+        if loose and isinstance(b, dict):
+            refs = b.get("source_ids")
+            if not isinstance(refs, list):
+                refs = []
+                b["source_ids"] = refs
+            for sid in dict.fromkeys(loose):
+                if sid not in refs:
+                    refs.append(sid)
+    return moved
+
+
 def _remap_sources(sec_result, global_sources, prefix):
-    """章节内 S1/S2 会撞车，统一改成 S<前缀><序号> 并回写 source_ids。"""
+    """章节内 S1/S2 会撞车，统一改成 S<前缀><序号> 并回写 source_ids。
+
+    返回 (blocks, 删掉的内嵌标号个数)。第二个返回值必须往上传：删掉一个引用声明
+    而不说，等于悄悄把内容变得没有出处——那是另一种撒谎。
+    """
     blocks = sec_result.get("blocks") or []
     mapping = {}
     for i, s in enumerate(sec_result.get("sources") or [], 1):
         sid = "S%s%d" % (prefix, i)
-        mapping[s.get("id") or ("S%d" % i)] = sid
+        # 键两种写法都收：模型有时给 "S1"，有时省略 id 由序号补出来。
+        # 只登记一个键，正文里按另一种写法的标号就会映射失败被丢掉。
+        for key in (s.get("id"), u"S%d" % i):
+            if key and key not in mapping:
+                mapping[key] = sid
         if not any(g["id"] == sid for g in global_sources):
             # 可选字段缺省时整个键不写：写成 None 会被 schema 判成类型错，
             # 而模型有一半概率不提供 publisher。
@@ -220,7 +328,8 @@ def _remap_sources(sec_result, global_sources, prefix):
                 walk(v)
 
     walk(blocks)
-    return blocks
+    dropped = _strip_block_markers(blocks, mapping)
+    return blocks, dropped
 
 
 def research(cfg, existing, only=None, workers=3, replay=None, online=True):
@@ -258,12 +367,14 @@ def research(cfg, existing, only=None, workers=3, replay=None, online=True):
                 sec = futs[fut]
                 try:
                     _sec, payload, grounded = fut.result()
-                    blocks = _remap_sources(payload, global_sources, _prefix_for(cfg, sec))
+                    blocks, dropped = _remap_sources(payload, global_sources, _prefix_for(cfg, sec))
                     results.append((sec.id, {
                         "id": sec.id, "title": sec.title, "anchor": sec.anchor,
                         "blocks": blocks, "images": [],
                     }))
-                    log(u"  ✓ %s%s" % (sec.title, u"" if grounded else u"（未取到来源）"))
+                    log(u"  ✓ %s%s%s" % (sec.title, u"" if grounded else u"（未取到来源）",
+                                         u"" if not dropped else
+                                         u"（删掉 %d 处正文内嵌标号，引用改由块级 source_ids 承担）" % dropped))
                 except Exception as e:
                     failed.append(sec.id)
                     log(u"  ✗ %s：%s" % (sec.title, e))
@@ -1021,6 +1132,57 @@ def _save(path, data):
         raise
 
 
+def _err_brief(value, limit=70):
+    """约束值要能读，但不能把整棵子树印出来。"""
+    try:
+        s = value if isinstance(value, type(u"")) else json.dumps(value, ensure_ascii=False)
+    except (TypeError, ValueError):
+        s = unicode_(value)
+    return s if len(s) <= limit else s[:limit] + u"…"
+
+
+def _err_line(path, e):
+    return u"%s → %s %s（%s）" % (
+        u"/".join(str(p) for p in path) or u"(根)",
+        str(e.validator),
+        _err_brief(e.validator_value),
+        str(e.message).replace(u"\n", u" ")[:110])
+
+
+def _closest_branch(e):
+    """oneOf 的 context 里塞着**每个分支**的错误，其中绝大多数只是"type 不对"。
+    挑出判别键（type）匹配的那个分支——那才是作者本来想写的区块类型，也只有它
+    会给出真理由（超长、多余键）。挑不出来就退回全部，至少不撒谎说没有线索。"""
+    by_branch = {}
+    for sub in e.context or ():
+        idx = sub.schema_path[0] if len(sub.schema_path) > 0 else "?"
+        by_branch.setdefault(idx, []).append(sub)
+    if not by_branch:
+        return list(e.context or ())
+    def is_discriminator_miss(x):
+        return (x.validator in (u"type", u"enum", u"const")
+                and len(x.schema_path) >= 2 and x.schema_path[1] == u"type")
+    meant = {i: errs for i, errs in by_branch.items()
+             if not any(is_discriminator_miss(x) for x in errs)}
+    pool = meant or by_branch
+    return min(pool.values(), key=len)
+
+
+def _flatten_error(e):
+    """一条（可能嵌套 oneOf 的）错误 → 若干行只讲病灶的描述。"""
+    if e.validator in (u"oneOf", u"anyOf") and e.context:
+        base = list(e.path)
+        return [ln for sub in _closest_branch(e) for ln in _flatten_error(
+            _repath(sub, base))]
+    return [_err_line(e.path, e)]
+
+
+def _repath(e, prefix):
+    """分支内部的错误路径是相对那个块的，补上块自己的路径才能定位。"""
+    e.path = collections.deque(prefix + list(e.path))
+    return e
+
+
 def _schema_errors(data):
     if Draft202012Validator is None:
         return []
@@ -1028,7 +1190,7 @@ def _schema_errors(data):
     v = Draft202012Validator(schema)
     out = []
     for e in sorted(v.iter_errors(data), key=lambda e: list(e.path))[:12]:
-        out.append("%s：%s" % ("/".join(str(p) for p in e.path) or "(根)", e.message[:180]))
+        out += _flatten_error(e)
     return out
 
 

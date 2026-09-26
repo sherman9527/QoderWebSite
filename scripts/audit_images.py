@@ -86,6 +86,11 @@ def audit_data(cfg, data, search_stats=None):
     dirty = []
     unknown = []
     starved = []
+    # W-142 的处置：同一条检索词被几章复用，是一行**事实**，不是判据。
+    # 09-25 我自己把 `OpenAI` 挂了 5 章，量了 18 篇才知道两条词面判据都不成立
+    # （判据①误判 98%，判据②会误伤单产品领域），所以这里只报数、不判好坏、
+    # 也不参与 `--fix` 的合格判定。它存在的意义是：当时要是有这一行，我不会看不见。
+    reuse = {}
     for sec in data.get("sections") or []:
         ims = sec.get("images") or []
         if not ims:
@@ -102,6 +107,11 @@ def audit_data(cfg, data, search_stats=None):
                 # 报成"没点名"会指着一个没坏的东西让人去修。它走人眼验收，单列出来。
                 drawn.append(im.get("file") or "?")
                 continue
+            q0 = str(im.get("query") or "").strip()
+            if q0:
+                # 分组按小写，显示按原样：`anthropic` 与 `Anthropic` 是同一条词，
+                # 分开数会把复用度算低——这条的存在理由恰恰是"别让我看不见复用"。
+                reuse.setdefault(q0.lower(), [q0, set()])[1].add(sec.get("id") or "?")
             text = ("%s %s" % (im.get("caption") or im.get("alt") or "",
                                im.get("source_page") or "")).lower()
             if I.names_subject(text, subj):
@@ -124,7 +134,9 @@ def audit_data(cfg, data, search_stats=None):
     return {"total": total, "unnamed": unnamed, "drawn": drawn, "empty": empty,
             "empty_causes": empty_causes, "subject": subj,
             "fixable": fixable, "dirty": dirty, "unknown": unknown,
-            "starved": starved}
+            "starved": starved,
+            "reused": sorted(((orig, len(secs)) for orig, secs in reuse.values()),
+                             key=lambda x: (-x[1], x[0].lower()))[:3]}
 
 
 def audit_topic(topic, root=ROOT):
@@ -164,7 +176,7 @@ def report(rows, log=lambda m: sys.stdout.write(m + chr(10))):
         ok = (not r["unnamed"]) and (not r["empty"])
         if not ok:
             bad.append(r["topic"])
-        log(u"%s %-6s 配图 %-3d 没点名 %d%s 空章 %d%s%s%s" % (
+        log(u"%s %-6s 配图 %-3d 没点名 %d%s 空章 %d%s%s%s%s" % (
             u"✓" if ok else u"✗", r["topic"], r["total"], len(r["unnamed"]),
             u"（检索词可救 %d / 点名档空手 %d / 引擎脏 %d / 无来路 %d）" % (
                 len(r.get("fixable") or []), len(r.get("starved") or []),
@@ -173,7 +185,10 @@ def report(rows, log=lambda m: sys.stdout.write(m + chr(10))):
             _cause_summary(r.get("empty_causes") or []),
             u"  ← %s" % u"、".join(r["empty"][:3]) if r["empty"] else u"",
             u"  自画示意图 %d（人眼看画得对不对）" % len(r.get("drawn") or [])
-            if r.get("drawn") else u""))
+            if r.get("drawn") else u"",
+            u"  复用最高：%s" % u"、".join(u"%s×%d章" % (q[:24], n)
+                                          for q, n in (r.get("reused") or [])[:2])
+            if r.get("reused") else u""))
     return bad
 
 

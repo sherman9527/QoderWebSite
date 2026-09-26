@@ -49,3 +49,31 @@ def test_geometry_gate_engine_matches_the_users_default_browser():
     assert got, out.stderr[:200]
     if edge:
         assert got == "msedge", "装了 Edge 却不用它量几何：%s" % got
+
+
+def test_measure_layout_refuses_to_report_when_images_never_loaded(tmp_path):
+    """`waitForFunction(...).catch(() => {})` 把超时咽掉了，于是"图还没加载完"
+    不是失败而是**静默跳过**——`if (!im.complete || !im.naturalWidth) continue`
+    会让所有量几何的检查跳过没加载的图。漏检比误伤更阴：它永远绿。
+    （同一个根因在 `shot.mjs` 上已经造成过两次跑出 4 与 6 两个数字。）"""
+    page = tmp_path / "broken.html"
+    page.write_text(
+        u'<html><body><img src="does-not-exist.png" width="10" height="10"/></body></html>',
+        encoding="utf-8")
+    # 一个真会 404 的图：complete 会是 true 而 naturalWidth 是 0，
+    # 这正是"没加载成却被当成加载完"的形状。
+    # 注意 `--file`：直接把路径当位置参数传，脚本会打印用法并 rc=2，
+    # 于是这条测试会**因为用错 CLI 而假绿**（第一版就是这样，0.36 秒就"过"了）。
+    r = subprocess.run(["node", os.path.join(ROOT, "scripts", "measure-layout.mjs"),
+                        "--file", str(page)],
+                       capture_output=True, timeout=300)
+    # 不用 `text=True`：Windows 上它按 GBK 解码，中文输出会整段变空
+    # （这条测试第一版就是因此拿到空 blob）。仓库里量几何的测试统一
+    # 拿 bytes 再 `decode("utf-8", "ignore")`，照抄那个形状。
+    blob = (r.stdout or b"").decode("utf-8", "ignore") + (r.stderr or b"").decode("utf-8", "ignore")
+    # rc==2 是用法错（把路径当位置参数传就会这样），那会让这条测试假绿——
+    # 第一版就是这么"过"的，0.36 秒。所以先确认它真的跑了检查。
+    assert r.returncode != 2, u"CLI 用错了，脚本根本没跑：\n%s" % blob[-400:]
+    assert r.returncode == 1, u"图没加载成却仍然 rc=0（漏检）：\n%s" % blob[-400:]
+    assert u"images-not-loaded" in blob, \
+        u"失败了，但没说是因为图没加载：\n%s" % blob[-400:]

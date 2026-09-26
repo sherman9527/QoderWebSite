@@ -418,3 +418,74 @@ def test_the_outline_contract_allows_declaring_the_image_primary_subject():
         declared = getattr(c, "image_primary_subject", "")
         assert not declared or declared.lower() in I.subject_tokens(c), \
             u"%s 声明了一个不在主语集合里的品牌词：%s" % (t[:-5], declared)
+
+
+# ---------------------------------------------------------------- W-156
+# 报错本身要能指到病灶。09-26 为了定位一个 maxLength 上限，我先猜"块级 title 非法"、
+# 改了再渲染还是红——白跑一次渲染，就因为日志只给一行截断的实例 repr。
+def _timeline_with(long_year):
+    import json as _json
+    data = _json.loads(_read("tests", "fixtures", "mini_data.json"))
+    data["sections"][0]["blocks"].append({
+        "type": "timeline", "heading": u"同类事件的区间口径",
+        "items": [
+            {"year": u"1996", "text": u"第一条，短标签。"},
+            {"year": long_year, "text": u"第二条，标签长度是要被约束的那一条。"},
+        ],
+    })
+    return data
+
+
+def test_a_length_violation_names_the_constraint_and_the_limit():
+    """`maxLength` 没过，报错里就要出现 `maxLength` 和那个上限。
+    只报"这块不合 schema"等于没报——人会去猜哪个字段坏了。"""
+    import generate as G
+    errs = G._schema_errors(_timeline_with(u"2016-11 → 2017-02"))   # 17 字，上限 16
+    assert errs, u"超长标签被放过了"
+    joined = u"\n".join(errs)
+    assert "maxLength" in joined, u"没说是哪条约束没过：%s" % joined[:200]
+    assert "16" in joined, u"没给出上限是多少：%s" % joined[:200]
+
+
+def test_the_error_points_at_the_offending_leaf_not_the_whole_block():
+    """路径要落到 `.../items/1/year`，不是停在 `sections/0/blocks/2`。
+    停在块上，人就只看得见"这一整块不对"，看不见是哪一个字段。"""
+    import generate as G
+    errs = G._schema_errors(_timeline_with(u"2016-11 → 2017-02"))
+    assert any("items/1/year" in e for e in errs), \
+        u"没指到出问题的那个字段：%s" % (errs[:3],)
+
+
+def test_the_error_never_dumps_the_instance():
+    """jsonschema 对 oneOf 的 message 是「整块 repr + is not valid under any ...」，
+    截断之后剩下的全是 repr，约束名被切掉了——这就是当天那条日志的真实形状。
+    判据要盯 repr 的**形状**而不是开头：`'type':` 这种带引号加冒号的片段只可能来自
+    被 dump 出来的字典。上一版断言写的是「不以 { 开头」，而报错以路径开头，
+    于是它从来没红过——一条不会红的测试比没有测试更坏。"""
+    import generate as G
+    errs = G._schema_errors(_timeline_with(u"2016-11 → 2017-02"))
+    assert errs, u"超长标签被放过了"
+    for e in errs:
+        assert "'type':" not in e, u"报错里 dump 了实例：%s" % e[:160]
+        assert len(e) <= 300, u"单条报错太长，日志会被它淹掉：%d 字" % len(e)
+
+
+def test_a_branch_mismatch_reports_why_each_branch_rejected_it():
+    """块类型走 oneOf。'整块不匹配任何分支' 没有信息量；
+    要下钻到分支各说一次为什么（这里要能看见多余的键名）。"""
+    import json as _json
+    import generate as G
+    data = _json.loads(_read("tests", "fixtures", "mini_data.json"))
+    data["sections"][0]["blocks"].append({
+        "type": "timeline", "title": u"写错了键名",
+        "items": [{"year": u"1996", "text": u"两条都合规。"},
+                  {"year": u"1997", "text": u"坏的是块级那个 title。"}],
+    })
+    errs = G._schema_errors(data)
+    assert errs, u"块级多余键被放过了"
+    joined = u"\n".join(errs)
+    # 两个都要有：约束名（哪类错）与键名（坏在哪个字段）。
+    # 只断言键名会被实例 repr 蒙过去——上一版就是这么假绿的。
+    assert "additionalProperties" in joined, u"没说是哪类约束：%s" % joined[:300]
+    assert "title" in joined, u"没指出多出来的是哪个键：%s" % joined[:300]
+    assert "'type':" not in joined, u"靠 dump 实例蒙过断言：%s" % joined[:160]

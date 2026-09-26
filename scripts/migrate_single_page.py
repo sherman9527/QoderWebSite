@@ -69,7 +69,12 @@ def plan(root):
 
 
 def _write_json(path, obj):
-    io.open(path, "w", encoding="utf-8").write(json.dumps(obj, ensure_ascii=False, indent=2) + u"\n")
+    """交回 `generate._save`：原子写、indent=1。
+    原来这里自己 `io.open(...).write(json.dumps(indent=2))`——一次迁移把整份文件重排，
+    而且中途被杀会留一个半截 JSON，旁边那些日期页**已经删了**，回不去。
+    一条负责删历史页的脚本，不该同时是唯一一个能写坏 data.json 的东西。"""
+    from generate import _save
+    _save(path, obj)
 
 
 def apply_plan(p, log):
