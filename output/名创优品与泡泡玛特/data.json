@@ -145,7 +145,11 @@
     {
      "type": "prose",
      "heading": "同一道除法，两种分子",
-     "text": "算单店只用三个数：某地区收入、期末门店数、营业月数。两家 2025 年都截到 12 月 31 日，窗口一致。问题在分子：报表那行「收入」装的不是同一种钱。"
+     "text": "算单店只用三个数：某地区收入、期末门店数、营业月数。两家 2025 年都截到 12 月 31 日，窗口一致。问题在分子：报表那行「收入」装的不是同一种钱。",
+     "source_ids": [
+      "S012",
+      "S014"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -2557,7 +2561,7 @@
   "url": "https://miniso-vs-popmart-gtqdc11h6po.qoder.website/",
   "project_id": "01a0d7c1-d143-7be5-8704-b792fcf42a83",
   "slug": "miniso-vs-popmart",
-  "content_sha": "357b18e1ddf1d96e",
+  "content_sha": "e903ae03e0478834",
   "published_date": "2026-09-25",
   "access": "public"
  }

@@ -9,7 +9,11 @@
     {
      "type": "prose",
      "heading": "通用 ballot 量的是此刻的政党偏好，不是席位",
-     "text": "通用 ballot 问的是一句没有候选人的话：今天投国会选举，你选民主党的那位还是共和党的那位。它量的是全国政党偏好，不是席位——两者之间没有稳定的换算率。9 月 25 日能读到两个均值，一个不加权、一个按机构评级与时效加权，还能再叠一层参选可能性调整。它们都在描述此刻，不是 11 月 3 日。"
+     "text": "通用 ballot 问的是一句没有候选人的话：今天投国会选举，你选民主党的那位还是共和党的那位。它量的是全国政党偏好，不是席位——两者之间没有稳定的换算率。9 月 25 日能读到两个均值，一个不加权、一个按机构评级与时效加权，还能再叠一层参选可能性调整。它们都在描述此刻，不是 11 月 3 日。",
+     "source_ids": [
+      "S011",
+      "S016"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -131,12 +135,19 @@
     {
      "type": "prose",
      "heading": "同一窗口，两端差 22 个点",
-     "text": "把逐条读数摊开，同一个 30 天窗口里最两端相差 22 个点：Economist/YouGov 给 D +14，RMG Research 给 R +8。差别大多先出在抽样框：RMG、Harvard-Harris、CNN、Reuters/Ipsos、NBC、Fox、Quinnipiac 访问注册选民，CBS、NYT/Siena、Morning Consult、Emerson、Marquette 访问可能参选者。样本量则从 581 人的单期调查到 18,336 人的周度追踪，误差幅度从 ±0.9 拉到 ±4.3。"
+     "text": "把逐条读数摊开，同一个 30 天窗口里最两端相差 22 个点：Economist/YouGov 给 D +14，RMG Research 给 R +8。差别大多先出在抽样框：RMG、Harvard-Harris、CNN、Reuters/Ipsos、NBC、Fox、Quinnipiac 访问注册选民，CBS、NYT/Siena、Morning Consult、Emerson、Marquette 访问可能参选者。样本量则从 581 人的单期调查到 18,336 人的周度追踪，误差幅度从 ±0.9 拉到 ±4.3。",
+     "source_ids": [
+      "S011"
+     ]
     },
     {
      "type": "prose",
      "heading": "机构之间的算法差异，本身就是内容",
-     "text": "汇总方的算法决定均值长什么样：有人做 30 天简单平均，有人先算每张民调的影响力分数、再把机构一贯的偏差按比例退回去，还有人对通用 ballot 只取 likely voter 版本、对总统审批率却反过来取全体成人。Morning Consult 那类周度追踪把 2024 年总统投票去向直接当加权变量，这本身就会让两党的起点不对称。均值里甚至混着两种问法：你打算把本选区的票投给哪一党，与你更希望哪一党控制国会。同一批民意，三套算法，方向都能不同。"
+     "text": "汇总方的算法决定均值长什么样：有人做 30 天简单平均，有人先算每张民调的影响力分数、再把机构一贯的偏差按比例退回去，还有人对通用 ballot 只取 likely voter 版本、对总统审批率却反过来取全体成人。Morning Consult 那类周度追踪把 2024 年总统投票去向直接当加权变量，这本身就会让两党的起点不对称。均值里甚至混着两种问法：你打算把本选区的票投给哪一党，与你更希望哪一党控制国会。同一批民意，三套算法，方向都能不同。",
+     "source_ids": [
+      "S018",
+      "S011"
+     ]
     },
     {
      "type": "note",
@@ -2572,7 +2583,7 @@
   "url": "https://us-midterms-and-assets-gtqdc11h6po.qoder.website/",
   "project_id": "01a0da10-49c0-702e-aadc-ecd1f6a2f9e2",
   "slug": "us-midterms-and-assets",
-  "content_sha": "a1d59ed573cd4baa",
+  "content_sha": "61b81832f93b58a6",
   "published_date": "2026-09-26",
   "access": "public"
  }

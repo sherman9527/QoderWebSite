@@ -286,7 +286,11 @@
     {
      "type": "prose",
      "heading": "两类降价得分开说：单价降两成，典型账单降四成",
-     "text": "Opus 5.5 的输入与输出单价是每百万 token 4 美元、20 美元，对应 Opus 5 的 5 美元、25 美元，降 20%；发布页同时称默认设置下典型负载比 Opus 5 便宜 40%。\n\n差的二十个点不在价目表上，来自同一任务用的 token 变少。只转述 40% 会让人以为单价被砍近一半；只转述 20% 又低估账单的实际变化。"
+     "text": "Opus 5.5 的输入与输出单价是每百万 token 4 美元、20 美元，对应 Opus 5 的 5 美元、25 美元，降 20%；发布页同时称默认设置下典型负载比 Opus 5 便宜 40%。\n\n差的二十个点不在价目表上，来自同一任务用的 token 变少。只转述 40% 会让人以为单价被砍近一半；只转述 20% 又低估账单的实际变化。",
+     "source_ids": [
+      "S031",
+      "S032"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -1191,7 +1195,11 @@
     {
      "type": "prose",
      "heading": "先把三层分开：观测、机制、叙事",
-     "text": "发布才几天，流传最广的三句话出处各不相同：「新家族的第一个模型」是 Anthropic 发布页的英文原话 the first model in our new Claude 5.5 family；「编程到了 Fable 5.1 级」出自第三方评测标题；「单价降了六成」出自 VentureBeat 标题。\n\n三句分属三层：观测能被重复，机制解释要回到模型内部，叙事只需要有人先说。媒体讨论最常见的错，是把第三层当前两层。"
+     "text": "发布才几天，流传最广的三句话出处各不相同：「新家族的第一个模型」是 Anthropic 发布页的英文原话 the first model in our new Claude 5.5 family；「编程到了 Fable 5.1 级」出自第三方评测标题；「单价降了六成」出自 VentureBeat 标题。\n\n三句分属三层：观测能被重复，机制解释要回到模型内部，叙事只需要有人先说。媒体讨论最常见的错，是把第三层当前两层。",
+     "source_ids": [
+      "S1016",
+      "S102"
+     ]
     },
     {
      "type": "prose",
@@ -2115,7 +2123,7 @@
   "url": "https://claude-opus-55-gtqdc11h6po.qoder.website/",
   "project_id": "01a0d99e-0bc9-7e28-9bcf-ef6dac1d193e",
   "slug": "claude-opus-55",
-  "content_sha": "eb0333c1b3028060",
+  "content_sha": "dfc394d9724782e0",
   "published_date": "2026-09-26",
   "access": "public"
  }
