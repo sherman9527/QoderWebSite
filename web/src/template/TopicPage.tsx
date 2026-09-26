@@ -262,6 +262,18 @@ function Motif({ token }: { token?: string }) {
       </div>
     );
   }
+  if (token === "choice_bars") {
+    /* 封闭选项上的概率条：候选由人给定，模型只点亮一条。
+       这是 Jev 与自回归模型最直观的分界，所以拿它当这一篇的记忆点。 */
+    const odds = [18, 92, 34, 12, 44, 8];
+    return (
+      <div className="motif motif-choice" aria-hidden="true">
+        {odds.map((w, i) => (
+          <i key={i} className={w > 80 ? "hot" : ""} style={{ width: `${w}%` }} />
+        ))}
+      </div>
+    );
+  }
   if (token) {
     return (
       <div className="motif motif-bar" aria-hidden="true">

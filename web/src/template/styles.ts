@@ -54,7 +54,7 @@ p{margin:.75rem 0}
    之前是一条 8px 色带浮在 240px 空色块里，开发者评价"像坏版"。 */
 .cover-noimg .cover-media{height:clamp(180px,20vw,320px);padding:0;aspect-ratio:auto}
 .cover-noimg .motif{position:absolute;inset:0;margin:0}
-.cover-noimg .motif-roast,.cover-noimg .motif-bar,.cover-noimg .motif-dots,.cover-noimg .motif-comb,.cover-noimg .motif-attn{height:100%;border-radius:0}
+.cover-noimg .motif-roast,.cover-noimg .motif-bar,.cover-noimg .motif-dots,.cover-noimg .motif-comb,.cover-noimg .motif-attn,.cover-noimg .motif-choice{height:100%;border-radius:0}
 .cover-noimg .motif-tiles{height:100%;gap:0;border:0}
 .cover-noimg .motif-tiles i{height:100%;border-radius:0;border-left:1px solid var(--rule)}
 .cover-noimg .motif-tiles i:first-child{border-left:0}
@@ -306,6 +306,9 @@ blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);ma
 .motif-attn i{border-radius:2px;background:var(--primary);opacity:.1;min-height:.28rem}
 .motif-attn i.near{opacity:.3}
 .motif-attn i.hot{background:var(--accent);opacity:.95}
+.motif-choice{display:flex;flex-direction:column;gap:.34rem;justify-content:center;height:100%;padding:.2rem 0}
+.motif-choice i{display:block;height:.42rem;border-radius:99px;background:var(--primary);opacity:.26}
+.motif-choice i.hot{background:var(--accent);opacity:.95;height:.62rem}
 .cover-noimg .motif-attn{height:100%;padding:1.2rem}
 /* 光波导：一排耦出栅，越靠出瞳越亮 */
 .motif-guide{display:flex;align-items:stretch;gap:.22rem;height:2.4rem}

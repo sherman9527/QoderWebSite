@@ -454,6 +454,31 @@ export const THEMES: Record<string, ThemeTokens> = {
     heroMotif: "majority_line",
     numberedSections: false,
   },
+  "jev-choice": {
+    /* Jev 篇：橄榄绿与紫。这一对是量出来的，不是挑出来的——
+       22 套既有主题把黄绿（娇兰金、muse 的青柠）与紫（glasses、snapdragon 的洋红）
+       各自占了一条腿，但**没有一套同时占住"暗橄榄 + 中紫"**这一格。
+       实测：与每一套既有主题比，primary 与 accent 不会两条腿同时靠近
+       （单腿最小 ΔE 24.4，出现在 primary 腿；那一套的 accent 腿相距 >25，
+       G-11 要两条腿都近才判雷同）。
+       为什么是橄榄而不是草绿：这篇讲的是"封闭选项里点亮一条"，
+       底色要沉、点亮色要能当唯一的高亮，紫比红更不像警告色。 */
+    id: "jev-choice",
+    label: "Jev · 橄榄与紫",
+    bg: "#F7F8F3",
+    surface: "#ECEFE3",
+    ink: "#1A1E14",
+    muted: "#5C6353",
+    rule: "#DCE0D1",
+    primary: "#526F20",
+    accent: "#872BB6",
+    soft: "#E6EBD8",
+    displayFamily: SERIF,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "choice_bars",
+    numberedSections: false,
+  },
 };
 
 export function themeOf(token: string | undefined): ThemeTokens {

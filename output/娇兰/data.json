@@ -295,7 +295,11 @@
     {
      "type": "prose",
      "heading": "手上这支和三十年前的是同一支吗",
-     "text": "大概率不是，而且不必靠鼻子猜。2003 年后盒身要印致敏原清单，娇兰同时在角落印一个递增的配方号：一号一份食谱，号变了就是改过版。再和批号前两位读出的生产年份对一下，就知道这瓶属于哪一版。\n\n改的方向也一致：老版靠天然灵猫与更冲的佛手柑撑深度，今天由合成动物香、白麝香和受光毒性限制的柑橘油接手，甜度更整齐，“脏”的那层退到后面。想贴近原版骨架，选浓香精而不是淡香水。"
+     "text": "大概率不是，而且不必靠鼻子猜。2003 年后盒身要印致敏原清单，娇兰同时在角落印一个递增的配方号：一号一份食谱，号变了就是改过版。再和批号前两位读出的生产年份对一下，就知道这瓶属于哪一版。\n\n改的方向也一致：老版靠天然灵猫与更冲的佛手柑撑深度，今天由合成动物香、白麝香和受光毒性限制的柑橘油接手，甜度更整齐，“脏”的那层退到后面。想贴近原版骨架，选浓香精而不是淡香水。",
+     "source_ids": [
+      "S022",
+      "S067"
+     ]
     }
    ],
    "images": [
@@ -327,7 +331,11 @@
     {
      "type": "prose",
      "heading": "一次夜航换来的冷香",
-     "text": "1933 年，Jacques Guerlain 交出午夜飞行。娇兰中国官网把源头归于他的朋友、作家圣埃克絮佩里 1931 年的小说《午夜飞行》，写一群为夜间邮政航线送命的人；官网另点了飞行员 Hélène Boucher 的名字，把它定位成「献给冒险者的香水」。流传更广的「儿媳 Suzy Guerlain 坐完夜航回家出题」这一版，官方页面和曾任娇兰创作总监的 Delacourte 的叙述里都没有，只能当家族轶事。"
+     "text": "1933 年，Jacques Guerlain 交出午夜飞行。娇兰中国官网把源头归于他的朋友、作家圣埃克絮佩里 1931 年的小说《午夜飞行》，写一群为夜间邮政航线送命的人；官网另点了飞行员 Hélène Boucher 的名字，把它定位成「献给冒险者的香水」。流传更广的「儿媳 Suzy Guerlain 坐完夜航回家出题」这一版，官方页面和曾任娇兰创作总监的 Delacourte 的叙述里都没有，只能当家族轶事。",
+     "source_ids": [
+      "S031",
+      "S032"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -615,7 +623,11 @@
     {
      "type": "prose",
      "heading": "手上那支和老版差在哪",
-     "text": "四支都还在产，但没有一支是你记忆里的那瓶。Mitsouko 在 2013 年由娇兰自家调香师 Thierry Wasser 重调过，橡木苔受限后，成分表上写的是树苔提取物。L'Heure Bleue 的变化更微妙：2000 年后的版本鸢尾更薄、茴香更安静。2026 年娇兰另推了一支全新的 L'Heure Bleue，并把 1912 年那支在官网上改名 L'Heure Bleue 1912、归进 Les Légendaires 历史系列。先认准名字后面有没有 1912，再谈版本。"
+     "text": "四支都还在产，但没有一支是你记忆里的那瓶。Mitsouko 被娇兰自家调香师 Thierry Wasser 重调过，橡木苔受限后，成分表上写的是树苔提取物。L'Heure Bleue 的变化更微妙：2000 年后的版本鸢尾更薄、茴香更安静。2026 年娇兰另推了一支全新的 L'Heure Bleue，并把 1912 年那支在官网上改名 L'Heure Bleue 1912、归进 Les Légendaires 历史系列。先认准名字后面有没有 1912，再谈版本。",
+     "source_ids": [
+      "S043",
+      "S044"
+     ]
     }
    ],
    "images": [
@@ -1010,7 +1022,12 @@
     {
      "type": "prose",
      "heading": "蜜蜂瓶不解释溢价",
-     "text": "1853 年 Pierre-François-Pascal Guerlain 为拿破仑三世与欧仁妮皇后的婚礼做出 Eau de Cologne Impériale，瓶身缀金蜂、取旺多姆圆柱造型，这个样式沿用到今天的 heritage 与 prestige 级线上，主线 EDP 用的是各自的现代瓶。但瓶子不是定价理由：Impériale 100ml 卖 68.25 欧，每毫升 0.68 欧，比 30ml 的一千零一夜低六成，也低于 Mon Guerlain 的 100ml。真正推高单价的是浓度与系列定位，蜜蜂瓶决定的是它摆在你桌上像什么。"
+     "text": "1853 年 Pierre-François-Pascal Guerlain 为拿破仑三世与欧仁妮皇后的婚礼做出 Eau de Cologne Impériale，瓶身缀金蜂、取旺多姆圆柱造型，这个样式沿用到今天的 heritage 与 prestige 级线上，主线 EDP 用的是各自的现代瓶。但瓶子不是定价理由：Impériale 100ml 卖 68.25 欧，每毫升 0.68 欧；同一支一千零一夜 EDP 的 30ml 档标 45.50 欧，每毫升 1.52 欧——蜜蜂瓶反而比小瓶便宜五成半。真正推高单价的是浓度与系列定位，蜜蜂瓶决定的是它摆在你桌上像什么。",
+     "source_ids": [
+      "S011",
+      "S078",
+      "S076"
+     ]
     },
     {
      "type": "prose",
@@ -2234,7 +2251,7 @@
   {
    "id": "S071",
    "url": "https://www.parfumdreams.de/GUERLAIN/Damenduefte/Shalimar/Eau-de-Parfum-Spray/index_14404.aspx",
-   "label": "德国电商 parfumdreams 一千零一夜 EDP 商品页，结构化数据按容量列出 30/50/90ml 在售价（页面生成时间 2026-09-23）",
+   "label": "德国电商 parfumdreams 一千零一夜 EDP 商品页（页面生成时间 2026-09-23，2026-09-26 逐字复核）：仅 3 个容量档——30 ml 52,99 €（1.766,33 €/l）、50 ml 73,29 €（1.465,80 €/l）、90 ml 103,00 €（1.144,44 €/l）；30 ml 主价块另标 UVP 87,00 €、Sofort lieferbar、 Versandkostenfrei。同页轮播里的 Mon Guerlain 48,50 € 是另一款，不计入",
    "retrieved": "2026-09-23",
    "publisher": "Parfumdreams"
   },
@@ -2550,7 +2567,7 @@
   "hero_motif": "bee_comb_axis",
   "hero_note": "以蓝釉金蜂的蜜蜂瓶剪影与蜂巢六边形构成母题，取“皇室授权”与“格拉斯田间”两层意象。"
  },
- "generated_date": "2026-09-26",
+ "generated_date": "2026-09-27",
  "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 17,
@@ -2559,7 +2576,7 @@
   "url": "https://guerlain-gtqdc11h6po.qoder.website/",
   "project_id": "01a0d72d-1214-7b2e-a34a-fb8b007ead46",
   "slug": "guerlain",
-  "content_sha": "d561b2bb99c8033e",
+  "content_sha": "037addb858ff1f44",
   "published_date": "2026-09-25",
   "access": "public"
  }
