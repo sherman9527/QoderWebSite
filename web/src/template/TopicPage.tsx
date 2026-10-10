@@ -274,6 +274,104 @@ function Motif({ token }: { token?: string }) {
       </div>
     );
   }
+  /* 记忆点是一轮对话：上面那条是模型在吐字（主色），下面那条是被它调用的
+     tool / 数据库（强调色），右边实心方块是还在等的光标。
+     为什么不画整个聊天窗口：hero 记忆点要的是"一眼认出这篇讲什么"，
+     窗口边框、输入框这些外壳信息量为零，画了反而像通用模板。
+     宽度比不是随手定的：绿条比蓝条长，因为一次回合里模型的话总比一次调用多；
+     但**不代表任何比例数据**，图上也不写数字（D-22）。 */
+  /* 两条曲线画在同一个坐标系里：上面那条正常（左低右高），下面那条倒挂
+     （左端翘起、右端压平）。柱高只表**形状**，图上不写任何数字（D-22）；
+     红色只出现在倒挂那条的短端——那正是"短端比长端高"这件事本身。 */
+  /* 左边是常规做法：一张晶圆切成一格一格分别封装；右边是晶圆级做法：
+     整片不切，格子还在，但切割线没有落下。
+     这道"切 / 不切"就是这家公司的全部技术主张，也是它良率与供电风险的来源，
+     所以记忆点画的是**边界**而不是芯片本身。
+     格数只是装饰密度，不代表任何数量关系，图上也不写数字（D-22）。 */
+  /* 一条利率线进来，分叉打到四个地方。
+     主干用强调色（流动性本身），四条分叉用主色并依次变淡——
+     变淡不是"重要性排序"，只是表示它们是同一条线的不同去向。
+     分叉条数与角度都是形状，图上不写任何数字（D-22）。 */
+  if (token === "spillover_fan") {
+    return (
+      <div className="motif motif-fan" aria-hidden="true">
+        <i className="trunk" />
+        <div className="fan">
+          {[0, 1, 2, 3].map((i) => (
+            <i key={i} className={"arm a" + i} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+  if (token === "wafer_grid") {
+    return (
+      <div className="motif motif-wafer" aria-hidden="true">
+        <div className="half diced">
+          {Array.from({ length: 16 }).map((_, i) => (
+            <i key={i} />
+          ))}
+        </div>
+        <div className="scribe" />
+        <div className="half whole" />
+      </div>
+    );
+  }
+  if (token === "rent_shift") {
+    /* 开源权重与算力估值篇：三条横带是价值链的三层，钱从最上面那层搬到了最下面那层。
+       最上面只描边——开源权重这一层不收钱；中间那条用强调色，是它现在的住处；
+       最下面最宽最实，资本开支真正落在这一层。宽度表达的是"谁拿走现金"，不是装饰。
+       与 stack_layers 的区别是刻意的：那套五层全是实的（讲一次调用穿过几层），
+       这套要讲的是**有一层是空的**。 */
+    return (
+      <div className="motif motif-rent" aria-hidden="true">
+        <i className="open" style={{ width: "38%" }} />
+        <i className="hot" style={{ width: "64%" }} />
+        <i className="capex" style={{ width: "94%" }} />
+      </div>
+    );
+  }
+  if (token === "curve_invert") {
+    const normal = [26, 38, 50, 64, 80, 96];
+    const inverted = [92, 74, 58, 46, 40, 36];
+    return (
+      <div className="motif motif-curve" aria-hidden="true">
+        <div className="cline">
+          {normal.map((h, i) => (
+            <i key={i} style={{ height: `${h}%` }} />
+          ))}
+        </div>
+        <div className="cline inv">
+          {inverted.map((h, i) => (
+            <i key={i} className={h > 60 ? "hot" : ""} style={{ height: `${h}%` }} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+  if (token === "turn_caret") {
+    return (
+      <div className="motif motif-turn" aria-hidden="true">
+        <i className="turn out" />
+        <i className="turn call" />
+        <i className="caret" />
+      </div>
+    );
+  }
+  if (token === "morgan_split") {
+    /* 摩根篇：一条家族干在 1933 那道口子上断成两条腿。
+       上横是 J. Pierpont Morgan 一人手里的那家银行，中缝是《格拉斯–斯蒂格尔》
+       逼出来的分家，下面两条分别是今天的 JPMorgan Chase 与 Morgan Stanley——
+       两条宽度不同，因为这两家的资产规模差着一个数量级。 */
+    return (
+      <div className="motif motif-morgan" aria-hidden="true">
+        <i className="stem" />
+        <i className="cut" />
+        <i className="leg bank" />
+        <i className="leg sec" />
+      </div>
+    );
+  }
   if (token) {
     return (
       <div className="motif motif-bar" aria-hidden="true">
@@ -356,10 +454,22 @@ export interface TopicPageProps {
   hideStyle?: boolean;
 }
 
+/** 最后核对于：本页所有来源里**最晚**的那个 `retrieved`。
+ *  来源清单本来逐条印「查阅 X」（609 行），但读者要的是这一篇整体多久没被人回头看过了；
+ *  「生成于」只是渲染时间，不能假装内容被复查过（W-190）。
+ *  与闸门 G-15 读同一个数，所以运维清单和页面上那句话不会各说一套。 */
+function lastChecked(data: TopicData): string | undefined {
+  const ds = data.sources
+    .map((s) => s.retrieved)
+    .filter((d): d is string => typeof d === "string" && d.length > 0);
+  return ds.length ? ds.sort()[ds.length - 1] : undefined;
+}
+
 export function TopicPage({ data, tagHref, hideStyle }: TopicPageProps): ReactNode {
   const t = themeOf(data.theme?.token);
   const src: SrcIndex = new Map(data.sources.map((s) => [s.id, s]));
   const cover = coverOf(data);
+  const checked = lastChecked(data);
   const minutes = data.reading_minutes || readingMinutes(data);
   const tags = data.tags || [];
 
@@ -375,7 +485,17 @@ export function TopicPage({ data, tagHref, hideStyle }: TopicPageProps): ReactNo
               : undefined
           }
         >
-          {cover ? <img src={cover.file} alt={cover.alt} /> : null}
+          {/* 封面框里没有 figcaption。声明了封面就必有 alt（schema 与 G-03 各钉一条）；
+              没声明、退到"最宽的一张"时那张图的 alt 是空的，所以拿本页标题兜底，
+              否则这一格对屏读器是完全静音的。 */}
+          {cover ? <img src={cover.file} alt={cover.alt || data.subtitle || data.topic} /> : null}
+          {/* 自画图当封面时角标必须出现在**页面上**，不能只躲在 alt 里：
+              alt 是给读屏器与搜索引擎的，读者什么也看不到（R-03）。
+              正文里的图一直有这条，缺的只有封面这一支——第一篇用自画图做封面的
+              （Agent 开发）才把它暴露出来。 */}
+          {cover?.kind === "illustration" && (
+            <span className="fig-kind">示意图 · 非实拍</span>
+          )}
           {/* 记忆点不再只在"没有封面"时出现：coverOf 总会退到章节首图，
               于是 10 个领域各自的 motif 实际上一次都没渲染过。 */}
           {!cover && <Motif token={t.heroMotif} />}
@@ -391,6 +511,16 @@ export function TopicPage({ data, tagHref, hideStyle }: TopicPageProps): ReactNo
       </header>
 
       <div className="wrap">
+        {/* `../index.html` 在合站之后**正好指向本组的落地页**（包内布局就是
+            `<组>/<篇>/<篇>.html`，落地页是 `<组>/index.html`），所以出包不再改写这一处，
+            也不再有"标记必须恰好出现一次"的契约——那是一篇一站时代的产物，
+            当时 `../index.html` 在托管域名上会指回自己。
+            文案跟着落地页走：落地页列的是本类别的专题，不是全站。 */}
+        <nav className="backhome" aria-label="返回专题主页">
+          <a className="backhome-link" href="../index.html">
+            ← {data.category ? `${data.category}全部专题` : "全部专题"}
+          </a>
+        </nav>
         <div className="layout">
         <nav className="toc" aria-label="目录">
           <h2>目录</h2>
@@ -417,6 +547,12 @@ export function TopicPage({ data, tagHref, hideStyle }: TopicPageProps): ReactNo
             <>
               <span className="dot" />
               <span>数据时点 {data.data_as_of}</span>
+            </>
+          )}
+          {checked && (
+            <>
+              <span className="dot" />
+              <span>核对于 {checked}</span>
             </>
           )}
           <span className="dot" />

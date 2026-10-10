@@ -86,7 +86,7 @@
    "images": [
     {
      "file": "images/01_雷鸟_X3_Pro_眼镜_佩戴.jpg",
-     "alt": "雷鸟Air Plus深度评测：从“玩”到“生产力”_AR设备_什么值得买",
+     "alt": "",
      "caption": "雷鸟Air Plus深度评测：从“玩”到“生产力”_AR设备_什么值得买",
      "source_page": "https://post.smzdm.com/p/avx0wvw4/",
      "width": 1080,
@@ -95,7 +95,7 @@
     },
     {
      "file": "images/02_小米AI眼镜.png",
-     "alt": "终于！小米首款AI眼镜来了，“百镜大战”高潮将至？ - 雷科技",
+     "alt": "",
      "caption": "终于！小米首款AI眼镜来了，“百镜大战”高潮将至？ - 雷科技",
      "source_page": "https://www.leikeji.com/article/68040",
      "width": 2540,
@@ -292,7 +292,7 @@
    "images": [
     {
      "file": "images/05_小米AI眼镜.jpg",
-     "alt": "小米AI眼镜：实时翻译与高效导航开创智能穿戴新体验_智能眼镜_什么值得买",
+     "alt": "",
      "caption": "小米AI眼镜：实时翻译与高效导航开创智能穿戴新体验_智能眼镜_什么值得买",
      "source_page": "https://post.smzdm.com/p/az7mwvn5/",
      "width": 1080,
@@ -301,7 +301,7 @@
     },
     {
      "file": "images/06_眼镜.jpg",
-     "alt": "夸克AI眼镜S1：轻盈智能穿戴_智能眼镜_什么值得买",
+     "alt": "",
      "caption": "夸克AI眼镜S1：轻盈智能穿戴_智能眼镜_什么值得买",
      "source_page": "https://post.smzdm.com/p/ado0xepn/",
      "width": 1080,
@@ -424,7 +424,7 @@
    "images": [
     {
      "file": "images/09_雷鸟_X3_Pro_全彩_衍射光波导.jpg",
-     "alt": "雷鸟眼镜2023年重磅新品——雷鸟Air Plus：超级影音游戏便携屏。 - 知乎",
+     "alt": "",
      "caption": "雷鸟眼镜2023年重磅新品——雷鸟Air Plus：超级影音游戏便携屏。 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/635607732",
      "width": 1153,
@@ -433,7 +433,7 @@
     },
     {
      "file": "images/10_光波导.jpg",
-     "alt": "揭秘光波导核心原理，了解AR眼镜背后的挑战（上） - 知乎",
+     "alt": "",
      "caption": "揭秘光波导核心原理，了解AR眼镜背后的挑战（上） - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/67633782",
      "width": 1920,
@@ -569,7 +569,7 @@
    "images": [
     {
      "file": "images/13_雷鸟_Air_3_观影_眼镜.jpg",
-     "alt": "雷鸟创新启动全球开发者计划，雷鸟X2将于近期发布|雷鸟|开发者|AR_新浪新闻",
+     "alt": "",
      "caption": "雷鸟创新启动全球开发者计划，雷鸟X2将于近期发布|雷鸟|开发者|AR_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_6012711797_16662b375019016pyg.html",
      "width": 1240,
@@ -578,7 +578,7 @@
     },
     {
      "file": "images/14_ai眼镜.png",
-     "alt": "大朋VR亮相2025 CES，AI眼镜&VR新品齐发 - VRAR星球",
+     "alt": "",
      "caption": "大朋VR亮相2025 CES，AI眼镜&VR新品齐发 - VRAR星球",
      "source_page": "https://www.vrarworld.cn/xinwenrili/9384.html",
      "width": 1171,
@@ -595,12 +595,25 @@
     {
      "type": "prose",
      "heading": "先分清屏端亮度和入眼亮度",
-     "text": "参数表上同样写着「全彩」，四条路线卡住的关卡完全不同（S16）。\n\n看光机先分清两个亮度：屏端亮度和入眼亮度。衍射光波导的光能利用率普遍只有 1% 左右（S7），鸿石智能给的换算是入眼 1000 尼特需要芯片端高于 250 万尼特（S8）。这一条几乎把硅基 OLED 挡在衍射波导门外——视涯 0.6 英寸 MicroOLED 屏端全彩 6000 尼特（S6），配 Birdbath 的整机最大入眼 800 尼特（S6），换成波导只剩几十尼特。"
+     "text": "参数表上同样写着「全彩」，四条路线卡住的关卡完全不同。\n\n看光机先分清两个亮度：屏端亮度和入眼亮度。衍射光波导的光能利用率普遍只有 1% 左右，鸿石智能给的换算是入眼 1000 尼特需要芯片端高于 250 万尼特。这一条几乎把硅基 OLED 挡在衍射波导门外——视涯 0.6 英寸 MicroOLED 屏端全彩 6000 尼特，配 Birdbath 的整机最大入眼 800 尼特，换成波导只剩几十尼特。",
+     "source_ids": [
+      "S0516",
+      "S056",
+      "S057",
+      "S058"
+     ]
     },
     {
      "type": "prose",
      "heading": "MicroLED：单绿过剩，全彩欠账",
-     "text": "MicroLED 因此成了衍射波导的默认搭档（S9）。JBD 蜂鸟 0.13 英寸单绿面板标到 1000 万尼特、典型功耗 60 毫瓦，做成的单色光引擎只有 0.15 立方厘米（S1）。\n\n难的是全彩：红、绿、蓝三片 0.1 英寸屏用 X-cube 棱镜合色，才有蜂鸟Ⅱ 的 0.2 立方厘米、0.5 克、3 流明、入眼 4000 尼特（S2）；换成三片 0.13 英寸屏的蜂鸟Ⅰ，体积翻到 0.4 立方厘米（S4）。另一条路是单片全彩，镭昱靠量子点色转换做到 0.18 立方厘米、屏端 50 万尼特（S10），赛富乐斯同思路的样品 20 万尼特（S9）；而红光最好的公开数字也只有 200 万尼特（S9），比绿光低一个数量级。"
+     "text": "MicroLED 因此成了衍射波导的默认搭档。JBD 蜂鸟 0.13 英寸单绿面板标到 1000 万尼特、典型功耗 60 毫瓦，做成的单色光引擎只有 0.15 立方厘米。\n\n难的是全彩：红、绿、蓝三片 0.1 英寸屏用 X-cube 棱镜合色，才有蜂鸟Ⅱ 的 0.2 立方厘米、0.5 克、3 流明、入眼 4000 尼特；换成三片 0.13 英寸屏的蜂鸟Ⅰ，体积翻到 0.4 立方厘米。另一条路是单片全彩，镭昱靠量子点色转换做到 0.18 立方厘米、屏端 50 万尼特，赛富乐斯同思路的样品 20 万尼特；而红光最好的公开数字也只有 200 万尼特，比绿光低一个数量级。",
+     "source_ids": [
+      "S051",
+      "S0510",
+      "S052",
+      "S054",
+      "S059"
+     ]
     },
     {
      "type": "bar_chart",
@@ -724,7 +737,15 @@
     {
      "type": "prose",
      "heading": "LCoS 与扫描激光：一个便宜，一个卡在散斑",
-     "text": "LCoS 是全彩最便宜的现成答案，代价在体积和偏振（S16）。光峰科技的蜻蜓G1 单目 0.35 立方厘米、640×200、满画面总功耗约 100 毫瓦，RGB 全彩的彩虹C1 要 0.8 立方厘米（S12）；它靠偏振光工作，得配效率更高的几何波导（S16）。2025 年 9 月问世的 Meta Ray-Ban Display 用的正是 OmniVision 的 LCoS 加 Lumus 几何波导，实测入眼 5000 尼特（S11）。\n\n扫描激光亮度可到百万尼特（S14），ST 的 STAR0 光机 0.75 立方厘米、输出 1.5 到 10 流明（S14）。但散斑至今没有广泛使用的消除方案，红绿激光器环境温度超过 40℃ 就明显漂移（S13），1080p 还要把 MEMS 谐振频率从 18kHz 提到 40.5kHz（S13）；功率更得压进 IEC 60825-1 的 1 类限值——3B 类以上直视即伤视网膜（S15）。"
+     "text": "LCoS 是全彩最便宜的现成答案，代价在体积和偏振。光峰科技的蜻蜓G1 单目 0.35 立方厘米、640×200、满画面总功耗约 100 毫瓦，RGB 全彩的彩虹C1 要 0.8 立方厘米；它靠偏振光工作，得配效率更高的几何波导。2025 年 9 月问世的 Meta Ray-Ban Display 用的正是 OmniVision 的 LCoS 加 Lumus 几何波导，实测入眼 5000 尼特。\n\n扫描激光亮度可到百万尼特，ST 的 STAR0 光机 0.75 立方厘米、输出 1.5 到 10 流明。但散斑至今没有广泛使用的消除方案，红绿激光器环境温度超过 40℃ 就明显漂移，1080p 还要把 MEMS 谐振频率从 18kHz 提到 40.5kHz；功率更得压进 IEC 60825-1 的 1 类限值——3B 类以上直视即伤视网膜。",
+     "source_ids": [
+      "S0511",
+      "S0512",
+      "S0513",
+      "S0514",
+      "S0515",
+      "S0516"
+     ]
     },
     {
      "type": "compare",
@@ -732,21 +753,30 @@
       "title": "衍射波导 + MicroLED",
       "tone": "neutral",
       "points": [
-       "芯片端不到百万尼特就带不动（S8）",
-       "全彩要么三片合色、要么色转换，体积重量一起涨（S2/S10）",
-       "好处是光引擎能压到 0.2cc 以内（S3）"
+       "芯片端不到百万尼特就带不动",
+       "全彩要么三片合色、要么色转换，体积重量一起涨",
+       "好处是光引擎能压到 0.2cc 以内"
       ]
      },
      "right": {
       "title": "几何波导 + LCoS",
       "tone": "neutral",
       "points": [
-       "效率高 3–7 倍、正面漏光仅 1.5%，屏端够用（S11）",
-       "实测入眼 5000 尼特，整机对比度约 600:1、画面偏软（S11）",
-       "供应链成熟、成本可控，光学显示约占整机成本四成（S12/S16）"
+       "效率高 3–7 倍、正面漏光仅 1.5%，屏端够用",
+       "实测入眼 5000 尼特，整机对比度约 600:1、画面偏软",
+       "供应链成熟、成本可控，光学显示约占整机成本四成"
       ]
      },
-     "verdict": "「波导被绑死在 MicroLED 上」有个前提：走的是衍射波导。真正该等的不是全彩光机，而是全彩、衍射波导和轻薄整机同时成立的那一代。"
+     "verdict": "「波导被绑死在 MicroLED 上」有个前提：走的是衍射波导。真正该等的不是全彩光机，而是全彩、衍射波导和轻薄整机同时成立的那一代。",
+     "source_ids": [
+      "S058",
+      "S052",
+      "S0510",
+      "S053",
+      "S0511",
+      "S0512",
+      "S0516"
+     ]
     },
     {
      "type": "note",
@@ -764,7 +794,7 @@
    "images": [
     {
      "file": "images/17_ai眼镜.png",
-     "alt": "年度AR / AI眼镜全盘点：近期30+新品扎堆发布 - VRAR星球",
+     "alt": "",
      "caption": "年度AR / AI眼镜全盘点：近期30+新品扎堆发布 - VRAR星球",
      "source_page": "https://www.vrarworld.cn/redianzhuizong/9009.html",
      "width": 960,
@@ -773,7 +803,7 @@
     },
     {
      "file": "images/18_光波导.jpg",
-     "alt": "揭秘光波导核心原理，了解AR眼镜背后的挑战（下） - 知乎",
+     "alt": "",
      "caption": "揭秘光波导核心原理，了解AR眼镜背后的挑战（下） - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/99308379",
      "width": 740,
@@ -790,11 +820,13 @@
     {
      "type": "prose",
      "heading": "功耗墙先否掉单芯片",
-     "text": "眼镜装不下一颗手机级 SoC 常开。拆解里 SoC 本就是成本大头，而它跑的影像与 AI 推理以瓦计（S5、S6）：同为 AR1 的 Ray-Ban Meta，连续使用续航约四小时（S5）。想靠加大电池硬扛，重量和发热先不答应，于是架构被反过来定：先分工，再选型。低功耗协处理器常驻，管唤醒词监听、音频链路和传感器读数；应用处理器只管影像与端侧 AI，其余时间深度休眠；显示与通信若要独立带宽，再交给专用芯片或外挂一颗 ISP。小米 AI 眼镜的拆解把这条接力摊开了：恒玄 BES2700H 全天候守门，听到唤醒词后毫秒级拉起高通骁龙 AR1，算完立刻让它休眠、把控制权交回小核（S2）。",
+     "text": "眼镜装不下一颗手机级 SoC 常开。拆解里 SoC 本就是成本大头，而它跑的影像与 AI 推理以瓦计：同为 AR1 的 Ray-Ban Meta，连续使用续航约四小时。想靠加大电池硬扛，重量和发热先不答应，于是架构被反过来定：先分工，再选型。低功耗协处理器常驻，管唤醒词监听、音频链路和传感器读数；应用处理器只管影像与端侧 AI，其余时间深度休眠；显示与通信若要独立带宽，再交给专用芯片或外挂一颗 ISP。小米 AI 眼镜的拆解把这条接力摊开了：恒玄 BES2700H 全天候守门，听到唤醒词后毫秒级拉起高通骁龙 AR1，算完立刻让它休眠、把控制权交回小核。",
      "source_ids": [
       "S061",
       "S062",
-      "S063"
+      "S063",
+      "S065",
+      "S066"
      ]
     },
     {
@@ -803,7 +835,7 @@
       {
        "value": "4nm / 6nm",
        "label": "两条制程线",
-       "hint": "高通骁龙 AR1（S5）／恒玄 BES2800（S4）",
+       "hint": "高通骁龙 AR1／恒玄 BES2800",
        "source_ids": [
         "S065",
         "S064"
@@ -846,12 +878,14 @@
     {
      "type": "prose",
      "heading": "各家选了谁",
-     "text": "看参数表先认型号。高通线上，AR1 Gen 1 是 4nm 工艺（S5）：雷鸟 X3 Pro 把它当唯一的系统级 SoC 用，Rokid Glasses 与二代 Ray-Ban Meta 一样另加协处理器（S1、S6）。第一代 Ray-Ban Meta 用的还是高通 4100（S1）。国产这条线先把功耗压住再谈算力：恒玄 BES2800 用 6nm，单芯片集成多核 CPU/GPU、NPU、存储、低功耗 Wi-Fi 与双模蓝牙，阿里夸克 AI 眼镜已采用（S4）；理想 Livis 用它加研极微独立 ISP，干脆放弃高算力 SoC（S1）；展锐以 W517 这类集成 ISP 的穿戴平台切进来（S5）。至于小米用的 BES2700，原身是手表主控，内核为 Cortex-M55 加 HiFi4 DSP 与一颗 BECO NPU（S3）。",
+     "text": "看参数表先认型号。高通线上，AR1 Gen 1 是 4nm 工艺：雷鸟 X3 Pro 把它当唯一的系统级 SoC 用，Rokid Glasses 与二代 Ray-Ban Meta 一样另加协处理器。第一代 Ray-Ban Meta 用的还是高通 4100。国产这条线先把功耗压住再谈算力：恒玄 BES2800 用 6nm，单芯片集成多核 CPU/GPU、NPU、存储、低功耗 Wi-Fi 与双模蓝牙，阿里夸克 AI 眼镜已采用；理想 Livis 用它加研极微独立 ISP，干脆放弃高算力 SoC；展锐以 W517 这类集成 ISP 的穿戴平台切进来。至于小米用的 BES2700，原身是手表主控，内核为 Cortex-M55 加 HiFi4 DSP 与一颗 BECO NPU。",
      "source_ids": [
       "S061",
       "S062",
       "S063",
-      "S064"
+      "S064",
+      "S065",
+      "S066"
      ]
     },
     {
@@ -915,16 +949,18 @@
     {
      "type": "prose",
      "heading": "本地还是云端，直接改写芯片清单",
-     "text": "分界线比想象中窄。骁龙 AR1+ Gen 1 的卖点正是端侧：内置 NPU 能本地跑 Meta Llama 3.2 的 1B 档，也就是十亿参数级，平台面积比前代小 28%，峰值功耗压在 2W 以内，好处是非联网场景也能出结果（S6）。十亿级装得进眼镜，更大的模型仍留在手机与云上。这条线一挪，选型就得重列：产品定义从「问一句、答一句」改成「连续看懂画面」，内存、闪存与供电全部跟着重算——IDC 观察到 2025 年 AI 眼镜平均存储正从 8GB 抬向 16GB，端侧模型推动整机从云端依赖转向本地处理（S5）；小米已经把 RAM 做成 4GB（S2）。所以「支持端侧大模型」这句话，真正说明的是这颗 NPU 装得下多大的权重。",
+     "text": "分界线比想象中窄。骁龙 AR1+ Gen 1 的卖点正是端侧：内置 NPU 能本地跑 Meta Llama 3.2 的 1B 档，也就是十亿参数级，平台面积比前代小 28%，峰值功耗压在 2W 以内，好处是非联网场景也能出结果。十亿级装得进眼镜，更大的模型仍留在手机与云上。这条线一挪，选型就得重列：产品定义从「问一句、答一句」改成「连续看懂画面」，内存、闪存与供电全部跟着重算——IDC 观察到 2025 年 AI 眼镜平均存储正从 8GB 抬向 16GB，端侧模型推动整机从云端依赖转向本地处理；小米已经把 RAM 做成 4GB。所以「支持端侧大模型」这句话，真正说明的是这颗 NPU 装得下多大的权重。",
      "source_ids": [
-      "S066"
+      "S066",
+      "S062",
+      "S065"
      ]
     }
    ],
    "images": [
     {
      "file": "images/21_高通_AR1_芯片_发布.jpg",
-     "alt": "高通汽车业务进入扩张时 | 钛度车库|智能驾驶_新浪新闻",
+     "alt": "",
      "caption": "高通汽车业务进入扩张时 | 钛度车库|智能驾驶_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_2853016445_aa0d937d02000y7qz.html",
      "width": 700,
@@ -933,11 +969,11 @@
     },
     {
      "file": "images/22_AI眼镜.png",
-     "alt": "李未可科技发布全新首款AI眼镜Chat，搭载自研AI大模型 - VRAR星球",
+     "alt": "",
      "caption": "李未可科技发布全新首款AI眼镜Chat，搭载自研AI大模型 - VRAR星球",
      "source_page": "https://www.vrarworld.cn/xinwenrili/7209.html",
-     "width": 1080,
-     "height": 1664,
+     "width": 800,
+     "height": 1232,
      "query": "AI眼镜"
     }
    ]
@@ -1125,16 +1161,16 @@
    "images": [
     {
      "file": "images/25_AI眼镜.png",
-     "alt": "中国，造出全球80% AI眼镜",
+     "alt": "",
      "caption": "中国，造出全球80% AI眼镜",
      "source_page": "https://www.icviews.cn/news/27954/7",
-     "width": 1080,
-     "height": 780,
+     "width": 800,
+     "height": 577,
      "query": "AI眼镜"
     },
     {
      "file": "images/26_小米AI眼镜.jpg",
-     "alt": "小米发布全新AI眼镜，对标Meta雷朋_小米 眼镜相机_人工智能-中关村在线",
+     "alt": "",
      "caption": "小米发布全新AI眼镜，对标Meta雷朋_小米 眼镜相机_人工智能-中关村在线",
      "source_page": "https://ai.zol.com.cn/1003/10030063.html",
      "width": 1440,
@@ -1341,20 +1377,20 @@
    "images": [
     {
      "file": "images/29_钛合金_镜框_AI眼镜.png",
-     "alt": "钛及钛合金的特点 - 北京鑫瑞格金属材料有限公司",
+     "alt": "",
      "caption": "钛及钛合金的特点 - 北京鑫瑞格金属材料有限公司",
      "source_page": "http://rare-metals.com/Ne_d_gci_66_id_15.html",
-     "width": 1180,
-     "height": 800,
+     "width": 800,
+     "height": 542,
      "query": "钛合金 镜框 AI眼镜"
     },
     {
      "file": "images/30_AI眼镜.png",
-     "alt": "3999元！联想AI眼镜V1发布：双目单色显示、250小时待机续航_智能眼镜_什么值得买",
-     "caption": "3999元！联想AI眼镜V1发布：双目单色显示、250小时待机续航_智能眼镜_什么值得买",
+     "alt": "",
+     "caption": "联想AI眼镜V1发布：双目单色显示、250小时待机续航",
      "source_page": "https://post.smzdm.com/p/an5xo9l7/",
-     "width": 1080,
-     "height": 1566,
+     "width": 800,
+     "height": 1160,
      "query": "AI眼镜"
     }
    ]
@@ -1528,7 +1564,7 @@
    "images": [
     {
      "file": "images/33_歌尔股份.jpg",
-     "alt": "公司新闻_新闻中心_歌尔股份",
+     "alt": "",
      "caption": "公司新闻_新闻中心_歌尔股份",
      "source_page": "https://www.goertek.com/news/company_30.html",
      "width": 1087,
@@ -1537,7 +1573,7 @@
     },
     {
      "file": "images/34_智能眼镜.jpg",
-     "alt": "华为智能眼镜HUAWEI X GENTLE MONSTER Eyewear II深度体验评测_智能眼镜_什么值得买",
+     "alt": "",
      "caption": "华为智能眼镜HUAWEI X GENTLE MONSTER Eyewear II深度体验评测_智能眼镜_什么值得买",
      "source_page": "https://post.smzdm.com/p/a5o9re98/",
      "width": 1080,
@@ -1718,22 +1754,27 @@
     {
      "type": "prose",
      "heading": "两条降本路线别混",
-     "text": "便宜那条走体全息波导配 LCoS，目标是拉进无显示派现在的价位；贵那条是刻蚀或碳化硅全彩，卡的是良率。看到波导扩产的消息先分清是哪条路——全彩降到能走量的价位，更可能在 2027 年之后。"
+     "text": "便宜那条走体全息（PVG）波导配 LCoS：谷东智能说 PVG 体全息波导成本较进口方案降 60%–90%，与光峰科技合作的目标是把终端价压到 1500 至 2000 元——正好是无显示派现在的价位带。贵那条是全彩，卡的是良率：几何阵列光波导要过 50 多道工序，单道 99% 串下来总良率只剩约 60%。看到波导扩产的消息先分清是哪条路。至于全彩什么时候能走量，可核查的锚点是厂商自己的排期而不是猜测——Meta 已把 Micro-LED 一代的量产定在 2027 年。",
+     "source_ids": [
+      "S037",
+      "S1010",
+      "S109"
+     ]
     }
    ],
    "images": [
     {
      "file": "images/37_ai眼镜_光波导_眼镜.jpg",
-     "alt": "湖北臣博视人工智能科技发布自主研发的双目全彩光波导一体式AI+AR智能眼镜 - VRAR星球",
+     "alt": "",
      "caption": "湖北臣博视人工智能科技发布自主研发的双目全彩光波导一体式AI+AR智能眼镜 - VRAR星球",
      "source_page": "https://www.vrarworld.cn/xinwenrili/11475.html",
-     "width": 3840,
-     "height": 2160,
+     "width": 1472,
+     "height": 828,
      "query": "ai眼镜 光波导 眼镜"
     },
     {
      "file": "images/38_AI眼镜.webp",
-     "alt": "小米新一代AI眼镜即将发布，全面对标Meta Ray-ban - 玉米小站",
+     "alt": "",
      "caption": "小米新一代AI眼镜即将发布，全面对标Meta Ray-ban - 玉米小站",
      "source_page": "https://www.yumiok.com/archives/1802.html",
      "width": 1559,
@@ -1750,7 +1791,12 @@
     {
      "type": "prose",
      "heading": "拍摄边界：从被赶出餐厅，到被告上法庭",
-     "text": "第一视角拍摄是 AI 眼镜最核心的卖点，也是它最先撞上的墙。2013 年谷歌 Glass 上市初期，隐私反弹来得比销量还快：西雅图一家餐厅贴告示禁止佩戴者入内，「Glasshole」成了没礼貌的代名词。十一年后同样的剧本轮到 Meta——Ray-Ban 眼镜的偷拍争议从社交吐槽升级成了集体诉讼。"
+     "text": "第一视角拍摄是 AI 眼镜最核心的卖点，也是它最先撞上的墙。2013 年谷歌 Glass 上市初期，隐私反弹来得比销量还快：纽约时报当年 5 月就在写这股反弹，到 11 月西雅图一家餐厅直接贴出告示，禁止佩戴者入内。十一年后同样的剧本轮到 Meta——RoadToVR 在 2026 年 3 月记下针对 Ray-Ban 眼镜的集体诉讼，理由是外泄旁人私密影像：社交平台的吐槽就此变成了法庭上的案号。",
+     "source_ids": [
+      "S111",
+      "S112",
+      "S114"
+     ]
     },
     {
      "type": "timeline",
@@ -1793,12 +1839,23 @@
     {
      "type": "prose",
      "heading": "法规：能戴，不代表能拍",
-     "text": "法国数据保护机构 CNIL 在 2026 年发布了针对智能眼镜的使用指引：在公共场所不可察觉地录制可识别人物，既过不了《通用数据保护条例》(GDPR) 这一关，也可能触及本地侵犯隐私的刑事条款。中国《个人信息保护法》同样把可识别影像纳入个人信息。真正的差别在于手感：手机举起来人人看见，而眼镜的录制指示灯小到几乎没人会注意。"
+     "text": "法国数据保护机构 CNIL 在 2026 年发布了针对智能眼镜的使用指引：在公共场所不可察觉地录制可识别人物，既过不了《通用数据保护条例》(GDPR) 这一关，也可能触及本地侵犯隐私的刑事条款，它给的措辞甚至只是「谨慎使用」。真正的差别在于手感：手机举起来人人看见，而眼镜的提示灯小到几乎没人注意。中国这边的报道把这层矛盾写得更具体——新华网转科技日报那篇里，Rokid 声称现售眼镜标配硬件级拍摄指示灯、录制强制亮灯、底层严禁第三方篡改权限；同一篇里，2 至 10 元的「遮光贴」在电商上公开售卖，有店铺销量超过 7,000 件。",
+     "source_ids": [
+      "S116",
+      "S117",
+      "S028"
+     ]
     },
     {
      "type": "prose",
      "heading": "自测与实测之间",
-     "text": "参数表的落差，续航是最直观的一格。Meta 在 2025 年 9 月给第二代 Ray-Ban Meta 打出的核心卖点是「续航翻倍」；第一代用户的实测却不买账——在约 1℃ 的低温里连续使用，掉电速度明显快过标称。这不是孤例：厂商标称普遍基于「混合使用」的理想循环，第三方实测则从连续录像、开 AI 对话、户外低温这些最费电的场景起步。读参数时，把 up to 当成上限，而不是承诺。"
+     "text": "参数表的落差，续航是最直观的一格。Meta 在 2025 年 9 月给第二代 Ray-Ban Meta 打出的核心卖点是「续航翻倍」；第一代用户的实测却不买账——在约 1℃ 的低温里连续使用，掉电速度明显快过标称。这不是孤例：厂商标称普遍基于「混合使用」的理想循环，第三方实测则从连续录像、开 AI 对话、户外低温这些最费电的场景起步。读参数时，把 up to 当成上限，而不是承诺。",
+     "source_ids": [
+      "S013",
+      "S077",
+      "S118",
+      "S119"
+     ]
     },
     {
      "type": "note",
@@ -1810,20 +1867,20 @@
    "images": [
     {
      "file": "images/41_AI眼镜.png",
-     "alt": "阿里入局AI眼镜！双芯双镜外还有生态杀手锏，百镜大战要收官了？ - 雷科技",
+     "alt": "",
      "caption": "阿里入局AI眼镜！双芯双镜外还有生态杀手锏，百镜大战要收官了？ - 雷科技",
      "source_page": "https://www.leikeji.com/article/69098",
-     "width": 1920,
-     "height": 1080,
+     "width": 800,
+     "height": 450,
      "query": "AI眼镜"
     },
     {
      "file": "images/42_智能眼镜.jpg",
-     "alt": "华为智能眼镜 2",
+     "alt": "",
      "caption": "华为智能眼镜 2",
      "source_page": "https://www.vmall.com/product/10086533095852.html",
-     "width": 1920,
-     "height": 1077,
+     "width": 1472,
+     "height": 825,
      "query": "智能眼镜"
     }
    ]
@@ -1835,350 +1892,400 @@
    "url": "https://www.abvr360.com/a/29238",
    "label": "艾邦AR/VR网 2025-05-28《全彩刻蚀光波导AR眼镜雷鸟X3 Pro正式发布》：写明萤火光引擎为 JBD 定制红绿蓝 MicroLED 三片加 0.1cc Cube 棱镜、光机 0.36cc、峰值入眼亮度 6000nits 平均 3500nits、二维扩瞳衍射光波导玻璃基材、镜身 76g、定价 8999 元起国补后 7649 元、等效 43 英寸透明屏",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦AR/VR网"
+   "publisher": "艾邦AR/VR网",
+   "cache": "text/deec98dd8fca9633.txt"
   },
   {
    "id": "S032",
    "url": "https://www.vrtuoluo.cn/column/vr_headsets_review/542805.html",
    "label": "VR陀螺 2025-05-28《雷鸟X3 Pro深度评测》：第三方实测，写明双目 30 度视场角、虚像距约 3 米、3500–6000 尼特、彩虹纹抗干扰效率 95%、刻蚀相对纳米压印流程更复杂成本更高但漏光/彩虹纹/均匀性更优、正面漏光肉眼可瞥见、对照线（BB 类 1000 尼特以下、单色 MicroLED+衍射波导 3000 尼特以下）、76g 与 245mAh",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/cc9944641b8ace23.txt"
   },
   {
    "id": "S033",
    "url": "https://mtz.china.com/touzi/2025/0529/168420.html",
    "label": "雷鸟创新新品发布稿转载 2025-05-29：萤火光引擎 0.36cc 输出亮度高达 100,000nits、RayNeo 光波导为全球首个可量产光刻刻蚀波导（与应用材料联合研发）、厚度减少 0.6mm、重量下降 25%、彩虹纹减少 95%、整机 76 克、首发 8999 元起国补后 7649 元",
    "retrieved": "2026-09-23",
-   "publisher": "中华网（转载厂商稿）"
+   "publisher": "中华网（转载厂商稿）",
+   "cache": "text/9ed989c7661eb3ce.txt"
   },
   {
    "id": "S034",
    "url": "https://glasses.rokid.com/profile",
    "label": "Rokid 官网「乐奇AI眼镜」技术规格页：重量 49g、高通 AR1、Micro LED+衍射光波导双目显示、FOV 30 度、亮度 1500nits、分辨率 480*640",
    "retrieved": "2026-09-23",
-   "publisher": "Rokid 官网"
+   "publisher": "Rokid 官网",
+   "cache": "text/b856c0031b935a1f.txt"
   },
   {
    "id": "S035",
    "url": "https://www.abvr360.com/a/26730",
    "label": "艾邦AR/VR网 2024-11-19《Rokid发布AR眼镜Rokid Glasses，搭载JBD单色光引擎，仅49g》：JBD 蜂鸟Mini Ⅱ 单色光引擎 0.15 立方厘米/0.3 克/60mW/8 流明、双目衍射光波导 1000nits、整机 49g、售价 2499 元",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦AR/VR网"
+   "publisher": "艾邦AR/VR网",
+   "cache": "text/5642e19250f89106.txt"
   },
   {
    "id": "S036",
    "url": "https://www.52audio.com/archives/240833.html",
    "label": "52XR 2025-05-30《雷鸟X3 Pro新品发布：8999元起，43英寸空中透明屏》：峰值亮度 6000nits、约 76g、与应用材料共研纳米光刻刻蚀工艺以优化彩虹纹、售价 8999 元起",
    "retrieved": "2026-09-23",
-   "publisher": "52audio/我爱音频网"
+   "publisher": "52audio/我爱音频网",
+   "cache": "text/1b93a17598fe45fd.txt"
   },
   {
    "id": "S037",
    "url": "https://www.europtics.com.cn/newsinfo/8862419.html",
    "label": "《玻璃基材视角下AR眼镜光波导技术的双重技术路径的制造挑战与发展展望》：几何阵列光波导超 50 道工序、单道 99% 良率串联后总良率约 60%；衍射光波导 200mm 晶圆翘曲超 50μm 时良率骤降至 50% 以下、斜率每增 10 微弧度 MTF 下降约 15%；折射率 2.0 材料可支持双目 60 余度视场角、密度约为普通玻璃 2 倍且稀土添加推高材料成本",
    "retrieved": "2026-09-23",
-   "publisher": "Europtics"
+   "publisher": "Europtics",
+   "cache": "text/544bc30663c0345f.txt"
   },
   {
    "id": "S038",
    "url": "https://www.abvr360.com/a/32408",
    "label": "艾邦AR/VR网《AR眼镜衍射光波导主流技术｜纳米压印》：纳米压印是消费级 AR 眼镜表面浮雕光栅（SRG）波导的主流量产工艺、高折胶折射率与可靠性构成限制、刻蚀工艺初始成本高于压印导致 Meta Orion 与雷鸟X3 Pro 等终端成本较高、刻蚀为升级方向",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦AR/VR网"
+   "publisher": "艾邦AR/VR网",
+   "cache": "text/d7580f6644a14c58.txt"
   },
   {
    "id": "S039",
    "url": "https://www.jb-display.com.cn/newsdetails/59.html",
    "label": "JBD 显耀显示官网 2025-05-27：确认雷鸟X3 Pro 采用自研 X-cube 全彩 MicroLED 光引擎与刻蚀光波导组合，JBD 供应 MicroLED 微显示屏并配 ARTCs 画质引擎",
    "retrieved": "2026-09-23",
-   "publisher": "JBD 官网"
+   "publisher": "JBD 官网",
+   "cache": "text/7acd394632cf242b.txt"
   },
   {
    "id": "S0310",
    "url": "https://www.52audio.com/archives/222247.html",
    "label": "52XR 2024-12-13《Rokid Glasses一体式AR眼镜亮相，双目衍射光波导方案+AI多模态识别技术》：衍射光波导双目、49 克、最高 1000 尼特、FOV 30 度、2025 年第二季度上市、售价 2499 元（该稿写作 Micro-OLED，与官网现行 Micro LED 口径不一致）",
    "retrieved": "2026-09-23",
-   "publisher": "52audio/我爱音频网"
+   "publisher": "52audio/我爱音频网",
+   "cache": "text/c0cc09276212c6b8.txt"
   },
   {
    "id": "S011",
    "url": "https://www.52audio.com/archives/244163.html",
    "label": "我爱音频网对小米AI眼镜发布会的逐项参数报道：轻至40克、263mAh、典型续航8.6小时、连续聆听约7小时、1999/2699/2999元三档售价、骁龙AR1加蓝牙音频处理器的双芯架构",
    "retrieved": "2026-09-23",
-   "publisher": "我爱音频网"
+   "publisher": "我爱音频网",
+   "cache": "text/1903c320611be4b4.txt"
   },
   {
    "id": "S012",
    "url": "https://www.yicai.com/news/102692211.html",
    "label": "第一财经2025年6月26日报道：小米AI眼镜1999元起上市；文中给出Meta Orion概念机98克、小米40克的对比，并提出「是否具备显示功能是划分AI眼镜过渡阶段与成熟阶段的重要指标」",
    "retrieved": "2026-09-23",
-   "publisher": "第一财经"
+   "publisher": "第一财经",
+   "cache": "text/843557dbad2d2792.txt"
   },
   {
    "id": "S013",
    "url": "https://about.fb.com/news/2025/09/meta-ray-ban-display-ai-glasses-emg-wristband/",
    "label": "Meta新闻室官方稿：2025年9月17日Connect发布，画面偏置一侧不遮挡视线、为短交互而生，9月30日开售，起价799美元且随附Meta Neural Band腕带",
    "retrieved": "2026-09-23",
-   "publisher": "Meta Newsroom"
+   "publisher": "Meta Newsroom",
+   "cache": "text/d3f871e4f8353274.txt"
   },
   {
    "id": "S014",
    "url": "https://www.theverge.com/tech/779566/meta-ray-ban-display-hands-on-smart-glasses-price-battery-specs",
    "label": "The Verge上手实测：69克、混合使用约6小时、含充电盒共30小时、600乘600像素、20度视场角、最高5000尼特、漏光仅2%；9月30日美国开售，2026年初扩至加拿大、法国、意大利、英国",
    "retrieved": "2026-09-23",
-   "publisher": "The Verge"
+   "publisher": "The Verge",
+   "cache": "text/b1c6d8ef15f5c3cc.txt"
   },
   {
    "id": "S015",
    "url": "https://www.jb-display.com.cn/newsdetails/59.html",
    "label": "MicroLED微显示屏供应商JBD官网2025年5月27日稿：雷鸟X3 Pro采用自研X-cube全彩MicroLED光引擎与刻蚀光波导，整机轻至76克",
    "retrieved": "2026-09-23",
-   "publisher": "上海显耀显示科技（JBD）"
+   "publisher": "上海显耀显示科技（JBD）",
+   "cache": "text/7acd394632cf242b.txt"
   },
   {
    "id": "S016",
    "url": "https://www.vrtuoluo.cn/column/vr_headsets_review/542805.html",
    "label": "VR陀螺雷鸟X3 Pro深度评测：245mAh、76克、光引擎从0.7cc缩到0.36cc、峰值6000尼特、与应用材料联合研发纳米光刻刻蚀波导、中度使用实测3至5小时、标准版8999元近视贴合版10999元；并提及Orion入瞳亮度1200尼特",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/cc9944641b8ace23.txt"
   },
   {
    "id": "S017",
    "url": "https://www.52audio.com/archives/240833.html",
    "label": "我爱音频网2025年5月27日发布会报道：雷鸟X3 Pro 8999元起，音乐播放10小时、显示常亮1.5小时、视频拍摄1小时、38分钟快充至100%",
    "retrieved": "2026-09-23",
-   "publisher": "我爱音频网"
+   "publisher": "我爱音频网",
+   "cache": "text/1b93a17598fe45fd.txt"
   },
   {
    "id": "S018",
    "url": "https://m.mp.oeeee.com/a/BAAFRD0000202507191104492.html",
    "label": "南方都市报十款AI眼镜实测：记者在小米之家确认小米AI眼镜「无法提供镜片显示功能」；IDC中国分析师把市面产品分为不带显示的音频/音频拍摄眼镜与带显示的XR眼镜；十款价格从799元到8999元；艾媒咨询CEO张毅称芯片有时占到整机成本一半",
    "retrieved": "2026-09-23",
-   "publisher": "南方都市报"
+   "publisher": "南方都市报",
+   "cache": "text/085c4b7da070afec.txt"
   },
   {
    "id": "S021",
    "url": "https://www.idc.com/resource-center/blog/%E5%85%A8%E7%90%83%E6%99%BA%E8%83%BD%E7%9C%BC%E9%95%9C%E5%A2%9E%E9%95%BF35-3%EF%BC%8C%E4%B8%AD%E5%9B%BD%E9%A6%96%E7%8E%B0%E8%B4%9F%E5%A2%9E%E9%95%BF%EF%BC%8C%E5%B8%82%E5%9C%BA%E5%88%86%E5%8C%96/",
    "label": "IDC《全球智能眼镜市场季度跟踪报告》博客：2026 年 Q2 全球智能眼镜总出货 354.7 万台（同比 +35.3%），其中音频及音频拍摄眼镜 249.4 万台（同比 +54%）、AR/ER 眼镜 50.5 万台（同比 +75.7%）；中国 Q2 总盘 61.1 万台（同比 -8.0%，首次负增长），音频及音频拍摄 33.2 万台（同比 -35.4%）",
    "retrieved": "2026-09-23",
-   "publisher": "IDC"
+   "publisher": "IDC",
+   "cache": "text/3a2ba48cf23b4d44.txt"
   },
   {
    "id": "S022",
    "url": "https://www.vrtuoluo.cn/546018.html",
    "label": "VR 陀螺编译 IDC 2026 年 Q2 数据：无显示音频/AI 眼镜占整体出货 70.3%（上年同期 61.9%），带显示占 14.3%，Meta 份额 68.7%、雷鸟 3.6%、阿里巴巴 2.6%",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/1e0e73b344737113.txt"
   },
   {
    "id": "S023",
    "url": "https://news.nweon.com/130632",
    "label": "映维网报道 2025 年 6 月 26 日小米 AI 眼镜发售：标准版 1999 元、单色电致变色版 2699 元、彩色电致变色版 2999 元；整机 40 克、高通骁龙 AR1 加协处理器双芯、1200 万像素、典型续航 8.6 小时",
    "retrieved": "2026-09-23",
-   "publisher": "映维网 Nweon"
+   "publisher": "映维网 Nweon",
+   "cache": "text/39ad8219c9c660a9.txt"
   },
   {
    "id": "S024",
    "url": "https://m.cls.cn/detail/2407249",
    "label": "财联社 2026 年 6 月 23 日：Meta 与依视路陆逊梯卡推出无显示屏、内置摄像头与扬声器的 Meta Glasses 新系列，起售价 299 美元（约合 2029 元人民币），比第二代入门款至少便宜 80 美元；另提及带显示的 Ray-Ban Display 售价 799 美元",
    "retrieved": "2026-09-23",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/074613ffa21c3fe8.txt"
   },
   {
    "id": "S025",
    "url": "https://view.inews.qq.com/a/20260831A03VDY00",
    "label": "2026 年 8 月 31 日华强北线下渠道实地调研，分类给出价格带：白牌音频眼镜 29–69 元、界环 699–1299 元、小米 AI 音频眼镜 999–1499 元、华为智能眼镜 2 为 1699–2299 元、雷鸟 V3 约 1799 元、Ray-Ban Meta 299–379 美元；并记录渠道商「戴 4 小时基本舒适」的量化门槛，以及「要佩戴舒服价格基本在一千多」的说法",
    "retrieved": "2026-09-23",
-   "publisher": "腾讯新闻"
+   "publisher": "腾讯新闻",
+   "cache": "text/242ed8c5f2eff642.txt"
   },
   {
    "id": "S026",
    "url": "https://www.tmtpost.com/8148874.html",
    "label": "钛媒体（娱乐资本论）2026 年 9 月 22 日引述洛图科技 8 月数据：智能眼镜整体退货率在 30% 到 70% 之间，远超手机、平板等成熟品类；上半年智能眼镜卖出 90.9 万台、同比增长 85.5%",
    "retrieved": "2026-09-23",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/422728975a5eb601.txt"
   },
   {
    "id": "S027",
    "url": "https://cn.supplyframe.com/article/9269.html",
    "label": "Supplyframe 四方维 2025 年 7 月 23 日：综合京东、抖音等电商平台统计称小米 AI 眼镜退货率或高达 40%，行业平均普遍 40%–50%、个别品牌 60%；并引 Wellsenn XR 拆解给出平光版 BOM 177.5 美元、高通 AR1 约 60 美元、恒玄 BES2700 约 7 美元",
    "retrieved": "2026-09-23",
-   "publisher": "Supplyframe 四方维"
+   "publisher": "Supplyframe 四方维",
+   "cache": "text/b5f3b47ff95282f4.txt"
   },
   {
    "id": "S028",
    "url": "https://www.news.cn/legal/20260626/08d2d0ba3e9e4f5883bf33c23def59bd/c.html",
    "label": "新华网转科技日报 2026 年 6 月 26 日：Rokid 称现售眼镜标配硬件级拍摄指示灯、录制强制亮灯、底层严禁第三方篡改权限；2 至 10 元「遮光贴」公开售卖、有店铺销量超 7000 件；中国政法大学张凌寒指出提示灯等硬件层面缺乏统一细化的强制性规范；中国信通院 2025 年发布 AI 眼镜标准体系框架，国标计划《人工智能终端智能化分级 第 6 部分：眼镜》已发布并启动实施",
    "retrieved": "2026-09-23",
-   "publisher": "新华网 / 科技日报"
+   "publisher": "新华网 / 科技日报",
+   "cache": "text/d80056fa30f5f1f3.txt"
   },
   {
    "id": "S029",
    "url": "https://consumer.huawei.com/cn/audio/huawei-eyewear-2/specs/",
    "label": "华为智能眼镜 2（无摄像头纯音频款）官方规格页：各镜框带衬片重量 36.57–43.0 克，配 500 度 1.67 折射率镜片后 39.6–47 克；页面注释称传统眼镜约 10 克至 30 克",
    "retrieved": "2026-09-23",
-   "publisher": "华为消费者业务官网"
+   "publisher": "华为消费者业务官网",
+   "cache": "text/7260f95081418b1f.txt"
   },
   {
    "id": "S041",
    "url": "https://docs.xreal.com/XREALDevices/XREAL%20Glasses",
    "label": "XREAL SDK 官方设备规格表：XREAL One 视场角 50°、One Pro 57°、1S 52°；One 82g、One Pro 87g、1S 82g；单眼分辨率 One/One Pro 1920×1080、1S 1920×1200",
    "retrieved": "2026-09-23",
-   "publisher": "XREAL"
+   "publisher": "XREAL",
+   "cache": "text/c0d190bde9db2aba.txt"
   },
   {
    "id": "S042",
    "url": "https://finance.sina.com.cn/tech/digi/2025-07-22/doc-infhiuqq2128067.shtml",
    "label": "IT 之家（新浪科技转载）2025 年 7 月 22 日：XREAL One Pro 国内上市，内置 X Prism 自研光学引擎、X1 空间计算芯片，57° 视场角、87 克、入眼亮度可达 700 尼特、最高 120Hz、首发预售价 4299 元",
    "retrieved": "2026-09-23",
-   "publisher": "IT之家/新浪科技"
+   "publisher": "IT之家/新浪科技",
+   "cache": "text/2fcf9401073ee551.txt"
   },
   {
    "id": "S043",
    "url": "https://www.vrtuoluo.cn/543364.html",
    "label": "VR 陀螺 2025 年 8 月 12 日《XREAL One Pro 深度评测》：X Prism 透镜形态类似两组 Birdbath 模组组合（倒三棱柱+正三棱柱），因存在全反射只损失两部分光效，故入眼亮度最大 700 尼特；光机较上代减薄 41%；索尼 0.55 英寸 Micro-OLED、单眼 1920×1080、PPI 4032、57° 下 PPD 估算 45；实测整机 91 克；并称 BB 观影眼镜价格已在千元价位徘徊、光波导因光效低在显示质量上仍难与 BB 竞争",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/87429f09085e5962.txt"
   },
   {
    "id": "S044",
    "url": "https://www.vrtuoluo.cn/column/vr_headsets_review/542875.html",
    "label": "VR 陀螺 2025 年 6 月 7 日《雷鸟 Air 3s 深度体验》：单眼 1920×1080、FoV 46°、等效 4 米 135 英寸、支持 60/120Hz、峰值亮度 1200 尼特、本体重量 76g、售价 1499 元；外观「非常接近普通墨镜类产品」",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/df88cf22bd33f3d5.txt"
   },
   {
    "id": "S045",
    "url": "https://www.geekpark.net/news/349907",
    "label": "极客公园 2025 年 5 月 29 日：雷鸟 Air 3s 系列首发孔雀光学引擎 2.0（多层镀膜），联合视涯做第 5.5 代双层 Micro-OLED，峰值亮度 1200nits、对比度 200000:1；Air 3s 售价 1499 元（国补后 1274 元起）、Air 3s Pro 1599 元起（国补后 1359 元起），5 月 27 日发售",
    "retrieved": "2026-09-23",
-   "publisher": "极客公园"
+   "publisher": "极客公园",
+   "cache": "text/0b8b954f1ea648d2.txt"
   },
   {
    "id": "S046",
    "url": "https://www.chongdiantou.com/archives/1750075279325.html",
    "label": "充电头网 2025 年 6 月 16 日雷鸟 Air 3s Pro 实测：眼镜净重约 78.9g、模组厚度约 20.56mm、展开全长约 169.74mm；视涯 0.6 英寸 Micro-OLED，2D 1920×1080、3D 3840×1080，入眼亮度最高 1200 尼特、20 档可调，对比度 200000:1",
    "retrieved": "2026-09-23",
-   "publisher": "充电头网"
+   "publisher": "充电头网",
+   "cache": "text/d204302bb8e82b60.txt"
   },
   {
    "id": "S047",
    "url": "https://www.163.com/dy/article/GHI8NCN90511BQR8.html",
    "label": "《Nreal AR 眼镜拆解：Birdbath 光学结构解析》（网易号转载，基于实物拆解与光学测量）：Birdbath 模组较厚，分束器需与图像宽度接近（Nreal 约 18mm，加曲面镜后最终约 25mm）；透光率低，以 Nreal 为例隔绝约 75% 环境光，接近戴一副中等深色墨镜；光效通常在 15% 左右；顶部视野几乎被眼镜本体遮挡；几乎看不到佩戴者眼睛；即便使用前偏振膜仍有约 5% 光向前反射",
    "retrieved": "2026-09-23",
-   "publisher": "网易号"
+   "publisher": "网易号",
+   "cache": "text/c3b4f6d51579cabd.txt"
   },
   {
    "id": "S048",
    "url": "http://runtotech.com/MarketInsights/info_itemid_4919.html",
    "label": "洛图科技（RUNTO）2025 年 1 月 26 日年报：2024 年中国 AR 线上公开零售市场里分体式产品占 80.6%，BirdBath 方案仍是主力；2024 年中国 AR 零售约 30 万台、同比 +32.1%；全球 AR 设备出货 78.2 万台；雷鸟创新线上份额 35.6%、XREAL 29.6%",
    "retrieved": "2026-09-23",
-   "publisher": "洛图科技 RUNTO"
+   "publisher": "洛图科技 RUNTO",
+   "cache": "text/5d80754d9a7c6a60.txt"
   },
   {
    "id": "S049",
    "url": "https://finance.sina.com.cn/roll/2026-09-15/doc-inirvzhk3785215.shtml",
    "label": "洛图科技（RUNTO）2026 年 9 月 15 日（新浪财经转载）：2026 年上半年中国智能眼镜线上线下全渠道销量 90.9 万台、同比 +85.5%，销额 18.8 亿元；赛道分化为轻量化日常 AI HUD 与 AR 巨幕观影/空间计算（重型 AR）两大阵营，2026 年轻量化 AI HUD 预计贡献全球消费级 AR 出货 70% 以上，巨幕/空间计算类体量相对小众；新品终端定价普遍集中在 300–500 欧元",
    "retrieved": "2026-09-23",
-   "publisher": "洛图科技 RUNTO/新浪财经"
+   "publisher": "洛图科技 RUNTO/新浪财经",
+   "cache": "text/779f9f7329dd46aa.txt"
   },
   {
    "id": "S0410",
    "url": "https://finance.sina.com.cn/tech/roll/2026-09-15/doc-inirwfqh3669986.shtml",
    "label": "快科技 2026 年 9 月 15 日（新浪财经转载，援引洛图科技）：AR 眼镜分化为轻量化 AI HUD 与 AR 巨幕观影/空间计算两大阵营，后者「市场份额不到 3 成」；光波导方案成熟后主流价位落到 2000–3000 元区间",
    "retrieved": "2026-09-23",
-   "publisher": "快科技/新浪财经"
+   "publisher": "快科技/新浪财经",
+   "cache": "text/80fd3dce7d2d1b68.txt"
   },
   {
    "id": "S051",
    "url": "https://www.jb-display.com.cn/product_des/1.html",
    "label": "JBD（上海显耀）官网产品页：蜂鸟 MicroLED 0.13″ 微显示屏，页面写明 0.13 英寸、6350 PPI、VGA 分辨率、单绿色面板亮度高达 1000 万 nits、信息提示典型功耗 60 mW、基于此的单色光引擎体积 0.15 CC",
    "retrieved": "2026-09-23",
-   "publisher": "JBD 上海显耀显示科技"
+   "publisher": "JBD 上海显耀显示科技",
+   "cache": "text/be1644f7ef7c06df.txt"
   },
   {
    "id": "S052",
    "url": "https://www.jb-display.com.cn/product_des/17.html",
    "label": "JBD 官网产品页：蜂鸟Ⅱ 彩色光引擎，体积 0.2 立方厘米、重量 0.5 克、红绿蓝三片 0.1 英寸屏经 X-cube 棱镜合色、光通量 3 流明、结合光波导可实现 4000 尼特入眼亮度、典型功耗 95 毫瓦",
    "retrieved": "2026-09-23",
-   "publisher": "JBD 上海显耀显示科技"
+   "publisher": "JBD 上海显耀显示科技",
+   "cache": "text/f5a0c3b88e7b832d.txt"
   },
   {
    "id": "S053",
    "url": "https://www.jb-display.com.cn/product_des/18.html",
    "label": "JBD 官网产品页：走鹃Ⅱ 彩色光引擎，2.5 微米像素间距平台、体积 0.18 立方厘米、面板 800×600、光通量 6 流明、搭配 30 度视场角衍射光波导后入眼亮度 6000 尼特",
    "retrieved": "2026-09-23",
-   "publisher": "JBD 上海显耀显示科技"
+   "publisher": "JBD 上海显耀显示科技",
+   "cache": "text/c91f7c45e2e1ac01.txt"
   },
   {
    "id": "S054",
    "url": "https://www.jb-display.com.cn/product_des/6.html",
    "label": "JBD 官网产品页：蜂鸟Ⅰ 彩色光引擎，体积 0.4cc、重量 1g、FOV 30°、由红绿蓝三个 0.13 英寸屏 X-cube 合色、功耗 150mW、入眼 6000nits",
    "retrieved": "2026-09-23",
-   "publisher": "JBD 上海显耀显示科技"
+   "publisher": "JBD 上海显耀显示科技",
+   "cache": "text/22eb743adfb5d7bf.txt"
   },
   {
    "id": "S055",
    "url": "https://www.vrtuoluo.cn/542805.html",
    "label": "VR陀螺 雷鸟X3 Pro 深度评测（2025-05-28）：萤火全彩 Micro-LED 光引擎 0.36cc，由三块 RGB Micro-LED 面板加 0.1cc Cube 棱镜组成；平均入眼亮度 3500 尼特、峰值 6000 尼特；并给出对照——Micro-OLED 的 Birdbath 观影眼镜亮度主要在 1000 尼特以下、单色 Micro-LED 加衍射波导主要在 3000 尼特以下",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/51b1488f013286a3.txt"
   },
   {
    "id": "S056",
    "url": "https://www.seeya-tech.com/html/news/4153.html",
    "label": "视涯科技 2025 深圳光博会稿：0.6 英寸 Micro OLED 全彩亮度 6000 尼特；极光·锐影 0.6BB 光机 51 PPD；双 0.6 英寸屏整机最大入眼亮度 800 尼特、1920×1080",
    "retrieved": "2026-09-23",
-   "publisher": "视涯科技 SeeYA"
+   "publisher": "视涯科技 SeeYA",
+   "cache": "text/a3c3437d821998a4.txt"
   },
   {
    "id": "S057",
    "url": "https://www.abvr360.com/a/33031",
    "label": "艾邦AR/VR《AR眼镜核心显示：Micro OLED全彩方案、结构与工艺解析》：写明衍射光波导光能利用率普遍在 1% 左右、硅基 OLED 像素尺寸 4~8μm、3500–5000 PPI，以及 WOLED+彩色滤光片的全彩工艺",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦AR/VR网"
+   "publisher": "艾邦AR/VR网",
+   "cache": "text/22f9cbb445f87ffa.txt"
   },
   {
    "id": "S058",
    "url": "https://hongshizn.com/n/3603.html",
    "label": "鸿石智能技术稿：受限于衍射光波导的低耦入效率，入眼亮度需达 1000 尼特时 MicroLED 芯片需提供高于 250 万尼特；0.12 寸单绿平均光效 300 万尼特（功耗 100mW，APL10%）；单像素尺寸通常小于 10μm",
    "retrieved": "2026-09-23",
-   "publisher": "鸿石智能"
+   "publisher": "鸿石智能",
+   "cache": "text/837c0bde9f09ec28.txt"
   },
   {
    "id": "S059",
    "url": "https://www.abvr360.com/a/31364",
    "label": "艾邦AR/VR《MicroLED——点亮AR智能眼镜的未来（附10家相关技术企业）》：LCoS/LBS/DLP 光机体积普遍超过 1 立方厘米、最新 MicroLED 光引擎 0.15cc/0.3g；JBD 微显示屏已支持超过 25 款 AR 眼镜上市；镭昱红光突破 200 万 nits；赛富乐斯 T3 单片全彩（NPQD 量子点色转换）首版样品白平衡 20 万尼特；思坦 0.12cc 光机",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦AR/VR网"
+   "publisher": "艾邦AR/VR网",
+   "cache": "text/47cf0b9092c57660.txt"
   },
   {
    "id": "S0510",
    "url": "https://www.raysolve.com/news/11.html",
    "label": "镭昱光电 SID Display Week 2025 稿：PowerMatch 1 全彩 Micro-LED 光引擎体积 0.18cc，对比三色合光方案约 0.4cc 缩小 55%；搭载 0.13 英寸 320×240 屏、重 0.5 克、微显示屏亮度 500,000 nits（白平衡）、光通量 0.5lm，采用自研量子点光刻（单片全彩色转换）",
    "retrieved": "2026-09-23",
-   "publisher": "镭昱光电 Raysolve"
+   "publisher": "镭昱光电 Raysolve",
+   "cache": "text/ed2e291be74cf3bc.txt"
   },
   {
    "id": "S0511",
    "url": "https://news.nweon.com/135906",
    "label": "新瓦网译介显示分析师 Karl Guttag 对 Meta Ray-Ban Display 的拆解分析（2025-11-11）：OmniVision OPO3010 LCoS 器件、Lumus 几何波导、光机由歌尔设计；实测入眼 5000 尼特、投影仪全亮输出约 1 流明、整机对比度约 600:1、40 PPD、场序彩色 90 帧；几何波导效率通常比衍射高 3–7 倍、眼部反光约 1.5%（衍射波导 50%–100%）",
    "retrieved": "2026-09-23",
-   "publisher": "NewWay/新瓦（译自 Karl Guttag）"
+   "publisher": "NewWay/新瓦（译自 Karl Guttag）",
+   "cache": "text/3bf4153ae64a2a8f.txt"
   },
   {
    "id": "S0512",
    "url": "https://www.abvr360.com/a/30676",
    "label": "艾邦AR/VR（2025-09-11）光峰科技与谷东智能发布 LCoS+PVG 光波导一拖二方案：蜻蜓G1 LCoS 单目分辨率 640×200、单目体积约 0.35cc、100% APL 总功耗约 100mW；彩虹C1 RGB 全彩 LCoS 亮度≤3lm、体积约 0.8cc、FOFO 对比度超 400:1；并写明 AR 眼镜光学显示系统约占整体成本 40%",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦AR/VR网"
+   "publisher": "艾邦AR/VR网",
+   "cache": "text/f475a441a9bb18b5.txt"
   },
   {
    "id": "S0513",
    "url": "https://www.abvr360.com/a/23022",
    "label": "艾邦AR/VR《AR/VR显示方案：LBS光机技术原理》（2024-05-21）：激光散斑造成画面亮暗斑点（毛玻璃质感），消除散斑方案复杂、可能牺牲清晰度与亮度，目前尚无广泛使用的消除方案；红色与绿色激光在环境温度超过 40℃ 出现明显温度漂移；要到 1080p，MEMS 谐振频率需从 VGA 的 18kHz 提到 40.5kHz",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦AR/VR网"
+   "publisher": "艾邦AR/VR网",
+   "cache": "text/f6b88034a60db8fd.txt"
   },
   {
    "id": "S0514",
@@ -2192,231 +2299,264 @@
    "url": "https://www.ctnt-cert.com/xwgg/24477.html",
    "label": "深圳中为检验关于 IEC 60825-1 激光人眼安全分级的解读：Class 1 为正常使用条件下对人眼和皮肤无伤害的等级，Class 3B 及以上直视会损伤视网膜",
    "retrieved": "2026-09-23",
-   "publisher": "深圳中为检验"
+   "publisher": "深圳中为检验",
+   "cache": "text/2484b0fbfb8b813a.txt"
   },
   {
    "id": "S0516",
    "url": "https://www.geekpark.net/news/353441",
    "label": "极客公园《LCoS vs Micro-LED：谁才是全彩 AR 眼镜的终极选择？》（2025-09-04）：LCoS 供应链成熟、成本明显低于仍在量产爬坡的 MicroLED、基于偏振光工作；单色 MicroLED 全彩化的光转换与三色合光路径仍复杂且成本高",
    "retrieved": "2026-09-23",
-   "publisher": "极客公园"
+   "publisher": "极客公园",
+   "cache": "text/da1ea60b382958af.txt"
   },
   {
    "id": "S061",
    "url": "https://www.vrtuoluo.cn/544550.html",
    "label": "VR陀螺《AI眼镜浪潮下的「芯片」热》（2026-01-14）：逐机型列出架构分工——雷鸟X3 Pro 用骁龙AR1 系统级 SoC；一代 Ray-Ban Meta 用高通 4100、二代换骁龙 AR1 并引入 NXP 应用协处理器，混合使用续航约 8 小时，Rokid Glasses 采用类似架构；小米 AR1+恒玄BES2700 双芯、起售价 1999 元、整机 44.7g；理想 Livis 用恒玄BES2800+研极微独立 ISP、36g、18.8 小时、1699 元；Infinix AI Glasses Pro 与 L'Atitude 52°N 用 BES2800+研极微 ISP；歌尔 Rubis 参考设计为 MCU+ISP+NPU 三芯异构",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺 / 陀螺科技"
+   "publisher": "VR陀螺 / 陀螺科技",
+   "cache": "text/e5c95efa04e6fc08.txt"
   },
   {
    "id": "S062",
    "url": "https://wearable.ofweek.com/2026-03/ART-8330-5000-30683443.html",
    "label": "OFweek 转载《AR圈》小米AI眼镜拆解报告（2026-03-23）：骁龙 AR1 Gen1 的双 ISP 与 NPU 负责视觉计算和端侧推理，恒玄 BES2700H 全天候监听唤醒词、毫秒级唤醒大核后交回控制权；内存 4GB+32GB 对比同期主流 2GB+32GB；恒玄在研 BES6100 试图兼顾大小负荷",
    "retrieved": "2026-09-23",
-   "publisher": "OFweek 可穿戴设备网"
+   "publisher": "OFweek 可穿戴设备网",
+   "cache": "text/8c09f6370956ef1f.txt"
   },
   {
    "id": "S063",
    "url": "https://www.52audio.com/archives/228329.html",
    "label": "我爱音频网（2025-02-14）：小米AI眼镜曝光方案为高通AR1+恒玄2700，即蓝牙主控 MCU + SoC 双芯分工；BES2700BP 内核含 Cortex-M55、Tensilica HiFi4 DSP、STAR-MC1 与 BECO NPU，已导入华为WATCH GT5、小米Watch S3 等手表；AR1 支持 14-bit ISP、单眼 1280x1280 显示、Wi-Fi 7",
    "retrieved": "2026-09-23",
-   "publisher": "52audio 我爱音频网"
+   "publisher": "52audio 我爱音频网",
+   "cache": "text/6b8de499be7b5d1b.txt"
   },
   {
    "id": "S064",
    "url": "https://www.cls.cn/detail/2186190",
    "label": "《科创板日报》2025-10-30：恒玄科技在互动平台确认阿里夸克AI眼镜采用 BES2800；该芯片为 6nm FinFET 工艺，单芯片集成多核 CPU/GPU、NPU、大容量存储、低功耗 Wi-Fi 与双模蓝牙",
    "retrieved": "2026-09-23",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/7e77f868f57bbff3.txt"
   },
   {
    "id": "S065",
    "url": "https://ee.ofweek.com/2025-06/ART-8500-2800-30664006.html",
    "label": "半导体产业纵横《下一个「芯片金矿」，玩家已就位》（2025-06-03）：把 AI 眼镜芯片分为系统级 SoC / MCU级 SoC+ISP / SoC+MCU 三类；指出采用 4nm 工艺的高通 AR1 是多数厂商的主要选择、Meta 眼镜用 AR1 Gen1 连续续航约四小时；拆解成本排序 SoC 居首；低功耗侧代表方案含恒玄 BES2500YP 与紫光展锐 W517（集成 SoC 与 ISP）；引 IDC 称 2025 年 AI 眼镜平均存储由 8GB 增至 16GB，并指出 DeepSeek R1 等端侧模型推动整机从云端依赖转向本地处理",
    "retrieved": "2026-09-23",
-   "publisher": "OFweek 电子工程网"
+   "publisher": "OFweek 电子工程网",
+   "cache": "text/e6ccb716b44900f9.txt"
   },
   {
    "id": "S066",
    "url": "https://www.vrarworld.cn/chanyeruiping/10561.html",
    "label": "VRAR星球（2025-06-21）：骁龙 AR1+ Gen 1 相比 AR1 Gen 1 面积缩小 28%、眼镜支架高度可降 20%、系统峰值功耗预计控制在 2W 以内、耗电减少 7%，靠动态电源管理与时钟门控在推理不活跃时关闭部分核心；内置 NPU 可本地运行 Meta Llama-3.2-1B（10亿参数），非联网场景即可完成推理；并回顾 AR1 Gen1（2023 年推出，14-bit 双 ISP，搭载于雷鸟X3 Pro、雷鸟V3 Slim、Rokid Glasses、Ray-Ban Meta）与 AR2 Gen1（2022 年，处理器+协处理器+连接平台的分布式架构，功耗低于 1W，仅 QONOQ MiRZA 落地）",
    "retrieved": "2026-09-23",
-   "publisher": "VRAR星球"
+   "publisher": "VRAR星球",
+   "cache": "text/e23d723fcb2e3cb5.txt"
   },
   {
    "id": "S067",
    "url": "https://www.techinsights.com/zh-cn/node/61791",
    "label": "TechInsights 对 Meta Ray-Ban Display 的拆解摘要（2026-06-10）：核心为高通骁龙 AR1 Gen 1，高通器件占整机物料成本 15.7%；Neural Band 腕带采用高通 QCC5100-001 SoC、配八颗传感器做手势识别，约占物料成本 7.2%",
    "retrieved": "2026-09-23",
-   "publisher": "TechInsights"
+   "publisher": "TechInsights",
+   "cache": "text/1ec96ce7a0f6f1fc.txt"
   },
   {
    "id": "S071",
    "url": "https://www.chongdiantou.com/archives/1743490214359.html",
    "label": "充电头网雷鸟 AR 眼镜电池参数汇总：雷鸟 V3 159mAh/0.62Wh/3.87V/标称 18 小时/39 克，雷鸟 X2 590mAh/2.22Wh/标称 180 分钟/119 克",
    "retrieved": "2026-09-23",
-   "publisher": "充电头网"
+   "publisher": "充电头网",
+   "cache": "text/d2f6e6a6b7a62051.txt"
   },
   {
    "id": "S072",
    "url": "https://www.52audio.com/archives/245045.html",
    "label": "我爱音频网小米 AI 眼镜拆解：镜腿内锂离子聚合物电池组额定 255mAh、3.87V、0.99Wh，欣旺达电芯，整机 44.7 克",
    "retrieved": "2026-09-23",
-   "publisher": "我爱音频网"
+   "publisher": "我爱音频网",
+   "cache": "text/0297be5369e67b06.txt"
   },
   {
    "id": "S073",
    "url": "https://www.52audio.com/archives/244163.html",
    "label": "小米首款 AI 眼镜发布稿：内置 263mAh 电池，典型续航 8.6 小时、连续聆听约 7 小时、持续录像 45 分钟；1999 元起",
    "retrieved": "2026-09-23",
-   "publisher": "我爱音频网"
+   "publisher": "我爱音频网",
+   "cache": "text/1903c320611be4b4.txt"
   },
   {
    "id": "S074",
    "url": "https://www.vrtuoluo.cn/543683.html",
    "label": "VR 陀螺 Rokid Glasses 拆机：49 克机身内置 210mAh 锂电池（重庆紫建电子），官方宣称 5–6 小时连续音乐或 4 小时音频通话，骁龙 AR1 + NXP RT600 双芯",
    "retrieved": "2026-09-23",
-   "publisher": "VR 陀螺"
+   "publisher": "VR 陀螺",
+   "cache": "text/00f4272047ac901e.txt"
   },
   {
    "id": "S075",
    "url": "https://www.vrtuoluo.cn/column/vr_headsets_review/542805.html",
    "label": "VR 陀螺雷鸟 X3 Pro 实测：245mAh，综合使用 3–5 小时，满亮度连续 AI 加拍照约 1 小时，6000 尼特，室内 20% 亮度可看清，76 克，8999 元",
    "retrieved": "2026-09-23",
-   "publisher": "VR 陀螺"
+   "publisher": "VR 陀螺",
+   "cache": "text/cc9944641b8ace23.txt"
   },
   {
    "id": "S076",
    "url": "https://www.ifanr.com/1638234",
    "label": "爱范儿 Meta Connect 现场报道：Ray-Ban Display 混合使用约 6 小时、配充电盒约 30 小时；Gen 2 充电盒额外 48 小时（前代 32 小时）；Vanguard 9 小时/连续音乐 6 小时/盒 +36 小时；379/499/799 美元",
    "retrieved": "2026-09-23",
-   "publisher": "爱范儿"
+   "publisher": "爱范儿",
+   "cache": "text/1f517b36ac0336e3.txt"
   },
   {
    "id": "S077",
    "url": "https://news.nweon.com/132609",
    "label": "映维网 Ray-Ban Meta 第二代发布：2025 年 9 月 18 日，典型使用 8 小时，20 分钟充至 50%，充电盒额外 48 小时，379 美元起",
    "retrieved": "2026-09-23",
-   "publisher": "映维网"
+   "publisher": "映维网",
+   "cache": "text/2d8be85666263dd1.txt"
   },
   {
    "id": "S078",
    "url": "https://news.nweon.com/132615",
    "label": "映维网 Meta Ray-Ban Display 发布细节：套装 799 美元、69 克，超窄钢壳电池首次用于显示眼镜并下放至 Gen 2，典型使用提升至 8 小时",
    "retrieved": "2026-09-23",
-   "publisher": "映维网"
+   "publisher": "映维网",
+   "cache": "text/622cf753d72f35d5.txt"
   },
   {
    "id": "S079",
    "url": "https://www.chongdiantou.com/archives/1765154929548.html",
    "label": "充电头网智能眼镜换电设计解析：夸克 S1 单块 287mAh、51 克；Rokid 磁吸充电胶囊套装容量 1700mAh；INMO GO3 单块 270mAh、8mm 镜腿、5 秒磁吸换电",
    "retrieved": "2026-09-23",
-   "publisher": "充电头网"
+   "publisher": "充电头网",
+   "cache": "text/d5cc7c6b83a99750.txt"
   },
   {
    "id": "S0710",
    "url": "https://www.chongdiantou.com/archives/1735788211035.html",
    "label": "充电头网智能眼镜充电方式解析：华为智能眼镜 2 镜腿最宽处 9.7mm，比上一代缩小 20%",
    "retrieved": "2026-09-23",
-   "publisher": "充电头网"
+   "publisher": "充电头网",
+   "cache": "text/4a3065112c562783.txt"
   },
   {
    "id": "S0711",
    "url": "https://www.evenrealities.com/g1",
    "label": "Even Realities G1 官方页与 FAQ：单次充电约 1.5 天，2–3 小时充满，随附无线充电盒；绿色 Micro-LED 仅点亮有内容的像素",
    "retrieved": "2026-09-23",
-   "publisher": "Even Realities"
+   "publisher": "Even Realities",
+   "cache": "text/3e31d34ad3d5c994.txt"
   },
   {
    "id": "S081",
    "url": "https://www.ithome.com/0/717/225.htm",
    "label": "XREAL Air 2 系列发布稿：镁合金横梁与超轻塑胶粒子外壳、整机降至 72g、前部重量移向镜腿；Air 2 Pro 电致变膜厚度控制在 1mm 以内、调整响应时间小于 100ms、三档对应不同光照度区间",
    "retrieved": "2026-09-23",
-   "publisher": "IT之家"
+   "publisher": "IT之家",
+   "cache": "text/585e72bdfb1027e0.txt"
   },
   {
    "id": "S082",
    "url": "https://www.oakley.com/en-us/lp/frame-technology",
    "label": "Oakley 官方镜框材料页：O-Matter 定义为强度与弹性优于传统板材（acetate），并说明 BiO-Matter 与 Unobtainium 防滑等取舍",
    "retrieved": "2026-09-23",
-   "publisher": "Oakley"
+   "publisher": "Oakley",
+   "cache": "text/5dd54e7b2a473029.txt"
   },
   {
    "id": "S083",
    "url": "https://www.52audio.com/archives/175091.html",
    "label": "XREAL Air 2 系列发布稿：Air 2 首发价 2499 元、Air 2 Pro 于 2023 年 9 月 19 日开启预售、首发价 2999 元；机身用航空级铝镁合金横梁与超轻塑胶粒子外壳、重量 72g；变色膜厚度＜1mm、调整时间小于 100ms，三档对应居家、出行、户外",
    "retrieved": "2026-09-23",
-   "publisher": "我爱音频网"
+   "publisher": "我爱音频网",
+   "cache": "text/402d2b13e2325f00.txt"
   },
   {
    "id": "S084",
    "url": "https://www.abvr360.com/a/29551",
    "label": "小米 AI 眼镜发布稿：标准版 1999 元、单色电致变色版 2699 元、彩色电致变色版 2999 元，重 40 克，采用航空级钛合金转轴与经典 D 型镜框",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦 AR/VR 网"
+   "publisher": "艾邦 AR/VR 网",
+   "cache": "text/1d61822c7dd55d45.txt"
   },
   {
    "id": "S085",
    "url": "https://www.52audio.com/archives/245045.html",
    "label": "小米 AI 眼镜整机拆解：带出厂镜片实测约 44.7 克，钛合金转轴需卸螺丝分离，镜腿 12° 外翻弹簧，右腿内 255mAh 电池与 BTB 连接器",
    "retrieved": "2026-09-23",
-   "publisher": "我爱音频网"
+   "publisher": "我爱音频网",
+   "cache": "text/0297be5369e67b06.txt"
   },
   {
    "id": "S086",
    "url": "https://www.tmtpost.com/7579138.html",
    "label": "雷鸟 X3 Pro 发布报道：使用 7.7 克镁铝合金与钛金属转轴把整机做到 76g，8999 元起售，全贴合近视版超万元",
    "retrieved": "2026-09-23",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/b80d4afe7f105060.txt"
   },
   {
    "id": "S087",
    "url": "https://www.ifanr.com/1630591",
    "label": "AI 眼镜配镜实测指南：小米合作的明月在线配镜最高到近视 -600 度、两款电致变色镜片不支持配屈光片，雷鸟 V3 蔡司 1.60 与 1.67 分别 2499 与 2749 元，Air 3s 后挂矫正片未开单独购买渠道，小米之家店员指引去合作眼镜店配镜",
    "retrieved": "2026-09-23",
-   "publisher": "爱范儿"
+   "publisher": "爱范儿",
+   "cache": "text/c79741d966343d24.txt"
   },
   {
    "id": "S088",
    "url": "http://www.ce.cn/cysc/newmain/yc/jsxw/202511/t20251118_2587554.shtml",
    "label": "行业与医学专家谈 AI 眼镜近视片：外挂式、磁吸式、一体化贴合三种方案的厚薄、进灰、增重与透光率差异，Meta 与夸克走工厂定制一体化贴合",
    "retrieved": "2026-09-23",
-   "publisher": "中国经济网"
+   "publisher": "中国经济网",
+   "cache": "text/9fecaefa31b2f2ec.txt"
   },
   {
    "id": "S089",
    "url": "https://finance.sina.cn/stock/relnews/hk/2025-11-27/detail-infyvxqa9237882.d.html?vt=4",
    "label": "夸克 AI 眼镜供应链报道：整机 51 克，康耐特把近视镜片与波导片一体化贴合、透光率超 98%，几百万个 SKU 方案 2 至 3 天交付",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/d1c6e381010e369e.txt"
   },
   {
    "id": "S0810",
    "url": "https://finance.sina.cn/stock/jdts/2026-02-03/detail-inhkpeii0268774.d.html?vt=4",
    "label": "AI 眼镜线下渠道战观察：XREAL 广东 28 家体验店中深圳 24 家、其中 20 家开在传统眼镜门店占比超八成；国内近 7 亿近视人群、全球眼镜用户八成以上近视",
    "retrieved": "2026-09-23",
-   "publisher": "雷科技／新浪财经"
+   "publisher": "雷科技／新浪财经",
+   "cache": "text/3ad7c31f449cb264.txt"
   },
   {
    "id": "S0811",
    "url": "https://www.doctorglasses.com.cn/sys-nd/167.html",
    "label": "博士眼镜官网新闻标题：小米 AI 眼镜官方指定配镜服务门店",
    "retrieved": "2026-09-23",
-   "publisher": "博士眼镜"
+   "publisher": "博士眼镜",
+   "cache": "text/ca0856fe498d65c2.txt"
   },
   {
    "id": "S0812",
    "url": "https://glasses.rokid.com/",
    "label": "乐奇 AI 眼镜官网：整机重量 49g，支持近视与散光人群镜片定制，采用卡扣安装、可拆装",
    "retrieved": "2026-09-23",
-   "publisher": "Rokid"
+   "publisher": "Rokid",
+   "cache": "text/a2fd362dee247138.txt"
   },
   {
    "id": "S0813",
    "url": "https://www.abvr360.com/a/33772",
    "label": "电致变色镜片专题：原理与功耗特性（到目标透光率后只需很低功耗维持、部分方案有记忆效应），并列出已采用 EC 的 XREAL Air 2 Pro 与小米 AI 眼镜电致变色版",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦 AR/VR 网"
+   "publisher": "艾邦 AR/VR 网",
+   "cache": "text/3372c8096f96f4d6.txt"
   },
   {
    "id": "S111",
@@ -2444,14 +2584,16 @@
    "url": "https://roadtovr.com/meta-lawsuit-ray-ban-smart-glasses-privacy/",
    "label": "RoadToVR 2026-03 诉讼称Ray-Ban眼镜外泄旁人私密影像",
    "retrieved": "2026-09-23",
-   "publisher": "RoadToVR"
+   "publisher": "RoadToVR",
+   "cache": "text/4950bd7867035857.txt"
   },
   {
    "id": "S115",
    "url": "https://futurism.com/artificial-intelligence/meta-lawsuit-ai-glasses-violated-consent-bystanders",
    "label": "Futurism 2026-09 诉讼新增指控：未经同意记录路人",
    "retrieved": "2026-09-23",
-   "publisher": "Futurism"
+   "publisher": "Futurism",
+   "cache": "text/5a71af81d613ee4a.txt"
   },
   {
    "id": "S116",
@@ -2472,7 +2614,8 @@
    "url": "https://about.fb.com/news/2025/09/ray-ban-meta-gen-2-better-battery-life-video-capture/",
    "label": "Meta官方2025-09宣称第二代Ray-Ban Meta续航翻倍",
    "retrieved": "2026-09-23",
-   "publisher": "Meta Newsroom"
+   "publisher": "Meta Newsroom",
+   "cache": "text/fe07405b59bdcb45.txt"
   },
   {
    "id": "S119",
@@ -2486,111 +2629,127 @@
    "url": "https://mp.ofweek.com/wearable/a956714196557",
    "label": "OFweek 维科号 2025-08-11《实锤！Meta AI眼镜新供应商：歌尔股份正式入局》",
    "retrieved": "2026-09-23",
-   "publisher": "OFweek"
+   "publisher": "OFweek",
+   "cache": "text/7b49db29ff7d222e.txt"
   },
   {
    "id": "S092",
    "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=002241&id=10811667",
    "label": "新浪财经公告页：歌尔股份有限公司 2024 年年度报告摘要（证券代码 002241）",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经/巨潮"
+   "publisher": "新浪财经/巨潮",
+   "cache": "text/f5e17f1067bb5f02.txt"
   },
   {
    "id": "S093",
    "url": "https://www.cls.cn/detail/2127388",
    "label": "财联社《蓝思科技成 Meta 新款 AI 眼镜核心部件独家供应商》",
    "retrieved": "2026-09-23",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/8caeb5be7619acb8.txt"
   },
   {
    "id": "S094",
    "url": "https://m.ofweek.com/ai/2026-01/ART-201700-8420-30678590.html",
    "label": "OFweek 2026-01-08《字节入局 AI 眼镜，龙旗科技要靠豆包翻身了?》——媒体推演，非公司点名客户",
    "retrieved": "2026-09-23",
-   "publisher": "OFweek"
+   "publisher": "OFweek",
+   "cache": "text/9284f5c41b932e23.txt"
   },
   {
    "id": "S095",
    "url": "https://www.tmtpost.com/7622398.html",
    "label": "钛媒体 2025-07-10《押注 AI 眼镜，或许救不了立讯精密》",
    "retrieved": "2026-09-23",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/a317e080153bd8a1.txt"
   },
   {
    "id": "S096",
    "url": "https://www.fxbaogao.com/detail/5130793",
    "label": "研报摘要《恒玄科技(688608) 低功耗可穿戴主控龙头，AI 眼镜布局再出发》",
    "retrieved": "2026-09-23",
-   "publisher": "发现报告"
+   "publisher": "发现报告",
+   "cache": "text/659e4610f51ad337.txt"
   },
   {
    "id": "S097",
    "url": "https://finance.ifeng.com/c/8nsIep6hNnU",
    "label": "凤凰网财经 2025-10-30《恒玄科技：阿里夸克 AI 眼镜采用公司 BES2800 芯片》——公司主动点名客户",
    "retrieved": "2026-09-23",
-   "publisher": "凤凰网"
+   "publisher": "凤凰网",
+   "cache": "text/f1b49c70c481e6c9.txt"
   },
   {
    "id": "S098",
    "url": "https://wap.eastmoney.com/a/202601233629164980.html",
    "label": "东方财富 2026-01-23《恒玄科技：公司芯片方案已用于多款 AI 眼镜产品并量产上市》",
    "retrieved": "2026-09-23",
-   "publisher": "东方财富"
+   "publisher": "东方财富",
+   "cache": "text/3923ec6bee3fbd2b.txt"
   },
   {
    "id": "S099",
    "url": "https://www.stcn.com/article/detail/3699280.html",
    "label": "证券时报 2026-03-25《视涯科技登陆科创板 深耕高端硅基 OLED 微显示赛道》",
    "retrieved": "2026-09-23",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/07f6faad3b271278.txt"
   },
   {
    "id": "S0910",
    "url": "https://www.seeya-tech.com/html/news/4156.html",
    "label": "视涯科技官网《视涯科技(688781) 正式挂牌科创板》",
    "retrieved": "2026-09-23",
-   "publisher": "视涯科技"
+   "publisher": "视涯科技",
+   "cache": "text/f49994ec58d8ad57.txt"
   },
   {
    "id": "S0911",
    "url": "https://www.vrtuoluo.cn/545157.html",
    "label": "VR 陀螺 2026-05-08《AI 眼镜正成为「奇景光电」业务增长新曲线》",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/fc5a2752b26b13f8.txt"
   },
   {
    "id": "S0912",
    "url": "https://www.himax.com.tw/wp-content/uploads/2025/12/PR-Himax-and-AUO-Partner-to-Unveil-Ultra-Slim-High-Brightness-LCoS-Microdisplay-at-CES-2026-Targeting-the-AR-Glasses-Market-Final-cht.pdf",
    "label": "奇景光电新闻稿：携手友达光电于 CES 2026 发表面向 AR 眼镜的超轻薄高亮 LCoS 微显示",
    "retrieved": "2026-09-23",
-   "publisher": "Himax"
+   "publisher": "Himax",
+   "cache": "text/ba41b1e5dd0cc9e5.txt"
   },
   {
    "id": "S0913",
    "url": "https://stock.finance.sina.com.cn/usstock/quotes/HIMX.html",
    "label": "新浪美股行情页：奇景光电 NASDAQ:HIMX",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/4a30bf97bd59c20e.txt"
   },
   {
    "id": "S0914",
    "url": "https://news.nweon.com/141917",
    "label": "《三星分享 AI 眼镜功能细节：搭载骁龙 AR1 Gen1 芯片，满电续航 9 小时》2026-07-23",
-   "retrieved": "2026-09-23"
+   "retrieved": "2026-09-23",
+   "cache": "text/c184bcaf09f0c0e5.txt"
   },
   {
    "id": "S0915",
    "url": "https://www.stcn.com/article/detail/1494381.html",
    "label": "证券时报 2025-01-14《水晶光电：深耕 AR 光学，推动反射光波导技术量产化》——公司口径，未点名整机客户",
    "retrieved": "2026-09-23",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/b18c14efd8bbf1c0.txt"
   },
   {
    "id": "S0916",
    "url": "https://www.nbd.com.cn/articles/2025-01-02/3707964.html",
    "label": "每日经济新闻 2025-01-02《苏大维格：正在积极拓展光波导等衍射光学材料在 AR 眼镜（的应用）》——表态口径",
    "retrieved": "2026-09-23",
-   "publisher": "每日经济新闻"
+   "publisher": "每日经济新闻",
+   "cache": "text/1d5e0493d15d9384.txt"
   },
   {
    "id": "S0917",
@@ -2604,182 +2763,208 @@
    "url": "http://cn.conantoptical.com/new/348.html",
    "label": "康耐特光学官网 2025-11-28《携手夸克，共筑 AI 视觉新生态！康耐特光学助力夸克 AI 眼镜发布》",
    "retrieved": "2026-09-23",
-   "publisher": "康耐特光学"
+   "publisher": "康耐特光学",
+   "cache": "text/c871d901071ca253.txt"
   },
   {
    "id": "S0919",
    "url": "https://finance.ifeng.com/c/8oufrb5EgwG",
    "label": "凤凰网财经《康耐特光学(2276.HK)：分别与阿里和京东达成战略合作》",
    "retrieved": "2026-09-23",
-   "publisher": "凤凰网"
+   "publisher": "凤凰网",
+   "cache": "text/e92d831af4cf3eae.txt"
   },
   {
    "id": "S0920",
    "url": "https://www.stcn.com/article/detail/4126371.html",
    "label": "证券时报《明月镜片：公司与小米的智能眼镜业务合作已进入稳定期》——公司口径",
    "retrieved": "2026-09-23",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/bfc500872a4db105.txt"
   },
   {
    "id": "S0921",
    "url": "https://www.gdvdl.com/Solution/AI_GlassesLi-polyBatteries.html",
    "label": "紫建电子官网「AI 眼镜解决方案」页面——能力宣称，未见订单或客户名",
    "retrieved": "2026-09-23",
-   "publisher": "紫建电子"
+   "publisher": "紫建电子",
+   "cache": "text/945217354e78fb9f.txt"
   },
   {
    "id": "S0922",
    "url": "https://finance.sina.com.cn/stock/bxjj/2025-06-10/doc-inezraka0065710.shtml",
    "label": "新浪财经 2025-06-10《国光电器(002045.SZ)：在 AI 音箱、AI 智慧屏、AR/VR（整机和声学模组）有布局》——表态口径",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/0cce72194bacaa82.txt"
   },
   {
    "id": "S0923",
    "url": "https://stcn.com/article/detail/3267464.html",
    "label": "证券时报 2025-08-26《剑指 AI/AR 领域 歌尔股份、舜宇光学两大果链公司联手》",
    "retrieved": "2026-09-23",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/3946cdd90dc4598d.txt"
   },
   {
    "id": "S0924",
    "url": "https://finance.sina.com.cn/stock/hkstock/marketalerts/2025-01-21/doc-inefsyzc8740545.shtml",
    "label": "新浪财经 2025-01-21《港股异动｜TCL 电子(01070) 涨超 5%，旗下雷鸟布局 AI 眼镜》",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/d01ca0bf7642978d.txt"
   },
   {
    "id": "S0925",
    "url": "https://www.thecover.cn/news/0AhCbDNXGu%2BH90qSdq8Jkw==",
    "label": "封面新闻 2026-06-22《三大机构数据显示雷鸟创新 2026 年一季度 AR 眼镜出货量全球第一》",
    "retrieved": "2026-09-23",
-   "publisher": "封面新闻"
+   "publisher": "封面新闻",
+   "cache": "text/6280d6886868789c.txt"
   },
   {
    "id": "S0926",
    "url": "http://www.news.cn/finance/20240819/c5b8cd733f39453f98938d940bff27c4/c.html",
    "label": "新华网 2024-08-19《博士眼镜搭风口 4 天股价翻倍 多家热门公司回应 AI 眼镜布局》",
    "retrieved": "2026-09-23",
-   "publisher": "新华网"
+   "publisher": "新华网",
+   "cache": "text/22e73b592fa2a18a.txt"
   },
   {
    "id": "S0927",
    "url": "https://news.nweon.com/113194",
    "label": "2023-09-28《售价 299 美元起，Meta 发布第二代智能眼镜 Ray-Ban》",
    "retrieved": "2026-09-23",
-   "publisher": "nweon（VR/AR 垂直媒体）"
+   "publisher": "nweon（VR/AR 垂直媒体）",
+   "cache": "text/beb372c4b782f082.txt"
   },
   {
    "id": "S0928",
    "url": "https://www.stcn.com/article/detail/3345574.html",
    "label": "证券时报 2025-09-18《Meta 大动作，售价 799 美元起！》",
    "retrieved": "2026-09-23",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/49db3a896944b983.txt"
   },
   {
    "id": "S0929",
    "url": "https://wap.eastmoney.com/a/202602123649046848.html",
    "label": "东方财富 2026-02-12《雷朋母公司：2025 年与 Meta 合作的 AI 眼镜销量实现超 3 倍增长》",
    "retrieved": "2026-09-23",
-   "publisher": "东方财富"
+   "publisher": "东方财富",
+   "cache": "text/35516ba5bf7496d8.txt"
   },
   {
    "id": "S0930",
    "url": "https://www.cls.cn/detail/2256809",
    "label": "财联社 2026-01-14《Meta 拟将 AI 智能眼镜产能翻倍，年产量或直冲 2000 万副》",
    "retrieved": "2026-09-23",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/2ab5bdbb4afa922b.txt"
   },
   {
    "id": "S0931",
    "url": "https://www.stcn.com/article/detail/3396096.html",
    "label": "证券时报 2025-10-22《Meta 们的 AI 眼镜梦，绕不开中国供应链》",
    "retrieved": "2026-09-23",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/b035a93b3c938501.txt"
   },
   {
    "id": "S0932",
    "url": "https://www.idc.com/resource-center/blog/2025%E5%B9%B4%E4%B8%AD%E5%9B%BD%E6%99%BA%E8%83%BD%E7%9C%BC%E9%95%9C%E5%B8%82%E5%9C%BA%E5%90%8C%E6%AF%94%E5%A2%9E%E9%95%BF87-1%EF%BC%8C%E8%A1%8C%E4%B8%9A%E4%BB%8E%E7%A1%AC%E4%BB%B6%E9%93%BA%E9%99%88/",
    "label": "IDC 官方博客：2025 年中国智能眼镜市场同比增长 87.1%",
    "retrieved": "2026-09-23",
-   "publisher": "IDC"
+   "publisher": "IDC",
+   "cache": "text/9071e200e42430b3.txt"
   },
   {
    "id": "S0933",
    "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=603341&id=11902489",
    "label": "龙旗科技（603341）投资者关系活动记录表（编号 2026-001），2026-01-06——公司口径，未点名整机客户",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经/巨潮公告"
+   "publisher": "新浪财经/巨潮公告",
+   "cache": "text/4fca87cbf57474fc.txt"
   },
   {
    "id": "S101",
    "url": "http://www.xinhuanet.com/tech/20260821/1329d3f89e064ea1a60ee2a9c0aed9c3/c.html",
    "label": "新华网 2026-08-21 雷鸟iO 发布报道：整机 34 克、官方售价 2499 元、首发到手价 1996 元起、蓝湖光波导双目显示、无摄像头、续航可达两天；同期雷鸟V4 拍摄眼镜 32GB 版国补后 1699 元",
    "retrieved": "2026-09-23",
-   "publisher": "新华网"
+   "publisher": "新华网",
+   "cache": "text/40c8d7f9e94aa17e.txt"
   },
   {
    "id": "S102",
    "url": "https://www.abvr360.com/a/29551",
    "label": "艾邦 AR/VR 网转述小米发布会：小米AI眼镜标准版 1999 元、单色电致变色 2699 元、彩色电致变色版 2999 元，整机 40 克，骁龙 AR1 加协处理器的双芯架构，典型续航 8.6 小时",
    "retrieved": "2026-09-23",
-   "publisher": "艾邦 AR/VR 网"
+   "publisher": "艾邦 AR/VR 网",
+   "cache": "text/1d61822c7dd55d45.txt"
   },
   {
    "id": "S103",
    "url": "https://wearable.ofweek.com/2025-12/ART-8420-5000-30675902.html",
    "label": "OFweek 可穿戴频道 2025-12-09 分析稿：Rokid Glasses 2024 年 11 月发布时预售 2499 元、正式发售涨到 3299 元，整机 49 克；另举阿里夸克 AI 眼镜 S1 为 51 克",
    "retrieved": "2026-09-23",
-   "publisher": "OFweek"
+   "publisher": "OFweek",
+   "cache": "text/799450e49e304524.txt"
   },
   {
    "id": "S104",
    "url": "https://www.vrtuoluo.cn/543739.html",
    "label": "VR陀螺 2025-09-30 对比稿：Meta Ray-Ban Display 定价 799 美元、LCoS 600×600、配 Lumus 几何波导、整机 69 克；Rokid 乐奇眼镜用 JBD 蜂鸟 Mini II 单色绿光引擎、单眼 640×480、整机 49 克、骁龙 AR1 加 NXP RT600 双芯",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/1543043e172ffb69.txt"
   },
   {
    "id": "S105",
    "url": "https://www.vrtuoluo.cn/column/vr_headsets_review/542805.html",
    "label": "VR陀螺 雷鸟X3 Pro 深度评测：X3 Pro 标准版 8999 元（国补后 7649 元）、光学近视贴合版 10999 元，整机 76 克、双目 30 度视场角；同场发布的雷鸟 Air 3s 1499 元、Air 3s Pro 1599 元、雷鸟V3 Slim 1799 元",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/cc9944641b8ace23.txt"
   },
   {
    "id": "S106",
    "url": "https://www.tmtpost.com/7579138.html",
    "label": "钛媒体对雷鸟X3 Pro 的采访稿：0.36cc 全彩 Micro-LED 光引擎、4nm 高通 AR1、整机 76 克、集成超 200 个零部件、研发投入 3 亿元，李宏伟承认定价源于成本过高",
    "retrieved": "2026-09-23",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/b80d4afe7f105060.txt"
   },
   {
    "id": "S107",
    "url": "https://www.vrtuoluo.cn/543364.html",
    "label": "VR陀螺 XREAL One Pro 深度评测：售价 4299 元、整机 91 克、57 度视场角、索尼 0.55 英寸 Micro-OLED、入眼亮度最高 700 尼特、120Hz、自研 X Prism 棱镜光机与 X1 芯片",
    "retrieved": "2026-09-23",
-   "publisher": "VR陀螺"
+   "publisher": "VR陀螺",
+   "cache": "text/87429f09085e5962.txt"
   },
   {
    "id": "S108",
    "url": "https://www.chongdiantou.com/archives/1750075279325.html",
    "label": "充电头网实测：雷鸟 Air 3s Pro 净重约 78.9 克、1200 尼特入眼亮度、4 米等效 135 英寸、整机功耗约 2 瓦",
    "retrieved": "2026-09-23",
-   "publisher": "充电头网"
+   "publisher": "充电头网",
+   "cache": "text/d204302bb8e82b60.txt"
   },
   {
    "id": "S109",
    "url": "https://wearable.ofweek.com/2026-09/ART-8420-5011-30703435.html",
    "label": "VRAR星球 2026-09-16 产业稿：国内衍射光波导规划产能近 700 万片/年、有效产能 600–835 万片；瑞声科技称良率稳定在 80% 以上、年产能规划 100 万片；洛图科技口径 2026 上半年中国 AR 眼镜销量 40.8 万台；TrendForce 上修全年预测到突破 100 万台；Meta 把 Micro-LED 一代量产定在 2027 年、苹果 N50 推迟到 2027 年、三星同为 2027 年；洛图科技调研智能眼镜退货率 30%–70%",
    "retrieved": "2026-09-23",
-   "publisher": "OFweek / VRAR星球"
+   "publisher": "OFweek / VRAR星球",
+   "cache": "text/d757a571ddaf198c.txt"
   },
   {
    "id": "S1010",
    "url": "https://www.cls.cn/detail/2144105",
    "label": "财联社 2025-09-12 深圳光博会报道：现场走访称光学显示系统约占 AR 眼镜总成本 40%；CINNO 研究总监称光波导光效损失率通常高于 95%、视场角多在 30 至 50 度、典型续航 4 小时以内；谷东智能称 PVG 体全息波导成本较进口方案降 60%–90%，与光峰科技合作目标把终端价控制在 1500 至 2000 元；Wellsenn XR 判断平台级产品要等 2029 到 2030 年以后",
    "retrieved": "2026-09-23",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/059f8138e989b20e.txt"
   }
  ],
  "category": "人工智能",
@@ -2798,8 +2983,8 @@
   "hero_motif": "waveguide_rainbow",
   "hero_note": "以光波导的耦出栅为母题：光在几毫米厚的玻璃里靠全反射前传，每过一段栅就漏出一丝，越靠近出瞳越亮，最后三格才出射成蓝紫——这是全彩画面真正离开镜片的位置。"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-05",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 17,
  "cover": {
@@ -2813,11 +2998,12 @@
  },
  "created_date": "2026-09-23",
  "site": {
-  "url": "https://ai-glasses-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72d-6578-72f4-9ae6-3f9e80c2bcda",
-  "slug": "ai-glasses",
-  "content_sha": "df6460a4d530780e",
-  "published_date": "2026-09-25",
+  "url": "https://ai-industry-gtqdc11h6po.qoder.website/ai-glasses/ai-glasses.html",
+  "group": "ai-industry",
+  "path": "/ai-glasses/ai-glasses.html",
+  "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
+  "content_sha": "8397ce5e087efd36",
+  "published_date": "2026-10-10",
   "access": "public"
  }
 }

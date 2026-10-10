@@ -45,6 +45,12 @@ a{color:inherit;text-decoration:none}
 .tab:hover{color:${HOUSE.ink};background:${HOUSE.hairline}}
 .tab i{font-style:normal;font-size:.7rem;opacity:.6;margin-left:.25rem}
 .tally{flex:none;font-size:.74rem;color:${HOUSE.muted};font-family:ui-monospace,Consolas,monospace}
+/* 组落地页才有这个：一篇文章的读者要能回到"全部专题"。
+   地址由渲染时传进来（homeUrl），不在产物里做字符串重写——
+   那套"要求标记恰好出现一次"的契约是一篇一站时代的产物，属性顺序一变就全线 pack 失败。 */
+.bar-home{flex:none;margin-left:auto;font-size:.8rem;font-weight:600;
+  color:${HOUSE.brand};text-decoration:none;border-bottom:1px solid transparent;white-space:nowrap}
+.bar-home:hover{border-bottom-color:currentColor}
 
 .head{width:var(--col);margin:0 auto;padding:clamp(1.2rem,2.5vw,2.2rem) 0 .2rem}
 .head h1{font-size:clamp(1.5rem,2.2vw,2.4rem);font-weight:600;letter-spacing:-.015em;margin:0}
@@ -142,9 +148,13 @@ export interface IndexPageProps {
   generatedDate: string;
   /** SSR 产物把 <style> 放进 <head>（见 ssr-entry）；工作台预览仍让组件自带。 */
   hideStyle?: boolean;
+  /** 组落地页：这一组叫什么。不给就是全站主页，沿用"知识专题"。 */
+  title?: string;
+  /** 组落地页：全局主页地址。给了才渲染"全部专题"那个入口。 */
+  homeUrl?: string;
 }
 
-export function IndexPage({ entries, generatedDate, hideStyle }: IndexPageProps): ReactNode {
+export function IndexPage({ entries, generatedDate, hideStyle, title, homeUrl }: IndexPageProps): ReactNode {
   const cats: [string, number][] = [];
   for (const e of entries) {
     const hit = cats.find((c) => c[0] === e.category);
@@ -162,7 +172,7 @@ export function IndexPage({ entries, generatedDate, hideStyle }: IndexPageProps)
       <div className="bar">
         <div className="bar-in">
           <span className="brand">
-            <i>知</i>知识专题
+            <i>知</i>{title || "知识专题"}
           </span>
           <nav className="tabs" aria-label="类别">
             {cats.map(([cat, n]) => (
@@ -175,6 +185,11 @@ export function IndexPage({ entries, generatedDate, hideStyle }: IndexPageProps)
           <span className="tally">
             {entries.length} 篇 · {tagCount} 标签
           </span>
+          {homeUrl ? (
+            <a className="bar-home" href={homeUrl}>
+              全部专题 →
+            </a>
+          ) : null}
         </div>
       </div>
 

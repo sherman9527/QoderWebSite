@@ -183,11 +183,25 @@ def make_passing_data(topic=u"测试领域", sections=9, pad=560):
     }
 
 
+_FP_CACHE = {}
+
+
+def current_fp_json():
+    """模板指纹向 conftest 要，不在这里手抄一份。
+
+    原先这里写死了一份区块清单，而它**已经和模板差了一个 bar_chart**——
+    于是 passing_ctx 一直红着 G-08，所有"夹具应该全绿"的隐含假设都是假的。
+    这正是 W-163 说的形状：抄一份判据，抄的那一份迟早会旧。
+    """
+    if "fp" not in _FP_CACHE:
+        import validate as V
+        _FP_CACHE["fp"] = json.dumps(V.current_fingerprint(), ensure_ascii=False)
+    return _FP_CACHE["fp"]
+
+
 def make_passing_html(data, fingerprint=None):
     """从 data 里把图片抄成 <img>，造一份"看起来由模板渲染"的 HTML。"""
-    fp = fingerprint or json.dumps({"blocks": [
-        "prose", "keyvalue_table", "timeline", "price_table", "card_grid",
-        "steps", "quote", "fact_strip", "compare", "note"], "rev": "ke-template-1"})
+    fp = fingerprint or current_fp_json()
     imgs = []
     for s in data["sections"]:
         for im in s.get("images", []):
@@ -235,6 +249,10 @@ def passing_ctx(tmp_path, quality_bar):
             write_image(out_dir / im["file"])
     page = out_dir / ("%s.html" % topic)
     page.write_text(make_passing_html(data), encoding="utf-8")
+    # 夹具模拟的是"刚渲染完的页面"，所以模板源哈希侧车也得有（W-163）。
+    # 少写这一行，passing_ctx 会在 G-08 上永远红着。
+    import validate as _V
+    (out_dir / (page.name + ".srchash")).write_text(_V.current_sources_hash() + chr(10), encoding="utf-8")
     # 注入只带 words_range 的假大纲，避免测试依赖 config/topics/ 下的真实领域
     stub = SimpleNamespace(
         words_range=(quality_bar["words"]["min_chars"], quality_bar["words"]["max_chars"]),

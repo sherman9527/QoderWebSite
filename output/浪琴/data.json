@@ -9,7 +9,12 @@
     {
      "type": "prose",
      "heading": "先有地，再有厂，最后才有名字",
-     "text": "1832 年，奥古斯特·阿加西（Auguste Agassiz，1809–1877）在瑞士汝拉山区的小村圣伊米耶（Saint-Imier，浪琴中文官网译作「索伊米亚」）与两名合伙人开了一间钟表商行。它当时不算工厂：零件由工匠在家做完再集中组装，汝拉山区通行的正是这套分包制，商行只管招牌和销路。\n\n1852 年，阿加西的外甥奥内斯特·弗兰西昂进入商行，1862 年接手。1866 年他买下苏士河右岸两块地，当地土法语叫「Les Longines」，意为狭长的田地；1867 年厂子落成，品牌名直接来自这块地，此后没搬过。同年投产的 L20A 是第一枚自制机芯，弗兰西昂带着它去巴黎世博会，领回一枚铜奖。"
+     "text": "1832 年，奥古斯特·阿加西（Auguste Agassiz）在瑞士汝拉山区的小村圣伊米耶（Saint-Imier，浪琴中文官网译作「索伊米亚」）加入的是那家叫 Comptoir horloger Raiguel Jeune 的钟表商行。它当时不算工厂：零件由工匠在家做完再集中组装，汝拉山区通行的正是这套分包制（établissage），商行只管招牌和销路。  1852 年，阿加西的外甥奥内斯特·弗兰西昂进入商行并接手经营。1866 年他买下苏士河右岸两块地，当地土法语叫「Les Longines」，意为狭长的田地；1867 年表厂落成，品牌名直接来自这块地，此后没搬过。同年投产的 L20A 是第一枚自制机芯，也第一次刻上飞翼沙漏，弗兰西昂带着它去巴黎世博会参展。",
+     "source_ids": [
+      "S011",
+      "S012",
+      "S013"
+     ]
     },
     {
      "type": "prose",
@@ -138,7 +143,7 @@
    "images": [
     {
      "file": "images/37_浪琴_创始人.jpg",
-     "alt": "LONGINES浪琴名匠大嘴，低调奢华有魅力（名表鉴赏Vol.039）|浪琴|名表|名匠_新浪新闻",
+     "alt": "",
      "caption": "LONGINES浪琴名匠大嘴，低调奢华有魅力（名表鉴赏Vol.039）|浪琴|名表|名匠_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_2655991104_p9e4f35400010027fj.html",
      "width": 1280,
@@ -147,11 +152,11 @@
     },
     {
      "file": "images/38_浪琴_工厂.gif",
-     "alt": "【浪琴手表官网价格】Longines浪琴手表怎么样_型号价格查询|腕表之家",
+     "alt": "",
      "caption": "【浪琴手表官网价格】Longines浪琴手表怎么样_型号价格查询|腕表之家",
      "source_page": "https://www.xbiao.com/longines/",
-     "width": 1200,
-     "height": 1800,
+     "width": 800,
+     "height": 1200,
      "query": "浪琴 工厂"
     }
    ]
@@ -311,16 +316,16 @@
    "images": [
     {
      "file": "images/41_浪琴_奥运_官方计时_历史.gif",
-     "alt": "【Longines浪琴手表型号L4.984.4.59.6经典价格查询】官网报价|腕表之家",
+     "alt": "",
      "caption": "【Longines浪琴手表型号L4.984.4.59.6经典价格查询】官网报价|腕表之家",
      "source_page": "https://www.xbiao.com/longines/95193/",
-     "width": 1200,
-     "height": 1800,
+     "width": 800,
+     "height": 1200,
      "query": "浪琴 奥运 官方计时 历史"
     },
     {
      "file": "images/01_浪琴_创始人.jpg",
-     "alt": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第2页|腕表之家",
+     "alt": "",
      "caption": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第2页|腕表之家",
      "source_page": "https://www.xbiao.com/longines/homework/p2.html",
      "width": 735,
@@ -615,7 +620,7 @@
    "images": [
     {
      "file": "images/09_浪琴_名匠_麦粒纹_表盘.jpg",
-     "alt": "浪琴(Longines)手表名匠系列机械情侣对表L2.128.4.78.3+L2.628.4.78.3视频介绍_浪琴(Longines)手表 ...",
+     "alt": "",
      "caption": "浪琴(Longines)手表名匠系列机械情侣对表L2.128.4.78.3+L2.628.4.78.3视频介绍_浪琴(Longines)手表 ...",
      "source_page": "https://www.suning.com/itemvideo/0070150907/610812406.html",
      "width": 800,
@@ -624,11 +629,11 @@
     },
     {
      "file": "images/43_浪琴_名匠_八针月相.gif",
-     "alt": "【Longines浪琴手表型号L2.357.4.87.6制表传统价格查询】官网报价|腕表之家",
+     "alt": "",
      "caption": "【Longines浪琴手表型号L2.357.4.87.6制表传统价格查询】官网报价|腕表之家",
      "source_page": "https://www.xbiao.com/longines/94969/",
-     "width": 1200,
-     "height": 1800,
+     "width": 800,
+     "height": 1200,
      "query": "浪琴 名匠 八针月相"
     }
    ]
@@ -862,7 +867,7 @@
    "images": [
     {
      "file": "images/45_浪琴_康卡斯.jpg",
-     "alt": "浪琴_浪琴表推出全新康卡斯潜水系列双色腕表|腕表之家xbiao.com",
+     "alt": "",
      "caption": "浪琴_浪琴表推出全新康卡斯潜水系列双色腕表|腕表之家xbiao.com",
      "source_page": "http://www.xbiao.com/longines/61777.html",
      "width": 1400,
@@ -871,7 +876,7 @@
     },
     {
      "file": "images/13_浪琴_康卡斯_潜水表.jpg",
-     "alt": "浪琴_浪琴表推出全新康卡斯潜水系列两地时腕表|腕表之家xbiao.com",
+     "alt": "",
      "caption": "浪琴_浪琴表推出全新康卡斯潜水系列两地时腕表|腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/longines/73761.html",
      "width": 1400,
@@ -880,7 +885,7 @@
     },
     {
      "file": "images/14_浪琴_潜水表_表圈.jpg",
-     "alt": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第8页|腕表之家",
+     "alt": "",
      "caption": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第8页|腕表之家",
      "source_page": "https://www.xbiao.com/longines/homework/p8.html",
      "width": 735,
@@ -917,7 +922,8 @@
        "k": "L888 / L888.2",
        "v": "ETA A31.L11 衍生，21 钻，25,200 vph（3.5 Hz），约 72 小时，不送检",
        "source_ids": [
-        "S053"
+        "S053",
+        "S052"
        ]
       },
       {
@@ -948,7 +954,11 @@
     {
      "type": "prose",
      "heading": "振频往下调是笔明白账",
-     "text": "L888 家族统一走低振频路线：摆轮每小时的振荡次数比行业常规档位更少，摩擦与能耗同步下降，再配新合金主发条，动力储备因此明显拉长——拿极限日差换佩戴便利。所以档次差不在振频上，而在振频之外：机芯归谁生产，以及装进表壳之后还测不测。"
+     "text": "L888 家族统一走低振频路线：摆轮每小时的振荡次数比行业常规档位更少，摩擦与能耗同步下降，再配新合金主发条，动力储备因此明显拉长——拿极限日差换佩戴便利。所以档次差不在振频上，而在振频之外：机芯归谁生产，以及装进表壳之后还测不测。",
+     "source_ids": [
+      "S051",
+      "S053"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -1056,7 +1066,7 @@
    "images": [
     {
      "file": "images/17_浪琴_自动机芯_摆陀.jpg",
-     "alt": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第2页|腕表之家",
+     "alt": "",
      "caption": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第2页|腕表之家",
      "source_page": "https://www.xbiao.com/longines/homework/p2.html",
      "width": 735,
@@ -1065,7 +1075,7 @@
     },
     {
      "file": "images/18_浪琴_硅游丝_摆轮.jpg",
-     "alt": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第3页|腕表之家",
+     "alt": "",
      "caption": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第3页|腕表之家",
      "source_page": "https://www.xbiao.com/longines/homework/p3.html",
      "width": 735,
@@ -1082,7 +1092,17 @@
     {
      "type": "prose",
      "heading": "对的那半句：一万五到三万这段几乎只有浪琴",
-     "text": "把斯沃琪集团的定价在纸面上摊开就清楚了：天梭力洛克 4,800 元，浪琴康卡斯 L3.781.4.96.6 公价 14,600 元，名匠入门精钢款 17,700 元起，先行者 L3.820.4.93.0 计时码表 26,600 元，再往上一步就是欧米茄海马 300 的 52,000 元。中间一万五到三万这一大段，集团里基本只剩浪琴在填。\n\n多付的也不是买空气。2026 款名匠 41 毫米大三针公价 19,900 元，配 L888.5 单晶硅游丝机芯、72 小时动储，官方标称日差 -4/+6 秒；同一价位在欧米茄只能买到基础三针。"
+     "text": "把斯沃琪集团的定价在纸面上摊开就清楚了：天梭经典系列 T006.407.11.053.00 厂商指导公价 5,500 元，浪琴康卡斯 L3.781.4.96.6 公价 14,600 元，名匠 38.5 毫米 L2.628.4.78.6 官方媒体公价 17,700 元，先行者 L3.820.4.93.0 计时码表 26,600 元。再往上是欧米茄海马 300 米钢款：腕表之家报价页 2026-09-20 给 210.30.42.20.01.001 标 48,100 元，而一篇 9 月中的行情稿说它已涨到 5.2 万——公价本身在动。中间一万五到三万这一大段，集团里基本只剩浪琴在填。  多付的也不是买空气。2026 款名匠 41 毫米大三针公价 19,900 元，配 L888.5 单晶硅游丝机芯、72 小时动力储存。但 L888.5 没有送交 COSC，所以 −4/+6 秒/日这个天文台容差不属于它；官网口径是普通机械表 −5~+15 秒/天，认证款才是 −4~+6。",
+     "source_ids": [
+      "S0611",
+      "S064",
+      "S0612",
+      "S063",
+      "S059",
+      "S033",
+      "S091",
+      "S086"
+     ]
     },
     {
      "type": "price_table",
@@ -1160,7 +1180,12 @@
     {
      "type": "prose",
      "heading": "错的那半句：折价发生在你把表卖出去那天",
-     "text": "回收商口径说浪琴通常按原价三到七折收，全系平均保值区间 30%—50%。更硬的是平台挂牌实测：公价 17,700 元的 38 毫米名匠（L2.628.4.78.6），二手商挂到四千多；公价 29,300 元的名匠月相计时，挂牌 8,299 元。\n\n两个口径对不上，是因为方向不同——挂牌价是买家能付到的价，你卖给表商还要再低一截。所以看到康卡斯回收 7,000 元这类说法要留个心：同一时期二手平台上康卡斯挂牌才 5,440 元，回收价反而比卖价高、型号也不写清，属于钓人问价的引流软文。"
+     "text": "回收商口径说浪琴通常按原价三到七折收、全系平均保值区间 30%—50%，钢带比皮带高 8%—10%。更硬的是逐条挂牌实价：什么值得买那篇跨源核对了 12 条浪琴二手挂牌，名匠基础款公价 18,200 元、挂牌落在 6,158—7,725 元，折成保值率 34%—42%；同一篇还注明一句要紧的话——挂牌价是买家能付到的价，卖给表商还要再低一截。所以看到「某型号回收 7,000 元」这类说法要留个心：它只报回收价、不报同期同型号的挂牌价，这两个口径之间的方向感就被抹掉了，剩下的只是引流。",
+     "source_ids": [
+      "S068",
+      "S069",
+      "S099"
+     ]
     },
     {
      "type": "price_table",
@@ -1202,7 +1227,8 @@
         "34%—42%"
        ],
        "source_ids": [
-        "S061"
+        "S061",
+        "S099"
        ]
       },
       {
@@ -1243,7 +1269,13 @@
     {
      "type": "prose",
      "heading": "这张清单要反过来读",
-     "text": "掉得最狠的名匠基础款和康卡斯，恰好是二手最划算的两款：六千多拿下公价一万八，省的正是品牌溢价加首年折旧。掉得少的黛绰维纳和心月都是女表，公价基数低，买新也不亏太多；瑰丽这类冷门款则会因流通性差被多砍一刀。\n\n真正影响成交的是几件具体的事：附件齐全比单表拉开 10%—20%，钢带比皮带高 8%—10%，复杂功能款看机芯状态——名匠八针日历跳转故障，全拆保养报价 2,000 元。捡漏时先要序列号与保卡照片核对表身，五千以上的表花三百到四百元送第三方检测，并要求注明部件是否原装。"
+     "text": "掉得最狠的名匠基础款和康卡斯，恰好是二手最划算的两款：什么值得买核对的挂牌里，公价 18,200 元的名匠基础款落在 6,158—7,725 元，省的正是品牌溢价加首年折旧。掉得少的黛绰维纳和心月都是女表，公价基数低，买新也不亏太多；瑰丽这类冷门款则会因流通性差被多砍一刀。  真正影响成交的是几件具体的事：附件齐全与否能拉开 10%—20%，钢带比皮带高 8%—10%，复杂功能款要看机芯状态——官网保养价目页把完全服务与部分维修分档定价、换电池 400 元，消磁与走时检测标为免费，所以「保养多少钱」取决于做哪一档，不是一个通用数。捡漏时先要序列号与保卡照片核对表身，再看对方是否肯写清部件是否原装。",
+     "source_ids": [
+      "S068",
+      "S069",
+      "S099",
+      "S081"
+     ]
     },
     {
      "type": "fact_strip",
@@ -1306,7 +1338,7 @@
    "images": [
     {
      "file": "images/21_浪琴_公价_二手_价格.jpg",
-     "alt": "【新品】Longines浪琴官方旗舰名匠系列女士机械表瑞士手表女腕表_虎窝淘",
+     "alt": "",
      "caption": "【新品】Longines浪琴官方旗舰名匠系列女士机械表瑞士手表女腕表_虎窝淘",
      "source_page": "https://tao.hooos.com/goods_5OgAZokfxtB6J5nS70PFMtV-vz2ooBsBbARaQ4Jsg.html",
      "width": 800,
@@ -1315,7 +1347,7 @@
     },
     {
      "file": "images/22_浪琴_腕表_二手.jpg",
-     "alt": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第2页|腕表之家",
+     "alt": "",
      "caption": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第2页|腕表之家",
      "source_page": "https://www.xbiao.com/longines/homework/p2.html",
      "width": 735,
@@ -1450,7 +1482,7 @@
    "images": [
     {
      "file": "images/25_浪琴_同级_腕表.jpg",
-     "alt": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第3页|腕表之家",
+     "alt": "",
      "caption": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第3页|腕表之家",
      "source_page": "https://www.xbiao.com/longines/homework/p3.html",
      "width": 735,
@@ -1459,7 +1491,7 @@
     },
     {
      "file": "images/26_浪琴_天文台认证_表款.png",
-     "alt": "「浪琴/Longines品牌」浪琴/Longines是哪个国家的品牌-什么档次，怎么样-排行榜123网",
+     "alt": "",
      "caption": "「浪琴/Longines品牌」浪琴/Longines是哪个国家的品牌-什么档次，怎么样-排行榜123网",
      "source_page": "https://www.phb123.com/pinpai/pp29038.html",
      "width": 800,
@@ -1615,7 +1647,7 @@
    "images": [
     {
      "file": "images/29_浪琴_腕表_保养.jpg",
-     "alt": "浪琴_浪琴表为标志性名匠系列推出全新面孔|腕表之家xbiao.com",
+     "alt": "",
      "caption": "浪琴_浪琴表为标志性名匠系列推出全新面孔|腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/longines/55267.html",
      "width": 1400,
@@ -1624,7 +1656,7 @@
     },
     {
      "file": "images/30_浪琴_防水_橡胶圈.jpg",
-     "alt": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第35页|腕表之家",
+     "alt": "",
      "caption": "浪琴Longines购表作业_浪琴购表攻略_浪琴购表指南 第35页|腕表之家",
      "source_page": "https://www.xbiao.com/longines/homework/p35.html",
      "width": 735,
@@ -1771,7 +1803,7 @@
    "images": [
     {
      "file": "images/33_浪琴_腕表_佩戴.jpg",
-     "alt": "带浪琴的都是什么档次的人？_男款机械表_什么值得买",
+     "alt": "",
      "caption": "带浪琴的都是什么档次的人？_男款机械表_什么值得买",
      "source_page": "https://post.smzdm.com/p/a4dke3nk/",
      "width": 1080,
@@ -1780,7 +1812,7 @@
     },
     {
      "file": "images/34_浪琴_商务_手表.jpg",
-     "alt": "浪琴也有“神作”，公价1、2万，戴出3、4万的效果|浪琴_腕表之家xbiao.com",
+     "alt": "",
      "caption": "浪琴也有“神作”，公价1、2万，戴出3、4万的效果|浪琴_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/longines/77930.html",
      "width": 1400,
@@ -1796,26 +1828,30 @@
    "url": "https://blog.nationalmuseum.ch/en/2023/05/swiss-timekeepers-at-the-olympic-games/",
    "label": "瑞士国家博物馆博客（历史学者 Nils Widmer／Swiss Sports History）：1932 年洛杉矶奥运国际奥委会只向欧米茄订 30 枚码表；1920 年代前赛场用浪琴与豪雅；1964 因斯布鲁克计时屏浪琴与欧米茄并列；1972 慕尼黑欧米茄退出、浪琴与 Junghans 接手；欧米茄 2006 起独家至 2032",
    "retrieved": "2026-09-20",
-   "publisher": "Château de Prangins / Swiss Sports History"
+   "publisher": "Château de Prangins / Swiss Sports History",
+   "cache": "text/476c47494f5d05b4.txt"
   },
   {
    "id": "S022",
    "url": "https://monochrome-watches.com/the-history-of-the-pilot-watch-part-four-longines-and-lindbergh/",
    "label": "Monochrome《飞行表史 第四部：浪琴与林德伯格》：1927 年大西洋飞行 33 小时 30 分由浪琴计时、1929 年 Weems 秒针校时表约 48mm、1931 年 Hour Angle 问世",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome Watches"
+   "publisher": "Monochrome Watches",
+   "cache": "text/8524a26847bf3c9f.txt"
   },
   {
    "id": "S023",
    "url": "https://www.my-watchsite.com/blog/100-years-at-full-speed/",
    "label": "浪琴官方合作站点 My WatchSite 的滑雪计时史：1878 首枚码表、1924 沙莫尼、1937 光电起步门、1945 Crans-Montana 装机、1951 Chronoson、2006 起国际雪联合作与世界杯官方计时（合同至 2026）、2017 圣莫里茨世锦赛上线 Live Alpine Data",
-   "retrieved": "2026-09-20"
+   "retrieved": "2026-09-20",
+   "cache": "text/3e5ca27238a385d1.txt"
   },
   {
    "id": "S024",
    "url": "https://www.dublinhorseshow.com/longines-history-in-equestrian-sports/",
    "label": "都柏林马术展所载浪琴马术史：1878 年刻骑师与坐骑的码表、1881 年上赛道、1912 年首次合作国际场地障碍赛、2013 年 1 月成为国际马联首位顶级合作伙伴兼官方计时与官方腕表",
-   "retrieved": "2026-09-20"
+   "retrieved": "2026-09-20",
+   "cache": "text/a84d661035931d4e.txt"
   },
   {
    "id": "S025",
@@ -1828,13 +1864,15 @@
    "url": "https://www.hodinkee.com/articles/a-brief-history-of-longines-high-precision-timekeeping-and-the-horological-vip-that-almost-slipped-t",
    "label": "HODINKEE《论精确》专栏（Jack Forster）：浪琴 1914 年起把 36,000 次/小时高频擒纵用于秒表并用作奥运计时、1939 年滑雪追针计时表、1962 年 L360 机芯在纳沙泰尔天文台 45 天考核平均日差 0.019 秒",
    "retrieved": "2026-09-20",
-   "publisher": "HODINKEE"
+   "publisher": "HODINKEE",
+   "cache": "text/c25608ec52586750.txt"
   },
   {
    "id": "S027",
    "url": "https://monochrome-watches.com/the-groovy-junghans-1972-competition-chronographs-in-steel-and-gold/",
    "label": "Monochrome：1972 年慕尼黑夏奥两位官方计时之一是 Junghans、另一位是浪琴；覆盖百米、射箭、赛艇等项目",
-   "retrieved": "2026-09-20"
+   "retrieved": "2026-09-20",
+   "cache": "text/962b84067ff124fa.txt"
   },
   {
    "id": "S011",
@@ -1848,28 +1886,32 @@
    "url": "https://en.worldtempus.com/article/longines-history-1832-1860s-1880s-14392.html",
    "label": "Worldtempus 品牌史长文：1832 年 Comptoir horloger Raiguel Jeune、1866 年苏士河右岸两块地、1867 年首枚机芯 L20A 且随机刻飞翼沙漏、1867 年巴黎世博会展出、1874 年反仿冒通告、1880-07-19 第 118/119 号、1889-05-27 第 2684 号、1893-03-27 国际第 14 号",
    "retrieved": "2026-09-20",
-   "publisher": "GMT Publishing / Worldtempus"
+   "publisher": "GMT Publishing / Worldtempus",
+   "cache": "text/e65826063b11d150.txt"
   },
   {
    "id": "S013",
    "url": "https://swisswatches-magazine.com/longines-1832-history/",
    "label": "Swiss Watches Magazine 2019 年品牌史长文：分包制（établissage）、1983 年被当时名为 SMH 的集团收购、年产量约 150 万只、2018 年产满第 5,000 万只",
    "retrieved": "2026-09-20",
-   "publisher": "Swiss Watches Magazine"
+   "publisher": "Swiss Watches Magazine",
+   "cache": "text/c0bf32b02e93e0f3.txt"
   },
   {
    "id": "S014",
    "url": "https://www.watch-wiki.net/doku.php?id=swatch",
    "label": "Watch Wiki「Swatch」条目：1983-03-01 SMH 成立、ASUAG 与 SSIH 合并、1998 年更名斯沃琪集团；1977–1983 瑞士表出口额减半、全球市占率 43%→15%、逾 5 万人失业；Longines、Omega、Tissot 同列这批品牌",
    "retrieved": "2026-09-20",
-   "publisher": "Watch Wiki"
+   "publisher": "Watch Wiki",
+   "cache": "text/5885714e9b3216ed.txt"
   },
   {
    "id": "S015",
    "url": "https://www.xbiao.com/longines/introduction.html",
    "label": "腕表之家浪琴品牌简介：1832 年创立、1866 年购地与 1867 年建厂命名、1889 年为「Longines」名称与飞翼沙漏图形组合注册、隶属斯沃琪集团、行销 150 多个国家",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/fe8feee2a5afd155.txt"
   },
   {
    "id": "S041",
@@ -1883,35 +1925,40 @@
    "url": "https://monochrome-watches.com/2026-longines-hydroconquest-collection-300m-dive-watch-redesigned-all-new-generation-price-review/",
    "label": "Monochrome 对新一代康卡斯的首发评测，标题与 URL 标注 300 米、重新设计、含价格",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome"
+   "publisher": "Monochrome",
+   "cache": "text/4ec72e455b2b919e.txt"
   },
   {
    "id": "S043",
    "url": "https://www.xbiao.com/longines/86306.html",
    "label": "腕表之家《公价1万6，浪琴\"第三代\"康卡斯潜水表》，给出第三代公价约 1.6 万元",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/4a6b2ee97403654c.txt"
   },
   {
    "id": "S044",
    "url": "https://www.xbiao.com/longines/85816.html",
    "label": "腕表之家《康卡斯潜水表换代升级，新旧差异全梳理》，新旧代差异对照",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/68b0cddd1ac17a2b.txt"
   },
   {
    "id": "S045",
    "url": "https://news.qq.com/rain/a/20260430A08JAF00",
    "label": "《一万多级别的豪华潜水表，它是标杆之选》，把新一代康卡斯定位在一万多档",
    "retrieved": "2026-09-20",
-   "publisher": "腾讯新闻"
+   "publisher": "腾讯新闻",
+   "cache": "text/770a0fd75f5d9528.txt"
   },
   {
    "id": "S046",
    "url": "https://teddybaldassarre.com/blogs/watches/longines-hydroconquest-review",
    "label": "Teddy Baldassarre 康卡斯评测，标题写明 \"So Much Watch For $2,000\"",
    "retrieved": "2026-09-20",
-   "publisher": "Teddy Baldassarre"
+   "publisher": "Teddy Baldassarre",
+   "cache": "text/460a95550275d461.txt"
   },
   {
    "id": "S047",
@@ -1932,7 +1979,8 @@
    "url": "https://monochrome-watches.com/2020-longines-spirit-collection-pilots-watch-price/",
    "label": "Monochrome《Introducing - 2020 Longines Spirit Collection》，先行者首发年份与规格价格",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome"
+   "publisher": "Monochrome",
+   "cache": "text/f681b7bfd68d0b58.txt"
   },
   {
    "id": "S0410",
@@ -1960,7 +2008,8 @@
    "url": "https://monochrome-watches.com/review-longines-spirit-37mm-black-dial-unisex-watch-specs-price/",
    "label": "Monochrome 先行者 37mm 评测，说明系列另有 37 毫米尺寸",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome"
+   "publisher": "Monochrome",
+   "cache": "text/069779fc28b763a6.txt"
   },
   {
    "id": "S0414",
@@ -1974,7 +2023,8 @@
    "url": "https://www.hodinkee.com/articles/longines-ultra-chron-diver-high-beat-revival-2022",
    "label": "Hodinkee《Introducing The New-For-2022 Longines Ultra-Chron Diver》，复刻年份与高振频",
    "retrieved": "2026-09-20",
-   "publisher": "Hodinkee"
+   "publisher": "Hodinkee",
+   "cache": "text/f7cd5bb6e0d02b3f.txt"
   },
   {
    "id": "S0416",
@@ -1995,7 +2045,8 @@
    "url": "https://www.smythjewelers.com/products/longines-ultra-chron-43mm-automatic-watch",
    "label": "零售商产品页标题标注 Ultra-Chron 43mm 自动款",
    "retrieved": "2026-09-20",
-   "publisher": "Smyth Jewelers"
+   "publisher": "Smyth Jewelers",
+   "cache": "text/9900ebc451555cee.txt"
   },
   {
    "id": "S0419",
@@ -2009,7 +2060,8 @@
    "url": "https://www.world-wrist-watch.com/zh-Hans/Article/9485",
    "label": "《欧米茄能抗磁15000高斯的大师天文台认证手表通常会经过哪8项检测》，至臻天文台的抗磁指标与检测项数",
    "retrieved": "2026-09-20",
-   "publisher": "世界腕表"
+   "publisher": "世界腕表",
+   "cache": "text/0f74480e56b6ecca.txt"
   },
   {
    "id": "S0421",
@@ -2023,21 +2075,24 @@
    "url": "https://www.watchreviewblog.com/hands-on-compact-longines-spirit-pilot-flyback-39/",
    "label": "WatchReviewBlog 上手：先行者飞行员飞返 39.5 毫米款",
    "retrieved": "2026-09-20",
-   "publisher": "WatchReviewBlog"
+   "publisher": "WatchReviewBlog",
+   "cache": "text/18a3f029999a39fe.txt"
   },
   {
    "id": "S0423",
    "url": "https://www.world-wrist-watch.com/zh-Hans/Article/16217",
    "label": "《2026潜水表CP值之王？浪琴表第三代「深海征服者」全面进化》，确认第三代定位",
    "retrieved": "2026-09-20",
-   "publisher": "世界腕表"
+   "publisher": "世界腕表",
+   "cache": "text/1069658404ffa167.txt"
   },
   {
    "id": "S031",
    "url": "https://revolutionwatch.com/longines-rounds-out-the-redesigned-master-collection/",
    "label": "Revolution（2026-08-25）：名匠 2005 年推出；2026 年改款为凹形表圈＋重做麦粒纹，三针款 30/34/39/41 mm，系列首只单按钮计时",
    "retrieved": "2026-09-20",
-   "publisher": "Revolution"
+   "publisher": "Revolution",
+   "cache": "text/c66cdb1eba7c9327.txt"
   },
   {
    "id": "S032",
@@ -2079,91 +2134,104 @@
    "url": "https://www.xbiao.com/longines/1176/param.html",
    "label": "腕表之家 名匠 L2.628.4.78.3 详细参数（L888、单晶硅摆轮游丝、38.5 mm、表壳 9.20 mm、防水 30 米、麦粒纹＋蓝钢指针）",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/b23a5dad866e5328.txt"
   },
   {
    "id": "S038",
    "url": "https://www.xbiao.com/longines/z_774220.html",
    "label": "腕表之家表友作业“拿下浪琴名匠八针月相”，佐证“八针月相”为中文通用叫法",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/06612e50a8f3c603.txt"
   },
   {
    "id": "S061",
    "url": "https://post.smzdm.com/p/ak8xnrr4",
    "label": "什么值得买社区长文《公价18200元，二手6158元》：作者跨源核对12条浪琴二手挂牌实价并附原始帖出处（2026-08-21）",
    "retrieved": "2026-09-20",
-   "publisher": "什么值得买"
+   "publisher": "什么值得买",
+   "cache": "text/c8e5fd1dd71a8f74.txt"
   },
   {
    "id": "S062",
    "url": "https://www.xbiao.com/longines/1175/",
    "label": "腕表之家 浪琴名匠L2.673.4.78.3报价页：官方媒体公价人民币¥29300、欧元€3850、瑞郎CHF3350，Cal.L678、40毫米",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/f41d4b5785c2ae33.txt"
   },
   {
    "id": "S063",
    "url": "https://www.xbiao.com/longines/76010/",
    "label": "腕表之家 浪琴先行者L3.820.4.93.0报价页：官方媒体公价人民币¥26600、欧元€3500，42毫米，2020年发布",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/2ca9f8d7a3c167de.txt"
   },
   {
    "id": "S064",
    "url": "https://www.xbiao.com/longines/z_1180122.html",
    "label": "腕表之家 康卡斯L3.781.4.96.6表友作业页，标注厂商指导公价¥14600",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/42f7150003fa0b2f.txt"
   },
   {
    "id": "S065",
    "url": "https://www.sina.cn/gc/article/nirnxpp1942376.html",
    "label": "新浪稿《浪琴名匠系列腕表的价格大概是多少》（2026-09-12）：名匠1.7万—3.4万价格带、2026款41毫米¥19900与L888.5硅游丝、二手95新全套约公价40%-55%",
    "retrieved": "2026-09-20",
-   "publisher": "新浪"
+   "publisher": "新浪",
+   "cache": "text/2c61b016040c80dc.txt"
   },
   {
    "id": "S066",
    "url": "https://www.sina.cn/gc/article/nirzshv4736174.html",
    "label": "新浪稿《泰格豪雅竞潜保值率仅3-5折》：竞潜石英款回收30%-40%、机械款约50%",
    "retrieved": "2026-09-20",
-   "publisher": "新浪"
+   "publisher": "新浪",
+   "cache": "text/6b4183722676bb2c.txt"
   },
   {
    "id": "S067",
    "url": "https://www.sina.cn/gc/article/nirxaty3735432.html",
    "label": "新浪稿《欧米茄海马300公价两连涨，二手为何还是3万出头》（2026-09-15）：公价4.6万涨至5.2万，95新全套二手2.2万—3.9万，保值率55%-70%",
    "retrieved": "2026-09-20",
-   "publisher": "新浪"
+   "publisher": "新浪",
+   "cache": "text/05d2083bacbf9348.txt"
   },
   {
    "id": "S068",
    "url": "https://www.yingxiahome.com/mbhs/ruibiao/4692.html",
    "label": "玩奢网《浪琴手表回收行情与全攻略（2026年参考）》（回收商口径）：回收价通常在原价3至7折，附件齐全与否差异可达10%-20%",
    "retrieved": "2026-09-20",
-   "publisher": "玩奢网"
+   "publisher": "玩奢网",
+   "cache": "text/a8edfdfb3b3807b3.txt"
   },
   {
    "id": "S069",
    "url": "https://www.yingxiahome.com/mbhs/ruibiao/4770.html",
    "label": "玩奢网《浪琴名匠月相款回收一般打几折》（2026-08-10，回收商口径）：浪琴全系平均30%-50%、钢带高于皮带8%-10%",
    "retrieved": "2026-09-20",
-   "publisher": "玩奢网"
+   "publisher": "玩奢网",
+   "cache": "text/47851d7585e006b3.txt"
   },
   {
    "id": "S0610",
    "url": "https://www.xbiao.com/longines/1174/",
    "label": "腕表之家 浪琴名匠L2.669.4.78.3报价页：官方媒体公价人民币¥20900、欧元€2390，Cal.L651、38.5毫米",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/2e33e476fa59e0f0.txt"
   },
   {
    "id": "S051",
    "url": "https://www.xbiao.com/longines/84163.html",
    "label": "腕表之家原创专栏《ETA 2892的“继任者们”》：写明浪琴 L619.2 基于 ETA 2892-A2、自 2015 年起新款名匠全面换装 L888、L888 由 ETA 为浪琴供应（ETA 内部型号 A31.LXX）、各版本动力储存 64 至 72 小时与是否 COSC 的差异、共同采用新合金主发条与 25200VPH 振频、传奇潜水员 39（L888.6）整表过 COSC 而先行者（L888.4）仅机芯过 COSC",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/84bea66998fba822.txt"
   },
   {
    "id": "S052",
@@ -2191,49 +2259,56 @@
    "url": "https://www.xbiao.com/20211027/65184.html",
    "label": "腕表之家《什么是至臻天文台？欧米茄至臻天文台检测内容有什么？》：至臻天文台为 METAS 与 COSC 双重认证、历时 10 余天的 8 项测试、机芯与整表分别暴露 15000 高斯磁场、容差 0 至 +5 秒/日对比 COSC 的 −4～+6 秒/日",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/71e64d3659f7eff4.txt"
   },
   {
    "id": "S056",
    "url": "https://www.xbiao.com/omega/61214/param.html",
    "label": "欧米茄海马 210.30.42.20.01.001 详细参数页：机芯型号 8800、出产厂商欧米茄、同轴擒纵、硅游丝、无卡度摆轮、35 钻、动力储备 55 小时、技术认证为瑞士天文台认证与至臻天文台、表径 42 毫米、防水 300 米",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/f904f1685284d56e.txt"
   },
   {
    "id": "S057",
    "url": "https://www.xbiao.com/longines/83381/param.html",
    "label": "浪琴名匠 L2.793.4.71.3 详细参数页：机芯型号 L888、出产厂商一栏填写为浪琴、单晶硅摆轮游丝、动力储备 72 小时、表径 40 毫米、防水 30 米，且全页没有“技术认证”条目",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/f23c2cf5d6c32dbd.txt"
   },
   {
    "id": "S058",
    "url": "https://www.xbiao.com/longines/200002169/",
    "label": "浪琴名匠系列列表页，逐款标注“官方公价”；2026-09-20 抓取显示 L2.793.4.71.3 官方公价￥18200",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/f1e51d6a43e1eff6.txt"
   },
   {
    "id": "S059",
    "url": "https://www.xbiao.com/omega/20000949/",
    "label": "欧米茄海马系列列表页，逐款标注“官方公价”；2026-09-20 抓取显示 210.30.42.20.01.001 官方公价￥48100",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/f019b39820005f00.txt"
   },
   {
    "id": "S0510",
    "url": "https://www.xbiao.com/longines/91315/param.html",
    "label": "浪琴高频精密天文台系列 L2.836.4.52.8 详细参数页：机芯 L836.6、基础机芯 L836、振频 36000、硅游丝、25 钻、动力储备 52 小时、技术认证为日内瓦独立实验室 TIMELAB 授予的精密计时器认证、表径 43 毫米、密底、防水 300 米",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/f1271839f55a7bbe.txt"
   },
   {
    "id": "S0511",
    "url": "https://www.xbiao.com/longines/100002041/",
    "label": "浪琴高频精密天文台（Ultra-Chron）系列列表页，标注 L2.836.4.52.8 官方公价 30,300 元（2026-09-20 抓取）",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/d72673dade6f56a7.txt"
   },
   {
    "id": "S081",
@@ -2254,7 +2329,8 @@
    "url": "https://www.smh.sh.cn/wechat_portal_cn/faq.aspx",
    "label": "上海纳沙泰尔手表服务中心（SMH，浪琴大陆授权售后）常见问题：每年检测防水、每隔 4-5 年保养一次、换电池需重做防水、自动机芯 40 小时动储与每天佩戴 8-10 小时、初始顺时针上链 30 圈、21-4 点勿调日历",
    "retrieved": "2026-09-20",
-   "publisher": "上海纳沙泰尔手表服务中心有限公司"
+   "publisher": "上海纳沙泰尔手表服务中心有限公司",
+   "cache": "text/282a6a84ad88c9c2.txt"
   },
   {
    "id": "S084",
@@ -2282,21 +2358,24 @@
    "url": "https://www.xbiao.com/longines/83969.html",
    "label": "腕表之家《浪琴 L888 vs L836，两款机芯有何不同？》：L888.6 配硅游丝、直径 25.6 毫米、振频 25200 VPH、动力储存 72 小时",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/33564bf78141788d.txt"
   },
   {
    "id": "S088",
    "url": "https://www.world-wrist-watch.com/zh-Hans/Article/8739",
    "label": "世界腕表 2025-04-21《浪琴表原厂保养价格公开 这几项竟然免费！？》：原厂更换电池程序含“防水圈更换→关闭表壳→防水测试”",
    "retrieved": "2026-09-20",
-   "publisher": "世界腕表 World Wrist Watch"
+   "publisher": "世界腕表 World Wrist Watch",
+   "cache": "text/ad56041c444ed95e.txt"
   },
   {
    "id": "S071",
    "url": "https://www.xbiao.com/longines/87016.html",
    "label": "腕表之家 2026-06-30 原创：浪琴名匠与康卡斯潜水 2026 迭代报道，文末附 8 款表型的厂商指导公价",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/dc6e735f958f196a.txt"
   },
   {
    "id": "S072",
@@ -2310,91 +2389,104 @@
    "url": "https://www.breitling.cn/watches/chronomat",
    "label": "百年灵中国官网机械计时系列页：各款标价与机芯认证说明",
    "retrieved": "2026-09-20",
-   "publisher": "Breitling"
+   "publisher": "Breitling",
+   "cache": "text/56b65095b1952e6b.txt"
   },
   {
    "id": "S074",
    "url": "https://www.xbiao.com/longines/67027.html",
    "label": "腕表之家 2022-04-20：万元价位 COSC 认证表款，含浪琴先行者 L3.811.4.03.2 的机芯与公价",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/f9ebbfc57ac788b2.txt"
   },
   {
    "id": "S075",
    "url": "https://i.xbiao.com/heuer/10000254/p4/m2/",
    "label": "腕表之家筛选页：卡莱拉 + 2 万至 5 万 + 瑞士天文台认证，命中 1 款",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/2e9bfdd1a78cfac5.txt"
   },
   {
    "id": "S076",
    "url": "https://i.xbiao.com/longines/100002288/p4/m2/",
    "label": "腕表之家筛选页：浪琴先行者 + 2 万至 5 万 + 瑞士天文台认证，命中 17 款",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/6ba7216a38bc2bf9.txt"
   },
   {
    "id": "S077",
    "url": "https://i.xbiao.com/breitling/10000470/p4/m2/",
    "label": "腕表之家筛选页：百年灵机械计时 + 2 万至 5 万 + 瑞士天文台认证，命中 27 款",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/20b7ab62a50003f1.txt"
   },
   {
    "id": "S078",
    "url": "https://www.xbiao.com/heuer/20000677/",
    "label": "腕表之家泰格豪雅 Calibre 5 自动上链腕表系列报价页",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/3ed3ca967cb1ea66.txt"
   },
   {
    "id": "S079",
    "url": "https://www.xbiao.com/heuer/76897.html",
    "label": "腕表之家 2024-05-01：泰格豪雅自产计时机芯梳理，含卡莱拉 1963 年问世、TH20-00 2023 年问世与 CAR2A11.BA0799 公价",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/dc10c5be6099f801.txt"
   },
   {
    "id": "S091",
    "url": "https://www.xbiao.com/longines/87428.html",
    "label": "腕表之家《浪琴名匠焕新：依然是万元级正装表标杆》（2026-07-27，萧峰）：2026 款名匠有 30/34/39/41 毫米四种表径；L888.5 未送交 COSC，L888 系列仅 L888.4、L888.6 获认证；41 毫米皮带与钢带均为人民币 19,900 元",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/00d259e913437e55.txt"
   },
   {
    "id": "S092",
    "url": "https://www.xbiao.com/longines/86927.html",
    "label": "腕表之家《二十年来首次重大升级：浪琴名匠迭代》（2026-06-27）：2005 款名匠为 40/38.5/42 毫米；2026 款中国大陆仅发售 30 毫米与 41 毫米；30 毫米用 L592.5（约 45 小时），34/39/41 毫米用 L888.5（约 72 小时）",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/95d32f25114c5f76.txt"
   },
   {
    "id": "S093",
    "url": "https://www.xbiao.com/longines/85816.html",
    "label": "腕表之家《康卡斯潜水表换代升级，新旧差异全梳理》（2026-04-03）：康卡斯 2012 年问世、定位万元级潜水表；三代提供 39/42 毫米，39 毫米暂未在中国大陆发售；L888.5 振频 25,200、动储 72 小时但未获 COSC；新康卡斯售价 16,300—17,200 元",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/68b0cddd1ac17a2b.txt"
   },
   {
    "id": "S094",
    "url": "https://m.mp.oeeee.com/a/BAAFRD000020240320922992.html",
    "label": "南方都市报独家专访浪琴全球总裁 Matthias Breschan（2024-03-20）：浪琴男女表销售各占 50%、正装与运动线均衡（多数对手约 80/20）；引摩根士丹利与 LuxeConsult 年报口径，2023 年浪琴售出 160 万只、约 11 亿瑞士法郎；彭于晏、赵丽颖为合作多年的形象大使",
    "retrieved": "2026-09-20",
-   "publisher": "南方都市报"
+   "publisher": "南方都市报",
+   "cache": "text/71eb1701e9d003db.txt"
   },
   {
    "id": "S095",
    "url": "https://www.xbiao.com/longines/86904.html",
    "label": "腕表之家转载浪琴官网动态（2026-06-11）：全新名匠涵盖 30 毫米与 41 毫米，搭载 L592.5／L888.5 硅游丝自动机芯，41 毫米款建议零售价 19,900 元、30 毫米款 17,200 元起",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/bac33f71cc9739bd.txt"
   },
   {
    "id": "S096",
    "url": "https://www.esquire.com/style/mens-accessories/a73532951/henry-cavill-longines-monopusher-chronograph-watch/",
    "label": "Esquire（2026-08-26）：Henry Cavill 出演浪琴全新名匠系列广告，主角为名匠首款单按钮计时码表",
    "retrieved": "2026-09-20",
-   "publisher": "Esquire"
+   "publisher": "Esquire",
+   "cache": "text/37c7e6deb7651677.txt"
   },
   {
    "id": "S097",
@@ -2408,14 +2500,32 @@
    "url": "https://www.sina.cn/gc/article/nirxaty3735432.html",
    "label": "新浪·观潮《欧米茄海马300公价两连涨，二手为何还是3万出头》（2026-09-15，自媒体行情稿，非品牌口径）：海马 300 钢款公价 4.6 万涨至 5.2 万、95 新全套二手 2.2 万—3.9 万、保值率 55%—70%、8800 至臻天文台机芯标称 0—5 秒/天、防磁 15,000 高斯",
    "retrieved": "2026-09-20",
-   "publisher": "新浪新闻"
+   "publisher": "新浪新闻",
+   "cache": "text/05d2083bacbf9348.txt"
   },
   {
    "id": "S099",
    "url": "https://post.smzdm.com/p/ak8xnrr4",
    "label": "什么值得买社区长文（2026-08-21）跨源核对 12 条挂牌实价：名匠基础款公价 18,200 元、二手挂牌 6,158—7,725 元、保值率 34%—42%；并注明挂牌价是买家能付到的价，表商回收还要再低一截",
    "retrieved": "2026-09-20",
-   "publisher": "什么值得买"
+   "publisher": "什么值得买",
+   "cache": "text/c8e5fd1dd71a8f74.txt"
+  },
+  {
+   "id": "S0611",
+   "url": "https://www.xbiao.com/tissot/z_1178770.html",
+   "publisher": "腕表之家",
+   "retrieved": "2026-09-27",
+   "label": "腕表之家 天梭经典（力洛克）表友作业页（2026-09-27 直接 curl 原文）：「作业中涉及到的1款产品 天梭经典系列T006.407.11.053.00 价格：￥5500（厂商指导公价）」，同页标注品牌天梭、系列经典、自动机械、材质 316L 精钢。口径提醒：这一栏写的是**厂商指导公价**，帖子里作者自述的入手价不是公价",
+   "cache": "text/76d4eeeed05bb59d.txt"
+  },
+  {
+   "id": "S0612",
+   "url": "https://www.xbiao.com/longines/1158/",
+   "publisher": "腕表之家",
+   "retrieved": "2026-09-27",
+   "label": "腕表之家 浪琴名匠 L2.628.4.78.6 型号报价页（2026-09-27 直接 curl 原文）：「官方媒体公价 人民币：￥17700 2025-11／欧元：€2300 2025-03／港币：HK$17200 2025-07／瑞郎：CHF2050 2025-04」——**四种币值的读数各自带抓取月份**，不是同一时点。基本信息：名匠系列、自动机械、2016 年发布、机芯 L888、表径 38.5 毫米、精钢。同页「相关腕表」列：L2.628.4.78.3 ¥17,700、L2.518.4.78.6 ¥15,400（页面归在「制表传统」名下）、L2.793.4.78.6 ¥18,200、L2.673.4.78.3 ¥29,300、L2.693.4.78.3 ¥22,700、L2.920.4.78.6 ¥21,300——名匠名下最低的那一档就是 17,700",
+   "cache": "text/d646d3ec4d3f479a.txt"
   }
  ],
  "category": "腕表",
@@ -2434,17 +2544,27 @@
   "hero_motif": "winged_hourglass",
   "hero_note": "以带翼沙漏徽标与银灰、酒红构成开场母题，取'计时工具'的中性感而非珠宝感"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-05",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 16,
  "created_date": "2026-09-20",
  "site": {
-  "url": "https://longines-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72d-09bb-7bd5-aa34-04dd77efeba7",
-  "slug": "longines",
-  "content_sha": "f91687596fe6c452",
-  "published_date": "2026-09-25",
+  "url": "https://watches-gtqdc11h6po.qoder.website/longines/longines.html",
+  "group": "watches",
+  "path": "/longines/longines.html",
+  "project_id": "01a104e6-3ec2-72e3-974a-0811cf4dc8f0",
+  "content_sha": "bff012564d1a2222",
+  "published_date": "2026-10-10",
   "access": "public"
+ },
+ "cover": {
+  "file": "images/45_浪琴_康卡斯.jpg",
+  "alt": "浪琴_浪琴表推出全新康卡斯潜水系列双色腕表|腕表之家xbiao.com",
+  "caption": "浪琴_浪琴表推出全新康卡斯潜水系列双色腕表|腕表之家xbiao.com",
+  "source_page": "http://www.xbiao.com/longines/61777.html",
+  "width": 1400,
+  "height": 900,
+  "query": "浪琴 康卡斯"
  }
 }

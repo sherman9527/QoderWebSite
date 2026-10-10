@@ -116,16 +116,16 @@
    "images": [
     {
      "file": "images/01_劳斯莱斯_Charles_Rolls.png",
-     "alt": "劳斯莱斯首款纯电动车“闪灵”全球发布 2023年第四季度交付_手机新浪网",
+     "alt": "",
      "caption": "劳斯莱斯首款纯电动车“闪灵”全球发布 2023年第四季度交付_手机新浪网",
      "source_page": "https://finance.sina.cn/2022-10-19/detail-imqqsmrp3035690.d.html",
-     "width": 1620,
-     "height": 912,
+     "width": 800,
+     "height": 450,
      "query": "劳斯莱斯 Charles Rolls"
     },
     {
      "file": "images/02_劳斯莱斯_Henry_Royce.jpg",
-     "alt": "劳斯莱斯幻影加长雨伞就值十万，最顶级的工艺与可以展现给世人-新浪汽车",
+     "alt": "",
      "caption": "劳斯莱斯幻影加长雨伞就值十万，最顶级的工艺与可以展现给世人-新浪汽车",
      "source_page": "http://k.sina.com.cn/article_6044827772_p1684cc07c00100fj2t.html",
      "width": 1440,
@@ -142,7 +142,13 @@
     {
      "type": "prose",
      "heading": "一桩不能公开的恋情",
-     "text": "1909 年前后，雕塑家 Charles Sykes 为 Beaulieu 的蒙塔古勋爵私人订做了一只车头立标，摆在勋爵那台 Silver Ghost 上：衣袂前飘、食指贴在唇边的女子，名叫 The Whisper。手指抵唇是替雇主保守秘密——模特 Eleanor Thornton 是勋爵的情人，因出身贫寒无法公开。这一版只铸了三到四只，现存不超过两只。\n\n1910 年车主自订车标成风，总经理 Claude Johnson 嫌卡通动物拉低品牌，请 Sykes 改出通用造型。方案 1911 年 2 月定稿，2 月 6 日注册为公司知识产权；此后长期是选装件，1920 年代初成标配。Thornton 没等到这天：1915 年 12 月 30 日，她随勋爵赴印度途中所乘的 SS Persia 号被潜艇击沉。"
+     "text": "1909 年前后，雕塑家 Charles Sykes 为 Beaulieu 的蒙塔古勋爵私人做了一只车头立标：一只衣袂前飘、食指贴在唇边的女子铝制小像，名叫 The Whisper，模特是 Sykes 的常任缪斯 Eleanor Thornton。确切年份劳斯莱斯自己说仍是谜。这只小像如今与其余几只一起常设在 Beaulieu 的国家汽车博物馆；勋爵生前把它装在自己名下每一台劳斯莱斯上，直到 1929 年去世。\n\n恋情是另一条线。Thornton 生于 1880 年，早先是公司首任总经理 Claude Johnson 的助理，后来被勋爵挖去做自己的助理。劳斯莱斯官方材料的说法是：这段感情「因可能引发的丑闻，始终是一个严守的秘密」——它没说原因是出身，只说 little is known of her early life。至于「手指抵唇」就是在替雇主保守秘密，那是后人给这只小像加的读法，官方材料里没有这句。\n\n1910 年，车主自订车标已经成了风气，Henry Royce 嫌这些猫、魔鬼、挥警棍的警察拉低品牌，Johnson 于是请 Sykes 另做一只通用造型。新方案在 1911 年 2 月 6 日注册为公司知识产权。但它此后长期是要另花钱的选装件：一家汽车史专栏给的数是直到 1939 年都还得单独付费、约四成的车装了它，那年之后才成为标准配置。Thornton 没等到这天——1915 年她与勋爵同船走海路去印度，所乘的 SS Persia 号被鱼雷击中，五分钟沉没，勋爵在救生艇上生还，她遇难。",
+     "source_ids": [
+      "S015",
+      "S021",
+      "S022",
+      "S1130"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -248,16 +254,16 @@
    "images": [
     {
      "file": "images/05_劳斯莱斯_欢庆女神_立标.jpg",
-     "alt": "【劳斯莱斯汽车全部】劳斯莱斯汽车全部_新闻_导购_评测_科技_文化-易车网",
+     "alt": "",
      "caption": "【劳斯莱斯汽车全部】劳斯莱斯汽车全部_新闻_导购_评测_科技_文化-易车网",
      "source_page": "http://car.bitauto.com/rolls-royce/wenzhang/",
-     "width": 4032,
-     "height": 2688,
+     "width": 1472,
+     "height": 981,
      "query": "劳斯莱斯 欢庆女神 立标"
     },
     {
      "file": "images/06_劳斯莱斯_Spirit_of.jpg",
-     "alt": "劳斯莱斯是哪个国家的汽车品牌-太平洋汽车百科",
+     "alt": "",
      "caption": "劳斯莱斯是哪个国家的汽车品牌-太平洋汽车百科",
      "source_page": "https://baike.pcauto.com.cn/1251547/2271548.html",
      "width": 800,
@@ -374,7 +380,7 @@
    "images": [
     {
      "file": "images/09_劳斯莱斯_幻影_Phantom.png",
-     "alt": "劳斯莱斯：汽车与航空领域的百年魅力 - 知乎",
+     "alt": "",
      "caption": "劳斯莱斯：汽车与航空领域的百年魅力 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/108932095",
      "width": 800,
@@ -383,7 +389,7 @@
     },
     {
      "file": "images/10_劳斯莱斯_古思特_Ghost.jpg",
-     "alt": "劳斯莱斯汽车(杭州)试乘试驾之旅耀世启程_凤凰网汽车_凤凰网",
+     "alt": "",
      "caption": "劳斯莱斯汽车(杭州)试乘试驾之旅耀世启程_凤凰网汽车_凤凰网",
      "source_page": "https://auto.ifeng.com/qichezixun/20180415/1165525.shtml",
      "width": 870,
@@ -557,16 +563,16 @@
    "images": [
     {
      "file": "images/13_劳斯莱斯_空气悬挂_立体摄像机.png",
-     "alt": "劳斯莱斯首款纯电动车“闪灵”全球发布 2023年第四季度交付_手机新浪网",
+     "alt": "",
      "caption": "劳斯莱斯首款纯电动车“闪灵”全球发布 2023年第四季度交付_手机新浪网",
      "source_page": "https://finance.sina.cn/2022-10-19/detail-imqqsmrp3035690.d.html?vt=4&wm=string&cid=76729&node_id=76729",
-     "width": 1620,
-     "height": 914,
+     "width": 800,
+     "height": 451,
      "query": "劳斯莱斯 空气悬挂 立体摄像机"
     },
     {
      "file": "images/14_劳斯莱斯_隔音_双层玻璃.jpg",
-     "alt": "劳斯莱斯2021年销量为117年来巅峰，知道为什么要努力了吧__财经头条",
+     "alt": "",
      "caption": "劳斯莱斯2021年销量为117年来巅峰，知道为什么要努力了吧__财经头条",
      "source_page": "https://cj.sina.com.cn/articles/view/7152080775/1aa4c17870010127ta",
      "width": 988,
@@ -759,16 +765,16 @@
    "images": [
     {
      "file": "images/17_劳斯莱斯_星空顶_光纤.jpg",
-     "alt": "臻世之作 至美典藏 劳斯莱斯汽车亮相2021成都国际汽车展览会",
+     "alt": "",
      "caption": "臻世之作 至美典藏 劳斯莱斯汽车亮相2021成都国际汽车展览会",
      "source_page": "https://www.vogue.com.cn/living/brand_news/news_182565780d9ae3bd.html",
-     "width": 2500,
-     "height": 1663,
+     "width": 1472,
+     "height": 979,
      "query": "劳斯莱斯 星空顶 光纤"
     },
     {
      "file": "images/18_劳斯莱斯_真皮_裁皮.jpg",
-     "alt": "劳斯莱斯首推SUV车型，顶级奢华+越野性能，帅爆了！_凤凰网汽车_凤凰网",
+     "alt": "",
      "caption": "劳斯莱斯首推SUV车型，顶级奢华+越野性能，帅爆了！_凤凰网汽车_凤凰网",
      "source_page": "https://auto.ifeng.com/qichezixun/20180526/1184916.shtml",
      "width": 750,
@@ -860,7 +866,7 @@
         },
         {
          "label": "光纤",
-         "value": "1,344 根",
+         "value": "1,344 根（768 红＋576 白）",
          "source_ids": [
           "S062"
          ]
@@ -978,7 +984,7 @@
    "images": [
     {
      "file": "images/21_劳斯莱斯_Bespoke_定制_内饰.jpg",
-     "alt": "劳斯莱斯魅影-易车搜索",
+     "alt": "",
      "caption": "劳斯莱斯魅影-易车搜索",
      "source_page": "https://so.yiche.com/qiche/劳斯莱斯魅影/",
      "width": 1267,
@@ -987,11 +993,11 @@
     },
     {
      "file": "images/22_劳斯莱斯_车漆_双色.jpg",
-     "alt": "【劳斯莱斯】劳斯莱斯汽车报价_图片_2018劳斯莱斯)新款车型-手机易车网",
+     "alt": "",
      "caption": "【劳斯莱斯】劳斯莱斯汽车报价_图片_2018劳斯莱斯)新款车型-手机易车网",
      "source_page": "http://car.m.yiche.com/rolls-royce/",
-     "width": 4032,
-     "height": 2688,
+     "width": 1472,
+     "height": 981,
      "query": "劳斯莱斯 车漆 双色"
     }
    ]
@@ -1233,16 +1239,16 @@
    "images": [
     {
      "file": "images/25_劳斯莱斯_价格_选配单.jpg",
-     "alt": "2023款劳斯莱斯Black Badge|新车解析|汽车视频|V12发动机_新浪新闻",
+     "alt": "",
      "caption": "2023款劳斯莱斯Black Badge|新车解析|汽车视频|V12发动机_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_5151738923_m133114c2b001014byx.html?c=spr_auto_trackid_863e2d715492b8aa",
-     "width": 1920,
-     "height": 1080,
+     "width": 1472,
+     "height": 828,
      "query": "劳斯莱斯 价格 选配单"
     },
     {
      "file": "images/26_劳斯莱斯_豪车_落地价.jpg",
-     "alt": "劳斯莱斯闪灵接受高温测试 天价豪车纯电化也怕过热-新浪汽车",
+     "alt": "",
      "caption": "劳斯莱斯闪灵接受高温测试 天价豪车纯电化也怕过热-新浪汽车",
      "source_page": "https://k.sina.com.cn/article_2026337537_78c77501027013wjb.html",
      "width": 1920,
@@ -1442,16 +1448,16 @@
    "images": [
     {
      "file": "images/29_劳斯莱斯_电动车_平台.jpg",
-     "alt": "劳斯莱斯 2018款 库里南 四座版报价|图片|出售|多少钱|哪里有卖的584.10万元-超跑之家",
-     "caption": "劳斯莱斯 2018款 库里南 四座版报价|图片|出售|多少钱|哪里有卖的584.10万元-超跑之家",
+     "alt": "",
+     "caption": "劳斯莱斯 2018款 库里南 四座版",
      "source_page": "https://www.chaopao168.com/carInfo/usedcar/1631576400701440002/",
-     "width": 1707,
-     "height": 1280,
+     "width": 1472,
+     "height": 1103,
      "query": "劳斯莱斯 电动车 平台"
     },
     {
      "file": "images/30_劳斯莱斯_工厂_产线.jpg",
-     "alt": "劳斯莱斯汽车的具体价格究竟是多少-太平洋汽车百科",
+     "alt": "",
      "caption": "劳斯莱斯汽车的具体价格究竟是多少-太平洋汽车百科",
      "source_page": "https://baike.pcauto.com.cn/1353226.html",
      "width": 800,
@@ -1651,16 +1657,16 @@
    "images": [
     {
      "file": "images/33_劳斯莱斯_豪车_保险.jpg",
-     "alt": "【劳斯莱斯】劳斯莱斯汽车报价_图片_2018劳斯莱斯)新款车型-手机易车网",
+     "alt": "",
      "caption": "【劳斯莱斯】劳斯莱斯汽车报价_图片_2018劳斯莱斯)新款车型-手机易车网",
      "source_page": "http://car.m.yiche.com/rolls-royce/",
-     "width": 4032,
-     "height": 2688,
+     "width": 1472,
+     "height": 981,
      "query": "劳斯莱斯 豪车 保险"
     },
     {
      "file": "images/34_劳斯莱斯_二手车_价格.jpg",
-     "alt": "劳斯莱斯(世界顶级豪华轿车厂商)_360百科",
+     "alt": "",
      "caption": "劳斯莱斯(世界顶级豪华轿车厂商)_360百科",
      "source_page": "https://baike.so.com/doc/2055170-2174424.html",
      "width": 670,
@@ -1818,7 +1824,7 @@
    "images": [
     {
      "file": "images/37_劳斯莱斯_流行文化_音乐录影带.png",
-     "alt": "劳斯莱斯：汽车与航空领域的百年魅力 - 知乎",
+     "alt": "",
      "caption": "劳斯莱斯：汽车与航空领域的百年魅力 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/108932095",
      "width": 800,
@@ -1827,7 +1833,7 @@
     },
     {
      "file": "images/38_劳斯莱斯_老钱_审美.jpg",
-     "alt": "【劳斯莱斯汽车全部】劳斯莱斯汽车全部_新闻_导购_评测_科技_文化-易车网",
+     "alt": "",
      "caption": "【劳斯莱斯汽车全部】劳斯莱斯汽车全部_新闻_导购_评测_科技_文化-易车网",
      "source_page": "http://car.bitauto.com/rolls-royce/wenzhang/",
      "width": 1500,
@@ -1883,37 +1889,42 @@
   {
    "id": "S022",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0455942EN/the-spirit-of-ecstasy:-a-constant-presence-since-1911?language=en",
-   "label": "劳斯莱斯官方 PressClub 资料包《THE SPIRIT OF ECSTASY: A CONSTANT PRESENCE SINCE 1911》：1911 年 2 月 6 日注册知识产权、熔模铸造 1,600°C 与 0.04 mm 弹丸抛光、纯银/24K 镀金/碳纤维三种饰面、1970 年代瑞士禁令与弹簧底座、8.27 cm 与 9.5 cm",
+   "label": "劳斯莱斯官方 PressClub 资料包《THE SPIRIT OF ECSTASY: A CONSTANT PRESENCE SINCE 1911》（2026-09-30 直接 curl 原文，18,285 字正文）：立标 1911 年首次注册为公司知识产权，原文日期「6 February 1911」（2022 年 Spectre 发布时特别写明那是注册后 111 年整）；Sykes 为勋爵那台 Silver Ghost 做的是一只「an aluminium statuette of a young woman in fluttering robes」，命名 The Whisper，**确切年份官方自陈是谜（the precise date remains a mystery）**；原件与其他立标常设于 Beaulieu 国家汽车博物馆（National Motor Museum）；「By 1910 … it was already an established custom among owners to decorate their radiator grilles with specially commissioned」；模特经证实是 Eleanor Thornton，**Born in 1880**、早年是 Claude Johnson（公司首任 managing director）的助理、在切尔西艺术家聚居区做业余人体模特、后被勋爵挖走当自己的助理、两人「embarked on a long, heartfelt love affair」，勋爵把它装在自己名下每一台劳斯莱斯上直到 **1929 年去世**；Thornton **died in 1915**，而这段爱「owing to its potential for scandal, had always remained a closely guarded secret」；1920 年送展 L'Auto 在巴黎车展办的「Concours des Bouchons de Radiateurs」，Sykes 获 Premier Prix 金奖；工艺与规格：熔模铸造、1,600°C、0.04 mm 钢珠抛光、纯银／24K 镀金／碳纤维三种饰面、1970 年代起多国禁用车头立标（瑞士最严）与弹簧收回底座、现行 8.27 cm（此前 9.5 cm）",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/7b150b9e96a27f6d.txt"
   },
   {
    "id": "S023",
    "url": "https://store.millermotorcars.com/products/rolls-royce-spirit-of-ecstasy",
    "label": "美国授权经销商 Miller Motorcars 精品店原厂替换件页（标签含 Replacement Parts），报价 5,700 美元",
    "retrieved": "2026-09-20",
-   "publisher": "Miller Motorcars"
+   "publisher": "Miller Motorcars",
+   "cache": "text/68b861bacd732477.txt"
   },
   {
    "id": "S024",
    "url": "https://store.millermotorcars.com/products/rolls-royce-phantom-24-carat-gold-plated-spirit-of-ecstasy",
    "label": "同店镀金立标页，商品说明标注 9-carat gold plated、适配 2004 年至今 Phantom，报价 20,000 美元",
    "retrieved": "2026-09-20",
-   "publisher": "Miller Motorcars"
+   "publisher": "Miller Motorcars",
+   "cache": "text/921f6d2f3400e290.txt"
   },
   {
    "id": "S025",
    "url": "https://store.millermotorcars.com/products/rolls-royce-spirit-of-ecstasy-illuminated",
    "label": "同店发光版立标页，说明为 frosted glass effect、灯光由内向外、随迎宾灯在停车时点亮，报价 11,500 美元",
    "retrieved": "2026-09-20",
-   "publisher": "Miller Motorcars"
+   "publisher": "Miller Motorcars",
+   "cache": "text/b59863766b3c2cc7.txt"
   },
   {
    "id": "S026",
    "url": "https://store.millermotorcars.com/products/solid-silver-spirit-of-ecstasy-for-the-rolls-royce-phantom",
    "label": "同店纯银版立标页，报价 11,500 美元",
    "retrieved": "2026-09-20",
-   "publisher": "Miller Motorcars"
+   "publisher": "Miller Motorcars",
+   "cache": "text/49ca1a530e191fe2.txt"
   },
   {
    "id": "S031",
@@ -1941,35 +1952,40 @@
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0404820EN/rolls-royce-spectre-unveiled:-the-marque%E2%80%99s-first-fully-electric-motor-car?language=en",
    "label": "劳斯莱斯官方新闻稿（2022 年 10 月 18 日）：闪灵是品牌首款纯电动车，并追溯到 Charles Rolls 1900 年的电动车预言",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars Press Club"
+   "publisher": "Rolls-Royce Motor Cars Press Club",
+   "cache": "text/2742f27f6e9f99e1.txt"
   },
   {
    "id": "S035",
    "url": "https://chejiahao.m.autohome.com.cn/info/25023230",
    "label": "汽车之家车家号：据宝马集团年度财报披露的 2025 年劳斯莱斯分车型交付量与占比（5,664 台总量、库里南 3,291 台占 58%、闪灵 1,002 台、古思特 993 台、幻影 376 台）",
    "retrieved": "2026-09-20",
-   "publisher": "汽车之家"
+   "publisher": "汽车之家",
+   "cache": "text/9c092f7745fd8ed2.txt"
   },
   {
    "id": "S036",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0438776EN/rolls-royce-ghost:-a-symbol-of-endless-pure-expression?language=en",
    "label": "劳斯莱斯官方新闻稿：古思特面向更年轻客群、默认自己开车，开起来与坐进去同样舒服",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars Press Club"
+   "publisher": "Rolls-Royce Motor Cars Press Club",
+   "cache": "text/2d5d81dbe43f9cc1.txt"
   },
   {
    "id": "S037",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0438978EN/rolls-royce-motor-cars-in-2023:-a-year-of-success?language=en",
    "label": "劳斯莱斯官方年度业绩稿：2023 年交付 6,032 台创新高，闪灵当年秋交付首批客户",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars Press Club"
+   "publisher": "Rolls-Royce Motor Cars Press Club",
+   "cache": "text/dd4cc4156f17408d.txt"
   },
   {
    "id": "S038",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0304275EN/rolls-royce-motor-cars-delivers-historic-record-result-in-2019?language=en",
    "label": "劳斯莱斯官方年度业绩稿：2019 年交付 5,152 台、较 2018 年的 4,107 台增长 25%，并写明库里南对销量增长贡献重大",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars Press Club"
+   "publisher": "Rolls-Royce Motor Cars Press Club",
+   "cache": "text/234db349421a6557.txt"
   },
   {
    "id": "S039",
@@ -1983,98 +1999,112 @@
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0445483EN/ghost-series-ii:-the-most-advanced-driver-focused-v12-rolls-royce-ever-created?language=en",
    "label": "劳斯莱斯官方 PressClub 新闻稿《GHOST SERIES II》（2024-10-08）：Planar 悬架的上叉臂阻尼器、连续可变减振器、自调平空气支柱、五连杆后轴，Flagbearer 摄像头读路、卫星辅助变速箱、星空顶光纤的声学膜",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/98a1bdadf58e9385.txt"
   },
   {
    "id": "S042",
    "url": "https://www.jalopnik.com/2018-rolls-royce-phantom-viii-is-the-most-silent-car-in-1797311745/",
    "label": "Jalopnik 对幻影八代的报道（2017-07），原文大段转述劳斯莱斯官方技术口径：6mm 双层玻璃、130 kg 以上隔音材料、地板与防火墙双层铝板夹泡沫毛毡、Silent-Seal 胎内泡沫层降 9 dB",
    "retrieved": "2026-09-20",
-   "publisher": "Jalopnik"
+   "publisher": "Jalopnik",
+   "cache": "text/2ce61572a92a87cc.txt"
   },
   {
    "id": "S043",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0460774EN/rolls-royce-inaugurates-eric-platford-testway-strengthening-final-validation?language=en",
    "label": "劳斯莱斯官方新闻稿《Eric Platford 测试道在古德伍德启用》（2026-09-16）：四条 90 米平行车道、八种路面、正弦波纹、气动声学舱、13 公里乡道验证",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/8119fa62eb6b6dd0.txt"
   },
   {
    "id": "S044",
    "url": "https://carconfections.com/all-car-confections-sound-level-readings-master-list/",
    "label": "第三方车内噪音实测汇总表，方法学写明每车在 55 mph 用分贝仪测量；含 Ghost、Spectre、Cullinan 与宝马 X7 读数",
    "retrieved": "2026-09-20",
-   "publisher": "Car Confections"
+   "publisher": "Car Confections",
+   "cache": "text/dd569d0c599133ba.txt"
   },
   {
    "id": "S045",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0441740EN/rolls-royce-presents-cullinan-series-ii:-a-bold-evolution-of-the-world%E2%80%99s-pre-eminent-super-luxury-suv?language=en",
    "label": "劳斯莱斯官方新闻稿《库里南 Series II》（2024-05-07）：18 扬声器、18 声道 1400 瓦功放、门槛铝型材空腔作低频共鸣腔",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/bfe03b406787a27a.txt"
   },
   {
    "id": "S046",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0458258EN/rolls-royce-presents-spectre-series-ii:-the-relentless-pursuit-of-perfection-continues?language=en",
    "label": "劳斯莱斯官方新闻稿《闪灵 Series II》（2026-06-02）：WLTP 数据栏里的 Pass-By Noise 65 dB(A)，属车外通过噪声认证口径",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/c9a3a352ebe8319c.txt"
   },
   {
    "id": "S061",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0447359EN/landmark-investment-crowns-record-year-for-bespoke-at-rolls-royce-motor-cars",
    "label": "劳斯莱斯官方 PressClub 新闻稿《LANDMARK INVESTMENT CROWNS RECORD YEAR FOR BESPOKE》（2025 年 1 月）：逾 3 亿英镑扩建、2024 年每台车定制内容价值同比涨 10%、Private Office 订单价值通常高 25%、上海 2023 年开、纽约与首尔 2024 年增设",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/02abbd8a0c55ce18.txt"
   },
   {
    "id": "S062",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0454857EN/spectacular-singular-and-distinctly-successful:-rolls-royce-presents-bespoke-trends-innovations-and-achievements-in-2025",
    "label": "劳斯莱斯官方 PressClub 新闻稿《2025 年 Bespoke 趋势、创新与成果》（2026 年 1 月 9 日）：5,664 台年产量、Private Office 委托量同比翻倍、Spectre Bailey / Cullinan Cosmos / Phantom Dragon / Phantom Centenary 具体工艺数字、CEO Chris Brownridge 引言",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/a37b3c7ffd087f67.txt"
   },
   {
    "id": "S063",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0407912EN/20-cars-for-20-years:-the-evolution-of-rolls-royce-2003-2023?language=en",
    "label": "劳斯莱斯官方 PressClub《20 CARS FOR 20 YEARS：2003–2023 的演进》：古德伍德 2003 年 1 月 1 日零点零一分交付第一台车；Bespoke Collective 由设计师、工程师、工匠组成",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/2b9abd497b648506.txt"
   },
   {
    "id": "S064",
    "url": "https://www.jurnileasing.co.uk/blog/the-man-who-paints-every-rolls-royce-coachline",
    "label": "英国 Jurni leasing 专稿《The Man Who Paints Every Rolls-Royce Coachline》（2024-08-27）：Mark Court 自 2003 年起手绘腰线、松鼠毛笔、自由手仅一条胶带引导、单条线三小时以上、是全车最后一道工序",
    "retrieved": "2026-09-20",
-   "publisher": "Jurni"
+   "publisher": "Jurni",
+   "cache": "text/59193ee6afe5a57f.txt"
   },
   {
    "id": "S065",
    "url": "https://supercarblondie.com/man-earns-six-figure-salary-drawing-coachlines-on-rolls-royces/",
    "label": "Supercar Blondie（2025-05-04）：2003 年以来只有 Mark Court 一人负责劳斯莱斯腰线、画错整车重喷；该文标题中的薪酬数字未经证实，本章不采用",
    "retrieved": "2026-09-20",
-   "publisher": "Supercar Blondie"
+   "publisher": "Supercar Blondie",
+   "cache": "text/19adb78fd6b5ae18.txt"
   },
   {
    "id": "S066",
    "url": "https://www.caranddriver.com/rolls-royce/phantom",
    "label": "Car and Driver 2026 款 Phantom 测评页：美规起售价 555,350 美元；Phantom Centenary Private Collection 限量 25 台",
    "retrieved": "2026-09-20",
-   "publisher": "Car and Driver"
+   "publisher": "Car and Driver",
+   "cache": "text/1a2b081efb0def75.txt"
   },
   {
    "id": "S067",
    "url": "https://robbreport.com.sg/this-us-28-million-rolls-royce-boat-tail-may-be-the-most-expensive-new-car-in-history/",
    "label": "Robb Report 新加坡版（2021-06）：Boat Tail 估价约 2,800 万美元、品牌从不公布真正定制车型价格、2017 年 Sweptail 约 1,300 万美元",
    "retrieved": "2026-09-20",
-   "publisher": "Robb Report"
+   "publisher": "Robb Report",
+   "cache": "text/2dfa81d8641a1ae4.txt"
   },
   {
    "id": "S068",
    "url": "https://gtspirit.com/2021-05-27/worlds-most-expensive-new-car-rolls-royce-boat-tail-at-28-million/",
    "label": "GTspirit（2021-05-27）：Boat Tail 限量 3 台、传闻单价 2,800 万美元、历时四年与三位客户共创",
    "retrieved": "2026-09-20",
-   "publisher": "GTspirit"
+   "publisher": "GTspirit",
+   "cache": "text/9b71c9f80382edbb.txt"
   },
   {
    "id": "S069",
@@ -2095,14 +2125,16 @@
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0449206EN/the-pursuit-of-perfection:-craftsmanship-at-the-home-of-rolls-royce?language=en",
    "label": "劳斯莱斯官方 PressClub 工艺专题《THE PURSUIT OF PERFECTION》（2025-03-27）：整车 600 小时以上、星空顶 800–1,600 根光纤与 9 小时／17 小时工时、皮革强光检验与粉笔标瑕疵、削薄 1.5→0.6 毫米",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/644540360b61d1dd.txt"
   },
   {
    "id": "S052",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0300125EN/starlight-headliner?language=en",
    "label": "劳斯莱斯官方 PressClub《STARLIGHT HEADLINER》（2019-08-23）：起源于一位畏光症客户、2006 年交付的首台幻影带 800 颗星、两名技师、定制模板可需一周",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/d444f47abb14c26d.txt"
   },
   {
    "id": "S053",
@@ -2123,14 +2155,16 @@
    "url": "https://thehogring.com/2011-03-22/leather-interiors-rolls-royce-style/",
    "label": "畜牧行业媒体《The Hog Ring》2011 年试驾报道，转述劳斯莱斯方面口径：Phantom 内饰用 15–18 张巴伐利亚公牛皮，不用母牛皮以免妊娠纹，牛群养在蚊虫无法存活的高寒牧区",
    "retrieved": "2026-09-20",
-   "publisher": "The Hog Ring"
+   "publisher": "The Hog Ring",
+   "cache": "text/4a2fe4e88f8e7265.txt"
   },
   {
    "id": "S056",
    "url": "https://www.caranddriver.com/news/a15357470/cattle-cars-how-leather-goes-from-cow-to-your-car/",
    "label": "《Car and Driver》2015 年汽车皮革专题：高纬度凉爽产区叮咬害虫少故皮面无疤、低端皮有铁丝网划伤靠压纹掩盖、宾利慕尚内饰用 14 张皮而材料实际消耗约一半",
    "retrieved": "2026-09-20",
-   "publisher": "Car and Driver"
+   "publisher": "Car and Driver",
+   "cache": "text/da7a11f740d50c89.txt"
   },
   {
    "id": "S057",
@@ -2144,7 +2178,8 @@
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0454857EN/spectacular-singular-and-distinctly-successful:-rolls-royce-presents-bespoke-trends-innovations-and-achievements-in-2025?language=en",
    "label": "劳斯莱斯官方 PressClub《Bespoke 2025 年度趋势》（2026-01-09）：Cullinan Cosmos 全手绘星空顶 160 小时、20 层漆",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/b09f8ef98648b81d.txt"
   },
   {
    "id": "S059",
@@ -2158,161 +2193,184 @@
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0404820EN/rolls-royce-spectre-unveiled:-the-marque%E2%80%99s-first-fully-electric-motor-car?language=en",
    "label": "劳斯莱斯官方 PressClub 新闻稿（2022-10-18）：闪灵全球首发，首次写明“到 2030 年底整个产品组合全面纯电”，并给出预备值 430 kW/900 Nm、WLTP 520 km、0-60mph 4.4s（0-100 4.5s）、整备质量 2975 kg、2023 年 Q4 首批交付、定价介于库里南与幻影之间，以及“2003 年第一代古德伍德幻影建在自己的专属架构上”",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/2742f27f6e9f99e1.txt"
   },
   {
    "id": "S082",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0455491EN/rolls-royce-spectre:-crafted-to-become-a-future-classic?language=en",
    "label": "劳斯莱斯官方 PressClub 闪灵稿（2026-02-05）：文末官方油耗/排放口径为 WLTP 电耗 23.6–22.2 kWh/100km、续航 329 mi / 530 km、CO2 0 g/km",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/ae0664a78af05d40.txt"
   },
   {
    "id": "S083",
    "url": "https://ev-database.org/car/1765/Rolls-Royce-Spectre",
    "label": "EV Database 闪灵（MY24-26）条目：可用电池 102 kWh（标称 107 kWh、NMC 方形电芯、400 V）、430 kW（585 PS）/900 Nm、0-100 4.5 s、极速 250 km/h、DC 峰值 195 kW、电池质保 8 年/160,000 km、英国建议零售价 £333,185，并标注在售期为 2023 年 10 月至 2026 年 6 月、后继车型为 Spectre Series II",
    "retrieved": "2026-09-20",
-   "publisher": "ev-database.org"
+   "publisher": "ev-database.org",
+   "cache": "text/0e67e438f644cea3.txt"
   },
   {
    "id": "S084",
    "url": "https://www.auto-data.net/en/rolls-royce-spectre-102-kwh-584hp-awd-49729",
    "label": "Auto-Data 闪灵 102 kWh 条目：电池包重 700 kg、置于地板下方，WLTP 530 km、EPA 260 mi（418.4 km），前/后电机 258 hp 与 490 hp",
    "retrieved": "2026-09-20",
-   "publisher": "auto-data.net"
+   "publisher": "auto-data.net",
+   "cache": "text/395b2c740c36dd86.txt"
   },
   {
    "id": "S085",
    "url": "https://www.supercars.net/blog/1998%E2%86%922002-rolls-royce-silver-seraph/",
    "label": "Supercars.net Silver Seraph（1998–2002）技术规格表：5379 cc V12、322 bhp @5000、490 Nm @3900、ZF 5HP30 五速自动、后轮驱动",
    "retrieved": "2026-09-20",
-   "publisher": "supercars.net"
+   "publisher": "supercars.net",
+   "cache": "text/7d29bf483d4fb092.txt"
   },
   {
    "id": "S086",
    "url": "https://www.dailyrevs.com/cars/2026-rolls-royce-phantom",
    "label": "Daily Revs 幻影车型页（2025-05-27）：现款 6.75 升双涡轮增压 V12，563 hp（420 kW）@5,000、664 lb-ft（900 Nm）@1,700、八速自动、0-60 约 5.1 秒",
    "retrieved": "2026-09-20",
-   "publisher": "dailyrevs.com"
+   "publisher": "dailyrevs.com",
+   "cache": "text/ffaa97c3b80193aa.txt"
   },
   {
    "id": "S087",
    "url": "https://torquecafe.com/ev-news-rolls-royce-backs-v12s/",
    "label": "Torque Café 报道（2026-03-20）：劳斯莱斯放弃 2030 全电动目标；新任 CEO 布朗德里奇对 The Times 称“有些客户宁愿要 V12”“V12 是我们的历史的一部分”；并说明幻影/古思特/库里南共用只为劳斯莱斯代工的双涡轮 6.75 升 V12，闪灵是唯一非 V12 车型",
    "retrieved": "2026-09-20",
-   "publisher": "torquecafe.com"
+   "publisher": "torquecafe.com",
+   "cache": "text/0ce4532d99043c1a.txt"
   },
   {
    "id": "S088",
    "url": "https://chinaevhome.com/2026-03-23/rolls-royce-keeps-ev-strategy-extends-v12-engine-into-next-decade/",
    "label": "ChinaEVHome 分析（2026-03-23）：V12 延续进下一个十年；2025 年闪灵交付同比降 47% 至 1,002 辆；美国撤回 2030 年电动车 50% 销售目标、欧盟软化 2035 燃油车禁令立场",
    "retrieved": "2026-09-20",
-   "publisher": "chinaevhome.com"
+   "publisher": "chinaevhome.com",
+   "cache": "text/1c54dd26fecae866.txt"
   },
   {
    "id": "S089",
    "url": "https://www.bmwblog.com/2026-03-15/rolls-royce-global-sales-2025-winners-and-losers/",
    "label": "BMW Blog 销量梳理（2026-03-15）：劳斯莱斯 2025 年全球交付 5,664 辆（−0.8%），库里南 3,291、闪灵 1,002（−47%）、古思特 993、幻影 376",
    "retrieved": "2026-09-20",
-   "publisher": "bmwblog.com"
+   "publisher": "bmwblog.com",
+   "cache": "text/d2e3c6def1a47dd3.txt"
   },
   {
    "id": "S0810",
    "url": "https://www.classicandsportscar.com/features/bentleys-heartbeat-first-and-last-l-series-v8s",
    "label": "Classic & Sports Car 关于 L 系列 6¾ 升八缸的长文（2020-09-22）：自 1959 年 S2 起投产、近六十一年生产史，6 月 4 日最后一具（累计约 36,000 台）装上限量的慕尚 6.75 Edition，手工组装",
    "retrieved": "2026-09-20",
-   "publisher": "classicandsportscar.com"
+   "publisher": "classicandsportscar.com",
+   "cache": "text/d2f5afa0c14e4540.txt"
   },
   {
    "id": "S071",
    "url": "https://auto.news18a.com/2041/price.html",
    "label": "网通社汽车幻影报价页：在售 2026 款 6.7T 标准轴距版指导价 847.00 万、长轴距版 986.00 万，车系厂商指导价 847.00–986.00 万，参数栏 6.7T/420kW/900N·m/8AT",
    "retrieved": "2026-09-20",
-   "publisher": "网通社汽车"
+   "publisher": "网通社汽车",
+   "cache": "text/8525470b400645ff.txt"
   },
   {
    "id": "S072",
    "url": "http://auto.news18a.com/2721/price.html",
    "label": "网通社汽车古思特报价页：2026 款标准轴距版 503.00 万、Black Badge 576.00 万、长轴距版 577.00 万；同页侧栏给出库里南 691.00–890.00 万、闪灵 449.00–575.00 万等车系区间",
    "retrieved": "2026-09-20",
-   "publisher": "网通社汽车"
+   "publisher": "网通社汽车",
+   "cache": "text/d99035a493be3dc9.txt"
   },
   {
    "id": "S073",
    "url": "http://auto.news18a.com/5342/price.html",
    "label": "网通社汽车库里南报价页：2026 款 Series II 五座 755.00 万、四座 795.00 万，Black Badge 五座 850.00 万、四座 890.00 万，经销商报价与指导价持平",
    "retrieved": "2026-09-20",
-   "publisher": "网通社汽车"
+   "publisher": "网通社汽车",
+   "cache": "text/efa9c21ff78df301.txt"
   },
   {
    "id": "S074",
    "url": "https://newcar.xcar.com.cn/price/pb62/",
    "label": "爱卡汽车劳斯莱斯车型大全：闪灵厂商指导价 575.00 万起，古思特 503.00 万起，库里南 691.00 万起，幻影 847.00 万起，魅影 505.00 万起",
    "retrieved": "2026-09-20",
-   "publisher": "爱卡汽车"
+   "publisher": "爱卡汽车",
+   "cache": "text/2bef1639d9374136.txt"
   },
   {
    "id": "S075",
    "url": "https://auto.sina.com.cn/zz/hy/2022-12-19/detail-imxwzxwy0005413.shtml",
    "label": "新浪汽车转 IT 之家：闪灵 2022 年 12 月 18 日中国市场上市，起售价 575 万元，CLTC 585 公里，0–100km/h 4.5 秒，车身 5453/2080/1559mm，整备质量 2975kg",
    "retrieved": "2026-09-20",
-   "publisher": "新浪汽车 / IT之家"
+   "publisher": "新浪汽车 / IT之家",
+   "cache": "text/292fe96118f3d210.txt"
   },
   {
    "id": "S076",
    "url": "https://shanghai.chinatax.gov.cn/zcfw/zcfgk/xfs/201612/t429002.html",
    "label": "财政部 国家税务总局《关于对超豪华小汽车加征消费税有关事项的通知》（财税〔2016〕129 号）全文：每辆零售价格 130 万元（不含增值税）及以上的乘用车，零售环节加征消费税，税率 10%",
    "retrieved": "2026-09-20",
-   "publisher": "国家税务总局上海市税务局"
+   "publisher": "国家税务总局上海市税务局",
+   "cache": "text/735f2900169396cf.txt"
   },
   {
    "id": "S077",
    "url": "http://www.linhe.gov.cn/hdjl/zcwdk/202407/t20240705_284215.html",
    "label": "巴彦淖尔市临河区人民政府政策问答，引《中华人民共和国车辆购置税法》：第四条税率百分之十；第六条计税价格为实际支付给销售者的全部价款，不包括增值税税款",
    "retrieved": "2026-09-20",
-   "publisher": "内蒙古自治区税务局 / 临河区人民政府"
+   "publisher": "内蒙古自治区税务局 / 临河区人民政府",
+   "cache": "text/d636747057146d40.txt"
   },
   {
    "id": "S078",
    "url": "https://tianjin.chinatax.gov.cn/nsrxt/11200000000/0500/050023/20251229102123112.shtml",
    "label": "国家税务总局天津市税务局热点问题：2026 年 1 月 1 日至 2027 年 12 月 31 日购置新能源汽车减半征收车辆购置税，按 5% 税率，每辆新能源乘用车减税额不超过 1.5 万元",
    "retrieved": "2026-09-20",
-   "publisher": "国家税务总局天津市税务局"
+   "publisher": "国家税务总局天津市税务局",
+   "cache": "text/c6099575cae449b5.txt"
   },
   {
    "id": "S079",
    "url": "https://www.alltobid.com/contents/16/68.html",
    "label": "上海国际商品拍卖有限公司《2026 年 9 月上海市个人非营业性客车额度拍卖公告》：合计拍卖总数 4230 个，首次出价阶段警示价 92900 元",
    "retrieved": "2026-09-20",
-   "publisher": "上海国际商品拍卖有限公司（上海国拍）"
+   "publisher": "上海国际商品拍卖有限公司（上海国拍）",
+   "cache": "text/a363b8785a27e220.txt"
   },
   {
    "id": "S0710",
    "url": "https://db.m.auto.sohu.com/model_2700/a/646640645_99928033",
    "label": "搜狐汽车 GO 车情报员古思特用车成本测算：以指导价 576 万元的 Black Badge 为例，购置税 51 万元、豪车税 50 万元、车船税 3600 元、交强险 950 元、商业险按 20 万元/年计，落地约 697 万元；另引品牌统计称平均每位用户愿花 50 万欧元定制",
    "retrieved": "2026-09-20",
-   "publisher": "搜狐汽车 / GO车情报员"
+   "publisher": "搜狐汽车 / GO车情报员",
+   "cache": "text/4e194b329a67fc06.txt"
   },
   {
    "id": "S0711",
    "url": "https://www.pcauto.com.cn/gl/279586.html",
    "label": "太平洋汽车幻影车价及保险攻略：847 万与 986 万指导价对应购置税约 74.96 万与 87.26 万元；车漆、内饰等选装通常 50–200 万元，实际裸车价普遍超 1000 万元；标准轴距版首年保险总成本约 17.8 万元，其中车损险约 15–20 万元/年、交强险约 950 元/年",
    "retrieved": "2026-09-20",
-   "publisher": "太平洋汽车"
+   "publisher": "太平洋汽车",
+   "cache": "text/258098bba7c7f049.txt"
   },
   {
    "id": "S0712",
    "url": "https://www.ifanr.com/1642171",
    "label": "爱范儿 2025-10-24：幻影百年华诞专属典藏版全球限量 25 台，起售价 250 万英镑（约 2400 万元人民币），欢庆女神立像以 18K 黄金铸造并覆 24K 纯金镀层",
    "retrieved": "2026-09-20",
-   "publisher": "爱范儿"
+   "publisher": "爱范儿",
+   "cache": "text/afa9d500815dc703.txt"
   },
   {
    "id": "S0713",
    "url": "https://k.sina.com.cn/article_7879777156_1d5abdb8406801mlu4.html",
    "label": "新浪汽车 2026-09-20 行情整理：2026 款库里南 Series II 指导价 755/795/850/890 万元，各车型显示售价稳定、暂无优惠；天津港平行进口裸车约 625 万–710 万元，全款落地约 880 万–1200 万元",
    "retrieved": "2026-09-20",
-   "publisher": "新浪汽车"
+   "publisher": "新浪汽车",
+   "cache": "text/5a4657cd79d47377.txt"
   },
   {
    "id": "S091",
@@ -2326,70 +2384,88 @@
    "url": "https://k.sina.com.cn/article_7879995971_1d5af324306801no9w.html",
    "label": "2026-09-08 新浪汽车文章，引用二手车之家数据：幻影第 1/2/3/4 年保值率 104.84%／90.12%／75.40%／68.98%，第 4 年报价约 838 万、四年折损约 130 万；宾利慕尚第 3 年约 60%；单条轮胎约 8000 元、原厂刹车片一套约 5 万、年度保险含车损险 10–15 万；幻影年均里程一般 1–2 万公里，超 15 万公里且无完整保养记录慎入",
    "retrieved": "2026-09-20",
-   "publisher": "新浪汽车／二手车之家"
+   "publisher": "新浪汽车／二手车之家",
+   "cache": "text/68b3e2c790d925a3.txt"
   },
   {
    "id": "S093",
    "url": "https://chejiahao.m.autohome.com.cn/info/23588070",
    "label": "汽车之家车家号 2025-10-28：幻影五年保值率仍达 34.9%，北京一年保值率 73.6%，完整 4S 店保养记录可使保值率提升 20% 以上",
    "retrieved": "2026-09-20",
-   "publisher": "汽车之家·车家号"
+   "publisher": "汽车之家·车家号",
+   "cache": "text/456141ff5f0020bf.txt"
   },
   {
    "id": "S094",
    "url": "https://auto.sina.cn/sales/2021-01-13/detail-ikftpnnx6501615.d.html",
    "label": "新浪汽车 2021-01-13《进口劳斯莱斯库里南一年养车费用分析》：五座版裸车 610 万，购置税 53 万、首年保险 14 万、豪车税 52 万，落地 820 多万；须加 98 号油，实测 15–22 L/100km，一年一万公里油费约 2 万；小保养约 8 万、大保养约 16 万；一年养车费用不低于 27 万",
    "retrieved": "2026-09-20",
-   "publisher": "新浪汽车"
+   "publisher": "新浪汽车",
+   "cache": "text/af80090aa20d033b.txt"
   },
   {
    "id": "S095",
    "url": "https://www.stcn.com/article/detail/3992193.html",
    "label": "证券时报转载界面新闻 2026-07-01：青岛陆海汽车交易市场 8 年以上车龄宾利飞驰挂牌 26.8 万元，2025 年同期同车龄约 55 万元，一年近乎腰斩；车商称过去全年折旧普遍不超 30%，2026 年 5 月单月折旧达 30%",
    "retrieved": "2026-09-20",
-   "publisher": "证券时报／界面新闻"
+   "publisher": "证券时报／界面新闻",
+   "cache": "text/7f56ce28c5ce02ee.txt"
   },
   {
    "id": "S096",
    "url": "https://www.21jingji.com/article/20260622/herald/3987d0105699a6c2538e8be4c3f41211.html",
    "label": "21 经济网 2026-06-22：3 年车龄二手迈巴赫 S450 报价跌至约 90 万元，3 年蒸发约 80 万元，贬值幅度约 50%；引中国汽车流通协会数据称 2026 年 4 月中大型 SUV 与 MPV 三年保值率降至 56.4% 和 56.2%",
    "retrieved": "2026-09-20",
-   "publisher": "21 经济网"
+   "publisher": "21 经济网",
+   "cache": "text/5c580c9127642bdf.txt"
   },
   {
    "id": "S097",
    "url": "https://www.sina.cn/gc/article/nirupew9523426.html",
    "label": "新浪 2026-09-14 古思特养车成本拆解：6.6–6.7L 排量车船税每年 5280 元（自媒体口径，仅作车船税一项引用）",
    "retrieved": "2026-09-20",
-   "publisher": "新浪新闻·观潮"
+   "publisher": "新浪新闻·观潮",
+   "cache": "text/2057b76e6298dc62.txt"
   },
   {
    "id": "S101",
    "url": "https://www.carsales.com.au/editorial/details/john-lennons-rolls-royce-phantom-v-goes-on-display-in-london-108016/",
    "label": "2017 年 7 月 15 日报道：列侬 Phantom V 于 1965 年 6 月 3 日提车（Valentine Black）、1967 年 4 月起由萨里郡车身厂 JP Fallon 重喷迷幻涂装、车内加装双人床/电视/电话/冰箱/陀螺仪唱机，2017 年 7 月 29 日至 8 月 2 日在邦德街 Bonhams 展出，平素藏于加拿大不列颠哥伦比亚皇家博物馆",
    "retrieved": "2026-09-20",
-   "publisher": "carsales.com.au"
+   "publisher": "carsales.com.au",
+   "cache": "text/47810e257cc1717d.txt"
   },
   {
    "id": "S102",
    "url": "https://www.carsales.com.au/editorial/details/why-rolls-royce-owners-are-ditching-the-chauffeur-117406/",
    "label": "2019 年 3 月 11 日对时任劳斯莱斯汽车 CEO 穆勒-艾特沃斯的专访原文：自驾驶者品牌、司机驾驶仅为少数（长轴幻影除外）、平均买家四十出头、库里南预计带动约 50% 增长、财富多为自挣而非继承",
    "retrieved": "2026-09-20",
-   "publisher": "carsales.com.au"
+   "publisher": "carsales.com.au",
+   "cache": "text/494a59fd1ebece85.txt"
   },
   {
    "id": "S103",
    "url": "https://www.press.rolls-roycemotorcars.com/rolls-royce-motor-cars-pressclub/article/detail/T0312245EN/post-opulence:-rolls-royce-reveals-the-super-luxury-consumer-insights-that-informed-new-ghost?language=en",
    "label": "劳斯莱斯汽车官方 PressClub 新闻稿（2020 年 7 月 28 日）：内部命名为 Post Opulence 的极简审美、设计师 Henry Cloke 称古思特客户拒绝繁杂细节与炫耀花招、古思特为史上最畅销劳斯莱斯，并附古思特 WLTP 排碳 347–359 g/km 与油耗 15.2–15.8 l/100km",
    "retrieved": "2026-09-20",
-   "publisher": "Rolls-Royce Motor Cars PressClub"
+   "publisher": "Rolls-Royce Motor Cars PressClub",
+   "cache": "text/8ac21fdadb7a9da1.txt"
   },
   {
    "id": "S104",
    "url": "https://www.lbc.co.uk/article/rolls-royce-axes-plans-to-go-fully-electric-by-2030-5HjdWTf_2/",
    "label": "LBC 2026 年 3 月 18 日报道：劳斯莱斯放弃 2030 年全电动目标；含 Spectre 2022 年发布、前任 CEO 设定的近期 20%/2028 年 70% 销量占比目标、古德伍德工厂年产约 5,600 台、现任 CEO Chris Brownridge 关于客户仍要 V12 的表态",
    "retrieved": "2026-09-20",
-   "publisher": "LBC"
+   "publisher": "LBC",
+   "cache": "text/7e24ad9a3a1e2e18.txt"
+  },
+  {
+   "id": "S1130",
+   "url": "https://www.secret-classics.com/en/the-history-of-the-rolls-royce-mascot/",
+   "publisher": "Secret Classics（汽车史专栏，德文原站）",
+   "retrieved": "2026-09-30",
+   "label": "《The history of the Rolls-Royce mascot》2022-02-14（2026-09-30 直接 curl 原文）：勋爵那只小像是「a small aluminium figure of a young woman in flowing robes **with a finger to her lips** … under the title The Whisper」，模特是 Eleanor Thornton（她先是 Claude Johnson 的助理、1902 年起做勋爵的 office manager，为 Sykes 做裸体模特与缪斯，与勋爵的恋情持续约 14 年）；**1915 年两人同船走海路去印度，SS Persia 号被鱼雷击中、五分钟沉没，勋爵在救生艇上生还，Thornton 遇难**；立标从 1911 到 1928 年由 Sykes 亲手铸造并签名，其女 Josephine 接手到 1939 年二战爆发，因此这段时间每只细节都不同；**直到 1939 年立标仍是需单独付费的选装件、只装在约四成的车上，那年之后才成为标准配置**；1934—1959 可订跪姿版；1970 年代起多国以行人安全为由禁用；瑞士禁令后配弹簧收回底座",
+   "cache": "text/dd9cb1cbb4a80055.txt"
   }
  ],
  "category": "汽车",
@@ -2409,17 +2485,27 @@
   "hero_motif": "starlight_headliner",
   "hero_note": "以星空顶的纤点光源阵与帕德嫩神庙格栅剪影开场，配色是星银与午夜蓝，取仪式感与静谧而非速度"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-10",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 17,
  "created_date": "2026-09-20",
  "site": {
-  "url": "https://rolls-royce-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72c-3da7-7c5f-8022-85622990442e",
-  "slug": "rolls-royce",
-  "content_sha": "e05cc7bc38061278",
-  "published_date": "2026-09-25",
+  "url": "https://cars-gtqdc11h6po.qoder.website/rolls-royce/rolls-royce.html",
+  "group": "cars",
+  "path": "/rolls-royce/rolls-royce.html",
+  "project_id": "01a104e7-b7ce-7459-820e-92fdbe79970b",
+  "content_sha": "9052ca81b28126fa",
+  "published_date": "2026-10-10",
   "access": "public"
+ },
+ "cover": {
+  "file": "images/05_劳斯莱斯_欢庆女神_立标.jpg",
+  "alt": "【劳斯莱斯汽车全部】劳斯莱斯汽车全部_新闻_导购_评测_科技_文化-易车网",
+  "caption": "【劳斯莱斯汽车全部】劳斯莱斯汽车全部_新闻_导购_评测_科技_文化-易车网",
+  "source_page": "http://car.bitauto.com/rolls-royce/wenzhang/",
+  "width": 1472,
+  "height": 981,
+  "query": "劳斯莱斯 欢庆女神 立标"
  }
 }

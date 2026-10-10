@@ -208,6 +208,177 @@ def accept_image(data, bar):
     return True, fmt, w, h, ""
 
 
+# ---------------------------------------------------------------- 入库时的体积策略
+#
+# 为什么压缩在**入库**而不是出包：出包时压会造出第二份字节，本地页、file:// 分享、
+# 闸门验过的东西和线上发的东西就不再是同一个东西了——"包就是验证过的那份产物"
+# 这条判据会当场作废，还得再发明一套双指纹去对齐两份字节。
+# 入库压只有一份真相：仓库、本地、包、线上全用同一份（190.5 MB → 91.3 MB）。
+#
+# 为什么**保持原格式、不改文件名**：改扩展名要连带改 data.json 的 images[].file、
+# cover、images/manifest.json、已落盘的页面引用，四处漏一处就是破图。
+# 实测为省 8.8 MB 而改 14 个名字不值（见 quality_bar 的 _max_bytes_note）。
+
+JPEG_LADDER = (85, 80, 75, 70, 60, 50, 40, 30)
+# 没有调色板阶梯。上一版有 (256, 128, 96, 64)，对"非 alpha 的 PNG"一律走它，
+# 于是照片 PNG 被压到 64 色、皮肤变成色块。想清楚之后这条根本不该存在：
+#   · 颜色 ≤256 的图，256 色那一档是恒等操作，省不下一个字节；
+#   · 颜色 >256 的图就是照片，往下砍是**看得见的坏**。
+# 两端都没有收益。PNG 只做无损（换分辨率 + optimize），GIF 由格式自己完成量化。
+
+
+def _pil():
+    """Pillow 只在真要重编码时 import。
+
+    为什么懒加载：`sniff`/`dimensions` 是纯 stdlib 的字节解析，G-03 每篇都要跑；
+    把闸门拖进 Pillow 会让"没装 Pillow 就完全跑不了闸门"。
+    """
+    from PIL import Image
+    return Image
+
+
+def _resampling(Image):
+    return getattr(Image, "Resampling", Image)
+
+
+def _resized(im, width, R):
+    """换分辨率。P 模式（GIF、少色 PNG）不能直接 LANCZOS——重采样会造出新颜色，
+    必须先展开成 RGB/RGBA 再缩，保存时由格式自己决定怎么量化回去。
+    这一步可能让 P→RGB 的 PNG **变大**，那是允许的：fit_bytes 只在更小的时候才采用结果。
+
+    宽度没变就**原样交回**：既避开"同尺寸 LANCZOS 仍会重采样改像素"，
+    也避开把一张少色 PNG 白白展开成 RGB。
+    """
+    if width >= im.size[0]:
+        return im
+    if im.mode == "P" and im.info.get("transparency") is not None:
+        im = im.convert("RGBA")
+    elif im.mode == "P":
+        im = im.convert("RGB")
+    elif im.mode not in ("RGB", "RGBA", "L"):
+        im = im.convert("RGB")
+    w, h = im.size
+    return im.resize((width, max(1, int(h * width / float(w)))), R.LANCZOS)
+
+
+def _animated(im):
+    return getattr(im, "n_frames", 1) > 1
+
+
+def best_effort(bar):
+    """软上限。到不了 max_bytes 时，允许停在这里，但必须**点名登记**，别伪装成压好了。"""
+    return bar.get("best_effort_bytes") or 0
+
+
+def _width_ladder(w, bar):
+    """按**显示宽度**给几档，严格递减。**第一项是"这一档几何上不动"**，
+    不是"缩一档"——少了它，一张本来就只有 700px 宽的 JPEG 会连质量阶梯都跑不到，
+    于是"已经够窄但还能压"的那批（实测 62 张超线 JPEG 里的一部分）一张都压不动。
+
+    为什么顶格是显示宽度而不是长边：正文 `--measure:46rem` = 736 CSS px，
+    一张 2400px 宽的照片在页面上永远放不到那么大，多出来的像素纯属浪费字节。
+    旧的 max_long_edge=2400 比显示宽度宽 63%，还得再补一条"短边不许跌破 min_width"
+    才不出 mush——**锚定错了才需要补丁**。这里直接锚显示宽度，min_width 天然是地板。
+    """
+    floor = bar.get("min_width", 640)
+    disp = bar.get("max_display_px", 1472)
+    first = min(w, disp)
+    if first < floor:
+        first = w            # 比地板还窄：没有可换的分辨率，但格式内损失照试
+    out = [first]
+    for s in (1200, 1000, 800):
+        s = max(min(s, w), floor)
+        if s < out[-1]:
+            out.append(s)
+    return out
+
+
+def fit_bytes(raw, fmt, bar, kind=u"photo"):
+    """把一张图压进策略里。返回 (bytes, w, h, note)。note 非空 = 没完全达标但保留了最好的结果。
+
+    四条按保真度从高到低排，命中哪条就停：
+      1 第一个 ≤ max_bytes 的方案            —— 达标的解里最不清的
+      2 第一个 ≤ best_effort_bytes 的方案     —— 超硬上限但只超一点，且仍是"够用的最轻损失"
+      3 最小的**无损**方案（只换分辨率/只 optimize）—— 反正到不了线，那就一分颜色都不砍
+      4 原图                               —— 连无损都省不出来，就别假装在压
+
+    第 2 与第 3 条的分工是关键：**有损只在换到字节数的时候才值得付**。
+    上一版没有这条，阶梯跑不完就取"最小的一档"，于是 107 张里
+    一批照片 PNG 被压到 64 色，皮肤变成色块——而它们全都"达标"，
+    所以"未达标"这个筛子一张都没抓到。
+    """
+    Image = _pil()
+    R = _resampling(Image)
+    cap = bar.get("max_bytes")
+    if not cap:
+        return raw, None, None, u"未配置 max_bytes，跳过压缩"
+    try:
+        im = Image.open(io.BytesIO(raw))
+        src_w, src_h = im.size
+        im.load()                       # 截断的 JPEG 在这里才露馅，不在 .size
+    except Exception:
+        # `accept_image` 只看 magic + 宽高 + 体积，一张截断的 JPEG 能过它。
+        # 在这里抛出去的代价是整章没图——比一张大图贵得多。
+        return raw, None, None, u"字节解不开（截断或非图片），保留原图"
+    # 以 Pillow 自己的格式名为准：`sniff` 返回的是"jpg"，Pillow 叫"JPEG"。
+    # 拿调用方传进来的名字分派编码器，collect 传 "jpg" 就会让 JPEG 走进 PNG 分支——
+    # 迁移脚本传的是 None（于是取到 im.format="JPEG"），所以只有采集链会踩到。
+    fmt = (im.format or fmt or u"").upper()
+    if len(raw) <= cap:
+        # 已经在字节线内：**一个字节都不动**。
+        # 分辨率限制只是"让 400 KB 可达"的手段，不是独立目的。
+        return raw, src_w, src_h, u""
+    if _animated(im):
+        return raw, src_w, src_h, u"动图：重编码只剩一帧，保留原图"
+
+    def _enc(img, quality=None):
+        buf = io.BytesIO()
+        if fmt == "JPEG":
+            img = img.convert("RGB")
+        kw = {"optimize": True}
+        if quality is not None:
+            kw["quality"] = quality
+            if fmt == "JPEG":
+                kw["progressive"] = True
+        img.save(buf, fmt or "PNG", **kw)
+        return buf.getvalue()
+
+    def _rungs(img):
+        """当前宽度下按保真度从高到低的候选，每项 (bytes, detail, lossy)。
+
+        只有 JPEG/WEBP 有有损档：它们的有损是**连续的**（质量往下走，观感平滑变差），
+        换到字节数划算。PNG 没有这一档——往下只剩砍颜色，那是看得见的坏。
+        """
+        if kind != u"illustration" and fmt in ("JPEG", "WEBP"):
+            return [(_enc(img, quality=q), u"q%d" % q, True) for q in JPEG_LADDER]
+        return [(_enc(img), u"lossless", False)]
+
+    best_lossy = None       # 第一个（= 最不清的）≤ best_effort 的有损解
+    best_lossless = None    # 最小的无损解
+    ceiling = best_effort(bar)
+    for width in _width_ladder(src_w, bar):
+        img = _resized(im, width, R)
+        w2, h2 = img.size
+        for data, detail, lossy in _rungs(img):
+            if len(data) <= cap:
+                return data, w2, h2, u""
+            if not lossy:
+                if best_lossless is None or len(data) < len(best_lossless[0]):
+                    best_lossless = (data, w2, h2, detail)
+            elif ceiling and len(data) <= ceiling and best_lossy is None:
+                best_lossy = (data, w2, h2, detail)
+
+    if best_lossy:
+        data, w2, h2, detail = best_lossy
+        return data, w2, h2, u"到不了 max_bytes，落在尽力而为区间：%d B（%s）" % (len(data), detail)
+    if best_lossless and len(best_lossless[0]) < len(raw):
+        data, w2, h2, detail = best_lossless
+        how = u"只换了分辨率" if (w2, h2) != (src_w, src_h) else u"只重编码（宽度已在显示线内）"
+        return data, w2, h2, (u"格式内没有更轻的损失，%s：%d B（%s，仍 > %d B）"
+                              % (how, len(data), detail, cap))
+    return raw, src_w, src_h, u"原格式压不动（%d B > %d B），保留原图" % (len(raw), cap)
+
+
 def download(url, timeout=25, opener=None):
     """下载原始字节。opener(url)->bytes 可注入，便于测试。
 
@@ -602,8 +773,12 @@ def collect(queries, dest_dir, bar, keywords=None, count=20, max_per_query=2,
     seen_hash = {}
     for fn in os.listdir(images_dir):
         p = os.path.join(images_dir, fn)
-        if fn.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".webp")):
-            seen_hash.setdefault(_sha(open(p, "rb").read()), fn)
+        if not fn.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".webp")):
+            continue
+        # 键是**源图字节**的哈希，不是盘上字节：入库压之后两者永不相等，
+        # 拿盘上字节建键会让同一张图以新名字再落一份，而 G-03 按文件判、看不见重复。
+        digest = read_srcsha(p) or _sha(open(p, "rb").read())
+        seen_hash.setdefault(digest, fn)
 
     taken = []
     idx = len(seen_hash) + sum(1 for f in os.listdir(images_dir) if f.startswith(tuple("0123456789")))
@@ -691,10 +866,23 @@ def collect(queries, dest_dir, bar, keywords=None, count=20, max_per_query=2,
                     while name in used_names:
                         idx += 1
                         name = "%02d_%s.%s" % (idx, _slug(q, "img"), fmt)
-                    with open(os.path.join(images_dir, name), "wb") as fh:
-                        fh.write(data)
+                    path = os.path.join(images_dir, name)
+                    data, _fw, _fh, note = fit_bytes(data, fmt, bar, kind=u"photo")
+                    if note:
+                        # 到不了线必须吭一声：不吭声就等于把"没压下去"伪装成"压好了"
+                        log(u"  体积策略 %s：%s" % (name, note))
+                    with open(path, "wb") as out:
+                        out.write(data)
+                    write_srcsha(path, digest)
                     seen_hash[digest] = name
                     used_names.add(name)
+                # 宽高按**盘上那份**记，不按下载到的那份记：
+                # 入库压会改尺寸，而 data.json 的 width 决定 `cover_of` 挑谁当封面、
+                # G-03 判不判"太窄"。复用磁盘遗物那一条分支尤其容易记错。
+                stored = open(os.path.join(images_dir, name), "rb").read()
+                disk_wh = dimensions(stored, fmt)
+                if disk_wh[0]:
+                    w, h = disk_wh
                 emitted.add(name)
                 if used_pages is not None:
                     used_pages[page] = used_pages.get(page, 0) + 1
@@ -706,7 +894,7 @@ def collect(queries, dest_dir, bar, keywords=None, count=20, max_per_query=2,
                     "caption": "",
                     "width": w,
                     "height": h,
-                    "bytes": len(data),
+                    "bytes": len(stored),
                     "format": fmt,
                     "source_page": c.purl,
                     "source_image": url,
@@ -769,3 +957,36 @@ def load_manifest(dest_dir):
 
 def _sha(b):
     return hashlib.sha256(b).hexdigest()
+
+
+SRCSHA = ".srcsha"
+
+
+def srcsha_path(img_path):
+    """侧车路径。它**不是**图片扩展名，所以：
+    G-03 的孤儿筛按扩展名放过它；`package_files` 按页面 `<img src>` 收集，天然不打包。"""
+    return img_path + SRCSHA
+
+
+def write_srcsha(img_path, digest):
+    tmp = srcsha_path(img_path) + ".tmp"
+    io.open(tmp, "w", encoding="utf-8", newline="\n").write(digest + u"\n")
+    os.replace(tmp, srcsha_path(img_path))
+
+
+def read_srcsha(img_path):
+    p = srcsha_path(img_path)
+    if not os.path.isfile(p):
+        return None
+    return io.open(p, encoding="utf-8").read().strip() or None
+
+
+def remove_srcsha(img_path):
+    """删图必须连侧车一起删：留着它就等于给一张已经不存在的图保着源哈希，
+    下一轮去重会认回一个不存在的文件名。"""
+    p = srcsha_path(img_path)
+    if os.path.isfile(p):
+        try:
+            os.remove(p)
+        except OSError:
+            pass

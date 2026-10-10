@@ -143,7 +143,7 @@
    "images": [
     {
      "file": "images/33_贴片电容.jpg",
-     "alt": "三环贴片电容TCC1206M3L104J500FT 104J_贴片(片式/SMD)电容_维库电子市场网",
+     "alt": "",
      "caption": "三环贴片电容TCC1206M3L104J500FT 104J_贴片(片式/SMD)电容_维库电子市场网",
      "source_page": "https://product.dzsc.com/product/1179610-2022224164436126.html",
      "width": 800,
@@ -152,7 +152,7 @@
     },
     {
      "file": "images/45_钛酸钡.png",
-     "alt": "钛酸钡（BaTiO3）-常规氧化物-博华斯纳米科技（宁波）有限公司",
+     "alt": "",
      "caption": "钛酸钡（BaTiO3）-常规氧化物-博华斯纳米科技（宁波）有限公司",
      "source_page": "https://www.brofos.cn/list_17/91.html",
      "width": 800,
@@ -162,7 +162,7 @@
     {
      "file": "images/01_叠层剖面.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：MLCC 剖面——陶瓷介质层与镍内电极交替叠层，相邻两层分别朝两个端电极引出",
+     "alt": "",
      "caption": "按正文「交错才成电容，对齐就是短路」绘制",
      "based_on": [
       "what-is-mlcc#内电极交错引出",
@@ -181,7 +181,13 @@
     {
      "type": "prose",
      "heading": "尺寸：同一串四位数字有两套读法",
-     "text": "料号里那四位数字是尺寸，但它有两套体系：EIA 用英寸，公制用毫米。同一串 0402，EIA 指 1.0×0.5 mm，公制指 0.4×0.2 mm。厂商规格书一般写成「0402/1005」，前者 EIA、后者公制，读料号先确认这一栏。同一尺寸里把容量做大的那家赢——介质更薄、层数更多，这是中游工艺唯一的记分牌。小尺寸的另一面是选型代价：01005 已经小到肉眼难辨，而 TrendForce 估计一台智能眼镜要用 150 到 200 颗。"
+     "text": "料号里那四位数字是尺寸，但它有两套体系：EIA 用英寸，公制用毫米。同一串 0402，EIA 指 1.0×0.5 mm，公制指 0.4×0.2 mm。厂商规格书一般写成「0402/1005」，前者 EIA、后者公制，读料号先确认这一栏。同一尺寸里把容量做大的那家赢——介质更薄、层数更多，这是中游工艺唯一的记分牌。小尺寸的另一面是选型代价：01005 已经小到肉眼难辨，而 TrendForce 估计一台智能眼镜要用 150 到 200 颗。",
+     "source_ids": [
+      "S021",
+      "S022",
+      "S025",
+      "S0611"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -307,7 +313,11 @@
     {
      "type": "prose",
      "heading": "容值、耐压、容差：都挤在同一串料号里",
-     "text": "三位数标号的单位是 pF，不是 µF：104 = 10×10⁴ pF = 0.1 µF，106 才是 10 µF；不到 10 pF 时用 R 当小数点，1R5 = 1.5 pF。耐压跟在后面，也是字母码：Q=6.3 V、A=25 V、B=50 V、C=100 V、J=2 kV。容差同理，J=±5%、K=±10%、M=±20%、Z=−20/+80%。高容料普遍落在 M 甚至 Z，标称值本身就带着两成余量。"
+     "text": "三位数标号的单位是 pF，不是 µF：104 = 10×10⁴ pF = 0.1 µF，106 才是 10 µF；不到 10 pF 时用 R 当小数点，1R5 = 1.5 pF。耐压跟在后面，也是字母码：Q=6.3 V、A=25 V、B=50 V、C=100 V、J=2 kV。容差同理，J=±5%、K=±10%、M=±20%、Z=−20/+80%。高容料普遍落在 M 甚至 Z，标称值本身就带着两成余量。",
+     "source_ids": [
+      "S021",
+      "S023"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -347,7 +357,10 @@
     {
      "type": "prose",
      "heading": "老化：容值会随时间往下走",
-     "text": "Class II 介质的容值随时间按对数下降。150 ℃、1 小时的热处理会把老化清零、重新计时，回流焊接就算一次。同一颗料，出厂次日测和半年后测，本来就不是同一个数。"
+     "text": "Class II 介质的容值会随时间往下走，三星电机目录给的是形状：老化使容量「随时间的对数线性下降」，不是按百分比线性掉。清零条件在同一页：150 ℃、一小时的热处理会让已老化的容量恢复，老化要从那次热处理重新计时。目录自己的测量规则是同一个逻辑——Class II 须在 150+0/−10 ℃ 热处理 1 小时、室温静置 24±2 小时之后才测。回流焊接比这热得多：可靠性试验那页给的浸焊温度是 245±5 ℃，贴片过一次板就是一次清零。所以同一颗料，出厂次日测和半年后测，本来就不是同一个数。",
+     "source_ids": [
+      "S021"
+     ]
     },
     {
      "type": "prose",
@@ -385,7 +398,7 @@
     {
      "file": "images/02_料号读法.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：料号五段各管一件事——尺寸码与介质定可靠度，容值误差耐压定够不够用",
+     "alt": "",
      "caption": "按正文料号结构绘制；码值对应走正文带来源的表格，图上不写",
      "based_on": [
       "specs#料号分段",
@@ -579,7 +592,7 @@
    "images": [
     {
      "file": "images/09_钛酸钡.jpg",
-     "alt": "100nm钛酸钡 四方相立方相 高纯超细纳米BaTiO3",
+     "alt": "",
      "caption": "100nm钛酸钡 四方相立方相 高纯超细纳米BaTiO3",
      "source_page": "https://b2b.baidu.com/land?id=77cd24f88f56db9aa60367acf02e489110",
      "width": 750,
@@ -588,11 +601,11 @@
     },
     {
      "file": "images/47_贴片电容.jpg",
-     "alt": "贴片电容品牌-三星电容-国巨电容-村田电容-风华电容代理商 - 深圳伟哲电子",
+     "alt": "",
      "caption": "贴片电容品牌-三星电容-国巨电容-村田电容-风华电容代理商 - 深圳伟哲电子",
      "source_page": "http://www.china-xj.cn/drxl.html",
-     "width": 1845,
-     "height": 1359,
+     "width": 1472,
+     "height": 1084,
      "query": "贴片电容"
     }
    ]
@@ -702,7 +715,7 @@
    "images": [
     {
      "file": "images/50_钛酸钡.png",
-     "alt": "钛酸钡（BaTiO3）-常规氧化物-博华斯纳米科技（宁波）有限公司",
+     "alt": "",
      "caption": "钛酸钡（BaTiO3）-常规氧化物-博华斯纳米科技（宁波）有限公司",
      "source_page": "https://www.brofos.cn/list_17/91.html",
      "width": 800,
@@ -712,7 +725,7 @@
     {
      "file": "images/03_工艺链.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：MLCC 八道工艺链，强调色标出正文认为的壁垒所在（叠层与还原气氛烧结）",
+     "alt": "",
      "caption": "按正文工序逐步绘制；图上不含产能与良率数字",
      "based_on": [
       "process-barrier#工序",
@@ -731,7 +744,17 @@
     {
      "type": "prose",
      "heading": "先把颗数量做实",
-     "text": "厂商肯给的口径不多，而且散在不同年份。村田 2021 年写每部智能手机约 800 到 1000 颗，并用「高端机型 1000 颗」反衬汽车：不带自动驾驶的燃油车约 3000 颗，当年平均每辆车 3000 到 5000 颗。宇阳科技 2020 年把梯度拆细，混动与插混约 8000 颗，智能化的新车 1 万到 15000 颗；2026 年银河证券按均值算出纯电车 18000 颗，是燃油车的 6 倍。PC 没有单列的可靠公开数，第三方整理只给了「消费电子 1000 到 1500 颗」这个混装区间。\n\n多出来的上万颗不是同一种料重复买。电动车新增的是控制数百伏高压的电路：电机控制器、电池管理、车载充电机与 DC-DC 都要过 AEC-Q200、耐 -55℃ 到 175℃，ADAS 和座舱再各自摊一层。"
+     "text": "厂商肯给的口径不多，而且散在不同年份。村田 2021 年写每部智能手机约 800 到 1000 颗；同一年月它给汽车的那篇写的是：不带自动驾驶的燃油车约 3000 颗，当年平均每辆车 3000 到 5000 颗，配 L2+ 自动驾驶的豪华纯电车超过 10000 颗。宇阳科技 2020 年把梯度拆得更细：混动与插混约 8000 颗，智能化的新车 1 万到 15000 颗；2026 年银河证券按均值算出纯电车 18000 颗，是燃油车型的 6 倍。PC 没有单列的可靠公开数，第三方整理只给了「消费电子 1000 到 1500 颗」这个混装区间。\n\n多出来的上万颗不是同一种料重复买。电动车新增的是控制数百伏高压的电路：电机控制器、电池管理、车载充电机与 DC-DC，这些位置要按车规体系供货——国内厂商的口径可以作证这道门槛长什么样：风华高科 2026 年 9 月 3 日说主营产品均已完成 AEC-Q200 与 IATF16949 车用体系认证，车规品进入电驱、BMS、OBC、电控。耐温也不是玄学，它写在介质代码里：三星电机目录上 X5R 是 −55~+85 ℃、X7R 是 −55~+125 ℃，最高一档 X8M 与 X8L 到 +150 ℃。ADAS 和座舱再各自摊一层。",
+     "source_ids": [
+      "S021",
+      "S051",
+      "S053",
+      "S054",
+      "S055",
+      "S057",
+      "S103",
+      "S117"
+     ]
     },
     {
      "type": "bar_chart",
@@ -799,7 +822,14 @@
     {
      "type": "prose",
      "heading": "服务器与基站：涨的不只是颗数",
-     "text": "同样叫服务器，代际差比手机和汽车的差还陡。TrendForce 的口径是英伟达 GB200 单板约 6500 颗，下一代 Rubin 因热设计功耗翻倍而接近 12000 颗。沙利文引的验证数据更具体：AMD MI450 项目里一颗 47μF／2.5V／X6S／0402 的料号，单板从 1440 颗提到 10544 颗。基站是另一类逻辑，三星电机说 5G 基站要的是大容量、100V 额定电压和十几年寿命，尺寸反而不苛——基带单元吃高容，天线阵列吃大功率高 Q 值，只有小基站开始要 0201。价值量也比颗数走得快：按 2026 年中的摩根士丹利估算，机柜从 GB300 换到 VR200 NVL72，单台 MLCC 成本由 1530 美元涨到 4320 美元。颗数翻倍、单价值也翻倍，两件事叠起来才是涨价的物理原因。"
+     "text": "同样叫服务器，代际差比手机和汽车的差还陡。TrendForce 的口径是英伟达 GB200 单板约 6500 颗，下一代 Rubin 因热设计功耗翻倍而接近 12000 颗。沙利文引的验证数据更具体：AMD MI450 项目里一颗 47μF／2.5V／X6S／0402 的料号，单板从 1440 颗提到 10544 颗。基站是另一类逻辑：三星电机 2021 年的新闻稿说 5G 基站用 MLCC 要的是大容量、100V 额定电压与高可靠、还要抗弯折，每个 5G 基站的用量约为 4G LTE 基站的 4 倍、约 2 万个；宇阳科技把需求拆到具体位置——基带单元吃高容值，天线阵列吃大功率高 Q 值，寿命要求十多年，只有小基站开始要 0201 这种小尺寸。价值量比颗数走得更快：摩根士丹利按 2026 年中的估算，VR200 NVL72 单台机柜的 MLCC 价值量由 1530 美元增至 4320 美元（+182%），而同一代际的整机用量按财联社引 TrendForce 与中信建投的口径只增长超 30%。涨得更快的是钱不是颗数，两件事叠起来才是涨价的物理原因。",
+     "source_ids": [
+      "S052",
+      "S054",
+      "S056",
+      "S057",
+      "S058"
+     ]
     },
     {
      "type": "fact_strip",
@@ -855,7 +885,7 @@
    "images": [
     {
      "file": "images/41_贴片电容.jpg",
-     "alt": "贴片电容材质的区别与电容的主要作用_电容材质cog,npo,x7r,x5r-CSDN博客",
+     "alt": "",
      "caption": "贴片电容材质的区别与电容的主要作用_电容材质cog,npo,x7r,x5r-CSDN博客",
      "source_page": "https://blog.csdn.net/qq_51272949/article/details/133818908",
      "width": 1920,
@@ -995,7 +1025,7 @@
    "images": [
     {
      "file": "images/43_贴片电容.jpg",
-     "alt": "贴片电容发展简史！贴片电容的制作工艺和流程",
+     "alt": "",
      "caption": "贴片电容发展简史！贴片电容的制作工艺和流程",
      "source_page": "http://www.szryc.com/?p=1740",
      "width": 640,
@@ -1182,7 +1212,7 @@
    "images": [
     {
      "file": "images/26_陶瓷_电容器.png",
-     "alt": "积层陶瓷电容器: TDK推出新型低电阻软终端型积层陶瓷电容器，进一步扩大其MLCC产品阵容 | 电子创新网",
+     "alt": "",
      "caption": "积层陶瓷电容器: TDK推出新型低电阻软终端型积层陶瓷电容器，进一步扩大其MLCC产品阵容 | 电子创新网",
      "source_page": "https://www.eetrend.com/content/2023/100574303.html",
      "width": 1417,
@@ -1192,7 +1222,7 @@
     {
      "file": "images/04_供电位置.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：板级供电一跳再一跳——高压母线到多相供电模块再到加速卡芯片，输出电容贴着芯片放",
+     "alt": "",
      "caption": "按正文供电拓扑绘制；电压与容值走正文带来源的表格",
      "based_on": [
       "ai-connection#供电拓扑",
@@ -1229,7 +1259,9 @@
        "k": "二 BB 值",
        "v": "接单/出货比。厂商不披露，TrendForce 按月调查：2026 年 6 月底村田 1.30、三星电机 1.31、太阳诱电 1.25，全行业 1.04。向 1.0 收敛即转弱。月度。",
        "source_ids": [
-        "S085"
+        "S085",
+        "S064",
+        "S111"
        ]
       },
       {
@@ -1286,11 +1318,11 @@
    "images": [
     {
      "file": "images/45_贴片电容.jpg",
-     "alt": "贴片电容品牌-三星电容-国巨电容-村田电容-风华电容代理商 - 深圳伟哲电子",
+     "alt": "",
      "caption": "贴片电容品牌-三星电容-国巨电容-村田电容-风华电容代理商 - 深圳伟哲电子",
      "source_page": "http://www.china-xj.cn/drxl.html",
-     "width": 1845,
-     "height": 1359,
+     "width": 1472,
+     "height": 1084,
      "query": "贴片电容"
     }
    ]
@@ -1475,7 +1507,7 @@
    "images": [
     {
      "file": "images/53_贴片电容.jpg",
-     "alt": "贴片电容-东莞贴片电容-国巨贴片电容-三星贴片电容-东莞市群裕电子有限公司",
+     "alt": "",
      "caption": "贴片电容-东莞贴片电容-国巨贴片电容-三星贴片电容-东莞市群裕电子有限公司",
      "source_page": "http://www.kwan-yu.com/ppt_113791-4.html",
      "width": 800,
@@ -1771,7 +1803,7 @@
    "images": [
     {
      "file": "images/37_风华高科.jpg",
-     "alt": "风华高科：高端MLCC 市场稳定，新项目已达产-要闻-资讯-中国粉体网",
+     "alt": "",
      "caption": "风华高科：高端MLCC 市场稳定，新项目已达产-要闻-资讯-中国粉体网",
      "source_page": "https://www.cnpowder.com.cn/news/68835.html",
      "width": 750,
@@ -1780,7 +1812,7 @@
     },
     {
      "file": "images/38_三环集团.png",
-     "alt": "三环集团：公司目前MLCC的0201型号已有生产，01005型号还在研发中",
+     "alt": "",
      "caption": "三环集团：公司目前MLCC的0201型号已有生产，01005型号还在研发中",
      "source_page": "https://laoyaoba.com/n/781271",
      "width": 808,
@@ -1871,7 +1903,7 @@
    "images": [
     {
      "file": "images/42_贴片电容.jpg",
-     "alt": "风华贴片电容、多层陶瓷电容、电解电容",
+     "alt": "",
      "caption": "风华贴片电容、多层陶瓷电容、电解电容",
      "source_page": "https://www.jpet.cn/pic-299-1.html",
      "width": 640,
@@ -1885,107 +1917,121 @@
   {
    "id": "S021",
    "url": "https://product.samsungsem.com/resources/file/product-catalog/MLCC_2512.pdf",
-   "label": "三星电机（SEMCO）MLCC 产品目录 PDF：Part Numbering 章节给出尺寸码「inch/mm」成对表、Class I/Class II 介质代码与工作温度范围及容值变化表、耐压字母码、容差字母码、三位数容值标号规则、Class II 老化说明（150 ℃/1h 恢复），以及 AI 服务器料号示例（1206/3216 220 µF X5R 6.3 V ±20%）",
+   "label": "三星电机（SEMCO）MLCC 产品目录 PDF（MLCC_2512，53 页；2026-09-27 下载全文并用 fitz 逐页取字）Part Numbering 章节逐表原文——① 容量码：「Capacitance expressed in ㎊. 2 significant digits plus number of zeros. example) 106=10×106=10,000,000㎊」，「For Values ＜10㎊, Letter R denotes decimal point example) 1R5 =1.5㎊」；② 尺寸码成对表（Code / inch/mm）：R1 008004/0201、02 01005/0402、03 0201/0603、05 0402/1005、10 0603/1608、21 0805/2012、31 1206/3216、32 1210/3225、42 1808/4520、43 1812/4532、55 2220/5750、L5 0204/0510、L6 0304/0610、01 0306/0816、19 0503/1209；③ 耐压码：S 2.5Vdc、R 4.0Vdc、Q 6.3Vdc、P 10Vdc、O 16Vdc、A 25Vdc、L 35Vdc、B 50Vdc、C 100Vdc、D 200Vdc、E 250Vdc、F 350Vdc、G 500Vdc、H 630Vdc、I 1kVdc、J 2kVdc、K 3kVdc；④ 容差码：N ±0.03㎊、A ±0.05㎊、B ±0.1㎊、C ±0.25㎊、D ±0.5㎊、F* ±1㎊（F 在＜10pF 时是 ±1pF、≥10pF 时是 ±1%）、F ±1%、G ±2%、J ±5%、K ±10%、M ±20%、Z −20/+80%；⑤ Class II 介质温度表：A(X5R) −55~+85 ±15、X(X6S) −55~+105 ±22、W(X6T) −55~+105 −33~+22、B(X7R) 与 K(*X7R(S)) −55~+125 ±15、Y(X7S) −55~+125 ±22、Z(X7T) −55~+125 −33~+22、F(Y5V) −30~+85 −82~+22、M(X8M) −55~+150 −50~+50、E(X8L) −55~+150 −40~+15、J(JIS-B) −25~+85 ±10；Class I：C(C0G) −55~+125 0±30 ppm/℃、G(X8G) −55~+150 0±30 ppm/℃。**该目录最高一档是 +150 ℃，全表没有 175 ℃ 这个上限**；⑥ 老化（p31 原文）：「The aging characteristic is that the high dielectric (ClassⅡ) MLCC decreases capacitance value over time」「In general, aging causes capacitance to decrease linearly with the log of time」「After heat treatment (150 °C, 1hour), the capacitance decreased by aging is recovered, so aging should be considered again from the time of heat treatment」；⑦ 测量规则（p30 原文）：「Capacitance shall be measured after the heat treatment of 150+0/-10℃ for 1hr, leaving at room temperature for 24±2hr. (ClassⅡ)」，同页还写明「The size is in compliance with the EIA RS-198-1-F-2002」；⑧ 可靠性试验里的浸焊条件（p19）：Solder Sn_Ag3_0.5Cu、Solder temp. 245±5℃、Dip time 3±0.3sec、Pre-heating at 80~120℃ for 10~30sec；⑨ AI 服务器料号示例 1206/3216 220 µF X5R 6.3 V ±20%",
    "retrieved": "2026-09-24",
    "publisher": "Samsung Electro-Mechanics"
   },
   {
    "id": "S022",
    "url": "https://passive-components.eu/mlcc-case-sizes-standards-explained/",
-   "label": "被动元件行业媒体对 EIA-198 封装标准的整理页，给出 EIA 英寸代码与 IEC/EN 公制代码对照及长宽毫米值（01005→0402 至 1210→3225）",
+   "label": "Passive Components Blog《MLCC case sizes & standards explained》（2026-09-27 抓页面原文）对照表逐行「EIA code | Dimensions (inch) | IEC/EN code | Dimensions (mm)」：01005 | 0.016×0.008 | 0402 | 0.4×0.2；0201 | 0.024×0.012 | 0603 | 0.6×0.3；0402 | 0.040×0.020 | 1005 | 1.0×0.5；0603 | 0.060×0.030 | 1608 | 1.6×0.8；0805 | 0.080×0.050 | 2012 | 2.0×1.25；1206 | 0.126×0.063 | 3216 | 3.2×1.6；1210 | 0.126×0.098 | 3225 | 3.2×2.5。表后原句「These nominal dimensions can vary slightly between …」（同尺寸各家会有微小差别）。FAQ 原文：「MLCC case sizes … are standardized by EIA (inch-based codes like 0805) and IEC/EN (metric-based codes)」与「EIA codes use imperial dimensions (e.g., 0805 = 0.08 x 0.05 inches), while IEC/EN codes use metric equivalents」；另一条答句称最常用的尺寸档是 0201 到 1206",
    "retrieved": "2026-09-24",
-   "publisher": "Passive Components Blog"
+   "publisher": "Passive Components Blog",
+   "cache": "text/55f80f2a68d9bacc.txt"
   },
   {
    "id": "S023",
    "url": "https://jlcpcb.com/blog/ceramic-capacitor-types",
    "label": "陶瓷电容介质类别与应用笔记：逐字母解码 EIA RS-198 代码（X=−55 ℃、7=+125 ℃、R=±15%、V=+22/−82%），说明 C0G 与 NP0 为同一种 Class I 介质、Class I 容量密度低而 Class II 高，并说明 104 这类数字标号以 pF 计",
    "retrieved": "2026-09-24",
-   "publisher": "JLCPCB"
+   "publisher": "JLCPCB",
+   "cache": "text/aa90cf4d89a29597.txt"
   },
   {
    "id": "S024",
    "url": "http://www.eeo.com.cn/2026/0605/903569.shtml",
    "label": "经济观察网 2026-06-05 MLCC 涨价调查报道：全球年出货接近五万亿颗；引中金公司测算，2025 年 AI 服务器用量仅占数量 2%–3% 但占用产能接近一成；引 TrendForce 分析师陈惟圣，AI 服务器 MLCC 平均出货单价约为消费电子 MLCC 的九到十倍",
    "retrieved": "2026-09-24",
-   "publisher": "经济观察网"
+   "publisher": "经济观察网",
+   "cache": "text/36c22e6bc511dd4c.txt"
   },
   {
    "id": "S025",
    "url": "https://m.cls.cn/detail/2297673",
    "label": "财联社 2026-02-27 MLCC 行业报道：引中国电子元件行业协会信息中心统计，2023 年村田约 31%、三星电机约 23%、太阳诱电约 10%（原文未注明按颗数或金额口径）；引 TrendForce，01005 尺寸微型 MLCC 每台智能眼镜需求 150–200 颗",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/cf947063a0abe80c.txt"
   },
   {
    "id": "S031",
    "url": "http://www.eeo.com.cn/2026/0627/932625.shtml",
    "label": "经济观察报2026-06-27《MLCC上游原料生变》，转述中泰证券孙颖的MLCC陶瓷粉体研报：稀土掺杂各自的作用、高容品粉体成本占比约40%、日系五家份额约65%与堺化学约28%、水热法量产只有两家、国产粒径进度、氧化钇价格与堺化学减产",
    "retrieved": "2026-09-24",
-   "publisher": "经济观察报"
+   "publisher": "经济观察报",
+   "cache": "text/9df7ddd194056b98.txt"
   },
   {
    "id": "S032",
    "url": "http://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=300285&id=12120185",
    "label": "国瓷材料（300285）2025年年度报告全文（2026-04-21披露）：分产品营业收入构成表，电子材料板块6.93亿元、占15.13%、毛利率34.49%，生物医疗（口腔）板块毛利率51.21%；管理层讨论列明已掌握介质粉体、内外电极浆料、研磨用氧化锆微珠",
    "retrieved": "2026-09-24",
-   "publisher": "新浪财经·公司公告"
+   "publisher": "新浪财经·公司公告",
+   "cache": "text/840fb39752932f22.txt"
   },
   {
    "id": "S033",
    "url": "https://www.sakai-chem.co.jp/jp/products/electronic_materials/",
    "label": "堺化学工业官网电子材料页：以自主水热合成法提供钛酸钡等高纯超细介电粉末，作为积层陶瓷电容器（MLCC）主材料",
    "retrieved": "2026-09-24",
-   "publisher": "Sakai Chemical"
+   "publisher": "Sakai Chemical",
+   "cache": "text/89b87888764ba681.txt"
   },
   {
    "id": "S034",
    "url": "https://www.ab-sm.com/a/52214",
    "label": "艾邦半导体网《国内外MLCC电子陶瓷材料供应商一览》：堺化学、日本化学（NCI）、共立KCM、富士钛、东邦钛、Vibrantz（原Ferro，供无源元件端子膏），国瓷材料可提供C0G、X8R/X7R/X5R、Y5V全系列介质材料",
    "retrieved": "2026-09-24",
-   "publisher": "艾邦半导体网"
+   "publisher": "艾邦半导体网",
+   "cache": "text/fde928572e9b9501.txt"
   },
   {
    "id": "S035",
    "url": "https://www.ab-sm.com/a/53431",
    "label": "艾邦半导体网《国内外MLCC电极用镍粉企业名单》：BME型占MLCC九成以上；JFE矿业平均直径0.2–0.4μm、住友金属矿山<0.1μm、昭荣化学、东邦钛业、Tekna 80nm、博迁新材、杭州新川",
    "retrieved": "2026-09-24",
-   "publisher": "艾邦半导体网"
+   "publisher": "艾邦半导体网",
+   "cache": "text/2919a14a04d41ee8.txt"
   },
   {
    "id": "S036",
    "url": "https://www.toho-titanium.co.jp/en/products/ni/",
    "label": "东邦钛业官网产品页：超细镍粉粒径分布窄、结晶度高，用作MLCC超薄内电极",
    "retrieved": "2026-09-24",
-   "publisher": "Toho Titanium"
+   "publisher": "Toho Titanium",
+   "cache": "text/0b129ae4e884f80b.txt"
   },
   {
    "id": "S037",
    "url": "https://article.murata.com/zh-cn/article/basics-of-capacitors-3",
    "label": "村田制作所技术专栏《第3讲 掌握贴片多层陶瓷电容器的制作方法》：镍内电极芯片两端涂铜浆约800℃烧结，再镀镍提高信赖性、镀锡便于贴装",
    "retrieved": "2026-09-24",
-   "publisher": "Murata"
+   "publisher": "Murata",
+   "cache": "text/a810ce79ac05bbfb.txt"
   },
   {
    "id": "S038",
    "url": "https://www.stcn.com/article/detail/4110945.html",
    "label": "证券时报2026-08-25《地缘政治冲击供应链安全 MLCC离型膜国产替代加速》：高端离型膜日系占九成以上份额并分级供货、2025年全球市场265亿元、介质叠300—1000层、认证周期6—12个月至批量供货2—3年、洁美与斯迪克扩产",
    "retrieved": "2026-09-24",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/b2fcbda8d42543a0.txt"
   },
   {
    "id": "S039",
    "url": "https://www.ab-sm.com/a/7785",
    "label": "艾邦半导体网《市场规模达200亿，MLCC用离型膜20强一览》：离型膜占MLCC成本10%~20%，PET基膜与涂布厂商名单（东丽、帝人、三菱化学、三井化学、东洋纺、洁美、斯迪克、双星等）",
    "retrieved": "2026-09-24",
-   "publisher": "艾邦半导体网"
+   "publisher": "艾邦半导体网",
+   "cache": "text/071d3569d09d461d.txt"
   },
   {
    "id": "S0310",
    "url": "https://www.stcn.com/article/detail/3364688.html",
    "label": "证券时报2025-09-30：博迁新材与X公司2025年8月至2029年底5420–6495吨镍粉长约、约43亿至50亿元；镍粉占2025年上半年营收约76%；2024年镍基产品销量1421.16吨",
    "retrieved": "2026-09-24",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/a1fedf1285fe885c.txt"
   },
   {
    "id": "S011",
@@ -1999,7 +2045,8 @@
    "url": "https://www.murata.com/en-eu/s/blog/next-generation-multilayer-ceramic-capacitors.html",
    "label": "村田技术博客（产品经理署名）：1995 年约 3µm 的介质厚度做到现在低于 0.5µm，以及变薄后晶界数减半带来的可靠性问题",
    "retrieved": "2026-09-24",
-   "publisher": "Murata"
+   "publisher": "Murata",
+   "cache": "text/2a464780bf5679b0.txt"
   },
   {
    "id": "S013",
@@ -2020,14 +2067,16 @@
    "url": "https://www.nextpcb.com/blog/what-is-mlcc-ceramic-capacitor-pcb-guide",
    "label": "PCB 厂商技术指南：钛酸钡/钙钛矿体系、镍内电极与银钯体系区别、端电极三层结构、C = εr·ε0·A·n/d 与 I/II 类介质用途",
    "retrieved": "2026-09-24",
-   "publisher": "NEXTPCB"
+   "publisher": "NEXTPCB",
+   "cache": "text/23778a279a277f93.txt"
   },
   {
    "id": "S016",
    "url": "https://www.johansondielectrics.com/tech-notes/basics-of-ceramic-chip-capacitors/",
    "label": "厂商技术笔记：MLCC 由陶瓷与金属交替叠层构成、容量由层数/介电常数/有效面积决定；贱金属体系为镍内电极 + 镍或铜端电极 + 镀镍（阻挡层）+ 镀锡（防氧化）",
    "retrieved": "2026-09-24",
-   "publisher": "Johanson Dielectrics"
+   "publisher": "Johanson Dielectrics",
+   "cache": "text/ebb3eeed5a830805.txt"
   },
   {
    "id": "S017",
@@ -2041,224 +2090,256 @@
    "url": "https://m-robo.datayes.com/feed/detail?id=615033",
    "label": "投研整理稿：转引中国电子元件行业协会 2024 年全球 MLCC 市场 1006.1 亿元、2025 年需求量 4.95 万亿只；高端介质 0.45–1µm/1000+ 层与国产约 1µm/500 层内的对比；消费电子单机 1000–1500 颗；陶瓷与金属热膨胀系数不同导致的共烧分层开裂",
    "retrieved": "2026-09-24",
-   "publisher": "萝卜投研（引中国电子元件行业协会等公开资料）"
+   "publisher": "萝卜投研（引中国电子元件行业协会等公开资料）",
+   "cache": "text/56bac2903a64dad4.txt"
   },
   {
    "id": "S019",
    "url": "https://wap.seccw.com/document/detail/id/25166.html",
    "label": "中商产业研究院：2017—2022 年全球 MLCC 出货量由 4.02 万亿只增至 5.7 万亿只（CAGR 6.1%），预测 2024 年 5.9 万亿只",
    "retrieved": "2026-09-24",
-   "publisher": "中商产业研究院"
+   "publisher": "中商产业研究院",
+   "cache": "text/7cc6eceaeab9557b.txt"
   },
   {
    "id": "S0110",
    "url": "http://yun.ce.cn/cen/gd/202506/t20250630_2344434.shtml",
    "label": "经济日报报道（中国经济网转载）：MLCC 号称「电子工业的大米」，标题为「手机里藏着数千颗电子大米」，受访企业为潮州三环",
    "retrieved": "2026-09-24",
-   "publisher": "经济日报 / 中国经济网"
+   "publisher": "经济日报 / 中国经济网",
+   "cache": "text/942da11a19af380d.txt"
   },
   {
    "id": "S0111",
    "url": "https://www.murata.com/ja-jp/products/capacitor/ceramiccapacitor",
    "label": "村田积层陶瓷电容器产品页新品公告：世界首个 1005M 尺寸 47µF 量产、1608M 尺寸最大 100µF、世界最小 016008M（0.16mm×0.08mm）",
    "retrieved": "2026-09-24",
-   "publisher": "Murata"
+   "publisher": "Murata",
+   "cache": "text/5da6048cddfc145e.txt"
   },
   {
    "id": "S0112",
    "url": "https://www.ab-sm.com/a/21649",
    "label": "行业技术媒体：极限高端产品单层介质上只有 3–5 个陶瓷颗粒、最多叠几百到一千层，内电极与陶瓷收缩温度/收缩率不同易致内部裂纹；16 道主工序清单",
    "retrieved": "2026-09-24",
-   "publisher": "艾邦半导体网"
+   "publisher": "艾邦半导体网",
+   "cache": "text/c515ba76a9374955.txt"
   },
   {
    "id": "S0113",
    "url": "https://ethw.org/Milestones:Commercialization_of_Multilayer_Ceramic_Capacitors_with_Nickel_Electrodes,_1982",
    "label": "IEEE 电子技术史里程碑条目：1973 年石油危机推高银钯价格，村田 1974 年起转向镍，钙掺杂钛酸钡使还原气氛共烧可行，1982 年 Ni-MLCC 量产，2021 年年产量超过一万亿只",
    "retrieved": "2026-09-24",
-   "publisher": "IEEE Global History Network / ETHW"
+   "publisher": "IEEE Global History Network / ETHW",
+   "cache": "text/1f2ac0e3a3dcf504.txt"
   },
   {
    "id": "S0114",
    "url": "https://passive-components.eu/mlcc-and-ceramic-capacitors/",
    "label": "欧洲无源元件技术门户：端电极分层与厚度（粘附层 15–40µm、镍阻挡层 1–3µm、外层锡 3–10µm）、叠层数受工艺限制目前上限超过 1000 层、2019 年量产的 008004 尺寸 0.2×0.1×0.1 mm",
    "retrieved": "2026-09-24",
-   "publisher": "European Passives & Electromechanics Network"
+   "publisher": "European Passives & Electromechanics Network",
+   "cache": "text/4709de7beb82d616.txt"
   },
   {
    "id": "S0115",
    "url": "https://m.cls.cn/detail/2381653",
    "label": "财联社：MLCC 被称为「电子工业大米」；引 TrendForce 数据称英伟达 GB200 单板搭载约 6500 颗 MLCC、下一代 Rubin 因热设计功耗翻倍接近 12000 颗",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/60d73ce03784eb59.txt"
   },
   {
    "id": "S041",
    "url": "http://dataclouds.cninfo.com.cn/sjother2/documents/2026/2026-07-23/4304d00d82af7ec738f5cd420fdbf1a5.pdf",
    "label": "广东微容电子科技股份有限公司《首次公开发行股票并在创业板上市招股说明书（申报稿）》全 382 页 PDF，巨潮资讯 2026-07-23 预先披露。第 1-1-131 页按配料、流延、印刷、叠层、层压、切割、排胶、烧结、倒角、封端、烧端、电镀、测试、外观选别、编带、包装共 16 道工序逐一说明作用：流延是「将瓷粉浆料均匀涂布于 PET 膜表面，经烘干制备出微米级厚度的均匀膜片」，印刷是「采用丝印或辊印工艺将电极浆料按设计的图形精准印刷于薄陶瓷带表面」，叠层是「将印有电极的膜片逐张按预设错位进行高精密堆叠，形成厚度均匀的巴块」，层压「采用水压机等专用设备对巴块施加压力」。另披露：报告期内限制消费类/工业类/车载类三类产品产能的瓶颈工序均为叠层；核心技术含「提高内电极的连续性及叠层的对位精度」；烧结采用「能够精确控制氧气、氮气等各种气体的浓度、每个区域的温度」的辊道炉；车载类 MLCC「导入需通过汽车行业体系认证及下游汽车厂商的严格验证」「导入周期长、验证流程复杂」，公司 2018 年建立国内首家车载类 MLCC 研究院、车载产品于 2024 年与 2025 年实现较大规模收入；高端片式多层陶瓷电容器扩产项目的建设进度按 T+12、T+24、T+36 三个阶段排布场地建设及装修、设备购置及安装、人员招聘及培训、设备调试及试运行",
    "retrieved": "2026-09-24",
-   "publisher": "巨潮资讯 / 深交所创业板（发行人：广东微容电子科技股份有限公司）"
+   "publisher": "巨潮资讯 / 深交所创业板（发行人：广东微容电子科技股份有限公司）",
+   "cache": "text/05bffc9269662c90.txt"
   },
   {
    "id": "S042",
    "url": "https://www.ab-sm.com/a/8111",
    "label": "艾邦半导体网《MLCC 生产工艺流程简介》，2022-06-07。给出原材料—球磨—配料—和浆—流延—印刷电极—叠层—层压—切割—排胶—烧结—倒角—封端—烧端—镀镍—镀锡—测试的工序顺序与参数：球磨约 2–3 天、排胶 300–400℃、烧结约 1300℃ 且「温度控制不好就容易产生电容的脆裂」、镀镍层须完全覆盖端头铜或银以防与锡互渗、测试必测耐电压/电容量/DF 损耗/漏电流/绝缘电阻",
    "retrieved": "2026-09-24",
-   "publisher": "艾邦半导体网"
+   "publisher": "艾邦半导体网",
+   "cache": "text/9e33b2c37d3fc153.txt"
   },
   {
    "id": "S043",
    "url": "https://www.risine.com/cn/newsshow/post-35.html",
    "label": "合肥日新高温技术有限公司（电子陶瓷烧结设备商）《MLCC 气氛烧结：芯片开裂与绝缘劣化，为什么会在同一条产线上轮番出现？》，2026-07-14。要点：早期钯/钯银内电极可在空气中与陶瓷共烧但成本高，镍替代后贱金属（BME）型 MLCC 占比已超 90%；镍在高温空气中必然氧化，故镍电极与介质共烧只能在还原气氛（工业上普遍氮氢气氛）中完成，烧结温度一般落在 1100–1350℃；该温区内可用氧分压窗口约 10⁻⁸–10⁻¹⁴ MPa 且边界随温度移动；高于上界则镍氧化、体积变化与陶瓷层收缩节奏失配、冷却后芯片开裂（剖面可见内电极附近分层与鼓胀），低于下界则钛酸钡中 Ti⁴⁺ 被还原为 Ti³⁺、晶格生成氧空位、绝缘电阻显著下降而漏电；烧结曲线由致密化与再氧化两个气氛条件相反的阶段衔接而成",
    "retrieved": "2026-09-24",
-   "publisher": "合肥日新高温技术有限公司"
+   "publisher": "合肥日新高温技术有限公司",
+   "cache": "text/457407931d2ba1d3.txt"
   },
   {
    "id": "S044",
    "url": "https://www.cls.cn/detail/2423531",
    "label": "《科创板日报》（财联社）2026-07-11《MLCC 涨价潮下的华强北“众生相”》。文中转述的量化口径：三环集团港股招股书称已实现高端 MLCC 介电层膜厚约 1μm、堆叠层数 1000 层以上；微容科技招股书称已实现叠层超 1,200 层；风华高科披露介质层厚度从 2μm 突破到 0.6μm；券商分析师口径下日韩厂商 AI 服务器用介质层厚度顶尖量产指标 0.35–0.5μm、最新研发 0.4μm 以下、堆叠最高 1,600 层，国内厂商普遍厚度 0.6–1.0μm、层数 800–1000 层；供给端称日韩大厂转产 AI/车规高利润料、扩产周期长达 18–24 个月",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/fc739ed8b9066241.txt"
   },
   {
    "id": "S045",
    "url": "https://www.stcn.com/article/detail/4115489.html",
    "label": "证券时报 2026-08-25《MLCC 核心材料，迎扩产潮！》。MLCC 上游离型膜环节的认证与放量周期表述：供应商认证周期一般 6–12 个月，部分核心功能材料超过 1 年；已批量向日韩企业供货的洁美科技受访称「从开始测试认证，到最终大批量供货，预计约为 2~3 年」，路径是从中低端逐步向中高端、从国内客户到韩国再到日本。注意：该口径来自 MLCC 上游材料商，不是 MLCC 厂自述",
    "retrieved": "2026-09-24",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/23c16a040553970b.txt"
   },
   {
    "id": "S046",
    "url": "https://www.guandian.cn/m/show/601207",
    "label": "观点网 2026-09-14：村田副社长南出雅范表示正研讨包含新建厂房在内的产能扩张计划，AI 服务器用 MLCC 产能拟在 2028 财年较当前水平提升约两成，方案尚未最终敲定",
    "retrieved": "2026-09-24",
-   "publisher": "观点网"
+   "publisher": "观点网",
+   "cache": "text/94c51b4315307650.txt"
   },
   {
    "id": "S051",
    "url": "https://article.murata.com/zh-cn/article/mlcc-for-5g-smartphone-1",
    "label": "村田技术稿（中文，2021-03-05）：每部智能手机约使用 800–1000 个 MLCC；5G 手机回路更多，并为 5G 手机开发 0201M（0.25×0.125mm）/0.1μF 料号，在福井村田完成量产准备",
    "retrieved": "2026-09-24",
-   "publisher": "Murata 村田制作所"
+   "publisher": "Murata 村田制作所",
+   "cache": "text/891bddebf6260ade.txt"
   },
   {
    "id": "S052",
    "url": "https://www.frostchina.com/content/news/detail/6ab33a47987f94429bdb51ee",
    "label": "沙利文（Frost & Sullivan）中国业务主管合伙人陆景专访，2026-09-23：转引三星电机官方数据——通用服务器单机约 2200 颗、AI 服务器约 2.8 万颗、AI 服务器为通用机的 8–13 倍；车规 MLCC 开发周期约为普通产品 3 倍、售价达普通产品 3 倍以上；TrendForce 的 GB200 单板约 6500 颗、Rubin 平台约 12000 颗；AMD MI450 验证中 47μF/2.5V/X6S/0402 单板用量由 1440 颗提升至 10544 颗；三星电机 5G 基站用 MLCC 需求口径",
    "retrieved": "2026-09-24",
-   "publisher": "Frost & Sullivan 沙利文"
+   "publisher": "Frost & Sullivan 沙利文",
+   "cache": "text/e06693561b39d5c7.txt"
   },
   {
    "id": "S053",
    "url": "https://article.murata.com/en-global/article/automotive-mlcc-1",
    "label": "村田技术稿（2021-06-23）：无自动驾驶的燃油车约 3000 颗 MLCC，当前每辆车 3000–5000 颗，配备 L2+ 自动驾驶的豪华纯电车超过 10000 颗；xEV 需要精确控制数百伏高压的电路",
    "retrieved": "2026-09-24",
-   "publisher": "Murata 村田制作所"
+   "publisher": "Murata 村田制作所",
+   "cache": "text/d1e41f9a456aa883.txt"
   },
   {
    "id": "S054",
    "url": "https://www.szeyang.com/cn/NewsInfo.aspx?Id=10461",
    "label": "宇阳科技战略开拓中心总监陈永学受访（电子发烧友，2020-07-07）：传统燃油车约 3000 颗、混动／插混约 8000 颗、智能电动车 1 万至 15000 颗以上；5G 基站需求来自 BBU（高容值）与 AAU（大功率高 Q），寿命要求十多年，小基站开始要 0201",
    "retrieved": "2026-09-24",
-   "publisher": "EYANG 宇阳科技"
+   "publisher": "EYANG 宇阳科技",
+   "cache": "text/1ac6f0ec4985c980.txt"
   },
   {
    "id": "S055",
    "url": "https://www.cnfin.com/yw-lb/detail/20260605/4422225_1.html",
    "label": "新华财经 2026-06-05：引银河证券研报——纯电车平均单车 MLCC 用量已达 18000 颗，为燃油车型的 6 倍；另引村田披露普通服务器单台 2200–4000 颗、GB300 约 3 万颗、VR200 NVL72 达 44 万–60 万颗",
    "retrieved": "2026-09-24",
-   "publisher": "新华财经"
+   "publisher": "新华财经",
+   "cache": "text/262d9854ccc408da.txt"
   },
   {
    "id": "S056",
    "url": "https://m.samsungsem.com/cn/newsroom/news/view.do?id=4303",
    "label": "三星电机新闻稿（2021-11-23）：每个 5G 基站使用的 MLCC 约为 4G LTE 基站的 4 倍、约需 2 万个；5G 基站用 MLCC 需大容量、100V 额定电压与高可靠性、抗弯折",
    "retrieved": "2026-09-24",
-   "publisher": "三星电机 Samsung Electro-Mechanics"
+   "publisher": "三星电机 Samsung Electro-Mechanics",
+   "cache": "text/07e7396b64aa633b.txt"
   },
   {
    "id": "S057",
    "url": "https://m-robo.datayes.com/feed/detail?id=615033",
    "label": "萝卜投研产业链整理稿（第三方汇总，未给一手口径）：2025 年下游按金额消费电子 34.5%／汽车电子 28.7%／AI 服务器 18.3%／工业通信 18.5%；消费电子单机用量 1000–1500 颗；传统通用服务器 1800–2500 颗；引摩根士丹利估算——VR200 NVL72 单台机柜 MLCC 价值量由 1530 美元增至 4320 美元（+182%），计算板 25→90 美元、交换机板 20→45 美元；并假设服务器用 MLCC 均价为普通领域 3–5 倍",
    "retrieved": "2026-09-24",
-   "publisher": "萝卜投研"
+   "publisher": "萝卜投研",
+   "cache": "text/56bac2903a64dad4.txt"
   },
   {
    "id": "S058",
    "url": "https://m.cls.cn/detail/2381653",
    "label": "财联社 2026-05-26：TrendForce 数据——英伟达 GB200 单板约 6500 颗、Rubin 单板接近 12000 颗，VR200 NVL72 整机用量约 60 万颗、较 GB300 平台提升超 30%，电压规格横跨 2.5V 至上千 V",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/60d73ce03784eb59.txt"
   },
   {
    "id": "S071",
    "url": "https://developer.nvidia.com/blog/nvidia-800-v-hvdc-architecture-will-power-the-next-generation-of-ai-factories/",
    "label": "NVIDIA 官方技术博客（2025-05-20）800 VDC 架构说明：现役机柜走 54 VDC 配电、GB200/GB300 NVL72 最多用八个 power shelf、1 MW 机柜按 54 V 配电需最多 200 kg 铜排、800 VDC 与 Kyber 机柜同步在 2027 年量产、同截面导线多送 85% 电力且省铜 45%",
    "retrieved": "2026-09-24",
-   "publisher": "NVIDIA Developer"
+   "publisher": "NVIDIA Developer",
+   "cache": "text/dcaa371e5bdc48ae.txt"
   },
   {
    "id": "S072",
    "url": "https://insights.trendforce.com/p/mlcc-silicon-capacitor-power-integrity",
    "label": "TrendForce 研究摘要（2026-06-18）：明确给出英伟达 GB200 单板约 6,500 颗 MLCC、Rubin 世代因 TDP 翻倍推到约 12,000 颗，并列出 MLCC 主要供应商为村田、三星电机、太阳诱电、国巨",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce Insights"
+   "publisher": "TrendForce Insights",
+   "cache": "text/a2422c9531c1db66.txt"
   },
   {
    "id": "S073",
    "url": "https://m.cls.cn/detail/2381653",
    "label": "财联社 2026-05-26 报道（记者王碧微），引 TrendForce 与中信建投数据：VR200 NVL72 整机 MLCC 约 60 万颗、较 GB300 平台增幅超 30%、电压规格横跨 2.5V 至上千V；高端 AI 服务器 MLCC 仅村田/三星电机/太阳诱电批量交付、加京瓷四家份额约 97%；2026 年上半年高端涨 30% 以上、中低端约 20%；日韩厂将消费规格产能转投 AI 高端、渠道对 X5R 预防性囤货",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/60d73ce03784eb59.txt"
   },
   {
    "id": "S074",
    "url": "https://product.samsungsem.com/product-news/view.do?idx=3624&language=cn",
    "label": "三星电机官方技术资源文章（2025-10-22）：AI 服务器 48V 母线取代 12V、GPU 在 1V 以下工作且电流数十至数百安培瞬时变化需在近旁布置高容 MLCC、NIC/PCIe 数十 GHz；产品列 0402 英寸 47µF 与 0603 英寸 100µF 小型超高容、1210 英寸 22nF 1000V C0G",
    "retrieved": "2026-09-24",
-   "publisher": "Samsung Electro-Mechanics"
+   "publisher": "Samsung Electro-Mechanics",
+   "cache": "text/c0a88bdd1157bacb.txt"
   },
   {
    "id": "S075",
    "url": "https://product.samsungsem.com/product-news/view.do?idx=3742&language=en",
    "label": "三星电机官方技术文章（2025-12-15）：AI 服务器电源架构中铝聚合物电容向 MLCC 迁移；理由为低 ESR/ESL 带来更快瞬态恢复、在 1–2 MHz 高频段保持低阻抗、更省贴装面积；附料号表（CL31X227MRKNNW# 1206/3216 220µF 4.0Vdc X6S 等）",
    "retrieved": "2026-09-24",
-   "publisher": "Samsung Electro-Mechanics"
+   "publisher": "Samsung Electro-Mechanics",
+   "cache": "text/9695c6c8f4af0770.txt"
   },
   {
    "id": "S076",
    "url": "https://www.murata.com/en-in/news/capacitor/ceramiccapacitor/2025/0710",
    "label": "村田官方新闻（2025-10-07）：全球首款 0402 英寸（1.0×0.5 mm）47µF MLCC 开始量产，明确面向 AI 服务器与数据中心的高密度贴装需求",
    "retrieved": "2026-09-24",
-   "publisher": "Murata Manufacturing"
+   "publisher": "Murata Manufacturing",
+   "cache": "text/1df85e57b283f30c.txt"
   },
   {
    "id": "S077",
    "url": "https://www.murata.com.cn/zh-cn/support/faqs/capacitor/ceramiccapacitor/char/0005",
    "label": "村田官方 FAQ（应用笔记级）：高介电常数型（X5R、X6S、X7R 等）施加直流电压后实际静电容量低于标称值（DC 偏置特性），温度补偿型 C0G 无此特性",
    "retrieved": "2026-09-24",
-   "publisher": "Murata Manufacturing"
+   "publisher": "Murata Manufacturing",
+   "cache": "text/69b6925b318f399d.txt"
   },
   {
    "id": "S078",
    "url": "https://www.renesas.com/en/applications/communications-infrastructure/cloud-enterprise/power-delivery-system-ai-accelerator-card",
    "label": "瑞萨官方 AI 加速卡供电方案页：kW 级加速卡需多相供电、亚 1V 核心电压、数字多相控制器与智能功率级；给出 ISL68229（三路输出 12 相 PWM 控制器）与 ISL99390（90A 智能功率级）等具体料号",
    "retrieved": "2026-09-24",
-   "publisher": "Renesas Electronics"
+   "publisher": "Renesas Electronics",
+   "cache": "text/c97fb5a3f979530e.txt"
   },
   {
    "id": "S079",
    "url": "https://powerelectronicsmagazine.net/article/122445/Vertical_power_takes_centre_stage_on_AI_chips",
    "label": "Power Electronics Magazine 技术报道（2025-09-10）：AI 加速器功耗突破 1kW、晶体管超千亿，横向供电（lateral power delivery）在 PCB 上铺开大功率级/电容/磁件造成传输损耗，IVR 垂直供电置于芯片下方可省掉这部分损耗，受访 CEO 称占加速卡功耗 15–20%",
    "retrieved": "2026-09-24",
-   "publisher": "Power Electronics Magazine"
+   "publisher": "Power Electronics Magazine",
+   "cache": "text/668a4f6b9dc977bf.txt"
   },
   {
    "id": "S061",
    "url": "https://corporate.murata.com/-/media/corporate/about/newsroom/news/irnews/irnews/2026/0731d/26q1-j-speach.ashx?la=ja-jp",
    "label": "村田製作所 2026年度第1四半期決算説明会資料 PDF（2026-07-31）：BB ratio 1.34、长交期订单增加与「担心供给紧张而提前下单」的原厂表述、2026年度用途别营收预测（计算机 +61.7%、移动 +8.6%）、产品售价下降列为减益因素",
    "retrieved": "2026-09-24",
-   "publisher": "Murata / 村田製作所 IR"
+   "publisher": "Murata / 村田製作所 IR",
+   "cache": "text/973ee291cd1b34b9.txt"
   },
   {
    "id": "S062",
@@ -2272,301 +2353,344 @@
    "url": "https://www.trendforce.cn/presscenter/news/20260827-13201.html",
    "label": "集邦咨询 2026-08-27 产业研究：三星电机调涨 4Q26 OEM/ODM 报价，消费级 X5R 平均 +25%~30%、AI Server 用 X6S +10%~20%；Murata/太诱/京瓷报价持平；厂商稼动率同步提高，部分供应商已接近九成",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce 集邦咨询"
+   "publisher": "TrendForce 集邦咨询",
+   "cache": "text/f81a4543e38ee4f7.txt"
   },
   {
    "id": "S064",
    "url": "https://www.trendforce.cn/presscenter/news/20260706-13137.html",
    "label": "集邦咨询 2026-07-06：三大龙头 6 月下旬 BB Ratio 1.30/1.31/1.25、整体 1.04；村田 Q1 订单/积压比 1.27 超 2018 年缺货起点的 1.25；苹果供应链备料提前一至两个月、车用 ODM 从 7 月提前到 5 月；大陆渠道 X5R 自 6 月起 +15%~25%",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce 集邦咨询"
+   "publisher": "TrendForce 集邦咨询",
+   "cache": "text/abc8c44812afef05.txt"
   },
   {
    "id": "S065",
    "url": "https://www.cls.cn/detail/2423531",
    "label": "《科创板日报》2026-07-11 华强北走访：村田 1206 47μF 现货 7 月 4 日约 650 元/2000 颗、7 月 9 日 850~890 元/2000 颗；村田主要授权分销商深圳华强称客户下单增加、开始拉货、主动补库存；券商口径整线扩产周期 18-24 个月",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/fc739ed8b9066241.txt"
   },
   {
    "id": "S066",
    "url": "https://field.10jqka.com.cn/20260709/c678079133.shtml",
    "label": "上海证券报 2026-07-09「MLCC价格下跌了？多家代理商回应」（同花顺转载）：近十家代理商称中低容向下微调、高容与超高容未降，并出现按客户限额「分货」",
    "retrieved": "2026-09-24",
-   "publisher": "上海证券报"
+   "publisher": "上海证券报",
+   "cache": "text/34dc521ee88eb324.txt"
   },
   {
    "id": "S067",
    "url": "https://www.stcn.com/article/detail/4036082.html",
    "label": "证券时报 2026-07-23「实探MLCC产业链：订单大增产能拉满」：主力企业产线满载、出厂价未松动；高容对普通料产能置换比 1:7；单一 AI 机柜约 44 万颗 MLCC；全球前五厂商合计份额 77.3%",
    "retrieved": "2026-09-24",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/17d7805a93c1d640.txt"
   },
   {
    "id": "S068",
    "url": "https://www.tmtpost.com/8132166.html",
    "label": "钛媒体 2026-09-08：村田 3 月对 AI 服务器与高阶车规 MLCC 调价 15%~35%、太阳诱电 9 月 1 日起跟调、三星电机 8 月 1 日起全品类 +30%；AI 高容高压型号交期 12-16 周、极端规格排到 2027 上半年；流延/叠层/共烧设备交付 1~2 年；三星电机以长约锁住约 10 家客户至 2027 年",
    "retrieved": "2026-09-24",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/b9fe30de28f492ab.txt"
   },
   {
    "id": "S069",
    "url": "https://passive-components.eu/yageo-announces-july-2026-capacitor-price-increase/",
    "label": "2026-07-01 报道：国巨 7 月 1 日起对含 MLCC 在内的电容器组合调整官方列表价，涨幅约 50%，本轮首次同时覆盖直营客户与代理商；现货市场 5 月起更快",
    "retrieved": "2026-09-24",
-   "publisher": "Passive Components.eu"
+   "publisher": "Passive Components.eu",
+   "cache": "text/ecb41ecf5bf0e028.txt"
   },
   {
    "id": "S0610",
    "url": "https://finance.sina.cn/2026-09-23/detail-inisuhkp5379620.d.html",
    "label": "2026-09-23 华强北现场报道：高端料「拿不到货」、原厂给不出交期；日韩厂把消费级 X5R 产能转向 AI 用 X6S、X7R；业内人士王平称全球 MLCC 销售额 95% 以上来自原厂直供与代理商，现货不足 5%、不具备判断长期价格的价值",
    "retrieved": "2026-09-24",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/ae48ef4e546e9890.txt"
   },
   {
    "id": "S0611",
    "url": "https://www.cls.cn/detail/2297673",
    "label": "财联社 2026-02-27：高容现货较低点提价 10%~15%、国内大厂稼动率攀升至 80%-90%、部分订单排至半年以后；智能眼镜导入 01005 尺寸（0.4×0.2mm）、单机 150~200 颗；三环集团高容 MLCC 募投项目由 2025-05-10 延期至 2027-05-31",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/7f1e5b6c5bd9ffd5.txt"
   },
   {
    "id": "S0612",
    "url": "https://www.stcn.com/article/detail/3979083.html",
    "label": "证券时报网（界面新闻稿）2026-06-25：昀冢科技 6 月 24 日公告控股子公司池州昀冢拟投 15 亿元建设高性能 MLCC 生产项目，选址安徽池州皖江江南新兴产业集中区，分两期、首期 7.5 亿元，首期投资预计 2028 年 9 月之前分批投入",
    "retrieved": "2026-09-24",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/50cb163debf3f70b.txt"
   },
   {
    "id": "S081",
    "url": "https://corporate.murata.com/ir/library/meetings",
    "label": "村田制作所 IR 资料库「Earnings Release Conferences」页，列有 FY2026 一季度决算说明会 Presentation Material 与 earnings call transcript（BB 值、订单额、在手订单的原始披露处）",
    "retrieved": "2026-09-24",
-   "publisher": "Murata Manufacturing"
+   "publisher": "Murata Manufacturing",
+   "cache": "text/c35976ef10346dbd.txt"
   },
   {
    "id": "S082",
    "url": "https://finance.sina.com.cn/roll/2026-08-03/doc-inikzqsf4649466.shtml",
    "label": "2026-08-03 报道村田 7 月 31 日 FY2026 一季度决算：整体 BB Ratio 1.34、MLCC 业务 1.47、期末在手订单 6178 亿日元、高端高容交期拉长至四五个月",
    "retrieved": "2026-09-24",
-   "publisher": "新浪财经（转引上海证券报等）"
+   "publisher": "新浪财经（转引上海证券报等）",
+   "cache": "text/29c6e0f6a6c27f6d.txt"
   },
   {
    "id": "S083",
    "url": "https://yageogroup.com/content/Resource%20Library/Financial/YAGEO%202Q26_Earnings%20Conference%20Presentation_CH.pdf",
    "label": "国巨 2026 年第二季法人說明會簡報原文 PDF（2026-07-29），官网 IR 资料库可下载；「BB 值与库存去哪看」的渠道实证",
    "retrieved": "2026-09-24",
-   "publisher": "YAGEO Corporation"
+   "publisher": "YAGEO Corporation",
+   "cache": "text/96de0923ce7ff393.txt"
   },
   {
    "id": "S084",
    "url": "https://www.cls.cn/detail/2400214",
    "label": "科创板日报 2026-06-15：国巨订单出货比已达 1.3 以上、华新科股东会口径由约 1.2 至 1.3 升至 1.3 至 1.4、日本设备商交期半年至一年",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/a72d8da7732c0264.txt"
   },
   {
    "id": "S085",
    "url": "https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=000636&id=12251155",
    "label": "风华高科《2026 年第一季度报告》公告全文（报告期 2026 年一季度，公告日期 2026-04-29）：存货期末 1,186,901,911.08 元、期初 1,022,627,667.18 元，营业收入同比增 18.90%",
    "retrieved": "2026-09-24",
-   "publisher": "新浪财经·公司公告"
+   "publisher": "新浪财经·公司公告",
+   "cache": "text/d5e8c0da502a6841.txt"
   },
   {
    "id": "S086",
    "url": "https://m.jiemian.com/article/15011466.html",
    "label": "2026-08-28 据风华高科 2026 年中报（报告期 2026 年 1–6 月）：存货周转率 2.50 次、同比增 0.20 次，毛利率 18.76%",
    "retrieved": "2026-09-24",
-   "publisher": "界面新闻"
+   "publisher": "界面新闻",
+   "cache": "text/0c30a4e127f74992.txt"
   },
   {
    "id": "S087",
    "url": "https://corporate.murata.com/zh-cn/newsroom/news/company/general/2024/0205",
    "label": "村田制作所官方新闻稿 2024-02-05《出云村田制作所新厂房动工》：2024 年 3 月动工、竣工预计 2026 年 3 月、投资总额约 470 亿日元；附五座 MLCC 生产楼动工/竣工对照表（泰国 2021-07→2023-03、石见 2022-03→2023-04、无锡 2022-11→2024-04 预计、菲律宾 2023-08→2025-09 预计、出云 2024-03→2026-03 预计），跨度 13 至 25 个月",
    "retrieved": "2026-09-24",
-   "publisher": "Murata Manufacturing"
+   "publisher": "Murata Manufacturing",
+   "cache": "text/34f6df62756a06d0.txt"
   },
   {
    "id": "S088",
    "url": "https://www.icviews.cn/news/35935/7",
    "label": "半导体产业纵横 2026-09-19：瑞银对逾百家分销商的跟踪显示 8 月 9 日 MLCC 库存量较 7 月 11 日下降约 8%、价格指数同期上涨约 7%；村田截至 2027 年度的两年投约 800 亿日元购置 MLCC 设备、2027 年度产能提高逾两成",
    "retrieved": "2026-09-24",
-   "publisher": "半导体产业纵横"
+   "publisher": "半导体产业纵横",
+   "cache": "text/657757d1e4b045f9.txt"
   },
   {
    "id": "S089",
    "url": "http://www.ce.cn/xwzx/gnsz/gdxw/202609/t20260903_3189061.shtml",
    "label": "证券日报 2026-09-03《MLCC 还会再涨价吗》：叠层机占整线投资四到五成、高端设备主要由日本厂商供应且交付期一到两年；国内头部厂商称产能利用率接近满负荷并把中低容产能转向高端高容；2022 至 2026 年长达四年去库存、渠道零库存",
    "retrieved": "2026-09-24",
-   "publisher": "中国经济网转证券日报"
+   "publisher": "中国经济网转证券日报",
+   "cache": "text/65edfcbb5d665160.txt"
   },
   {
    "id": "S0810",
    "url": "https://m.21jingji.com/article/20260707/herald/8880813d12d3718fc48c13a5dab3ad2f.html",
    "label": "上海证券报 2026-07-07：村田 107 料号出厂价约 1 元、渠道价约 25 元；原厂称日本原厂未公开表示涨价、部分料号渠道价涨幅来自渠道炒货",
    "retrieved": "2026-09-24",
-   "publisher": "21 财经"
+   "publisher": "21 财经",
+   "cache": "text/c8805f24fd7cdb05.txt"
   },
   {
    "id": "S0811",
    "url": "https://www.21jingji.com/article/20260920/herald/fa592eaf743703bedb8c7c3a401b6ce4.html",
    "label": "东方财富 2026-09-20：通用料号 0603-104 二季度 1000 颗约 5 元、6 月底高峰 30 元、9 月回落至 10 元；村田 9 月 10 日通知 2026 财年九大系列部分规格逐步停产",
    "retrieved": "2026-09-24",
-   "publisher": "21 财经"
+   "publisher": "21 财经",
+   "cache": "text/08efc5bad8a71851.txt"
   },
   {
    "id": "S0812",
    "url": "https://finance.sina.com.cn/wm/2026-06-04/doc-iniafmmw9484157.shtml",
    "label": "与非研究院 2026-06-04 历史涨跌复盘：2017 至 2018 年部分型号价格涨十倍甚至几十倍、现货一日三价；2018 年底手机需求转弱、下游库存见顶、渠道囤货反向出清导致价格断崖回落；2022 至 2023 年常规料跌至成本线、厂商以减产控库存维持毛利",
    "retrieved": "2026-09-24",
-   "publisher": "新浪财经（与非网）"
+   "publisher": "新浪财经（与非网）",
+   "cache": "text/e4c6217ae684daef.txt"
   },
   {
    "id": "S101",
    "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESZ_STOCK/2026/2026-4/2026-04-21/12122051.PDF",
    "label": "广东风华高新科技 2025 年年度报告全文（公告 PDF）：营业收入 57.56 亿元、电子元器件制造业毛利率 17.75%，主营产品目录同时列有 MLCC 与瓷粉、电子浆料",
    "retrieved": "2026-09-24",
-   "publisher": "风华高科（新浪财经公告镜像）"
+   "publisher": "风华高科（新浪财经公告镜像）",
+   "cache": "text/e9fd3679495dedc5.txt"
   },
   {
    "id": "S102",
    "url": "https://wap.eastmoney.com/a/202609153874877231.html",
    "label": "2026-09-15 报道转述风华高科业绩说明会口径：2026 年上半年高端 MLCC 产品营收约占 MLCC 总营收 40%（三级证据，公司自述）",
    "retrieved": "2026-09-24",
-   "publisher": "东方财富网"
+   "publisher": "东方财富网",
+   "cache": "text/7a0949e07f089b87.txt"
   },
   {
    "id": "S103",
    "url": "https://www.stcn.com/article/detail/4170242.html",
    "label": "2026-09-03 证券时报转述风华高科在券商策略会的表态：主营产品均已完成 AEC-Q200、IATF16949 车用体系认证，车规品进入电驱、BMS、OBC、电控（三级证据）",
    "retrieved": "2026-09-24",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/31b37f791e06e280.txt"
   },
   {
    "id": "S104",
    "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESZ_STOCK/2026/2026-3/2026-03-28/12028356.PDF",
    "label": "潮州三环集团 2025 年年度报告全文（公告 PDF）：电子元件分部收入 33.08 亿元、同比 +43.95%、营业收入合计 90.07 亿元；年报称 MLCC 产品线已覆盖 0201 至 2220 尺寸常规、中高压与车规产品，并推出 48V 电源系统用多规格高容",
    "retrieved": "2026-09-24",
-   "publisher": "三环集团（新浪财经公告镜像）"
+   "publisher": "三环集团（新浪财经公告镜像）",
+   "cache": "text/1804da203ea0f3c2.txt"
   },
   {
    "id": "S105",
    "url": "http://static.cninfo.com.cn/finalpage/2026-03-31/1225055912.PDF",
    "label": "福建火炬电子 2025 年年度报告全文（巨潮资讯公告 PDF）：元器件分部收入 13.63 亿元、主营合计 40.99 亿元、被动元器件产量 3,480,489,688 只（同比 +57.47%）",
    "retrieved": "2026-09-24",
-   "publisher": "火炬电子（巨潮资讯网）"
+   "publisher": "火炬电子（巨潮资讯网）",
+   "cache": "text/649982a8ecc9de62.txt"
   },
   {
    "id": "S106",
    "url": "http://static.cninfo.com.cn/finalpage/2026-06-26/1225388043.PDF",
    "label": "火炬电子股票交易异常波动公告（公告编号 2026-038，2026-06-26）：截至 2025 年底自产 MLCC 业务收入占主营业务收入的比例较小，算力基础设施方向的应用尚处培育期",
    "retrieved": "2026-09-24",
-   "publisher": "火炬电子（巨潮资讯网）"
+   "publisher": "火炬电子（巨潮资讯网）",
+   "cache": "text/bf06b664dac275c4.txt"
   },
   {
    "id": "S107",
    "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESZ_STOCK/2026/2026-4/2026-04-27/12202666.PDF",
    "label": "大连达利凯普 2025 年年度报告全文（公告 PDF）：瓷介电容器占总营收 98.75%、电子元器件毛利率 66.17%、钯浆为最主要采购原材料；披露客户含通用医疗、西门子医疗、联影医疗、中国通号",
    "retrieved": "2026-09-24",
-   "publisher": "达利凯普（新浪财经公告镜像）"
+   "publisher": "达利凯普（新浪财经公告镜像）",
+   "cache": "text/f3e298e8aaf8857d.txt"
   },
   {
    "id": "S108",
    "url": "http://dataclouds.cninfo.com.cn/sjother2/documents/2026/2026-07-23/4304d00d82af7ec738f5cd420fdbf1a5.pdf",
    "label": "广东微容电子科技创业板招股说明书（申报稿，2026-07-23 预先披露）：2025 年营收 184,539.12 万元、堆叠超 1,200 层、0805 与 1206 实现 100μF 与 220μF 并批量供应头部服务器厂商、前五大客户为 A 公司/联合无线/华勤技术/鸿海精密/小米、0201-1210 全尺寸车载产品满足 AEC-Q200",
    "retrieved": "2026-09-24",
-   "publisher": "微容科技（巨潮资讯网）"
+   "publisher": "微容科技（巨潮资讯网）",
+   "cache": "text/05bffc9269662c90.txt"
   },
   {
    "id": "S109",
    "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESZ_STOCK/2026/2026-4/2026-04-21/12120185.PDF",
    "label": "山东国瓷功能材料 2025 年年度报告全文（公告 PDF）：电子材料板块收入 6.93 亿元、占总营收 15.13%；公司称是全球领先的 MLCC 介质粉体生产企业、基础粉与配方粉全覆盖，正推进 AI 服务器及车规用介质粉扩产",
    "retrieved": "2026-09-24",
-   "publisher": "国瓷材料（新浪财经公告镜像）"
+   "publisher": "国瓷材料（新浪财经公告镜像）",
+   "cache": "text/2e6a1ea52f585bb7.txt"
   },
   {
    "id": "S1010",
    "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2026/2026-4/2026-04-20/12115441.PDF",
    "label": "江苏博迁新材 2025 年年度报告全文（公告 PDF）：镍基产品收入 8.62 亿元、同比 +25.88%，前五名客户销售额占年度销售总额 75.98%，某款特定规格车载电容用镍基产品已通过客户端验证评测",
    "retrieved": "2026-09-24",
-   "publisher": "博迁新材（新浪财经公告镜像）"
+   "publisher": "博迁新材（新浪财经公告镜像）",
+   "cache": "text/19104ed2b9ec0b17.txt"
   },
   {
    "id": "S1011",
    "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESH_STOCK/2025/2025-9/2025-09-29/11486188.PDF",
    "label": "博迁新材关于签署日常经营重大合同的公告（公告编号 2025-045，2025-09-29）：2025 年 8 月起至 2029 年 12 月 31 日预计向 X 公司销售镍粉 5,420～6,495 吨，按现价估算协议金额约 43～50 亿元（一级证据）",
    "retrieved": "2026-09-24",
-   "publisher": "博迁新材（上海证券交易所）"
+   "publisher": "博迁新材（上海证券交易所）",
+   "cache": "text/e29a46017b6eed9d.txt"
   },
   {
    "id": "S1012",
    "url": "http://file.finance.sina.com.cn/211.154.219.97:9494/MRGG/CNSESZ_STOCK/2026/2026-4/2026-04-21/12122734.PDF",
    "label": "浙江洁美电子 2025 年年度报告全文（公告 PDF）：电子级薄膜材料（离型膜、流延膜）收入 2.60 亿元、同比 +48.01%、占总营收 12.37%",
    "retrieved": "2026-09-24",
-   "publisher": "洁美科技（新浪财经公告镜像）"
+   "publisher": "洁美科技（新浪财经公告镜像）",
+   "cache": "text/b0338dd2b2034241.txt"
   },
   {
    "id": "S111",
    "url": "https://www.trendforce.com/presscenter/news/20260706-13136.html",
    "label": "TrendForce 2026-07-06 新闻稿：截至 6 月底村田/三星电机/太阳诱电 BB 值 1.30、1.31、1.25，行业整体 1.04，并把 2026 年四季度列为高端是否全面缺货的判断窗口",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/b5423445430034d6.txt"
   },
   {
    "id": "S112",
    "url": "https://finance.sina.cn/2026-03-11/detail-inhqqixw2805853.d.html",
    "label": "中金公司《MLCC 周期复盘与展望》2026-03-11（新浪财经转载）：订单出货比口径与 1.1 的涨价门槛、村田 4Q25 BB 升至 1.12、通用服务器与 GB200 NVL72 单机用量",
    "retrieved": "2026-09-24",
-   "publisher": "中金公司研究部"
+   "publisher": "中金公司研究部",
+   "cache": "text/4ba2d664754f5c9c.txt"
   },
   {
    "id": "S113",
    "url": "https://www.trendforce.com/presscenter/news/20260415-13013.html",
    "label": "TrendForce 2026-04-15 新闻稿：2026 年服务器整体出货增速由近 20% 下调至约 13%，并给出 PMIC/BMC 交期由 21–26 周拉长到 35–40 周的实例",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/312e1f449feb196a.txt"
   },
   {
    "id": "S114",
    "url": "https://www.trendforce.com/presscenter/news/20260803-13161.html",
    "label": "TrendForce 2026-08-03 新闻稿：2026 年 AI 服务器出货增速由 28% 上调至近 31%，九大 CSP 资本开支同比增约 90%",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/7ade1fe7c8e5c5e9.txt"
   },
   {
    "id": "S115",
    "url": "https://finance.sina.com.cn/roll/2026-07-10/doc-inihhrah3934060.shtml",
    "label": "上海证券报 2026-07-09/10 报道：华强北中低容（105/225/475）价格向下微调、高容缺货，三环 TCC0603X5R106M6R3CT 6 月 17 日 50 元/千颗与另一代理 72 元/千颗并存，高端扩产周期 18–24 个月、分货被视为最危险信号",
    "retrieved": "2026-09-24",
-   "publisher": "上海证券报"
+   "publisher": "上海证券报",
+   "cache": "text/ff0c8aa1066601d0.txt"
   },
   {
    "id": "S116",
    "url": "https://www.frostchina.com/content/news/detail/6ab33a47987f94429bdb51ee",
    "label": "弗若斯特沙利文高管访谈（2026 年 9 月）：部分高端 X6S 交期由约 8 周拉长至最长约 20 周、国内厂商 AI 高端订单排至 2027 年二季度、GB200 单板约 6,500 颗而 Rubin 平台约 12,000 颗、各家涨价函日期与幅度",
    "retrieved": "2026-09-24",
-   "publisher": "Frost & Sullivan"
+   "publisher": "Frost & Sullivan",
+   "cache": "text/e06693561b39d5c7.txt"
   },
   {
    "id": "S117",
    "url": "https://app.dahecube.com/nweb/spider/20260903/853900n04da4216a3c.htm",
    "label": "风华高科投资者关系活动记录表（2026-09-03 披露）：车规品完成 AEC-Q200 与 IATF16949，进入电驱/BMS/OBC，祥和工业园高端电容基地 2025 年底建成",
    "retrieved": "2026-09-24",
-   "publisher": "大河财立方"
+   "publisher": "大河财立方",
+   "cache": "text/997d60571fe04c9d.txt"
   },
   {
    "id": "S118",
    "url": "https://m.21jingji.com/article/20260915/herald/cb72ee03f09d8fd1c43f9dae74d3d070_zaker.html",
    "label": "风华高科投资者关系活动记录表（2026-09-15 披露）：2026 年上半年高端 MLCC（高容、车规、中高压）占 MLCC 总营收约 40%，并回应「高端是海外贴牌」传闻",
    "retrieved": "2026-09-24",
-   "publisher": "21 世纪经济报道"
+   "publisher": "21 世纪经济报道",
+   "cache": "text/5ffca73f12b53201.txt"
   },
   {
    "id": "S119",
    "url": "https://www.cls.cn/detail/2488809",
    "label": "财联社 2026-09-21：三环集团称华强北等现货渠道价格变化快、原厂价格不会那么快，另有从业者称现货市场「还比较平静」",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/163a12a02bdeba81.txt"
   },
   {
    "id": "S1110",
@@ -2580,42 +2704,48 @@
    "url": "https://finance.sina.com.cn/stock/relnews/hk/2026-09-01/doc-iniqihzw1510271.shtml",
    "label": "2026 年 8 月元器件行情追踪（综合富昌电子、IDC、Counterpoint 等，2026-09-01 发布）：MLCC 含车规交期 24–52 周、渠道与终端库存加速消耗、2026 年全球智能手机出货预估同比 -14.3%",
    "retrieved": "2026-09-24",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/fa0f20b220b09541.txt"
   },
   {
    "id": "S091",
    "url": "https://www.chinabaogao.com/detail/799350.html",
    "label": "观研报告网 2026-06-09 转引中国电子元件行业协会：全球 MLCC 份额村田 31.8%、三星电机 22.9%、太阳诱电 11.2%、TDK 5.9%、京瓷 5.5%；2025 年 AI 服务器等高容段村田约 45%、三星电机约 30%、太阳诱电 15%、TDK 10%；另附 2026 年各厂涨价函（村田 4 月 15%–35% 高端车规与 AI 服务器高容、国巨 1 月全系列 4.8%–9.5%、TDK 5 月 20%–30%）",
    "retrieved": "2026-09-24",
-   "publisher": "观研天下／中国电子元件行业协会"
+   "publisher": "观研天下／中国电子元件行业协会",
+   "cache": "text/3d8da38a2b9e8648.txt"
   },
   {
    "id": "S092",
    "url": "https://www.reportprime.com/ja/%E7%A9%8D%E5%B1%A4%E3%82%BB%E3%83%A9%E3%83%9F%E3%83%83%E3%82%AF%E3%82%B3%E3%83%B3%E3%83%87%E3%83%B3%E3%82%B5-(MLCC)-r5792",
    "label": "ReportPrime 积层陶瓷电容器（MLCC）市场报告 R5792（2026 年 7 月公开）：图 5 为 2024 年销售额份额村田 34%、三星电机 23%、太阳诱电 13%、国巨 8%、TDK 6%，CR10 约 90%；方法章节写明按商流芯片销售额（HS 8532.24）计、剔除钽/铝电解/薄膜/单层陶瓷与自用产能、KEMET 计入国巨，并记日本三强按数量约占全球 60%、AI 服务器超高规格段村田约 45% 与三星电机约 40%",
    "retrieved": "2026-09-24",
-   "publisher": "ReportPrime"
+   "publisher": "ReportPrime",
+   "cache": "text/1f9fae1de29291cc.txt"
   },
   {
    "id": "S093",
    "url": "https://corporate.murata.com/-/media/corporate/about/newsroom/news/irnews/irnews/2026/0430/25q4-j-fls.ashx?la=ja-jp&cvid=20260430013812000000",
    "label": "村田制作所 2026 年 3 月期（2025-04-01～2026-03-31）决算短信〔IFRS〕连结，2026-04-30：売上収益 1,830,856 百万円（+5.0%）、营业利益率 15.4%、电容器分部 936,418 百万円（+12.6%）、计算机用途 +28.4%",
    "retrieved": "2026-09-24",
-   "publisher": "Murata"
+   "publisher": "Murata",
+   "cache": "text/9a70b996bf79eb11.txt"
   },
   {
    "id": "S094",
    "url": "https://corporate.murata.com/zh-cn/technology/technology-applications/ceramiccapacitor",
    "label": "村田中文技术文章页《多层陶瓷电容器（MLCC）产品线实现高可靠性与高性能》：写明宽谱系来自垂直整合的制造体系与材料技术、工艺工程",
    "retrieved": "2026-09-24",
-   "publisher": "Murata"
+   "publisher": "Murata",
+   "cache": "text/26bd0c3bda3d1ee6.txt"
   },
   {
    "id": "S095",
    "url": "https://finance-frontend-pc-dist.west.edge.storage-yahoo.jp/disclosure/20260731/20260730503470.pdf",
    "label": "TDK（6762）2027 年 3 月期第 1 四半期决算短信〔IFRS〕，2026-07-31：连结売上高 741,005 百万円（+38.3%）、营业利益 86,310 百万円；製品別表列电容器 80,752 百万円（构成比 10.9%、+35.1%，含陶瓷/铝电解/薄膜）、受动部品 176,803 百万円",
    "retrieved": "2026-09-24",
-   "publisher": "TDK／TDnet"
+   "publisher": "TDK／TDnet",
+   "cache": "text/1f6516c2ab7383a1.txt"
   },
   {
    "id": "S096",
@@ -2629,49 +2759,56 @@
    "url": "https://finance.stockweather.co.jp/contents/dispPDF.aspx?disclosure=20260424510424",
    "label": "太阳诱电（6976）2026 年 3 月期决算短信〔日本基準〕连结，2026-05-08：连结売上高 3,553 億 41 百万円（+4.1%）、营业利益 199 億 96 百万円、电容器分部 2,517 億 71 百万円（+8.5%），自述主力事业为积层陶瓷电容器、电感器为第二支柱",
    "retrieved": "2026-09-24",
-   "publisher": "Taiyo Yuden／TDnet"
+   "publisher": "Taiyo Yuden／TDnet",
+   "cache": "text/9f327d5a43ea8961.txt"
   },
   {
    "id": "S098",
    "url": "https://samsungsem.com/cn/newsroom/news/view.do?id=9724",
    "label": "三星电机官方新闻室 2025-09-29《在中国天津举办 2025 SAT》：全球 30 余家整车厂与汽车电子企业参会、公开天津车规产线、披露上一年度汽车电子 MLCC 销售额 1 万亿韩元、超高容量与超高压为高附加值方向",
    "retrieved": "2026-09-24",
-   "publisher": "Samsung Electro-Mechanics"
+   "publisher": "Samsung Electro-Mechanics",
+   "cache": "text/c0e912d3c26ea453.txt"
   },
   {
    "id": "S099",
    "url": "https://yageogroup.com/content/Resource%20Library/Financial/YAGEO%202Q26_Earnings%20Conference%20Presentation_CH.pdf",
    "label": "国巨（2327）2026 年第二季法人说明会简报，2026-07-29：2Q26 毛利率 38.5%（季增 0.4 百分点、年增 2.9 百分点）、上半年毛利率 38.3%，并注明 MLCC 与电阻成长幅度高于整体",
    "retrieved": "2026-09-24",
-   "publisher": "YAGEO"
+   "publisher": "YAGEO",
+   "cache": "text/96de0923ce7ff393.txt"
   },
   {
    "id": "S0910",
    "url": "https://www.kyocera.co.jp/ir/library/pdf/f_results/FY26_4Q_tanshin.pdf",
    "label": "京瓷（6971）2026 年 3 月期决算短信〔IFRS〕连结，2026-04-30：核心组件分部売上高 653,429 百万円（+10.4%）、事业利益率 9.7%，增销来自 KAVX 集团车载与信息通信市场用电容器；MLCC 不按单品单独披露",
    "retrieved": "2026-09-24",
-   "publisher": "Kyocera"
+   "publisher": "Kyocera",
+   "cache": "text/f014e2db6c8c70fd.txt"
   },
   {
    "id": "S0911",
    "url": "https://kyocera.com.cn/prdct/ele/zh-hans/product/capacitor/index.html",
    "label": "京瓷（中国）官网电容器产品页：MLCC 以高纯度介电陶瓷为原料、走薄层化与高精度路线，用于无线通信终端与工业/车载设备，并列出 EIA 0201 封装 10µF 高容量产品",
    "retrieved": "2026-09-24",
-   "publisher": "Kyocera"
+   "publisher": "Kyocera",
+   "cache": "text/048e9c47bbd7ad9e.txt"
   },
   {
    "id": "S0912",
    "url": "https://www.tmtpost.com/8042774.html",
    "label": "钛媒体 2026-06-28《MLCC 观察报告：食堂里的六张面孔》：转引中国电子元件行业协会 CR5 77.3%（2024 年）、国巨 5.1%、AI 服务器 MLCC 村田加三星电机合计 85%",
    "retrieved": "2026-09-24",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/196851265b1b2bcc.txt"
   },
   {
    "id": "S0813",
    "url": "https://www.cls.cn/detail/2482185",
    "label": "财联社 2026-09-14（引日经）：村田计划 2028 财年（截至 2028 年 3 月）将 MLCC 产能较当前提升两成；已停产料号要求 2028 年 3 月底前完成最后下单",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/e2a18e1fe883f906.txt"
   }
  ],
  "category": "电子元件",
@@ -2693,8 +2830,8 @@
   "hero_motif": "interleaved_electrodes",
   "hero_note": "MLCC 的横截面：陶瓷介质层与镍内电极交替叠层，相邻电极分别朝两个端头引出——交错才成电容，对齐就是短路。记忆点用器件原理本身，不用装饰。"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-05",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 16,
  "cover": {
@@ -2708,11 +2845,12 @@
  },
  "created_date": "2026-09-24",
  "site": {
-  "url": "https://mlcc-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72d-1f43-7663-a431-670f4b139fc8",
-  "slug": "mlcc",
-  "content_sha": "ca26192e21bc216a",
-  "published_date": "2026-09-25",
+  "url": "https://components-gtqdc11h6po.qoder.website/mlcc/mlcc.html",
+  "group": "components",
+  "path": "/mlcc/mlcc.html",
+  "project_id": "01a104f3-1627-7002-a9fa-7fc436a5d147",
+  "content_sha": "d461633d6b4b9944",
+  "published_date": "2026-10-05",
   "access": "public"
  }
 }

@@ -1,0 +1,1610 @@
+{
+ "topic": "Cerebras",
+ "category": "AI算力",
+ "tags": [
+  "Cerebras",
+  "晶圆级芯片",
+  "WSE-3",
+  "推理速度",
+  "收入结构",
+  "客户集中度",
+  "资本开支",
+  "CBRS",
+  "SEC",
+  "口径核对"
+ ],
+ "subtitle": "一家把「1500 tokens/s」当招牌的芯片公司：先把三条前提核清（模型名、速度是谁说的、公司已上市），再看晶圆级引擎省掉的到底是哪一道切割线，最后读它的收入、客户与产能",
+ "reader": "想知道晶圆级芯片与传统 GPU 差在哪一步的人；想看懂一家刚上市公司的收入结构、客户集中度与资本开支三张表怎么读的人",
+ "generated_date": "2026-10-10",
+ "created_date": "2026-10-03",
+ "theme": {
+  "token": "cerebras-wafer",
+  "hero_motif": "wafer_grid",
+  "hero_note": "母题是「一整片晶圆当一颗芯片用」：左边是一格一格的小芯片阵列（传统做法：切开来卖），右边是一整片不被切割的方格（晶圆级的全部含义就是这道切割线没有落下）。中间那道竖线是行业真正的分界——切，还是切。图上不写任何数字与日期。"
+ },
+ "data_as_of": "2026-10",
+ "research_mode": "online",
+ "reading_minutes": 11,
+ "sections": [
+  {
+   "id": "premise-check",
+   "title": "先把三件事核清：模型名、速度是谁说的，以及这家公司已经上市",
+   "anchor": "核前提",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "那个数字先别接住",
+     "source_ids": [
+      "S019",
+      "S018"
+     ],
+     "text": "「Cerebras 跑 Qwen3.8-27B，1500 tokens/s」有三处要拆开：模型是哪一档、这数字谁在什么条件下说的、财务口径现在归谁管。第三处最常被漏掉——Cerebras Systems 已经上市。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "Qwen3.8-27B 逐项核对（本机检索，截至 2026-10-03）",
+     "rows": [
+      {
+       "k": "是不是系列名",
+       "v": "是。Qwen3.8 为代际名，同代还列有 Max、Flash、2.4T-A95B；这里指 27B 一档",
+       "source_ids": [
+        "S017",
+        "S012"
+       ]
+      },
+      {
+       "k": "是否存在",
+       "v": "存在，仓库 Qwen/Qwen3.8-27B，未设申请门槛，下载 693 万次",
+       "source_ids": [
+        "S011"
+       ]
+      },
+      {
+       "k": "权重发布",
+       "v": "仓库建于 2026-08-05，权重最后更新 2026-08-14；OpenRouter 同日收录",
+       "source_ids": [
+        "S011",
+        "S017"
+       ]
+      },
+      {
+       "k": "参数规模",
+       "v": "模型卡写 27B、64 层；safetensors 合计 27,781,427,952",
+       "source_ids": [
+        "S012",
+        "S011"
+       ]
+      },
+      {
+       "k": "许可证",
+       "v": "模型卡 frontmatter 写 apache-2.0，权重可直接下载",
+       "source_ids": [
+        "S012",
+        "S011"
+       ]
+      },
+      {
+       "k": "上下文",
+       "v": "原生 262,144，可扩展至 1,000,000；Cerebras 侧付费档只给 128k，免费档 64k",
+       "source_ids": [
+        "S012",
+        "S014"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "1500 是标称，不是实测",
+     "source_ids": [
+      "S013",
+      "S014",
+      "S015",
+      "S016"
+     ],
+     "text": "厂商口径有两个版本：2026-09-03 那条 HN 主帖标题写的就是 1500 tokens/s，指向 Cerebras 模型文档；同一篇文档现在写 SPEED ~1850 tokens/sec，定价页同数。两处都是标称，都没有同时披露上下文长度、并发批次、是否计入首 token 时间。\n\n更要紧的是同页的另一行算术：免费档限速每分钟 90,000 total tokens，除以 60 恰好等于 1500 tokens/s。账号能拿到的上限本来就撞在这条线上，它和引擎标称不是同一个量纲，谁也不该替代谁。"
+    },
+    {
+     "type": "fact_strip",
+     "facts": [
+      {
+       "value": "32.1",
+       "label": "同表最低一档",
+       "hint": "tokens/s，DeepInfra",
+       "source_ids": [
+        "S016"
+       ]
+      },
+      {
+       "value": "8 家",
+       "label": "被独立实测的 API 服务商",
+       "hint": "名单里没有 Cerebras",
+       "source_ids": [
+        "S016"
+       ]
+      },
+      {
+       "value": "$185.00",
+       "label": "每股 IPO 定价",
+       "hint": "Class A，424B4",
+       "source_ids": [
+        "S018"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "速度随什么衰减",
+     "source_ids": [
+      "S016",
+      "S014"
+     ],
+     "text": "同一模型在各服务商的实测值差 6 倍，掉的形态一致。以 10 万 token 量级长提示为对照：DeepInfra 中位输出速度 32.1 对 25.2，首块延迟从 1.07 秒跳到 43.24 秒；阿里云节点 46.1 对 43.9。并发批次各页都没披露，无法核对。\n\n另一个变量直接改变观感：文档注明 reasoning 默认 high。若标称只统计可见输出，含思考 token 的速度要另算。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "上市时间线（EDGAR，CIK 0002021728，逐项 accession 可自行点开）",
+     "rows": [
+      {
+       "k": "2024-06-17 首次秘密递交 DRS",
+       "v": "0001628279-24-000280",
+       "source_ids": [
+        "S019",
+        "S0114"
+       ]
+      },
+      {
+       "k": "2024-09-30 公开 S-1",
+       "v": "0001628280-24-041596",
+       "source_ids": [
+        "S019"
+       ]
+      },
+      {
+       "k": "2025-10-03 撤回 RW",
+       "v": "0001193125-25-230382",
+       "source_ids": [
+        "S019",
+        "S0110"
+       ]
+      },
+      {
+       "k": "2025-12-22 再次秘密递交 DRS",
+       "v": "0002021728-25-000005",
+       "source_ids": [
+        "S019"
+       ]
+      },
+      {
+       "k": "2026-04-17 公开 S-1",
+       "v": "0001628280-26-025762",
+       "source_ids": [
+        "S019",
+        "S0111"
+       ]
+      },
+      {
+       "k": "2026-05-13 注册生效 EFFECT",
+       "v": "9999999995-26-001616",
+       "source_ids": [
+        "S019",
+        "S0112"
+       ]
+      },
+      {
+       "k": "2026-05-14 定价 424B4",
+       "v": "0001628280-26-035214",
+       "source_ids": [
+        "S019",
+        "S018"
+       ]
+      },
+      {
+       "k": "2026-05-15 交割 8-K",
+       "v": "0001628280-26-035605",
+       "source_ids": [
+        "S019",
+        "S0113"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "既然上市，财务口径只认 SEC",
+     "source_ids": [
+      "S018"
+     ],
+     "text": "往后各章出现的收入、毛利、客户占比一律回到 EDGAR 取数，媒体报道只作旁证。424B4 首页能直接读出的事实：发行 30,000,000 股 Class A，定价 $185.00，承销折扣每股 $4.3475、公司到手 $180.6525，挂牌 Nasdaq Global Select Market、代码 CBRS。摊薄不止看这一档发行：Class A、B、N 三类同股不同权，B 类每股 20 票，文件里还挂着与市值门槛挂钩的归属条款。"
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "触发本篇的那篇公众号文章，没有引用",
+     "text": "它在抓取配额受限的时段没打开，本机没读到正文。所以本篇不引它、不转述它的结论；上文数字全部来自本节所列来源，可自行点开。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/01_cbrs-premise-check.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画，可在 drawio/01_cbrs-premise-check.drawio 里继续编辑；按正文「有三处要拆开」绘制，图上不含数字与日期",
+     "based_on": [
+      "premise-check#有三处要拆开",
+      "premise-check#它和引擎标称不是同一个量纲",
+      "premise-check#往后各章出现的收入、毛利、客户占比一律回到 EDGAR 取数"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "wafer-architecture",
+   "title": "晶圆级引擎到底省掉了什么：不是「更大」，是那道切割线没落下",
+   "anchor": "技术",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "那道切割线没落下",
+     "text": "常规做法先把晶圆切成小 die 分别封装：H100 的 die 面积 814 mm²，卡在光罩极限，一张 5nm 晶圆切出约 72 颗，die 之间靠板级互连——片间 NVLink 4 是 900 GB/s，跨服务器再走 PCIe 与网络。Cerebras 把整片晶圆当一个封装体用：WSE-3 有效 die 面积 46,225 mm²，一片出一颗，片上互连替掉了大部分片外搬运，CS-3 页标的片上互连带宽是 214 Pb/s。",
+     "source_ids": [
+      "S026",
+      "S027",
+      "S023"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "官方披露规格",
+     "rows": [
+      {
+       "k": "晶体管",
+       "v": "4 万亿（WSE-3 与 WSE-3T 同）",
+       "source_ids": [
+        "S021",
+        "S022"
+       ]
+      },
+      {
+       "k": "有效 die 面积",
+       "v": "46,225 mm²",
+       "source_ids": [
+        "S022",
+        "S026"
+       ]
+      },
+      {
+       "k": "AI 核",
+       "v": "900,000（物理核 970,000）",
+       "source_ids": [
+        "S021",
+        "S026"
+       ]
+      },
+      {
+       "k": "片上 SRAM",
+       "v": "44 GB",
+       "source_ids": [
+        "S021",
+        "S023"
+       ]
+      },
+      {
+       "k": "峰值 AI 算力",
+       "v": "WSE-3 125 PFLOPS；WSE-3T 250 PFLOPS",
+       "source_ids": [
+        "S021",
+        "S022"
+       ]
+      },
+      {
+       "k": "制程 ／ 外部内存",
+       "v": "台积电 5nm；1.5 TB、12 TB、1.2 PB 三档",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "k": "单机与集群",
+       "v": "CS-3 每系统 1 片晶圆、16RU；CS-4 每系统 3 片；集群上限 2,048 台 CS-3",
+       "source_ids": [
+        "S023",
+        "S024",
+        "S021"
+       ]
+      },
+      {
+       "k": "WSE-3T 带宽 ／ 片间延迟",
+       "v": "43.2 PB/s ／ 2 µs（CS-4）",
+       "source_ids": [
+        "S024"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "存储在哪：只按来源写",
+     "text": "权重放在片上是官方自己的说法：推理发布文写 44 GB SRAM 集成在单颗芯片上、消除了对外部内存和那条慢车道的需求，CS-3 页把片上内存带宽标为 21 PB/s，对标 H100 的 3 TB/s。HBM 在我检索到的四份官方规格清单里都没有出现，出现的是 1.5 TB、12 TB、1.2 PB 三档外部内存；权重是否落到片外、用什么介质，官方未逐项说明。",
+     "source_ids": [
+      "S025",
+      "S023",
+      "S027",
+      "S021",
+      "S022",
+      "S024"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "为什么这套结构对推理更友好",
+     "text": "自回归解码逐 token 串行：生成一个词要把全部参数从内存搬进计算单元一次，生成 100 个词就搬 100 次，词与词互相依赖、无法并行。70B 的 FP16 权重 140 GB，要 1,000 token/秒就需要 140 TB/s，超过任何单台 GPU 服务器，而 GPU 片上只有约 200 MB。同一篇还限定：多接几台 DGX 只提高系统能接的查询数，不缩短单请求响应时间——墙钟由带宽和延迟定，不由总算力定。官方同日口径 8B 1,800、70B 450 token/秒；先想再答的 agent 做法要用最多 100 倍 token。",
+     "source_ids": [
+      "S025"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "快的边界，以及没公开的那一半",
+     "text": "边界写在容量上：模型装不进单片就按层边界切开、映射到多台 CS-3，官方称 20B 单机可跑，70B 最少 4 台。第三方榜单（Artificial Analysis，2026 年 10 月检索）在同一模型 gpt-oss-120b 上给的对照是：Cerebras 输出 1,807 token/秒、混合价 0.23 美元每百万 token，CoreWeave 38 token/秒、0.02 美元，Groq 472.8 token/秒——最快与最便宜不在同一家。榜单速度口径是 10,000 输入、500 输出 token，仍是单请求；各并发档与不同上下文长度下对 GPU 的吞吐曲线，未见公开数据。",
+     "source_ids": [
+      "S025",
+      "S028"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "代价没消失，只是从板级搬进封装",
+     "text": "第三方工程分析（arXiv 2503.11698）把封装列成三件事：成本，直接反映在 CS-3 售价上；供电，要按超过 20,000 安培做电压调节，晶圆上散布 300 多个 VRM；散热，要从晶圆抽出约 20 kW。传统封装撑不住，于是晶圆直装 PCB，PCB 本身就是封装，连接器与装配机器都得自造。良率口径如下：官方博客（2025 年 1 月）称单核 0.05 mm²，同缺陷密度下损失 2.2 mm²、H100 为 361 mm²，出货产品 970,000 核启用 900,000、硅面积启用 93%；同一篇也承认缓存与互连占最多一半面积、缺陷扎堆会整片报废。这是公司自述，无独立复核。",
+     "source_ids": [
+      "S027",
+      "S026"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "留给估值那一章的一句",
+     "text": "如果瓶颈真的只是带宽，能被抄走的是架构图，抄不走的是那些小到几分之一平方毫米的核、散布全晶圆的稳压模块，和那台为它特制的封装机器——护城河的位置会在制造与良率，而不是在架构想法上。这条河有多深，不在本章下结论。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/02_cbrs-wafer-cut.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画，可在 drawio/02_cbrs-wafer-cut.drawio 里继续编辑；按正文「把整片晶圆当一个封装体用」绘制，图上不含数字与日期",
+     "based_on": [
+      "wafer-architecture#把整片晶圆当一个封装体用",
+      "wafer-architecture#片上互连替掉了大部分片外搬运",
+      "wafer-architecture#晶圆直装 PCB，PCB 本身就是封装"
+     ],
+     "width": 1500,
+     "height": 950
+    },
+    {
+     "file": "images/03_cbrs-memory-wall.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画，可在 drawio/03_cbrs-memory-wall.drawio 里继续编辑；按正文「词与词互相依赖、无法并行」绘制，图上不含数字与日期",
+     "based_on": [
+      "wafer-architecture#词与词互相依赖、无法并行",
+      "wafer-architecture#墙钟由带宽和延迟定，不由总算力定",
+      "wafer-architecture#单流输出速度、多并发聚合吞吐、首 token 延迟是三件事"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "revenue-anatomy",
+   "title": "收入结构：两年 2.90 亿到 5.10 亿，毛利率却从 42% 掉到 39%",
+   "anchor": "收入",
+   "blocks": [
+    {
+     "type": "fact_strip",
+     "facts": [
+      {
+       "value": "510.0M",
+       "label": "2025 收入",
+       "hint": "424B4 p.91；上年 290.3M，同比 +76%",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "value": "−145.9M",
+       "label": "2025 经营亏损",
+       "hint": "424B4 p.18",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "value": "+390.7M",
+       "label": "2025 其他收支净额",
+       "hint": "p.104，含一次性收益",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "value": "+237.8M",
+       "label": "2025 净利润",
+       "hint": "相抵后的余额",
+       "source_ids": [
+        "S041"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "bar_chart",
+     "heading": "毛利率四年序列（424B4 p.91 原句：12%、33%、42% 和 39%）",
+     "unit": "%",
+     "bars": [
+      {
+       "label": "2022",
+       "value": 12,
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "label": "2023",
+       "value": 33,
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "label": "2024",
+       "value": 42,
+       "note": "p.103 精确值 42.3%",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "label": "2025",
+       "value": 39,
+       "note": "p.103 精确值 39.0%",
+       "source_ids": [
+        "S041"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "增长质量：拆开那 219.7M 增量",
+     "text": "424B4 p.102 把 2025 年 219.7M 的增量拆成硬件 +146.5M 与云及其他服务 +73.3M，归因分别是战略伙伴 MBZUAI 的本地部署，与 G42、MBZUAI 装机后的服务支持加下半年云推理。p.103 的成本行是硬件 +67.4M、云服务 +76.0M：相减得硬件增量毛利 +79.0M、云服务 −2.7M——多卖的算力在边际上没换来毛利。本地部署那 42% 毛利卖的是数据主权（p.1 原话 on-premises to customers concerned about data security and sovereignty），公司自称 lumpier hardware revenue（对应 recurring）；42.3%→39.0% 是结构问题，不是降价。",
+     "source_ids": [
+      "S041"
+     ]
+    },
+    {
+     "type": "bar_chart",
+     "heading": "分部毛利率：两条线在 2025 年交叉（由 424B4 p.100-103 四行收入与成本相减得出）",
+     "unit": "%",
+     "bars": [
+      {
+       "label": "硬件 2024",
+       "value": 35.2,
+       "note": "74,655 / 211,965",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "label": "硬件 2025",
+       "value": 42.9,
+       "note": "153,694 / 358,440",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "label": "云服务 2024",
+       "value": 61.4,
+       "note": "48,083 / 78,287",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "label": "云服务 2025",
+       "value": 29.9,
+       "note": "45,377 / 151,551",
+       "source_ids": [
+        "S041"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "分部收入与成本 2024 → 2025（424B4 p.100-103，千美元；毛利与率见上图，括号为增量）",
+     "rows": [
+      {
+       "k": "收入序列",
+       "v": "24.6M → 78.7M → 290.3M → 510.0M（2022 至 2025，p.91）",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "k": "三年十倍",
+       "v": "p.91 原句 more than tenfold increase over three years，窗口 2022-2024；换成 2023-2025 为 6.5 倍",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "k": "硬件收入",
+       "v": "211,965 → 358,440（+146,475）",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "k": "硬件成本",
+       "v": "137,310 → 204,746（+67,436）",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "k": "云服务收入",
+       "v": "78,287 → 151,551（+73,264）",
+       "source_ids": [
+        "S041"
+       ]
+      },
+      {
+       "k": "云服务成本",
+       "v": "30,204 → 106,174（+75,970）",
+       "source_ids": [
+        "S041"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "把 237.8M 净利润清净",
+     "text": "2024 年净亏 481.6M，2025 年报净利 237.8M——但同年经营仍亏 145.9M，净利靠 other income 那 390.7M——其中 363.3M 是远期合同负债清偿的一次性收益，2024 年同一科目是 −401.3M 重估损失（p.104）。p.105 的季度净利 −23.9M、+309.5M、−22.2M、−25.6M：利润只在 Q2 那笔清偿，另三季亏 71.7M。自报 non-GAAP：剔除股权激励与远期合同重估后 2025 仍亏 75.7M，2024 亏 21.8M（p.19）。",
+     "source_ids": [
+      "S041"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "2026 半年报分部利润表（Q2 10-Q p.7 与 Q1 10-Q p.6，千美元）",
+     "rows": [
+      {
+       "k": "Q1 / Q2 收入",
+       "v": "193,406 → 180,110（环比 −6.9%）",
+       "source_ids": [
+        "S042",
+        "S043"
+       ]
+      },
+      {
+       "k": "上半年收入",
+       "v": "373,516，去年同期 202,834（+84%）",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "Q1 / Q2 毛利",
+       "v": "86,176（44.6%）→ 25,559（14.2%）",
+       "source_ids": [
+        "S042",
+        "S043"
+       ]
+      },
+      {
+       "k": "Q2 经营亏损",
+       "v": "−477,233，占收入 265%",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "Q1 / Q2 净损益",
+       "v": "−14,006 → −450,528",
+       "source_ids": [
+        "S042",
+        "S043"
+       ]
+      },
+      {
+       "k": "研发 Q1 → Q2",
+       "v": "75,495 → 320,151（同比 +427%，占收入 178%）",
+       "source_ids": [
+        "S042",
+        "S043"
+       ]
+      },
+      {
+       "k": "Q2 云服务收入",
+       "v": "125,991，占收入 70%",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "硬件占收入比",
+       "v": "Q1 57% → Q2 30%",
+       "source_ids": [
+        "S042",
+        "S043"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "bar_chart",
+     "heading": "同一套分部毛利率的 2026 年版本：硬件那条线塌了（据 10-Q p.7、p.6）",
+     "unit": "%",
+     "bars": [
+      {
+       "label": "硬件 Q1",
+       "value": 41.3,
+       "note": "45,662 / 110,593",
+       "source_ids": [
+        "S043"
+       ]
+      },
+      {
+       "label": "硬件 Q2",
+       "value": 1.8,
+       "note": "978 / 54,119",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "label": "云服务 Q1",
+       "value": 48.9,
+       "note": "40,514 / 82,813",
+       "source_ids": [
+        "S043"
+       ]
+      },
+      {
+       "label": "云服务 Q2",
+       "value": 19.5,
+       "note": "24,581 / 125,991",
+       "source_ids": [
+        "S042"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "上市后第一份半年报：跳升与换轨",
+     "text": "10-Q p.36 把研发从 75.5M 跳到 320.2M 归因于 228.0M 的 IPO 相关股权激励与税务成本；三个月与六个月口径下同为 228.0M——整笔落在 Q2。换轨写在 p.31-32：与 OpenAI 的 MRA 会让云服务占收入比重显著升高、过手型收入大增，毛利率显著低于以往，三条理由：权证资产摊销冲减收入、数据中心成本双向计入、赶产能的启动成本。",
+     "source_ids": [
+      "S042"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "合同负债比当期收入更早说话",
+     "text": "10-Q p.5：流动递延收入 131.0M→173.7M，非流动 35.8M→244.5M，合计 166.9M→418.3M，非流动涨近 7 倍。同期客户存款从 354.5M 降到 242.7M——不是客户收手，是定金转成有交付义务的递延收入。收入环比降、合同负债升，后者记的是客户已把钱付到一年以后。",
+     "source_ids": [
+      "S042",
+      "S043"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "上半年融资活动逐项（10-Q p.11，千美元）；现金及等价物 701.7M → 6,742.2M，另有受限现金 684.7M，合并 7,426.8M",
+     "rows": [
+      {
+       "k": "IPO 净额",
+       "v": "6,232,511（已扣承销折扣与佣金）",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "Series H 优先股",
+       "v": "1,014,249",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "Working Capital Loan",
+       "v": "1,004,571（OpenAI，债务）",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "期权行权 / Class N 股",
+       "v": "20,221 / 15,036",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "代扣税 / 信贷费 / 递延发行费",
+       "v": "−416,660 / −3,801 / −12,667",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "融资活动净额",
+       "v": "7,853,242",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "优先股转普通股",
+       "v": "2,947,379，非现金项目",
+       "source_ids": [
+        "S042"
+       ]
+      },
+      {
+       "k": "贷款期末余额",
+       "v": "流动 736,036 + 非流动 182,208",
+       "source_ids": [
+        "S042"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "6.74B 现金不是一个来源",
+     "text": "八行里 IPO 占 6,232.5M。1,004.6M 那笔是债务不是股权：p.21 说明它来自与 OpenAI 的 MRA，6% 年利率，最晚 2032-12-31 到期，一级留置权担保，收到即记为受限现金。2,947.4M 优先股转普通股不增加一分钱现金。写成「募资 60 亿」会盖掉两件事：10 亿要还，股权募集净额是 62.3 亿。",
+     "source_ids": [
+      "S042"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "读法：结构决定哪套框架接住它",
+     "text": "卖设备的收入按订单与在手合同定价，卖算力的按单位成本与利用率定价。重心两年内换了边：2025 年增量仍以硬件为主（146.5M 对 73.3M），2026 年 Q2 已接近三七开。两个误读就地消掉：把 237.8M 当盈利能力，它是一次清偿的落点；把 373.5M 乘二当全年，第二个半年比第一个少 13.3M。各给什么倍数，本章不作判断。",
+     "source_ids": [
+      "S041",
+      "S042"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/04_cbrs-revenue-two-lines.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画，可在 drawio/04_cbrs-revenue-two-lines.drawio 里继续编辑；按正文「多卖的算力在边际上没换来毛利」绘制，图上不含数字与日期",
+     "based_on": [
+      "revenue-anatomy#多卖的算力在边际上没换来毛利",
+      "revenue-anatomy#是结构问题，不是降价",
+      "revenue-anatomy#净利靠 other income 那三亿多"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "customer-concentration",
+   "title": "客户集中度：从一家占 85%，到一家占 62%，再到一份 2GW 的协议",
+   "anchor": "客户",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "招股书原文给了四个百分比",
+     "text": "424B4 第 23 页的原文：G42（Group 42 Holding Ltd 及其关联方）占 2025 年与 2024 年总收入的 24.0% 和 85.0%，2025 年 Mohamed bin Zayed University of Artificial Intelligence（MBZUAI）占 62.0%。第 24 页是更陡的一组：2025 年末一家客户 MBZUAI 占应收账款余额 77.9%，2024 年末是 G42 占 91.0%。",
+     "source_ids": [
+      "S051"
+     ]
+    },
+    {
+     "type": "bar_chart",
+     "heading": "同一个「最大客户」，两条口径",
+     "unit": "% of total",
+     "as_of": "2026-05",
+     "bars": [
+      {
+       "label": "G42 · 2024 收入占比",
+       "value": 85.0,
+       "note": "p.23",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "label": "G42 · 2024 年末应收占比",
+       "value": 91.0,
+       "note": "p.24",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "label": "MBZUAI · 2025 收入占比",
+       "value": 62.0,
+       "note": "p.23",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "label": "MBZUAI · 2025 年末应收占比",
+       "value": 77.9,
+       "note": "p.24",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "label": "G42 · 2025 收入占比",
+       "value": 24.0,
+       "note": "p.23",
+       "source_ids": [
+        "S051"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "集中度下降，为什么不必然是风险下降",
+     "text": "这一步不必推测，文件自己写了两句。第 24 页：G42 and MBZUAI are considered related parties with respect to each other as defined by Accounting Standards Codification 850, Related Party Disclosures。附注 p.F-19 把两家列成 Customer A（78%）与 Customer B（91%），脚注重复同一句。第 92 页的介绍是并列的：都在阿布扎比，一家业务横跨能源、金融、云基础设施、安全与医疗，一所做 AI 的大学，两家都担任过公司的客户、供应商、伙伴或研究合作者。文件没有写出两者之间的控制链，只给出关联方这个定性。",
+     "source_ids": [
+      "S051"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "审查、撤回与续上现金：可查的先后顺序",
+     "rows": [
+      {
+       "k": "2024 年 5 月",
+       "v": "G42 关联方拟认购 22,851,296 股 Series F-1、合计 3.35 亿美元，以监管批准为前提；同协议附 G42 Option：按当时公允价值折价 17.5% 增持，条件是累计采购 5.00 亿至 50.00 亿美元",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "k": "2024 年 7 月",
+       "v": "公司与 G42 就上述购股向 CFIUS 递交 Joint Voluntary Notice，到 2024 年底仍未决",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "k": "2025 年 3 月 27 日",
+       "v": "CFIUS 同意公司撤回该通知的请求（p.F-29）；3 月 31 日媒体把这一步称作放行",
+       "source_ids": [
+        "S051",
+        "S055"
+       ]
+      },
+      {
+       "k": "2025 年 9 月 30 日",
+       "v": "11 亿美元 Series G 完成、投后估值 81 亿美元：30,359,557 股 × 每股 36.2324 美元，分多轮交割至 10 月",
+       "source_ids": [
+        "S056",
+        "S051"
+       ]
+      },
+      {
+       "k": "2025 年 10 月 3 日",
+       "v": "依 Rule 477 申请即时撤回 Form S-1；撤回函理由只有一句——目前不打算进行拟议发行，未提 CFIUS。CEO 在 10 月 6 日说要更新财务与战略信息。G42 Option 与 G42 May 2024 Agreement 于三季度一并终止",
+       "source_ids": [
+        "S052",
+        "S053",
+        "S054",
+        "S051"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "战略客户同时是股东，记在收入的对冲项上",
+     "text": "2025 年 12 月，公司向 G42 发行认股权：可按每股 0.01 美元认购最多 1,857,516 股 Class N，授予日每股公允价值 82.02 美元，发行即全额归属、五天内到期，2026 年 1 月全额行权（p.F-31）。Class N 无投票权、1:1 可转 Class A；2026 年 5 月 15 日公告的 IPO 发行价是每股 185.00 美元。算术是 1,857,516 × 82.02 ≈ 1.524 亿美元，2025 年末记为一项客户认股权资产（流动 6,090.6 万千美元加非流动 9,144.7 万千美元），并按相关收入确认比例逐期冲减收入，最晚到 2031 年 10 月。它在报表上的形状不是负债，是未来收入的抵减。",
+     "source_ids": [
+      "S051",
+      "S057"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "2GW 里哪一段进了剩余履约义务",
+     "text": "MRA 签于 2025 年 12 月：OpenAI 合同承诺采购 750MW（Committed Capacity），另有 1,250MW 期权、可在 2030 年底前分批行使，合计最高 2.0GW；公司 2026 年 1 月公布的这项多年合作价值超过 200 亿美元。截至 2025 年末，剩余履约义务 246 亿美元，大额部分来自该 MRA，预计约 15% 在 24 个月内、43% 在第 25 至 48 个月确认；RPO 含递延收入与未来将开票金额，排除一年以内的合同。断点在 p.F-20：对价里的 pass-through 成本——租赁装修、固定月租、电力等变动月租——只有初始 250MW 对应的部分计入交易价格与 RPO，超出部分因金额高度可变、须在 MRA 剩余年度确定而被排除，确认时按总额法入账。所以「最高 2.0GW」与别家报出的合同额不可直接相加，246 亿这个合计数也没有拆出 OpenAI 占多少。",
+     "source_ids": [
+      "S051"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "三张表并排：从卖设备转向供算力",
+     "rows": [
+      {
+       "k": "收入端（按地区，千美元）",
+       "v": "美国 282,685 → 187,643；欧洲中东非洲 7,567 → 322,231（2024 → 2025）",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "k": "应收端（千美元）",
+       "v": "最大单一客户占应收账款余额 91.0% → 77.9%，主体由 G42 换成 MBZUAI",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "k": "设备生意的预收",
+       "v": "客户存款 640,317 → 354,460；2025 年存款减少 2.859 亿美元，预收随采购订单交付而核销",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "k": "算力生意的递延",
+       "v": "递延收入（流动）38,537 → 131,049；非流动 18,885 → 35,847",
+       "source_ids": [
+        "S051"
+       ]
+      },
+      {
+       "k": "资本开支强度",
+       "v": "购置固定资产 23,435 → 382,739；固定资产净值 43,174 → 437,396；经营租赁使用权资产 36,571 → 248,950。OpenAI 的 10 亿美元 Working Capital Loan 于 2026 年 1 月出资，年利率 6%，到期不晚于 2032 年 12 月 31 日",
+       "source_ids": [
+        "S051"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "这一章的边界",
+     "text": "两处边界。其一，「合同负债增长」在这份文件里只对一半：客户存款加递延收入（流动与非流动）合计从 2024 年末的 6.977 亿美元降到 2025 年末的 5.214 亿美元；升的是递延收入，降的是预收存款，这是设备已交付、算力未交付的中间态。其二，本章只复述披露与算术，不评价任何客户的信用或动机，也不预测订单增减。审查与撤回之间的因果，招股书和撤回函都没有写，媒体写了，那是另一层证据强度。",
+     "source_ids": [
+      "S051",
+      "S052"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/05_cbrs-concentration-chain.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画，可在 drawio/05_cbrs-concentration-chain.drawio 里继续编辑；按正文「占应收账款余额」绘制，图上不含数字与日期",
+     "based_on": [
+      "customer-concentration#占应收账款余额",
+      "customer-concentration#互为关联方",
+      "customer-concentration#它在报表上的形状不是负债，是未来收入的抵减",
+      "customer-concentration#过手型成本"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "unit-economics",
+   "title": "单位经济学：每百万 token 的成本要哪些输入，缺哪几个就算不出来",
+   "anchor": "成本",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "算式的形状",
+     "text": "每百万 token 的成本不是一个数，是一条链。分子＝年折旧（机器成本 ÷ 折旧年限）＋年电费（功耗 × 8760 小时 × PUE × 电价）＋运维与网络。分母＝一年真实吐出的 token＝单请求吞吐 × 并发路数 × 利用率 × 小时数。缺任何一项，这个商就没有意义。",
+     "source_ids": [
+      "S071"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "复算骨架",
+     "lang": "text",
+     "code": "cost_per_1M_tokens =\n    ( machine_cost / depreciation_years\n    + power_kw * 8760 * PUE * elec_price_per_kwh\n    + opex_network_and_staff\n    ) / ( tokens_per_s_per_stream * concurrency * utilization\n          * 8760 * 3600 ) * 1_000_000",
+     "caption": "只给字段关系，不给数；单位与公开性见下表。"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "十项输入：单位定义与公开性",
+     "rows": [
+      {
+       "k": "单请求吞吐（tokens/s，输出侧）",
+       "v": "公开：定价页与基准图",
+       "source_ids": [
+        "S073",
+        "S071"
+       ]
+      },
+      {
+       "k": "并发路数（同时服务的请求数）",
+       "v": "未披露",
+       "source_ids": [
+        "S071",
+        "S072"
+       ]
+      },
+      {
+       "k": "整机功耗（kW）",
+       "v": "半公开：博客给 CS-3 为 15U、峰值 23 kW；申报文件无 kW",
+       "source_ids": [
+        "S074",
+        "S071",
+        "S072"
+       ]
+      },
+      {
+       "k": "机器购置或租赁成本",
+       "v": "未披露：无公开单价",
+       "source_ids": [
+        "S071"
+       ]
+      },
+      {
+       "k": "折旧年限（年，直线法）",
+       "v": "公开：数据中心与计算机设备 3–5 年",
+       "source_ids": [
+        "S071"
+       ]
+      },
+      {
+       "k": "机房 PUE（总能耗 ÷ IT 能耗）",
+       "v": "行业调查有公开均值；两份申报文件检索 PUE 零命中",
+       "source_ids": [
+        "S071",
+        "S072"
+       ]
+      },
+      {
+       "k": "工业电价（美元／kWh）",
+       "v": "政府统计公开；公司电费与机房合并走账",
+       "source_ids": [
+        "S071",
+        "S072"
+       ]
+      },
+      {
+       "k": "利用率（算力被使用的比例）",
+       "v": "未披露数值：10-Q 只当作毛利率改善的归因",
+       "source_ids": [
+        "S072"
+       ]
+      },
+      {
+       "k": "运维与网络（年费）",
+       "v": "未披露：成本科目只给大类",
+       "source_ids": [
+        "S071",
+        "S072"
+       ]
+      },
+      {
+       "k": "模型大小与量化（参数量、精度）",
+       "v": "模型清单公开；单机组合不公开",
+       "source_ids": [
+        "S073",
+        "S071"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "快怎么变成钱",
+     "text": "同样的负载，单流快一个数量级意味着服务同一批交互式请求要更少的机器。但这条换算只在利用率高时成立：机器空着，为速度付的硬件溢价不转成收入，转成折旧。招股书自己把电力列为 AI 算力运营开支里最大的一块。",
+     "source_ids": [
+      "S071"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "边界估算，不是点估计",
+     "text": "公开拿到的两端是毛利率：招股书自报 2022–2025 年为 12%、33%、42%、39%；10-Q 给 2026 年二季度 14%，上年同期 31%。2026 上半年资本开支 5.49 亿美元，是同期收入 3.74 亿的 1.5 倍——折旧先于收入到账，这是算力服务的重资产形状。但区间量不出每百万 token 几分钱：14% 那端被两类非现金项压着（认股权摊销冲减收入、股权激励计入成本），剔除后云业务毛利率同比反而改善 16 个百分点；OpenAI 协议下的机房租金与电费还是代垫走账。区间只能说明结构，量不出单位成本。",
+     "source_ids": [
+      "S071",
+      "S072"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "唯一的公开单位数是目录价，不是成本",
+     "text": "官方定价页（2026-10-03 取数）按每百万 token 分列输入与输出：GPT-OSS 120B 为 0.35 与 0.75 美元，Qwen3.8 27B 为 0.99 与 1.49 美元；企业档只写「联系销售取报价」。同一张表在价格旁并列一列 ~3000 tokens/s，招股书另一处给 2,457（Llama-3.3 70B、10,000 输入）。官方术语页写明：单流输出速度、多并发聚合吞吐、首 token 延迟是三件事，不可互换——拿哪一个当上面算式的分母，成本就差一个数量级。",
+     "source_ids": [
+      "S073",
+      "S071",
+      "S075"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "为什么这条链决定估值",
+     "text": "单位成本决定价格战的耐受度，耐受度决定开源权重生意的护城河宽度：权重免费可得，客户留下的理由只剩更便宜或更快。本章不含应当买入或回避的表述；缺的那几格只有公司自己能填。",
+     "source_ids": [
+      "S071",
+      "S072"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/06_cbrs-unit-cost-chain.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画，可在 drawio/06_cbrs-unit-cost-chain.drawio 里继续编辑；按正文「缺任何一项，这个商就没有意义」绘制，图上不含数字与日期",
+     "based_on": [
+      "unit-economics#缺任何一项，这个商就没有意义",
+      "unit-economics#同样的负载，单流快一个数量级意味着更少的机器",
+      "unit-economics#区间只能说明结构，量不出单位成本"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "capacity-buildout",
+   "title": "布局的另一半是电力与机房：2GW 意味着什么，谁在承担资本开支",
+   "anchor": "产能",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "上限 2.0GW，义务 750MW",
+     "text": "MRA 签署于 2025 年 12 月 24 日。750MW 的 Committed Capacity 是双方都负义务的那一档，原话 we are contractually obligated to deliver and OpenAI is contractually obligated to purchase；2026 至 2028 年分批部署，每批三或四年、可延长到五年。1.25GW 的 Additional Capacity 是选择权，2030 年底前分批部署，两档合计上限 2.0GW。2026 年 1 月 23 日已开始交付。\n\n250MW 在两处出现，都不是总盘子：那笔约 10 亿美元、年息 6%、最晚 2032 年底到期的 Working Capital Loan，自初始 250MW 最后一批交付后按三年摊还；以及代垫成本计入 RPO 的边界。",
+     "source_ids": [
+      "S091",
+      "S092"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "GW 比金额硬",
+     "text": "容量必须先建出来，金额却随利用率、电价与租约浮动。招股书把 pass-through 列成机房固定月租、租赁装修、安防与电力等变动月租：初始 250MW 那一档计入交易价格与 RPO，超出部分以高度取决于公司控制之外的因素为由不计入。半年后那句改了写法：边界换成已确认使用权资产与租赁负债的那部分机房租约。同期 RPO 从 246 亿升到 254 亿美元，MRA 确认收入 0.744 亿。钱是推算的，租约是数出来的。",
+     "source_ids": [
+      "S091",
+      "S092"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "机房布局披露到哪一层",
+     "rows": [
+      {
+       "k": "自有还是租",
+       "v": "租美国与加拿大的第三方机房空间，正扩展到别国；不拥有、不控制运营",
+       "source_ids": [
+        "S091"
+       ]
+      },
+      {
+       "k": "选址约束",
+       "v": "需跨约定数量的机房交付，每园区设最低容量门槛",
+       "source_ids": [
+        "S091"
+       ]
+      },
+      {
+       "k": "已点名站点",
+       "v": "芬兰米凯利（Compute Nordic），分期 50→80→165MW，首期在建",
+       "source_ids": [
+        "S095"
+       ]
+      },
+      {
+       "k": "进云",
+       "v": "2026 年 6 月起进 AWS 机房（硬件租赁），期末未起租",
+       "source_ids": [
+        "S092"
+       ]
+      },
+      {
+       "k": "租期",
+       "v": "到期跨 2027 至 2037 财年",
+       "source_ids": [
+        "S092"
+       ]
+      },
+      {
+       "k": "投运日",
+       "v": "单站投运日未见披露",
+       "source_ids": [
+        "S092"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "钱从哪来，够到哪一段",
+     "text": "三笔进账：IPO 净额 62.33 亿（3,450 万股，定价 185 美元）、Series H 优先股 10.14 亿、OpenAI 贷款 10.05 亿（记为受限现金，合同限定用于基建）。上半年购建固定资产 5.49 亿，上年同期 1.85 亿；经营性现金流 -0.47 亿。不花钱的那条线：新增使用权资产 3.18 亿，未起租租约的未折现租金约 15 亿与 7.53 亿。期末现金及等价物 67.42 亿，加受限现金 6.85 亿、投资 11.79 亿共 86.06 亿，按上半年强度约合 15 个半年。2.0GW 要多少钱算不出来——每 MW 造价未披露。",
+     "source_ids": [
+      "S092"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "三道都可能慢",
+     "text": "晶圆全部由台积电代工，招股书写明无正式长期供货或配额承诺，同时供片给远大于它的客户；WSE 晶圆被列为长交期、良率波动的部件。电力侧，LBNL 估算 2024 年美国数据中心用电 192TWh、占全美 4.7%，参考情形下 2030 年需 148GW 接入容量、年均新增 17.4GW。设备侧，Wood Mackenzie 的 2025 年二季度口径：电力变压器 128 周、升压变压器 143 周、开关设备 44 周。",
+     "source_ids": [
+      "S091",
+      "S093",
+      "S094"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "三个数，各自缺什么",
+     "text": "投运 GW 数：只有承诺数与租约金额，没有已投运数。上架率：10-Q 只有一句定性，云毛利率改善来自 greater utilization of deployed capacity，缺分子分母。单机承载的模型组合：未按系统给出模型与吞吐拆分。行业口径同样没定，LBNL 直说接入容量利用率 not well documented，只能按 50% 估。",
+     "source_ids": [
+      "S092",
+      "S094"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/15_变压器.jpg",
+     "alt": "",
+     "caption": "SCB14-1000KVA三相干式电力变压器1250/1600/2000/2500KW高压10KV-阿里巴巴",
+     "source_page": "https://detail.1688.com/offer/705224243736.html",
+     "width": 790,
+     "height": 996,
+     "query": "变压器"
+    }
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S021",
+   "url": "https://www.cerebras.ai/press-release/cerebras-announces-third-generation-wafer-scale-engine",
+   "label": "Cerebras 官方新闻稿（2024-03-13）：WSE-3 关键规格清单——4 万亿晶体管、900,000 AI 核、125 petaflops、44GB 片上 SRAM、台积电 5nm、外部内存 1.5TB/12TB/1.2PB、集群最多 2,048 台 CS-3；并写明性能较 WSE-2 翻倍而功耗与售价不变",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/0f167ed87283e2ad.txt"
+  },
+  {
+   "id": "S022",
+   "url": "https://www.cerebras.ai/chip",
+   "label": "Cerebras 官方芯片页：WSE-3 Turbo 面积 46,225 mm²、4 万亿晶体管、250 petaflops、900,000 核，对标 NVIDIA B300 的 19× 晶体管 / 56× 算力；含「如何解决良率问题」一段（冗余核、冗余走线、fail-in-place）",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/7376c8e90c2b4854.txt"
+  },
+  {
+   "id": "S023",
+   "url": "https://www.cerebras.ai/cs3",
+   "label": "Cerebras 官方 CS-3 系统页：214 Pb/s 片上互连带宽、44GB 片上 SRAM、21 PB/s 内存带宽、1.2 Tb/s 系统 I/O、16RU；并说明 engine block 封装把电力直接送进晶圆正面、内部闭路水冷、供电与冷却冗余可热插拔",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/cb31be6cb141bd68.txt"
+  },
+  {
+   "id": "S024",
+   "url": "https://www.cerebras.ai/cs4",
+   "label": "Cerebras 官方 CS-4 页：每系统 3 片 WSE-3T、WSE-3T 43.2 PB/s 内存带宽、晶圆间互连延迟降到 2 微秒、供电点距处理器 0.5 mm（传统 GPU 板约 50 mm）、Wafer-Scale Backpack 集成直液冷、每瓦吞吐较 CS-3 最高 10×",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/c0e4bffc16195080.txt"
+  },
+  {
+   "id": "S025",
+   "url": "https://www.cerebras.ai/blog/introducing-cerebras-inference-ai-at-instant-speed",
+   "label": "Cerebras 官方推理发布文（2024-08-27）：逐 token 串行与内存带宽的算术、70B FP16=140GB、1,000 token/秒需 140 TB/s、GPU 片上仅约 200MB、堆 DGX 只增查询数不降单请求延迟、8B 1,800 / 70B 450 token/秒、20B 单机与 70B 四台、scaffolding 需最多 100× token",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/9d4f828743f5a37e.txt"
+  },
+  {
+   "id": "S026",
+   "url": "https://www.cerebras.ai/blog/100x-defect-tolerance-how-cerebras-solved-the-yield-problem",
+   "label": "Cerebras 官方良率说明（2025-01-13）：H100 814 mm²、单晶圆 72 颗；WSE-3 单核 0.05 mm² vs SM 核 6.2 mm²、同缺陷密度损失 2.2 mm² vs 361 mm²、970,000 物理核启用 900,000、启用 93% 硅面积；同篇自陈保留条件",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/e2498a8fee6dfd6a.txt"
+  },
+  {
+   "id": "S027",
+   "url": "https://arxiv.org/html/2503.11698v1",
+   "label": "第三方学术论文（arXiv:2503.11698v1，2025-03-11）WSE 与 NVIDIA GPU 系统对比：光罩极限约 815 mm²、H100 的 HBM3 80GB/3 TB/s 与 NVLink4 900 GB/s，以及 4.4 良率、4.5 封装与装配（成本、超过 20,000 安培供电、约 20 kW 散热、packaged-on-board、300 多个 VRM、自造连接器与装配设备）、4.6 垂直供电",
+   "retrieved": "2026-10-03",
+   "publisher": "arXiv (cs.AR)",
+   "cache": "text/09f2869b31819a4a.txt"
+  },
+  {
+   "id": "S028",
+   "url": "https://artificialanalysis.ai/models/gpt-oss-120b/providers",
+   "label": "第三方 API 供应商实测榜（Artificial Analysis，检索于 2026-10）gpt-oss-120b (High)：Cerebras 输出 1,807 t/s、首 token 0.42 s、混合价 0.23 美元/百万 token；CoreWeave 38 t/s、0.02 美元；Groq 472.8 t/s；口径为 10,000 输入 token、按 500 输出 token 计速度",
+   "retrieved": "2026-10-03",
+   "publisher": "Artificial Analysis",
+   "cache": "text/3bddc8ae4ef26f5d.txt"
+  },
+  {
+   "id": "S011",
+   "url": "https://hf-mirror.com/api/models/Qwen/Qwen3.8-27B",
+   "label": "Hugging Face 模型元数据 API 原始返回（本机直连 huggingface.co 超时，改经 hf-mirror 镜像取回同一份 API 数据）：仓库 id、createdAt、lastModified、downloads、gated、safetensors 参数合计、license 标签",
+   "retrieved": "2026-10-03",
+   "publisher": "Hugging Face（镜像）",
+   "cache": "text/17eb016067bb3160.txt"
+  },
+  {
+   "id": "S012",
+   "url": "https://hf-mirror.com/Qwen/Qwen3.8-27B/raw/main/README.md",
+   "label": "Qwen3.8-27B 官方模型卡正文（经镜像取回的 raw README）：frontmatter 写 license: apache-2.0、27B 参数量、64 层、原生上下文 262,144 可扩展至 1,000,000",
+   "retrieved": "2026-10-03",
+   "publisher": "Qwen",
+   "cache": "text/e87cdedf712383ad.txt"
+  },
+  {
+   "id": "S013",
+   "url": "https://cerebras.ai/pricing",
+   "label": "Cerebras 官方定价页：模型表 Model/Speed/Input/Output 中 Qwen 3.8 27B 一行为 ~1,850 tokens/s、输入 $0.99/M、输出 $1.49/M；同页未出现 measured/concurrency/context length 等测量条件字样",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/dcc21284c2fbbd7e.txt"
+  },
+  {
+   "id": "S014",
+   "url": "https://inference-docs.cerebras.ai/models/qwen-3.8-27b",
+   "label": "Cerebras 推理文档该模型页：SPEED ~1850 tokens/sec、上下文免费 64k/付费 128k、最大输出 32k/40k、限速 Free Trial 每分钟 90K total tokens、reasoning 默认 high",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/26e9e47f6ada9f4a.txt"
+  },
+  {
+   "id": "S015",
+   "url": "https://news.ycombinator.com/item?id=49554520",
+   "label": "2026-09-03 Hacker News 主帖，标题为「Qwen 3.8 27B available on Cerebras at 1500 tokens/s」，链接指向 Cerebras 模型文档；帖内有其他服务商自述「150-200 tok/s」",
+   "retrieved": "2026-10-03",
+   "publisher": "Hacker News"
+  },
+  {
+   "id": "S016",
+   "url": "https://artificialanalysis.ai/models/qwen3-8-27b/providers",
+   "label": "Artificial Analysis 对该模型各 API 服务商的独立实测页（标注 Independent test run on dedicated hardware、Median Output Speed、Time To First Answer Token）：8 家服务商的中位输出速度、按提示类型 medium/long/hundredK 分解的速度与首块延迟；名单中无 Cerebras",
+   "retrieved": "2026-10-03",
+   "publisher": "Artificial Analysis",
+   "cache": "text/cb914782c73349e2.txt"
+  },
+  {
+   "id": "S017",
+   "url": "https://openrouter.ai/api/v1/models",
+   "label": "OpenRouter 公开模型列表 API 原始返回：qwen/qwen3.8-27b 条目（context_length 1000000、created 时间戳对应 2026-08-14）及同代的 qwen3.8-max-0902、qwen3.8-flash、qwen3.8-omni-flash、qwen3.8-2.4t-a95b，证明 Qwen3.8 是系列名",
+   "retrieved": "2026-10-03",
+   "publisher": "OpenRouter",
+   "cache": "text/eede074b536b88dd.txt"
+  },
+  {
+   "id": "S018",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026035214/cerebras-424b4.htm",
+   "label": "Cerebras 424B4 招股书正文（注册编号 333-295145）：发行 30,000,000 股 Class A、定价 $185.00、每股到手 $180.6525、拟在 Nasdaq Global Select Market 挂牌代码 CBRS、Class A/B/N 三类股",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S019",
+   "url": "https://data.sec.gov/submissions/CIK0002021728.json",
+   "label": "Cerebras Systems Inc.（CIK 0002021728）在 EDGAR 的全部申报记录 JSON：DRS/S-1/RW/EFFECT/424B4/8-K 的表单号、申报日期与 accession number",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR",
+   "cache": "text/0141841029430764.txt"
+  },
+  {
+   "id": "S0110",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000119312525230382/0001193125-25-230382-index.htm",
+   "label": "EDGAR 申报索引页：表单 RW（撤回注册申请），accession 0001193125-25-230382",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S0111",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026025762/0001628280-26-025762-index.htm",
+   "label": "EDGAR 申报索引页：2026 年公开的 S-1，accession 0001628280-26-025762",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S0112",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/999999999526001616/9999999995-26-001616-index.htm",
+   "label": "EDGAR 申报索引页：EFFECT（注册生效通知），accession 9999999995-26-001616",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S0113",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026035605/0001628280-26-035605-index.htm",
+   "label": "EDGAR 申报索引页：8-K（文件内文档名为 closing8-k.htm，报告日 2026-05-15），accession 0001628280-26-035605",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S0114",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162827924000280/0001628279-24-000280-index.htm",
+   "label": "EDGAR 申报索引页：首次秘密递交 DRS，accession 0001628279-24-000280，申报日 2024-06-17",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S051",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026035214/cerebras-424b4.htm",
+   "label": "Cerebras Systems Inc. 424B4 招股说明书，2026-05-14 提交，accession 0001628280-26-035214。本章页码均为该文件印刷页码：客户集中度风险因素 p.23–24、战略关系与认股权 p.92、财务报表附注 p.F-19/F-20（收入与客户集中度）、p.F-28/F-29（Series F-1/F-2 与 CFIUS）、p.F-25/F-26/F-31（资产负债表明细与客户认股权）",
+   "retrieved": "2026-10-03",
+   "publisher": "U.S. Securities and Exchange Commission EDGAR"
+  },
+  {
+   "id": "S052",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000119312525230382/d886849drw.htm",
+   "label": "Cerebras 依 Rule 477 申请撤回 Form S-1（File No. 333-282418，2024-09-30 首次提交）的撤回函，CEO Andrew D. Feldman 签署，2025-10-03，accession 0001193125-25-230382",
+   "retrieved": "2026-10-03",
+   "publisher": "U.S. Securities and Exchange Commission EDGAR"
+  },
+  {
+   "id": "S053",
+   "url": "https://www.cnbc.com/2025-10-03/cerebras-withdraws-ipo-ai.html",
+   "label": "CNBC《AI chipmaker Cerebras withdraws IPO》，Jordan Novet，2025-10-03",
+   "retrieved": "2026-10-03",
+   "publisher": "CNBC"
+  },
+  {
+   "id": "S054",
+   "url": "https://www.cnbc.com/2025-10-06/cerebras-ceo-says-company-still-intends-to-go-public.html",
+   "label": "CNBC《Cerebras CEO explains IPO withdrawal, says AI chipmaker still intends to go public》，2025-10-06，转述 Feldman 对撤回理由的说明",
+   "retrieved": "2026-10-03",
+   "publisher": "CNBC"
+  },
+  {
+   "id": "S055",
+   "url": "https://www.cnbc.com/2025-03-31/ai-chipmaker-cerebras-announces-cfius-clearance-a-key-step-toward-ipo.html",
+   "label": "CNBC《AI chipmaker Cerebras announces CFIUS clearance, a key step toward IPO》，2025-03-31",
+   "retrieved": "2026-10-03",
+   "publisher": "CNBC"
+  },
+  {
+   "id": "S056",
+   "url": "https://www.cerebras.ai/press-release/series-g",
+   "label": "Cerebras 官方新闻稿《Cerebras Systems Raises $1.1 Billion Series G at $8.1 Billion Valuation》，2025-09-30",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/814042d0ff77e04a.txt"
+  },
+  {
+   "id": "S057",
+   "url": "https://www.cerebras.ai/press-release/cerebras-systems-announces-closing-of-initial-public-offering",
+   "label": "Cerebras 官方新闻稿《Cerebras Systems Announces Closing of Initial Public Offering》，2026-05-15：发行 34,500,000 股 Class A，公开发行价每股 185.00 美元",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/9b597bed2dd4766c.txt"
+  },
+  {
+   "id": "S041",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026035214/cerebras-424b4.htm",
+   "label": "Cerebras 招股书 424B4，2026-05-14 申报，accession 0001628280-26-035214。本章引 p.18 摘要财务数据、p.19 non-GAAP 调节、p.91 收入与毛利率序列、p.100 分部收入表、p.102 收入增量归因、p.103 成本与毛利率表、p.104 其他收支、p.105 季度数据表",
+   "retrieved": "2026-10-03",
+   "publisher": "U.S. SEC EDGAR"
+  },
+  {
+   "id": "S042",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026056357/cbrs-20260630.htm",
+   "label": "Cerebras 10-Q，期次 2026-06-30，2026-08-12 申报，accession 0001628280-26-056357。含 p.5 资产负债表（递延收入、客户存款、Working Capital Loan）、p.7 分部利润表、p.11 现金流量表、p.21 其他收支与 OpenAI 贷款条款、p.31-32 收入结构与毛利率展望、p.36 研发费用归因",
+   "retrieved": "2026-10-03",
+   "publisher": "U.S. SEC EDGAR"
+  },
+  {
+   "id": "S043",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026044981/cbrs-20260331.htm",
+   "label": "Cerebras 10-Q，期次 2026-03-31，2026-06-24 申报，accession 0001628280-26-044981。Q1 收入 193,406、毛利 86,176、研发 75,495、现金 1,716.0M、递延收入 149.9M 与非流动 94.3M 出自此文件",
+   "retrieved": "2026-10-03",
+   "publisher": "U.S. SEC EDGAR"
+  },
+  {
+   "id": "S091",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026035214/cerebras-424b4.htm",
+   "label": "Cerebras Systems 招股说明书 424B4（2026-05-14 定价日递交，accession 0001628280-26-035214）。MRA 条款见第 92、93 页，250MW 摊还见第 25 页，租第三方机房见第 27 页，每园区最低容量门槛见第 29 页，台积电供货与配额条款见第 35 页，签署与交付日期见第 139 页，Note 5 的 Committed/Additional Capacity 与 RPO 见第 F-20 页、pass-through 见第 F-21 页",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S092",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026056357/cbrs-20260630.htm",
+   "label": "Cerebras Systems 2026 年第二季度 10-Q（2026-08-12 递交，报告期 2026-06-30，accession 0001628280-26-056357）。资产负债表见第 6 页，现金流量表见第 11 页，Note 3 的 MRA 与 RPO 见第 15 页、pass-through 边界见第 16 页，Note 15 租约与未起租承诺见第 28 页，AWS 与三季度新租约见第 29、30 页，合同义务见第 41 页，贷款摊还与初始 250MW 见第 48 页",
+   "retrieved": "2026-10-03",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S093",
+   "url": "https://www.woodmac.com/news/opinion/mind-the-gap-tackling-supply-chain-challenges-in-the-electric-td-sector/",
+   "label": "Wood Mackenzie《Mind the gap: tackling supply-chain challenges in the electric T&D sector》（2025-10-15），给出 2025 年二季度电力变压器 128 周、升压变压器 143 周、开关设备 44 周的平均交期，以及 2025 年一季度在建数据中心管线超 125GW",
+   "retrieved": "2026-10-03",
+   "publisher": "Wood Mackenzie",
+   "cache": "text/d0255d642bdc5a18.txt"
+  },
+  {
+   "id": "S094",
+   "url": "https://escholarship.org/content/qt33m6w3x0/qt33m6w3x0.pdf",
+   "label": "劳伦斯伯克利国家实验室《United States Data Center Energy Usage Report: 2025 Update》（2026-06-18，DOI 10.71468/P1RP4F）：2024 年美国数据中心用电 192TWh、占 4.7%；参考情形下 2030 年需 148GW 接入容量、2024–2030 年均新增 17.4GW；并写明接入容量利用率 not well documented、只能按 50% 估",
+   "retrieved": "2026-10-03",
+   "publisher": "Lawrence Berkeley National Laboratory"
+  },
+  {
+   "id": "S095",
+   "url": "https://w.media/cerebras-and-compute-nordic-finland-announce-new-165-mw-ai-data-center-in-mikkeli/",
+   "label": "w.media 2026-09-02 转述 Cerebras 与 Compute Nordic Finland 的新闻稿：芬兰米凯利站点分期到 165MW 合同 IT 容量（50→80→165MW），首期 50MW 已在建，服务订单各为七年期；公司投资者关系页与全球新闻稿专线在本机被拦截，故以该转载页为可点开来源",
+   "retrieved": "2026-10-03",
+   "publisher": "w.media",
+   "cache": "text/d422b2501c102c01.txt"
+  },
+  {
+   "id": "S071",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026035214/cerebras-424b4.htm",
+   "label": "Cerebras 424B4 招股书（2026-05-13 刊印，accession 0001628280-26-035214）。本章用到：毛利率序列 12%/33%/42%/39%（2022–2025）与 2025 年收入 5.10 亿美元、会计政策一节折旧年限表（数据中心与计算机设备 3–5 年）、Llama-3.3 70B 输出速度基准图（注明 2026-04-14 内部测量与 Artificial Analysis）、Dedicated Capacity 的 take-or-pay 表述、电力是 AI 算力运营开支最大一项的说法",
+   "retrieved": "2026-10-03",
+   "publisher": "U.S. SEC EDGAR"
+  },
+  {
+   "id": "S072",
+   "url": "https://www.sec.gov/Archives/edgar/data/2021728/000162828026056357/cbrs-20260630.htm",
+   "label": "Cerebras 10-Q，期次 2026-06-30（accession 0001628280-26-056357）。本章用到：分部利润表与毛利率段（总体 14%、云 20%、硬件 2%；归因含客户认股权摊销冲减收入、IPO 相关股权激励，剔除后云毛利率同比改善 16 个百分点）、上半年资本开支 5.49 亿美元、OpenAI MRA 机房租金与电费按代垫成本走账",
+   "retrieved": "2026-10-03",
+   "publisher": "U.S. SEC EDGAR"
+  },
+  {
+   "id": "S073",
+   "url": "https://www.cerebras.ai/pricing",
+   "label": "Cerebras 官方定价页，2026-10-03 渲染取数。Developer Tier Pricing 表按模型并列 Speed / Input / Output：GPT OSS 120B ~3000 tokens/s、$0.35/M tokens 输入、$0.75/M tokens 输出；Qwen 3.8 27B ~1,850 tokens/s、$0.99/M 与 $1.49/M；企业档为 Contact us for a quote",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/43b29eddb782273d.txt"
+  },
+  {
+   "id": "S074",
+   "url": "https://www.cerebras.ai/blog/cerebras-cs-3-vs-nvidia-b200-2024-ai-accelerators-compared",
+   "label": "Cerebras 官方博客（2024-04-12）：原文「The CS-3 is a 15U server consuming up to 23kW of power」，并给 WSE-3 的 46,225 mm²、4 trillion transistors、900,000 cores、125 petaflops",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/dd874310c64198a0.txt"
+  },
+  {
+   "id": "S075",
+   "url": "https://www.cerebras.ai/glossary/what-are-tokens-per-second",
+   "label": "Cerebras 官方术语页：原文「Others report aggregate tokens per second across many concurrent requests. Those are different measurements and should not be treated as interchangeable」，并区分 per-user 输出速度、聚合吞吐与 time to first token",
+   "retrieved": "2026-10-03",
+   "publisher": "Cerebras Systems",
+   "cache": "text/8fcfdc171d6ae721.txt"
+  }
+ ],
+ "cover": {
+  "file": "images/15_变压器.jpg",
+  "alt": "SCB14-1000KVA三相干式电力变压器1250/1600/2000/2500KW高压10KV-阿里巴巴",
+  "source_page": "https://detail.1688.com/offer/705224243736.html",
+  "width": 790,
+  "height": 996,
+  "query": "变压器"
+ },
+ "site": {
+  "url": "https://ai-compute-gtqdc11h6po.qoder.website/cerebras/cerebras.html",
+  "group": "ai-compute",
+  "path": "/cerebras/cerebras.html",
+  "project_id": "01a104a3-b5d1-737e-8d1c-6a970248f3c2",
+  "content_sha": "d79a2f75ce7e4f77",
+  "published_date": "2026-10-10",
+  "access": "public"
+ }
+}

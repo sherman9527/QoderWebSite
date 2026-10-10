@@ -83,7 +83,7 @@
     {
      "file": "images/01_announcement_map.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：同一件事三方各自说了什么——宣布方、更早宣布的一方、方法的真正来源",
+     "alt": "",
      "caption": "示意图·非实拍：同一件事三方各自说了什么",
      "based_on": [
       "what-happened#OpenAI 数学家宣布 agent 找到三维 Navier–Stokes 奇点且已用 Lean 形式化验证",
@@ -163,7 +163,7 @@
     {
      "file": "images/02_proof_gate.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：可验证性在哪一侧：机器检查器接住推理，接不住「问对了问题没有」",
+     "alt": "",
      "caption": "示意图·非实拍：可验证性在哪一侧：机器检查器接住推理，接不住「问对了问题没有」",
      "based_on": [
       "verifiable#证明被翻译成 Lean 里可机器检验的对象，检查器不接受看起来对",
@@ -257,7 +257,7 @@
     {
      "file": "images/05_category_wall.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：两类问题的落差：存在性结论不产出算法，困难性假设说的是计算代价",
+     "alt": "",
      "caption": "示意图·非实拍：两类问题的落差：存在性结论不产出算法，困难性假设说的是计算代价",
      "based_on": [
       "complexity#该结果是存在性结论，不产出可运行算法",
@@ -269,7 +269,7 @@
     },
     {
      "file": "images/03_椭圆曲线.jpg",
-     "alt": "椭圆曲线密码学【科普】 | 学习软件编程",
+     "alt": "",
      "caption": "椭圆曲线密码学【科普】 | 学习软件编程",
      "source_page": "http://blog.hubwiz.com/2020/06/16/elliptic-curve-intro/",
      "width": 1200,
@@ -383,7 +383,7 @@
    "images": [
     {
      "file": "images/08_比特币.jpg",
-     "alt": "比特币总市值突破1万亿美元：今年价格或上10万美元_3DM单机",
+     "alt": "",
      "caption": "比特币总市值突破1万亿美元：今年价格或上10万美元_3DM单机",
      "source_page": "https://www.3dmgame.com/news/202102/3808948.html",
      "width": 1280,
@@ -506,7 +506,7 @@
     {
      "file": "images/06_migration_shape.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：迁移的先后与链上两类暴露：长期暴露与内存池里的短期暴露",
+     "alt": "",
      "caption": "示意图·非实拍：迁移的先后与链上两类暴露：长期暴露与内存池里的短期暴露",
      "based_on": [
       "pqc#NIST 三项标准与 IR 8547 退出表把 ECDSA/EdDSA/RSA 列入退出",
@@ -649,7 +649,7 @@
     {
      "file": "images/09_three_explanations.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：同涨能被三种解释接住：直接因果、共同驱动、区间巧合",
+     "alt": "",
      "caption": "示意图·非实拍：同涨能被三种解释接住：直接因果、共同驱动、区间巧合",
      "based_on": [
       "correlation#AI 股、BTC 与稳定币相关标的同向是观察事实",
@@ -761,7 +761,7 @@
     {
      "file": "images/10_spread_not_model.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：两条来钱的路与一条不存在的边：利差与清算，模型能力不在链上",
+     "alt": "",
      "caption": "示意图·非实拍：两条来钱的路与一条不存在的边：利差与清算，模型能力不在链上",
      "based_on": [
       "stablecoin#收入来自储备资产的利差与规模",
@@ -874,7 +874,7 @@
     {
      "file": "images/13_three_layers.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：监管动的是披露、分类、授权三层，还要分草案与已生效",
+     "alt": "",
      "caption": "示意图·非实拍：监管动的是披露、分类、授权三层，还要分草案与已生效",
      "based_on": [
       "regulation#只列发布出来的文件与性质",
@@ -958,7 +958,7 @@
     {
      "file": "images/14_sim_boundary.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：仿真平台的边界：模型之内的可以反复跑，模型之外的那一半给不出答案",
+     "alt": "",
      "caption": "示意图·非实拍：仿真平台的边界：模型之内的可以反复跑，模型之外的那一半给不出答案",
      "based_on": [
       "simulation#符号验证与代价估算本来就是密码学工程的日常",
@@ -1041,7 +1041,7 @@
     {
      "file": "images/16_question_matrix.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：五条判据两栏问句——退出时间表、换算法要不要换地址、承诺与已上线、公钥露出来多久、迁移带来的地址变更",
+     "alt": "",
      "caption": "示意图·非实拍：五条判据两栏问句——退出时间表、换算法要不要换地址、承诺与已上线、公钥露出来多久、迁移带来的地址变更",
      "based_on": [
       "incumbents#五条判据：谁为依赖的签名与曲线公布过退出时间表，那是谁的口径",
@@ -1097,7 +1097,7 @@
     {
      "file": "images/18_falsify_axis.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：四类可证伪信号，各推翻本篇一个论断",
+     "alt": "",
      "caption": "示意图·非实拍：四类可证伪信号，各推翻本篇一个论断",
      "based_on": [
       "falsify#算法层面把复杂度阶降下来会推翻类别差异那一节",
@@ -1116,7 +1116,8 @@
    "url": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/",
    "label": "Quanta Magazine 2026-09-08 全文（作者 Konstantin Kakaes）；本机 curl 实测 http=200、232,831 字节，已通读正文。本章 10,000 agent、88 小时、17 小时形式化、近 500 万条消息、Bubeck 成本估算、Lean 已验、优先权让渡、各方版本不一致、无直接实际后果与“如果经得起进一步审查”均出自此文。openai.com 对本机返回 403，故文中所有 OpenAI 数字都是经由该报道转述的公司自述。",
    "retrieved": "2026-09-25",
-   "publisher": "Quanta Magazine"
+   "publisher": "Quanta Magazine",
+   "cache": "text/8f1bb6bc8bb0ff87.txt"
   },
   {
    "id": "S012",
@@ -1130,14 +1131,16 @@
    "url": "https://lean-lang.org/doc/reference/latest/ValidatingProofs/",
    "label": "Lean 官方参考文档「Validating a Lean Proof」：分档说明各级检查保证什么；每档的信任前提都写明「只有相信形式化命题陈述与其非形式含义一致才有意义」；给出 #print axioms、内建公理 propext/Classical.choice/Quot.sound、sorryAx，以及 comparator + 独立实现的外部检查器 nanoda 与人写的 trusted challenge file",
    "retrieved": "2026-09-25",
-   "publisher": "lean-lang.org"
+   "publisher": "lean-lang.org",
+   "cache": "text/92ef4d9f20c4caae.txt"
   },
   {
    "id": "S022",
    "url": "https://www.implicator.ai/ai-cracked-research-math-harmonic-just-priced-the-consequence-at-1-45-billion/",
    "label": "Implicator.ai 2026-04-14 分析稿（转引 Quanta 采访）：Harmonic 的 Aristotle 把输出送进 Lean 4、2025 年 11 月以 14.5 亿美元投后估值完成 1.2 亿美元 C 轮；Joel David Hamkins「ocean of slop」原话与停布置作业",
    "retrieved": "2026-09-25",
-   "publisher": "Implicator.ai"
+   "publisher": "Implicator.ai",
+   "cache": "text/ba3124ec2363d48d.txt"
   },
   {
    "id": "S023",
@@ -1158,28 +1161,32 @@
    "url": "https://4m4.it/posts/proof-abundance-and-the-new-practice-of-mathematics/",
    "label": "Antonio Montano《Proof Abundance and the New Practice of Mathematics》2026-07-25（梳理陶哲轩立场的长文）：「A formally checked theorem may prove a mistranslated statement」",
    "retrieved": "2026-09-25",
-   "publisher": "4m4.it"
+   "publisher": "4m4.it",
+   "cache": "text/5e51045192a44056.txt"
   },
   {
    "id": "S026",
    "url": "https://terrytao.wordpress.com/2026-09-17/why-i-didnt-sign-the-fields-medallists-letter/",
    "label": "Gowers 在陶哲轩博客的客座文（2026-09-17）：「完全不透明的证明」这一担忧并未成真，但 AI 的 write-ups often leave plenty to be desired",
    "retrieved": "2026-09-25",
-   "publisher": "What's new (Terence Tao)"
+   "publisher": "What's new (Terence Tao)",
+   "cache": "text/3f9041c7eba4aad5.txt"
   },
   {
    "id": "S041",
    "url": "https://cognition.com/blog/factoring-rsa-260",
    "label": "Cognition 官方博客（Eric Lu 署名）：RSA-260 分解的成本与口径，约 4,900 GPU-日、13.5 GPU-年、40 万美元；并否认「靠猜 130 位质因子」的流传说法，说明只是把 GNFS 实现搬上 GPU。",
    "retrieved": "2026-09-25",
-   "publisher": "Cognition"
+   "publisher": "Cognition",
+   "cache": "text/a68f6360835b4474.txt"
   },
   {
    "id": "S042",
    "url": "https://eprint.iacr.org/2026/1593",
    "label": "IACR ePrint 论文页（Straznickas 与 Weis）：HAWK 密钥还原归约到约 n/2 加 1 维最短向量问题，HAWK-512 从 2^150 降到 2^108，HAWK-256 单台服务器数小时，并写明不迁移到 Falcon。",
    "retrieved": "2026-09-25",
-   "publisher": "IACR"
+   "publisher": "IACR",
+   "cache": "text/5728062e585120b3.txt"
   },
   {
    "id": "S043",
@@ -1200,14 +1207,16 @@
    "url": "https://postquantum.com/security-pqc/rsa-896-factored-claude-gpus/",
    "label": "RSA-896 报道：896 位、约 30 GPU-年、最多 2,048 GPU、约 10 天；给出 RSA-250（829 位，2020 年 2 月，约 2,700 核-年）、RSA-260 为 862 位、RSA-2048 需约 350 亿倍功，并举出媒体把 135 位误写成 320 位的例子。",
    "retrieved": "2026-09-25",
-   "publisher": "Post-Quantum（Marin Ivežić）"
+   "publisher": "Post-Quantum（Marin Ivežić）",
+   "cache": "text/c5e483366f113d1f.txt"
   },
   {
    "id": "S046",
    "url": "https://scottaaronson.blog/?p=9564",
    "label": "Scott Aaronson 博文（2026-02-15）：悉尼 Iceberg Quantum 预印本称改用 LDPC 纠错码后破 RSA-2048 需不到十万物理量子比特，原拟标题「破解 RSA-2048」被劝改；并记录 Nadia Heninger 关于密码学界几十年选择公开发表、仅 90 天负责任披露的说明。",
    "retrieved": "2026-09-25",
-   "publisher": "Shtetl-Optimized"
+   "publisher": "Shtetl-Optimized",
+   "cache": "text/fbf004302eb99b0a.txt"
   },
   {
    "id": "S047",
@@ -1221,42 +1230,48 @@
    "url": "https://arxiv.org/abs/quant-ph/9605043",
    "label": "Grover 1996 原始论文摘要：经典需查看约 N/2 项，量子只需 O(根号 N) 步，即搜索类攻击的开方级影响。",
    "retrieved": "2026-09-25",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/383a1a3d73b60ba0.txt"
   },
   {
    "id": "S049",
    "url": "https://thequantuminsider.com/2026/04/24/project-eleven-q-day-prize-quantum-ecc-attack/",
    "label": "Q-Day 奖金报道：2026 年 4 月在公开云量子机上还原 15 位 ECC 私钥（搜索空间 32,767），此前 2025 年 9 月为 6 位；比特币使用的是 256 位曲线；文中另引 Google 承诺 2029 年前完成量子安全迁移。",
    "retrieved": "2026-09-25",
-   "publisher": "The Quantum Insider"
+   "publisher": "The Quantum Insider",
+   "cache": "text/dbe16ba96d53bcf0.txt"
   },
   {
    "id": "S031",
    "url": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908/",
    "label": "Quanta Magazine 2026-09-08 对 OpenAI 宣布三维 Navier–Stokes 奇点（blowup）结果的报道：说明该结论是「解可以爆掉」、形式化检查用 Lean，并给出智能体数量、时长与消息量；同时指出这类奇点结果没有直接的实践后果",
    "retrieved": "2026-09-25",
-   "publisher": "Quanta Magazine"
+   "publisher": "Quanta Magazine",
+   "cache": "text/8f1bb6bc8bb0ff87.txt"
   },
   {
    "id": "S032",
    "url": "https://plato.stanford.edu/entries/mathematics-constructive/",
    "label": "Stanford Encyclopedia of Philosophy「Constructive Mathematics」条目：非构造性存在性证明的标准表述（Weyl：「告诉你宝藏存在，却不告诉你它在哪儿」）",
    "retrieved": "2026-09-25",
-   "publisher": "Stanford Encyclopedia of Philosophy"
+   "publisher": "Stanford Encyclopedia of Philosophy",
+   "cache": "text/64898f07e95d5e55.txt"
   },
   {
    "id": "S033",
    "url": "https://www.rfc-editor.org/rfc/rfc3766.txt",
    "label": "IETF RFC 3766（2004 年 4 月，Best Current Practice）：称数域筛法是当时求解离散对数/整数分解问题的最佳方法并给出分解运算量公式 L(n)（亚指数）；Pollard rho 的代价与搜索空间平方根成正比，椭圆曲线上数域筛法用不上",
    "retrieved": "2026-09-25",
-   "publisher": "IETF"
+   "publisher": "IETF",
+   "cache": "text/d7adab8312ab2450.txt"
   },
   {
    "id": "S034",
    "url": "https://www.keylength.com/en/4/",
    "label": "keylength.com 转载 NIST 密钥长度建议表（2020）：128 位强度对应 RSA/DH 模数 3072 位、椭圆曲线 256 位；并注明基于分解与 ECC 的强度估计会受实用量子计算影响",
    "retrieved": "2026-09-25",
-   "publisher": "BlueKrypt / NIST SP 800-57"
+   "publisher": "BlueKrypt / NIST SP 800-57",
+   "cache": "text/28ace6e1be4f212e.txt"
   },
   {
    "id": "S035",
@@ -1270,49 +1285,56 @@
    "url": "https://csrc.nist.gov/pubs/fips/203/final",
    "label": "NIST FIPS 203（ML-KEM，2024-08-13 发布）页：安全性归约到 Module Learning with Errors，并声明目前认为即使对手拥有量子计算机仍然安全",
    "retrieved": "2026-09-25",
-   "publisher": "NIST CSRC"
+   "publisher": "NIST CSRC",
+   "cache": "text/aafc2887b7b86cd0.txt"
   },
   {
    "id": "S037",
    "url": "https://csrc.nist.gov/projects/post-quantum-cryptography",
    "label": "NIST 后量子密码项目页：大规模量子计算机「可能还要数年或数十年」，一旦建成能破解今天广泛使用的多数公钥密码；2024 年发布三项主要标准",
    "retrieved": "2026-09-25",
-   "publisher": "NIST CSRC"
+   "publisher": "NIST CSRC",
+   "cache": "text/f6b73c8f723ef9a2.txt"
   },
   {
    "id": "S038",
    "url": "https://arxiv.org/abs/1905.09749",
    "label": "Gidney & Ekerå 2019：在含噪声、需纠错的大规模超导量子硬件假设下量化 Shor 类算法的资源需求（RSA-2048、8 小时、约两千万含噪声量子比特）",
    "retrieved": "2026-09-25",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/f9a21c6415bfa957.txt"
   },
   {
    "id": "S039",
    "url": "https://arxiv.org/abs/2505.15917",
    "label": "Gidney 2025 年后续工作：同样假设下把分解 RSA-2048 所需含噪声量子比特降到不足一百万、耗时不到一周",
    "retrieved": "2026-09-25",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/5b1a9e5e5ae17a2e.txt"
   },
   {
    "id": "S0310",
    "url": "https://www.claymath.org/millennium/navier/",
    "label": "Clay 数学研究所 Navier–Stokes 方程千年难题页面：问题问的是解是否存在、是否光滑，官方问题描述由 Charles Fefferman 撰写",
    "retrieved": "2026-09-25",
-   "publisher": "Clay Mathematics Institute"
+   "publisher": "Clay Mathematics Institute",
+   "cache": "text/06b8bc64be32e113.txt"
   },
   {
    "id": "S051",
    "url": "https://www.nist.gov/news-events/news/2024/08/nist-releases-first-3-finalized-post-quantum-encryption-standards",
    "label": "NIST 2024-08-13 新闻稿：首批三项后量子标准定稿，写明 FIPS 203/204/205 与 ML-KEM、ML-DSA、SLH-DSA 的改名对应关系（Kyber、Dilithium、SPHINCS+），以及 FIPS 206/FN-DSA 为后续备选",
    "retrieved": "2026-09-25",
-   "publisher": "NIST"
+   "publisher": "NIST",
+   "cache": "text/a202b2e57081bec9.txt"
   },
   {
    "id": "S052",
    "url": "https://csrc.nist.gov/projects/post-quantum-cryptography",
    "label": "NIST CSRC 后量子密码项目页：三项标准清单、2024-08-13 发布日、「组织应现在开始迁移」，并摘要 IR 8547 的 2035 退出与高风险系统更早迁移",
    "retrieved": "2026-09-25",
-   "publisher": "NIST CSRC"
+   "publisher": "NIST CSRC",
+   "cache": "text/f6b73c8f723ef9a2.txt"
   },
   {
    "id": "S053",
@@ -1326,126 +1348,144 @@
    "url": "https://www.ncsc.gov.uk/guidance/pqc-migration-timelines",
    "label": "英国 NCSC 迁移时间表（2025-03-20 发布，页面标注其后更新）：2028 完成清点与计划、2031 完成优先迁移、2035 全部系统完成；原文明确称这些是 target dates",
    "retrieved": "2026-09-25",
-   "publisher": "NCSC (UK)"
+   "publisher": "NCSC (UK)",
+   "cache": "text/28994c992955cec2.txt"
   },
   {
    "id": "S055",
    "url": "https://digital-strategy.ec.europa.eu/en/library/recommendation-coordinated-implementation-roadmap-transition-post-quantum-cryptography",
    "label": "欧委会建议 C(2024) 2393（2024-04-11）：鼓励成员国制定采用 PQC 的综合战略与路线图，经混合方案部署到公共部门与关键基础设施",
    "retrieved": "2026-09-25",
-   "publisher": "European Commission"
+   "publisher": "European Commission",
+   "cache": "text/89bd6ce755209dc9.txt"
   },
   {
    "id": "S056",
    "url": "https://digital-strategy.ec.europa.eu/en/library/coordinated-implementation-roadmap-transition-post-quantum-cryptography",
    "label": "《向后量子密码迁移的协调实施路线图》（2025-06-23）：NIS 合作组依上述建议产出的首个交付物，面向成员国的政策文件",
    "retrieved": "2026-09-25",
-   "publisher": "European Commission / NIS Cooperation Group"
+   "publisher": "European Commission / NIS Cooperation Group",
+   "cache": "text/a707c263abf943ec.txt"
   },
   {
    "id": "S057",
    "url": "https://datatracker.ietf.org/doc/rfc10024/",
    "label": "RFC 10024《TLS 1.3 的后量子—传统混合密钥协商机制》，Proposed Standard，2026 年 8 月",
    "retrieved": "2026-09-25",
-   "publisher": "IETF"
+   "publisher": "IETF",
+   "cache": "text/f68336893e7e1405.txt"
   },
   {
    "id": "S058",
    "url": "https://www.iana.org/assignments/tls-parameters/tls-parameters.xhtml",
    "label": "IANA TLS 参数注册表：命名组 4588 X25519MLKEM768（X25519 与 ML-KEM-768 混合），引用 RFC 10024",
    "retrieved": "2026-09-25",
-   "publisher": "IANA"
+   "publisher": "IANA",
+   "cache": "text/235ba30f7784e82d.txt"
   },
   {
    "id": "S059",
    "url": "https://raw.githubusercontent.com/ethereum/ethereum-org-website/master/public/content/roadmap/security/quantum-resistance/index.md",
    "label": "以太坊官方路线图页《Post-quantum cryptography on Ethereum》的源文件（ethereum.org 该页正文）：写明 Lean Ethereum 以 2029 为目标年、leanXMSS 替换 BLS、secp256k1 ECDSA 的公钥暴露区别",
    "retrieved": "2026-09-25",
-   "publisher": "Ethereum (ethereum.org repo)"
+   "publisher": "Ethereum (ethereum.org repo)",
+   "cache": "text/33565dad98a8bfa3.txt"
   },
   {
    "id": "S0510",
    "url": "https://raw.githubusercontent.com/bitcoin/bips/master/bip-0360.mediawiki",
    "label": "BIP-360（Pay-to-Merkle-Root，状态 Draft）：把量子攻击分成 long exposure 与 short exposure，后者指公钥在内存池等待确认期间的暴露",
    "retrieved": "2026-09-25",
-   "publisher": "bitcoin/bips"
+   "publisher": "bitcoin/bips",
+   "cache": "text/1b65ff3c9729c95f.txt"
   },
   {
    "id": "S0511",
    "url": "https://raw.githubusercontent.com/bitcoin/bips/master/bip-0361.mediawiki",
    "label": "BIP-361《Post Quantum Migration and Legacy Signature Sunset》（状态 Draft，2026-02-11 立案）：称截至 2026 年 3 月 1 日超过 34% 的 BTC 已在链上暴露公钥，并提出两阶段日落旧签名",
    "retrieved": "2026-09-25",
-   "publisher": "bitcoin/bips"
+   "publisher": "bitcoin/bips",
+   "cache": "text/b0bbfa841a5af53c.txt"
   },
   {
    "id": "S0512",
    "url": "https://ethresear.ch/t/how-to-hard-fork-to-save-most-users-funds-in-a-quantum-emergency/18901",
    "label": "Vitalik Buterin，Ethereum Research 论坛帖（2024-03-09）：从未发过交易的账户链上只有地址哈希、发过一笔即暴露公钥；并说明多数私钥由 BIP-32 主种子派生",
    "retrieved": "2026-09-25",
-   "publisher": "ethresear.ch"
+   "publisher": "ethresear.ch",
+   "cache": "text/236ba297209e57f4.txt"
   },
   {
    "id": "S0513",
    "url": "https://messervices.cyber.gouv.fr/guides/en-anssi-views-post-quantum-cryptography-transition",
    "label": "法国 ANSSI 立场文件（2022-01-04）：官方使用 store now, decrypt later 描述回溯性攻击，并给出混合到独立 PQC 的三阶段日程（第三阶段不早于 2030）",
    "retrieved": "2026-09-25",
-   "publisher": "ANSSI"
+   "publisher": "ANSSI",
+   "cache": "text/c641da81e0d6ec82.txt"
   },
   {
    "id": "S0514",
    "url": "https://pages.nist.gov/nccoe-migration-post-quantum-cryptography/FAQ/index.html",
    "label": "NIST NCCoE 迁移问答页：harvest now decrypt later、密码学清单（cryptographic inventory）与 CBOM、可扫描 SSH/TLS 支持的自由工具，以及对 CRQC 出现时间的三档估计",
    "retrieved": "2026-09-25",
-   "publisher": "NIST NCCoE"
+   "publisher": "NIST NCCoE",
+   "cache": "text/afad2e1d396b4d0a.txt"
   },
   {
    "id": "S0515",
    "url": "https://raw.githubusercontent.com/bitcoin/bips/master/bip-0340.mediawiki",
    "label": "BIP-340《Schnorr Signatures for secp256k1》（状态 Deployed）：比特币签名所用曲线为 secp256k1",
    "retrieved": "2026-09-25",
-   "publisher": "bitcoin/bips"
+   "publisher": "bitcoin/bips",
+   "cache": "text/e2ae7434f0176306.txt"
   },
   {
    "id": "S061",
    "url": "https://stockanalysis.com/api/symbol/s/SOXX/history?range=1y&period=Daily",
    "label": "SOXX（半导体 ETF）日线收盘序列，本表 2025-09-23 与 2026-06-30/09-22 收盘价取自此处",
    "retrieved": "2026-09-25",
-   "publisher": "StockAnalysis"
+   "publisher": "StockAnalysis",
+   "cache": "text/3cfd975e4b0737de.txt"
   },
   {
    "id": "S062",
    "url": "https://stockanalysis.com/api/symbol/s/AIQ/history?range=1y&period=Daily",
    "label": "AIQ（Global X AI & Technology ETF）日线收盘序列",
    "retrieved": "2026-09-25",
-   "publisher": "StockAnalysis"
+   "publisher": "StockAnalysis",
+   "cache": "text/840d0fc5b1b39207.txt"
   },
   {
    "id": "S063",
    "url": "https://stockanalysis.com/api/symbol/s/NVDA/history?range=1y&period=Daily",
    "label": "NVDA 日线收盘序列",
    "retrieved": "2026-09-25",
-   "publisher": "StockAnalysis"
+   "publisher": "StockAnalysis",
+   "cache": "text/61ca9325755a20f5.txt"
   },
   {
    "id": "S064",
    "url": "https://stockanalysis.com/api/symbol/s/CRCL/history?range=1y&period=Daily",
    "label": "CRCL（Circle Internet Group）日线收盘序列",
    "retrieved": "2026-09-25",
-   "publisher": "StockAnalysis"
+   "publisher": "StockAnalysis",
+   "cache": "text/df72ef7a9861eaec.txt"
   },
   {
    "id": "S065",
    "url": "https://stockanalysis.com/api/symbol/s/COIN/history?range=1y&period=Daily",
    "label": "COIN（Coinbase）日线收盘序列",
    "retrieved": "2026-09-25",
-   "publisher": "StockAnalysis"
+   "publisher": "StockAnalysis",
+   "cache": "text/b5868d48d9a7d423.txt"
   },
   {
    "id": "S066",
    "url": "https://data-api.binance.vision/api/v3/klines?symbol=BTCUSDT&interval=1d&startTime=1758585600000&endTime=1790150400000&limit=400",
    "label": "币安现货 BTCUSDT 日线 K 线（收盘口径，非期货、非指数聚合价）",
    "retrieved": "2026-09-25",
-   "publisher": "Binance"
+   "publisher": "Binance",
+   "cache": "text/bde8f7c1463df3f5.txt"
   },
   {
    "id": "S067",
@@ -1459,49 +1499,56 @@
    "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_yield_curve&field_tdr_date_value=2026&page&_format=csv",
    "label": "美国财政部 2026 年每日国债名义收益率曲线 CSV（用到 2Y、10Y）",
    "retrieved": "2026-09-25",
-   "publisher": "U.S. Department of the Treasury"
+   "publisher": "U.S. Department of the Treasury",
+   "cache": "text/d95b28f2aeec1571.txt"
   },
   {
    "id": "S069",
    "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/2026/all?type=daily_treasury_real_yield_curve&field_tdr_date_value=2026&page&_format=csv",
    "label": "美国财政部 2026 年每日国债实际收益率曲线 CSV（10Y TIPS，用于算盈亏平衡通胀）",
    "retrieved": "2026-09-25",
-   "publisher": "U.S. Department of the Treasury"
+   "publisher": "U.S. Department of the Treasury",
+   "cache": "text/90eace5679218644.txt"
   },
   {
    "id": "S0610",
    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
    "label": "FOMC 2026 年 9 月 16 日声明原文：以 12–0 投票把联邦基金利率目标区间上调 25 个基点至 3-3/4%–4%",
    "retrieved": "2026-09-25",
-   "publisher": "Federal Reserve Board"
+   "publisher": "Federal Reserve Board",
+   "cache": "text/fe283a4d738a52f3.txt"
   },
   {
    "id": "S0611",
    "url": "https://www.circle.com/pressroom/circle-reports-second-quarter-2026-results",
    "label": "Circle 2026 年第二财季业绩公告（2026-08-05）：总营收与储备收入 7.01 亿美元、储备收入 6.68 亿美元、其他收入 3400 万美元、储备收益率同比下降 66 个基点、USDC 流通量 733 亿美元同比 +19%",
    "retrieved": "2026-09-25",
-   "publisher": "Circle"
+   "publisher": "Circle",
+   "cache": "text/9db20476b5e785b0.txt"
   },
   {
    "id": "S0612",
    "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-second-quarter-fiscal-2027",
    "label": "NVIDIA 2027 财年第二财季公告（2026-08-26，季度截至 2026-07-26）：营收 962.21 亿美元同比 +106%、数据中心 890 亿美元同比 +117%、下季指引 1080 亿美元 ±2%；同一份公告的六家机构 5000 亿美元第三方资金条目写明 subject to definitive agreements",
    "retrieved": "2026-09-25",
-   "publisher": "NVIDIA"
+   "publisher": "NVIDIA",
+   "cache": "text/e163d383e32dc2ff.txt"
   },
   {
    "id": "S0613",
    "url": "https://www.microsoft.com/en-us/investor/earnings/fy-2026-q4/press-release-webcast",
    "label": "微软 2026 财年第四财季公告（2026-07-29）：商业剩余履约义务同比增长 84% 至 6,780 亿美元",
    "retrieved": "2026-09-25",
-   "publisher": "Microsoft Investor Relations"
+   "publisher": "Microsoft Investor Relations",
+   "cache": "text/e7406b0692ba1e59.txt"
   },
   {
    "id": "S091",
    "url": "https://arxiv.org/abs/2411.13627",
    "label": "2024 年 11 月预印本：把大模型与形式化验证结合，自动做密码协议漏洞检测（CryptoFormalEval）",
    "retrieved": "2026-09-25",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/e5131e3983237af2.txt"
   },
   {
    "id": "S092",
@@ -1515,7 +1562,8 @@
    "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.LICS.2026.2",
    "label": "《安全协议形式化验证：ProVerif 的 25 年》，说明验证器工具的成熟年限",
    "retrieved": "2026-09-25",
-   "publisher": "Dagstuhl / LICS 2026"
+   "publisher": "Dagstuhl / LICS 2026",
+   "cache": "text/90dd0bccbd43ada2.txt"
   },
   {
    "id": "S094",
@@ -1529,14 +1577,16 @@
    "url": "https://arxiv.org/abs/2505.15917",
    "label": "2025 年 5 月预印本：《How to factor 2048 bit RSA integers with less than a million noisy qubits》，同类估算的四年后版本",
    "retrieved": "2026-09-25",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/5b1a9e5e5ae17a2e.txt"
   },
   {
    "id": "S096",
    "url": "https://blog.google/security/tracking-cost-of-quantum-factori/",
    "label": "2025 年 5 月 Google 官方博客，说明该估算出自 Google 团队并公开其假设",
    "retrieved": "2026-09-25",
-   "publisher": "Google"
+   "publisher": "Google",
+   "cache": "text/453d5701885ace42.txt"
   },
   {
    "id": "S097",
@@ -1557,7 +1607,8 @@
    "url": "https://www.schneier.com/blog/archives/2008/05/random_number_b.html",
    "label": "2008 年 5 月对 Debian OpenSSL 随机数生成缺陷（CVE-2008-0166）的公开记录",
    "retrieved": "2026-09-25",
-   "publisher": "Schneier on Security"
+   "publisher": "Schneier on Security",
+   "cache": "text/5c0718e7c574bc04.txt"
   },
   {
    "id": "S0910",
@@ -1571,14 +1622,16 @@
    "url": "https://crocs-muni.github.io/roca/",
    "label": "2017 年 10 月 ROCA 公开披露页（CVE-2017-15361）：芯片厂商密钥生成缺陷，不含利用步骤",
    "retrieved": "2026-09-25",
-   "publisher": "Masaryk 大学 CRoCS"
+   "publisher": "Masaryk 大学 CRoCS",
+   "cache": "text/148454cb001eecb2.txt"
   },
   {
    "id": "S0912",
    "url": "https://www.kb.cert.org/vuls/id/307015",
    "label": "CERT/CC 漏洞条目 VU#307015：Infineon RSA 库不能正确生成密钥对",
    "retrieved": "2026-09-25",
-   "publisher": "CERT/CC"
+   "publisher": "CERT/CC",
+   "cache": "text/1587d31f6d6f39dd.txt"
   },
   {
    "id": "S0913",
@@ -1592,28 +1645,32 @@
    "url": "https://www.chainalysis.com/blog/axie-infinity-ronin-bridge-dprk-hack-seizure/",
    "label": "Chainalysis 对 Ronin 事件的公开分析：失手点在于验证者与多签私钥的保管，非算法被破",
    "retrieved": "2026-09-25",
-   "publisher": "Chainalysis"
+   "publisher": "Chainalysis",
+   "cache": "text/4e99427fbc760bfa.txt"
   },
   {
    "id": "S071",
    "url": "https://www.circle.com/pressroom/circle-reports-second-quarter-2026-results",
    "label": "Circle 二季度 2026 业绩公告原文（2026-08-05）：总营收与储备收入 7.01 亿美元、储备收入 6.68 亿、其他收入 0.34 亿、流通中 USDC 733 亿、储备收益率同比降 66 个基点、分销与交易成本 4.12 亿、CPN 年化量 147 亿与 175 家机构、Marex 以 USDC 缴初始保证金、BNY 为储备主托管、Arc 首批校验者名单、CEO 关于利率环境与加密市场放缓的表述",
    "retrieved": "2026-09-25",
-   "publisher": "Circle Internet Group"
+   "publisher": "Circle Internet Group",
+   "cache": "text/9db20476b5e785b0.txt"
   },
   {
    "id": "S072",
    "url": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260916a.htm",
    "label": "美联储 FOMC 声明（2026-09-16，12 比 0）：上调联邦基金利率目标区间 25 个基点至 3.75%–4.00%，称通胀仍偏高",
    "retrieved": "2026-09-25",
-   "publisher": "Board of Governors of the Federal Reserve System"
+   "publisher": "Board of Governors of the Federal Reserve System",
+   "cache": "text/fe283a4d738a52f3.txt"
   },
   {
    "id": "S073",
    "url": "https://www.govinfo.gov/content/pkg/PLAW-119publ27/html/PLAW-119publ27.htm",
    "label": "GENIUS Act 成文文本 P.L. 119-27（2025-07-18 批准，139 Stat. 419）：Sec.4 至少 1:1 储备与合格资产（含剩余期限 93 天内美债、隔夜回购）、月度储备构成披露与会计师事务所审查、超 500 亿美元未偿的年报审计、禁止向持有者付息、Sec.20 生效日取签署后 18 个月或最终规则后 120 天之早者",
    "retrieved": "2026-09-25",
-   "publisher": "U.S. GPO"
+   "publisher": "U.S. GPO",
+   "cache": "text/5af84bf2045e9cc3.txt"
   },
   {
    "id": "S074",
@@ -1648,21 +1705,24 @@
    "url": "https://csrc.nist.gov/pubs/fips/203/final",
    "label": "NIST CSRC 官方页，标注 FIPS 203（ML-KEM 密钥封装）Date Published: August 13, 2024，并带 2025-11-17 的勘误规划说明",
    "retrieved": "2026-09-25",
-   "publisher": "NIST"
+   "publisher": "NIST",
+   "cache": "text/aafc2887b7b86cd0.txt"
   },
   {
    "id": "S082",
    "url": "https://csrc.nist.gov/pubs/fips/204/final",
    "label": "NIST CSRC 官方页，标注 FIPS 204（ML-DSA 数字签名）Date Published: August 13, 2024，另有 2026-07-31 的规划说明",
    "retrieved": "2026-09-25",
-   "publisher": "NIST"
+   "publisher": "NIST",
+   "cache": "text/6122a52a1d4c6450.txt"
   },
   {
    "id": "S083",
    "url": "https://csrc.nist.gov/pubs/fips/205/final",
    "label": "NIST CSRC 官方页，标注 FIPS 205（SLH-DSA 无状态哈希签名）Date Published: August 13, 2024",
    "retrieved": "2026-09-25",
-   "publisher": "NIST"
+   "publisher": "NIST",
+   "cache": "text/c4a60eb15d4b3667.txt"
   },
   {
    "id": "S084",
@@ -1683,7 +1743,8 @@
    "url": "https://www.cssf.lu/en/markets-in-crypto-assets-mica-micar/",
    "label": "卢森堡金融监管委员会 CSSF 的 MiCA/MiCAR 官方页（页面标注 Last update: 22 July 2026），写明 MiCAR 2023-06-29 生效、Titles III/IV（ART/EMT 发行方授权与监管）2024-06-30 适用、其余含 CASP 条款 2024-12-30 适用",
    "retrieved": "2026-09-25",
-   "publisher": "CSSF"
+   "publisher": "CSSF",
+   "cache": "text/e8b57abcb829de95.txt"
   },
   {
    "id": "S087",
@@ -1704,35 +1765,40 @@
    "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
    "label": "欧盟委员会官方 AI Act 页，写明该法 2024-08-01 生效、2026-08-02 起适用（禁止性条款 2025-02-02、GPAI 义务 2025-08-02）；AI Omnibus 于 2025-11-19 提出、2026-05-07 达成政治协议、2026-07-27 生效，附件三高风险用例（含关键基础设施、信用评分）适用日延至 2027-12-02",
    "retrieved": "2026-09-25",
-   "publisher": "European Commission"
+   "publisher": "European Commission",
+   "cache": "text/40bdc44a193108b6.txt"
   },
   {
    "id": "S0810",
    "url": "https://home.treasury.gov/news/press-releases/sb0605",
    "label": "美国财政部新闻稿《Treasury Seeks Public Comment on GENIUS Act Proposed Rulemaking》，页面日期 August 17, 2026",
    "retrieved": "2026-09-25",
-   "publisher": "U.S. Department of the Treasury"
+   "publisher": "U.S. Department of the Treasury",
+   "cache": "text/766cdd8a661b430b.txt"
   },
   {
    "id": "S111",
    "url": "https://cognition.com/blog/factoring-rsa-260",
    "label": "Eric Lu 的一手记录（Cognition，2026-09-09）：RSA-260 于 2026-09-03 完成分解，260 位十进制，约 4,900 GPU·天、按市价自估约 40 万美元；作者自述 essentially no algorithmic advancements，并写明 RSA-2048（约 617 位）不因此改变",
    "retrieved": "2026-09-25",
-   "publisher": "Cognition"
+   "publisher": "Cognition",
+   "cache": "text/a68f6360835b4474.txt"
   },
   {
    "id": "S112",
    "url": "https://members.loria.fr/PZimmermann/records/factor.html",
    "label": "Paul Zimmermann 维护的整数分解公开记录页：RSA-250（250 位十进制）于 2020 年 2 月 28 日由 Boudot、Gaudry、Guillevic、Heninger、Thomé、Zimmermann 分解；该页响应头 Last-Modified 为 2023-11-13，故未收录其后的记录",
    "retrieved": "2026-09-25",
-   "publisher": "LORIA"
+   "publisher": "LORIA",
+   "cache": "text/415d960882615dfe.txt"
   },
   {
    "id": "S113",
    "url": "https://csrc.nist.gov/pubs/ir/8547/ipd",
    "label": "NIST CSRC 条目页：IR 8547 发布日期 2024-11-12、评论截止 2025-01-10，状态仍是 Initial Public Draft（截至 2026-09-24 未因 RSA-260 一事改表）",
    "retrieved": "2026-09-25",
-   "publisher": "NIST CSRC"
+   "publisher": "NIST CSRC",
+   "cache": "text/c92de97ad233b74c.txt"
   },
   {
    "id": "S114",
@@ -1746,14 +1812,16 @@
    "url": "https://arxiv.org/abs/2408.13687",
    "label": "Google 纠错论文（2024-08-24 提交）：距离 7 表面码 101 个量子比特、每纠错周期逻辑错误率 0.143%±0.003%、码距加二抑制因子 Λ=2.14±0.02",
    "retrieved": "2026-09-25",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/46b5fa6174fadcff.txt"
   },
   {
    "id": "S116",
    "url": "https://arxiv.org/abs/2508.14011",
    "label": "Dallaire-Demers 等的 secp256k1 分级 ECDLP 挑战论文（v2 2026-03-25）：图 3 记经典素数域记录集中在 112–113 位、限定区间 secp256k1 袋鼠计算推进到 129 位；摘要把 256 位全量实例标在 2027–2033 年窗口",
    "retrieved": "2026-09-25",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/8259508a5579c9d9.txt"
   },
   {
    "id": "S101",
@@ -1774,21 +1842,24 @@
    "url": "https://bitcoinops.org/en/newsletters/2026/03/06/",
    "label": "Bitcoin Optech 简报（2026-03-06）：记录 Ethan Heilman 向 Bitcoin-Dev 提出在 BIP 360 脚本中预埋回退签名路径以获得算法敏捷性，以及 Pieter Wuille 关于旧签名方案最终需被禁用的回应",
    "retrieved": "2026-09-25",
-   "publisher": "Bitcoin Optech"
+   "publisher": "Bitcoin Optech",
+   "cache": "text/7677ef7f7979f60c.txt"
   },
   {
    "id": "S104",
    "url": "https://www.bitgo.com/resources/blog/bitgo-adds-new-quantum-risk-management-capabilities-for-bitcoin-wallets/",
    "label": "BitGo 官方公告（2026-07-22）：公布已上线的 Quantum Risk Score、Fix Exposed Addresses 工作流、默认地址类型控制，并说明 Taproot 与 P2PK 余额需另行补救；页脚载明 BitGo Bank & Trust 受美国货币监理署（OCC）监管",
    "retrieved": "2026-09-25",
-   "publisher": "BitGo"
+   "publisher": "BitGo",
+   "cache": "text/9942241eb94c904c.txt"
   },
   {
    "id": "S105",
    "url": "https://bips.xyz/341",
    "label": "BIP 341《Taproot: SegWit version 1 spending rules》全文镜像：说明新的脚本版本需以软分叉引入、且与 BIP 341 兼容，并说明该输出把公钥直接写入而非存哈希",
    "retrieved": "2026-09-25",
-   "publisher": "Bitcoin BIPs 镜像"
+   "publisher": "Bitcoin BIPs 镜像",
+   "cache": "text/1261309c7cdaa949.txt"
   },
   {
    "id": "S106",
@@ -1802,7 +1873,8 @@
    "url": "https://bitcoinops.org/en/topics/quantum-resistance/",
    "label": "Bitcoin Optech 后量子抗性主题页：汇总比特币侧的迁移提案与讨论（BIP 360 P2QRH/P2MR、BIP 361 后量子迁移与旧签名弃用提案、SHRINCS 324 字节签名等），并说明后量子签名公钥与签名尺寸远大于现行方案",
    "retrieved": "2026-09-25",
-   "publisher": "Bitcoin Optech"
+   "publisher": "Bitcoin Optech",
+   "cache": "text/19657a97dd7d82d1.txt"
   }
  ],
  "category": "人工智能",
@@ -1821,8 +1893,8 @@
   "hero_motif": "layer_cascade",
   "hero_note": "大模型与加密货币篇的封面：一层压一层、越往下越窄、收到一个点——无限层联立，两个团队共同站在上面的那个方法。强调色落在最后收口那一层，那是 AI 补上的唯一一步。层数与耗时都不标：那些数字在正文里逐条带来源。"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-05",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 17,
  "cover": {
@@ -1836,11 +1908,12 @@
  },
  "created_date": "2026-09-25",
  "site": {
-  "url": "https://llm-and-crypto-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d6cd-4074-721d-b827-e9ee83c8de56",
-  "slug": "llm-and-crypto",
-  "content_sha": "5df67f4b2af75906",
-  "published_date": "2026-09-25",
+  "url": "https://ai-industry-gtqdc11h6po.qoder.website/llm-and-crypto/llm-and-crypto.html",
+  "group": "ai-industry",
+  "path": "/llm-and-crypto/llm-and-crypto.html",
+  "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
+  "content_sha": "e16d9d3bf10d4654",
+  "published_date": "2026-10-10",
   "access": "public"
  }
 }

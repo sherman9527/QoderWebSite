@@ -5,3 +5,8 @@
 
 pytest>=8.0
 jsonschema>=4.21
+Pillow>=10.0
+# W-191：来源原文层的 PDF 支路。主路径是系统的 poppler（`pdftotext`，同一份中文公告
+# 抽出 6,661 个汉字 vs pypdf 的 312），pypdf 是**没有 poppler 的机器上的兜底**——
+# 所以它必须写在这里，否则换台机器这条支路只剩一条腿（R-07：依赖配置进库）。
+pypdf>=4.0

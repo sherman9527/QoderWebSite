@@ -27,6 +27,7 @@ sys.path.insert(0, HERE)
 import images as images_mod      # noqa: E402
 import llm                       # noqa: E402
 import outline as outline_mod    # noqa: E402
+import query_naming              # noqa: E402
 
 import validate as V             # noqa: E402
 
@@ -130,6 +131,9 @@ block 结构约定（严格按此写，否则会被拒）：
   分数类一定要给 `as_of`，榜单每月都在变，没有时点的分数等于没有分数。
 - compare: {{type,left:{{title,tone:"pro|con|neutral",points:[...]}},right:{{...}},verdict?}}
 - note: {{type,tone:"tip|warn|myth|glossary",title?,text}}
+- code: {{type,heading?,lang?,code,caption?,source_ids?}}  示例代码/请求响应/文件树，原样进 <pre>。
+  缩进一律用空格（制表符会被 schema 拒）。**代码不是断言载体**：可核查的数字仍然只能写在
+  prose/表格/图表里；"这是假设的接口形态还是真跑通过的响应"写在 caption，不要写进代码注释。
 """
 
 
@@ -291,7 +295,35 @@ def _strip_block_markers(blocks, mapping):
     return moved
 
 
-def _remap_sources(sec_result, global_sources, prefix):
+def _cache_source(url, entry, topic):
+    """W-189：研究阶段每登记一条来源，就顺手落一份原文到 `.research-scratch/text/`。
+
+    只有 url + 人写的 label 摘要时，"这个数到底在不在来源里"永远答不出——
+    W-164 的 308 行、W-162 的 383 条都是撞在这堵墙上。这一层是那条路的前置。
+
+    抓不到就**不写指针**，而且绝不停下研究：这是取证不是依赖，
+    一个来源站挂了不等于这篇内容有错。`--no-source-cache`（环境变量 `KE_SOURCE_CACHE=0`）
+    用于离线跑与测试。
+    """
+    if os.environ.get("KE_SOURCE_CACHE") == "0" or not url:
+        return
+    try:
+        import sourcecache as SC
+        low = url.split(u"#")[0].split(u"?")[0].lower()
+        if low.endswith(SC.PDF_EXT):
+            # 财报类来源是 PDF（W-191）：走字节支路，抽取质量不行就拒绝入库而不是存乱码
+            rel = SC.put_pdf(url, SC.fetch_bytes(url), label=entry.get("label"), topic=topic)
+        elif low.endswith(SC.SKIP_EXT):
+            return      # 表格/图片/压缩包不是网页也不是 PDF，抓回来只是乱码
+        else:
+            rel = SC.put(url, SC.fetch(url), topic=topic)
+        if rel:
+            entry[u"cache"] = rel
+    except Exception as e:
+        log(u"    原文缓存失败（不影响研究）：%s %s" % (url[:60], repr(e)[:90]))
+
+
+def _remap_sources(sec_result, global_sources, prefix, topic=None, cache=False):
     """章节内 S1/S2 会撞车，统一改成 S<前缀><序号> 并回写 source_ids。
 
     返回 (blocks, 删掉的内嵌标号个数)。第二个返回值必须往上传：删掉一个引用声明
@@ -315,6 +347,8 @@ def _remap_sources(sec_result, global_sources, prefix):
             if s.get("publisher"):
                 entry["publisher"] = s["publisher"]
             global_sources.append(entry)
+            if cache:
+                _cache_source(s.get("url"), entry, topic)
 
     def walk(o):
         if isinstance(o, dict):
@@ -367,7 +401,12 @@ def research(cfg, existing, only=None, workers=3, replay=None, online=True):
                 sec = futs[fut]
                 try:
                     _sec, payload, grounded = fut.result()
-                    blocks, dropped = _remap_sources(payload, global_sources, _prefix_for(cfg, sec))
+                    # `cache=True` 只有这里给：抓原文是**研究阶段**的副作用，
+                    # 而 `_remap_sources` 还被 6 条单测直接调用做纯 id 重映射——
+                    # 那些调用不带网络替身，默认一抓就让每条单测等 25 秒超时。
+                    blocks, dropped = _remap_sources(payload, global_sources,
+                                                     _prefix_for(cfg, sec),
+                                                     topic=cfg.topic, cache=True)
                     results.append((sec.id, {
                         "id": sec.id, "title": sec.title, "anchor": sec.anchor,
                         "blocks": blocks, "images": [],
@@ -666,7 +705,12 @@ def image_ref(row):
     ref = {}
     for k in ("file", "alt", "caption", "source_page", "width", "height", "query"):
         v = row.get(k)
-        if v is None or v == u"":
+        if v is None:
+            continue
+        # alt 的空串是**写上去的**，不是"没填"（W-188 ②：图注在场时 alt 留空，
+        # 屏读只念一遍）。其余字段的空串必须丢掉——`source_page: ""` 会撞
+        # schema 的 `^https?://`，等于自己造一条 G-10 fail。
+        if v == u"" and k != u"alt":
             continue
         ref[k] = v
     return ref
@@ -737,6 +781,9 @@ def do_images(cfg, data, out_dir, skip=False, reserve=None):
     # 只能判"不退"，B 章直接空掉（09-22 百达翡丽 history 一章实测）。
     pending = {k: set(v or ()) for k, v in (reserve or {}).items()}
     subject = images_mod.subject_tokens(cfg)
+    # W-168：同名异物机检不了（量过：全站 81.3% 的检索词不含全名，9 篇一个全名别名都没有），
+    # 所以这里**不判**、只说一声。把它做成闸门等于把联络表那道人眼活换成阻塞器。
+    full_aliases = query_naming.full_names(cfg.aliases)
     search_stats = {}
     # 同一来源页最多给两章用（见 images.collect 的说明）：一轮配图里跨章共享这个计数
     used_pages = {}
@@ -761,6 +808,12 @@ def do_images(cfg, data, out_dir, skip=False, reserve=None):
         # 只能退回放宽档——劳力士篇就是这么配上"圆糯米"的。
         # "哪些词能用、长词怎么救"归 images.gated_queries 一处管，别在这里再写一遍。
         qs = images_mod.gated_queries(cfg_sec.image_queries, subject)
+        if cfg_sec.image_queries and not any(
+                query_naming.names_a_full(q, cfg.aliases) for q in cfg_sec.image_queries):
+            log(u"      本章 %d 条检索词一条都没点到全名（本篇可用全名 %d 个：%s）"
+                u"——召回来的是不是这个实体，只能看联络表"
+                % (len(cfg_sec.image_queries), len(full_aliases),
+                   u"、".join(full_aliases[:3]) or u"无，得先给大纲补 aliases"))
         def _try(queries, gated):
             return images_mod.collect(queries, out_dir, ibar, keywords=kw,
                                       max_per_query=1, log=log, claimed=claimed_now,
@@ -805,8 +858,11 @@ def do_images(cfg, data, out_dir, skip=False, reserve=None):
                 dropped += list(got)
                 got = _try(qs, False)
         for g in got:
-            g["alt"] = g.get("title") or (u"%s：%s" % (sec["title"], cfg_sec.image_queries[0]))
+            # 只写 caption。alt 以前也取同一个 title，于是同一串来源站 SEO 标题
+            # 在页面上写两遍、屏读念两遍（W-188 ②）。`alt=""` 是"这张图由图注解释"
+            # 的正确写法，G-03 现在按"空 alt 又没有可见图注"判。
             g["caption"] = u"%s" % (g.get("title") or sec["title"])
+            g["alt"] = u""
         sec.setdefault("images", [])
         usable = [g for g in got if g["source_page"]][:need]
         for g in usable:
@@ -830,6 +886,9 @@ def do_images(cfg, data, out_dir, skip=False, reserve=None):
             path = os.path.join(out_dir, g["file"].replace("/", os.sep))
             try:
                 os.remove(path)
+                # 侧车跟着图走：留着它 = 给一张不存在的图保着源哈希，
+                # 下一轮去重会认回一个不存在的文件名。
+                images_mod.remove_srcsha(path)
             except OSError:
                 log(u"  孤儿图删除失败：%s" % g["file"])
         total += len(usable)
@@ -891,7 +950,15 @@ def main(argv=None):
     ap.add_argument("--fast", action="store_true",
                     help=u"快档预设：--minutes 4 --sources-per-section 2，用于快速出报告")
     ap.add_argument("--date", help=u"覆盖产物日期（默认今天）")
+    ap.add_argument("--no-source-cache", dest="source_cache", action="store_false", default=True,
+                    help=u"研究阶段不抓来源原文（默认每条来源落一份正文到 "
+                         u".research-scratch/text/，见 W-189）")
     args = ap.parse_args(argv)
+
+    # 与研究阶段同一条环境变量通道：设晚了就会一半来源有原文、一半没有，
+    # 而那正是这一层要消灭的状态（`sources[].cache` 缺失=不可回溯）。
+    if not args.source_cache:
+        os.environ["KE_SOURCE_CACHE"] = u"0"
 
     # 档位必须在读大纲之前落到环境变量：大纲的 words_range 与提示词的每章预算
     # 都从那里取，晚设就会一半新一半旧。
@@ -1050,6 +1117,11 @@ def main(argv=None):
     if os.path.isfile(page):
         shutil.copyfile(page, prev)
     os.replace(pending, page)
+    # 侧车跟着页面一起换名，且**排在页面之后**：反过来的话中间那一瞬，
+    # 现役的还是旧页面、侧车已经写了新哈希——旧产物会顶着一份新指纹冒充"刚渲染的"。
+    # 现在这个顺序下最坏只是短暂报"需重渲染"，不会假绿。
+    if os.path.isfile(pending + V.TEMPLATE_SRC_SIDECAR):
+        os.replace(pending + V.TEMPLATE_SRC_SIDECAR, page + V.TEMPLATE_SRC_SIDECAR)
 
     # 索引只在闸门全绿后重建：坏页面不该出现在入口页上。
     # try 只包住索引重建这一件事。原先它把"删退路"也包在里面，于是删 `.prev` 时
@@ -1083,10 +1155,10 @@ def main(argv=None):
 
 
 def _pack_for_site(topic, log):
-    """闸门全绿、索引也更新之后，把这一篇打成待发布的包。
+    """闸门全绿、索引也更新之后，把**这一篇所属的那个组**重打成待发布的包。
 
-    这是"新增文章自动带上 URL"里脚本能做的全部：**发布本身要 agent 调托管工具**
-    （`qodercli` 没有 sites 子命令、插件文档也没有 CI/REST，不做逆向的 PAT 直连）。
+    合站之后发布单位是组，所以这里打的不是这一篇，而是它那一组的全部成员。
+    这是"新增文章自动带上 URL"里脚本能做的全部：**发布本身要 agent 调托管工具**。
     整段非致命——一篇验证过的页面不该因为打不出包就算失败；
     但失败必须写进日志，不能静默，否则 `pending` 清单会永远说不清为什么空。
     """
@@ -1094,19 +1166,27 @@ def _pack_for_site(topic, log):
         return
     try:
         import publish as PUB
-        info = PUB.pack(topic, root=ROOT, dist=PUBLISH_DIST)
+        # 必须把 output 一起传下去。只传 root=ROOT 的话，读的是**真仓库**那一篇，
+        # 而不是刚渲染并验证过的这一篇——集成测试把 OUTPUT 换到 tmp 之后，
+        # 它会安静地把仓库产物打进临时 dist，测试照样绿。
+        repo = os.path.dirname(os.path.abspath(OUTPUT))
+        group = PUB.group_of(topic, repo)
+        if not group:
+            log(u"      %s 不在 config/site_groups.json 的任何一组里，不出包" % topic)
+            return
+        info = PUB.pack_group(group, root=repo, dist=PUBLISH_DIST, output=OUTPUT)
         if info.get("skipped"):
             log(u"      内容未变，沿用已有的待发布包 %s" % os.path.basename(info["dir"]))
         else:
-            log(u"      待发布的包：%s（%d 个文件 %.1f MB，sha %s）"
-                % (info["dir"], info["files"], info["bytes"] / 1048576.0, info["sha"]))
+            log(u"      待发布的包：%s（%d 篇 %d 个文件 %.1f MB，group_sha %s）"
+                % (info["dir"], len(info["members"]), info["files"],
+                   info["bytes"] / 1048576.0, info["sha"]))
         if info["non_ascii"]:
             log(u"      ! 包内有 %d 个非 ASCII 文件名（只报告，未改名）：%s"
                 % (len(info["non_ascii"]), u"、".join(info["non_ascii"][:5])))
         # 账本是派生物：内容指纹一变，"本地 vs 线上"那一栏就得跟着变。
-        # 不在这里重算的话，改一次模板重渲染 20 篇之后 `validate --all` 会因
-        # "web_list.md 与 data.json 不一致"整站判死——而 AGENTS 第 5、6 步是要求连着跑的
-        # （09-25 的 review 抓到：那时 check 要等人手动跑 `publish.py ledger` 才恢复）。
+        # 不在这里重算的话，改一次模板重渲染之后 `validate --all` 会因
+        # "web_list.md 与 data.json 不一致"整站判死——而 AGENTS 第 5、6 步是要求连着跑的。
         PUB.write_ledger(root=ROOT)
     except Exception as e:
         log(u"      ! 出包失败（页面本身已发布成功）：%s" % e)

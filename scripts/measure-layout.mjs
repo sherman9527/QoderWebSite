@@ -19,8 +19,17 @@ const ROOT = path.resolve(__dirname, "..");
 const requireFromWeb = createRequire(path.join(ROOT, "web", "package.json"));
 const { launch } = await import("./browser.mjs");
 
-/** 要测的视口：手机、小平板、笔记本、常见桌面、2K/4K/超宽。 */
-const WIDTHS = [375, 768, 1024, 1440, 1920, 2560, 3737];
+/** 要测的视口：手机、小平板、笔记本、常见桌面、2K/4K/超宽。
+ *  `--widths 375,1440` 可以收窄。给"每次跑都要过一遍"的闸门用得上：
+ *  落地页有 13 个，全七档就是 91 次导航，而卡片网格真正会出问题的是最窄和最常见的两档。 */
+const DEFAULT_WIDTHS = [375, 768, 1024, 1440, 1920, 2560, 3737];
+
+/* --widths 375,1440 收窄。放在这里而不是每个调用方自己循环：
+   七档是**一篇专题页**的代价，落地页有 13 个，全测就是 91 次导航。 */
+const _wi = process.argv.indexOf("--widths");
+const WIDTHS = (_wi >= 0 && process.argv[_wi + 1])
+  ? process.argv[_wi + 1].split(",").map(Number).filter((n) => n > 0)
+  : DEFAULT_WIDTHS;
 
 /** 版心一致性只量"同一列里的块"：正文列的直接子元素必须左右对齐。
  *  外壳（.cover/.wrap/.layout）单独一组——它们比正文宽，是设计意图不是跑偏。 */
@@ -42,6 +51,9 @@ const CONTRAST_SELECTORS = [
   ".tag", ".meta", ".lede", ".note", ".foot", ".facts .l", ".facts .v",
   ".card .kick", ".card .mets span", ".chap-head .num", ".cover-kicker", ".srcs li",
   ".ph-word", ".chart .lab", ".chart .val", ".chart .axis",
+  // 目录里的章节号也是正文号小字。09 篇全绿不代表它安全——G-13 只量点名的选择器，
+  // 没点名的那一类（.anch、.steps 的序号）是这次 深芥 3.25:1 暴露出来的盲区。
+  "nav.toc .anch",
 ];
 
 function arg(name) {

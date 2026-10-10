@@ -7,8 +7,10 @@
  * 见 openspec specs/golden-template 与 memo.md D-01 / D-C。
  *
  * 用法：node scripts/render.mjs --data output/咖啡/data.json --out output/咖啡/咖啡_2026-09-19.html
+ *       node scripts/render.mjs --print-fingerprint    区块枚举 + rev + 模板源哈希
+ *       node scripts/render.mjs --print-sources-hash   只打印模板源哈希（validate.py 取同一个值）
  */
-import { mkdtempSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { mkdtempSync, readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -28,6 +30,33 @@ function arg(name) {
   const i = process.argv.indexOf("--" + name);
   if (i < 0) return null;
   return process.argv[i + 1] || null;
+}
+
+/**
+ * 模板源哈希：W-163。区块枚举 + rev 看不见改 CSS、改措辞、改组件内部——
+ * 实测 `web/src` 30 次提交里只有 1 次动过 TEMPLATE_FINGERPRINT，剩下 29 次
+ * G-08 一声不吭，产物可以永远不重渲染。
+ * 哈希只在这里算（Python 侧调 `--print-sources-hash` 取同一个值），
+ * 两边各写一遍迟早打架。
+ */
+function sourcesHash() {
+  const crypto = requireFromWeb("node:crypto");
+  const files = [];
+  const walk = (dir) => {
+    for (const e of readdirSync(dir, { withFileTypes: true })) {
+      const p = path.join(dir, e.name);
+      if (e.isDirectory()) walk(p);
+      else if (/\.(ts|tsx|css)$/.test(e.name)) files.push(p);
+    }
+  };
+  walk(path.join(WEB, "src"));
+  files.sort();
+  const h = crypto.createHash("sha256");
+  for (const f of files) {
+    h.update(path.relative(ROOT, f).split(path.sep).join("/"));
+    h.update(readFileSync(f));
+  }
+  return h.digest("hex").slice(0, 12);
 }
 
 async function loadRenderer() {
@@ -55,6 +84,11 @@ async function main() {
   const dataPath = arg("data");
   const indexPath = arg("index");
   const outPath = arg("out");
+  if (process.argv.includes("--print-sources-hash")) {
+    process.stdout.write(sourcesHash());
+    return;
+  }
+
   const printOnly = process.argv.includes("--print-fingerprint");
   if (!dataPath && !indexPath && !printOnly) {
     console.error("用法: node scripts/render.mjs (--data <data.json> | --index <entries.json>) --out <out.html>");
@@ -64,9 +98,12 @@ async function main() {
 
   if (indexPath) {
     const payload = JSON.parse(readFileSync(path.resolve(indexPath), "utf8"));
-    const html = mod.renderIndexDocument(payload.entries, payload.generated_date);
+    const html = mod.renderIndexDocument(payload.entries, payload.generated_date, {
+      title: payload.title, homeUrl: payload.home_url,
+    });
     mkdirSync(path.dirname(path.resolve(outPath)), { recursive: true });
     writeFileSync(path.resolve(outPath), html, "utf8");
+    writeFileSync(path.resolve(outPath) + ".srchash", sourcesHash() + String.fromCharCode(10));
     console.error(
       `已渲染 ${outPath}（${payload.entries.length} 篇，${Buffer.byteLength(html, "utf8") / 1024 | 0} KB）`,
     );
@@ -90,6 +127,9 @@ async function main() {
 
   mkdirSync(path.dirname(path.resolve(outPath)), { recursive: true });
   writeFileSync(path.resolve(outPath), html, "utf8");
+  // 侧车按**页面文件**配对（`咖啡.html.srchash`），不按目录：闸门判的是 `.pending`，
+  // 换名之后才写侧车会让 pending 阶段永远找不到它。W-163。
+  writeFileSync(path.resolve(outPath) + ".srchash", sourcesHash() + String.fromCharCode(10));
   const kb = (Buffer.byteLength(html, "utf8") / 1024).toFixed(1);
   console.error(`已渲染 ${outPath}（${kb} KB，${data.sections.length} 章）`);
 }

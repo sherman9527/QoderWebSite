@@ -30,6 +30,7 @@ BLOCK_TYPES = (
     "bar_chart",
     "compare",
     "note",
+    "code",
 )
 
 
@@ -49,6 +50,10 @@ class Section(object):
         self.anchor = raw.get("anchor") or raw["title"][:1]
         self.angle = raw.get("angle", "")
         self.block_types = list(raw["block_types"])
+        # 自画示意图的章允许没有检索词（教学类主题的检索词必然跑题，见大纲 schema
+        # 这条字段的 description）。它不是"这章可以没图"：G-03 照样要图，
+        # 只是那张图由脚本画、不由检索来。
+        self.illustration_only = bool(raw.get("illustration_only", False))
         self.image_queries = list(raw.get("image_queries", []))
         self.fact_prompts = list(raw.get("fact_prompts", []))
         self.min_words = raw.get("min_words")

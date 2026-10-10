@@ -42,7 +42,8 @@
        "value": "$0.20",
        "label": "缓存读取每百万 tokens，官方称降六成",
        "source_ids": [
-        "S011"
+        "S011",
+        "S093"
        ]
       },
       {
@@ -146,7 +147,7 @@
    "images": [
     {
      "file": "images/01_Anthropic.jpg",
-     "alt": "Anthropic发布首份AI经济指数报告：软件工程师、作家成AI应用先锋_凤凰网",
+     "alt": "",
      "caption": "Anthropic发布首份AI经济指数报告：软件工程师、作家成AI应用先锋_凤凰网",
      "source_page": "https://tech.ifeng.com/c/8gswkw1ykDp",
      "width": 840,
@@ -155,7 +156,7 @@
     },
     {
      "file": "images/02_anthropic_AI.jpg",
-     "alt": "Anthropic宣布斥资500 亿美元 在美国自建AI数据中心-AET-电子技术应用",
+     "alt": "",
      "caption": "Anthropic宣布斥资500 亿美元 在美国自建AI数据中心-AET-电子技术应用",
      "source_page": "http://www.chinaaet.com/article/3000174657",
      "width": 1080,
@@ -269,7 +270,7 @@
    "images": [
     {
      "file": "images/27_anthropic.png",
-     "alt": "Anthropic被谷歌投20亿-CSDN博客",
+     "alt": "",
      "caption": "Anthropic被谷歌投20亿-CSDN博客",
      "source_page": "https://blog.csdn.net/qq_29788741/article/details/134090846",
      "width": 972,
@@ -424,7 +425,7 @@
    "images": [
     {
      "file": "images/07_anthropic_API.jpg",
-     "alt": "谷歌20亿美元投资AI初创公司Anthropic，AI赛道竞赛再加速|谷歌|美元|人工智能_新浪新闻",
+     "alt": "",
      "caption": "谷歌20亿美元投资AI初创公司Anthropic，AI赛道竞赛再加速|谷歌|美元|人工智能_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_1494921451_591ab0eb019015ig6.html",
      "width": 1280,
@@ -433,7 +434,7 @@
     },
     {
      "file": "images/08_anthropic.jpg",
-     "alt": "24小时抓取百万次，Anthropic AI公司被指过度抓取网站数据_凤凰网",
+     "alt": "",
      "caption": "24小时抓取百万次，Anthropic AI公司被指过度抓取网站数据_凤凰网",
      "source_page": "https://tech.ifeng.com/c/8bew4yn3D97",
      "width": 975,
@@ -460,7 +461,7 @@
     {
      "type": "prose",
      "heading": "能力于是成了一条带参数的曲线",
-     "text": "ARC Prize 把同一模型按五档各跑一遍。ARC-AGI-1（241 题）：low 88.5%、每题 0.120 美元；medium 97.5%／0.152；high 98.5%／0.158，排名并列第一；xhigh 97.5%／0.223；max 97.5%／0.641。ARC-AGI-2（244 题）：high 93.3%／0.408，高于 xhigh 的 92.5%／0.671 与 max 的 91.7%／1.852，low 只有 70.1%。从 high 推到 max，成本多花 4 倍，分数掉 1.6 个百分点。官方的 Terminal-Bench 4.0 同形：38.5%／1.29 美元上到 xhigh 66.4%／7.35，max 回落为 64.8%／11.24（按每次尝试成本计）。同一模型、同一基准，有五个数。",
+     "text": "ARC Prize 把同一模型按五档各跑一遍，五档给出五个数。ARC-AGI-1：high 98.5% 最高，max、xhigh、medium 都是 97.5%，low 88.5%。ARC-AGI-2 的排序换了：high 93.3% > xhigh 92.5% > max 91.7%，medium 87.5%，low 70.1%。同一档位在两张卷子上不是同一个位置——从 high 推到 max，v1 掉 1.0 个百分点、v2 掉 1.6 个百分点。官方的 Terminal-Bench 4.0 在发布页只给了一个数：66.4%，并注明这是 Opus 5.5 在 xhigh 档的成绩（对照的 GPT-6 Astra 按 high 档报）。逐档的每题成本，两页都只画在图上：ARC 那页正文里一个美元数字都没有，Anthropic 那页的 cost per task 是散点图的对数坐标轴（0.50／1／2／5／10），档位名 Low、Med、High、Xhigh、Max 是图例。所以这里只写得分，不写从坐标上读出来的钱。",
      "source_ids": [
       "S044",
       "S043"
@@ -469,7 +470,7 @@
     {
      "type": "prose",
      "heading": "斜率按任务类型分化",
-     "text": "单调上行的一类：GDPval-AA v2.1（44 种真实职业工作）从 low 档 1224 Elo 到 max 档 1846，每题成本 0.21 → 8.92 美元；AutomationBench 从 23.3% 到 40.0%。早早到顶的一类：FrontierCode v1.1 主集 medium 档即 54.6%／0.80 美元，xhigh 回落到 51.4%／2.25，max 才 54.4%／6.19。CursorBench 4.0 暴露的是口径：总表 57.8%（默认按 max effort），正文 medium 档 52.5%，差 5.3 个百分点，差的只有档名。ARC Prize 说这类趋势线通常随思考时间趋于渐近。",
+     "text": "先分清哪些是模型之间的比较、哪些是档位之间的比较，发布页这两类是混着排的。模型之间：GDPval-AA v2.1 上 Opus 5.5 记 1846 Elo，Fable 5.1 是 1735、Opus 5 是 1708、GPT-5.6 Sol 是 1588、GPT-6 Astra 是 1542；AutomationBench 上 Opus 5.5 拿 40.0%，同表 GPT-6 Astra 41.4%、Fable 5.1 31.4%、Opus 5 26.9%、GPT-5.6 Sol 28.8%。档位之间，官方只给了两句可引的话：在默认档（medium）上，Opus 5.5 的 GDPval 成绩好过 GPT-6 Astra 的最高档，成本约为对手的五分之一；FrontierCode v1.1 主集 medium 档 54.6%，高于表里所有模型的最高档（GPT-6 Astra 53.3%）。口径差就在这两处露出来：FrontierCode 总表那格写 54.4%（页脚注明总表默认按 max effort），正文 medium 档是 54.6%；CursorBench 4.0 总表 57.8%，正文 medium 档 52.5%，差 5.3 个百分点，差的只有档名。逐档 Elo 与逐档美元成本同上一条：只在图上，不写。ARC Prize 说这类趋势线通常随思考时间趋于渐近。",
      "source_ids": [
       "S043",
       "S046"
@@ -542,20 +543,20 @@
    "images": [
     {
      "file": "images/11_anthropic.png",
-     "alt": "与Anthropic闹翻后 美政府收紧AI合同：模型必须可用于任何合法用途",
+     "alt": "",
      "caption": "与Anthropic闹翻后 美政府收紧AI合同：模型必须可用于任何合法用途",
      "source_page": "https://www.seccw.com/Document/detail/id/42059.html",
-     "width": 1892,
-     "height": 1254,
+     "width": 800,
+     "height": 530,
      "query": "anthropic"
     },
     {
      "file": "images/29_anthropic.png",
-     "alt": "Anthropic、谷歌、微软和OpenAI等宣布成立AI安全联盟 - 智源社区",
+     "alt": "",
      "caption": "Anthropic、谷歌、微软和OpenAI等宣布成立AI安全联盟 - 智源社区",
      "source_page": "https://hub.baai.ac.cn/view/28133",
-     "width": 2626,
-     "height": 1440,
+     "width": 1200,
+     "height": 658,
      "query": "anthropic"
     }
    ]
@@ -647,7 +648,7 @@
    "images": [
     {
      "file": "images/13_anthropic.png",
-     "alt": "Anthropic大动作，发布首个双思维模型，代码能力超过DeepSeek、o3！还将完成35亿美元融资 | 每日经济新闻",
+     "alt": "",
      "caption": "Anthropic大动作，发布首个双思维模型，代码能力超过DeepSeek、o3！还将完成35亿美元融资 | 每日经济新闻",
      "source_page": "https://www.mrjjxw.com/articles/2025-02-25/3763306.html",
      "width": 1900,
@@ -656,7 +657,7 @@
     },
     {
      "file": "images/31_anthropic.jpg",
-     "alt": "Anthropic回应被美政府封杀：未收到通知 将诉诸法院",
+     "alt": "",
      "caption": "Anthropic回应被美政府封杀：未收到通知 将诉诸法院",
      "source_page": "https://www.ijiwei.com/n/986691",
      "width": 2400,
@@ -784,7 +785,7 @@
     {
      "file": "images/03_coding_layers.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：写代码的三层，只有第二层有可信公开评测；工具链那一层常被算进模型能力",
+     "alt": "",
      "caption": "示意图·非实拍：写代码的三层，只有第二层有可信公开评测；工具链那一层常被算进模型能力",
      "based_on": [
       "coding-boundary#本章论点"
@@ -871,7 +872,7 @@
    "images": [
     {
      "file": "images/15_实验室.jpg",
-     "alt": "LabVIEW仿真实验室及设备介绍-西南大学·物理实验教学中心",
+     "alt": "",
      "caption": "LabVIEW仿真实验室及设备介绍-西南大学·物理实验教学中心",
      "source_page": "http://wlxf.swu.edu.cn/info/1103/1505.htm",
      "width": 1766,
@@ -1020,7 +1021,7 @@
     {
      "file": "images/04_risk_radius.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：风险半径 = 模型 × 权限 × 部署，三行配置差一个量级",
+     "alt": "",
      "caption": "示意图·非实拍：风险半径 = 模型 × 权限 × 部署，三行配置差一个量级",
      "based_on": [
       "safety-as-measure#本章论点"
@@ -1177,7 +1178,7 @@
     {
      "file": "images/06_hardware_chain.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：从参数量级推到功耗的七环链条，每一环要标披露还是估算",
+     "alt": "",
      "caption": "示意图·非实拍：从参数量级推到功耗的七环链条，每一环要标披露还是估算",
      "based_on": [
       "hardware-demand#本章论点"
@@ -1328,7 +1329,7 @@
     {
      "file": "images/09_evidence_tiers.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：观测、机制解释、叙事三层，以及一次发布真正改变的是哪一层",
+     "alt": "",
      "caption": "示意图·非实拍：观测、机制解释、叙事三层，以及一次发布真正改变的是哪一层",
      "based_on": [
       "roadmap-implication#本章论点"
@@ -1424,7 +1425,8 @@
        "value": "$4 / $20 / $0.20",
        "label": "每百万 token 的输入、输出、缓存读单价；只报前两个会高估成本",
        "source_ids": [
-        "S111"
+        "S111",
+        "S093"
        ]
       },
       {
@@ -1463,7 +1465,7 @@
     {
      "file": "images/10_ten_questions.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：下次模型发布该先问的十个问题",
+     "alt": "",
      "caption": "示意图·非实拍：下次模型发布该先问的十个问题",
      "based_on": [
       "how-to-read#本章论点"
@@ -1480,140 +1482,160 @@
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 官方发布页（2026-09-22）：十项评测结果表与脚注，含标准误差、每任务试验次数、harness、effort 档位、safeguard 干预的处理方式",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S022",
    "url": "https://artificialanalysis.ai/articles/claude-opus-5-5",
    "label": "Artificial Analysis 独立复评（2026-09-22）：Terminal-Bench 4.0 得 59.6%、HLE 得 61.4%，使用开源 harness Stirrup、五个 effort 档位全跑并开 Anthropic 默认 fallback，并给出每任务输出 token 数",
    "retrieved": "2026-09-26",
-   "publisher": "Artificial Analysis"
+   "publisher": "Artificial Analysis",
+   "cache": "text/3fdfce3b985e4ba8.txt"
   },
   {
    "id": "S023",
    "url": "https://www.tbench.ai/news/terminal-bench-4-0",
    "label": "Terminal-Bench 4.0 官方更新说明：下架 8 个任务（饱和 2、拒答 2、存在公开解法 2、质量与平台 2），修复 19 个任务的指令、环境与判分器",
    "retrieved": "2026-09-26",
-   "publisher": "Terminal-Bench"
+   "publisher": "Terminal-Bench",
+   "cache": "text/c212ee88da954aca.txt"
   },
   {
    "id": "S024",
    "url": "https://epoch.ai/benchmarks/hle",
    "label": "Epoch AI 的 HLE 条目：2,500 题、逾百学科，约 80% 要求精确答案字符串、20% 为五选项以上选择题、约 10% 多模态",
    "retrieved": "2026-09-26",
-   "publisher": "Epoch AI"
+   "publisher": "Epoch AI",
+   "cache": "text/fff2042d39f3e1c0.txt"
   },
   {
    "id": "S025",
    "url": "https://lastexam.ai/",
    "label": "HLE 项目主页：2026-09-22 发布 HLE-Diamond、2025-10-08 发布 HLE-Rolling；声明公开题目的同时保留私有 held-out 题集以评估模型过拟合",
    "retrieved": "2026-09-26",
-   "publisher": "CAIS / Scale AI"
+   "publisher": "CAIS / Scale AI",
+   "cache": "text/14238383d1f14fcf.txt"
   },
   {
    "id": "S026",
    "url": "https://epoch.ai/benchmarks/hle/review",
    "label": "Epoch AI 对 HLE 的审查（2026-08-11）：抽查 48 题中 22 题（46%）有足以改变正确性的错误，判为 Flawed；注明审的是原始版而非 Rolling/Verified",
    "retrieved": "2026-09-26",
-   "publisher": "Epoch AI"
+   "publisher": "Epoch AI",
+   "cache": "text/4ff7717b4f858cf8.txt"
   },
   {
    "id": "S041",
    "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/claude-messages-extended-thinking.html",
    "label": "AWS Bedrock 用户指南「Claude extended thinking」：budget_tokens 最低 1,024、必须小于 max_tokens、预算是目标而非硬限制、收益递减、延迟与计费说明",
    "retrieved": "2026-09-26",
-   "publisher": "Amazon Web Services"
+   "publisher": "Amazon Web Services",
+   "cache": "text/6842110eaa80e18c.txt"
   },
   {
    "id": "S042",
    "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/claude-messages-adaptive-thinking.html",
    "label": "AWS Bedrock 用户指南「Adaptive thinking」：支持模型含 Claude Opus 5.5（anthropic.claude-opus-5-5）、effort 五档表且把 high 标为默认、省略 thinking 字段即走自适应思考、max_tokens 同时封顶思考与正文",
    "retrieved": "2026-09-26",
-   "publisher": "Amazon Web Services"
+   "publisher": "Amazon Web Services",
+   "cache": "text/0875475444d6f1d3.txt"
   },
   {
    "id": "S043",
    "url": "https://www.anthropic.com/news/claude-opus-5-5",
    "label": "Anthropic 官方发布页「Introducing Claude Opus 5.5」（2026-09-22）：五档 effort 的得分—成本散点原始数据、总表默认口径为 max effort、正文多处写 default effort 为 medium",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/1dd367fe039a98fa.txt"
   },
   {
    "id": "S044",
    "url": "https://arcprize.org/results/anthropic-claude-opus-5-5",
    "label": "ARC Prize 第三方核验结果页：Claude Opus 5.5 在 max/xhigh/high/medium/low 五档推理预算下的 ARC-AGI-1、ARC-AGI-2 得分、每题成本与排名",
    "retrieved": "2026-09-26",
-   "publisher": "ARC Prize"
+   "publisher": "ARC Prize",
+   "cache": "text/21b334c9ebf7900d.txt"
   },
   {
    "id": "S045",
    "url": "https://arxiv.org/abs/2505.00127",
    "label": "arXiv 2505.00127《Between Underthinking and Overthinking: An Empirical Study of Reasoning Length and correctness in LLMs》（2025-04-30）：更长的推理有时降低准确率；模型对简单题过度思考、对难题思考不足",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/0f382dc85e20abdf.txt"
   },
   {
    "id": "S046",
    "url": "https://arcprize.org/leaderboard",
    "label": "ARC Prize 榜单说明：以 cost-per-task 为效率轴，同一模型不同推理档位连成趋势线，通常随思考时间增加趋于渐近",
    "retrieved": "2026-09-26",
-   "publisher": "ARC Prize"
+   "publisher": "ARC Prize",
+   "cache": "text/775f18a3720513c9.txt"
   },
   {
    "id": "S031",
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 官方发布页《Introducing Claude Opus 5.5》（2026-09-22）：Opus 5.5 与 Opus 5 价格对照表、effort 五档与每任务成本结论、fast mode 价格、五小时限额上调与 preserved thinking",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S032",
    "url": "https://claude.com/pricing",
    "label": "Claude 官方定价页 API 区块：逐模型输入/输出/缓存读写单价、Save 50% with batch processing、fast mode 2 倍价、美国境内推理 1.1 倍、缓存价按 5 分钟 TTL",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/eb3bbaf1174cb257.txt"
   },
   {
    "id": "S033",
    "url": "https://www.anthropic.com/claude/opus",
    "label": "Anthropic 官方 Opus 模型页：模型标识 claude-opus-5-5、定价原文、可用平台（Claude Platform、AWS、Google Cloud、Microsoft Foundry）",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0f14dddf3c3c08b6.txt"
   },
   {
    "id": "S034",
    "url": "https://support.claude.com/en/articles/8606394-how-large-is-the-context-window-on-paid-claude-plans",
    "label": "Claude 帮助中心：付费计划逐模型上下文窗口表，Opus 5.5 为 1M tokens（聊天、Claude Code、Cowork 三表）",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/bb37875070978f43.txt"
   },
   {
    "id": "S035",
    "url": "https://support.claude.com/en/articles/8243635-our-approach-to-rate-limits-for-the-claude-api",
    "label": "Claude 帮助中心《我们对 Claude API 速率限制的做法》（2026-06-26）：RPM/ITPM/OTPM 三指标、Start/Build/Scale 与 Custom 档位、429 与 retry-after、50% 额度后可申请提额",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/3264cd9e7fad840b.txt"
   },
   {
    "id": "S036",
    "url": "https://support.claude.com/en/articles/10366389-how-can-i-get-higher-rate-limits-on-the-claude-api",
    "label": "Claude 帮助中心：使用档位自动分配、充值或购买不提升档位、定制额度与包量联系销售",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/6520e9ae2554e256.txt"
   },
   {
    "id": "S037",
    "url": "https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work",
    "label": "Claude 帮助中心《使用限额与长度限额如何工作》：effort 越高用 token 越多、上下文一部分始终为回复预留",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/05aee12a3b4fe9bb.txt"
   },
   {
    "id": "S038",
    "url": "https://support.claude.com/en/articles/17007452-what-is-a-limit-reset",
    "label": "Claude 帮助中心《什么是 limit reset》：把五小时会话限额或每周限额恢复到满",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/dac0fd900d75376b.txt"
   },
   {
    "id": "S039",
@@ -1627,7 +1649,8 @@
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 官方发布页《Introducing Claude Opus 5.5》，页首标注 September 22, 2026；含评测表与其限定语、定价表、模型标识 claude-opus-5-5（2026-09-26 取回全文核对）",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S012",
@@ -1641,28 +1664,32 @@
    "url": "https://www.anthropic.com/system-cards",
    "label": "Anthropic 系统卡索引，逐条登记模型与月份（Claude Opus 5.5 / September 2026）",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/e3638458219a18bf.txt"
   },
   {
    "id": "S014",
    "url": "https://artificialanalysis.ai/articles/claude-opus-5-5",
    "label": "Artificial Analysis 独立评测，2026-09-22：Intelligence Index 58（max effort）、Terminal-Bench 4.0 59.6%、HLE 61.4%、每题平均输出 tokens、1M 上下文与五档 effort",
    "retrieved": "2026-09-26",
-   "publisher": "Artificial Analysis"
+   "publisher": "Artificial Analysis",
+   "cache": "text/3fdfce3b985e4ba8.txt"
   },
   {
    "id": "S015",
    "url": "https://metr.org/blog/2026-09-22-claude-opus-5-5/",
    "label": "METR 部署前评估摘要，2026-09-22：结论为相对 Fable 5.1 的增量改进；开篇「Note on independence」写明 Anthropic 有审阅并编辑该文本的机会",
    "retrieved": "2026-09-26",
-   "publisher": "METR"
+   "publisher": "METR",
+   "cache": "text/05fbefef76432987.txt"
   },
   {
    "id": "S016",
    "url": "https://cellcog.ai/blog/claude-opus-5-5-release-date/",
    "label": "第三方把 2026-09-20 泄露清单逐条对账，并称最大输出 128K；官方发布页与系统卡均无该 128K 数字",
    "retrieved": "2026-09-26",
-   "publisher": "CellCog"
+   "publisher": "CellCog",
+   "cache": "text/f041a270157070a1.txt"
   },
   {
    "id": "S017",
@@ -1676,14 +1703,16 @@
    "url": "https://mashable.com/tech/claude-opus-launch-promises-better-performance-cheaper-price",
    "label": "媒体标题保留了一级口径：达到 Fable 5.1 级、比 Opus 5 省四成",
    "retrieved": "2026-09-26",
-   "publisher": "Mashable"
+   "publisher": "Mashable",
+   "cache": "text/18d9a057f326fa6c.txt"
   },
   {
    "id": "S051",
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 发布页《Introducing Claude Opus 5.5》（2026-09-22），含基准表、脚注里的标准误与 trial/脚手架说明、长任务样本、越界倾向评测、动作前分类器筛查",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S052",
@@ -1697,56 +1726,64 @@
    "url": "https://www.tbench.ai/news/terminal-bench-4-0",
    "label": "Terminal-Bench 4.0 更新说明：统一 8 小时 agent 超时、CPU/内存校准、删除与修复任务、剩余错误类型",
    "retrieved": "2026-09-26",
-   "publisher": "Terminal-Bench / Stanford / Harbor / Laude Institute"
+   "publisher": "Terminal-Bench / Stanford / Harbor / Laude Institute",
+   "cache": "text/c212ee88da954aca.txt"
   },
   {
    "id": "S054",
    "url": "https://artificialanalysis.ai/articles/claude-opus-5-5",
    "label": "Artificial Analysis 第三方评测文章：自家跑法下 Terminal-Bench 4.0 得 59.6%、100 万 token 上下文与 Opus 5 相同、五档 effort",
    "retrieved": "2026-09-26",
-   "publisher": "Artificial Analysis"
+   "publisher": "Artificial Analysis",
+   "cache": "text/3fdfce3b985e4ba8.txt"
   },
   {
    "id": "S055",
    "url": "https://metr.org/blog/2026-09-22-claude-opus-5-5/",
    "label": "METR 对 Opus 5.5 的部署前评估摘要：5 个任务、10 个工作日 API 权限，结论为相对 Fable 5.1 的渐进改进；并注明初稿由 METR 起草、Anthropic 可审阅编辑",
    "retrieved": "2026-09-26",
-   "publisher": "METR"
+   "publisher": "METR",
+   "cache": "text/05fbefef76432987.txt"
   },
   {
    "id": "S056",
    "url": "https://metr.org/time-horizons/",
    "label": "METR 时间地平线方法与常见问题：50% 时间地平线定义、每任务 6 次独立 run、token 与时间上限、reward hack 人工筛查、低背景新人对照",
    "retrieved": "2026-09-26",
-   "publisher": "METR"
+   "publisher": "METR",
+   "cache": "text/d3f9bc418c75e264.txt"
   },
   {
    "id": "S057",
    "url": "https://code.claude.com/docs/en/permissions",
    "label": "Claude Code 权限文档：default/plan/auto/dontAsk/bypassPermissions 等模式，deny→ask→allow 规则顺序，权限规则由 Claude Code 而非模型执行",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic / Claude Code Docs"
+   "publisher": "Anthropic / Claude Code Docs",
+   "cache": "text/52e7484d2a6d3bdc.txt"
   },
   {
    "id": "S058",
    "url": "https://code.claude.com/docs/en/sandboxing",
    "label": "Claude Code 沙箱文档：macOS 用 Seatbelt、Linux 与 WSL2 依赖 bubblewrap 与 socat、首次访问新域名需人工批准、不支持原生 Windows",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic / Claude Code Docs"
+   "publisher": "Anthropic / Claude Code Docs",
+   "cache": "text/103f90209f5681e2.txt"
   },
   {
    "id": "S059",
    "url": "https://code.claude.com/docs/en/costs",
    "label": "Claude Code 成本与上下文文档：auto-compact 在接近上下文上限时摘要化较早历史、可清掉旧工具返回结果",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic / Claude Code Docs"
+   "publisher": "Anthropic / Claude Code Docs",
+   "cache": "text/c29a0e45182da0ef.txt"
   },
   {
    "id": "S061",
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 官方发布页《Introducing Claude Opus 5.5》（2026-09-22）：编码基准总表、脚注里的取数口径与安全护栏说明、定价与 Coding 一节",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S062",
@@ -1760,56 +1797,64 @@
    "url": "https://www.anthropic.com/claude/opus",
    "label": "Anthropic 官方 Opus 模型页：Opus 5.5 面向大代码库长任务（建功能、调试、重构、代码审查）、协调 subagent、跨会话使用记忆等能力表述",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0f14dddf3c3c08b6.txt"
   },
   {
    "id": "S064",
    "url": "https://artificialanalysis.ai/articles/claude-opus-5-5",
    "label": "Artificial Analysis 独立评测（2026-09-22）：用自家 harness 复测 Terminal-Bench 4.0 得 59.6%，Intelligence Index 58（max effort），并记录 1M token 上下文与五档 effort",
    "retrieved": "2026-09-26",
-   "publisher": "Artificial Analysis"
+   "publisher": "Artificial Analysis",
+   "cache": "text/3fdfce3b985e4ba8.txt"
   },
   {
    "id": "S065",
    "url": "https://metr.org/blog/2026-09-22-claude-opus-5-5/",
    "label": "METR 对 Claude Opus 5.5 的部署前评估摘要（2026-09-22）：五项任务、10 个工作日 API 访问，结论为相对 Claude Fable 5.1 的增量改进；开篇「Note on independence」写明 Anthropic 有审阅并编辑该文本的机会",
    "retrieved": "2026-09-26",
-   "publisher": "METR"
+   "publisher": "METR",
+   "cache": "text/05fbefef76432987.txt"
   },
   {
    "id": "S066",
    "url": "https://arxiv.org/abs/2512.10218",
    "label": "arXiv 2512.10218《Does SWE-Bench-Verified Test Agent Ability or Model Memory?》：公开讨论这类真实仓库基准究竟在测 agent 能力，还是模型记住过的改法",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/2d5e117acb2c9587.txt"
   },
   {
    "id": "S067",
    "url": "https://epoch.ai/publications/what-skills-does-swe-bench-verified-evaluate",
    "label": "Epoch AI《What skills does SWE-bench Verified evaluate?》：第三方对 SWE-bench Verified 实际衡量内容的拆解",
    "retrieved": "2026-09-26",
-   "publisher": "Epoch AI"
+   "publisher": "Epoch AI",
+   "cache": "text/a6c0ac9b51848d40.txt"
   },
   {
    "id": "S068",
    "url": "https://arxiv.org/abs/2506.12286",
    "label": "arXiv 2506.12286《The SWE-Bench Illusion: When State-of-the-Art LLMs Remember Instead of Reason》：SWE-bench 数据污染与「记忆而非推理」的公开研究",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/13725a3db64480e5.txt"
   },
   {
    "id": "S069",
    "url": "https://arxiv.org/abs/2509.16941",
    "label": "arXiv 2509.16941《SWE-Bench Pro: Can AI agents solve long-horizon software engineering tasks?》：系统卡注明该变体出处，题目来自活跃维护仓库的大跨度多文件 diff",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/222fb8e27542c941.txt"
   },
   {
    "id": "S081",
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 官方发布页《Introducing Claude Opus 5.5》，页面标注 2026-09-22，Safety 段落含外部评测方（METR、Frontier Design）与 Gray Swan 基准的表述",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S082",
@@ -1823,35 +1868,40 @@
    "url": "https://code.claude.com/docs/en/permission-modes",
    "label": "Claude Code 官方文档《Choose a permission mode》：各模式的自动批准范围、auto mode 的服务端分类器、bypassPermissions 与受保护路径",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/2a028545119a8921.txt"
   },
   {
    "id": "S084",
    "url": "https://arxiv.org/abs/2603.15714",
    "label": "Gray Swan 等《How Vulnerable Are AI Agents to Indirect Prompt Injections? Insights from a Large-Scale Public Competition》，arXiv:2603.15714，2026-03-16 提交，系统卡 §5.2.1 脚注所引论文",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/f951f31197501e73.txt"
   },
   {
    "id": "S085",
    "url": "https://www.nist.gov/caisi",
    "label": "美国 Center for AI Standards and Innovation（CAISI）官方页面，说明其隶属 NIST 及评测职能（网络安全、生物安全、化学武器等可演示风险）",
    "retrieved": "2026-09-26",
-   "publisher": "NIST"
+   "publisher": "NIST",
+   "cache": "text/42244616a88e5808.txt"
   },
   {
    "id": "S071",
    "url": "https://www.anthropic.com/institute/recursive-self-improvement",
    "label": "Anthropic Institute 长文《When AI builds itself》（Marina Favaro 与 Jack Clark 署名，页面标注 2026-09-18 更新）：内部一手数据与全部限定语——截至 2026 年 5 月并入代码库超八成为 Claude 所写、2026 年二季度人均每日行速为 2024 年的 8 倍并自注「几乎肯定是高估」、每次发版重复的固定目标提速实验（Opus 4 约 3x→Mythos Preview 约 52x，熟练人类 4–8 小时做到 4x）、2026 年 4 月开放式项目 800 累计小时与约 1.8 万美元算力弥合 97% 差距 vs 两名人类一周约 23%、session success is determined by a Claude judge、taken far enough and given enough compute",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/dc0ef612e9d3dc7b.txt"
   },
   {
    "id": "S072",
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Claude Opus 5.5 官方发布页（2026-09-22）：含「能完全自动化 AI 研究工作本身的模型需要更高安全标准」的原话，以及赛前由 METR、Frontier Design 外部评测的表述",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S073",
@@ -1865,21 +1915,24 @@
    "url": "https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/",
    "label": "METR 随机对照实验：熟练开源开发者使用早期 2025 年 AI 工具后完成自身仓库任务慢 19%（含自评与实际差距的讨论）",
    "retrieved": "2026-09-26",
-   "publisher": "METR"
+   "publisher": "METR",
+   "cache": "text/3e46675e99fafc40.txt"
   },
   {
    "id": "S075",
    "url": "https://metr.org/blog/2026-05-11-ai-usage-survey/",
    "label": "METR 2026 年 5 月对 349 名技术工作者的自评问卷：价值提升中位数 1.4–2 倍、速度中位数 3 倍，并指出其早期实验发现人们平均高估 40 个百分点，同时对 Anthropic 一类内部民调的问法提出改进建议",
    "retrieved": "2026-09-26",
-   "publisher": "METR"
+   "publisher": "METR",
+   "cache": "text/9cfc121c83a997b7.txt"
   },
   {
    "id": "S101",
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 官方发布页《Introducing Claude Opus 5.5》。检索时点距其发布约 3 天（约 2026-09-23）。本次会话抓取被配额挡住，正文未读，只引用检索到的标题与首页原话开头",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S102",
@@ -1893,14 +1946,16 @@
    "url": "https://artificialanalysis.ai/models/claude-opus-5-5",
    "label": "第三方评测站点 Artificial Analysis 的模型页，页面标题把推理配置写进模型标识：《Claude Opus 5.5 (max with fallback)》——档位是分数的一部分的直接证据",
    "retrieved": "2026-09-26",
-   "publisher": "Artificial Analysis"
+   "publisher": "Artificial Analysis",
+   "cache": "text/cdb477377ba30006.txt"
   },
   {
    "id": "S104",
    "url": "https://codingfleet.com/blog/claude-opus-5-5-review/",
    "label": "第三方评测博客，标题《Claude Opus 5.5 Review: Fable-Class Results at 40% …》；40% 只按标题口径引用，正文未抓取",
    "retrieved": "2026-09-26",
-   "publisher": "CodingFleet"
+   "publisher": "CodingFleet",
+   "cache": "text/daab8930288e0296.txt"
   },
   {
    "id": "S105",
@@ -1935,49 +1990,56 @@
    "url": "https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence",
    "label": "官方开发者文档《Optimizing for cost and intelligence》，把成本与智能档位当成用户可调项来讲",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/8995183624fe3ff5.txt"
   },
   {
    "id": "S1010",
    "url": "https://arxiv.org/abs/2504.00294",
    "label": "综述《Inference-Time Scaling for Complex Tasks: Where We Stand and What Lies Ahead》（2025-03-31），标题本身就把推理扩展写成「尚未定论」",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/96f50727ce2ab01a.txt"
   },
   {
    "id": "S1011",
    "url": "https://arxiv.org/html/2511.05722v3",
    "label": "《OckBench: Measuring the Efficiency of LLM Reasoning》，外部专门测量「多少推理算力换来多少准确率」的工作",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/4b793c3e146a752d.txt"
   },
   {
    "id": "S1012",
    "url": "https://emergent.sh/news/claude-opus-5-5-officially-released-anthropic",
    "label": "第三方报道，标题口径为「1M 上下文与更低价格」；1M 按报道口径引用，未核到官方规格页原文",
    "retrieved": "2026-09-26",
-   "publisher": "Emergent"
+   "publisher": "Emergent",
+   "cache": "text/e30b7e89802e227d.txt"
   },
   {
    "id": "S1013",
    "url": "https://arxiv.org/html/2603.21642v1",
    "label": "《Are AI-assisted Development Tools Immune to Prompt Injection?》（2026-03-23），说明注入在发布前数月仍是外部研究对象",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/8f4c4190796c179b.txt"
   },
   {
    "id": "S1014",
    "url": "https://www.anthropic.com/engineering/claude-code-auto-mode",
    "label": "官方工程博客《How we built Claude Code auto mode: a safer way to skip…》（2026-03-25），「更安全」这种说法的原始出处",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/b4c065a13b0cb9ae.txt"
   },
   {
    "id": "S1015",
    "url": "https://blakecrosley.com/blog/auto-mode-is-not-a-boundary",
    "label": "第三方工程师《Claude Code Auto Mode Is Not a Security Boundary》（2026-09-01），与厂商说法直接对立的边界讨论",
    "retrieved": "2026-09-26",
-   "publisher": "Blake Crosley"
+   "publisher": "Blake Crosley",
+   "cache": "text/2d0c8e5915227c53.txt"
   },
   {
    "id": "S1016",
@@ -1991,69 +2053,79 @@
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 官方发布文（2026-09-22）：定价表、「服务所需算力低于 Opus 5」、快 30% 以上、五档 effort；全文无参数量与训练算力",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S092",
    "url": "https://www.anthropic.com/news/anthropic-amazon-compute",
    "label": "Anthropic 与 Amazon 公告（2026-04-20）：最高 5GW、超 100 万颗 Trainium2、2026 年底近 1GW、十年超 1000 亿美元",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/2207580049409764.txt"
   },
   {
    "id": "S093",
    "url": "https://www.anthropic.com/pricing",
    "label": "官方定价页：Opus 5.5 输入 $4／输出 $20／缓存读 $0.20／缓存写 $5，批处理省 50%，缓存按 5 分钟 TTL，US-only 1.1 倍，fast mode 2 倍价，套餐表标「最高 1M 上下文」",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/b6f3b95da77502be.txt"
   },
   {
    "id": "S094",
    "url": "https://artificialanalysis.ai/models/claude-opus-5-5",
    "label": "第三方实测页：1M token 上下文、缓存折扣标为 95%、每任务成本；速度项标注 Unknown",
    "retrieved": "2026-09-26",
-   "publisher": "Artificial Analysis"
+   "publisher": "Artificial Analysis",
+   "cache": "text/cdb477377ba30006.txt"
   },
   {
    "id": "S095",
    "url": "https://arxiv.org/abs/2211.05102",
    "label": "Pope 等《Efficiently Scaling Transformer Inference》（Google）：每 token 前向约 2N 次矩阵乘 FLOP、prefill 可并行而 decode 串行、小批量受权重加载限制、长上下文受 KV 限制、注意力开销随输入长度平方增长",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/9451420a738d5b63.txt"
   },
   {
    "id": "S096",
    "url": "https://mbrenndoerfer.com/writing/kv-cache-memory-calculation-llm-inference-gpu",
    "label": "KV 缓存显存公开推导教程：每 token 字节 = 2×层数×KV 头数×头维×每元素字节；7B／32 层／FP16 约 0.5 MB 每 token、4096 token 约 2 GB 对权重 13 GB；GQA 的 70B 权重 130 GB 对 KV 1.25 GB",
-   "retrieved": "2026-09-26"
+   "retrieved": "2026-09-26",
+   "cache": "text/11655c0eebc85b38.txt"
   },
   {
    "id": "S097",
    "url": "https://www.nvidia.com/en-us/data-center/h200",
    "label": "H200 公开规格：141 GB HBM3e、4.8 TB/s 显存带宽、NVLink 900 GB/s",
    "retrieved": "2026-09-26",
-   "publisher": "NVIDIA"
+   "publisher": "NVIDIA",
+   "cache": "text/218eabf996bc92f5.txt"
   },
   {
    "id": "S098",
    "url": "https://www.iea.org/reports/energy-and-ai/executive-summary",
    "label": "IEA《Energy and AI》执行摘要：2024 年数据中心用电 415 TWh、占全球用电约 1.5%、美国 45%，预测 2030 年约 945 TWh（机构估算与预测）",
    "retrieved": "2026-09-26",
-   "publisher": "IEA"
+   "publisher": "IEA",
+   "cache": "text/b2083f52ec4ee52f.txt"
   },
   {
    "id": "S099",
    "url": "https://llm-stats.com/models/claude-opus-5-5",
    "label": "第三方跟踪页：发布日 2026-09-22、1M token 上下文，实测 p95 延迟 8.47 秒、p95 吞吐 15.8 字符/秒",
    "retrieved": "2026-09-26",
-   "publisher": "LLM Stats"
+   "publisher": "LLM Stats",
+   "cache": "text/8948f0970c636dcc.txt"
   },
   {
    "id": "S111",
    "url": "https://www.anthropic.com/claude-opus-5-5",
    "label": "Anthropic 官方发布页《Introducing Claude Opus 5.5》（2026-09-22）：价格表、评测口径脚注（trials、标准误差、思考预算、safeguard 回退）、限速表述都在这一页",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/0c90c73c08cf2835.txt"
   },
   {
    "id": "S112",
@@ -2067,35 +2139,40 @@
    "url": "https://metr.org/time-horizons/",
    "label": "METR 公开的模型任务时长地平线页面：50%/80% 地平线定义、任务来源（RE-Bench、HCAST 等）、更新节奏，并说明为何不报 agent 完成耗时",
    "retrieved": "2026-09-26",
-   "publisher": "METR"
+   "publisher": "METR",
+   "cache": "text/d3f9bc418c75e264.txt"
   },
   {
    "id": "S114",
    "url": "https://artificialanalysis.ai/methodology",
    "label": "Artificial Analysis 评测方法页：把 Cost per Task 定义为按实际消耗的输入/缓存/输出 token 计，思考 token 越多每任务成本越高",
    "retrieved": "2026-09-26",
-   "publisher": "Artificial Analysis"
+   "publisher": "Artificial Analysis",
+   "cache": "text/550fccce77ee2873.txt"
   },
   {
    "id": "S027",
    "url": "https://epoch.ai/benchmarks/hle/review",
    "label": "Epoch AI 对 HLE 的审查（2026-08-11）：随机抽 48 题、22 题（46%）有足以改变正确性的错误，判为 Flawed；审查框架要求披露 reasoning effort、token 与时间上限、工具权限与系统提示，并把「是否有污染证据」标为 Not reviewed",
    "retrieved": "2026-09-26",
-   "publisher": "Epoch AI"
+   "publisher": "Epoch AI",
+   "cache": "text/4ff7717b4f858cf8.txt"
   },
   {
    "id": "S028",
    "url": "https://lastexam.ai/",
    "label": "HLE 项目主页：2026-09-22 发布 HLE-Diamond，2025-10-08 发布动态分叉版 HLE-Rolling，2025-04-03 定稿 2,500 题；数据集托管在 huggingface 的 cais/hle",
    "retrieved": "2026-09-26",
-   "publisher": "Center for AI Safety / Scale AI"
+   "publisher": "Center for AI Safety / Scale AI",
+   "cache": "text/14238383d1f14fcf.txt"
   },
   {
    "id": "S029",
    "url": "https://metr.org/time-horizons/",
    "label": "METR 时间地平线方法页：每题 6 次独立运行，先在小型 dev set 上选脚手架（ReAct、Triframe、Claude Code、Codex 等），再自动加人工复核 reward hack",
    "retrieved": "2026-09-26",
-   "publisher": "METR"
+   "publisher": "METR",
+   "cache": "text/d3f9bc418c75e264.txt"
   }
  ],
  "category": "人工智能",
@@ -2114,17 +2191,27 @@
   "hero_motif": "thinking_budget",
   "hero_note": "全篇的记忆点：一条横杠代表同一道题的推理预算，左边一小格是「立刻答」，右边大格是「先想清楚再答」。这一版的差别不在模型更大，而在预算被允许花在哪——所以读它的能力数字之前，必须先问「这次给了多少思考预算」，否则两个分数不可比。格子上不标任何数值：一标数值它就成了一张没有来源的图表（R-02）。"
  },
- "generated_date": "2026-09-26",
+ "generated_date": "2026-10-08",
  "created_date": "2026-09-25",
- "data_as_of": "2026-09",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 18,
  "site": {
-  "url": "https://claude-opus-55-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d99e-0bc9-7e28-9bcf-ef6dac1d193e",
-  "slug": "claude-opus-55",
-  "content_sha": "dfc394d9724782e0",
-  "published_date": "2026-09-26",
+  "url": "https://ai-industry-gtqdc11h6po.qoder.website/claude-opus-55/claude-opus-55.html",
+  "group": "ai-industry",
+  "path": "/claude-opus-55/claude-opus-55.html",
+  "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
+  "content_sha": "1d0326a3798e6850",
+  "published_date": "2026-10-10",
   "access": "public"
+ },
+ "cover": {
+  "file": "images/31_anthropic.jpg",
+  "alt": "Anthropic回应被美政府封杀：未收到通知 将诉诸法院",
+  "caption": "Anthropic回应被美政府封杀：未收到通知 将诉诸法院",
+  "source_page": "https://www.ijiwei.com/n/986691",
+  "width": 2400,
+  "height": 1600,
+  "query": "anthropic"
  }
 }

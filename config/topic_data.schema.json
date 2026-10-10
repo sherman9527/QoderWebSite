@@ -56,8 +56,19 @@
       }
     },
     "cover": {
-      "$ref": "#/$defs/image",
-      "description": "声明式封面。不写则退回「最宽的一张」——那条规则会选中排行榜截图与宣传横幅（它们的像素宽度天然最大），索引卡片上就被裁掉半截文字。"
+      "allOf": [
+        {
+          "$ref": "#/$defs/image"
+        },
+        {
+          "properties": {
+            "alt": {
+              "minLength": 1
+            }
+          }
+        }
+      ],
+      "description": "声明式封面。不写则退回「最宽的一张」——那条规则会选中排行榜截图与宣传横幅（它们的像素宽度天然最大），索引卡片上就被裁掉半截文字。封面框里没有 figcaption，alt 是这一格唯一的可读文本，所以 $defs/image 允许的空串在这里收紧回非空（W-188 ②）。"
     },
     "data_as_of": {
       "type": "string",
@@ -150,6 +161,9 @@
                 },
                 {
                   "$ref": "#/$defs/note"
+                },
+                {
+                  "$ref": "#/$defs/code"
                 }
               ]
             }
@@ -185,7 +199,14 @@
             "type": "string"
           },
           "retrieved": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+            "description": "最后一次逐条核对该来源的日子。G-15 读它算「最后核对于」（W-190）——格式钉死成 ISO，否则一条写法不同的日期等于从新鲜度里消失。"
+          },
+          "cache": {
+            "type": "string",
+            "pattern": "^text/[0-9a-f]{16}\\.txt$",
+            "description": "这条来源的原文在本地的位置（相对 .research-scratch/）。W-189：只有 url + 人写的 label 摘要时，「这个数在不在来源里」永远答不出；有原文才可判。指针形状钉死，宁缺毋滥——抓不到就不写这个键，留一个指空文件的指针比没有更坏。"
           }
         }
       }
@@ -214,7 +235,7 @@
         "content_sha"
       ],
       "additionalProperties": false,
-      "description": "这一篇发布到托管之后的记录。权威源在这里，`web_list.md` 只是它的派生物。`content_sha` 是发出去那份包的字节的哈希汇总——它让「本地比线上新」这件事可见，否则卡片上「在线看」会指向一个不知道是哪版的版本。`project_id` 必填：URL 说不出它属于哪个站，下一次更新就得凭记忆认站，而这件事我已经错过一次（把访问策略改到了另一个草稿站上）。",
+      "description": "这一篇发布到托管之后的记录。权威源在这里，`web_list.md` 只是它的派生物。合站之后**发布单位是组**：`group` 是它属于哪个站，`path` 是它在那个站里的路径，`url` 是两者拼出来的深链。三者必须自洽，`publish.py record` 会校验主机名整名等于组地址、路径正好是 `/<篇>/<篇>.html`——只查主机的话，把成员记到同组的错篇章上没人拦得住，而深链错了就是线上 404、账上写着「一致」。原来的 `slug` 字段随一篇一站一起退场：文章自己的 slug 已经不在 URL 里了，留着就是一个没人读也没人清的旧数据。",
       "properties": {
         "url": {
           "type": "string",
@@ -223,10 +244,17 @@
         "project_id": {
           "type": "string",
           "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
-          "description": "托管侧的 projectId（prepare_site / get_site 返回）。更新这一篇时用它定位站点"
+          "description": "托管侧的 projectId（prepare_site / get_site 返回）。同一个组里所有成员的 projectId 相同——它们本来就是同一个站"
         },
-        "slug": {
-          "type": "string"
+        "group": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$",
+          "description": "config/site_groups.json 里的那个组名。它是 URL 的一部分，所以只许追加成员、不许搬动已发布的"
+        },
+        "path": {
+          "type": "string",
+          "pattern": "^/[^/]+/[^/]+\\.html$",
+          "description": "这一篇在组站里的路径，与包内布局一字不差"
         },
         "content_sha": {
           "type": "string"
@@ -260,7 +288,8 @@
         "fact_strip",
         "bar_chart",
         "compare",
-        "note"
+        "note",
+        "code"
       ]
     },
     "sourceRef": {
@@ -894,6 +923,48 @@
         }
       }
     },
+    "code": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "code"
+      ],
+      "description": "示例代码 / API 请求响应 / 文件树。存在的理由是教学篇必须能让人照着抄：缩进、换行、尖括号一个都不能被 HTML 吃掉。它不是断言载体——代码里的数字（端口、max_tokens、超时）不要求 source_ids，可核查的事实仍然只能写在 prose/表格/图表里（R-02）。",
+      "properties": {
+        "type": {
+          "const": "code"
+        },
+        "heading": {
+          "type": "string",
+          "maxLength": 60,
+          "description": "区块小标题；模板统一渲染成 <h3>。限长是因为 G-05 不把代码块的标签算进篇幅——不限长等于开一条把散文挪进标签的后门。"
+        },
+        "lang": {
+          "type": "string",
+          "pattern": "^[a-z0-9+#.-]{1,16}$",
+          "description": "只作语言标注显示，不做高亮：引 highlight.js 会撞 R-01（外链）与零运行时 JS"
+        },
+        "code": {
+          "type": "string",
+          "minLength": 2,
+          "pattern": "^[^\\t\\r]*$",
+          "description": "原样输出在 <pre> 里的代码。禁止制表符（缩进一律空格），禁止 \\r。"
+        },
+        "caption": {
+          "type": "string",
+          "maxLength": 140,
+          "description": "「这是假设形态还是真跑通过的响应」这类说明写在这里，不要烧进代码注释——注释里的断言闸门看不见。限长 140：G-05 不把代码标签算进篇幅，短到装不下一段正文才敢这么算。"
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]{1,4}$"
+          }
+        }
+      }
+    },
     "note": {
       "type": "object",
       "additionalProperties": false,
@@ -949,7 +1020,7 @@
         },
         "alt": {
           "type": "string",
-          "minLength": 2
+          "description": "可为空串：图注（caption）是读者看见的文字，alt 空着等于「装饰性图片」的正确写法，屏读会念 figcaption。W-188 之前这里 minLength=2，逼着采集期把同一串来源站 SEO 标题写两遍。"
         },
         "caption": {
           "type": "string"

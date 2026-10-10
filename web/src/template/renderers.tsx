@@ -2,7 +2,7 @@ import { Fragment, type ReactNode } from "react";
 import type { Block, Source } from "../types";
 
 /**
- * 10 类区块渲染器。
+ * 12 类区块渲染器。
  *
  * 穷尽分发：遇到未知 type 直接抛错，而不是返回 null——
  * 静默丢内容会让页面"看起来完整其实少一块"，是最危险的失败模式。
@@ -29,9 +29,11 @@ export function renderBlock(b: Block, src: SrcIndex): ReactNode {
     case "bar_chart":
       return <BarChart block={b} src={src} />;
     case "compare":
-      return <Compare block={b} />;
+      return <Compare block={b} src={src} />;
     case "note":
       return <Note block={b} />;
+    case "code":
+      return <Code block={b} src={src} />;
     default:
       throw new Error(
         `模板不支持的区块类型 ${JSON.stringify((b as { type?: unknown }).type)}；` +
@@ -317,7 +319,7 @@ function BarChart({ block, src }: { block: Block; src: SrcIndex }) {
   );
 }
 
-function Compare({ block }: { block: Block }) {
+function Compare({ block, src }: { block: Block; src: SrcIndex }) {
   const side = (key: "left" | "right") => {
     const s: any = (block as any)[key] || { title: "", points: [] };
     return (
@@ -338,6 +340,9 @@ function Compare({ block }: { block: Block }) {
         {side("left")}
         {side("right")}
         {verdictOf(block)}
+        {/* 对照块的出处以前没有地方挂，于是有人把（S11）直接打进 points 里——
+            页面上那就是点不开的假凭证。 */}
+        <Refs ids={(block as any).source_ids} src={src} />
       </div>
     </div>
   );
@@ -358,6 +363,34 @@ function Note({ block }: { block: Block }) {
         <h4>{asStr(block.heading) || asStr(block.title) || NOTE_TITLES[tone] || "提示"}</h4>
         <p>{asStr(block.text)}</p>
       </div>
+    </div>
+  );
+}
+
+/**
+ * 代码块。为什么值得为它加第 12 种区块：教学篇（W-171）没有可照着抄的代码就不成立。
+ *
+ * 三条自律：
+ * - **不高亮**。引 highlight.js / Prism 要么外链（撞 R-01）要么把 JS 打进产物（撞"零运行时 JS"），
+ *   而语言名标出来已经足够让人认门。
+ * - **`<pre>` 里的文本走 React 文本节点**，所以 `<div>`、`<占位>`、`List<T>` 会被自动转义。
+ *   手搓 innerHTML 会把这些当标签吃掉，页面少一截还不报错。
+ * - **每块自带横向滚动容器**。共用一个容器时，第一块滚到的位置会漏给第二块。
+ */
+function Code({ block, src }: { block: Block; src: SrcIndex }) {
+  const lang = asStr(block.lang, "text");
+  const caption = asStr(block.caption);
+  return (
+    <div className="blk">
+      {headingOf(block)}
+      <figure className="codewrap">
+        <figcaption className="codebar">
+          <span className="lang">{lang}</span>
+          {caption && <span className="codecap">{caption}</span>}
+        </figcaption>
+        <pre className="code">{asStr(block.code)}</pre>
+      </figure>
+      <Refs ids={block.source_ids as string[]} src={src} />
     </div>
   );
 }

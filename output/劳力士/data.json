@@ -124,7 +124,7 @@
    "images": [
     {
      "file": "images/01_劳力士_Oyster_防水表壳_1926_历史.jpg",
-     "alt": "【劳力士手表官网价格】Rolex劳力士手表怎么样_型号价格查询|腕表之家",
+     "alt": "",
      "caption": "【劳力士手表官网价格】Rolex劳力士手表怎么样_型号价格查询|腕表之家",
      "source_page": "https://www.xbiao.com/rolex/",
      "width": 700,
@@ -132,7 +132,7 @@
     },
     {
      "file": "images/02_劳力士_Hans.jpg",
-     "alt": "劳力士_劳力士推出2025新款腕表蚝式恒动陆使型|腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士_劳力士推出2025新款腕表蚝式恒动陆使型|腕表之家xbiao.com",
      "source_page": "https://geneva.xbiao.com/20250401/81500.html",
      "width": 1400,
@@ -258,7 +258,7 @@
    "images": [
     {
      "file": "images/05_劳力士_恒动_摆陀_机芯_结构.jpg",
-     "alt": "劳力士年产超100万只，迪通拿12万只，水鬼9万只，分析数据公布|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士年产超100万只，迪通拿12万只，水鬼9万只，分析数据公布|劳力士_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/72045.html",
      "width": 1400,
@@ -266,7 +266,7 @@
     },
     {
      "file": "images/06_劳力士_Triplock_旋入式表冠.jpg",
-     "alt": "劳力士_2020年，劳力士终于出手了！（附实拍图）|腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士_2020年，劳力士终于出手了！（附实拍图）|腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/20200903/59627.html",
      "width": 773,
@@ -520,15 +520,15 @@
    "images": [
     {
      "file": "images/09_劳力士_Submariner_潜水表_历史.jpg",
-     "alt": "高清图|劳力士日志型系列日志型41系列126333-62613图片|腕表之家xbiao.com",
+     "alt": "",
      "caption": "高清图|劳力士日志型系列日志型41系列126333-62613图片|腕表之家xbiao.com",
      "source_page": "http://www.xbiao.com/rolex/43674/119758.html",
-     "width": 2000,
-     "height": 2430
+     "width": 1472,
+     "height": 1788
     },
     {
      "file": "images/10_劳力士_Daytona_熊猫迪_腕表.jpg",
-     "alt": "劳力士_4年了，你们的劳力士该毕业了|腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士_4年了，你们的劳力士该毕业了|腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/20191211/56570.html",
      "width": 1080,
@@ -653,7 +653,7 @@
    "images": [
     {
      "file": "images/13_劳力士_天文台认证_COSC_证书.jpg",
-     "alt": "劳力士_劳力士：追求卓越的制表商|腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士_劳力士：追求卓越的制表商|腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/72272.html",
      "width": 1400,
@@ -661,7 +661,7 @@
     },
     {
      "file": "images/14_劳力士_超天文台_Superlative_Chronom.jpg",
-     "alt": "劳力士Rolex购表作业_劳力士购表攻略_劳力士购表指南 第143页|腕表之家",
+     "alt": "",
      "caption": "劳力士Rolex购表作业_劳力士购表攻略_劳力士购表指南 第143页|腕表之家",
      "source_page": "https://www.xbiao.com/rolex/homework/p143.html",
      "width": 735,
@@ -731,7 +731,13 @@
     {
      "type": "prose",
      "heading": "钢贵在加工",
-     "text": "同行普遍用 316L，不是因为不懂：它便宜、好切削、随处有货。劳力士的说法是，1985 年它成为第一家把 904L 用做表壳的制表企业，内部名称 Oystersteel，耐蚀性可比贵金属。904L 属最贵的不锈钢牌号之一，镍钼更高、也更软更吃刀具，官方承认必须为它开发专用刀具与加工方法——成本落在设备与良率上，不落在金价上。"
+     "text": "先把两个牌号摆开：行业里更常见的表壳用钢 316L，成分是 C ≤0.03%、Cr 16–18%、Mo 2–3%、Ni 10–14%，不列铜；劳力士用的 904L 是 Ni 23–28%、Cr 19–23%、Mo 4–5%，还加 1.0–2.0% 铜。多出来的镍与钼换来耐蚀，代价写在材料档案里：904L 属最贵的不锈钢牌号之一、更软、更吃刀具。劳力士的说法是，1985 年它成为第一家把 904L 用做表壳的制表企业，内部名称 Oystersteel，耐蚀性可比贵金属；官方承认必须为它开发专用刀具与加工方法——成本落在设备与良率上，不落在金价上。",
+     "source_ids": [
+      "S051",
+      "S052",
+      "S053",
+      "S054"
+     ]
     },
     {
      "type": "prose",
@@ -800,7 +806,7 @@
    "images": [
     {
      "file": "images/17_劳力士_金_铸造_工坊.jpg",
-     "alt": "劳力士_劳力士十大爆款，哪款最好看？|腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士_劳力士十大爆款，哪款最好看？|腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/20200306/57423.html",
      "width": 1080,
@@ -808,7 +814,7 @@
     },
     {
      "file": "images/18_劳力士_904L_蚝式钢_表壳.jpg",
-     "alt": "【劳力士手表官网价格】Rolex劳力士手表怎么样_型号价格查询|腕表之家",
+     "alt": "",
      "caption": "【劳力士手表官网价格】Rolex劳力士手表怎么样_型号价格查询|腕表之家",
      "source_page": "https://www.xbiao.com/rolex/",
      "width": 750,
@@ -900,7 +906,7 @@
    "images": [
     {
      "file": "images/21_劳力士_工厂_日内瓦.jpg",
-     "alt": "公价17万，劳力士新一代“正装表”，将进一步拉高劳力士的档次？|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "公价17万，劳力士新一代“正装表”，将进一步拉高劳力士的档次？|劳力士_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/72248.html",
      "width": 1400,
@@ -908,7 +914,7 @@
     },
     {
      "file": "images/22_劳力士_腕表_装配_流水线.jpg",
-     "alt": "深度解读，劳力士陆使型，全新“动态脉冲擒纵”|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "深度解读，劳力士陆使型，全新“动态脉冲擒纵”|劳力士_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/81892.html",
      "width": 1400,
@@ -1052,29 +1058,8 @@
      "heading": "溢价起落与每年那张新价目表",
      "items": [
       {
-       "year": "2020-06",
-       "text": "劳力士平均成交额 8,897 美元，随后两年翻倍。",
-       "source_ids": [
-        "S071"
-       ]
-      },
-      {
        "year": "2022-03",
        "text": "顶点 17,206 美元；迪通拿 53,911 美元。",
-       "source_ids": [
-        "S071"
-       ]
-      },
-      {
-       "year": "2022-12",
-       "text": "当年回调兑现：跌到 11,785 美元，约 -31%。",
-       "source_ids": [
-        "S071"
-       ]
-      },
-      {
-       "year": "2023-01",
-       "text": "迪通拿跌到 27,642 美元，自峰值回落近半。",
        "source_ids": [
         "S071"
        ]
@@ -1119,7 +1104,7 @@
    "images": [
     {
      "file": "images/25_劳力士_腕表_二级_市场_溢价.jpg",
-     "alt": "43万！劳力士新款蓝金款鬼王实拍速递|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "43万！劳力士新款蓝金款鬼王实拍速递|劳力士_腕表之家xbiao.com",
      "source_page": "https://geneva.xbiao.com/20240411/77101.html",
      "width": 1400,
@@ -1127,7 +1112,7 @@
     },
     {
      "file": "images/26_劳力士_专柜_等待_名单.jpg",
-     "alt": "劳力士又出爆款，价格直逼迪通拿！|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士又出爆款，价格直逼迪通拿！|劳力士_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/73913.html",
      "width": 1400,
@@ -1143,7 +1128,13 @@
     {
      "type": "prose",
      "heading": "先背两个型号，再看价格",
-     "text": "被外号绕晕之前，先记型号。今天被叫作\"绿水鬼\"的绿圈黑盘潜航者日历型（126610LV），中国官网公价95,700元；所谓\"熊猫迪\"是钢款宇宙计型迪通拿（126500LN），公价135,500元。外号不改变价格结构，材质与机芯才改变。"
+     "text": "被外号绕晕之前，先记型号。在售的潜航者日历型 126610LV（上一代 16610LV 的型号后缀 LV 是法语绿圈，这一代的外号 Starbucks）中国官网公价 95,700 元；所谓「熊猫迪」是钢款宇宙计型迪通拿 126500LN，公价 135,500 元，白盘黑子盘才是「熊猫」指的是什么。外号不改变价格结构，材质与机芯才改变。",
+     "source_ids": [
+      "S034",
+      "S039",
+      "S083",
+      "S084"
+     ]
     },
     {
      "type": "price_table",
@@ -1274,7 +1265,11 @@
     {
      "type": "prose",
      "heading": "台阶是金属给的",
-     "text": "把这张表竖着看，跳档靠换金属：同为潜航者日历型，精钢91,200元，间金156,300元，黄金410,200元，几乎每上一档接近翻倍以上。尺寸的影响小得多——同为蚝式恒动精钢，28毫米与41毫米只差7,100元。"
+     "text": "把这张表竖着看，跳档靠换金属：同为潜航者日历型，精钢 91,200 元，间金 156,300 元（1.71 倍），黄金 410,200 元（再 2.62 倍）——跨材质这一步是跳的，不是逐级加的。尺寸的影响小得多：同为蚝式恒动精钢，28 毫米 49,600 元、41 毫米 56,700 元，只差 7,100 元。",
+     "source_ids": [
+      "S081",
+      "S083"
+     ]
     },
     {
      "type": "prose",
@@ -1289,7 +1284,7 @@
    "images": [
     {
      "file": "images/29_劳力士_Oyster_Perpetual_彩色表盘.jpg",
-     "alt": "几十万的高档次金表，上手不要太显贵！|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "几十万的高档次金表，上手不要太显贵！|劳力士_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/77731.html",
      "width": 1400,
@@ -1297,7 +1292,7 @@
     },
     {
      "file": "images/30_劳力士_价格_公价.jpg",
-     "alt": "高清图|劳力士日志型系列日志型36系列126231图片|腕表之家xbiao.com",
+     "alt": "",
      "caption": "高清图|劳力士日志型系列日志型36系列126231图片|腕表之家xbiao.com",
      "source_page": "http://www.xbiao.com/rolex/61208/356316.html",
      "width": 1196,
@@ -1389,7 +1384,7 @@
    "images": [
     {
      "file": "images/33_劳力士_内影圈_激光刻_序列.jpg",
-     "alt": "ROLEX的品牌文化，劳力士如何通过努力一步一步地成为腕中霸主？",
+     "alt": "",
      "caption": "ROLEX的品牌文化，劳力士如何通过努力一步一步地成为腕中霸主？",
      "source_page": "https://k.sina.cn/article_6731262181_19136e8e500100kp4f.html",
      "width": 1080,
@@ -1397,7 +1392,7 @@
     },
     {
      "file": "images/34_劳力士_counterfeit_假表_对比.jpg",
-     "alt": "劳力士中的“时尚王”|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士中的“时尚王”|劳力士_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/69723.html",
      "width": 1400,
@@ -1413,7 +1408,11 @@
     {
      "type": "prose",
      "heading": "十年是上限，不是指标",
-     "text": "劳力士对检修周期只有一句话：视乎表款与实际使用情况，建议每十年检修一次。周期能拉到十年，靠的是润滑油、材料与公差进步让现代机芯在两次注油之间跑得更久。第三方经验值会把日常佩戴压到 5 至 7 年，1990 年之前的古董表压到 3 至 5 年。\n\n但周期是上限，不是打卡目标。一次全面检修意味着机芯完全拆解、部件逐个超声波清洗、重新注油，表壳与金属表带要过抛光——抛光就是去掉一层金属，所以官方明确写着专业磨光只应由劳力士服务中心进行。古董表还多一层代价：服务中心会把不达现行标准的老表盘、指针、表圈换成现代件，机械状态变好，原始性同时下降。所谓过度保养伤表，伤的不是钱包，是金属和原装件。"
+     "text": "劳力士对检修周期只有一句话：视乎表款及实际使用情况，建议每十年检修腕表；完整检修服务最少需时四至六周。官方没有解释为什么能拉到十年，第三方市场稿里也只是一句「现代腕表约每十年」（Bob's Watches），谁都没给出加油周期、材料或公差的机制说明——所以这里只报口径，不替它补原因。  但周期是上限，不是打卡目标。一次全面检修意味着机芯完全拆解、重新注油，表壳与金属表带要过抛光，而官方原文写得很清楚：「表壳及表带的专业磨光只应由劳力士服务中心进行」。抛光就是去掉一层金属，所谓过度保养伤表，伤的不是钱包，是金属。",
+     "source_ids": [
+      "S101",
+      "S104"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -1473,7 +1472,12 @@
     {
      "type": "prose",
      "heading": "费用：没有公价，只有报价",
-     "text": "你能查到的官方页面只有名录，没有价目表。流传的「劳力士保养价」几乎全部来自第三方按美国市场的估算：标准全面检修 800 至 1,600 美元，复杂机芯加换件可超过 2,800 美元，独立表匠通常再低 30% 至 50%。价差来自机芯复杂度、表壳材质与送达时的表况，跟这只表值多少钱无关。"
+     "text": "你能查到的官方页面只有名录，没有价目表。流传的「劳力士保养价」几乎全部来自第三方按美国市场的估算：标准全面检修 800 至 1,600 美元，复杂机芯加换件可超过 2,800 美元，独立表匠通常再低 30% 至 50%。价差来自机芯复杂度、表壳材质与送达时的表况，跟这只表值多少钱无关。",
+     "source_ids": [
+      "S101",
+      "S103",
+      "S104"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -1533,7 +1537,11 @@
     {
      "type": "prose",
      "heading": "把保养费除以残值",
-     "text": "这才是「一台机器传三代」的成本结构。截至 2026 年 7 月的 12 个月，迪通拿中位二手成交价 30,595 美元，标准检修约占其 4% 至 5%；Rolex Date 中位 5,495 美元，同样工序要占 15% 至 18%。全品牌中位成交价 12,495 美元，中间一半落在 8,070 至 17,670 美元。结论反直觉：表越贵，保养越像零头；表越便宜，越该把估价单逐行看完再批准。\n\n网络本身也是残值的一部分。服务中心愿意接大部分四十年历史的表，真正门槛是那只机芯还有没有零件可换——1985 年的 Datejust（cal. 3035）是常规活，1955 年的 Oyster 可能因缺件被退回未修。官方工坊的表匠须经培训并定期接受劳力士考核评估，这套供给能力才是「传三代」的物质基础。"
+     "text": "这才是「一台机器传三代」的成本结构。截至 2026 年 7 月的 12 个月，迪通拿中位二手成交价 30,595 美元，标准检修约占其 4% 至 5%；Rolex Date 中位 5,495 美元，同样工序要占 15% 至 18%。全品牌中位成交价 12,495 美元，中间一半落在 8,070 至 17,670 美元。结论反直觉：表越贵，保养越像零头；表越便宜，越该把估价单逐行看完再批准。  网络本身也是残值的一部分：官方工坊的表匠须经培训并定期接受劳力士考核评估；而每一次检修前都要先由认证表匠评估腕表状况、再出估算费用等你确认——报价是在评估之后才产生的，不是查表查得来的。这套「先评估、后报价」的供给能力，才是「传三代」的物质基础。",
+     "source_ids": [
+      "S102",
+      "S104"
+     ]
     },
     {
      "type": "compare",
@@ -1565,7 +1573,7 @@
    "images": [
     {
      "file": "images/37_劳力士_服务中心_维修.jpg",
-     "alt": "劳力士的迭代 从“入门三宝”到“三大钢款”|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "劳力士的迭代 从“入门三宝”到“三大钢款”|劳力士_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/83005.html",
      "width": 1400,
@@ -1573,7 +1581,7 @@
     },
     {
      "file": "images/38_劳力士_机芯_保养_清洗.jpg",
-     "alt": "突破与传承，劳力士2022新款腕表盘点|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "突破与传承，劳力士2022新款腕表盘点|劳力士_腕表之家xbiao.com",
      "source_page": "https://watchesandwonders.xbiao.com/20220402/67282.html",
      "width": 1400,
@@ -1700,15 +1708,15 @@
    "images": [
     {
      "file": "images/41_劳力士_深潜器_Trieste_1960.jpg",
-     "alt": "ROLEX的品牌文化，劳力士如何通过努力一步一步地成为腕中霸主？",
+     "alt": "",
      "caption": "ROLEX的品牌文化，劳力士如何通过努力一步一步地成为腕中霸主？",
      "source_page": "https://k.sina.cn/article_6731262181_19136e8e500100kp4f.html",
-     "width": 1536,
-     "height": 1534
+     "width": 1472,
+     "height": 1470
     },
     {
      "file": "images/42_劳力士_探险_腕表_历史.jpg",
-     "alt": "不做“复杂表”的劳力士，这种表，价值最高|劳力士_腕表之家xbiao.com",
+     "alt": "",
      "caption": "不做“复杂表”的劳力士，这种表，价值最高|劳力士_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/rolex/64432.html",
      "width": 1400,
@@ -1723,98 +1731,112 @@
    "url": "https://www.rolex.cn/en/watchmaking/features/movements/perpetual-rotor",
    "label": "劳力士官网制表工艺页「Perpetual rotor」：半月形摆陀随佩戴者动作向一个方向或另一个方向摆动，能量经一组换向轮与传动轮系传给发条；由品牌发明并申请专利，1931 年推出",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/b6f74b7a4632e6e2.txt"
   },
   {
    "id": "S022",
    "url": "https://www.rolex.cn/en/watchmaking/features/cases/oyster-case",
    "label": "劳力士官网「Oyster case」：1926 年构思并专利的世界首款防水腕表表壳，表圈、底盖与表冠旋入中层表壳",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/6b38ecb3a4217862.txt"
   },
   {
    "id": "S023",
    "url": "https://www.rolex.cn/en/watchmaking/features/cases/twinlock",
    "label": "劳力士官网「Twinlock」：1953 年申请专利并推出，Submariner 是最早搭载的型号之一；用于全部经典款，保证防水 100 米",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/530861ae24ac26d0.txt"
   },
   {
    "id": "S024",
    "url": "https://www.rolex.cn/en/watchmaking/features/cases/triplock",
    "label": "劳力士官网「Triplock」：1970 年随 Sea-Dweller 推出的三重锁定，形成三个密封区",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/3a960c97541f8c27.txt"
   },
   {
    "id": "S025",
    "url": "https://www.bobswatches.com/rolex-blog/resources/twinlock-vs-triplock-whats-difference.html",
    "label": "Bob's Watches 拆解文章：Twinlock 两枚 O 形圈、Triplock 圈内两枚加表冠下一枚的布置；表冠下方点数标记；Daytona/GMT-Master II/Yacht-Master 标称 100 米",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/61d23c5d92464eba.txt"
   },
   {
    "id": "S026",
    "url": "https://www.rolex.cn/en/watches/sea-dweller",
    "label": "劳力士 Sea-Dweller 型号页：排氦阀与可旋转表圈，保证防水 1,220 米；同页给出 Deepsea 3,900 米、Deepsea Challenge 11,000 米",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/29aba53c95b34b52.txt"
   },
   {
    "id": "S027",
    "url": "https://www.rolex.cn/en/watches/submariner",
    "label": "劳力士 Submariner 型号页：1953 年上市时防水 100 米，现为 300 米；Submariner Date 于 1969 年发布",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/c0db390fa3ef8450.txt"
   },
   {
    "id": "S028",
    "url": "https://www.rolex.cn/en/watchmaking/features/movements/chronergy",
    "label": "劳力士官网「Chronergy」：2015 年推出，擒纵轮与叉瓦重新设计以提升效率；每秒动作 8 次即时速 28,800 次/小时",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/548f3b882328aa02.txt"
   },
   {
    "id": "S029",
    "url": "https://watchesbysjx.com/2021/05/rolex-chronergy-analysis.html",
    "label": "SJX Watches 技术分析：Chronergy 随 cal.3255（2015 年 Day-Date 40）推出，宣称擒纵效率提升 15%，据此可降低驱动扭矩、用更薄的发条换取更长动力储备",
    "retrieved": "2026-09-20",
-   "publisher": "SJX Watches"
+   "publisher": "SJX Watches",
+   "cache": "text/435253b01ea84048.txt"
   },
   {
    "id": "S011",
    "url": "https://www.bobswatches.com/rolex-blog/history-of-time/hans-wildorf-rolex-founder.html",
    "label": "Bob's Watches《Hans Wilsdorf 生平与劳力士年表》：1881 年生于巴伐利亚、12 岁成孤儿、1900 年在拉绍德封、1903 年到伦敦、1905 年创办 Wilsdorf & Davis、1908 年注册 Rolex、1910 年瑞士精密时计证书、1914 年英国 Kew 天文台 A 级证书、1915 年英国 33.3% 钟表关税、1919 年迁日内瓦、1920 年注册 Montres Rolex SA、1926 年蚝式专利、1931 年恒动摆陀专利、1945 年日志型",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/eb11f6310750860f.txt"
   },
   {
    "id": "S012",
    "url": "https://www.bobswatches.com/rolex-blog/history-of-time/mercedes-gleitze-rolex-oyster-swimmer.html",
    "label": "Bob's Watches《Mercedes Gleitze 与防水蚝式》：1922 年第二层外罩方案、1926 年蚝式上市（旋入底盖/表圈/表冠，Aegler 15 钻手动机芯）、1927 年 10 月 7 日与 10 月 21 日两次游海峡、11 月 24 日《每日邮报》头版广告、Gleitze 证词原文（水温不超过 58、常低至 51 华氏度）",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/42f94d583cdb42d1.txt"
   },
   {
    "id": "S013",
    "url": "https://time4diamonds.com/blogs/articles/who-owns-rolex",
    "label": "Time 4 Diamonds《谁拥有劳力士？》：库尔姆巴赫出生、与姐夫 Alfred Davis 进口瑞士机芯装壳、1908 年注册商标、1915 年改名 Rolex Watch Co.、一战后因英国关税迁瑞、1920 年日内瓦注册、汉斯·威尔斯多夫基金会 1945 年 8 月 1 日设立并为唯一股东、据总干事对 NZZ 称每年约 3 亿瑞郎公益预算、1960 年 7 月 6 日完成股权移交",
    "retrieved": "2026-09-20",
-   "publisher": "Time 4 Diamonds"
+   "publisher": "Time 4 Diamonds",
+   "cache": "text/09a416d17af4dadb.txt"
   },
   {
    "id": "S014",
    "url": "https://monochrome-watches.com/rolex-datejust-complete-history/",
    "label": "Monochrome《劳力士日志型完整史》：1945 年为创立四十周年推出、ref. 4467（1945–1949）为 36 毫米 18K 黄金蚝式壳、钱币纹坑圈、3 点位日期窗且无放大日历镜、首配五珠 Jubilee 表带、放大日历镜随 ref. 6104/6105（1950–1953）出现",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome"
+   "publisher": "Monochrome",
+   "cache": "text/3bced44e4ff461bf.txt"
   },
   {
    "id": "S015",
    "url": "https://en.worldtempus.com/article/watches/trends-and-style/hans-wilsdorf-foundation-it-takes-different-strokes-to-move-the-world-29364.html",
    "label": "Worldtempus 关于汉斯·威尔斯多夫基金会的报道：股份装入基金会后公司不可出售、不向外部股东分红；历史章程列明的资助对象包括日内瓦钟表学校、日内瓦装饰艺术学校、纳沙泰尔瑞士钟表研究实验室等",
    "retrieved": "2026-09-20",
-   "publisher": "Worldtempus"
+   "publisher": "Worldtempus",
+   "cache": "text/70167e8ad5a7d7d7.txt"
   },
   {
    "id": "S031",
@@ -1828,161 +1850,184 @@
    "url": "https://www.bobswatches.com/rolex-blog/watch-review/vintage-submariners-reference-5512-5513.html",
    "label": "5512（1959–1980，首只有表冠护桥、COSC 认证）与 5513（1962–1989，非天文台版）逐年差异与 200 米防水",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/761f16545af98280.txt"
   },
   {
    "id": "S033",
    "url": "https://monochrome-watches.com/2020-rolex-submariner-date-41mm-126610lv-kermit-126610ln-price/",
    "label": "2020 年一次推出八只水鬼：124060 无历与 126610LN/LV、126613LN/LB、126618LN/LB、126619LB；日历款表径由 40 毫米增至 41 毫米",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/84809948692d7632.txt"
   },
   {
    "id": "S034",
    "url": "https://monochrome-watches.com/comparitive-review-green-bezel-black-dial-rolex-submariner-kermit-16610lv-vs-rolex-submariner-starbucks-126610lv/",
    "label": "Kermit 16610LV：2003 年巴塞尔为五十周年推出，LV 即法语绿圈，40 毫米 904L 钢、300 米、3135 机芯，产至 2010；126610LV 外号 Starbucks",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/7ee05dc0dd5042de.txt"
   },
   {
    "id": "S035",
    "url": "https://www.41watch.com/en/journal/buyers-guides/the-rolex-submariner-kermit-exploring-the-16610lv-and-its-variations",
    "label": "16610LV 约 2010 年停产，同年推出全绿陶瓷圈的 116610LV（Hulk）",
    "retrieved": "2026-09-20",
-   "publisher": "41Watch"
+   "publisher": "41Watch",
+   "cache": "text/9158f4f6de5b98e4.txt"
   },
   {
    "id": "S036",
    "url": "https://monochrome-watches.com/history-rolex-gmt-master-and-gmt-master-ii-1955-2024-iconic-traveller-watch-in-depth-review/",
    "label": "GMT-Master 6542（1955–1959，38 毫米，红蓝树脂圈）；16760（1982）带来红黑可乐圈；116710BLNR 蝙蝠侠 2013；白金 116719BLRO 2014；钢款 126710BLRO 2018",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/59b1b8f4b2e6cb72.txt"
   },
   {
    "id": "S037",
    "url": "https://revolutionwatch.com/brief-history-rolex-gmt-master/",
    "label": "泛美航空（Pan Am）请劳力士为飞行员开发可看双时区的表，促成 GMT-Master",
    "retrieved": "2026-09-20",
-   "publisher": "Revolution"
+   "publisher": "Revolution",
+   "cache": "text/64f67d56aa95f567.txt"
   },
   {
    "id": "S038",
    "url": "https://monochrome-watches.com/history-rolex-daytona-chronograph-1963-in-depth-review/",
    "label": "Daytona 1963 年以 Cosmograph 6239 面世，6239 首见熊猫/反熊猫盘面；16520（1988–2000）改用 Zenith El Primero 的改装机芯并放大到 40 毫米；116520（2000）自产 4130；116500LN（2016–2023）；126500（2023）",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/705740b5bd9723ae.txt"
   },
   {
    "id": "S039",
    "url": "https://www.bobswatches.com/rolex-blog/buying-guides/rolex-daytona-panda-ultimate-guide.html",
    "label": "熊猫迪指白盘黑子盘：116500LN（2016–2023）与 126500LN（2023 起），均 40 毫米 Oystersteel 配黑陶瓷圈",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/b4698cc6ff13ef87.txt"
   },
   {
    "id": "S0310",
    "url": "https://monochrome-watches.com/history-rolex-day-date-1956-present-president-watch-in-depth-review/",
    "label": "Day-Date 1956 年推出（6510 光面圈 / 6511 三角坑圈，36 毫米、100 米）；产品线中唯一只用贵金属；已知钢壳 6611 仅五只；2015 年起走时由 -4/+6 收到 -2/+2 秒；Day-Date 40 为 228238",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/17974fefe4d45d0f.txt"
   },
   {
    "id": "S0311",
    "url": "https://monochrome-watches.com/history-rolex-explorer-from-1953-36mm-1016-14270-114270-214270-124270-in-depth-review/",
    "label": "Explorer：6150 与 6350 始于 1953（同年希拉里与丹增·诺尔盖登顶珠峰）；14270 产 1989–2001；214270 改 39 毫米产 2010–2016；124270 回 36 毫米（2021）；224270 为 40 毫米（2023）",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/0d80e1f1aadbd3b3.txt"
   },
   {
    "id": "S0312",
    "url": "https://monochrome-watches.com/rolex-datejust-complete-history/",
    "label": "Datejust 1945 年 ref.4467 为品牌四十周年而做，36 毫米黄金壳、狗牙圈、三点位日历窗，首批约一千只；1953 年 6304/6305 首次加装日历放大镜",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/3bced44e4ff461bf.txt"
   },
   {
    "id": "S0313",
    "url": "https://www.fratellowatches.com/the-curious-case-of-the-boring-rolex-submariner-ref-14060/",
    "label": "无历水鬼 14060 始于 1988，换蓝宝石镜面，防水由 200 米提升至 300 米",
    "retrieved": "2026-09-20",
-   "publisher": "Fratello Watches"
+   "publisher": "Fratello Watches",
+   "cache": "text/2fb1f48c3eeb2aea.txt"
   },
   {
    "id": "S041",
    "url": "https://www.vintagewatchstraps.com/kewwatchtrials.php",
    "label": "Kew 与 Greenwich 钟表试验史：1912 年 11 月试验转到 Teddington 的 National Physical Laboratory、1951 年 2 月 28 日结束并由 Craftsmanship Test 取代、整个 Kew 体系累计测过 33,200 只表",
    "retrieved": "2026-09-20",
-   "publisher": "Vintage Watch Straps (David Boettcher)"
+   "publisher": "Vintage Watch Straps (David Boettcher)",
+   "cache": "text/8bc6d74394c604ef.txt"
   },
   {
    "id": "S042",
    "url": "https://www.bobswatches.com/rolex-blog/resources/rolex-kew-observatory-certificate.html",
    "label": "劳力士与 Kew Class A：1910 年比尔瑞士精密时计证书、1914 年 7 月 15 日 Class A 为腕表首次、Kew 试验 45 天五方位三温度对比瑞士 15 天、引 James M. Dowling 统计 145 枚机芯 136 枚通过",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/a5fca8ccaf9ece7d.txt"
   },
   {
    "id": "S043",
    "url": "https://rolexhaven.com/chronometer-certs.html",
    "label": "Vintage 劳力士认证档案：Bureaux Suisses 送检与证书编号做法、早期 Submariner 因成本很少送检、1963 年 5512 用认证 1530 而新款 5513 用非认证 1520、手动 Daytona 62xx 到 1970 年代才认证、OCC 改 SCOC 约在 1960 年",
    "retrieved": "2026-09-20",
-   "publisher": "RolexHaven"
+   "publisher": "RolexHaven",
+   "cache": "text/f2beaa93292fd8ed.txt"
   },
   {
    "id": "S044",
    "url": "https://en.worldtempus.com/article/watches/innovation-and-technology/certifications-whats-the-difference-between-a-chronometer-and-a-superlative-chronometer-26253.html",
    "label": "COSC 与 Superlative Chronometer 公差对比：COSC 自 1973 年、只测机芯、15 天五方位三温度 8/23/38°C、日差 -4~+6 秒；劳力士装壳后 -2~+2 秒、七静态方位加旋转架 24 小时；防水常规加压 10%、潜水加压 25%",
    "retrieved": "2026-09-20",
-   "publisher": "Worldtempus (GMT Publishing)"
+   "publisher": "Worldtempus (GMT Publishing)",
+   "cache": "text/ce2f5b10f326d60f.txt"
   },
   {
    "id": "S045",
    "url": "https://www.bobswatches.com/rolex-blog/watch-review/rolex-non-chronometer-watches.html",
    "label": "劳力士非认证表款清单：2015 年起全线 -2/+2 秒、Air-King 5500 自 1957 年用非认证 1520/1530、5513 长期非认证、无历 Submariner 到 2007 年才补上认证、现售全线均为认证机芯",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/fd52ce71e3fc2e70.txt"
   },
   {
    "id": "S046",
    "url": "https://www.petitegeneve.com/ww-en/our-stories/rolex-superlative-chronometer",
    "label": "现行流程：每只未装壳机芯送 COSC 圣伊米耶测 15 天，回厂装壳后按 -2/+2 秒复测，潜水表 300/1,220/3,900 米再加 25% 打压，通过后附绿金吊牌",
    "retrieved": "2026-09-20",
-   "publisher": "Petite Genève"
+   "publisher": "Petite Genève",
+   "cache": "text/40be79a798af50d0.txt"
   },
   {
    "id": "S047",
    "url": "https://www.watchesbytimepiece.com/article/the-evolution-of-rolex-superlative-chronometer-certification/",
    "label": "经销商博客，把 Superlative Chronometer Officially Certified 面盘文字的首次出现定在 1957 年（同文把 COSC 成立年误写为 1951，此处仅取年份说法之一，与 S3 的约 1960 年并列）",
    "retrieved": "2026-09-20",
-   "publisher": "Watches by Timepiece"
+   "publisher": "Watches by Timepiece",
+   "cache": "text/3a3f6244b5cf6143.txt"
   },
   {
    "id": "S051",
    "url": "https://www.rolex.cn/en/watchmaking/a-unique-approach/plan-les-ouates",
    "label": "劳力士官网「独门工艺：Plan-les-Ouates 制表厂」页面，写明该厂区设有金炉、自行调配 18K 金合金，并称 1985 年成为首家使用 904L 制造钢壳的制表企业、合金名为 Oystersteel、需开发专用刀具与加工方法",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/146c3652649defe4.txt"
   },
   {
    "id": "S052",
    "url": "https://www.azom.com/article.aspx?ArticleID=1022",
    "label": "AZoM 材料档案《Stainless Steel – Grade 904L (UNS N08904)》，给出成分区间：<0.02% C、19–23% Cr、23–28% Ni、4–5% Mo、1.0–2.0% Cu",
    "retrieved": "2026-09-20",
-   "publisher": "AZoM"
+   "publisher": "AZoM",
+   "cache": "text/e7da1c71d2ffbdea.txt"
   },
   {
    "id": "S053",
    "url": "https://www.azom.com/article.aspx?ArticleID=2382",
    "label": "AZoM 材料档案《Stainless Steel – Grade 316L (UNS S31603)》，成分表（ASTM A240）：C ≤0.03%、Cr 16–18%、Mo 2–3%、Ni 10–14%，未列铜",
    "retrieved": "2026-09-20",
-   "publisher": "AZoM"
+   "publisher": "AZoM",
+   "cache": "text/d14c012eba1715d4.txt"
   },
   {
    "id": "S054",
    "url": "https://timeandtidewatches.com/watch-stainless-steel-grades-explained/",
    "label": "Watch Education《Watch stainless steel grades explained》：904L 属最贵的不锈钢牌号之一，镍钼更高、更软、抛光更亮，镍含量高对镍过敏者不友好",
    "retrieved": "2026-09-20",
-   "publisher": "Watch Education / Time & Tide"
+   "publisher": "Watch Education / Time & Tide",
+   "cache": "text/1af2b95ad4ffb9fe.txt"
   },
   {
    "id": "S055",
@@ -1996,35 +2041,40 @@
    "url": "https://www.xbiao.com/rolex/31788.html",
    "label": "腕表之家《劳力士保持玫瑰金鲜艳颜色的技术秘密》：梳理劳力士 2003-09-04 申请的欧洲专利 EP1512765（75% 金、15–18% 铜、0.5–4% 铂）与 2014-02-06 的 WO2014122235（加钙、铟、硅），并给出传统玫瑰金 40°C 饱和盐水浸泡十天变暗的对照",
    "retrieved": "2026-09-20",
-   "publisher": "xbiao.com"
+   "publisher": "xbiao.com",
+   "cache": "text/236529802fde10fd.txt"
   },
   {
    "id": "S057",
    "url": "https://www.hodinkee.com/articles/the-rolex-oyster-perpetual-day-date-40-in-jubilee-gold-a-brand-new-precious-alloy-ref-228235",
    "label": "Hodinkee《Introducing: The Rolex Day-Date 40 In Jubilee Gold (Ref. 228235)》：新金合金由日内瓦 Les Acacias 总部研发、Plan-les-Ouates 自家金炉生产，劳力士在此生产全部贵金属合金；系 Everose 之后二十多年第一种新金合金；美国官网价 62,700 美元",
    "retrieved": "2026-09-20",
-   "publisher": "Hodinkee"
+   "publisher": "Hodinkee",
+   "cache": "text/457810dd428ea0d9.txt"
   },
   {
    "id": "S058",
    "url": "https://www.ablogtowatch.com/watches-wonders-2026-rolex-launches-a-new-gold-alloy-through-a-stunning-green-dial-day-date-40-watch/",
    "label": "aBlogtoWatch 报道 2026 年「钟表与奇迹」展上劳力士以 Day-Date 40 首发完全自研自产的 18K Jubilee Gold",
    "retrieved": "2026-09-20",
-   "publisher": "aBlogtoWatch"
+   "publisher": "aBlogtoWatch",
+   "cache": "text/3e0096751f3df67f.txt"
   },
   {
    "id": "S061",
    "url": "https://fortune.com/europe/2024/02/29/rolex-record-sales-more-than-5-competitors-combined-morgan-stanley-luxury-brand-dominant-position/",
    "label": "转述摩根士丹利与 LuxeConsult 年报：劳力士 2023 年产量 124 万只、销售 101 亿瑞郎，由汉斯·威尔斯多夫基金会控制",
    "retrieved": "2026-09-20",
-   "publisher": "Fortune / Bloomberg"
+   "publisher": "Fortune / Bloomberg",
+   "cache": "text/dd9f7495dd1e84b8.txt"
   },
   {
    "id": "S062",
    "url": "https://www.thehourmarkers.com/articles/morgan-stanley-luxeconsult-ninth-annual-swiss-watcher-2025",
    "label": "2025 年第九期瑞士钟表报告转述：劳力士产量主动下调约 2% 至约 110 万只",
    "retrieved": "2026-09-20",
-   "publisher": "The Hour Markers"
+   "publisher": "The Hour Markers",
+   "cache": "text/7944bb913711049b.txt"
   },
   {
    "id": "S063",
@@ -2052,259 +2102,296 @@
    "url": "https://www.xbiao.com/rolex/72045.html",
    "label": "腕表之家 2023 年型号级产量推算（研究者 Raman Kalra），文末注明均为推测、非劳力士官方数据",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家 xbiao.com"
+   "publisher": "腕表之家 xbiao.com",
+   "cache": "text/0655a4466581d35f.txt"
   },
   {
    "id": "S067",
    "url": "https://www.luxurywatcher.com/zh-Hant/article/34964",
    "label": "世界高级品 2025 年转述 Automic Group 执行长 Danny Younis 对 2024 年各系列产量的估算",
    "retrieved": "2026-09-20",
-   "publisher": "世界高級品 LuxuryWatcher"
+   "publisher": "世界高級品 LuxuryWatcher",
+   "cache": "text/84fea0e288454e2e.txt"
   },
   {
    "id": "S068",
    "url": "https://www.jiemian.com/article/6640146.html",
    "label": "界面新闻 2021 年：劳力士就产品短缺向雅虎财经发声明，称瑞士 4 座工厂手工装配限产、2020 年减产约 25 万枚",
    "retrieved": "2026-09-20",
-   "publisher": "界面新闻"
+   "publisher": "界面新闻",
+   "cache": "text/b6513e17b8e8547e.txt"
   },
   {
    "id": "S069",
    "url": "https://m.thepaper.cn/newsDetail_forward_6977836",
    "label": "澎湃新闻 2020 年：劳力士、帝舵、百达翡丽、香奈儿、萧邦联合声明退出巴塞尔表展，劳力士自 1939 年起参展",
    "retrieved": "2026-09-20",
-   "publisher": "澎湃新闻"
+   "publisher": "澎湃新闻",
+   "cache": "text/0343a4f01a041a44.txt"
   },
   {
    "id": "S071",
    "url": "https://www.bobswatches.com/rolex-market-report",
    "label": "Bob's Watches 15 年内部成交数据报告：劳力士整体与迪通拿/水鬼/OP 各系列平均成交价的 2022 年顶点与随后回调",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/f78bdddf59761702.txt"
   },
   {
    "id": "S072",
    "url": "https://www.bobswatches.com/rolex-blog/editorial/rolex-gmt-master-price-guide.html",
    "label": "Bob's Watches GMT-Master 价格指南（2026-06-08）：钢款与金款 MSRP 对照、2026 年 4 月钢款 Pepsi 停产、专柜消费记录与一到两年等待",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/412d225a2c31e0f1.txt"
   },
   {
    "id": "S073",
    "url": "https://www.bobswatches.com/used-rolex-prices",
    "label": "Bob's Watches 二手劳力士价格指南：2020-2026 年按型号的年度中位成交价（116500、126710BLRO、126610LV 等）",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/db81e201c30b076b.txt"
   },
   {
    "id": "S074",
    "url": "https://www.bobswatches.com/rolex-blog/watch-review/rolex-daytona-116500-watch-review-guide.html",
    "label": "Bob's Watches 迪通拿 116500LN 收藏指南（2021-11-08）：公价 13,150 美元与二手 35,000-45,000 美元、自 2016 年起排队",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/785cdf8d6868fc64.txt"
   },
   {
    "id": "S075",
    "url": "https://monochrome-watches.com/news-2026-rolex-price-list-2025-2026-increase-evolution-year-to-year-minimal-evolution-steel-models-large-increase-gold-watches/",
    "label": "Monochrome 2026 年劳力士价目表逐系列同比（法国含税欧元），并回顾 2022-2025 各年涨价重心",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome Watches"
+   "publisher": "Monochrome Watches",
+   "cache": "text/e6c136096164d1a8.txt"
   },
   {
    "id": "S076",
    "url": "https://www.hodinkee.com/articles/rolex-gains-pace-secondary-watch-market-price-declines-to-slowest-since-2022",
    "label": "Hodinkee 援引 WatchCharts 与摩根士丹利：高于公价的在售型号占比从 68% 降至 53%（2025-04-15）",
    "retrieved": "2026-09-20",
-   "publisher": "Hodinkee"
+   "publisher": "Hodinkee",
+   "cache": "text/1492f6cfa3dad46a.txt"
   },
   {
    "id": "S077",
    "url": "https://www.bobswatches.com/rolex/how-much-is-a-rolex",
    "label": "Bob's Watches 2026 年各系列起售公价与二手区间（水鬼 10,050 美元、GMT 11,800、迪通拿 16,900），2026 年初上调 7-10%",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/9f69d55a78d4178b.txt"
   },
   {
    "id": "S078",
    "url": "https://www.horbiter.com/en/rolex-pricing-price-list-and-evolution/",
    "label": "Horbiter 2026 年劳力士定价演变：白金 GMT-Master II 与玫瑰金 Sky-Dweller 二手已低于公价",
    "retrieved": "2026-09-20",
-   "publisher": "Horbiter"
+   "publisher": "Horbiter",
+   "cache": "text/a6de484d28d3d0c4.txt"
   },
   {
    "id": "S081",
    "url": "https://www.rolex.cn/watches/oyster-perpetual/all-models",
-   "label": "劳力士中国官网蚝式恒动型目录页，含各尺寸精钢/间金/贵金属款的人民币公价（2026年9月实测抓取）",
+   "label": "劳力士中国官网蚝式恒动型目录页（2026-09-27 真实浏览器读 DOM）：页面顶部「56 搜索结果」，按尺寸的蚝式钢档为 28 毫米 276200 RMB 49,600、31 毫米 277200 RMB 50,500、34 毫米 124200 RMB 51,400、36 毫米 126000 RMB 54,000、41 毫米 134300 RMB 56,700；黄金及蚝式钢为 31 毫米 62,000、34 毫米无、36 毫米 126003 RMB 67,700、41 毫米 134303 RMB 77,500；贵金属与镶钻档 254,300–368,500。**该页没有 38 毫米档**（56 张卡出现的尺寸只有 28/31/34/36/41）",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/3c976ec97fbb2f1c.txt"
   },
   {
    "id": "S082",
    "url": "https://www.rolex.cn/watches/datejust/all-models",
    "label": "劳力士中国官网日志型目录页，含31/36/41毫米各材质人民币公价",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/e2959d71deaf804a.txt"
   },
   {
    "id": "S083",
    "url": "https://www.rolex.cn/watches/submariner/all-models",
-   "label": "劳力士中国官网潜航者型目录页：无历124060、日历126610LN/LV、间金、黄金款人民币公价",
+   "label": "劳力士中国官网潜航者型目录页（2026-09-27 用真实浏览器读渲染后的 DOM；curl 拿不到价格）：页面顶部「7 搜索结果」，逐卡为——124060 潜航者型／蚝式，41毫米，蚝式钢 RMB 81,100；126610LN 潜航者日历型／蚝式钢 RMB 91,200；126610LV 潜航者日历型／蚝式钢 RMB 95,700；126613LN 与 126613LB 潜航者日历型／黄金及蚝式钢 各 RMB 156,300；126618LN 与 126618LB 潜航者日历型／黄金 各 RMB 410,200。注意：型号编号不出现在卡片可见文字里（只在链接 m126610lv-0002 这类路径中），卡面也不标表盘／表圈颜色，配色对应关系不能只靠本页成立",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/87c6d5f7bbd04702.txt"
   },
   {
    "id": "S084",
    "url": "https://www.rolex.cn/watches/cosmograph-daytona/all-models",
-   "label": "劳力士中国官网宇宙计型迪通拿目录页：精钢、黄金、铂金、镶钻款人民币公价",
+   "label": "劳力士中国官网宇宙计型迪通拿目录页（2026-09-27 真实浏览器读 DOM）：页面顶部「47 搜索结果」。126500LN 两张卡（链接 m126500ln-0001 与 -0002）可见文字均为「宇宙计型迪通拿／蚝式，40毫米，蚝式钢」，各 RMB 135,500。其余按材质：126503 黄金及蚝式钢 197,600／214,400；126518ln 黄金 343,300–380,500；126508 黄金 444,700／461,500；126509 白色黄金 476,200–493,000；126505 永恒玫瑰金 476,200–493,000；126519ln／126515ln 361,000–398,200；126506 铂金 680,400／733,600；镶钻白金与黄金款 647,600–1,296,500。卡面不标表盘／表圈颜色，「白盘黑圈」这类描述不能由本页成立",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/b8850ce2c469faa2.txt"
   },
   {
    "id": "S085",
    "url": "https://www.rolex.cn/watches/day-date/all-models",
    "label": "劳力士中国官网星期日历型目录页：黄金、白金、铂金及满钻款人民币公价",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/9a163681ae2136d5.txt"
   },
   {
    "id": "S086",
    "url": "https://www.ecijewelers.com/blogs/recent-posts/rolex-retail-price-increases-2026-what-collectors-need-to-know-now",
    "label": "2026年劳力士公价调整梳理：1月1日平均+7%、分材质涨幅区间及具体型号新旧美元价；6月1日第二次调价明细",
    "retrieved": "2026-09-20",
-   "publisher": "ECI Jewelers"
+   "publisher": "ECI Jewelers",
+   "cache": "text/62cb002768d45a44.txt"
   },
   {
    "id": "S087",
    "url": "https://k.sina.com.cn/article_7879922984_1d5ae152806802d174.html?from=fashion",
    "label": "欧米茄海马系列2026年价格梳理：海马300米潜水表钢款中国大陆专柜公价48,100元",
    "retrieved": "2026-09-20",
-   "publisher": "新浪新闻"
+   "publisher": "新浪新闻",
+   "cache": "text/688f76fdd653f1c9.txt"
   },
   {
    "id": "S088",
    "url": "https://www.xbiao.com/tudor/82429.html",
    "label": "腕表之家帝舵碧湾系列对比文章，文末各款标注厂商指导公价：精钢款35,100/39,600/40,500元",
    "retrieved": "2026-09-20",
-   "publisher": "腕表之家"
+   "publisher": "腕表之家",
+   "cache": "text/28fdb5bdd1651f47.txt"
   },
   {
    "id": "S101",
    "url": "https://www.rolex.cn/watch-care-and-service/faq",
-   "label": "劳力士中国官网「保养您的劳力士腕表 - 常见问题」：检修周期、检修时长、报价方式、保用条款、磨光归属、网络覆盖的唯一官方口径",
+   "label": "劳力士中国官网「保养您的劳力士腕表 - 常见问题」（页面无发布日期；2026-09-27 逐字复核）：检修周期原文「视乎表款及实际使用情况，劳力士建议您每十年检修腕表」；检修时长「完整检修服务最少需时四至六周，取决于腕表的状况」；检修费用一问原文「费用取决于所需的检修类别，以及腕表的状况。每次检修前，劳力士认证的表匠将评估腕表状况，随后您会获取检修程序的估算费用以待确认」——**整个页面没有任何检修价格数字、没有价目表**；磨光两处原文「表壳及表带的专业磨光只应由劳力士服务中心进行」「表壳及金属表带则经过精细抛光，重现原来亮泽」；保用「劳力士保证腕表由购买日期起计五年内能正常运作」，并有「第三者对此表作出的任何工作将使本保用失效」",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/21b318b5a674bb4d.txt"
   },
   {
    "id": "S102",
    "url": "https://www.rolex.cn/watch-care-and-service/our-servicing-philosophy",
    "label": "劳力士官网「我们的服务理念」：全球服务中心网络表述，表匠须经培训并接受劳力士定期考核评估",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/8c79e804ee58921c.txt"
   },
   {
    "id": "S103",
    "url": "https://www.rolex.cn/watch-care-and-service/service-locator/chinesemainland",
    "label": "劳力士官网中国大陆服务中心与特约零售商查询页（名录按地区列出，页面不含价目表）",
    "retrieved": "2026-09-20",
-   "publisher": "Rolex"
+   "publisher": "Rolex",
+   "cache": "text/4b9ebef096de88ce.txt"
   },
   {
    "id": "S104",
    "url": "https://www.bobswatches.com/rolex-blog/editorial/how-much-to-service-a-rolex.html",
-   "label": "Bob's Watches 2026 年按型号的检修费用估算与二手中位成交数据；文中明确声明这不是劳力士官方价目、劳力士不公开保养定价",
+   "label": "Bob's Watches《Rolex Service Cost: 2026 Price Guide by Model》（datePublished 2025-08-26、dateModified 2026-07-30，署名 Carol Altieri；正文无可见日期）：标准全面检修原文「The cost to service a Rolex ranges from $800 to $1,600 for a complete overhaul at a Rolex Service Center」；复杂机芯与换件「complex chronographs or precious metal references can exceed $2,800 once worn parts are replaced」「Costs above $2,800 occur when extensive parts replacement is required」；独立表匠「Independent watchmakers typically quote 30% to 50% less than a Rolex Service Center, though only Rolex can issue the official service guarantee」。表 Median Pre-Owned Sold Price（口径：Bob's Watches 截至 2026 年 7 月的 12 个月）逐行：Date $5,495（15%–18%）、Oyster Perpetual $5,995（13%–17%）、Air-King $6,495（12%–15%）、Datejust 36 $7,507（11%–13%）、Explorer II $10,949（8%–10%）、Submariner $14,495（6%–8%）、GMT-Master II $18,595（5%–6%）、Day-Date 36 $21,395（5%–6%）、Cosmograph Daytona $30,595（4%–5%）。整体原句「The median sold price across all Rolex references at Bob's Watches was $12,495 over the 12 months ending July 2026, with the middle half of sales falling between $8,070 and $17,670」。按编号位数分组：四位（1601/1675/5513）$5,995、五位（16610/16233）$8,370、六位（116610/126334）$15,295。自我限定原话「These figures represent estimated market pricing for a standard movement overhaul, not an official Rolex price list. Rolex does not publish service pricing publicly, and a final quote always follows diagnosis」",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/824e184b8fa7f51c.txt"
   },
   {
    "id": "S091",
    "url": "https://www.swisswatchexpo.com/thewatchclub/2023-04-04/rolex-serial-numbers/",
    "label": "SwissWatchExpo：劳力士序列号年份对照（1926 起顺序号、1987 年中起字母日期码、2010 后随机号）与刻位变迁",
    "retrieved": "2026-09-20",
-   "publisher": "SwissWatchExpo"
+   "publisher": "SwissWatchExpo",
+   "cache": "text/9d6a080b4b46110f.txt"
   },
   {
    "id": "S092",
    "url": "https://www.bobswatches.com/rolex-serial-numbers",
    "label": "Bob's Watches：序列号—生产年份对照表，前缀 G 之后标注为 Random",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/95503697f1b70ea7.txt"
   },
   {
    "id": "S093",
    "url": "https://www.swisswatchexpo.com/thewatchclub/2023-01-12/how-can-you-get-your-rolex-watch-authenticated/",
    "label": "SwissWatchExpo：五项外观自查；刻位 2005 年前后两爪之间、2008 年后只在内影圈",
    "retrieved": "2026-09-20",
-   "publisher": "SwissWatchExpo"
+   "publisher": "SwissWatchExpo",
+   "cache": "text/8e6a1a655188f71d.txt"
   },
   {
    "id": "S094",
    "url": "https://www.bobswatches.com/rolex-blog/rolex-guide/how-to-spot-a-fake-rolex.html",
    "label": "Bob's Watches：如何识别假劳力士——刻痕形态、内影圈 ROLEX 字样、实心后盖、秒针、904L 钢与重量",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/8956a9edfe6eacda.txt"
   },
   {
    "id": "S095",
    "url": "https://www.bobswatches.com/rolex-blog/editorial/rolex-laser-etched-crown.html",
    "label": "Bob's Watches：镜面激光微刻皇冠 1999 年始于 Yacht-Master 16622、2004 年初普及；服务中心更换镜面圈内标 S；Milgauss 116400GV 无微刻",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/db4548d109ad15d3.txt"
   },
   {
    "id": "S096",
    "url": "https://imslegal.com/blog/when-customization-crosses-the-line-rolex-and-trademark-enforcement",
    "label": "IMS Legal Strategies：Rolex v. BeckerTime（第五巡回，2024）与 Rolex v. Jewelry Unlimited（2025 年 2 月永久禁令）",
    "retrieved": "2026-09-20",
-   "publisher": "IMS Legal Strategies"
+   "publisher": "IMS Legal Strategies",
+   "cache": "text/68136af08af3d493.txt"
   },
   {
    "id": "S097",
    "url": "https://www.ablogtowatch.com/rolex-launches-the-rolex-certified-pre-owned-watch-program/",
    "label": "aBlogtoWatch：Certified Pre-Owned 2022 年 12 月在六国官方零售起步、两年国际质保、入门表龄三年",
    "retrieved": "2026-09-20",
-   "publisher": "aBlogtoWatch"
+   "publisher": "aBlogtoWatch",
+   "cache": "text/014416a6fd38781a.txt"
   },
   {
    "id": "S098",
    "url": "https://www.bobswatches.com/sell-rolex-watch/authenticating-a-rolex",
    "label": "Bob's Watches：劳力士不向私人提供鉴定；RCPO 表龄门槛 2025 年 5 月由三年降为两年",
    "retrieved": "2026-09-20",
-   "publisher": "Bob's Watches"
+   "publisher": "Bob's Watches",
+   "cache": "text/758c93b8ea50729a.txt"
   },
   {
    "id": "S111",
    "url": "https://tilia-speculum.hr/rolex-experimental-deep-sea-special-n1-out-of-the-deep-blue/",
    "label": "独立钟表媒体对 Rolex Experimental Deep Sea Special N°1 的专题：1953 年 9 月 30 日绑在奥古斯特·皮卡德的 bathyscaphe Trieste 外壳上，于地中海 Ponza 岛外完成 3,150 米首次深潜试验；N°3 于 1960 年 1 月 23 日随 Trieste 到 10,908/10,916 米",
    "retrieved": "2026-09-20",
-   "publisher": "Tilia Speculum"
+   "publisher": "Tilia Speculum",
+   "cache": "text/f70a9d71eb55c754.txt"
   },
   {
    "id": "S112",
    "url": "https://monochrome-watches.com/introducing-rolex-oyster-perpetual-deepsea-challenge-rlx-titanium-126067-record-breaking-dive-watch-specs-price/",
    "label": "Monochrome 2022-11-01 首发文：1960 年马里亚纳海沟 10,916 米；2012 年实验型 Deepsea Challenge 绑在卡梅隆潜水器机械臂上下到 10,908 米；量产量表 ref. 126067，50 毫米 RLX 钛、防水 11,000 米、2022 年 11 月上市、定价 25,750 欧元 / 26,000 美元",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/811aaea437cb11da.txt"
   },
   {
    "id": "S113",
    "url": "https://monochrome-watches.com/tag-heuer-back-as-official-timekeeper-formula-1-in-2025-news/",
    "label": "Monochrome 2025-01-06：劳力士自 2013 年起担任 F1 官方计时，该角色到 2025 赛季由 TAG Heuer 接替（LVMH 与 F1 签 10 年全球合作）",
    "retrieved": "2026-09-20",
-   "publisher": "Monochrome-Watches"
+   "publisher": "Monochrome-Watches",
+   "cache": "text/fcec17e7b75c7577.txt"
   },
   {
    "id": "S114",
    "url": "https://www.thehourglass.com/zh-SG/story/rolex-and-wimbledon",
    "label": "劳力士与温网关系介绍：1978 年首次与 The Championships, Wimbledon 合作，其后为官方计时并扩展至主要网球赛事",
    "retrieved": "2026-09-20",
-   "publisher": "The Hour Glass"
+   "publisher": "The Hour Glass",
+   "cache": "text/5d7fac5774e3f143.txt"
   },
   {
    "id": "S115",
    "url": "https://www.fratellowatches.com/looking-at-the-rolex-gifted-to-sir-edmund-hillary-after-his-everest-ascent/",
    "label": "Fratello 2025-08-24：劳力士自 1930 年代赞助喜马拉雅探险、1950 年代向登山者免费提供 Oyster Perpetual；1953 年英国探险队的官方供表是英国 Smiths（15 只），登顶大概率戴的是 Smiths，劳力士事后向队员供表并把希拉里与丹增做成品牌大使",
    "retrieved": "2026-09-20",
-   "publisher": "Fratello Watches"
+   "publisher": "Fratello Watches",
+   "cache": "text/ebd046bc17406f41.txt"
   }
  ],
  "category": "腕表",
@@ -2324,17 +2411,26 @@
   "hero_motif": "crown_and_bezel",
   "hero_note": "以皇冠标志与表圈齿纹的剪影开场，配深冠绿与钢灰，强调'工具表'的工业感而非珠宝感"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-10",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 16,
  "created_date": "2026-09-20",
  "site": {
-  "url": "https://rolex-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72c-c0ae-78f1-9911-bebc8ce6310c",
-  "slug": "rolex",
-  "content_sha": "4511ce2b2c02378a",
-  "published_date": "2026-09-25",
+  "url": "https://watches-gtqdc11h6po.qoder.website/rolex/rolex.html",
+  "group": "watches",
+  "path": "/rolex/rolex.html",
+  "project_id": "01a104e6-3ec2-72e3-974a-0811cf4dc8f0",
+  "content_sha": "ec6375911e23f02b",
+  "published_date": "2026-10-10",
   "access": "public"
+ },
+ "cover": {
+  "file": "images/09_劳力士_Submariner_潜水表_历史.jpg",
+  "alt": "高清图|劳力士日志型系列日志型41系列126333-62613图片|腕表之家xbiao.com",
+  "caption": "高清图|劳力士日志型系列日志型41系列126333-62613图片|腕表之家xbiao.com",
+  "source_page": "http://www.xbiao.com/rolex/43674/119758.html",
+  "width": 1472,
+  "height": 1788
  }
 }

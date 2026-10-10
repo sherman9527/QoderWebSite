@@ -33,6 +33,8 @@ def test_every_section_has_a_query_the_subject_gate_can_use():
         cfg = O.load_for_topic(f[:-5], root=ROOT)
         subj = IM.subject_tokens(cfg)
         for s in cfg.sections:
+            if getattr(s, "illustration_only", False):
+                continue        # 自画图的章没有检索词可校，见大纲 schema 那个字段
             qs = IM.gated_queries(s.image_queries, subj)
             usable = [q for q in qs if IM.names_subject(q.lower(), subj)]
             if not usable:
@@ -142,7 +144,7 @@ def test_all_seven_capabilities_have_specs():
 DATA_SCHEMA = json.loads(_read("config", "topic_data.schema.json"))
 # quote 早就有 source_ids；其余内容块也必须能挂——G-06 要求"带数字的 prose 要有来源"
 CARRYING = ["prose", "keyvalueTable", "timeline", "priceTable", "cardGrid",
-            "steps", "factStrip", "compare", "note"]
+            "steps", "factStrip", "compare", "note", "code"]
 
 
 def _block_errors(def_name, blk):
@@ -299,15 +301,22 @@ def test_the_data_contract_allows_the_published_site_block(data_schema):
     我加了字段却没同步 schema，`validate --all` 立刻把那一整篇判死（G-10）——
     而 G-10 判死会让索引静默跳过该篇，看起来像"发布把页面弄坏了"。
     写产物的代码和约束产物的契约必须同一次改。
+
+    10-04 合站之后 `slug` 从 site 里退场（发布单位是组，文章自己的 slug 已不在 URL 里，
+    留着就是一份没人读也没人清的旧数据），换进来的是 `group` 与 `path`。
     """
     props = data_schema["properties"]["site"]["properties"]
-    for field in ("url", "slug", "content_sha", "published_date", "access", "project_id"):
+    for field in ("url", "group", "path", "content_sha", "published_date", "access",
+                  "project_id"):
         assert field in props, u"site 少了 %s" % field
+    assert "slug" not in props, u"site.slug 已随一篇一站退场：留着就是第二份没人同步的真相"
     # 只记 URL 不记 projectId，等于让下一次更新靠记忆认站——我已经把策略改到错的站上去过
     assert "project_id" in data_schema["properties"]["site"]["required"], \
         u"project_id 必须是必填：一个 URL 说不出它属于哪个站"
     assert data_schema["properties"]["site"]["additionalProperties"] is False, \
         u"site 也要关紧：它是会被 G-14 当权威源读的字段，多一个没人知道的东西更糟"
+    # 深链的两段都必须成形状：主机名由 record 校验，路径由 schema 卡住形态
+    assert props["path"]["pattern"], u"path 没有 pattern，`/咖啡/咖啡.html` 这种也会收"
 
 
 def test_prose_floor_in_config_and_schema_is_one_number_not_two():
@@ -489,3 +498,28 @@ def test_a_branch_mismatch_reports_why_each_branch_rejected_it():
     assert "additionalProperties" in joined, u"没说是哪类约束：%s" % joined[:300]
     assert "title" in joined, u"没指出多出来的是哪个键：%s" % joined[:300]
     assert "'type':" not in joined, u"靠 dump 实例蒙过断言：%s" % joined[:160]
+
+
+def test_data_schema_oneOf_offers_every_block_type():
+    """枚举里有、`oneOf` 里没有 —— 这个区块就**永远进不了产物**，而且报的是最坏的错误。
+
+    W-171 加 `code` 时真的撞上了：`blockType.enum`、`$defs.code`、Python/TS 枚举、
+    渲染器全改了，唯独漏了 `oneOf` 那一项。已有的三条枚举一致性测试**全绿**，
+    因为谁都不看 `oneOf`；而 G-10 的报错只会说"is not valid under any of the given
+    schemas"——它不说"你少接了一条"，读起来像代码块自己写错了。
+
+    这条不是风格检查，是补**唯一能看见这处漂移的角度**。
+    """
+    schema = json.loads(_read("config", "topic_data.schema.json"))
+    items = schema["properties"]["sections"]["items"]["properties"]["blocks"]["items"]
+    offered = {o["$ref"].rsplit("/", 1)[-1] for o in items["oneOf"]}
+    want = set(schema["$defs"]["blockType"]["enum"])
+    # $defs 的键是 camelCase（keyvalueTable），枚举是 snake_case（keyvalue_table）。
+    # 靠命名巧合去映射太脆，所以读每条 def 自己的 type.const 来对齐。
+    by_const = {}
+    for name in offered:
+        by_const[schema["$defs"][name]["properties"]["type"]["const"]] = name
+    missing = want - set(by_const)
+    assert not missing, u"这些区块类型在枚举里，但 oneOf 没提供：%s" % sorted(missing)
+    extra = set(by_const) - want
+    assert not extra, u"oneOf 提供了枚举里不存在的类型：%s" % sorted(extra)

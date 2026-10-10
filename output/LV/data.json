@@ -128,7 +128,7 @@
    "images": [
     {
      "file": "images/25_路易威登_古董_旅行箱.jpg",
-     "alt": "【Louis Vuitton路易威登 休闲运动鞋】【包邮包税】 LV路易威登 23年春夏 男士 休闲运动鞋 LV TRAINER 运动鞋 ...",
+     "alt": "",
      "caption": "【Louis Vuitton路易威登 休闲运动鞋】【包邮包税】 LV路易威登 23年春夏 男士 休闲运动鞋 LV TRAINER 运动鞋 ...",
      "source_page": "http://item.secoo.com/100714877.shtml",
      "width": 1500,
@@ -137,7 +137,7 @@
     },
     {
      "file": "images/26_路易威登_Bernard_Arnault.jpg",
-     "alt": "路易威登LOUIS VUITTON中国官方网站-LV官网",
+     "alt": "",
      "caption": "路易威登LOUIS VUITTON中国官方网站-LV官网",
      "source_page": "https://huaban.com/pins/2258360158",
      "width": 658,
@@ -262,16 +262,16 @@
    "images": [
     {
      "file": "images/27_路易威登_Epi_皮革.png",
-     "alt": "路易威登十大经典款不会过时的包包你值得拥有_Speedy",
+     "alt": "",
      "caption": "路易威登十大经典款不会过时的包包你值得拥有_Speedy",
      "source_page": "https://www.sohu.com/a/380326766_120458740",
-     "width": 810,
-     "height": 540,
+     "width": 800,
+     "height": 533,
      "query": "路易威登 Epi 皮革"
     },
     {
      "file": "images/03_LV.jpg",
-     "alt": "之LOUIS VUITTON LV所被我们熟知的标志性图案有很多……|路易威登|LV Monogram|经典|老花|旅途_新浪新闻",
+     "alt": "",
      "caption": "之LOUIS VUITTON LV所被我们熟知的标志性图案有很多……|路易威登|LV Monogram|经典|老花|旅途_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_1765148101_693605c5040017m0w.html",
      "width": 700,
@@ -288,12 +288,21 @@
     {
      "type": "prose",
      "heading": "同一年出生：一只装行李，一只装日常",
-     "text": "Speedy 和 Keepall 是同一年的产物，起点都在旅行上。Keepall 原名 Tient-tout，法语意为「装下一切」，是只软帮旅行袋，不用时可折进箱底。Speedy 是它的缩小版，1930 年以 Express 之名推出，取那个年代提速之意；最初只有 30 厘米一只，后来补上 35 和 40。型号后的数字不是编号，是包身正面宽度，单位厘米。更小的 Speedy 25 来自 Audrey Hepburn 的定制请求。Express 改称 Speedy 的具体年份，各家口径不一。"
+     "text": "Speedy 和 Keepall 是同一年的产物，起点都在旅行上。Keepall 原名 Tient-tout，法语意为「装下一切」，是只软帮旅行袋，不用时可折进箱底。Speedy 是它的缩小版，1930 年以 Express 之名推出，取那个年代提速之意；最初只有 30 厘米一只，后来补上 35 和 40。型号后的数字不是编号，是包身正面宽度，单位厘米。更小的 Speedy 25 来自 Audrey Hepburn 的定制请求。Express 改称 Speedy 的具体年份，各家口径不一。",
+     "source_ids": [
+      "S037",
+      "S038",
+      "S0310"
+     ]
     },
     {
      "type": "prose",
      "heading": "走量的两只：一只出自委托，一只是沙滩袋",
-     "text": "Alma 的起点是一桩委托：Sotheby's 记的是 1925 年前后 Coco Chanel 想要一只圆顶手拿包，Gaston-Louis Vuitton 把旅行用的 Steamer 改成日常尺寸，命名 Squire；它以 Squire 之名长期生产，1992 年才改用巴黎 Alma 广场命名。Neverfull 年轻得多，2007 年上市，最初定位是沙滩袋，一说对标 Goyard 的 Saint Louis。敞口、可收紧侧壁、涂层帆布——结构上没难点，卖的是能装和不怕造。"
+     "text": "Alma 的起点是一桩委托：Sotheby's 记的是 1925 年前后 Coco Chanel 想要一只圆顶手拿包，Gaston-Louis Vuitton 把旅行用的 Steamer 改成日常尺寸，命名 Squire；它以 Squire 之名长期生产，1992 年才改用巴黎 Alma 广场命名。Neverfull 年轻得多，2007 年上市，最初定位是沙滩袋，一说对标 Goyard 的 Saint Louis。敞口、可收紧侧壁、涂层帆布——结构上没难点，卖的是能装和不怕造。",
+     "source_ids": [
+      "S0311",
+      "S0312"
+     ]
     },
     {
      "type": "price_table",
@@ -460,7 +469,7 @@
    "images": [
     {
      "file": "images/07_LV.jpg",
-     "alt": "盘点十大lv经典款包包推荐(lv最有人气的包是哪款）_女士手提包_什么值得买",
+     "alt": "",
      "caption": "盘点十大lv经典款包包推荐(lv最有人气的包是哪款）_女士手提包_什么值得买",
      "source_page": "https://post.smzdm.com/p/a4xmvoqw/",
      "width": 1080,
@@ -469,11 +478,11 @@
     },
     {
      "file": "images/29_路易威登_Speedy.jpg",
-     "alt": "路易威登 2024春夏男士系列 由男装创意总监Pharrell Williams呈现",
+     "alt": "",
      "caption": "路易威登 2024春夏男士系列 由男装创意总监Pharrell Williams呈现",
      "source_page": "https://www.vogue.com.cn/fashion/brand_news/news_13g1ae49ed7bcad3.html",
-     "width": 1600,
-     "height": 2000,
+     "width": 1472,
+     "height": 1840,
      "query": "路易威登 Speedy"
     }
    ]
@@ -651,7 +660,7 @@
    "images": [
     {
      "file": "images/11_LV.jpg",
-     "alt": "「LV」将大秀开进巴黎赛场，史上最潮的一届奥运要来了？_凤凰网",
+     "alt": "",
      "caption": "「LV」将大秀开进巴黎赛场，史上最潮的一届奥运要来了？_凤凰网",
      "source_page": "https://sports.ifeng.com/c/8RiM29h6w1M",
      "width": 1080,
@@ -660,11 +669,11 @@
     },
     {
      "file": "images/29_路易威登_Supreme.jpg",
-     "alt": "路易威登2025秋冬女装系列",
+     "alt": "",
      "caption": "路易威登2025秋冬女装系列",
      "source_page": "https://www.vogue.com.cn/fashion/brand_news/news_15g395eedc5b3a2a.html",
-     "width": 4944,
-     "height": 7410,
+     "width": 1472,
+     "height": 2206,
      "query": "路易威登 Supreme"
     }
    ]
@@ -779,20 +788,20 @@
    "images": [
     {
      "file": "images/31_路易威登_Marc.jpg",
-     "alt": "路易威登 2024春夏男士系列 由男装创意总监Pharrell Williams呈现",
+     "alt": "",
      "caption": "路易威登 2024春夏男士系列 由男装创意总监Pharrell Williams呈现",
      "source_page": "https://www.vogue.com.cn/fashion/brand_news/news_13g1ae49ed7bcad3.html",
-     "width": 1600,
-     "height": 2000,
+     "width": 1472,
+     "height": 1840,
      "query": "路易威登 Marc"
     },
     {
      "file": "images/32_路易威登_Jacobs.jpg",
-     "alt": "路易威登 2024春夏男士系列 由男装创意总监Pharrell Williams呈现",
+     "alt": "",
      "caption": "路易威登 2024春夏男士系列 由男装创意总监Pharrell Williams呈现",
      "source_page": "https://www.vogue.com.cn/fashion/brand_news/news_13g1ae49ed7bcad3.html",
-     "width": 1600,
-     "height": 2000,
+     "width": 1472,
+     "height": 1840,
      "query": "路易威登 Jacobs"
     }
    ]
@@ -805,7 +814,13 @@
     {
      "type": "prose",
      "heading": "涨价不是事件，是节奏",
-     "text": "LV 不公布价目表，调价往往一夜完成。南方都市报统计：近三年至少调价 10 次，平均每年 3 次。\n\n幅度差别大。2022 年 2 月是大跳，中国官网 Neverfull 中号从 1.2 万元涨到 1.44 万元，小麻将包从 3,500 元涨到 5,400 元；2025 年是小步，8 月美国官网 Neverfull MM 从 2,130 美元涨到 2,170 美元。\n\n也不雨露均沾：2024 年 7 月 2 日那轮，Speedy 和 Neverfull 在美国原价未动，同期爱马仕涨 3.7%–9.6%、香奈儿涨 2.8%–8.3%。涨谁不涨谁，只看需求。"
+     "text": "LV 不公布价目表，调价往往一夜完成。南方都市报统计：近三年至少调价 10 次，平均每年 3 次。\n\n幅度差别大。2022 年 2 月是大跳，中国官网 Neverfull 中号从 1.2 万元涨到 1.44 万元，小麻将包从 3,500 元涨到 5,400 元；2025 年是小步，8 月美国官网 Neverfull MM 从 2,130 美元涨到 2,170 美元。\n\n也不雨露均沾：2024 年 7 月 2 日那轮，Speedy 和 Neverfull 在美国原价未动，同期爱马仕涨 3.7%–9.6%、香奈儿涨 2.8%–8.3%。涨谁不涨谁，只看需求。",
+     "source_ids": [
+      "S062",
+      "S063",
+      "S064",
+      "S065"
+     ]
     },
     {
      "type": "price_table",
@@ -909,7 +924,7 @@
    "images": [
     {
      "file": "images/33_LV.jpg",
-     "alt": "【Louis Vuitton路易威登 手提包】【包邮包税】 LV路易威登 21年春夏 女士 手提包 NEVERFULL 中号手袋 M57484 ...",
+     "alt": "",
      "caption": "【Louis Vuitton路易威登 手提包】【包邮包税】 LV路易威登 21年春夏 女士 手提包 NEVERFULL 中号手袋 M57484 ...",
      "source_page": "http://item.secoo.com/85904242.shtml",
      "width": 2000,
@@ -918,11 +933,11 @@
     },
     {
      "file": "images/34_路易威登_公价.gif",
-     "alt": "路易威登手表型号排名_Louis Vuitton手表型号推荐|腕表之家xbiao.com",
+     "alt": "",
      "caption": "路易威登手表型号排名_Louis Vuitton手表型号推荐|腕表之家xbiao.com",
      "source_page": "https://top.xbiao.com/lv/003/",
-     "width": 1200,
-     "height": 1800,
+     "width": 800,
+     "height": 1200,
      "query": "路易威登 公价"
     }
    ]
@@ -935,7 +950,12 @@
     {
      "type": "prose",
      "heading": "先对齐口径：同一 SKU、同一天、同一汇率",
-     "text": "LV 不打折，也没有积分、会员返现或官方折扣渠道。能改变一只包实付金额的只有两件事：当地公价与当地税制。比价因此要锁在同一 SKU 上，乘当日汇率，再减掉你真正拿回来的那部分税——不是法定税率，是扣掉退税公司佣金后的到手数。\n\n按 2026 年 9 月的欧央行参考汇率折算，同一只老花包在欧洲的标价通常比中国大陆官网低两到三成，算进法国净退税后接近四成。美国官网价换算后已与国内接近，而它不含任何可退的增值税，收银台还要另加一层销售税。"
+     "text": "在官网商品页上你只会有一个价：LV 中国大陆官网那只 Speedy Bandoulière 25 的页面标着 ¥15,100，价格位上没有划线原价，页面上也搜不出「促销／折扣／优惠券／积分」任何一类字样（09-27 逐词数过，可见文本 0 命中）。能改变一只包实付金额的只有两件事：当地公价与当地税制。比价因此要锁在同一 SKU 上，乘当日汇率，再减掉你真正拿回来的那部分税——不是法定税率，是扣掉退税公司佣金后的到手数。按 2026 年 9 月的欧央行参考汇率折算，同一只老花包在欧洲的标价通常比中国大陆官网低两到三成，算进法国净退税后接近四成。美国官网价换算后已与国内接近，而它不含任何可退的增值税，收银台还要另加一层销售税。",
+     "source_ids": [
+      "S071",
+      "S075",
+      "S076"
+     ]
     },
     {
      "type": "price_table",
@@ -1170,7 +1190,7 @@
    "images": [
     {
      "file": "images/37_路易威登_巴黎.jpg",
-     "alt": "路易威登 LV 2021春夏快闪店 : 路易威登LV 2021 春夏快闪店 首次登陆北京国贸B1中庭 色彩鲜艳，充满童趣，快快来打卡吧",
+     "alt": "",
      "caption": "路易威登 LV 2021春夏快闪店 : 路易威登LV 2021 春夏快闪店 首次登陆北京国贸B1中庭 色彩鲜艳，充满童趣，快快来打卡吧",
      "source_page": "https://huaban.com/pins/4684050704",
      "width": 658,
@@ -1179,11 +1199,11 @@
     },
     {
      "file": "images/23_LV.jpg",
-     "alt": "LV的历史你知道多少？ - 知乎",
+     "alt": "",
      "caption": "LV的历史你知道多少？ - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/425587867",
-     "width": 4032,
-     "height": 3024,
+     "width": 1472,
+     "height": 1104,
      "query": "LV"
     }
    ]
@@ -1463,16 +1483,16 @@
    "images": [
     {
      "file": "images/39_路易威登_旅行箱_制作工坊.jpg",
-     "alt": "路易威登 2024春夏男士系列 由男装创意总监Pharrell Williams呈现",
+     "alt": "",
      "caption": "路易威登 2024春夏男士系列 由男装创意总监Pharrell Williams呈现",
      "source_page": "https://www.vogue.com.cn/fashion/brand_news/news_13g1ae49ed7bcad3.html",
-     "width": 1600,
-     "height": 2000,
+     "width": 1472,
+     "height": 1840,
      "query": "路易威登 旅行箱 制作工坊"
     },
     {
      "file": "images/40_LV.jpg",
-     "alt": "盘点十大lv经典款包包推荐(lv最有人气的包是哪款）_女士手提包_什么值得买",
+     "alt": "",
      "caption": "盘点十大lv经典款包包推荐(lv最有人气的包是哪款）_女士手提包_什么值得买",
      "source_page": "https://post.smzdm.com/p/a4xmvoqw/",
      "width": 1080,
@@ -1489,7 +1509,12 @@
     {
      "type": "prose",
      "heading": "工坊地图：29 座里 11 座不在法国",
-     "text": "LVMH 年报给的口径很硬：截至 2025 年，LV 有 29 座成品皮具工坊——法国 18、西班牙 4、美国 4、意大利 3，造出品牌大部分皮具，外部代工“仅用于补充产能”。上一年度是 28 座、法国 19、美国 3，一年之间法国减一、美国加一。\n\n两座老工坊值得单说：Asnières-sur-Seine 是 1859 年的第一间工坊，如今与 Issoudun 一起承担珍稀皮制作；原型打样留在巴黎 Rue du Louvre 与佛罗伦萨。"
+     "text": "LVMH 年报给的口径很硬：截至 2025 年，LV 有 29 座成品皮具工坊——法国 18、西班牙 4、美国 4、意大利 3，造出品牌大部分皮具，外部代工“仅用于补充产能”。上一年度是 28 座、法国 19、美国 3，一年之间法国减一、美国加一。\n\n两座老工坊值得单说：Asnières-sur-Seine 是 1859 年的第一间工坊，如今与 Issoudun 一起承担珍稀皮制作；原型打样留在巴黎 Rue du Louvre 与佛罗伦萨。",
+     "source_ids": [
+      "S011",
+      "S091",
+      "S092"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -1573,7 +1598,11 @@
     {
      "type": "prose",
      "heading": "Fondation Louis Vuitton：把工艺叙事做成建筑",
-     "text": "年报里基金会只占一句：2014 年 10 月，Fondation Louis Vuitton 在巴黎开馆。馆舍出自美国建筑师 Frank Gehry 之手，立在布洛涅森林边缘，12 片弧形玻璃帆罩住白色“冰山”，11 个展厅。"
+     "text": "年报里基金会只占一句：2014 年 10 月，Fondation Louis Vuitton 在巴黎开馆。馆舍出自美国建筑师 Frank Gehry 之手，立在布洛涅森林边缘，12 片弧形玻璃帆罩住白色“冰山”，11 个展厅。",
+     "source_ids": [
+      "S091",
+      "S097"
+     ]
     },
     {
      "type": "compare",
@@ -1601,7 +1630,7 @@
    "images": [
     {
      "file": "images/43_路易威登_Made_in.jpg",
-     "alt": "路易威登正式宣布王楚钦出任品牌大使",
+     "alt": "",
      "caption": "路易威登正式宣布王楚钦出任品牌大使",
      "source_page": "https://www.vogue.com.cn/fashion/brand_news/news_14526b4af6069ecf.html",
      "width": 815,
@@ -1610,7 +1639,7 @@
     },
     {
      "file": "images/44_LV.jpg",
-     "alt": "十万个品牌故事:LV路易威登背后的故事你肯定没看过-搜狐大视野-搜狐新闻",
+     "alt": "",
      "caption": "十万个品牌故事:LV路易威登背后的故事你肯定没看过-搜狐大视野-搜狐新闻",
      "source_page": "https://www.sohu.com/picture/383300625",
      "width": 1024,
@@ -1735,11 +1764,11 @@
    "images": [
     {
      "file": "images/48_路易威登.gif",
-     "alt": "【路易威登手表价格及图片】Louis Vuitton路易威登手表官网型号查询_路易威登官网|腕表之家",
+     "alt": "",
      "caption": "【路易威登手表价格及图片】Louis Vuitton路易威登手表官网型号查询_路易威登官网|腕表之家",
      "source_page": "https://watch.xbiao.com/lv/",
-     "width": 1200,
-     "height": 1800,
+     "width": 800,
+     "height": 1200,
      "query": "路易威登"
     }
    ]
@@ -1863,7 +1892,7 @@
    "images": [
     {
      "file": "images/12_路易威登.jpg",
-     "alt": "路易威登（Louis Vuitton) 品牌的历史 - 知乎",
+     "alt": "",
      "caption": "路易威登（Louis Vuitton) 品牌的历史 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/376080745",
      "width": 2400,
@@ -1879,7 +1908,8 @@
    "url": "https://brandvelle.com/articles/louis-vuitton-monogram-canvas-1896",
    "label": "Monogram 帆布专文，URL 与标题即标注 1896 年",
    "retrieved": "2026-09-20",
-   "publisher": "Brandvelle"
+   "publisher": "Brandvelle",
+   "cache": "text/0cdaf8f9b9683f83.txt"
   },
   {
    "id": "S022",
@@ -1905,14 +1935,16 @@
    "url": "https://etoile-luxuryvintage.com/blogs/the-history-of/the-history-of-louis-vuitton-damier-ebene-and-azur",
    "label": "Damier Ebene 与 Damier Azur 两种棋盘格的来历梳理",
    "retrieved": "2026-09-20",
-   "publisher": "Etoile Luxury Vintage"
+   "publisher": "Etoile Luxury Vintage",
+   "cache": "text/a756fbd729354513.txt"
   },
   {
    "id": "S026",
    "url": "https://baike.baidu.com/en/item/Damier%20checkerboard%20pattern/4021283",
    "label": "Damier 棋盘格图案词条",
    "retrieved": "2026-09-20",
-   "publisher": "Baidu 百科英文版"
+   "publisher": "Baidu 百科英文版",
+   "cache": "text/b863ba2b07f15ccd.txt"
   },
   {
    "id": "S027",
@@ -1926,7 +1958,8 @@
    "url": "https://brandstreettokyo.com/blogs/journal/louis-vuitton-monogram-material-guide",
    "label": "LV 材质指南：Monogram、Damier、Epi、Empreinte 并列对比",
    "retrieved": "2026-09-20",
-   "publisher": "Brand Street Tokyo"
+   "publisher": "Brand Street Tokyo",
+   "cache": "text/c9a2806bf044572c.txt"
   },
   {
    "id": "S029",
@@ -1946,7 +1979,8 @@
    "url": "https://rare.gallery/zh-mk/blogs/our-journal/louis-vuitton-taiga-bag-for-men-review",
    "label": "Taïga 男包评述：What Makes Louis Vuitton Taiga a Favorite Among Men",
    "retrieved": "2026-09-20",
-   "publisher": "Rare Gallery"
+   "publisher": "Rare Gallery",
+   "cache": "text/69dca34e56359d5a.txt"
   },
   {
    "id": "S0212",
@@ -1986,7 +2020,8 @@
    "url": "https://www.spottedfashion.com/louis-vuitton-to-discontinue-takashi-murakami-monogram-multicolore-line/",
    "label": "2015 年报道：LV 停产村上隆 Monogram Multicolore 产品线",
    "retrieved": "2026-09-20",
-   "publisher": "Spotted Fashion"
+   "publisher": "Spotted Fashion",
+   "cache": "text/de515ec47477ddd4.txt"
   },
   {
    "id": "S0218",
@@ -2013,140 +2048,160 @@
    "url": "https://www.louisvuitton.cn/zhs-cn/magazine/articles/heritage",
    "label": "路易威登官方「丰厚传承：始于 1854 年」专题，含「立业史诗」逐年条目：1837 年师从 Romain Maréchal、1854 年 Capucines 街开店、约 1860 年改圆顶为平顶、1859 年购 Asnières 土地、1867 年世博会铜奖、1889 年多锁簧防盗锁专利、1896 年 Monogram、1914 年香榭丽舍 70 号",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton（中国区官网）"
+   "publisher": "Louis Vuitton（中国区官网）",
+   "cache": "text/dc638593f02fd1e2.txt"
   },
   {
    "id": "S012",
    "url": "https://www.louisvuitton.cn/zhs-cn/stories/louis-vuitton-trunks",
    "label": "路易威登官方硬箱专题页：「自 1854 年以来，硬箱制作便为路易威登奠定基石，每件作品皆为旅行而生」，并注明 Courrier Lozine 硬箱「自 1858 年起便成为标志之作」",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton（中国区官网）"
+   "publisher": "Louis Vuitton（中国区官网）",
+   "cache": "text/2c3366ca48afc4dd.txt"
   },
   {
    "id": "S013",
    "url": "https://www.lvmh.com/en/our-group/history",
    "label": "LVMH 官方集团历史时间轴：1987 年 Moët Hennessy 与 Louis Vuitton 合并创立 LVMH，创立之初 10 个品牌、12000 名员工、30 亿欧元销售额；Bernard Arnault 自 1989 年起执掌并为最大股东",
    "retrieved": "2026-09-20",
-   "publisher": "LVMH"
+   "publisher": "LVMH",
+   "cache": "text/be3e90281e971755.txt"
   },
   {
    "id": "S014",
    "url": "https://www.lvmh.cn/our-maisons/fashion-leather-good/louis-vuitton",
    "label": "LVMH 官网路易威登品牌页（中文）：1854 年巴黎创立、RUE DES CAPUCINES 4 号首店、法国 17 间皮具工坊、制作一只皮具平均 250 道工序，并列出平顶硬箱、轻质涂层帆布、防撬锁等创新",
    "retrieved": "2026-09-20",
-   "publisher": "LVMH"
+   "publisher": "LVMH",
+   "cache": "text/493d08e8c616e8d9.txt"
   },
   {
    "id": "S015",
    "url": "https://www.dior-finance.com/en/historique-copie-en",
    "label": "Christian Dior SE（Groupe Arnault）官方历史页：1984 年 Bernard Arnault 联合投资人收购当时持有 Dior 的 Boussac 集团；1988 年 Dior 通过子公司取得 LVMH 32% 股份；截至 2024 年 12 月 31 日持有 42% 股本、57% 投票权",
    "retrieved": "2026-09-20",
-   "publisher": "Christian Dior SE"
+   "publisher": "Christian Dior SE",
+   "cache": "text/1a92a429c64444ae.txt"
   },
   {
    "id": "S016",
    "url": "https://www.cnbc.com/bernard-arnault/",
    "label": "CNBC 人物简介：伯纳德·阿尔诺为 LVMH 董事长兼首席执行官，1989 年成为 LVMH 最大股东并接掌集团",
    "retrieved": "2026-09-20",
-   "publisher": "CNBC"
+   "publisher": "CNBC",
+   "cache": "text/c6639cf37f85fd18.txt"
   },
   {
    "id": "S041",
    "url": "https://hypebeast.com/2017/1/louis-vuitton-2017-fall-winter-collection-supreme",
    "label": "2017年1月19日报道 LV 2017 秋冬男装秀“Friends and heroes”中确认与 Supreme 联名，并写明 Supreme 1994 年创立于纽约 Lafayette Street、这是该品牌首次登上秀场",
    "retrieved": "2026-09-20",
-   "publisher": "Hypebeast"
+   "publisher": "Hypebeast",
+   "cache": "text/02e41f46d5390576.txt"
   },
   {
    "id": "S042",
    "url": "https://www.gq-magazine.co.uk/article/supreme-louis-vuitton-collaboration",
    "label": "联名单品明细（牛仔、包袋、丝巾、鞋、红白 Monogram 滑板与配套硬箱）与 Kim Jones 自述；并记录 Supreme 早年山寨 LV 滑板曾被告",
    "retrieved": "2026-09-20",
-   "publisher": "British GQ"
+   "publisher": "British GQ",
+   "cache": "text/ab282342d40366e5.txt"
   },
   {
    "id": "S043",
    "url": "https://www.dazeddigital.com/fashion/article/66238/1/a-brief-history-of-the-louis-vuitton-x-takashi-murakami-collaboration",
    "label": "Marc Jacobs 2001 年推出 Sprouse 涂鸦联名、此前 Monogram 从未被改动、该系列立刻售罄；并记录 2025 年白三彩复刻大部分单品被迅速抢空、广告由 Zendaya 出演",
    "retrieved": "2026-09-20",
-   "publisher": "Dazed"
+   "publisher": "Dazed",
+   "cache": "text/239c0908e67bde13.txt"
   },
   {
    "id": "S044",
    "url": "https://mygemma.com/blogs/news/top-lv-retro-bags-for-collectors",
    "label": "涂鸦系列的可收藏包型（Graffiti Speedy、Keepall、Alma、Pochette Accessoires）；Murakami Multicolore 2003 年推出、用 33 种颜色重绘 Monogram",
    "retrieved": "2026-09-20",
-   "publisher": "myGemma"
+   "publisher": "myGemma",
+   "cache": "text/c5de7881faa07966.txt"
   },
   {
    "id": "S045",
    "url": "https://www.rebag.com/thevault/louis-vuitton-101-yayoi-kusama/",
    "label": "草间弥生与 LV 2012 年首次合作；原系列十周年后为 Cruise 2023 推出第二次合作",
    "retrieved": "2026-09-20",
-   "publisher": "Rebag"
+   "publisher": "Rebag",
+   "cache": "text/be8d0bed219070db.txt"
   },
   {
    "id": "S046",
    "url": "https://www.myartbroker.com/artist-yayoi-kusama/articles/creating-infinity-yayoi-kusama-louis-vuitton",
    "label": "第二次合作于 2023 年 1 月推出，含波点、南瓜与无限镜元素及概念店布置",
    "retrieved": "2026-09-20",
-   "publisher": "MyArtBroker"
+   "publisher": "MyArtBroker",
+   "cache": "text/77f7712cbb7e0ec6.txt"
   },
   {
    "id": "S047",
    "url": "https://www.sothebys.com/en/press/the-louis-vuitton-and-nike-expression-of-the-air-force-1-by-virgil-abloh-auction-at-sothebys",
    "label": "苏富比官方新闻稿：200 双 LV×Nike Air Force 1 配飞行员硬箱，起拍价 2,000 美元，2022 年 1 月 26 日至 2 月 8 日线上竞价，收益捐 Virgil Abloh “Post-Modern” 奖学金基金",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/eb0c9403e75695bb.txt"
   },
   {
    "id": "S048",
    "url": "https://hypebeast.com/2022/2/sothebys-auction-entire-louis-vuitton-x-nike-air-force-1-by-virgil-abloh-record-breaking-sale-announcement",
    "label": "拍卖结果：总成交 2,530 万美元，为 300 万美元总高估价的 8 倍；一双 US5 码落槌价 352,800 美元",
    "retrieved": "2026-09-20",
-   "publisher": "Hypebeast"
+   "publisher": "Hypebeast",
+   "cache": "text/7f24a696961294ec.txt"
   },
   {
    "id": "S049",
    "url": "https://jingdaily.com/posts/louis-vuitton-x-supreme-2021-history-retrospective-value",
    "label": "LV×Supreme 联名时间线梳理：1994 Supreme 创立、1997 Marc Jacobs 入主 LV、2017 联名系列上市",
    "retrieved": "2026-09-20",
-   "publisher": "Jing Daily"
+   "publisher": "Jing Daily",
+   "cache": "text/a91183a8825d0ba6.txt"
   },
   {
    "id": "S031",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/speedy-bandouliere-25-monogram-nvprod5320019v/M46977",
    "label": "LV 中国大陆官网 Speedy Bandoulière 25（Monogram）商品页，标价 15,100 元",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官网"
+   "publisher": "Louis Vuitton 官网",
+   "cache": "text/112538d744f9bf22.txt"
   },
   {
    "id": "S032",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/neverfull-mm-monogram-nvprod5350101v/M46987",
    "label": "LV 中国大陆官网 Neverfull 中号（Monogram）商品页，标价 15,100 元",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官网"
+   "publisher": "Louis Vuitton 官网",
+   "cache": "text/a848db3630004440.txt"
   },
   {
    "id": "S033",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/alma-bb-monogram-nvprod5190086v/M46990",
    "label": "LV 中国大陆官网 Alma BB（Monogram）商品页，标价 15,100 元",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官网"
+   "publisher": "Louis Vuitton 官网",
+   "cache": "text/6a12e06a275851af.txt"
   },
   {
    "id": "S034",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/keepall-bandouliere-50-monogram-canvas-000695/M41416",
    "label": "LV 中国大陆官网 Keepall Bandoulière 50 商品页，标价 21,600 元；页面归类在「旅行袋和滚轮拉杆箱」",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官网"
+   "publisher": "Louis Vuitton 官网",
+   "cache": "text/a498e61e9fbd500a.txt"
   },
   {
    "id": "S035",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/petite-malle-monogram-nvprod3160042v/M45943",
    "label": "LV 中国大陆官网 Petite Malle（Monogram）商品页，标价 49,500 元",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官网"
+   "publisher": "Louis Vuitton 官网",
+   "cache": "text/57e67fe32ec285fa.txt"
   },
   {
    "id": "S036",
@@ -2160,21 +2215,24 @@
    "url": "https://www.vogue.com/article/louis-vuitton-speedy-bag",
    "label": "Vogue：「the Speedy made its debut in 1930 under the name the Express」；最初仅 30cm，后增 35/40cm；1960 年代 Audrey Hepburn 要求更小版本，遂有 Speedy 25",
    "retrieved": "2026-09-20",
-   "publisher": "Vogue"
+   "publisher": "Vogue",
+   "cache": "text/416d164a1615c116.txt"
   },
   {
    "id": "S038",
    "url": "https://etoile-luxuryvintage.com/blogs/the-history-of/history-of-the-bag-louis-vuitton-speedy",
    "label": "l'Étoile 专栏：「designed in 1930 as a smaller interpretation of the hugely popular Keepall bag」，当时称 Express；「型号数字指包身正面宽度的厘米数」",
    "retrieved": "2026-09-20",
-   "publisher": "l'Étoile Luxury Vintage"
+   "publisher": "l'Étoile Luxury Vintage",
+   "cache": "text/e1e7fe5f25b20323.txt"
   },
   {
    "id": "S039",
    "url": "https://www.christies.com/en/stories/the-history-of-louis-vuitton-df92b460eddb49eaa76be5681fd849f4",
    "label": "Christie's 品牌史：「the house debuted some of its most iconic bags in the early 1930s, including the Keepall (1930), the Speedy (1930), the Noé bucket bag (1932) and the Alma (1934)」",
    "retrieved": "2026-09-20",
-   "publisher": "Christie's"
+   "publisher": "Christie's",
+   "cache": "text/6a89dea3c7d6eabd.txt"
   },
   {
    "id": "S0310",
@@ -2188,56 +2246,64 @@
    "url": "https://www.sothebys.com/en/articles/louis-vuitton-alma-a-quintessential-piece-of-handbag-history",
    "label": "Sotheby's 论 Alma：1925 年 Coco Chanel 委托把 Steamer 改成圆顶包即 Squire（Gaston-Louis Vuitton 设计）；1934 年获批公开生产；1992 年以巴黎 Place de l'Alma 命名",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/94bbf49cc4e98fbf.txt"
   },
   {
    "id": "S0312",
    "url": "https://mygemma.com/blogs/news/fashion-history-louis-vuitton-neverfull",
    "label": "myGemma 论 Neverfull：2007 年推出，「最初被设计成沙滩袋，有人说它是 LV 对 Goyard Saint Louis 托特的回应」",
    "retrieved": "2026-09-20",
-   "publisher": "myGemma"
+   "publisher": "myGemma",
+   "cache": "text/74fe390f548a63c0.txt"
   },
   {
    "id": "S0313",
    "url": "https://www.glory.media/how-its-made-the-louis-vuitton-capucines-bag",
    "label": "Glory Media 工艺报道：2013 年以首店街名推出 Capucines 系列；「Requiring over 250 hand-crafted steps… from skin to bag in one week」；全粒面 taurillon 皮，工坊在法国 Sarras",
    "retrieved": "2026-09-20",
-   "publisher": "Glory Media"
+   "publisher": "Glory Media",
+   "cache": "text/ca9e082d1411adcb.txt"
   },
   {
    "id": "S0314",
    "url": "https://www.sothebys.com/en/articles/louis-vuitton-petite-malle-the-mini-trunk-with-a-massive-legacy",
    "label": "Sotheby's 论 Petite Malle：2014 年 Ghesquière 接任后以最早期旅行硬箱为原型设计，沿用黄铜件与刻字 S 锁；转引《纽约时报》称由法国 Ducey 的 30 名工匠制作",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/d3bc334c0e118a0e.txt"
   },
   {
    "id": "S0315",
    "url": "https://collectorscage.dk/blogs/guides/discover-the-charm-a-guide-to-louis-vuitton-most-iconic-styles",
    "label": "Collector's Cage：Keepall 1930 年代推出，单个大仓、可折进行李箱底，别名 tient-tout；尺寸 45/50/55/60 厘米",
    "retrieved": "2026-09-20",
-   "publisher": "Collector's Cage"
+   "publisher": "Collector's Cage",
+   "cache": "text/f90fc83c45b0e3c8.txt"
   },
   {
    "id": "S051",
    "url": "https://www.lvmh.com/en/publications/the-passing-of-virgil-abloh",
    "label": "LVMH 集团官方公告：确认 Virgil Abloh 自 2018 年 3 月起任 Louis Vuitton 男装艺术总监，并公布其于 11 月 28 日因癌去世",
    "retrieved": "2026-09-20",
-   "publisher": "LVMH"
+   "publisher": "LVMH",
+   "cache": "text/529a079ae771a4f3.txt"
   },
   {
    "id": "S052",
    "url": "https://www.rappler.com/culture-desk/style/42931-louis-vuitton-names-new-women-s-design-director/",
    "label": "法新社通稿（Rappler 转载，2013-11-05）：Ghesquière 接任、Jacobs 离职并写明“16 年任期”，以及“Vuitton 狂热”导致门店排长队",
    "retrieved": "2026-09-20",
-   "publisher": "AFP / Rappler"
+   "publisher": "AFP / Rappler",
+   "cache": "text/cd899604c9a7af5e.txt"
   },
   {
    "id": "S053",
    "url": "https://fashionheritage.eu/louis-vuitton-the-marc-jacobs-years/",
    "label": "设计史站 Marc Jacobs 时期的 LV 专文：1997 年上任、为品牌创建第一条成衣线",
    "retrieved": "2026-09-20",
-   "publisher": "Fashion Heritage"
+   "publisher": "Fashion Heritage",
+   "cache": "text/f25578fe32faf597.txt"
   },
   {
    "id": "S054",
@@ -2265,133 +2331,152 @@
    "url": "https://observer.com/2023/06/pharrell-williams-louis-vuitton-first-collection/",
    "label": "Observer 首秀报道：6 月 20 日于巴黎新桥开发布会、Pharrell 是 LV 第二位黑人创意总监（第一位是 Abloh）、并收录其“crown jewel of the LVMH portfolio”原话",
    "retrieved": "2026-09-20",
-   "publisher": "The New York Observer"
+   "publisher": "The New York Observer",
+   "cache": "text/6722d532cd1caf01.txt"
   },
   {
    "id": "S058",
    "url": "https://www.complex.com/style/a/aria-hughes/pharrell-williams-louis-vuitton-collection-review",
    "label": "Complex 秀评：嘉宾由船沿塞纳河送往 Pont-Neuf 场地；Damoflage 为迷彩与 Damier 合成；软皮可折叠 Speedy 提供钴蓝、凯利绿、樱桃红等色",
    "retrieved": "2026-09-20",
-   "publisher": "Complex"
+   "publisher": "Complex",
+   "cache": "text/d99192595ee5d620.txt"
   },
   {
    "id": "S059",
    "url": "https://www.sothebys.com/en/press/the-louis-vuitton-and-nike-expression-of-the-air-force-1-by-virgil-abloh-auction-at-sothebys",
    "label": "Sotheby’s 官方新闻稿：LV x Nike “Air Force 1” by Virgil Abloh 慈善拍卖，200 双、尺码 5–18、起拍 2,000 美元、鞋在意大利 Fiesso d’Artico 鞋厂制作、款项归 Post-Modern 奖学金基金",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby’s"
+   "publisher": "Sotheby’s",
+   "cache": "text/eb0c9403e75695bb.txt"
   },
   {
    "id": "S0510",
    "url": "https://www.hollywoodreporter.com/news/general-news/nicolas-ghesquiere-named-louis-vuittons-653222/",
    "label": "Hollywood Reporter 2013-11-04：确认 Jacobs 在十月呈现最后一场 LV 巴黎秀后卸任、Ghesquière 首秀定于 2014 年 3 月",
    "retrieved": "2026-09-20",
-   "publisher": "The Hollywood Reporter"
+   "publisher": "The Hollywood Reporter",
+   "cache": "text/ae85da6f0ebafb46.txt"
   },
   {
    "id": "S0511",
    "url": "https://www.theindustry.fashion/kim-jones-appointed-artistic-director-at-dior-homme/",
    "label": "TheIndustry.fashion 2018-03-19：Dior Homme 官宣 Kim Jones 接任艺术总监，并提及他一月已从 LV 男装卸任",
    "retrieved": "2026-09-20",
-   "publisher": "TheIndustry.fashion"
+   "publisher": "TheIndustry.fashion",
+   "cache": "text/f9d0c5b4caa0432f.txt"
   },
   {
    "id": "S061",
    "url": "https://www.9inelife.com/en-en/blogs/news/louis-vuitton-preiserhoehung-second-hand",
    "label": "德国二手精品店 9ine Life 的价格专题：用 Internet Archive 存档的德国 LV 官网逐页比对同一 Monogram 款号 2019–2025 年公价，2026 年价格于 2026 年 8 月核对自 louisvuitton.com",
    "retrieved": "2026-09-20",
-   "publisher": "9ine Life"
+   "publisher": "9ine Life",
+   "cache": "text/084577e01f0b800e.txt"
   },
   {
    "id": "S062",
    "url": "https://m.mp.oeeee.com/oe/BAAFRD0000202504161070180.html",
    "label": "南方都市报 2025-04-16 报道：4 月 15 日 LV 官网 Speedy trunk 20 由 23,500 元涨至 24,400 元、Diane 由 18,600 元涨至 19,200 元，Neverfull 与 Carryall 当时未涨；并引述其此前统计——近三年 LV 至少调价 10 次、平均每年约 3 次",
    "retrieved": "2026-09-20",
-   "publisher": "南方都市报"
+   "publisher": "南方都市报",
+   "cache": "text/1352d0079229d6ac.txt"
   },
   {
    "id": "S063",
    "url": "https://www.pursebop.com/the-second-louis-vuitton-price-increase-in-2025/",
-   "label": "PurseBop 2025-08-14 逐款美国调价表（2025 年 4 月 24 日价 → 2025 年 8 月新价）：Neverfull PM/MM/GM、Speedy 各尺寸、Alma、Keepall 等",
+   "label": "PurseBop 2025-08-14《The Second Louis Vuitton Price Increase in 2025》：三个表，表头均为「Previous Price April 24, 2025 (USD) | New Price August 2025 (USD) | Price Increase (USD) | Increase (%)」。原行照抄：Neverfull MM $2,130 → $2,170（+$40，1.9%）、Neverfull PM $2,060 → $2,100、Neverfull GM $2,200 → $2,240（1.8%）、Speedy Bandoulière 25 $1,900 → $1,940、Speedy Bandoulière 30 $1,980 → $1,980（第 4 格原文 No increase）、Alma BB $1,900 → $1,940、Alma BB Epi $2,110 → $2,570（21.8%）。注意表内没有裸的「Speedy 25」与「Alma」行，别拿相近行冒充",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/0be3669917e41875.txt"
   },
   {
    "id": "S064",
    "url": "https://www.pursebop.com/louis-vuitton-global-price-increase-2024/",
    "label": "PurseBop 2024 年 7 月 2 日全球调价明细：美国涨幅 1.3%–4%，Speedy 30（1,550 美元）与 Neverfull MM（2,030 美元）等经典款未涨；文中同期爱马仕涨 3.7%–9.6%、香奈儿涨 2.8%–8.3%",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/3feb890a525eb75b.txt"
   },
   {
    "id": "S065",
    "url": "http://m.cnhubei.com/content/2022-03/02/content_14541156.html",
    "label": "荆楚网（湖北日报）2022-03-02 武汉二手奢侈品店走访：2022 年 2 月 16 日 LV 调价后 Neverfull 中号由 1.2 万元涨至 1.44 万元、Mini Pochette Accessories 由 3,500 元涨至 5,400 元；回收商称只看品牌款式品相、与专柜涨价无关；专柜 1.7 万元邮差包二手价减半；寄卖抽佣 15%、平台 20%",
    "retrieved": "2026-09-20",
-   "publisher": "荆楚网"
+   "publisher": "荆楚网",
+   "cache": "text/cd2e35e5dcb9a7b4.txt"
   },
   {
    "id": "S066",
    "url": "https://m.thepaper.cn/newsDetail_forward_27077471",
    "label": "澎湃号·《中国商界》2024-04-21（综合每日经济新闻等）：爱马仕中国市场配货比 1:1.15 至 1:2；有消费者配货花 140 余万元仍被告知无货；2024 年 3 月 21 日爱马仕在美国加州遭集体诉讼",
    "retrieved": "2026-09-20",
-   "publisher": "澎湃新闻"
+   "publisher": "澎湃新闻",
+   "cache": "text/68dc15ce7297b1af.txt"
   },
   {
    "id": "S067",
    "url": "https://www.rebag.com/thevault/resale-vs-retail-power-brands/",
    "label": "Rebag 官方 Clair 数据文章：按品牌统计平均保值率，爱马仕约 80%–90%，Louis Vuitton 约 60%–70%（属 safe bet 档）",
    "retrieved": "2026-09-20",
-   "publisher": "Rebag"
+   "publisher": "Rebag",
+   "cache": "text/b877b344ed25dcd3.txt"
   },
   {
    "id": "S068",
    "url": "https://wwd.com/fashion-news/fashion-scoops/rebag-2025-clair-report-luxury-resale-1238350782/",
    "label": "WWD 2025-12-10 报道 Rebag 2025 Clair Report：爱马仕平均保值率 138%，Birkin 十年升值 92%；香奈儿与 LV 近年峰值分别 92% 与 88%；村上隆联名复刻搜索量增长 6 倍、部分款二手溢价超 130%；爱马仕限购收紧为每年两只配额包、一个注册地址",
    "retrieved": "2026-09-20",
-   "publisher": "WWD"
+   "publisher": "WWD",
+   "cache": "text/d8eb7048a01784bd.txt"
   },
   {
    "id": "S069",
    "url": "https://tidenews.com.cn/news.html?id=2751293",
    "label": "潮新闻 2024-03-27：香奈儿 3 月 27 日全球调价约 5%，CF 大号涨至 90,600 元、小号 77,000 元升至 80,800 元；记者实地探访杭州大厦，CF、2.55、Leboy 店内均有现货",
    "retrieved": "2026-09-20",
-   "publisher": "潮新闻"
+   "publisher": "潮新闻",
+   "cache": "text/0cc982ac6d20f02d.txt"
   },
   {
    "id": "S071",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/speedy-bandouliere-25-monogram-nvprod5320019v/M46977",
-   "label": "路易威登中国大陆官网 SPEEDY BANDOULIÈRE 25（M46977）商品页，2026-09-20 抓取，页面标价 ¥15,100",
+   "label": "路易威登中国大陆官网 SPEEDY BANDOULIÈRE 25（M46977）商品页（2026-09-20 抓取，2026-09-27 复核）：价格区原文只有 M46977／SPEEDY BANDOULIÈRE 25 手袋／¥15,100／材质 MONOGRAM，DOM 为 `<div class=\"lv-price lv-product__price body-s\"><!----><span class=\"notranslate\">¥15,100</span><!----></div>`——划线原价与促销位是两个空注释占位符，未渲染。促销类字样在**可见文本**中命中 0：促销／折扣／优惠／立减／积分／优惠券／满减／特价／秒杀／直降／券后／限时／活动价／返现全部为 0；HTML 侧的零星命中逐条核过，分别是隐私政策文案（「不再接收…推广或促销信息」）与 i18n 字词典（「注册会员」「会员登录」）与退换货条款里的「赠品（如有）」，均非页面促销。可见文本另有「中国大陆地区尊享顺丰免费配送」一处（运费，不是本品降价）与手风琴标签「赠礼」（服务栏目名）",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官方线上旗舰店"
+   "publisher": "Louis Vuitton 官方线上旗舰店",
+   "cache": "text/112538d744f9bf22.txt"
   },
   {
    "id": "S072",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/neverfull-mm-monogram-nvprod5350101v/M46987",
    "label": "路易威登中国大陆官网 NEVERFULL 中号（M46987）商品页，标价 ¥15,100",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官方线上旗舰店"
+   "publisher": "Louis Vuitton 官方线上旗舰店",
+   "cache": "text/a848db3630004440.txt"
   },
   {
    "id": "S073",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/neverfull-gm-monogram-nvprod5350104v/M46978",
    "label": "路易威登中国大陆官网 NEVERFULL 大号（M46978）商品页，标价 ¥16,000",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官方线上旗舰店"
+   "publisher": "Louis Vuitton 官方线上旗舰店",
+   "cache": "text/5c379bc2257047fb.txt"
   },
   {
    "id": "S074",
    "url": "https://www.louisvuitton.cn/zhs-cn/products/neverfull-bb-monogram-nvprod4590004v/M46705",
    "label": "路易威登中国大陆官网 NEVERFULL BB（M46705）商品页，标价 ¥18,600",
    "retrieved": "2026-09-20",
-   "publisher": "Louis Vuitton 官方线上旗舰店"
+   "publisher": "Louis Vuitton 官方线上旗舰店",
+   "cache": "text/f4e9820081c956c4.txt"
   },
   {
    "id": "S075",
    "url": "https://collectorscage.fr/blogs/guides/louis-vuitton-prisliste-guide",
    "label": "法国寄售商 Collector's Cage 的《LV 欧美价目对照 2026》，按型号并列欧元区与美元官网价（Speedy 25 €1,600 / $1,980、Neverfull MM €1,550 / $2,240、GM €1,600 / $2,310、BB 约 €2,400 / $2,900）",
    "retrieved": "2026-09-20",
-   "publisher": "Collector's Cage"
+   "publisher": "Collector's Cage",
+   "cache": "text/709ca60c20982bc6.txt"
   },
   {
    "id": "S076",
@@ -2405,147 +2490,168 @@
    "url": "https://zapptax.com/zh/blog/vat-refund-france-step-by-step-guide-for-non-eu-residents",
    "label": "法国增值税退税分步指南：标准 TVA 20%、上限为含税价 16.66%、游客到手约 10%–15%、同店同日含税满 100 欧、离境前 PABLO 验证、第三个月末前带出欧盟、16 岁与停留不足六个月等资格条件",
    "retrieved": "2026-09-20",
-   "publisher": "Zapptax（退税服务商）"
+   "publisher": "Zapptax（退税服务商）",
+   "cache": "text/3ce46b15a9a18e7d.txt"
   },
   {
    "id": "S078",
    "url": "https://www.mlit.go.jp/kankocho/content/001858413.pdf",
    "label": "日本国土交通省《外国人旅行者向け免税制度の見直し（案）》（财务省・国税厅・经济产业省・观光厅，2025 年 1 月）：现行一般物品 5,000 日元起免、改为リファンド（还付）方式、令和 8 年（2026 年）11 月 1 日适用、购买后 90 日内须完成税关携带确认",
    "retrieved": "2026-09-20",
-   "publisher": "国土交通省 観光庁"
+   "publisher": "国土交通省 観光庁",
+   "cache": "text/4bee46400f3e1cf8.txt"
   },
   {
    "id": "S079",
    "url": "https://www.hankyung.com/article/202605117717g",
    "label": "韩国《韩经》2026-05-11 报道：LV 韩国 5 月 12 日起部分产品提价 5%–10%，Capucines BB 由 990 万韩元跨过千万韩元；LVMH 全球营收 808 亿欧元、同比减少 5%",
    "retrieved": "2026-09-20",
-   "publisher": "한국경제 (Hankyung)"
+   "publisher": "한국경제 (Hankyung)",
+   "cache": "text/52a7f481610c4b02.txt"
   },
   {
    "id": "S0710",
    "url": "https://hannestravelmap.com/boutique-price-compare/",
    "label": "繁体中文个人比价页 2026-07-14 整理：法国门槛 €100.01、退税 12%，意大利 13%–15%，日本 10% 扣约 1.55% 手续费后实退约 8.45%",
    "retrieved": "2026-09-20",
-   "publisher": "黑妮旅圖 Hanne's Travelmap"
+   "publisher": "黑妮旅圖 Hanne's Travelmap",
+   "cache": "text/201dd59a31edb8bc.txt"
   },
   {
    "id": "S0711",
    "url": "https://portal.311.nyc.gov/article/?kanumber=KA-01675",
    "label": "NYC 311 官方页面：纽约市销售与使用税合计 8.875%（市 4.5%＋州 4.0%＋MCTD 0.375%）",
    "retrieved": "2026-09-20",
-   "publisher": "City of New York"
+   "publisher": "City of New York",
+   "cache": "text/de06a0c4a13fb4ee.txt"
   },
   {
    "id": "S081",
    "url": "https://robbreport.com/style/accessories/slideshow/how-louis-vuitton-builds-iconic-trunk-eg18/",
    "label": "Robb Report 2018 年 Asnières 工坊定制专题（Jill Newman）：年定制量、单件工期、Brazza 床箱、Baroda 茶箱、DJ 音乐箱",
    "retrieved": "2026-09-20",
-   "publisher": "Robb Report"
+   "publisher": "Robb Report",
+   "cache": "text/4771bc9f2a3731da.txt"
   },
   {
    "id": "S082",
    "url": "https://www.wallpaper.com/fashion-beauty/louis-vuitton-trophy-trunks-australian-open-2026",
    "label": "Wallpaper* 2026 年澳网奖杯箱专题：首个奖杯箱年份、Brazza 床箱 1905、Hemingway 书箱拍卖价、F1 各站定制箱",
    "retrieved": "2026-09-20",
-   "publisher": "Wallpaper*"
+   "publisher": "Wallpaper*",
+   "cache": "text/f2a9efb158296166.txt"
   },
   {
    "id": "S083",
    "url": "https://www.harpersbazaar.com.sg/lifestyle/louis-vuittons-bespoke-trunks-australian-open-are-piece-fashion-history",
    "label": "Harper's Bazaar 新加坡版拆解 LV 硬箱工序：三种木材、棉布贴布充当铰链、lozine 包边钉数、弹子锁片数与专属锁号",
    "retrieved": "2026-09-20",
-   "publisher": "Harper's Bazaar Singapore"
+   "publisher": "Harper's Bazaar Singapore",
+   "cache": "text/3400afef23c6400e.txt"
   },
   {
    "id": "S084",
    "url": "https://www.gqmagazine.fr/article/malle-louis-vuitton-luxe-secrets-ateliers-asnieres",
    "label": "GQ 法国版 2024 年 Asnières 工坊实地报道：工匠人数、周工时与班次、工序名称、Warhol 作品箱、定制报价量级",
    "retrieved": "2026-09-20",
-   "publisher": "GQ France"
+   "publisher": "GQ France",
+   "cache": "text/beefc37e6af6ef22.txt"
   },
   {
    "id": "S085",
    "url": "https://www.malle2luxe.fr/malle-louis-vuitton/prix-neuf/",
    "label": "法国 LV 二手经销商 Malle2luxe 按月份整理的硬箱公价与停产记录（含 Lily Pons 鞋箱、Stokowski 指挥箱、Vendôme 珠宝箱）",
    "retrieved": "2026-09-20",
-   "publisher": "Malle2luxe"
+   "publisher": "Malle2luxe",
+   "cache": "text/2b1cb04946cdbe4d.txt"
   },
   {
    "id": "S086",
    "url": "https://www.sportbuzzbusiness.fr/tennis-lincroyable-malle-vestiaire-louis-vuitton-a-150-000e-de-carlos-alcaraz.html",
    "label": "Sport Buzz Business：Alcaraz 版 Malle Vestiaire 零售价 15 万欧元及箱内陈设",
    "retrieved": "2026-09-20",
-   "publisher": "Sport Buzz Business"
+   "publisher": "Sport Buzz Business",
+   "cache": "text/c35d8321afea47d7.txt"
   },
   {
    "id": "S087",
    "url": "https://robbreport.com/style/accessories/louis-vuitton-carlos-alcaraz-malle-vestiaire-1235467912/",
    "label": "Robb Report：Alcaraz 定制更衣箱配置（绒布抽屉数、手绘交叉球拍纹章、Dan Carter 同款时间）",
    "retrieved": "2026-09-20",
-   "publisher": "Robb Report"
+   "publisher": "Robb Report",
+   "cache": "text/72b280cf443390c9.txt"
   },
   {
    "id": "S088",
    "url": "https://hypebeast.com/2025/12/louis-vuitton-dog-collection-2026-release-info",
    "label": "Hypebeast：LV 2026 犬用系列含 Speedy Pet Trunk、Kennel Trunk，并追溯到品牌 1913 年第一只犬窝",
    "retrieved": "2026-09-20",
-   "publisher": "Hypebeast"
+   "publisher": "Hypebeast",
+   "cache": "text/49194d04cbc127c0.txt"
   },
   {
    "id": "S089",
    "url": "https://www.marklawsonantiques.com/louis-vuitton-the-evolution-of-a-trunk-maker/",
    "label": "Mark Lawson Antiques 硬箱史简述：乔治·威登为汽车出行改做的矮型防水可叠放箱",
    "retrieved": "2026-09-20",
-   "publisher": "Mark Lawson Antiques"
+   "publisher": "Mark Lawson Antiques",
+   "cache": "text/a8d49b4242a0dc66.txt"
   },
   {
    "id": "S101",
    "url": "https://lawthenticator.com/en/news/lawthenticator-pearls/louis-vuitton-date-code-from-its-origins-to-the-nfc-microchip-history-and-functioning-of-the-identification-system/",
    "label": "意大利鉴定机构 Lawthenticator 的 LV 日期码沿革长文：1981—1982 年首次系统使用、1990—2006 年月读法、2007 年起周读法、2021 年 3 月转 NFC、各型号日期码位置、DK 返修码",
    "retrieved": "2026-09-20",
-   "publisher": "Lawthenticator"
+   "publisher": "Lawthenticator",
+   "cache": "text/3dee529c6c7b0f75.txt"
   },
   {
    "id": "S102",
    "url": "https://collectorscage.com/blogs/authentication/louis-vuitton-date-code-vs-microchip-the-complete-buyers-guide-to-auth",
    "label": "二手奢侈品商 Collector's Cage 的日期码 vs 芯片买家指南：2021 年 3 月切换、芯片缝在内衬、无公开验真 App、复刻厂仿制芯片",
    "retrieved": "2026-09-20",
-   "publisher": "Collector's Cage"
+   "publisher": "Collector's Cage",
+   "cache": "text/12f6b9e5d1d496b5.txt"
   },
   {
    "id": "S103",
    "url": "https://www.lollipuff.com/louis-vuitton-to-replace-datecodes-with-microchips/",
    "label": "认证转售平台 Lollipuff 通告：自 2021 年 3 月起许多 LV 包不再带日期码、也常缺 made in 钢印，改嵌微芯片",
    "retrieved": "2026-09-20",
-   "publisher": "Lollipuff"
+   "publisher": "Lollipuff",
+   "cache": "text/bdad5202a34c3520.txt"
   },
   {
    "id": "S104",
    "url": "https://lvbagaholic.com/blogs/lv_bagaholic/can-louis-vuitton-store-authenticate",
    "label": "LV 爱好者站 Bagaholic：LV 门店不提供任何真伪鉴定服务，公司明令禁止员工对物品真伪发表评论及其原因",
    "retrieved": "2026-09-20",
-   "publisher": "LVBagaholic"
+   "publisher": "LVBagaholic",
+   "cache": "text/e1f15dabf9252643.txt"
   },
   {
    "id": "S105",
    "url": "https://miloura.com/blogs/news/how-to-spot-a-fake-louis-vuitton-bag-2025-ultimate-guide",
    "label": "Miloura 真伪鉴别指南：日期码分期表、两侧针数须一致、黄铜五金手感、内袋热压字样、正品不附真伪卡",
    "retrieved": "2026-09-20",
-   "publisher": "Miloura"
+   "publisher": "Miloura",
+   "cache": "text/61e3945e207d4131.txt"
   },
   {
    "id": "S106",
    "url": "https://www.dallasdesignerhandbags.com/blogs/news/fake-louis-vuitton-vs-real-bag-a-comprehensive-guide",
    "label": "Dallas Designer Handbags 鉴别指南：蜂蜡亚麻线、Alma/Neverfull/Speedy 手柄皮牌 5 针、1991 年起黄铜五金、Monogram 镜像对称、各国工厂码列表",
    "retrieved": "2026-09-20",
-   "publisher": "Dallas Designer Handbags"
+   "publisher": "Dallas Designer Handbags",
+   "cache": "text/e20da6e11dcb7a22.txt"
   },
   {
    "id": "S107",
    "url": "https://www.honestcrafters.com/post/the-ultimate-guide-to-caring-for-your-louis-vuitton-bag-singapore-edition",
    "label": "翻新工作室 Honest Crafters 的 LV 保养指南（据称整理自 LV 官方保养建议）：涂层帆布用湿布加中性皂水、禁酒精与貂油、防尘袋通风存放、勿超载、避免染色转移",
    "retrieved": "2026-09-20",
-   "publisher": "Honest Crafters"
+   "publisher": "Honest Crafters",
+   "cache": "text/482f7a1873070014.txt"
   },
   {
    "id": "S108",
@@ -2573,77 +2679,88 @@
    "url": "https://wwd.com/fashion-news/designer-luxury/feature/louis-vuitton-touts-agility-with-new-generation-handbag-workshop-1203255568/",
    "label": "WWD 2019-09-05（Joelle Diderich，发自 Beaulieu-sur-Layon）：法国第 16 座皮具工坊落成、65,000 平方英尺、135 名工匠／容量 300；产线分裁皮、准备、缝制三道；招工测灵活度、协调性与 3D 视觉；入门培训 6 周、6–9 个月掌握工序、约一年独立作业；法国 4,300 名工匠、每年招约 1,000 人；1859 年首间工坊在 Asnières；珍稀皮工坊在 Asnières 与 Issoudun；原型工坊在巴黎 Rue du Louvre 与佛罗伦萨；另有西班牙 4 座、加州 2 座、德州在建；CEO Michael Burke 排除继续在海外建厂并谈「客户想要法国制造」「公民责任」",
    "retrieved": "2026-09-20",
-   "publisher": "WWD / Fairchild"
+   "publisher": "WWD / Fairchild",
+   "cache": "text/ac1ec86f4d932261.txt"
   },
   {
    "id": "S094",
    "url": "https://wwd.com/fashion-news/fashion-scoops/president-trump-bernard-arnault-louis-vuitton-factory-jefferson-county-texas-1203343867/",
    "label": "WWD 2019-10-13（Rosemary Feitelberg）：LV 德州皮具工坊 Rochambeau Ranch 位于 Keene 附近、占地 260 英亩，计划五年创造 1,000 个岗位",
    "retrieved": "2026-09-20",
-   "publisher": "WWD / Fairchild"
+   "publisher": "WWD / Fairchild",
+   "cache": "text/b077d9ce8e684092.txt"
   },
   {
    "id": "S095",
    "url": "https://hypebeast.com/zh/2019/10/louis-vuitton-texas-bag-factory-opening",
    "label": "Hypebeast 中文站 2019-10-22 更新稿：德州工厂约 100,000 平方英尺、达拉斯郊外约 40 英里、时薪约 13 美元；美国产包款标「Made in USA」、售价预计超过 1,200 美元；当时皮革仍从欧洲进口，若改用美国皮则标签相应注明；并称当时法国之外已有 12 家工厂；另记录女装创意总监 Nicolas Ghesquière 公开批评此事",
    "retrieved": "2026-09-20",
-   "publisher": "Hypebeast"
+   "publisher": "Hypebeast",
+   "cache": "text/2b49477583a8dbdc.txt"
   },
   {
    "id": "S096",
    "url": "https://www.lvmh.com/en/les-journees-particulieres-2026",
    "label": "LVMH 官方 Journées Particulières 2026 开放日场地清单，逐条列出 Louis Vuitton 的可参观工坊：The Asnières Workshop（Asnières-sur-Seine）、The Vendôme Abbaye Workshop（Vendôme）、The Prototype Workshop（Paris）、La Fabrique du Temps（Meyrin, 瑞士）、The Footwear Workshop（Fiesso d'Artico, 意大利）与 Fondation Louis Vuitton（Paris）",
    "retrieved": "2026-09-20",
-   "publisher": "LVMH SE"
+   "publisher": "LVMH SE",
+   "cache": "text/1264f8e7de65ce12.txt"
   },
   {
    "id": "S097",
    "url": "https://onejourney.com/blog/fondation-louis-vuitton-frank-gehry-architecture-guide",
    "label": "Frank Gehry 设计的 Fondation Louis Vuitton 建筑导览：2014 年 10 月 20 日对公众开放、12 片弧形玻璃帆、11 个展厅、占地约 41,441 平方英尺",
    "retrieved": "2026-09-20",
-   "publisher": "One Journey Destinations"
+   "publisher": "One Journey Destinations",
+   "cache": "text/28fe56b567ee68c2.txt"
   },
   {
    "id": "S098",
    "url": "https://www.artbasel.com/stories/art-basel-paris-frank-gehry-architect-fondation-louis-vuitton",
    "label": "Art Basel 官方专文：确认基金会馆舍建筑师为 Frank Gehry，位置在布洛涅森林边缘的 Jardin d'Acclimatation 旁，2014 年受 LVMH 邀约为其设计",
    "retrieved": "2026-09-20",
-   "publisher": "Art Basel"
+   "publisher": "Art Basel",
+   "cache": "text/ae8da4620963655b.txt"
   },
   {
    "id": "S111",
    "url": "https://www.lvmh.com/en/publications/solid-performance-in-a-disrupted-global-economic-and-geopolitical-environment",
    "label": "LVMH 2025 财年全年业绩新闻稿（2026-01-27），含按业务部门列示的营收与经常性利润明细表",
    "retrieved": "2026-09-20",
-   "publisher": "LVMH"
+   "publisher": "LVMH",
+   "cache": "text/b0cb62a4bacdc761.txt"
   },
   {
    "id": "S112",
    "url": "https://www.bain.com/insights/finding-a-new-longevity-for-luxury/",
    "label": "Bain × Fondazione Altagamma 第 24 版全球奢侈品市场研究（2025-12-18）：市场规模、消费者基数收缩、品类分化与营业利润率",
    "retrieved": "2026-09-20",
-   "publisher": "Bain & Company"
+   "publisher": "Bain & Company",
+   "cache": "text/c0e5453c067ecb30.txt"
   },
   {
    "id": "S113",
    "url": "https://www.lvmh.com/en/investors/key-figures",
    "label": "LVMH 投资者关键指标页：2025 年营收、全球门店超 6,280 家、各业务部门营收占比",
    "retrieved": "2026-09-20",
-   "publisher": "LVMH"
+   "publisher": "LVMH",
+   "cache": "text/13b67429a600e3aa.txt"
   },
   {
    "id": "S114",
    "url": "https://dailyeurotimes.com/lvmh-pandemic-luxury-boom-loses-its-aspirational-shoppers/",
    "label": "2026-09-08 分析：2019 年以来奢侈品均价上涨约 50%–70%、约 6,000 万向往型消费者退出",
    "retrieved": "2026-09-20",
-   "publisher": "Daily Euro Times"
+   "publisher": "Daily Euro Times",
+   "cache": "text/a7ae5619c51091b6.txt"
   },
   {
    "id": "S115",
    "url": "https://www.lvmh.com/en/publications/accelerating-growth-in-the-second-quarter---solid-first-half-results",
    "label": "LVMH 2026 上半年业绩新闻稿（2026-07-27），含分部门半年营收表与 LV 门店点评",
    "retrieved": "2026-09-20",
-   "publisher": "LVMH"
+   "publisher": "LVMH",
+   "cache": "text/73ee4b08144e92a1.txt"
   }
  ],
  "category": "箱包时装",
@@ -2663,8 +2780,8 @@
   "hero_motif": "monogram_tile",
   "hero_note": "开场用一块可平铺的 Monogram 花纹作母题，配焦糖棕与帆布米，让'图案即资产'一眼可见"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-05",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 15,
  "cover": {
@@ -2678,11 +2795,12 @@
  },
  "created_date": "2026-09-20",
  "site": {
-  "url": "https://louis-vuitton-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d728-1562-7a74-8f25-86e66b2d4b7c",
-  "slug": "louis-vuitton",
-  "content_sha": "bb6f56df5a94c73e",
-  "published_date": "2026-09-25",
+  "url": "https://fashion-gtqdc11h6po.qoder.website/louis-vuitton/louis-vuitton.html",
+  "group": "fashion",
+  "path": "/louis-vuitton/louis-vuitton.html",
+  "project_id": "01a104e7-35a1-77e3-be3f-78846ddc6565",
+  "content_sha": "efb9a929b656631d",
+  "published_date": "2026-10-10",
   "access": "public"
  }
 }

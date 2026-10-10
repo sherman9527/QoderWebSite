@@ -479,6 +479,157 @@ export const THEMES: Record<string, ThemeTokens> = {
     heroMotif: "choice_bars",
     numberedSections: false,
   },
+  "morgan-split": {
+    /* 摩根篇：克拉特红与湖蓝。这对颜色是量出来的，而且**第一版是错的**——
+       我先按"墨绿+酒红"选了一组，只报了每条腿的最近距离（primary 11.6、accent 8.4），
+       看着很开。但 G-11 的判据是**每一对主题取两条腿里较远的那条**
+       （max(pr,ac) < 25 才 fail），按真实判据重算，那组和 bentley-racing 只有 20.1，
+       会把宾利那篇判成雷同。现在这组：与 23 套里最近的一对是 mlcc-ceramic，max ΔE 36.5。
+       为什么是红配蓝：这篇讲的是"同一条家族干断成两条腿"。干（血亲时代）和
+       小摩（继承了章程与名字的那条）共用克拉特红；大摩是 1935 年带新资本
+       另起的一条腿，只有它是蓝。红色不是"摩根的招牌色"——两家今天的标志都是蓝——
+       红是**家族**的颜色，蓝是**分家之后**的颜色，记忆点上正好一红一蓝。 */
+    id: "morgan-split",
+    label: "摩根 · 克拉特与湖蓝",
+    bg: "#F7F7F5",
+    surface: "#EDEEEA",
+    ink: "#1C1F22",
+    muted: "#5F6469",
+    rule: "#DCE0DE",
+    primary: "#4A0E1B",
+    accent: "#0F8FB8",
+    soft: "#E9DFDD",
+    displayFamily: SERIF,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "morgan_split",
+    /* 三代人 + 1933/1935 两道口子，是这一篇唯一的真序列，序号给它。 */
+    numberedSections: true,
+  },
+  "agent-terminal": {
+    /* W-171 教学篇《从零做一个 Agent 对话聊天框》。
+       这对颜色同样是量出来的，用的判据是 G-11 的真实判据——每一对主题取
+       两条腿里**较远**的那条（max(pr,ac) < 25 才判雷同），不是单腿最近距离（T-115）。
+       24 套里与它最近的一对是 graphite-ultramarine，max ΔE = 41.0，
+       第二近 44.5（rolex-oyster）。
+       为什么是终端绿配钢蓝：绿是**说话的那一方**（模型吐字、光标在闪），
+       蓝是**被调用的那一方**（tool、数据库、后端 service）。
+       这篇通篇就在讲这两件事的分界，所以记忆点也照这个分：上条绿、下条蓝。 */
+    id: "agent-terminal",
+    label: "Agent 开发 · 终端绿与钢蓝",
+    bg: "#F5F7F3",
+    surface: "#EAEFE8",
+    ink: "#181D19",
+    muted: "#5B6660",
+    rule: "#D7DED6",
+    primary: "#0F5D3C",
+    accent: "#33507A",
+    soft: "#DDE8DF",
+    displayFamily: SANS,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "turn_caret",
+    numberedSections: true,
+  },
+  "ust-yieldcurve": {
+    /* W-172 美债 7% 情景篇。配色按 G-11 的真实判据（max(pr,ac) >= 25）在 25 套里量：
+       最近的一对是 longines-winged，max ΔE = 35.7；第二近 bentley-racing 36.2。
+       为什么不选更"像国债"的深蓝配铜黄：那两组与 petrol-amber / indigo-coral
+       分别只剩 18.9 / 21.2，会被判雷同。
+       铁蓝是**债**，酒红是**倒挂**：这篇的异常不在利率高低，而在曲线形状变，
+       所以两条线一蓝一红，红色只出现在短端高于长端的那一段。 */
+    id: "ust-yieldcurve",
+    label: "美债 · 铁蓝与倒挂红",
+    bg: "#F4F6F8",
+    surface: "#E9EEF3",
+    ink: "#1A2027",
+    muted: "#5A6672",
+    rule: "#D5DDE5",
+    primary: "#26415C",
+    accent: "#8E2C42",
+    soft: "#E1E7EE",
+    displayFamily: SERIF,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "curve_invert",
+    /* 六类资产的传导没有先后，序号不开。 */
+    numberedSections: false,
+  },
+  "cerebras-wafer": {
+    /* W-173 Cerebras 篇。配色按 G-11 的真实判据（max(pr,ac) >= 25）在 26 套里量：
+       最近的一对是 graphite-ultramarine，max ΔE = 40.7，第二近 jev-choice 42.7。
+       为什么是硅青配锆紫：抛光的硅片在氧化层薄膜干涉下就是这个颜色——
+       青里泛紫，是**晶圆本身的颜色**，不是哪家公司的品牌色。
+       青是"未切割的那一片"，紫是"切割线"：这一篇的技术与商业分野
+       全在那道线落没落下，所以记忆点也照这个分色。 */
+    id: "cerebras-wafer",
+    label: "Cerebras · 硅青与锆紫",
+    bg: "#F6F7F5",
+    surface: "#EAEFEC",
+    ink: "#171C1B",
+    muted: "#5A6663",
+    rule: "#D6DEDA",
+    primary: "#17756E",
+    accent: "#6B2E8E",
+    soft: "#DFE7E4",
+    displayFamily: SANS,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "wafer_grid",
+    /* 这篇是"从技术到报表到估值"的递进，但各章之间不是硬序列，序号不开。 */
+    numberedSections: false,
+  },
+  "open-weight-collision": {
+    /* W-173 拆出来的下半篇（开发者裁决：R-05 的 8500 不动，长内容拆两篇）。
+       配色按 G-11 的真实判据（max(pr,ac) >= 25）在 28 套里量：最近的一对是
+       indigo-coral，max ΔE = 30.8，第二近 ust-yieldcurve。
+       为什么不是先想的那组"群青+锶黄"：#C9A227 与 guerlain-abeille 的强调色
+       **是同一个十六进制值**（ΔE=0.0）。按判据它照样能过（primary 够远），
+       但两篇在入口页上会挂着同一块金子——判据漏的是"跨腿相同色"这一类，
+       所以这里自己加一条：不许复用另一套已经在用的十六进制值。
+       群青是开源权重那一层（公共、不要钱），焦褐是资本开支那一层（金属、机房、
+       折旧）：这一篇问的就是前者撞后者能撞出什么价。 */
+    id: "open-weight-collision",
+    label: "开源权重与算力估值 · 群青与焦褐",
+    bg: "#F5F6F9",
+    surface: "#E9ECF3",
+    ink: "#161A22",
+    muted: "#5C6472",
+    rule: "#D7DCE6",
+    primary: "#1B3A8C",
+    accent: "#9A5B3F",
+    soft: "#E0E5EF",
+    displayFamily: SANS,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "rent_shift",
+    numberedSections: false,
+  },
+  "rate-spillover": {
+    /* 拆出来的下半篇（开发者裁决：R-05 的 8500 不动，长内容拆两篇）。
+       配色按 G-11 的真实判据在 27 套里量：最近的一对是 patek-calatrava，max ΔE = 36.7，
+       第二近 rolex-oyster 44.5。
+       为什么先试的三组都被否：砖橙、赤铜、陶土配深青，全部与 mlcc-ceramic 只剩
+       12.6~15.6——那套本来就是"烧结砖红配镍电极蓝"，暖棕配冷青这条路已经被它占了。
+       深芥是**预警色**（利率撞到东西的那一下），湖蓝是**流动性本身**：
+       这一篇讲的就是一条线分叉去撞四个地方。 */
+    id: "rate-spillover",
+    label: "利率外溢 · 深芥与湖蓝",
+    bg: "#F7F6F1",
+    surface: "#EDEBE1",
+    ink: "#1D1D17",
+    muted: "#615F52",
+    rule: "#DDD9C9",
+    primary: "#8A8421",
+    accent: "#155E6B",
+    soft: "#E9E6D2",
+    displayFamily: SERIF,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "spillover_fan",
+    /* 四条传导路径没有先后，序号不开。 */
+    numberedSections: false,
+  },
 };
 
 export function themeOf(token: string | undefined): ThemeTokens {

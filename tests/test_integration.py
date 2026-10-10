@@ -18,6 +18,7 @@ import outline as outline_mod
 import validate as V
 
 TOPIC = u"咖啡"
+GROUP = "drinks"
 
 
 def _payload(sec, n):
@@ -47,6 +48,24 @@ def _payload(sec, n):
 @pytest.fixture
 def stubs(monkeypatch, tmp_path):
     """把 LLM 与图片检索换成替身，产物落到 tmp，不污染真实 output/。"""
+    # 研究阶段现在每登记一条来源就顺手抓一份原文（W-189）。测试里不碰真网络：
+    # 这条链路本身由 tests/test_sourcecache.py 用假 opener 验，不在这里联网。
+    monkeypatch.setenv("KE_SOURCE_CACHE", "0")
+    # tmp 得是一个**仓库**而不只是一个 output：出包要按仓库根找
+    # config/topics/<领域>.json 取 slug。以前 pack 拿的是真仓库的 root，
+    # 于是它打的是真仓库那一篇、测试照样绿——这条现在才立得住。
+    cfgdir = tmp_path / "config" / "topics"
+    cfgdir.mkdir(parents=True, exist_ok=True)
+    (cfgdir / (TOPIC + ".json")).write_text(
+        json.dumps({"topic": TOPIC, "slug": "coffee"}, ensure_ascii=False), encoding="utf-8")
+    # 合站之后出包单位是**组**，没有组表就根本没有包可打（`_pack_for_site` 会明说）。
+    # 这里补一份，是为了让这条集成测试继续走"绿了就要有包"那条路，而不是退化成空转。
+    (tmp_path / "config" / "site_groups.json").write_text(json.dumps({
+        "groups": {GROUP: {"display_name": u"饮食", "members": [TOPIC],
+                           "project_id": None, "site_id": None, "url": None,
+                           "access": "private", "published_date": None,
+                           "group_sha": None}}}, ensure_ascii=False, indent=1),
+        encoding="utf-8")
     cfg = outline_mod.load_for_topic(TOPIC, root=G.ROOT)
     by_title = {s.title: s for s in cfg.sections}
     state = {"llm": [], "img": []}
@@ -645,33 +664,33 @@ def test_rollback_skips_old_images_the_current_queries_would_reject(tmp_path):
 
 
 def test_a_green_page_leaves_a_ready_package(stubs, monkeypatch, tmp_path):
-    """闸门全绿、索引更新之后，这一篇的**待发包必须已经在 dist/ 里等着**。
+    """闸门全绿、索引更新之后，这一篇所在**组的包必须已经在 dist/ 里等着**。
 
     "新增文章自动带上 URL"这条链路里，脚本能做的就到这一步：
     发布要 agent 调托管工具（没有受支持的脚本发布路径），但包、指纹、清单
     都是确定性的，不该等人手工去拼。
     """
-    import publish as PUB
     monkeypatch.setattr(G, "PUBLISH_DIST", str(tmp_path / "dist"))
     assert G.main([TOPIC, "--workers", "2"]) == 0
-    pkg = tmp_path / "dist" / "coffee"
-    assert (pkg / "index.html").is_file(), u"发布成功却没留下待发布的包"
-    assert (pkg / "images").is_dir()
+    pkg = tmp_path / "dist" / GROUP
+    assert (pkg / "index.html").is_file(), u"发布成功却没留下组落地页"
+    assert (pkg / "coffee" / "coffee.html").is_file(), u"文章没进组包"
+    assert (pkg / "coffee" / "images").is_dir()
 
 
 def test_repacking_is_skipped_when_the_content_did_not_change(stubs, monkeypatch, tmp_path):
     """同一篇重渲染两遍，第二遍不该重新出包。
 
-    AGENTS 第 5 步改一次模板要把 19 篇全部 `--offline` 重渲染；
-    朴素挂钩的代价就是 19 次打包 + 19 条"待发布"，而内容一个字都没变。
+    AGENTS 第 5 步改一次模板要把全部领域 `--offline` 重渲染；
+    朴素挂钩的代价就是几十次打包 + 几十条"待发布"，而内容一个字都没变。
     判据是指纹，不是"这次跑没跑过"。
     """
     monkeypatch.setattr(G, "PUBLISH_DIST", str(tmp_path / "dist"))
     assert G.main([TOPIC, "--workers", "2"]) == 0
-    first = (tmp_path / "dist" / "coffee" / "index.html").read_bytes()
-    os.remove(str(tmp_path / "dist" / "coffee" / "index.html"))
+    first = (tmp_path / "dist" / GROUP / "coffee" / "coffee.html").read_bytes()
+    os.remove(str(tmp_path / "dist" / GROUP / "coffee" / "coffee.html"))
     assert G.main([TOPIC, "--workers", "2", "--offline"]) == 0
-    gone = tmp_path / "dist" / "coffee" / "index.html"
+    gone = tmp_path / "dist" / GROUP / "coffee" / "coffee.html"
     assert not gone.exists(), \
         u"内容没变却又出了一次包——那 pending 清单会永远不为空"
     assert first, u"前提塌了：第一轮根本没出包"

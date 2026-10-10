@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 """索引主页与 tags 归档（specs/golden-template + tasks W-29..W-32）。"""
+import base64
 import io
 import json
 import os
@@ -117,15 +118,45 @@ def test_build_refuses_to_silently_empty_the_index(site_gated, monkeypatch):
     assert u"索引" in str(e.value) or u"闸门" in str(e.value)
 
 
-def _publish_two(site, urls):
-    """给夹具里两篇都补上"已发布"记录。URL 只活在 tmp 里，绝不写回真实产物。"""
+def _publish_two(site, urls, group=None):
+    """给夹具里两篇都补上"已发布"记录。URL 只活在 tmp 里，绝不写回真实产物。
+
+    `group` 一给，就在 tmp 里落一份 `config/site_groups.json`——
+    线上版主页现在只对"**声明在某个组里**却没有记录"的篇报错，
+    没分组的篇是跳过而不是出事（memo D-33/D-34 重新定范围的那条）。
+    """
     for topic, url in urls.items():
         dp = os.path.join(str(site / topic), "data.json")
         data = json.loads(io.open(dp, encoding="utf-8").read())
-        data["site"] = {"url": url, "slug": topic.lower(),
-                        "content_sha": "x" * 16, "published_date": "2026-09-24",
-                        "access": "public"}
+        stem = topic.lower()
+        data["site"] = {"url": url, "content_sha": "x" * 16,
+                        "published_date": "2026-09-24", "access": "public"}
+        if group:
+            data["site"]["group"] = group
+            data["site"]["path"] = u"/%s/%s.html" % (stem, stem)
         io.open(dp, "w", encoding="utf-8").write(json.dumps(data, ensure_ascii=False))
+    if group:
+        _groups(site, group, list(urls))
+
+
+def _groups(root, group, members):
+    """`root` 是**产物目录**，组表住在它的上一层（仓库根）——
+    `build_index._group_of` 就是按 `dirname(output_dir)` 找的。"""
+    p = os.path.join(os.path.dirname(os.path.abspath(str(root))),
+                     "config", "site_groups.json")
+    doc = {"groups": {}}
+    if os.path.isfile(p):
+        doc = json.loads(io.open(p, encoding="utf-8").read())
+    doc["groups"][group] = {
+        "display_name": group, "members": sorted(set(
+            doc["groups"].get(group, {}).get("members", []) + list(members))),
+        "project_id": None, "site_id": None, "url": None, "access": "private",
+        "published_date": None, "group_sha": None}
+    d = os.path.dirname(p)
+    if not os.path.isdir(d):
+        os.makedirs(d)
+    io.open(p, "w", encoding="utf-8").write(json.dumps(doc, ensure_ascii=False))
+    return p
 
 
 def test_a_hosted_index_links_to_the_published_sites(site):
@@ -143,15 +174,72 @@ def test_a_hosted_index_links_to_the_published_sites(site):
     assert 'href="甲领域/' not in html, "线上版还在链相对路径，那是本地版"
 
 
-def test_a_hosted_index_refuses_a_card_without_a_url(site):
-    """有一篇没发布，线上版必须**报错**而不是悄悄退回相对路径。
+def test_a_hosted_index_inlines_a_card_sized_thumbnail_not_the_full_image(site):
+    """主页 9.9 MB 的成因：卡片框只有 ~343 CSS px，内联的却是原文那张 1472–2400 px 的图。
 
-    退回的结果是一个看起来正常、点进去两篇行为不一致的主页：
-    一篇跳公网、一篇跳本地文件——在公网托管的站上后者必然 404。
+    这条测的是**内联进去的那张图的宽度**，不是"文件变小了"——
+    变小可能只是压得狠了，宽度没变就还是白烧字节。
     """
-    _publish_two(site, {u"甲领域": u"https://jia-abc.qoder.website/"})
+    _publish_two(site, {u"甲领域": u"https://jia-abc.qoder.website/",
+                        u"乙领域": u"https://yi-abc.qoder.website/"})
+    html = io.open(BI.build("2026-09-25", str(site), variant="hosted"),
+                   encoding="utf-8").read()
+    uris = re.findall(r'src="data:image/[^;]+;base64,([^"]+)"', html)
+    assert uris, "线上版封面没有内联"
+    import images as I
+    bar = json.loads(io.open(os.path.join(str(site.parent), "config", "quality_bar.json"),
+                             encoding="utf-8").read()) if os.path.isfile(
+        os.path.join(str(site.parent), "config", "quality_bar.json")) else None
+    cap = (bar or {}).get("index", {}).get("card_cover_px") or 700
+    for u in uris:
+        w, _h = I.dimensions(base64.b64decode(u), "jpg")
+        assert w <= cap, "卡片封面还是 %d px 宽，超过显示预算 %d" % (w, cap)
+
+
+def test_a_missing_thumbnail_falls_back_to_the_full_image_and_says_so(site, monkeypatch,
+                                                                      capsys):
+    """没有缩略图（比如这台机器没装 Pillow）必须**退到原图并喊一声**。
+
+    退而不喊是一种静默降级：主页会悄悄回到 9.9 MB，而每一步退出码都是 0。
+    """
+    import thumbs as T
+    monkeypatch.setattr(T, "thumb_for", lambda *a, **k: None)
+    _publish_two(site, {u"甲领域": u"https://jia-abc.qoder.website/",
+                        u"乙领域": u"https://yi-abc.qoder.website/"})
+    html = io.open(BI.build("2026-09-25", str(site), variant="hosted"),
+                   encoding="utf-8").read()
+    raw = io.open(str(site / u"甲领域" / "images" / "01_test.jpg"), "rb").read()
+    assert base64.b64encode(raw).decode("ascii") in html, "退路没走到原图"
+    err = capsys.readouterr().err
+    assert u"缩略图" in err, err
+
+
+
+def test_a_hosted_index_refuses_a_grouped_card_without_a_url(site):
+    """声明在某个组里、却没有发布记录 → 线上版必须**报错**。
+
+    这时组站已经发出去了，主页要么少一张卡、要么链到相对路径上去 404，
+    而"少一篇"在产物上看不出来。这不是"忘了发"，是**记账记漏了**。
+    """
+    _publish_two(site, {u"甲领域": u"https://jia-abc.qoder.website/"}, group="grp1")
+    _groups(site, "grp1", [u"甲领域", u"乙领域"])
     with pytest.raises(BI.NotPublished):
         BI.build("2026-09-25", str(site), variant="hosted")
+
+
+def test_a_hosted_index_skips_a_topic_with_no_group(site):
+    """还没分到组的篇：跳过并说明，**不再冻住整张主页**。
+
+    这条是 10-03 那次事故的直接后果：《开源权重与算力估值》被 `sites_total` 30/30
+    挡住发不出去，于是主页出不了片，连已经上线的 4 篇也链不进去
+    ——一条防呆判据在第二种失败成因下变成了阻塞器（memo D-33，D-34 重新定范围）。
+    """
+    _publish_two(site, {u"甲领域": u"https://jia-abc.qoder.website/"})
+    html = io.open(BI.build("2026-09-25", str(site), variant="hosted"),
+                   encoding="utf-8").read()
+    assert 'href="https://jia-abc.qoder.website/"' in html
+    assert u"乙领域" not in html, u"没分组的篇被塞进主页了——它没有可点的地址"
+
 
 
 def test_the_hosted_index_still_carries_no_runtime_js(site):

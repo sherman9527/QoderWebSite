@@ -4,13 +4,17 @@
 
 ## 0. 这个项目是什么
 
-一条命令 `python scripts/generate.py <领域>` 产出**一个纯静态 HTML 知识专题页**（图文并茂、约 10 分钟读完、每个领域视觉不同）。首批 10 个领域：咖啡、香奈儿、爱马仕、百达翡丽、积家、劳力士、LV、浪琴、宾利、劳斯莱斯；09-20 起陆续加了娇兰、大模型、AI 眼镜、Muse，09-24 加了 Muse产业逻辑、MLCC 与 骁龙笔电，09-25 加了 AI制药、名创优品与泡泡玛特 与 大模型与加密货币，09-26 加了 ClaudeOpus55 与 美国中期选举与全球资产，**现在 22 篇全部上架**（每篇一个独立站点，地址记在 `web_list.md`，主页 <https://knoweverything-gtqdc11h6po.qoder.website/>）。原始需求见 `requirement.txt`。
+一条命令 `python scripts/generate.py <领域>` 产出**一个纯静态 HTML 知识专题页**（图文并茂、约 10 分钟读完、每个领域视觉不同）。首批 10 个领域：咖啡、香奈儿、爱马仕、百达翡丽、积家、劳力士、LV、浪琴、宾利、劳斯莱斯；09-20 起陆续加了娇兰、大模型、AI 眼镜、Muse，09-24 加了 Muse产业逻辑、MLCC 与 骁龙笔电，09-25 加了 AI制药、名创优品与泡泡玛特 与 大模型与加密货币，09-26 加了 ClaudeOpus55 与 美国中期选举与全球资产，09-27 加了 Jev，09-30 加了摩根（新类别「金融史」），10-02 加了 Agent开发，10-03 把两篇超长的拆成四篇：《美债7%情景》+《利率外溢》、《Cerebras》+《开源权重与算力估值》。**共 29 篇，全部已上线。**
+
+**发布单位不再是"一篇一站"，而是"一组一站"**（开发者 2026-10-03 授权，见 `memo.md` D-34 / D-36）：撞账号级 `sites_total` 30/30 之后，29 篇按类别装进 **13 个组站**，成员与站点身份的唯一权威是 `config/site_groups.json`。文章在组里的深链是 `https://<组>-…qoder.website/<slug>/<slug>.html`；主页 <https://knoweverything-gtqdc11h6po.qoder.website/> 的 29 张卡链的就是这些深链。
+
+迁移状态（10-04 完成）：**13 组全部上线**，29 篇全部可通过深链访问，主页 29 张卡逐条 200；被吸收的 28 个旧单篇站全部删除（每一个删之前都验过它的深链 200，删完 host 实测 404）。账号里现在应该是 14 个站（13 组 + 主页）——这是按记账推的，`sites_total` 的读数没去拉；"配额松开了"是由后面每一步 `prepare_site` 都成功证明的。旧的单篇地址**已经断**——静态托管删站即删域名，没法留跳转，这是当时唯一可行的选项（取舍记在 D-36 末尾）。
 
 ## 1. 阅读顺序（有依赖，别跳）
 
 | 顺序 | 文件 | 为什么先读它 |
 |---|---|---|
-| 0 | `README.md` | 面向**人**的全景：怎么跑起来、黄金模板长什么样、配图三档、14 条闸门各判什么。想知道"为什么这么设计"先看它 |
+| 0 | `README.md` | 面向**人**的全景：怎么跑起来、黄金模板长什么样、配图三档、15 条闸门各判什么。想知道"为什么这么设计"先看它 |
 | 1 | `rule.md` | **做任何 change 之前必须先看**。9 条红线已生效（R-01…R-09，开发者 09-19 授权裁决，见 `memo.md` D-08）；红线只能由开发者移除或放宽，agent 不得删 |
 | 2 | `HANDOVER.md` | 唯一的工作项台账：TODO / IN PROGRESS / COMPLETE |
 | 3 | `memo.md` | 环境事实与踩坑（网络可达性、CLI 权限怪癖、遥测字段骗人）——这些重新发现一次要几十分钟 |
@@ -36,11 +40,15 @@
    这条不是仪式感——闸门全绿的页面上出现过常柴柴油机、陈志远木工坊、永乐大钟、
    西铁城机芯（D-17 / W-99 / W-115 各一次），而"这张图配不配得上这一章"
    在结构上无法用关键词或尺寸量出来。封面同理：默认规则"取最宽的一张"
-   会选中排行榜截图与宣传横幅（W-119），要声明 `data.cover`。
+   会选中排行榜截图与宣传横幅（W-119），要声明 `data.cover`。**G-03 现在会对
+   "有实拍图却没声明封面"喊一声 warn**——10-04 压图就让 5 篇的线上首图无声换过人，
+   因为 400 KB 上限是逐张按宽度起作用的，改宽度等于改封面。判据不是"好不好看"，
+   是**不许无声变动**：认可就写进 `data.cover` 钉死，不认可就换一张并声明。
+   全是自画示意图的页面不喊（示意图不许当门面，退到主题记忆点是设计态）。
 7. 把命令 + 真实输出摘要写进 `memo.md` 测试日志。不许写"应该没问题"。
 8. 工作项从 TODO 删除、追加进 COMPLETE，带**可点开的证据指针**（文件路径 / 测试名 / 命令），"done" 不算证据。
 9. 冒出新需求 → TODO 加一条；砍掉功能 → 删该项并在 `memo.md` 决策记录写为什么砍。
-10. **要把文章发成公开站点**：照 [`docs/publishing-for-agents.md`](docs/publishing-for-agents.md) 走。第一步永远是 `python scripts/publish.py playbook`——它算出每篇的 `projectId` 与逐步参数。发布是**半自动**的：`pack` / `record` / `check` 是脚本，`prepare_site` → `publish_site` → `update_access_policy` 只有 agent 能调。三条不能省的判断：`published: true` 且 `active_release_id` 非空才算发出去；**发布 ≠ 可见**（新站默认 private）；最后必须 `curl` 到 200。
+10. **要把文章发成公开站点**：照 [`docs/publishing-for-agents.md`](docs/publishing-for-agents.md) 走。第一步永远是 `python scripts/publish.py playbook`——它按**组**算出 `projectId`、`webDirectory` 和逐步参数。发布是**半自动**的：`pack <组>` / `record-group` / `absorbed <组>` / `check` 是脚本，`prepare_site` → `publish_site` → `update_access_policy` 只有 agent 能调。四条不能省的判断：`get_publish_status` 回来先**读 host**，别信本地拼的那个地址（`memo.md` D-37：组名太短会被平台静默换成十六进制）；`published: true` 且 `active_release_id` 非空才算发出去；**发布 ≠ 可见**（新站默认 private）；最后逐篇 curl 深链到 200，用 `python .probe/verify_live.py <组>`，别手抄。**主页重建与重发必须在删旧站之前**，否则线上主页出现 404 卡片。
 
 `.qoder/skills/handover/` 把第 1、8、9 步变成可触发的流程。
 
@@ -72,7 +80,7 @@ React 是黄金模板的**唯一实现**；`scripts/render.mjs` 用 SSR 把它�
 ## 5. 目录约定
 
 ```
-README.md                     面向人的全景：怎么跑、黄金模板、配图三档、14 条闸门各判什么
+README.md                     面向人的全景：怎么跑、黄金模板、配图三档、15 条闸门各判什么
 config/topics/<领域>.json     领域大纲（人可改；新增领域=加一个 JSON，不改代码）
 web/                          React 工作台 = 黄金模板真身
   src/template/               区块组件（11 类 block）
@@ -94,11 +102,15 @@ python scripts/generate.py 咖啡 --offline        # 只重跑 render+verify（�
 python scripts/generate.py 咖啡 --fast            # 快档：目标 4 分钟 + 每章最多 2 条来源
 python scripts/generate.py 咖啡 --minutes 20 --sources-per-section 8   # 自定义档位
 python scripts/generate.py 咖啡 --only timeline  # 只重做某一节
-python scripts/validate.py --all                 # 全站质量闸门（14 条，唯一裁判）
-python scripts/publish.py playbook            # 待发布清单（含每篇的 projectId 与逐步参数）
-python scripts/publish.py pack 咖啡            # 出包到 dist/<slug>/，超 50 MiB 直接拒
-python scripts/publish.py record 咖啡 <url> --project-id <pid> --access public
+python scripts/validate.py --all                 # 全站质量闸门（15 条，唯一裁判）
+python scripts/publish.py playbook            # 待发布清单：按组给 projectId、webDirectory、逐步参数
+python scripts/publish.py groups              # 13 个组、成员数、是否已记地址
+python scripts/publish.py pack watches        # 出**组包**到 dist/<组>/（落地页 + 各成员 slug 目录），超 40 MiB 直接拒
+python scripts/publish.py record-group watches <组地址> --project-id <pid> --access public --published-date <真实那天>
+python scripts/publish.py absorbed watches    # 这组发完后哪些旧单篇站可删（账本与规则两边对得上才列）
 python scripts/publish.py check                # 账实核对（G-14 用的就是这个）
+python .probe/verify_live.py watches          # 上线验收：落地页+每条深链+每张图 200，且字节等于包
+python .probe/verify_home.py                  # 线上主页验收：卡数对不对、每张卡 200
 python scripts/audit_images.py                   # 配图语义体检（闸门量形式，跑题只有这道看得见）
 python scripts/audit_images.py --fix             # 只重做体检不合格的领域，跑完自动复查
 python scripts/contact_sheet.py 咖啡             # 一篇的配图拼成带标签联络表（.probe/sheet_*.png）

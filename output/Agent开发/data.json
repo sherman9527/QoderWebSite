@@ -1,0 +1,2479 @@
+{
+ "topic": "Agent开发",
+ "sections": [
+  {
+   "id": "build-order",
+   "title": "先把「从零」拆开：十二道工序，和它们为什么是这个顺序",
+   "anchor": "工序",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "顺序由依赖决定",
+     "text": "判据只有一条：后一步是否依赖前一步已经定死的东西。定接口不依赖任何事；画界面依赖接口形状；工具循环依赖单轮闭环先跑通；评测依赖前面十一项都有产物。",
+     "source_ids": []
+    },
+    {
+     "type": "prose",
+     "heading": "调用形态是三样东西",
+     "text": "后端配置先钉死三项：资源端点、鉴权凭据、部署名。鉴权微软给两条路，原文是「Azure OpenAI provides two methods for authentication. You can use either API Keys or Microsoft Entra ID」。走密钥时所有请求「must include the API Key in the api-key HTTP header」；走 Entra 时令牌进 Authorization 头，「must be preceded by Bearer」，并且要先给身份装上 Cognitive Services OpenAI User 角色。端点从资源属性里读，一条 CLI 加 jq 就能取。",
+     "source_ids": [
+      "S011",
+      "S012",
+      "S014"
+     ]
+    },
+    {
+     "type": "code",
+     "lang": "http",
+     "code": "POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/chat/completions?api-version=2024-06-01\napi-key: YOUR_API_KEY\nContent-Type: application/json\n\n{\n  \"messages\": [\n    { \"role\": \"user\", \"content\": \"why is my order still not delivered\" }\n  ]\n}",
+     "caption": "地址形状与 api-key 头照抄微软 REST API 参考页「REST API versioning」小节的示例，是文档模板而非真跑通过的响应。同一页另给出去掉 api-version 的 v1 写法。",
+     "source_ids": [
+      "S011"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "部署名不等于模型名",
+     "text": "微软把这点列为两家接口的关键差异：「you need to refer to the deployment name rather than the underlying model name in API calls」，并补一句「OpenAI only requires the model name. Azure OpenAI always requires deployment name, even when using the model parameter」。要紧的地方在于模型版本挂在部署下面，进 URL 那一段是你起的部署名；门户建部署时提示「Choose a name carefully」，因为「The deployment name is used in your code to call the model」。",
+     "source_ids": [
+      "S012"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "api-version 是契约",
+     "text": "官方定义写得很硬：「The API version indicates the contract that you use to interface with the model in code」。REST 用查询参数指明它，取值形如 2024-06-01，全按日期排。SDK 那侧更该记住：「Azure SDK versions are usually paired with specific API versions, but you can specify the API version you want to use」——升 SDK 通常顺带换了契约，所以它要落在配置里。微软也说旧节奏结束：自 2025 年 8 月起可选用 v1，而「api-version is no longer a required parameter with the v1 GA API」。",
+     "source_ids": [
+      "S011",
+      "S013",
+      "S014"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "前端不直连的三条硬理由",
+     "text": "一、密钥：凭据要进请求头，而任何进了浏览器的字符串都等于公开。二、审计与限流：速率按部署配额限（配额值换算成每分钟 token 数，1 等于 1,000 TPM），前端直连把所有用户压成同一个来源，超支分不清是谁。三、重试与成本没有单一落点：超时、退避、截断历史、记用量得在同一个函数里发生，散进组件就聚不回来。",
+     "source_ids": [
+      "S011",
+      "S015"
+     ]
+    },
+    {
+     "type": "steps",
+     "title": "十二道工序",
+     "items": [
+      {
+       "n": "1",
+       "text": "定调用形态。产物：一份后端配置，四行（端点、密钥、部署名、api-version）。"
+      },
+      {
+       "n": "2",
+       "text": "建后端代理层。产物：一个转发端点，唯一出网处。"
+      },
+      {
+       "n": "3",
+       "text": "打通单轮无工具闭环。产物：一个输入框加一段回复，本机可复现。"
+      },
+      {
+       "n": "4",
+       "text": "落请求日志。产物：一张结构化表，记用量与耗时。"
+      },
+      {
+       "n": "5",
+       "text": "加流式。产物：一个增量输出端点。"
+      },
+      {
+       "n": "6",
+       "text": "加会话持久化。产物：一张消息表与一个会话标识。"
+      },
+      {
+       "n": "7",
+       "text": "声明工具。产物：一份签名到 schema 的映射文件。"
+      },
+      {
+       "n": "8",
+       "text": "加工具执行循环。产物：一个处理工具调用的回合函数。"
+      },
+      {
+       "n": "9",
+       "text": "建后端 service 层。产物：一个只收参数不拼 SQL 的查询模块。"
+      },
+      {
+       "n": "10",
+       "text": "加格式契约。产物：一份模式文件加一次修复回环。"
+      },
+      {
+       "n": "11",
+       "text": "加拆解展示。产物：一种过程事件类型与对应渲染分支。"
+      },
+      {
+       "n": "12",
+       "text": "加评测。产物：一组固定问句脚本与一个基线文件。"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "新手最常犯的顺序错误",
+     "text": "先画漂亮的聊天 UI，气泡、头像、打字动效都齐了，最后才把密钥塞进前端，发现必须补一层代理，于是刚画的东西要重接一遍。正确起点是反过来：先有丑但跑通的一问一答，再谈外观。"
+    },
+    {
+     "type": "code",
+     "lang": "text",
+     "code": "[1 interface + creds] -> [2 proxy layer] -> [3 single-turn loop, no tools]\n                                                    |\n                        +---------------------------+---------------------------+\n                        v                           v                           v\n                 [4 request log]             [5 streaming]             [6 thread store]\n                        |                           |\n                        +-------------+-------------+\n                                      v\n                          [7 tool schema] -> [8 tool loop] -> [9 backend service]\n                                                                   |\n                                     +-----------------------------+\n                                     v                             v\n                          [10 format contract]            [11 plan/thinking view]\n                                     \\                           /\n                                      v                         v\n                                   [12 eval suite + baseline]\n\nread top-to-bottom: every node only needs the nodes above it already fixed.\n3 is the load-bearing one - nothing after it is testable until it works.",
+     "caption": "依赖图：每个节点只依赖它上方的节点；3（单轮无工具闭环）是承重块，后面每一步都要在它之上才能测。",
+     "source_ids": []
+    },
+    {
+     "type": "code",
+     "lang": "text",
+     "code": "agent-chat/\n  .env.example                AZURE_OPENAI_ENDPOINT / _API_KEY / DEPLOYMENT / API_VERSION\n  server/\n    main.py                   POST /api/chat and /api/chat/stream - the only place that talks to Azure\n    upstream.py               headers, retry, history truncation, usage accounting\n    tools/\n      registry.py             function signature -> tool schema\n      orders.py               parameterized lookup; accepts fields, never SQL\n  db/\n    schema.sql                messages / tool_calls / request_log\n  web/\n    App.tsx                   input box, message list, streaming + plan rendering\n    api.ts                    fetches same-origin /api/* only; holds no secret\n  evals/\n    cases.jsonl               fixed question set\n    run.py                    rerun after every change, diff against baseline\n  baseline.json",
+     "caption": "照这一篇做完应得到的最小文件集：凭据只出现在 server/ 与 .env，web/ 里没有任何密钥。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/01_pipeline-order.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/01_pipeline-order.drawio 里继续编辑；按正文「接口先定，UI 最后画」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "build-order#接口先定，UI 最后画"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "azure-foundry",
+   "title": "接口这一层：Azure AI Foundry 给什么，我们把「gpt-6」当成假设说清楚",
+   "anchor": "接口",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "门户、资源、项目：三层不是一件事",
+     "text": "对齐名词。ai.azure.com 这个门户现在叫 Microsoft Foundry，原名 Azure AI Studio 与 Azure AI Foundry；原 Azure AI Services 改称 Foundry Tools。资源模型旧拼法是 Hub 加 Azure OpenAI 加 Azure AI Services，新拼法收敛成一个 Foundry resource 带 projects，hub 型项目只能在 Foundry (classic) 门户管。模型调用属数据面：URL 与字段名以 REST 文档为准，与门户上点过什么无关。",
+     "source_ids": [
+      "S021"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "端点形状两套，字段名一张表",
+     "text": "GA 版 2024-10-21 把部署名写进路径、版本当查询参数；新 v1 走稳定路由 /openai/v1/chat/completions，模型改成请求体里的 model 字段，api-version 只取 v1 或 preview。鉴权两条：api-key 头传资源密钥，或 Authorization 头加 Bearer 与 Entra 令牌，scope 是 https://ai.azure.com/.default。微软口径：生产用 Entra；密钥只适合快速验证，不被企业生产接受。",
+     "source_ids": [
+      "S022",
+      "S023",
+      "S024"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "聊天补全请求体：照 v1 那张字段表抄，弃用标记一并抄",
+     "rows": [
+      {
+       "k": "messages",
+       "v": "数组，必填，至少 1 项",
+       "source_ids": [
+        "S023"
+       ]
+      },
+      {
+       "k": "temperature / top_p",
+       "v": "可空数值",
+       "source_ids": [
+        "S023"
+       ]
+      },
+      {
+       "k": "max_completion_tokens",
+       "v": "整数上限，含思考 token",
+       "source_ids": [
+        "S023"
+       ]
+      },
+      {
+       "k": "max_tokens",
+       "v": "已标弃用",
+       "source_ids": [
+        "S023"
+       ]
+      },
+      {
+       "k": "stream / seed",
+       "v": "布尔 / 整数；seed 已标弃用",
+       "source_ids": [
+        "S023"
+       ]
+      },
+      {
+       "k": "tools / tool_choice / parallel_tool_calls",
+       "v": "工具、调用约束、并行开关（默认开）",
+       "source_ids": [
+        "S023"
+       ]
+      },
+      {
+       "k": "response_format",
+       "v": "含 type；配 json_schema 与 strict",
+       "source_ids": [
+        "S023",
+        "S026"
+       ]
+      },
+      {
+       "k": "n / tools / functions",
+       "v": "上限都是 128",
+       "source_ids": [
+        "S023",
+        "S028"
+       ]
+      },
+      {
+       "k": "max_output_tokens",
+       "v": "这张表里没有",
+       "source_ids": [
+        "S023"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "SSE 分块与收尾标记",
+     "text": "每块 object 为 chat.completion.chunk，正文在 choices[0].delta.content 里逐块追加，头一块的 delta 只有 role，收尾那块 finish_reason 转 stop 且 delta 是空对象，随后单独一行 data: [DONE]。finish_reason 只有 stop、length、tool_calls、content_filter、function_call 五个取值。另一个坑：默认模式把内容缓冲成块再吐，不是逐 token；要逐 token 须在部署级过滤配置里选 Asynchronous Filter，并要求 API 版本 2024-02-01 以上。",
+     "source_ids": [
+      "S025",
+      "S023"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "gpt-6：假设的是名字，不是接口",
+     "text": "GPT-6 在目录里是真的，但 ID 全带后缀：gpt-6-astra（2026-09-03）、gpt-6-sol 与 gpt-6-luna（2026-09-22）、gpt-6.1-sol（2026-09-29），上下文 1,050,000，输入 922,000、输出 128,000。裸名 gpt-6 不在任何目录表里，本书按开发者指定把 MODEL = gpt-6 记为假设部署名。假设只加在模型名与能力边界，不加在接口形状：示例字段名全取自上面那张 v1 表。一处不一致：结构化输出 how-to 的支持清单只列到 gpt-5.1，没列 gpt-6 ID，目录页却把 structured outputs 算作 GPT-6 能力，以实测为准。",
+     "source_ids": [
+      "S027",
+      "S026"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "curl 非流式",
+     "lang": "bash",
+     "caption": "假设接口，尖括号全是占位符；旧路由写法见上一节。",
+     "code": "curl -s -X POST \"https://<resource-name>.openai.azure.com/openai/v1/chat/completions\" \\\n  -H \"api-key: <AZURE_OPENAI_API_KEY>\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"model\": \"gpt-6\",\n    \"messages\": [\n      {\"role\": \"system\", \"content\": \"Call get_order_status when the status is unknown.\"},\n      {\"role\": \"user\", \"content\": \"Where is order 12345?\"}\n    ],\n    \"temperature\": 0.2,\n    \"max_completion_tokens\": 512,\n    \"stream\": false,\n    \"tools\": [\n      {\"type\": \"function\",\n       \"function\": {\"name\": \"get_order_status\", \"strict\": true,\n         \"parameters\": {\"type\": \"object\",\n           \"properties\": {\"order_id\": {\"type\": \"string\"}},\n           \"required\": [\"order_id\"], \"additionalProperties\": false}}}\n    ],\n    \"tool_choice\": \"auto\"\n  }'",
+     "source_ids": [
+      "S026",
+      "S023"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "Python SDK 非流式",
+     "lang": "python",
+     "caption": "假设接口，字段名同上表。",
+     "code": "import os\nfrom openai import OpenAI\n\nMODEL = \"gpt-6\"  # assumed deployment name, not a catalog ID\n\nclient = OpenAI(\n    base_url=\"https://<resource-name>.openai.azure.com/openai/v1/\",\n    api_key=os.environ[\"AZURE_OPENAI_API_KEY\"],\n)\n\nresp = client.chat.completions.create(\n    model=MODEL,\n    messages=[{\"role\": \"user\", \"content\": \"Where is order 12345?\"}],\n    temperature=0.2,\n    max_completion_tokens=512,\n    seed=None,\n    stream=False,\n)\n\nprint(resp.choices[0].message.content, resp.usage.total_tokens)",
+     "source_ids": [
+      "S026",
+      "S023"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "区域与配额：只给查法，不给数字",
+     "text": "区域可用性看按部署类别分表那页，行是 Model ID 加版本，列是 eastus2 这类区域名。配额在 Foundry 门户 quota 页按订阅、区域、模型看；程序化用 Usages API 查已用量、Model Capacities API 查某区域剩余部署能力。单位是每分钟 token 数，2026-05-07 起部分模型改成订阅级共享池；GPT-6 家族只有 Tier 5 与 Tier 6 默认带配额，其余要提申请。配额按订阅发放，数字写进书里就是错的。",
+     "source_ids": [
+      "S029",
+      "S028",
+      "S027",
+      "S0210"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "换模型时改三处",
+     "text": "一、模型标识：v1 改请求体的 model，旧版改路径里的部署名。二、长度字段：聊天补全用 max_completion_tokens，max_tokens 已标弃用，思考型还要加 reasoning_effort。三、路由与版本：走 deployment 路径必须带 api-version，走 /openai/v1 不带。工具与 response_format 能不能用，按新 ID 的能力行重查。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/02_api-layers.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/02_api-layers.drawio 里继续编辑；按正文「密钥只允许出现在后端」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "azure-foundry#密钥只允许出现在后端"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "one-turn",
+   "title": "一次回合：提问从浏览器走到模型再走回来，路上经过谁",
+   "anchor": "回合",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先分清四个进程",
+     "text": "一次提问走过四个进程：浏览器、后端 service、模型端点、数据库。浏览器不持有真相，模型端点不认识「会话」，数据库只在工具那一步被碰到。第 5 与第 8 步之间是个环，不是流水线。",
+     "source_ids": [
+      "S031",
+      "S034"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "路径图",
+     "lang": "text",
+     "code": "浏览器        后端 service        模型端点        数据库\n   |                |                 |              |\n   |-- POST /api/chat -->|             |              |\n   |                |-- SELECT history ---------------->|\n   |                |-- req #1  messages[全部历史] ---->|\n   |                |<-- resp  text | function_call ----|\n   |<-- 流式文本 ---|                                    |\n   |                |-- 校验参数 -> SELECT rows ------->|\n   |                |-- req #2  +function_call_output ->|\n   |                |<-- resp --------------------------|\n   |                `-- 没出 text 就再转一圈，直到出 text 或撞最大轮数",
+     "caption": "结构示意，非实抓报文。"
+    },
+    {
+     "type": "steps",
+     "title": "一次回合的调用顺序",
+     "items": [
+      {
+       "n": 1,
+       "text": "前端 POST /api/chat，附自生成的 turn_id。",
+       "spec": "浏览器｜未落盘"
+      },
+      {
+       "n": 2,
+       "text": "按 conversation_id 取历史，ID 后端生成。",
+       "spec": "后端→数据库｜读写"
+      },
+      {
+       "n": 3,
+       "text": "拼 system、历史、本轮 user 成 messages。",
+       "spec": "后端｜未落盘"
+      },
+      {
+       "n": 4,
+       "text": "POST /openai/v1/responses，model 填部署名。",
+       "spec": "后端→模型｜未落盘"
+      },
+      {
+       "n": 5,
+       "text": "回的可能只是 function_call，回合未完。",
+       "spec": "模型｜服务端存"
+      },
+      {
+       "n": 6,
+       "text": "查注册表，校验参数与白名单。",
+       "spec": "后端｜落工具日志"
+      },
+      {
+       "n": 7,
+       "text": "参数绑成占位符执行，不拼 SQL。",
+       "spec": "后端→数据库｜读"
+      },
+      {
+       "n": 8,
+       "text": "第二次请求，连同上一轮 reasoning 与 function_call_output 发回。",
+       "spec": "后端→模型｜未落盘"
+      },
+      {
+       "n": 9,
+       "text": "答案与 usage 落库，流回浏览器。",
+       "spec": "后端→浏览器｜写"
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "模型没有记忆，真相在后端",
+     "text": "文档译过来是：模型没有记忆，每个新问题都要把更新后的对话记录一起发过去。所以 conversation_id 由后端生成并持久化，客户端的 ID 只当索引。Responses API 能替你存——示例里 store 为 true、可用 previous_response_id 串下一轮；那是服务端存储，不是模型的记忆。",
+     "source_ids": [
+      "S031",
+      "S032",
+      "S034"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "角色口径",
+     "text": "system：数组开头那条初始指令，定义助手的目的、行为与规则。developer：v1 API 的 REST 示例把同一条写成 developer；Azure 侧最早可用的 api-version 我没查到。tool：这两页没有它的角色定义，Responses 侧工具结果是 function_call_output 项。",
+     "source_ids": [
+      "S031",
+      "S034",
+      "S035"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "推理内容：拿得到摘要和计数",
+     "text": "Azure 没有可取回的原始思维链字段。拿得到的是摘要——Responses API 的 reasoning.summary，取值 auto/concise/detailed，gpt-5 系列不支持 concise；以及计数——Chat Completions 叫 completion_tokens_details.reasoning_tokens，Responses 叫 output_tokens_details.reasoning_tokens，都按输出计费。变更记录：这两个字段随 2024-09-01-preview 加入，摘要随 2025-04-01-preview。绕开 reasoning summary 提取原始推理不受支持，可能违反使用政策、招致限流或封禁。",
+     "source_ids": [
+      "S034",
+      "S035"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "别把原始推理透给前端",
+     "text": "一，推理文本常原样复述 system 提示与工具定义，等于公开它们。二，它是未校验的中间产物，一显示读者就当事实，第 6 步的校验对它不成立。三，格式即契约，换了字段名前端就断。要展示过程，就展示摘要与工具步骤。"
+    },
+    {
+     "type": "code",
+     "heading": "可观测最小集",
+     "lang": "text",
+     "code": "响应头\n  x-request-id\n  x-ms-client-request-id        客户端自生成\n  x-ratelimit-limit-requests\n  x-ratelimit-limit-tokens\n  x-ratelimit-remaining-requests\n  x-ratelimit-remaining-tokens\n  x-ratelimit-reset-requests\n  x-ratelimit-reset-tokens\n  retry-after-ms                仅 429\n\n响应体\n  id                            resp_... / chatcmpl_...\n  model                         gpt-5-2025-08-07\n  usage.prompt_tokens      usage.completion_tokens      usage.total_tokens\n  usage.input_tokens       usage.output_tokens          usage.total_tokens\n  usage.completion_tokens_details.reasoning_tokens\n  usage.output_tokens_details.reasoning_tokens\n\n接口不返回\n  部署名                        仅请求侧\n  分段耗时                      无现成字段",
+     "caption": "字段名取自文档表头与示例。",
+     "source_ids": [
+      "S033",
+      "S034",
+      "S035",
+      "S036"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/03_turn-sequence.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/03_turn-sequence.drawio 里继续编辑；按正文「一次回合是一个循环不是单向流水线」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "one-turn#一次回合是一个循环不是单向流水线",
+      "one-turn#模型没有记忆"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "decompose",
+   "title": "拆解这件事：把「帮我看看这个订单为什么还没到」变成能执行的东西",
+   "anchor": "拆解",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "拆解的三种形态，各有代价",
+     "text": "计划清单是有序步骤，最直白，但表达不了并列与回退；子问题树能画出「先查再定」的分叉；DAG 编码依赖、并行与局部失败重试，代价是那张图难讲给业务方听。\n\nReAct 让推理与动作交替，Plan-and-Solve 先出计划再执行，Reflexion 在执行后自我反思——三种范式只约定流程，不约定中间结构。工具调用的返回块只有 type、tool_use_id、content，没有原生「步骤」字段，结构得你自己定。",
+     "source_ids": [
+      "S041",
+      "S042",
+      "S043",
+      "S044"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "拆解结果的最小契约",
+     "lang": "json",
+     "caption": "schema 与例子；应用自定义形态，非模型 API 原生字段。",
+     "code": "{\n  \"type\": \"array\",\n  \"items\": {\n    \"type\": \"object\",\n    \"required\": [\"id\", \"question\", \"depends_on\", \"handler\", \"expects\", \"on_fail\"],\n    \"properties\": {\n      \"id\":         {\"type\": \"string\"},\n      \"question\":   {\"type\": \"string\"},\n      \"depends_on\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}},\n      \"handler\":    {\"type\": \"string\", \"pattern\": \"^(tool:[a-z_.]+|model)$\"},\n      \"expects\":    {\"type\": \"string\"},\n      \"on_fail\":    {\"enum\": [\"retry\", \"fallback_model\", \"skip\", \"abort\"]}\n    }\n  }\n}\n\n// filled example\n[\n  {\"id\": \"st1\", \"question\": \"卡在哪个节点\",\n   \"depends_on\": [], \"handler\": \"tool:logistics.trace\",\n   \"expects\": \"节点与时间\", \"on_fail\": \"fallback_model\"},\n  {\"id\": \"st2\", \"question\": \"节点超时了吗\",\n   \"depends_on\": [\"st1\"], \"handler\": \"model\",\n   \"expects\": \"是否加依据\", \"on_fail\": \"skip\"},\n  {\"id\": \"st3\", \"question\": \"该赔还是该催\",\n   \"depends_on\": [\"st1\", \"st2\"], \"handler\": \"tool:policy.compensation\",\n   \"expects\": \"金额或话术\", \"on_fail\": \"abort\"}\n]"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "拆解失败的三种典型形态",
+     "rows": [
+      {
+       "k": "调了没有的工具",
+       "v": "handler 比对工具注册表，没命中就不跑，回失败让模型重拆"
+      },
+      {
+       "k": "子问题互相等",
+       "v": "按 depends_on 拓扑排序，排不完即成环；这是拆错，重试改不了结构"
+      },
+      {
+       "k": "同一问题答两次不一致",
+       "v": "question 去标点归一化，撞车就比对产出，不一致则整条作废"
+      }
+     ]
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "一次全量规划",
+      "tone": "neutral",
+      "points": [
+       "只调一次模型出计划，便宜、可提前审、条目稳定",
+       "开头看不到后面的事实，查到「已签收」即作废剩余步骤"
+      ]
+     },
+     "right": {
+      "title": "每步重新规划",
+      "tone": "neutral",
+      "points": [
+       "中途有新线索时更稳，能就地改道",
+       "每步都重发已有结果，任务越长越贵"
+      ]
+     },
+     "verdict": "默认全量规划，某一步失败时只重写它下游那一段。"
+    },
+    {
+     "type": "prose",
+     "heading": "什么时候不该拆，以及给人看什么",
+     "text": "不该拆的判据写成一行：没有任何子问题需要工具或数据库给新事实，就整题一次答完。「这个 SKU 多少钱」是单跳事实，「把结论说人话」是纯改写——拆了只是把一次生成换成多次，每多一次多一次出错机会。\n\n展示层只声明「准备做什么」，不是模型的内心活动；每条旁边必须挂状态，否则读者判断不了它跑没跑，待办工具的 pending、in_progress、completed 三态就是干这个的。重规划的账也算得出来：请求按输入 token 计费，每轮那份启用工具的系统提示词，Claude 4.5 系在 auto 下要 346 token；历史变长也不等于信息可用，同一事实的召回随位置呈 U 形，落在中间最容易丢。\n\n拆解步骤本身也是模型输出，必须走输出格式一章的校验、约束解码与修复回环，不能当可信输入执行。",
+     "source_ids": [
+      "S044",
+      "S045",
+      "S046"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/04_decompose-shapes.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/04_decompose-shapes.drawio 里继续编辑；按正文「拆解结果也要过格式校验」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "decompose#拆解结果也要过格式校验"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "dag",
+   "title": "要设 DAG 的话，设的是什么：节点、边、并行，和谁说了算",
+   "anchor": "DAG",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "定义与环检测",
+     "text": "DAG 即有向无环图，写的是优先级约束：A 不做完，B 不能开始。拓扑排序把顶点排成一条线，使每条边 u→v 里 u 在前。图存在拓扑序当且仅当它无环——排序写完，环检测也顺手做完了。",
+     "source_ids": [
+      "S051",
+      "S052"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "节点粒度：三种切法",
+     "text": "最细：一次工具调用一个节点，图由人写死，运行时只管调度与并发，模型只在节点里干活——可控可测，换问法要发版。中间：一个子问题一个节点，节点内模型连调几个工具，图小了、失败半径大了。最粗：一次模型推理单列成节点。",
+     "source_ids": [
+      "S053",
+      "S054"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "边是数据依赖，不是执行顺序",
+     "text": "反例：三个互不消费彼此输出的检索节点，按看着顺眼的顺序串成链。没人沿边传数据，并行度就是假的。判据：后一个节点的输入里有没有前一个的输出？没有就不该连边。正例：三条检索从 plan 同时分叉、在显式 join 处等齐，收尾约束交给 join。",
+     "source_ids": [
+      "S053",
+      "S059"
+     ]
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "静态编排：人写死",
+      "tone": "neutral",
+      "points": [
+       "模型只在节点内干活，失败半径落在单节点",
+       "固定输入可逐节点断言"
+      ]
+     },
+     "right": {
+      "title": "模型规划：运行时生成",
+      "tone": "neutral",
+      "points": [
+       "接住没预料到的问法",
+       "图可能含环，测计划合法性而非路径"
+      ]
+     },
+     "verdict": "多数取混合：人钉骨架，模型只填参数。"
+    },
+    {
+     "type": "prose",
+     "heading": "四件事在各家的名字",
+     "text": "一、环检测：加载时先排一遍，有环就拒绝启动。二、并发上限：并行要限流，否则打爆连接池。LangGraph 把并行节点归进同一 super-step，recursion limit 默认 25 步、1.0.6 起为 1000；Airflow 用 max_active_runs 分层限。三、重试与幂等：次数与退避是配置，幂等是设计。Durable Task 说 activity 只保证至少一次执行、建议写成 upsert，Logic Apps 默认重试 4 次，而编排代码要求确定性，因为它会被重放。重放非幂等写操作等于重复扣款，Stripe 的 idempotency key 存下首次响应，24 小时内同 key 返回原结果。四、失败传播：跳过、降级、整图失败要显式声明；Airflow 有 trigger_rule，Prefect 3 有 transactions。",
+     "source_ids": [
+      "S059",
+      "S056",
+      "S054",
+      "S0511",
+      "S055",
+      "S0510",
+      "S0512",
+      "S0513",
+      "S0515",
+      "S0516",
+      "S057",
+      "S058"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "DAG 定义示例",
+     "lang": "yaml",
+     "caption": "假设形态，非真实 schema；边的另一种写法是 Logic Apps 的 dependsOn。",
+     "code": "apiVersion: agent.local/v1\nkind: TaskGraph\nnodes:\n  - id: plan\n    kind: model                    # one model call, emits sub-questions\n    schema: { subquestions: \"list[str]\" }\n    retry: { max_attempts: 2, backoff: exponential }\n  - id: fetch_order\n    kind: tool\n    tool: order_service.get\n    args_from: \"$.query.order_id\"   # depends on the request, not on plan\n  - id: fetch_logistics\n    kind: tool\n    tool: logistics_service.track\n    args_from: \"$.query.order_id\"\n  - id: fetch_policy\n    kind: tool\n    tool: kb.search\n    args_from: \"$.plan.subquestions\"\n    on_failure: degrade            # feed \"no policy found\" downstream\n  - id: join\n    kind: barrier                  # waits for data, not for tidiness\n    waits_for: [fetch_order, fetch_logistics, fetch_policy]\n  - id: answer\n    kind: model\n    prompt_ref: prompts/answer.md\nedges:\n  - { from: plan,            to: fetch_policy }\n  - { from: fetch_order,     to: join }\n  - { from: fetch_logistics, to: join }\n  - { from: fetch_policy,    to: join }\n  - { from: join,            to: answer }\nlimits:\n  max_parallel_nodes: 4\n  idempotency_key_template: \"{run_id}:{node_id}\"\nruntime:\n  cycle_check: on_load\n  default_on_failure: fail_graph",
+     "source_ids": [
+      "S0514",
+      "S053"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "执行器伪代码",
+     "lang": "python",
+     "caption": "未实跑。",
+     "code": "def run(graph, query):\n    indeg, adj = build_indegree(graph)        # adj[u] = u's downstream\n    ready = deque(n for n in graph.nodes if indeg[n] == 0)\n    done, failed, ran = {}, set(), 0\n\n    while ready:\n        n = ready.popleft()\n        ran += 1\n        try:\n            with slot(graph.max_parallel_nodes):      # concurrency cap\n                done[n.id] = call_with_retry(n, bind(n.args_from, done, query))\n        except NodeFailed:\n            failed.add(n.id)\n            propagate(n, graph, adj, indeg, ready, done)\n            continue\n        release(n, adj, indeg, ready)\n\n    if ran < len(graph.nodes) and not failed:\n        raise CycleError(stranded(graph, ran))  # stranded with no failure => a cycle\n\ndef release(n, adj, indeg, ready):\n    for v in adj[n.id]:\n        indeg[v] -= 1\n        if indeg[v] == 0:\n            ready.append(v)\n\ndef call_with_retry(n, args):\n    key = \"%s:%s\" % (run_id, n.id)             # same key across attempts\n    for attempt in range(n.retry.max_attempts):\n        try:\n            return n.kind.invoke(args, idempotency_key=key)\n        except Retryable:\n            sleep(n.retry.backoff(attempt))\n    raise NodeFailed(n)\n\ndef propagate(n, graph, adj, indeg, ready, done):\n    policy = graph.policy_of(n)                # skip | degrade | fail_graph\n    if policy == \"fail_graph\":\n        raise GraphFailed(n)\n    if policy == \"degrade\":\n        done[n.id] = graph.placeholder_of(n)\n    release(n, adj, indeg, ready)              # unblock downstream either way"
+    },
+    {
+     "type": "prose",
+     "heading": "什么时候别上 DAG",
+     "text": "三个节点以内的直线流程，函数调用就够。上图要多养调度器、状态存储、限流，和每个写节点的幂等改造。直线失败是「第二步抛异常」，图失败是「join 等三个上游、一个降级返回」。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/05_dag-run.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/05_dag-run.drawio 里继续编辑；按正文「边是数据依赖不是执行顺序」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "dag#边是数据依赖不是执行顺序"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "tools",
+   "title": "工具写在哪：一个函数怎么变成模型敢调的东西",
+   "anchor": "工具",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "一个 tool 其实是三份东西，各住各的",
+     "text": "把「写一个工具」想成一件事是误解。真正跑起来的是三份分离的东西:给模型看的只有 name、description、parameters 三段;实现是一个普通函数,模型看不见它长什么样;而是否只读、要不要用户确认、超时多久、成本高低,属于你运行时注册表里的元数据,不进 schema。Azure Foundry 的 Chat Completions 里,工具定义被按模型训练时的语法拼进系统提示、和用户消息一起构成上下文——所以这三份天生就是分开的。",
+     "source_ids": [
+      "S061"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "落地到目录:三份各归一处",
+     "lang": "text",
+     "caption": "本章示例的工程布局(示意目录,非某个官方仓库)。",
+     "code": "services/agent/\n  tools/\n    schema.py            # 给模型看的 tools 数组: name/description/parameters\n    registry.py          # 元数据: readonly? confirm? timeout_ms cost_tier\n    handlers/\n      query_order.py     # 真正的实现, 普通函数, 模型看不见\n      read_file.py\n  auth/\n    session_principal.py # 从会话注入 user_id, 不让模型填\n  loop/\n    turn.py              # 主循环: 只调度, 不写超时/重试\n"
+    },
+    {
+     "type": "code",
+     "heading": "① 给模型看的那份：照 Foundry 的字段写",
+     "lang": "json",
+     "caption": "字段形状照 Foundry 文档写；末尾那行元数据属于 registry，不进发给模型的 schema。",
+     "source_ids": [
+      "S061"
+     ],
+     "code": "tools = [\n  {\n    \"type\": \"function\",\n    \"function\": {\n      \"name\": \"query_order\",\n      \"description\": \"按订单号查当前物流节点与预计送达。只读; 不处理改地址。\",\n      \"parameters\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"order_id\": {\"type\": \"string\"},\n          \"detail\": {\"type\": \"string\", \"enum\": [\"brief\", \"full\"]}\n        },\n        \"required\": [\"order_id\"]\n      }\n    }\n  }\n]\n# registry.py:  ToolMeta(readonly=True, confirm=False, timeout_ms=2000, cost=\"low\")\n"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "② 定义放在哪：加载时机与风险",
+     "rows": [
+      {
+       "k": "写死在代码里",
+       "v": "随进程启动加载、跟版本发布;改描述要发版,但最可控、不会漂"
+      },
+      {
+       "k": "配置文件(YAML/JSON)",
+       "v": "启动时读入;可不发版改文案,风险是描述与实现分头改、对不上"
+      },
+      {
+       "k": "数据库 / 远端注册表",
+       "v": "请求时才拉、可按租户热更新;风险最大——缓存过期,且不可信描述会进上下文"
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "③ 描述文案是接口的一部分，不是注释",
+     "text": "模型只会照着 description 选工具,措辞含糊就变成选错。Foundry 文档把这点说得很实:函数定义连同系统/用户消息一起,构成模型判断要不要调用、调用哪个的上下文。还有一条硬约束——tool 与 function 的描述目前锁死在 1,024 字符。一个回合里它还可能并行发出多个调用,在 tool_calls 数组中各带唯一 id。",
+     "source_ids": [
+      "S061"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "两个描述互相抢活",
+     "text": "反例:query_order 写「获取订单相关信息」,get_shipping_eta 也写「获取订单相关信息」——两个都敢调,结果随机。修法:把 description 写成互斥的,各自限定输入与动作,如「按订单号查物流节点,只读」对上「按订单号改收货地址,需用户确认」,让边界一眼可辨。"
+    },
+    {
+     "type": "code",
+     "heading": "④⑤⑥⑦ 实现层做的四件事",
+     "lang": "python",
+     "caption": "这是示意结构, ToolOk/ToolError/principal 等命名并非 Foundry 官方 API 形态;真正的校验、裁剪、鉴权、超时都发生在函数内部。",
+     "code": "# handlers/query_order.py\n@tool(name=\"query_order\")\ndef query_order(order_id, detail=\"brief\", *, principal):   # principal 从会话注入, 非模型可填参数\n    if not ORDER_RE.match(order_id):                        # 拒绝原始SQL/白名单外输入, 回可行动错误\n        return ToolError(hint=\"order_id 需形如 A+4位数字; 合法 detail: brief|full\")\n    rows = repo.fetch(order_id, limit=MAX+1)                # repo 用 service key(模型拿不到)+只读账号\n    return ToolOk(node=rows[0].node, eta=rows[0].eta,       # 裁剪: 只回必要字段\n                  count=len(rows), truncated=len(rows) > MAX)\n"
+    },
+    {
+     "type": "code",
+     "heading": "②③④⑤ 一个回合的两端：请求里的工具定义，与响应里的调用",
+     "lang": "json",
+     "caption": "请求侧的 tools 定义与响应侧的 tool_calls：一个回合返回三个并行调用，各带唯一 id。",
+     "source_ids": [
+      "S061"
+     ],
+     "code": "{\n  \"tools\": [ { \"type\": \"function\", \"function\": {\n      \"name\": \"query_order\",\n      \"description\": \"Get the current logistics node and ETA for an order.\",\n      \"parameters\": { \"type\": \"object\",\n        \"properties\": { \"order_id\": {\"type\": \"string\"},\n                        \"detail\": {\"type\": \"string\", \"enum\": [\"brief\", \"full\"]} },\n        \"required\": [\"order_id\"] } } } ],\n  \"tool_choice\": \"auto\",\n\n  \"choices\": [ { \"message\": { \"role\": \"assistant\", \"content\": null, \"tool_calls\": [\n      { \"id\": \"call_a1\", \"type\": \"function\", \"function\": { \"name\": \"query_order\", \"arguments\": \"{\\\"order_id\\\":\\\"A1024\\\"}\" } },\n      { \"id\": \"call_b2\", \"type\": \"function\", \"function\": { \"name\": \"query_order\", \"arguments\": \"{\\\"order_id\\\":\\\"A2048\\\"}\" } },\n      { \"id\": \"call_c3\", \"type\": \"function\", \"function\": { \"name\": \"query_order\", \"arguments\": \"{\\\"order_id\\\":\\\"A4096\\\"}\" } }\n  ] } } ]\n}\n"
+    },
+    {
+     "type": "prose",
+     "heading": "⑤⑥ 把结果喂回去，以及怎么处理失败",
+     "text": "收到 tool_calls 后,你的代码解析 arguments(它是 JSON 字符串,Foundry 的示例用 json.loads 解开)去执行函数,再把结果以 role=tool 的消息拼回对话,每条都带上对应调用里那个 id 填进 tool_call_id——三个调用就补三条。返回值务必裁剪:整张表回灌既烧 token 又招幻觉,只留必要字段,外加条数与 truncated 标记。错误同样要回,但得可行动:参数名写错就报出合法名,内部超时就如实说超时,否则模型只会照原样再试一次。",
+     "source_ids": [
+      "S061"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "③⑤ 一个调用结果回填：role 固定为 tool",
+     "lang": "json",
+     "caption": "role 必须是 tool,tool_call_id 指回 assistant 里对应的 call_c3;并行时另两个 call 也各回一条。name 可选,content 是回给模型的字符串,这里已裁成必要字段加 truncated。",
+     "source_ids": [
+      "S061"
+     ],
+     "code": "{\n  \"role\": \"tool\",\n  \"tool_call_id\": \"call_c3\",\n  \"name\": \"query_order\",\n  \"content\": \"{\\\"node\\\":\\\"上海分拨中心已发出\\\",\\\"eta\\\":\\\"2026-10-04\\\",\\\"count\\\":1,\\\"truncated\\\":false}\"\n}\n"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "tool_choice 四个取值的官方定义",
+     "rows": [
+      {
+       "k": "none",
+       "v": "模型不调用任何工具,只生成消息",
+       "source_ids": [
+        "S062"
+       ]
+      },
+      {
+       "k": "auto",
+       "v": "模型自行决定生成消息还是调用一个或多个工具",
+       "source_ids": [
+        "S062"
+       ]
+      },
+      {
+       "k": "required",
+       "v": "模型必须调用一个或多个工具",
+       "source_ids": [
+        "S062"
+       ]
+      },
+      {
+       "k": "指定某函数",
+       "v": "传 {\"type\":\"function\",\"function\":{\"name\":\"query_order\"}} 强制调那个",
+       "source_ids": [
+        "S061"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "⑦ 鉴权：密钥和身份都不能经过模型",
+     "text": "服务账号的密钥绝不能经模型之手——它既不该看见,也不该填。工具需要的用户身份(如 user_id)要从会话上下文注入实现层,而不是开一个参数让模型自己填,否则伪造一个 id 就能越权。Foundry 关于负责任使用的建议说得很直白:按最小权限来,查库只给只读账号;而且不要把「在工具定义里删掉某能力」当成安全边界。",
+     "source_ids": [
+      "S061"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "⑧ 超时、重试、熔断放工具层，不放主循环",
+     "text": "这三样属于工具层而非主循环。原因是主循环不该知道某个 tool 是两秒的 HTTP 还是三十秒的批处理:让每个 tool 自带 timeout 与 max_retry,熔断按工具维度跳闸——一个下游挂了,不至于拖垮整个回合格。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/06_where-things-live.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/06_where-things-live.drawio 里继续编辑；按正文「描述、实现、权限元数据是三样东西」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "tools#描述、实现、权限元数据是三样东西"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "skills",
+   "title": "skill 不是 tool：能力的说明书放哪、什么时候被读进来",
+   "anchor": "技能",
+   "blocks": [
+    {
+     "type": "compare",
+     "left": {
+      "title": "工具",
+      "tone": "neutral",
+      "points": [
+       "名字加 JSON Schema",
+       "模型决定何时调",
+       "一次调用一次副作用"
+      ]
+     },
+     "right": {
+      "title": "技能",
+      "tone": "neutral",
+      "points": [
+       "一个目录，核心是 SKILL.md",
+       "不执行，只改下一步怎么想",
+       "能规定先调哪个才答"
+      ]
+     },
+     "verdict": "工具是「能做什么」：一次调用、有输入输出、由运行时执行；技能是「该怎么做」：注入提示词的说明，不执行任何东西。"
+    },
+    {
+     "type": "code",
+     "lang": "text",
+     "heading": "技能放哪：一个技能一个文件夹",
+     "code": "skills/\n└── order-delay-triage/\n    ├── SKILL.md              # required\n    ├── references/\n    │   └── carriers.md       # level 3, read on demand\n    ├── scripts/\n    │   └── fetch_trace.py    # run it, don't read it\n    └── assets/\n        └── reply-template.md",
+     "caption": "Claude Code 项目级放 .claude/skills/<name>/SKILL.md，个人级放 ~/.claude/skills/；Copilot 还认 .github/skills。",
+     "source_ids": [
+      "S071",
+      "S074",
+      "S075"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "渐进披露：清单常驻，正文按需",
+     "text": "正文全塞进上下文，先被挤掉的是用户的问题与结果。加载因此分两级：启动只预载 name 与 description 进系统提示，命中才读全文。三档：元信息约 100 token、正文 5000 token 以内、资源按需。Claude Code 把预算写成硬数字：description 与 when_to_use 合并截断在 1,536 字符，清单额度取上下文窗口的 1%。",
+     "source_ids": [
+      "S071",
+      "S072",
+      "S073",
+      "S074"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "两个字段决定它会不会被用上",
+     "text": "必填只有 name（≤64 字符，小写加连字符，等于目录名）与 description（≤1024 字符）。后者要同时回答「做什么」与「什么时候用」，带上用户真会说的词：「帮忙处理文档」几乎不触发，「提取 PDF 文本与表格、填表单——提到 PDF 或字段时用」才命中。清单只给这一栏位置：写窄了永不触发，写宽了到处误触发。",
+     "source_ids": [
+      "S071"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "一段技能文件",
+     "lang": "markdown",
+     "code": "---\nname: order-delay-triage\ndescription: >-\n  排查订单没到：查轨迹、判承运商异常、给赔付口径。\n  用户提到「没到」「延迟」「催派」「签收」时用。\nmetadata:\n  owner: order-platform\n  version: \"3\"\nallowed-tools: Read Grep\n---\n\n# Steps\n\n1. Call get_order; confirm status and promised date.\n2. Call get_tracking. An empty trace is not a conclusion: call\n   get_carrier_incident first.\n3. Answer as delivered only when signed_at is present.\n\nLook up rates in references/carriers.md; never write one from memory.",
+     "caption": "头决定触发，正文决定做法。",
+     "source_ids": [
+      "S071"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "重叠区",
+     "text": "技能可以规定「按这个顺序调这三个工具」：流程写在技能里，执行仍在工具里。别把这段编排注册成第四个工具——那样失败时看不见中间态。",
+     "source_ids": []
+    },
+    {
+     "type": "code",
+     "heading": "加载器伪代码",
+     "lang": "python",
+     "code": "# startup: the listing stays resident, bodies do not\ndef system_prompt(skills):\n    listing = [{\"name\": s.name,\n                \"description\": s.description[:1536]}\n               for s in skills]\n    return SYSTEM + json.dumps(listing)\n\n# main loop: injection point is right before each model call\ndef run(question, skills, tools):\n    msgs = [user(question)]\n    while True:\n        out = model(system_prompt(skills),\n                    tools + [read_skill], msgs)\n        if out.calls(\"read_skill\"):            # hit: body enters context\n            msgs.append(body(skills[out.name]))\n            continue\n        if out.calls_tool():\n            msgs.append(execute(out, tools))   # execution stays in tools\n            continue\n        return out.text",
+     "caption": "read_skill 本身做成工具：正文靠一次调用进上下文。",
+     "source_ids": [
+      "S074"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "这层约束去哪里查",
+     "text": "最大输入输出 token 就写在供应商的模型表里：Azure OpenAI 用 Context Window 与 Max Output Tokens 两列，并说明 Input 与 Output 是各自上限、不可叠加。",
+     "source_ids": [
+      "S076"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "版本管理，以及这条分界算不算标准",
+     "text": "技能得进版本库、和代码一起发布：规范把它定位成「可移植、受版本控制的文件夹」。放进数据库由运营改，就丢掉三样——哪一版说明对应那次回答（无从回滚）、改动经谁审、评测集还能不能复跑。我没找到官方给出的 skill 与 tool 分层定义：MCP 只列 tools、resources、prompts，其中没有 skill。这条分界是工程约定。",
+     "source_ids": [
+      "S072",
+      "S074",
+      "S077"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/07_skill-loading.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/07_skill-loading.drawio 里继续编辑；按正文「清单常驻，命中才读正文」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "skills#清单常驻，命中才读正文"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "db-and-service",
+   "title": "后端 service：把模型的话变成一条安全的查询",
+   "anchor": "service",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "密钥与账单只能有一个出口",
+     "text": "密钥、限流、审计、重试、成本统计只能有一个地方做。逻辑写两遍，密钥就会出现两处，出事时也拼不出完整调用链。OWASP 2025 版生成式 AI 十大风险把成本失控单列为 LLM10 Unbounded Consumption。",
+     "source_ids": [
+      "S0811"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "调模型：把隐式默认改成显式设定",
+     "text": "默认值是按能跑通选的，不是按你的延迟目标选的，逐项见下表。要显式写四件：连接超时与读超时分开，读超时必须大于首字节到达时间，否则流式响应被自己掐断；重试上限压到 1，超时与重试叠乘会放大雪崩；两条路径共用同一套超时；每个回合设最大工具调用次数，超限就返回降级答案。",
+     "source_ids": [
+      "S084",
+      "S085",
+      "S086",
+      "S089"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "模型客户端与回合预算",
+     "lang": "python",
+     "code": "import httpx\nfrom openai import OpenAI\n\nMODEL = OpenAI(\n    timeout=httpx.Timeout(60.0, connect=3.0, read=20.0),\n    max_retries=1,\n)\n\ndef run_turn(msgs, tools, max_tool_calls=6):\n    for _ in range(max_tool_calls):\n        resp = MODEL.chat.completions.create(\n            model=MODEL_ID, messages=msgs, tools=tools, stream=True)\n        step = consume(resp)\n        if not step.tool_calls:\n            return step.text\n        msgs += execute(step.tool_calls)\n    return degraded_answer(msgs)",
+     "caption": "接口形态示意。回合上限由本服务自己计数，SDK 不提供该字段；stream=False 走同一组超时常量。",
+     "source_ids": []
+    },
+    {
+     "type": "prose",
+     "heading": "查库这条链路：只接受参数",
+     "text": "入参只能是订单号、用户 ID、日期区间这类标量，不该有字段容得下一段 SQL。这条攻击路径已被命名为 P₂SQL 注入：自然语言经 LangChain 一类中间件转成 SQL 后原样执行；论文测了 7 个主流模型，结论是这类应用高度易受攻击，并提出 4 种可集成的防御。参数化还必须发生在服务端。",
+     "source_ids": [
+      "S083",
+      "S082"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "模型递来一段 SQL 时的拒绝路径",
+     "lang": "python",
+     "code": "class OrderArgs(BaseModel):\n    order_id: str = Field(pattern=r\"^[A-Z0-9]{8,14}$\")\n\nORDER_SQL = (\"SELECT status, shipped_at, carrier \"\n             \"FROM v_order_agent WHERE order_id = :oid LIMIT 50\")\n\n@tool(args_schema=OrderArgs)\ndef lookup_order(raw: dict) -> dict:\n    for poison in (\"sql\", \"query\", \"statement\"):\n        if poison in raw:\n            audit.reject(tool=\"lookup_order\", reason=\"raw_sql\")\n            raise ToolArgumentError(\"only order_id is accepted\")\n    if set(raw) - set(OrderArgs.model_fields):\n        raise ToolArgumentError(\"unknown argument\")\n    return shape(repo.fetch(ORDER_SQL, {\"oid\": raw[\"order_id\"]}))",
+     "caption": "语句常量写死在代码里，模型只填绑定变量；OWASP 把参数化查询列为防注入的首选手段。",
+     "source_ids": [
+      "S081",
+      "S082"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "返回结构稳定，截断要明说",
+     "lang": "python",
+     "code": "def shape(rows, limit=50):\n    truncated = len(rows) > limit\n    return {\n        \"ok\": True,\n        \"rows\": rows[:limit],\n        \"row_count\": min(len(rows), limit),\n        \"truncated\": truncated,\n        \"cursor\": rows[limit - 1][\"order_id\"] if truncated else None,\n    }",
+     "caption": "少了行而 truncated 不为真，模型会把它当全量并断言不存在。",
+     "source_ids": []
+    },
+    {
+     "type": "prose",
+     "heading": "给模型看到的表要比给用户的窄",
+     "text": "生产库连接不能交给 agent；只读账号、列白名单视图、按租户过滤是同一件事的三个面。OWASP 建议：账号只需要表的一部分时建视图，把权限指向视图而不是底表，并尽量永不授予建表或删表权。PostgreSQL 行级安全在没有任何策略时默认全拒，但表主通常不受策略约束。",
+     "source_ids": [
+      "S081",
+      "S087"
+     ]
+    },
+    {
+     "type": "code",
+     "heading": "只读角色、收窄视图与行级策略",
+     "lang": "sql",
+     "code": "CREATE ROLE agent_ro LOGIN CONNECTION LIMIT 20;\nGRANT USAGE ON SCHEMA app TO agent_ro;\n\nCREATE VIEW v_order_agent AS\n    SELECT order_id, status, shipped_at, carrier\n    FROM orders\n    WHERE tenant_id = current_setting('app.tenant_id')::bigint;\n\nALTER TABLE orders ENABLE ROW LEVEL SECURITY;\nCREATE POLICY tenant_read ON orders\n    AS PERMISSIVE FOR SELECT TO agent_ro\n    USING (tenant_id = current_setting('app.tenant_id')::bigint);",
+     "caption": "写法示意，未在你的库上执行过。CONNECTION LIMIT 按实例配额定；视图与策略可同用，也可只留一个。",
+     "source_ids": [
+      "S087",
+      "S081"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "各层出厂默认值",
+     "rows": [
+      {
+       "k": "OpenAI SDK 总超时",
+       "v": "10 分钟",
+       "source_ids": [
+        "S084"
+       ]
+      },
+      {
+       "k": "OpenAI SDK 重试",
+       "v": "2 次，仅连接错误与 408/409/429/5xx",
+       "source_ids": [
+        "S084"
+       ]
+      },
+      {
+       "k": "httpx 默认",
+       "v": "5 秒无活动即超时",
+       "source_ids": [
+        "S085"
+       ]
+      },
+      {
+       "k": "SQLAlchemy 池",
+       "v": "5 条常驻 + 10 条溢出，等连接 30 秒",
+       "source_ids": [
+        "S086"
+       ]
+      },
+      {
+       "k": "PostgreSQL",
+       "v": "max_connections 通常 100",
+       "source_ids": [
+        "S088"
+       ]
+      },
+      {
+       "k": "Node.js",
+       "v": "requestTimeout 300000 毫秒",
+       "source_ids": [
+        "S089"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "会话落库：写两次，标一次",
+     "text": "收到请求就先写用户那一行并带幂等键，拿到回复再补助手那一行；补写失败只把该行标成待补，不回滚用户输入，重放靠幂等键去重。历史表给人看上下文，审计表记谁调了哪个工具、参数摘要、耗时与花费，两者写入路径和保留期分开。",
+     "source_ids": [
+      "S0810"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "连接池、并发与日志红线",
+     "text": "两本账一起算：一次回合会串行触发多次调用，每次各占一条连接时，两三个并发就占满单进程 15 条的池，后来的请求只在等连接超时后报错，看起来却像模型变慢。日志既不放用户原文也不放密钥整段——OWASP 把访问令牌、数据库连接串、口令列为必须删除、掩码或散列的对象，只留摘要与请求 ID。",
+     "source_ids": [
+      "S086",
+      "S0810"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/08_db-fanout.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/08_db-fanout.drawio 里继续编辑；按正文「只允许参数化查询」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "db-and-service#只允许参数化查询"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "streaming-ui",
+   "title": "流式与「正在想」：前端怎么把过程显示出来而不骗人",
+   "anchor": "流式",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "传输选型",
+     "text": "轮询把首字延迟钉在间隔上。WebSocket 双向，但重连、心跳、帧序和鉴权都要自己写。SSE 是一条普通 HTTP 响应，鉴权沿用请求头与 cookie，断线自动重连并把最后收到的 id 放进 Last-Event-ID 头报回服务端。模型输出本来就单向，于是聊天框多用它。",
+     "source_ids": [
+      "S091"
+     ]
+    },
+    {
+     "type": "code",
+     "lang": "http",
+     "code": "Content-Type: text/event-stream\n\nevent: start\nid: 1\ndata: {\"turn_id\":\"t_01\",\"steps\":[{\"id\":\"s_1\",\"title\":\"lookup\"}]}\n\n: keepalive\n\nevent: delta\nid: 2\ndata: {\"text\":\"Because\"}\n\nevent: tool_call\nid: 3\ndata: {\"call_id\":\"c_9\",\"name\":\"order.lookup\",\"arguments\":{\"order_id\":\"A-7742\"}}\n\nevent: tool_result\nid: 4\ndata: {\"call_id\":\"c_9\",\"ok\":true}\n\nevent: step\nid: 5\ndata: {\"step_id\":\"s_1\",\"status\":\"running\"}\n\nevent: done\nid: 6\ndata: {\"finish_reason\":\"stop\"}\n\ndata: [DONE]",
+     "caption": "帧格式来自 WHATWG。",
+     "source_ids": [
+      "S091",
+      "S098"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "关掉缓冲",
+     "text": "流式变成整段蹦出来，几乎总是中间层在攒字节。nginx 的 proxy_buffering 默认开着，先塞满 proxy_buffers 才往外发，关掉才是收到即转；gzip_buffers 是压缩响应的缓冲区。后端也可自己回 X-Accel-Buffering: no 关掉它。",
+     "source_ids": [
+      "S092",
+      "S093",
+      "S094"
+     ]
+    },
+    {
+     "type": "code",
+     "lang": "nginx",
+     "code": "location /v1/chat/stream {\n    proxy_pass http://agent_backend;\n    proxy_http_version 1.1;\n    proxy_set_header Connection \"\";\n    proxy_buffering off;\n    gzip off;\n    chunked_transfer_encoding on;\n    proxy_read_timeout 3600s;\n}\n\n# or let the backend decide, per response:\n#   X-Accel-Buffering: no",
+     "caption": "",
+     "source_ids": [
+      "S092",
+      "S094"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "事件契约",
+     "text": "契约的价值是顺序可断言：start 在最前且一次，delta 只追加，tool_call 早于配对的 tool_result，done 在最后。微软文档两条边界要抄进解析器：finish_reason 直到最后一个分块都是 null，注解分块的 choices 是空数组。未知事件类型要忽略，不抛错。",
+     "source_ids": [
+      "S097",
+      "S098"
+     ]
+    },
+    {
+     "type": "code",
+     "lang": "typescript",
+     "code": "type StreamEvent =\n  | { type: \"start\";       turnId: string; steps: { id: string; title: string }[] }\n  | { type: \"delta\";       text: string }\n  | { type: \"tool_call\";   callId: string; name: string; arguments: unknown }\n  | { type: \"tool_result\"; callId: string; ok: boolean; error?: string }\n  | { type: \"step\";        stepId: string;\n      status: \"pending\" | \"running\" | \"done\" | \"failed\" }\n  | { type: \"error\";       code: string; message: string; retryable: boolean }\n  | { type: \"done\";        finishReason: string; stopped?: boolean };\n\nfunction onEvent(raw: Record<string, string>) {\n  const e = parse(raw) as StreamEvent;\n  switch (e.type) {\n    case \"delta\": append(e.text); break;\n    case \"tool_call\": openCollapsedCard(e); break;\n    case \"step\": markStep(e.stepId, e.status); break;\n    case \"done\": finalize(e); break;\n    default: break; // unknown type: ignore, never throw\n  }\n}",
+     "caption": "建议的接口形态，非真跑通过的响应。",
+     "source_ids": [
+      "S091"
+     ]
+    },
+    {
+     "type": "steps",
+     "items": [
+      {
+       "n": 1,
+       "text": "每个 delta 只 append；整段重渲会抹掉选中文本与输入法候选。"
+      },
+      {
+       "n": 2,
+       "text": "思考文本、工具入参与结果收进 details，展开是显式动作。"
+      },
+      {
+       "n": 3,
+       "text": "任何 running 都挂计时器，到点改无响应并允许重试。"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "myth",
+     "title": "思维链不是进度",
+     "text": "进度该显示拆解那一章声明过的步骤和它们的真实状态：名字能对账，状态由执行器回报。模型的内部文本没有校验，可能在任务已经失败时照样写得通顺。"
+    },
+    {
+     "type": "prose",
+     "heading": "取消与重连",
+     "text": "点停止不能只把按钮切灰：AbortController 掐掉这条流，服务端同步真中止上游调用，并落一条被中止的记录，否则计费与审计会以为答完了。重连按事件 id 从那格续发，不是重问一遍模型；彻底终止就回 204。",
+     "source_ids": [
+      "S091"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "滚动与无障碍",
+     "text": "自动跟随只认一个条件：还在贴底，用户一上滑就停。长代码块用 overflow-x: auto，别让一行 SQL 撑破版心。WCAG SC 4.1.3 要求状态消息能由 role 或属性程序化确定、不夺焦点也能播报，故挂 role=status；SC 1.4.1 要求颜色不能是唯一手段。",
+     "source_ids": [
+      "S096",
+      "S095"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "延迟指标",
+     "text": "两个数分开量：首字时间与完整时间。只盯前者会教人作弊：攒够缓冲一次性 flush，指标好看而观感更差。微软文档的默认模式正是如此——内容先缓冲、过完护栏才放行，按缓冲区大小成块而非逐 token，完整时间几乎不变。",
+     "source_ids": [
+      "S098"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/09_stream-states.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/09_stream-states.drawio 里继续编辑；按正文「事件契约决定前端能显示什么」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "streaming-ui#事件契约决定前端能显示什么"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "format-contract",
+   "title": "输出格式怎么保证：契约、约束解码、修复回环，三段都不能少",
+   "anchor": "格式",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先分清两种「格式」",
+     "text": "先分清给用户看的排版与给程序用的结构（JSON）。混在一句话里的系统，改一次前端样式要重跑模型，模型换个字段名版式就塌。\n\n排版归渲染层保证，结构归 schema 保证，两条路分开走。",
+     "source_ids": []
+    },
+    {
+     "type": "code",
+     "lang": "json",
+     "heading": "",
+     "source_ids": [
+      "S101"
+     ],
+     "caption": "请求体形态照官方 REST 示例改写，字段为自拟示例。",
+     "code": "{\n  \"model\": \"YOUR_MODEL_DEPLOYMENT_NAME\",\n  \"messages\": [\n    {\"role\": \"system\", \"content\": \"Answer with the order status.\"},\n    {\"role\": \"user\", \"content\": \"Why has order 12345 not arrived?\"}\n  ],\n  \"response_format\": {\n    \"type\": \"json_schema\",\n    \"json_schema\": {\n      \"name\": \"OrderStatusResponse\",\n      \"strict\": true,\n      \"schema\": {\n        \"type\": \"object\",\n        \"properties\": {\n          \"status\": {\"type\": \"string\", \"enum\": [\"ok\", \"refused\"]},\n          \"rows\": {\n            \"type\": \"array\",\n            \"items\": {\n              \"type\": \"object\",\n              \"properties\": {\n                \"order_id\": {\"type\": \"string\"},\n                \"carrier\":  {\"type\": \"string\", \"enum\": [\"sf\", \"jd\", \"zto\"]},\n                \"eta\":      {\"type\": [\"string\", \"null\"]}\n              },\n              \"required\": [\"order_id\", \"carrier\", \"eta\"],\n              \"additionalProperties\": false\n            }\n          }\n        },\n        \"required\": [\"status\", \"rows\"],\n        \"additionalProperties\": false\n      }\n    }\n  }\n}"
+    },
+    {
+     "type": "prose",
+     "heading": "约束解码锁的是语法，不是内容",
+     "text": "给程序用的结构首选结构化输出：Azure 的说法是让模型遵循你附上的 JSON Schema 定义，手段是约束解码。它保证语法，不保证内容。\n\n边界要读清：首个支持的 API 版本是 2024-08-01-preview，GA 的 v1 同样支持；官方只收 JSON Schema 的一个子集——字段全部列进 required、additionalProperties 必须为 false、最多 100 个属性、嵌套不超过 5 层，而 maxLength、pattern、minimum、maximum、minItems 都不支持。枚举能锁死，取值范围与长度锁不死。",
+     "source_ids": [
+      "S101",
+      "S103",
+      "S104"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "给人看的那一侧：只让模型发语义标记",
+     "text": "给人看的那一侧别让模型写 Markdown。官方的递归界面 schema 例子已经给了形态：type 只在 div、button、header、section、field、form 六个值里选，children 自引用。模型发语义标记，渲染交给前端——Markdown 在跨端与截断时的不稳定不该由模型承担。",
+     "source_ids": [
+      "S101"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "截断之后，JSON 是残缺的",
+     "text": "截断是另一类失败：解析前先查 finish_reason 是不是 length——输出超出请求里的 max_tokens 时模型只生成了部分 JSON，微软文档建议调大它再重试，别去解析残缺结果；Responses API 对应的是 status 不为 completed 时读 incomplete_details。\n\n结构上防一手：外层包装状态加数据，正文没写完时状态仍可判定，或者一次只让它返回一段。",
+     "source_ids": [
+      "S101",
+      "S102"
+     ]
+    },
+    {
+     "type": "code",
+     "lang": "python",
+     "heading": "",
+     "source_ids": [
+      "S101",
+      "S102"
+     ],
+     "caption": "修复回环的最小实现；接口字段按 Azure 文档，代码未实跑。",
+     "code": "MAX_RETRY = 1\n\ndef ask_structured(client, messages, schema, business_rules):\n    last_err = None\n    for _ in range(MAX_RETRY + 1):\n        req = list(messages)\n        if last_err:\n            req.append({\"role\": \"user\",\n                        \"content\": \"Previous reply failed validation: \" + last_err})\n        r = client.chat.completions.create(\n            model=DEPLOYMENT,\n            messages=req,\n            response_format={\"type\": \"json_schema\", \"json_schema\": schema},\n            max_tokens=800,\n        )\n        choice = r.choices[0]\n        if choice.finish_reason == \"length\":\n            break  # truncated: feeding the error back will not help\n        try:\n            data = json.loads(choice.message.content)\n            jsonschema.validate(data, schema)   # grammar\n            business_rules(data)                # enum member, id exists, date parses\n            return data\n        except Exception as exc:\n            last_err = str(exc)\n    emit_event(\"agent.output_format_degraded\", error=last_err)\n    return {\"status\": \"plain_text\", \"text\": ask_plain(client, messages)}"
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "五种失败，各自的处理与给用户的措辞",
+     "rows": [
+      {
+       "k": "模型没按要求格式",
+       "v": "错误原文回喂，重试上限一次；仍失败降级纯文本并记一次可观测事件",
+       "source_ids": [
+        "S102"
+       ]
+      },
+      {
+       "k": "要求调不存在的工具",
+       "v": "工具名走白名单，命中不了就拒执行，回一句「没有这个能力」",
+       "source_ids": []
+      },
+      {
+       "k": "字段缺失",
+       "v": "不补默认值、不猜，渲染缺数据占位",
+       "source_ids": [
+        "S103"
+       ]
+      },
+      {
+       "k": "返回了幻觉 id",
+       "v": "逐个回查存在性，查不到整条丢弃，显示「未找到对应记录」",
+       "source_ids": []
+      },
+      {
+       "k": "返回了 SQL",
+       "v": "拒执行；只让模型从表名、列名、运算符的枚举里选，参数化查询由后端拼",
+       "source_ids": [
+        "S101"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "校验过的数字才允许显示",
+     "text": "schema 过了不等于数据是对的：枚举值是否合法、引用的 order_id 在库里存不存在、日期能否解析，都要在渲染前再查一遍。校验通过的数字才允许显示，校验不过的一律不显示，宁可缺一块内容。"
+    },
+    {
+     "type": "prose",
+     "heading": "格式要求只写一处，改动要带版本号",
+     "text": "提示词里对格式的要求越少越好：字段名、必填、枚举既然已写进 schema，就别用文字再复述一遍，两处描述迟早不一致——微软文档也提醒，即使把 schema 要求写进 prompt，json_object 模式也不保证输出符合那个 schema。\n\n变更兼容：加字段可以，改类型或删字段必须带版本号，并同时保留旧版本的渲染，否则历史对话重放时会当场报错。",
+     "source_ids": [
+      "S102"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/10_format-loop.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/10_format-loop.drawio 里继续编辑；按正文「schema 保证语法不保证内容」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "format-contract#schema 保证语法不保证内容"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "framework",
+   "title": "要不要 LangChain：三个选项和各自的还债方式",
+   "anchor": "框架",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "三条路",
+     "text": "三条路：自研一个几百行的主循环；用框架（LangChain、LlamaIndex 这类）；用平台托管，把拆解与工具循环交给服务侧。都能到终点，只是这笔债记在谁账上、什么时候还。",
+     "source_ids": []
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "换来什么，付出什么",
+     "rows": [
+      {
+       "k": "自研主循环",
+       "v": "换可读可控；付重造轮子——重试、取消、可观测、多模型兼容都得自己补",
+       "source_ids": [
+        "S1110"
+       ]
+      },
+      {
+       "k": "框架",
+       "v": "换起步速度与连接器（工具、向量库、数据源）；付抽象层调试成本与版本破坏性变更",
+       "source_ids": [
+        "S116",
+        "S117",
+        "S113",
+        "S114",
+        "S115"
+       ]
+      },
+      {
+       "k": "平台托管",
+       "v": "换省事与现成的身份、网络隔离；付对数据路径和提示词的完全控制权",
+       "source_ids": [
+        "S118",
+        "S119"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "两种还债方式",
+     "text": "自研最常见的结局：三周后你写了半个调度器——重试带指数退避、取消沿回调链下传、每次调用补超时和埋点、再套一层多模型兼容，这些都不是业务。托管反过来：Foundry 把工具循环与追踪放到服务侧，附 Entra 身份、私有网络、版本化；但数据落在哪、谁能看到不再全由你定，合规与可审计要在第一天正面算清。",
+     "source_ids": [
+      "S118",
+      "S1110"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "出现什么信号就换",
+     "text": "别数日子，看四个信号：工具多到十几个、异构数据源不止一种、要在不同模型家族间来回切、团队里没人长期维护这套东西。任意一条成立，自研就开始亏；反之只有三五个工具、只想把回路讲清楚，框架的抽象反而是负担。",
+     "source_ids": []
+    },
+    {
+     "type": "prose",
+     "heading": "只借稳定子集",
+     "text": "用框架就只借它最稳的一层：模型客户端与工具定义抽象，别把主循环、记忆、链式组合一并交出去。抽象越厚，出错时的栈越难读。Anthropic 的判断也一致：成功实现多用简单、可组合的模式，而非复杂框架。",
+     "source_ids": [
+      "S111",
+      "S112",
+      "S1110"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "第一天算迁移成本",
+     "text": "解耦别等重构：提示词、工具 schema 各是文件，评测集是一张数据表，框架只是读它们的一层皮——换框架改的是装配，不是资产。跨框架工具走 MCP：2024 年 11 月由 Anthropic 提出，LangChain、LlamaIndex、Foundry 都有官方支持，当成约定而非选边。",
+     "source_ids": [
+      "S1111",
+      "S1112",
+      "S1113",
+      "S118"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "tip",
+     "title": "本篇的实现",
+     "text": "这一章的实现是自研主循环加自己写的工具注册表。不是反对框架，而是教学重点是那条回路本身：拆任务、选工具、执行、回填、判断是否结束。回路看懂了，换成任何框架都只是换一种写法。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/11_framework-tradeoff.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/11_framework-tradeoff.drawio 里继续编辑；按正文「自研、框架、托管是三种还债方式」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "framework#自研、框架、托管是三种还债方式"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "eval-no-drift",
+   "title": "同一个问题答案不一样：怎么测到它漂，又怎么让它别漂",
+   "anchor": "漂移",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "先说死一个前提：温度为零不等于输出确定",
+     "text": "地基先讲清楚：Azure 官方文档写明，同一问题重复问，默认就会得到不同回答，属非确定性；可复现输出目前仍是预览特性。即便设了 seed、system_fingerprint 也一致，官方原文仍然写「不保证确定性」，而且 max_tokens 越大越不确定。所谓确定只是 best effort（尽力），不是承诺。写测试前不接受这一点，整章都是假的。",
+     "source_ids": [
+      "S121",
+      "S125"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "别再说「不稳定」：先拆成四种可分别观测的漂移",
+     "text": "把模糊的「不稳定」拆开，它们严重性与修法完全不同：事实变了（数字或实体错）、结构不合规（schema 破了）、工具选择变了（该调的没调）、措辞变了（意思一样话不同）。混成一个指标，就没法测、也没法定位。"
+    },
+    {
+     "type": "prose",
+     "heading": "可复现的前提清单",
+     "text": "要让「重复跑」有意义，先固定四件事：部署版本号选 NoAutoUpgrade，别用 Auto-update to default——后者在默认版本变更后两周内会自动升级你的部署；固定 seed 并记录 system_fingerprint，用来抓后端偷换；把检索命中的资料快照进用例；今天/本周这类时间敏感输入也冻进用例。",
+     "source_ids": [
+      "S122"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "三层测试金字塔",
+     "text": "契约层：输出结构必须过 JSON Schema，这一层能 100% 断言。事实层：关键数字与实体必须落进用例给定的允许集合。语义层：改写类输出只能用语义相似度或评审模型判分，给阈值不给逐字——评审模型自身带位置、冗长、自我偏好偏差，不能当绝对裁判。",
+     "source_ids": [
+      "S126"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "统计判分，而不是单次断言",
+     "text": "随机系统上，一次通过或一次失败几乎不含信息量。同一用例跑固定若干次，按通过率判：跑几次、几次算过，是参数不是事实，写在下面那段代码里（N, MIN_PASS），不在正文里当结论讲。你断言的是分布，不是某一句话。"
+    },
+    {
+     "type": "code",
+     "heading": "一段能跑的漂移回归（pytest）",
+     "lang": "python",
+     "code": "import os, json, pytest\nfrom openai import AzureOpenAI\nfrom jsonschema import validate\n\n# 部署指向一个固定版本(NoAutoUpgrade)，不要用 latest/默认滚动\nclient = AzureOpenAI(api_key=os.environ[\"AOAI_KEY\"],\n                     azure_endpoint=os.environ[\"AOAI_ENDPOINT\"],\n                     api_version=\"2024-10-21\")\nDEPLOY = \"order-agent-pin\"\nN, MIN_PASS = 20, 18          # 通过率判分，不看单次\n\nTOOLS = [{\"type\":\"function\",\"function\":{\"name\":\"get_order_status\",\"parameters\":{\"type\":\"object\"}}},\n         {\"type\":\"function\",\"function\":{\"name\":\"refund\",\"parameters\":{\"type\":\"object\"}}}]\n\nCASES = [{\n  \"id\": \"order-late\",\n  \"input\": \"订单 A1024 为什么还没到\",\n  \"corpus\": \"orders_A1024.json\",      # 检索资料快照进用例\n  \"must_call\": [\"get_order_status\"],  # 该调的工具\n  \"forbid_call\": [\"refund\"],          # 不该调的工具\n  \"max_calls\": 3,\n  \"fact_allow\": {\"eta_days\": [2, 3, 4]},   # 事实层的允许集合\n  \"schema\": {\"type\": \"object\", \"required\": [\"summary\", \"eta_days\"],\n             \"properties\": {\"summary\": {\"type\": \"string\"}, \"eta_days\": {\"type\": \"integer\"}}},\n  \"min_similarity\": 0.55,               # 语义层阈值(改写类才用)\n}]\n\ndef run(case):\n    ctx = open(case[\"corpus\"], encoding=\"utf-8\").read()\n    return client.chat.completions.create(\n        model=DEPLOY, seed=42, temperature=0,   # seed 只是 best effort，不保证一致\n        messages=[{\"role\": \"system\", \"content\": ctx},\n                  {\"role\": \"user\", \"content\": case[\"input\"]}],\n        tools=TOOLS)\n\ndef check(case, resp):\n    msg = resp.choices[0].message\n    calls = [t.function.name for t in (msg.tool_calls or [])]\n    assert all(m in calls for m in case[\"must_call\"]), f\"漏调: {calls}\"\n    assert not any(c in calls for c in case[\"forbid_call\"]), f\"误调: {calls}\"\n    assert len(calls) <= case[\"max_calls\"], f\"调用过多: {calls}\"\n    ans = json.loads(msg.content)\n    validate(ans, case[\"schema\"])                # 契约层\n    for k, v in case[\"fact_allow\"].items():      # 事实层\n        assert ans.get(k) in v, f\"{k}={ans.get(k)} 不在允许集 {v}\"\n    if \"min_similarity\" in case:                 # 语义层(便宜代理指标)\n        import difflib\n        ratio = difflib.SequenceMatcher(None, ans[\"summary\"], case[\"input\"]).ratio()\n        assert ratio >= case[\"min_similarity\"], f\"相似度 {ratio:.2f} 偏低\"\n\n@pytest.mark.parametrize(\"case\", CASES, ids=lambda c: c[\"id\"])\ndef test_no_drift(case):\n    outcomes = []\n    for _ in range(N):\n        try:\n            check(case, run(case)); outcomes.append(\"通过\")\n        except Exception as e:\n            outcomes.append(str(e))\n    passed = outcomes.count(\"通过\")\n    if passed < MIN_PASS:\n        report = \"\\n\".join(f\"#{i+1} {o}\" for i, o in enumerate(outcomes))  # N 次全打出来\n        pytest.fail(f\"{case['id']}: {passed}/{N} 通过 < 阈值 {MIN_PASS}\\n{report}\")",
+     "caption": "换成你应用真实的问题集与工具即可；run() 打固定版本部署，是集成测试形态而非 mock。N、MIN_PASS 是可调阈值，held-out 用例另留一份、不进本表。",
+     "source_ids": [
+      "S122",
+      "S124"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "golden 存约束，不存字符串；把工具调用写进断言",
+     "text": "golden 答案是存期望约束而非期望字符串：该出现的实体、该调用的工具、该满足的 schema，而不是整段原文。工具层是防漂移最有力的一环——这道题必须调哪个工具、不该调哪个、调用次数上限，官方就用 Tool Selection 和 Tool Call Accuracy 这类评估器输出 Pass/Fail。选对工具通常比措辞更稳。",
+     "source_ids": [
+      "S124"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "回归基线，与快照录制重放",
+     "text": "同一份用例集每日跑，比较的是通过率而非结论本身，跌破阈值就报警。要分清漂移来自哪一侧：模型侧靠版本固定和 system_fingerprint 暴露，检索侧靠把命中文档冻进用例。CI 里再把模型响应缓存下来做录制重放，让流水线不依赖外部服务，失败可复现。",
+     "source_ids": [
+      "S121",
+      "S122"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "防过拟合、线上兜底，以及测不到什么",
+     "text": "评测集要防过拟合：留一部分用例永不进提示词优化循环——把用例本身写进提示词是最常见的作弊，公开基准早已被污染抬高分数。线上兜底三件套：抽样人评、用户反馈自动回流用例池、改动前灰度对比。内容审核是另一道与安全相关的独立闸门（如 Content Safety，接地检测等部分能力仅英文、且不保证全拦），别把它当漂移指标。最后承认测不到什么：语义正确性无法穷尽，测试只把漂移从「不可见」变成「有阈值可见」。",
+     "source_ids": [
+      "S127",
+      "S123"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/12_drift-pyramid.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/12_drift-pyramid.drawio 里继续编辑；按正文「温度为零不等于输出确定」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "eval-no-drift#温度为零不等于输出确定"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "runbook",
+   "title": "上线前那一小时：十件必须做完的事，和五种会先炸的方式",
+   "anchor": "清单",
+   "blocks": [
+    {
+     "type": "steps",
+     "title": "十个能勾的框",
+     "items": [
+      {
+       "n": 1,
+       "title": "密钥出仓",
+       "text": "前端与代码零密钥。",
+       "spec": "扫全历史提交而非只工作区。"
+      },
+      {
+       "n": 2,
+       "title": "两层上限",
+       "text": "请求层有超时与重试上限，回合层有最大调用次数。",
+       "spec": "两个数字在配置里读得出。"
+      },
+      {
+       "n": 3,
+       "title": "参数化查询",
+       "text": "工具落库全是绑定参数。",
+       "spec": "喂带引号分号的输入看反应。"
+      },
+      {
+       "n": 4,
+       "title": "版本固定",
+       "text": "模型版本写死，不跟 latest。",
+       "spec": "比对两次发布的版本字段。"
+      },
+      {
+       "n": 5,
+       "title": "事件兜底",
+       "text": "不认识的事件类型走默认分支。",
+       "spec": "注入一条假类型看是否断流。"
+      },
+      {
+       "n": 6,
+       "title": "修复回环",
+       "text": "校验失败先修复一次，再失败降级。",
+       "spec": "喂缺字段输出看它选哪条。"
+      },
+      {
+       "n": 7,
+       "title": "离线重放",
+       "text": "评测不依赖外部服务。",
+       "spec": "断网重跑，复现同一个数。"
+      },
+      {
+       "n": 8,
+       "title": "日志脱敏",
+       "text": "不留用户原文与工具整段返回。",
+       "spec": "按手机号形态跑正则。"
+      },
+      {
+       "n": 9,
+       "title": "成本告警",
+       "text": "单回合与单日成本各一条阈值。",
+       "spec": "监控里有指标名和数字。"
+      },
+      {
+       "n": 10,
+       "title": "回滚演练",
+       "text": "代码、配置、提示词一并退回。",
+       "spec": "写下上次演练的起止时间。"
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "五种先炸的方式",
+     "rows": [
+      {
+       "k": "工具循环不收敛",
+       "v": "一次回答烧掉几十次调用。数同一请求下的调用条数，多半在同两个工具间来回；架构中心建议设迭代上限。",
+       "source_ids": [
+        "S133"
+       ]
+      },
+      {
+       "k": "流式被代理缓冲",
+       "v": "静默很久后一次性出全文。看网络面板是否分块到达，再绕过网关 curl 对照。"
+      },
+      {
+       "k": "幻觉出不存在的工具名",
+       "v": "报错在分发层不在模型层。把请求里的 function.name 与注册表比对。"
+      },
+      {
+       "k": "旧资料与新数据打架",
+       "v": "答案引用的时间比库里还早。打印本轮实际进上下文的文档标识与更新时间。"
+      },
+      {
+       "k": "把内部推理当事实",
+       "v": "读者把「我猜」当结论。查推理与终答是否同一字段渲染。"
+      }
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "限流与注入的官方口径",
+     "rows": [
+      {
+       "k": "429 与重试上限",
+       "v": "等待优先按 retry-after-ms，缺它才退到指数退避加抖动；SDK 默认重试 2 次，文档建议再设 5 到 10 次上限，自接重试库要先关内置。RPM 按 1 或 10 秒小窗评估，总量没超也可能被 429。",
+       "source_ids": [
+        "S131"
+       ]
+      },
+      {
+       "k": "注入面在工具返回",
+       "v": "官方把第三方内容里的隐藏指令称为 document attack，扫描点除用户输入还包括 tool response。",
+       "source_ids": [
+        "S132"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "这篇没覆盖",
+     "text": "多模态输入的注入面与计价、长时任务的断点续跑、多租户隔离与合规审计、模型训练与微调。这四块各自成章，勾全了不等于碰齐了所有问题。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/13_failure-map.png",
+     "kind": "illustration",
+     "alt": "",
+     "caption": "本项目自画的结构图，可在 drawio/13_failure-map.drawio 里继续编辑；按正文「五种先炸方式的第一现场」绘制，图上不含任何数字与日期",
+     "based_on": [
+      "runbook#五种先炸方式的第一现场"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S011",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/reference",
+   "label": "Azure OpenAI REST API 参考（2024-10-21 GA）：Authentication 一节写明两种鉴权方式与 api-key / Authorization 头；REST API versioning 一节给出 chat/completions 的请求地址形状与 api-version 查询参数",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/e6ee84cd3ec41e9f.txt"
+  },
+  {
+   "id": "S012",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry-classic/openai/how-to/create-resource",
+   "label": "创建并部署 Azure OpenAI 资源的 how-to：Deployment name 字段的「Choose a name carefully」提示、Important 框里关于「Azure OpenAI always requires deployment name」的原文，以及用 CLI 取 .properties.endpoint 与 .key1 的命令",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/7b5c2cc941a4df5b.txt"
+  },
+  {
+   "id": "S013",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/model-versions",
+   "label": "模型版本概念页：Version of the API used to consume a model deployment 一节，定义 api-version 为「代码里那份契约」并说明 SDK 版本通常与特定 API 版本配对",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/17ca138240971b4f.txt"
+  },
+  {
+   "id": "S014",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/api-version-lifecycle",
+   "label": "v1 API / API 版本生命周期页：说明过去按月发布 API 版本、2025 年 8 月起可选用 v1、v1 GA 不再要求 api-version，以及 Entra 鉴权需要 Cognitive Services OpenAI User 角色",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/6c9d2fc7a1f5523b.txt"
+  },
+  {
+   "id": "S015",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/working-with-models",
+   "label": "管理模型部署页：部署的 capacity 字段说明「A value of 1 equals 1,000 Tokens per Minute (TPM)」，以及 rateLimits 的返回示例",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/189eb2f331fe11cf.txt"
+  },
+  {
+   "id": "S041",
+   "url": "https://arxiv.org/abs/2210.03629",
+   "label": "ReAct: Synergizing Reasoning and Acting in Language Models（Yao 等，ICLR 2023）：让模型把推理轨迹与动作交替产出",
+   "retrieved": "2026-10-02",
+   "publisher": "arXiv",
+   "cache": "text/0baffed4a75c14bf.txt"
+  },
+  {
+   "id": "S042",
+   "url": "https://arxiv.org/abs/2305.04091",
+   "label": "Plan-and-Solve Prompting（Wang 等，2023）：先 devised 一个把任务拆成子任务的计划，再逐项执行",
+   "retrieved": "2026-10-02",
+   "publisher": "arXiv",
+   "cache": "text/5a93467277e2eab9.txt"
+  },
+  {
+   "id": "S043",
+   "url": "https://arxiv.org/abs/2303.11366",
+   "label": "Reflexion: Language Agents with Verbal Reinforcement Learning（Shinn 等，2023）：执行后用文字自我反思并把教训带回下一轮",
+   "retrieved": "2026-10-02",
+   "publisher": "arXiv",
+   "cache": "text/53479fd59ea355da.txt"
+  },
+  {
+   "id": "S044",
+   "url": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages-tool-use.html",
+   "label": "Amazon Bedrock 上 Anthropic Claude tool use 的官方参数文档：给出 tool_use 块（type/id/name/input）与 tool_result 块（type/tool_use_id/content）的确切字段，无原生「步骤」对象；并说明工具调用按输入 token 计费、各模型 tool use 系统提示词的 token 数（Claude 4.5 系在 auto 下 346）",
+   "retrieved": "2026-10-02",
+   "publisher": "AWS Documentation",
+   "cache": "text/131574733ee80ae7.txt"
+  },
+  {
+   "id": "S045",
+   "url": "https://code.claude.com/docs/en/agent-sdk/todo-tracking",
+   "label": "Claude Agent SDK「Track todos」官方文档：待办清单由应用提供的工具承载，状态为 pending / in_progress / completed",
+   "retrieved": "2026-10-02",
+   "publisher": "Claude Code Docs",
+   "cache": "text/41c2bab8771e4566.txt"
+  },
+  {
+   "id": "S046",
+   "url": "https://arxiv.org/abs/2307.03172",
+   "label": "Lost in the Middle: How Language Models Use Long Contexts（Liu 等，TACL 2024）：相关信息在上下文开头或结尾时表现最好、落在中间时下降，呈 U 形性能曲线",
+   "retrieved": "2026-10-02",
+   "publisher": "arXiv",
+   "cache": "text/b5e5a678823e0fff.txt"
+  },
+  {
+   "id": "S021",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry",
+   "label": "What is Microsoft Foundry —含「Previous/Current」对照表：Azure AI Studio / Azure AI Foundry → Microsoft Foundry，Azure AI Services → Foundry Tools，Hub + Azure OpenAI + Azure AI Services → 单个 Foundry resource 带 projects，月度 api-version → /openai/v1 稳定路由",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/7c496d88973b38bc.txt"
+  },
+  {
+   "id": "S022",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/reference",
+   "label": "Azure OpenAI 数据面 REST 参考（2024-10-21 GA）：api-key 头与 Authorization Bearer 两种鉴权、deployment 路径 + api-version 查询参数的端点示例、控制面/数据面版本表",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/e6ee84cd3ec41e9f.txt"
+  },
+  {
+   "id": "S023",
+   "url": "https://learn.microsoft.com/en-us/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2024-10-21",
+   "label": "Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn REST API docs",
+   "cache": "text/b01a2a7e306d45ed.txt"
+  },
+  {
+   "id": "S024",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/authentication-authorization-foundry",
+   "label": "Foundry 鉴权与授权：Entra ID 用 OAuth 2.0 bearer token，scope https://ai.azure.com/.default；生产用 Entra，API key 限于快速验证且「generally not accepted by enterprise production workloads and not recommended by Microsoft」；控制面/数据面与 RBAC 分层",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/a5677fac56034589.txt"
+  },
+  {
+   "id": "S025",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-streaming",
+   "label": "Azure OpenAI 内容流式处理：chat.completion.chunk 分块样例、choices[].delta、末块 finish_reason stop 配空 delta、收尾单独一行 data: [DONE]；默认模式缓冲成块而非逐 token，Asynchronous Filter 需 API 2024-02-01 及以上",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/e854dce103f75d28.txt"
+  },
+  {
+   "id": "S026",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs",
+   "label": "结构化输出 how-to：Chat Completions 用 response_format 的 json_schema、Responses 用 text.format，strict 开启函数约束；curl 与 Python 的 /openai/v1 端点写法；「Supported models」清单最新为 gpt-5.1（2025-11-13），未列 gpt-6；首个支持版本 2024-08-01-preview",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/7c65752e7b77d6c9.txt"
+  },
+  {
+   "id": "S027",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure",
+   "label": "Foundry Models sold by Azure 模型目录：GPT-6 系列 Model ID 为 gpt-6-astra（2026-09-03）、gpt-6-luna 与 gpt-6-sol（2026-09-22）、gpt-6.1-sol（2026-09-29），上下文 1,050,000（输入 922,000／输出 128,000）；能力列含 Chat Completions、Streaming、Structured outputs；GPT-6 家族仅 Tier 5／Tier 6 默认带配额；裸名 gpt-6 不在表内",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/1344377e27b2206f.txt"
+  },
+  {
+   "id": "S028",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/quotas-limits",
+   "label": "Azure OpenAI 配额与限制：门户 ai.azure.com/resource/quota 查区域配额，程序化用 Usages API 与 Model Capacities API；2026-05-07 起改为订阅级配额共享池；/chat/completions 的 tools 与 functions 上限 128",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/fe39e800b0ff9f2f.txt"
+  },
+  {
+   "id": "S029",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability",
+   "label": "按部署类别（Global Standard 等）分表的区域可用性页：行是 Model ID 加版本，列是 brazilsouth、eastus2 这类区域名，以勾选标记表示",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/5b3834b5689783e3.txt"
+  },
+  {
+   "id": "S0210",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/how-to/quota",
+   "label": "配额管理指南：Azure 按订阅、区域、模型以 tokens per minute（TPM）分配配额，含程序化查配额与容量的章节",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/d49f37d691c89a84.txt"
+  },
+  {
+   "id": "S061",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/function-calling",
+   "label": "微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/7f42f7602779dc39.txt"
+  },
+  {
+   "id": "S062",
+   "url": "https://learn.microsoft.com/zh-cn/rest/api/microsoft-foundry/azureopenai/chat",
+   "label": "微软 Foundry Chat Completions REST 参考(中文)：tool_choice 各取值的官方定义——none 不调用工具、auto 可在生成消息与调用一个或多个工具间选择、required 必须调用一个或多个工具",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/d6dd56cbdb579635.txt"
+  },
+  {
+   "id": "S031",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/chatgpt",
+   "label": "Microsoft Foundry「Work with chat completion models」：多轮对话示例、system 角色定义、每个新问题都要带上进行中的对话记录、model 参数填部署名",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/8e0f3f25ae65424e.txt"
+  },
+  {
+   "id": "S032",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/responses",
+   "label": "Microsoft Foundry「Use the Azure OpenAI Responses API」：页面自述以 Python 或 REST 创建、取回、删除 stateful responses，含流式与工具",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/ad679e91a4f57071.txt"
+  },
+  {
+   "id": "S033",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/quota",
+   "label": "Microsoft Foundry「Manage Azure OpenAI quota」：Rate limit response headers 一节列出六条 x-ratelimit-*，称每次调用都在响应头带上限流信息，retry-after-ms 仅出现在 429",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/79b595d6585c3a1c.txt"
+  },
+  {
+   "id": "S034",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/reasoning",
+   "label": "Microsoft Foundry「Azure OpenAI reasoning models - GPT-6 Astra and GPT-5」：reasoning.summary 取值与限制、两个 API 各自的 reasoning_tokens 字段、推理 token 按输出计费、调工具时要把 reasoning 项传回、store 与 previous_response_id、绕开摘要提取原始推理不受支持且可能违反使用政策",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/7831e20dc5a0eb24.txt"
+  },
+  {
+   "id": "S035",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/api-version-lifecycle",
+   "label": "Microsoft Foundry「Azure OpenAI v1 API」：v1 自 2025 年 8 月起可选用、REST 示例把初始指令写成 role=developer、变更记录列出 completion_tokens_details/reasoning_tokens 与 reasoning summary 所属 api-version",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/6c9d2fc7a1f5523b.txt"
+  },
+  {
+   "id": "S036",
+   "url": "https://ai.azure.com/api-reference/",
+   "label": "Microsoft Foundry REST API reference（官方文档站）：每个失败请求应记录完整 URL、状态码、x-request-id 与 x-ms-client-request-id，重试时复用客户端自生成的请求 ID",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft",
+   "cache": "text/b2b77b673f91f709.txt"
+  },
+  {
+   "id": "S051",
+   "url": "https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_session17.pdf",
+   "label": "MIT 6.042J《Mathematics for Computer Science》第 9.5 节 Directed Acyclic Graphs (DAGs) & Scheduling：DAG 与拓扑排序的正式定义，并用于机器调度",
+   "retrieved": "2026-10-02",
+   "publisher": "MIT OpenCourseWare"
+  },
+  {
+   "id": "S052",
+   "url": "https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/resources/lecture-14-depth-first-search-dfs-topological-sort/",
+   "label": "MIT 6.006 Introduction to Algorithms 第 14 讲：用 DFS 做环检测与拓扑排序",
+   "retrieved": "2026-10-02",
+   "publisher": "MIT OpenCourseWare",
+   "cache": "text/dc474bbe1c69cecb.txt"
+  },
+  {
+   "id": "S053",
+   "url": "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html",
+   "label": "Airflow 官方文档 Dags 核心概念：任务间通过上下游关系显式定义依赖",
+   "retrieved": "2026-10-02",
+   "publisher": "Apache Airflow",
+   "cache": "text/f247ca50827f5251.txt"
+  },
+  {
+   "id": "S054",
+   "url": "https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html",
+   "label": "Airflow 官方文档 Tasks 核心概念：任务重试默认固定次数与延迟，可按异常类型配 retry policy",
+   "retrieved": "2026-10-02",
+   "publisher": "Apache Airflow",
+   "cache": "text/70a39dc16963fc02.txt"
+  },
+  {
+   "id": "S055",
+   "url": "https://airflow.apache.org/docs/apache-airflow/stable/howto/dag-level-retry-via-callback.html",
+   "label": "Airflow 官方文档 DAG-level Retry：任务应在任务级设计成幂等，重跑任务才是幂等的",
+   "retrieved": "2026-10-02",
+   "publisher": "Apache Airflow",
+   "cache": "text/68f03c5d4e29fd14.txt"
+  },
+  {
+   "id": "S056",
+   "url": "https://airflow.apache.org/docs/apache-airflow/stable/faq.html",
+   "label": "Airflow 官方 FAQ：max_active_runs 限制同时活跃的 DAG Run 数、concurrency 限制单 DAG 并发任务数",
+   "retrieved": "2026-10-02",
+   "publisher": "Apache Airflow",
+   "cache": "text/4d8ddada0329bc71.txt"
+  },
+  {
+   "id": "S057",
+   "url": "https://docs.prefect.io/v3/advanced/transactions",
+   "label": "Prefect 3 官方文档 How to write transactional workflows：事务语义、失败回滚、可原子成组的任务",
+   "retrieved": "2026-10-02",
+   "publisher": "Prefect",
+   "cache": "text/a8937cf7fdb8e7b7.txt"
+  },
+  {
+   "id": "S058",
+   "url": "https://docs.prefect.io/v3/how-to-guides/workflows/retries",
+   "label": "Prefect 3 官方文档 How to automatically rerun your workflow when it fails：重试配置，父流重试时复用已持久化的子流结果",
+   "retrieved": "2026-10-02",
+   "publisher": "Prefect",
+   "cache": "text/f2b042a3cd426168.txt"
+  },
+  {
+   "id": "S059",
+   "url": "https://docs.langchain.com/oss/python/langgraph/graph-api",
+   "label": "LangGraph Graph API overview：并行节点属于同一 super-step、fan-out/fan-in、recursion limit 默认值（1.0.6 起为 1000）",
+   "retrieved": "2026-10-02",
+   "publisher": "LangChain",
+   "cache": "text/3cfc8ec457622116.txt"
+  },
+  {
+   "id": "S0510",
+   "url": "https://learn.microsoft.com/en-us/azure/durable-task/common/programming-model-overview",
+   "label": "Azure Durable Task 编程模型总览：activity 只保证 at-least-once，官方建议把逻辑写成幂等（例如 upsert）",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/48cb3fd17e5c1c90.txt"
+  },
+  {
+   "id": "S0511",
+   "url": "https://learn.microsoft.com/en-us/azure/durable-task/common/durable-task-error-handling",
+   "label": "Azure Durable Functions 错误处理与重试：重试策略字段（最大尝试次数、首次重试间隔、退避系数等）",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/10dfd0dcbf41c477.txt"
+  },
+  {
+   "id": "S0512",
+   "url": "https://learn.microsoft.com/en-us/azure/durable-task/common/durable-task-code-constraints",
+   "label": "Azure Durable 编排器代码约束：编排函数必须确定性，因为会被多次重放",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/a3488e2b9bff7e45.txt"
+  },
+  {
+   "id": "S0513",
+   "url": "https://learn.microsoft.com/en-us/azure/logic-apps/error-exception-handling",
+   "label": "Azure Logic Apps 错误处理：多数操作的 Default 重试策略为指数间隔、最多 4 次重试",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/877183c4ce29d367.txt"
+  },
+  {
+   "id": "S0514",
+   "url": "https://learn.microsoft.com/en-us/azure/logic-apps/workflow-definition-language-schema",
+   "label": "Azure Logic Apps Workflow Definition Language JSON schema 参考：工作流定义与 dependsOn 依赖表达",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/7897e5fe07e6b1cf.txt"
+  },
+  {
+   "id": "S0515",
+   "url": "https://docs.stripe.com/api/idempotent_requests",
+   "label": "Stripe API 参考 Idempotent requests：客户端生成 idempotency key，服务端保存首次请求的状态码与响应体用于重放，并比对入参防止误用",
+   "retrieved": "2026-10-02",
+   "publisher": "Stripe",
+   "cache": "text/ed5db7acf339a9ad.txt"
+  },
+  {
+   "id": "S0516",
+   "url": "https://docs.stripe.com/error-low-level",
+   "label": "Stripe Advanced error handling：带同一 idempotency key 的重放在 24 小时内安全；改参数要换新 key",
+   "retrieved": "2026-10-02",
+   "publisher": "Stripe",
+   "cache": "text/4fbd35a9823cae17.txt"
+  },
+  {
+   "id": "S081",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html",
+   "label": "OWASP《SQL 注入防范速查表》：首选防御是预处理语句与参数化查询，另设「最小权限」「用视图强化最小权限」两节",
+   "retrieved": "2026-10-02",
+   "publisher": "OWASP",
+   "cache": "text/1f5f0c6575acbbb3.txt"
+  },
+  {
+   "id": "S082",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Query_Parameterization_Cheat_Sheet.html",
+   "label": "OWASP《查询参数化速查表》：SQL 注入最好由参数化查询防住，并提醒参数化必须在服务端完成",
+   "retrieved": "2026-10-02",
+   "publisher": "OWASP",
+   "cache": "text/9f5d013895ab6aea.txt"
+  },
+  {
+   "id": "S083",
+   "url": "https://arxiv.org/abs/2308.01990",
+   "label": "《From Prompt Injections to SQL Injection Attacks》提出 P2SQL 注入，以 LangChain 为案例评测 7 个主流 LLM，提出 4 种防御；发表于 ICSE 2025",
+   "retrieved": "2026-10-02",
+   "publisher": "arXiv",
+   "cache": "text/77453649e4264890.txt"
+  },
+  {
+   "id": "S084",
+   "url": "https://github.com/openai/openai-python/blob/main/README.md",
+   "label": "OpenAI Python SDK README：默认 10 分钟超时、默认重试 2 次，重试仅覆盖连接错误与 408/409/429/5xx，支持 httpx.Timeout 分设 connect/read",
+   "retrieved": "2026-10-02",
+   "publisher": "OpenAI"
+  },
+  {
+   "id": "S085",
+   "url": "https://www.python-httpx.org/advanced/timeouts/",
+   "label": "httpx 官方超时文档：默认对网络静默 5 秒抛 TimeoutException，可细粒度分设 connect/read/write/pool",
+   "retrieved": "2026-10-02",
+   "publisher": "encode",
+   "cache": "text/dcac0e41306dec95.txt"
+  },
+  {
+   "id": "S086",
+   "url": "https://docs.sqlalchemy.org/en/20/core/pooling.html",
+   "label": "SQLAlchemy 连接池文档：pool_size 默认 5、max_overflow 默认 10，池允许的同时连接数为两者之和，等待连接超时默认 30 秒",
+   "retrieved": "2026-10-02",
+   "publisher": "SQLAlchemy",
+   "cache": "text/c9b09e861c8e1fa0.txt"
+  },
+  {
+   "id": "S087",
+   "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+   "label": "PostgreSQL 官方文档 5.9 Row Security Policies：按用户限制可见行；无策略时默认全拒；表主通常不受策略约束",
+   "retrieved": "2026-10-02",
+   "publisher": "PostgreSQL Global Development Group",
+   "cache": "text/b4a4b976037bfa6f.txt"
+  },
+  {
+   "id": "S088",
+   "url": "https://www.postgresql.org/docs/current/runtime-config-connection.html",
+   "label": "PostgreSQL 连接设置文档：max_connections 默认为 100（内核不支持时更少），只能服务端启动时设置",
+   "retrieved": "2026-10-02",
+   "publisher": "PostgreSQL Global Development Group",
+   "cache": "text/d8d4a782c7896a4d.txt"
+  },
+  {
+   "id": "S089",
+   "url": "https://nodejs.org/api/http.html",
+   "label": "Node.js http 官方文档：server.requestTimeout 默认 300000 毫秒，headersTimeout 取其与 60000 的较小值",
+   "retrieved": "2026-10-02",
+   "publisher": "Node.js",
+   "cache": "text/c6cac1a0b9bc80ed.txt"
+  },
+  {
+   "id": "S0810",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html",
+   "label": "OWASP《日志速查表》：访问令牌、数据库连接串、口令、敏感个人信息等不得原样入日志，应删除、掩码、散列或加密",
+   "retrieved": "2026-10-02",
+   "publisher": "OWASP",
+   "cache": "text/f10abd93b63b5881.txt"
+  },
+  {
+   "id": "S0811",
+   "url": "https://genai.owasp.org/llm-top-10/",
+   "label": "OWASP GenAI/LLM 十大风险 2025 版清单，含 LLM05 Improper Output Handling、LLM06 Excessive Agency、LLM10 Unbounded Consumption",
+   "retrieved": "2026-10-02",
+   "publisher": "OWASP Foundation",
+   "cache": "text/10793bb5a69b9ab5.txt"
+  },
+  {
+   "id": "S111",
+   "url": "https://docs.langchain.com/oss/python/langchain/tools",
+   "label": "LangChain 官方文档 Tools：工具抽象的定位",
+   "retrieved": "2026-10-02",
+   "publisher": "LangChain",
+   "cache": "text/d6fe72d1306460cb.txt"
+  },
+  {
+   "id": "S112",
+   "url": "https://docs.langchain.com/oss/python/concepts/memory",
+   "label": "LangChain 官方文档 Memory overview：记忆作为 agent state 由 LangGraph 管理",
+   "retrieved": "2026-10-02",
+   "publisher": "LangChain",
+   "cache": "text/07072e885563bdea.txt"
+  },
+  {
+   "id": "S113",
+   "url": "https://docs.langchain.com/oss/python/releases/langchain-v1",
+   "label": "LangChain v1 发布说明：包被精简聚焦 agent 基本构件",
+   "retrieved": "2026-10-02",
+   "publisher": "LangChain",
+   "cache": "text/50027366b5e809da.txt"
+  },
+  {
+   "id": "S114",
+   "url": "https://www.langchain.com/blog/langchain-langgraph-1dot0",
+   "label": "LangChain 官方博客：LangChain/LangGraph 1.0 破坏性变更与迁移",
+   "retrieved": "2026-10-02",
+   "publisher": "LangChain",
+   "cache": "text/23ec76350b3c85b6.txt"
+  },
+  {
+   "id": "S115",
+   "url": "https://docs.langchain.com/oss/javascript/migrate/langchain-v1",
+   "label": "LangChain v1 迁移指南：旧功能移入 @langchain/classic",
+   "retrieved": "2026-10-02",
+   "publisher": "LangChain",
+   "cache": "text/58810b9442867349.txt"
+  },
+  {
+   "id": "S116",
+   "url": "https://developers.llamaindex.ai/python/framework/",
+   "label": "LlamaIndex 官方文档：定位为构建于自有数据之上的 agent 工具箱",
+   "retrieved": "2026-10-02",
+   "publisher": "LlamaIndex",
+   "cache": "text/801c9c31664f45cb.txt"
+  },
+  {
+   "id": "S117",
+   "url": "https://github.com/run-llama/llama_index",
+   "label": "LlamaIndex 官方仓库 README：自称 data framework，提供数据连接器",
+   "retrieved": "2026-10-02",
+   "publisher": "run-llama"
+  },
+  {
+   "id": "S118",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/overview",
+   "label": "Microsoft Foundry Agent Service 官方概览：托管平台、工具循环、身份、私有网络、版本化",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/280f4851eff92c62.txt"
+  },
+  {
+   "id": "S119",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions",
+   "label": "Foundry Agent Service 官方限制与配额页",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/785d773418d86325.txt"
+  },
+  {
+   "id": "S1110",
+   "url": "https://www.anthropic.com/engineering/building-effective-agents",
+   "label": "Anthropic 工程文章 Building Effective Agents：主张简单可组合模式而非复杂框架，指出抽象层带来的调试困难",
+   "retrieved": "2026-10-02",
+   "publisher": "Anthropic",
+   "cache": "text/7d24e5faa28b319b.txt"
+  },
+  {
+   "id": "S1111",
+   "url": "https://www.anthropic.com/news/model-context-protocol",
+   "label": "Anthropic 官方公告：2024 年 11 月推出 MCP 开放标准",
+   "retrieved": "2026-10-02",
+   "publisher": "Anthropic",
+   "cache": "text/3a99f53535c94f21.txt"
+  },
+  {
+   "id": "S1112",
+   "url": "https://docs.langchain.com/oss/python/langchain/mcp",
+   "label": "LangChain 官方文档：通过 MCPAdapter 调用 MCP 服务器工具",
+   "retrieved": "2026-10-02",
+   "publisher": "LangChain",
+   "cache": "text/11ab56da9ab93c27.txt"
+  },
+  {
+   "id": "S1113",
+   "url": "https://developers.llamaindex.ai/python/framework/module_guides/mcp/",
+   "label": "LlamaIndex 官方文档：MCP 集成模块指南",
+   "retrieved": "2026-10-02",
+   "publisher": "LlamaIndex",
+   "cache": "text/2a00cf7b830b45de.txt"
+  },
+  {
+   "id": "S101",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs",
+   "label": "微软 Learn「Azure OpenAI structured outputs 使用指南」：Chat Completions 在 response_format、Responses 在 text.format 里给 JSON Schema 并设 strict: true；首个支持的 API 版本为 2024-08-01-preview，最新 GA API v1 亦支持；官方只收 JSON Schema 子集——所有字段必须列进 required、object 必须 additionalProperties: false、一份 schema 最多 100 个属性且嵌套不超过 5 层，字符串的 minlength/maxLength/pattern/format、数值的 minimum/maximum/multipleOf、数组的 minItems/maxItems 等不支持；与并行函数调用互斥（parallel_tool_calls 设为 false）；含递归界面 schema 示例（type 限定 div/button/header/section/field/form，children 以 $ref 自引用）与 query 工具示例（table_name/columns/operator 全部写成 enum）；Responses 示例检查 status 是否为 completed 并读 incomplete_details",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/7c65752e7b77d6c9.txt"
+  },
+  {
+   "id": "S102",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/json-mode",
+   "label": "微软 Learn「Azure OpenAI JSON mode 使用指南」：json_object 模式保证输出是合法 JSON 但不保证符合某个 schema，即使把 schema 写进 prompt 也不保证；必须在 messages 中出现 \"JSON\" 一词，否则返回 400 invalid_request_error（\"'messages' must contain the word 'json' in some form, to use 'response_format' of type 'json_object'.\"），未提示时模型可能持续输出空白直到撞上 token 上限；Other considerations 与 Troubleshooting 明确要求解析前检查 finish_reason 是否为 length，因为超出请求里的 max_tokens 时模型会生成残缺 JSON，应调大 max_tokens 或缩短提示后重试、不要解析部分 JSON。该页同时把 schema 保证指向 structured outputs",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/3ab67a27ffd9ecb0.txt"
+  },
+  {
+   "id": "S103",
+   "url": "https://json-schema.org/understanding-json-schema/reference/object",
+   "label": "JSON Schema 官方文档 object 页：properties 定义的属性默认不必填，required 用来列出必填属性，取值是零个或多个互异字符串的数组；additionalProperties 控制未列进 properties、也不匹配 patternProperties 的额外属性，默认允许，设为 false 则不允许",
+   "retrieved": "2026-10-02",
+   "publisher": "json-schema.org",
+   "cache": "text/621ed233f7968029.txt"
+  },
+  {
+   "id": "S104",
+   "url": "https://json-schema.org/understanding-json-schema/reference/enum",
+   "label": "JSON Schema 官方文档 enum 页：enum 把值限制在一个固定集合内，必须是至少含一个元素且元素互异的数组",
+   "retrieved": "2026-10-02",
+   "publisher": "json-schema.org",
+   "cache": "text/499872019be88e60.txt"
+  },
+  {
+   "id": "S091",
+   "url": "https://html.spec.whatwg.org/multipage/server-sent-events.html",
+   "label": "WHATWG HTML Living Standard 9.2 Server-sent events：text/event-stream 的 ABNF、event/data/id/retry 四字段与空行结束、默认事件名 message、9.2.4 Last-Event-ID 头、9.2.7 关于中间层分块与每服务器连接上限的告诫、约 15 秒一条注释行、204 停止重连",
+   "retrieved": "2026-10-02",
+   "publisher": "WHATWG",
+   "cache": "text/6fb92109fec3764e.txt"
+  },
+  {
+   "id": "S092",
+   "url": "https://nginx.org/en/docs/http/ngx_http_proxy_module.html",
+   "label": "nginx ngx_http_proxy_module 文档：proxy_buffering 默认 on、proxy_buffers 默认 8 4k|8k、X-Accel-Buffering 响应头可开关缓冲",
+   "retrieved": "2026-10-02",
+   "publisher": "nginx",
+   "cache": "text/07b9a3f13c76b6ec.txt"
+  },
+  {
+   "id": "S093",
+   "url": "https://nginx.org/en/docs/http/ngx_http_gzip_module.html",
+   "label": "nginx ngx_http_gzip_module 文档：gzip_buffers 默认 32 4k|16 8k，用于压缩响应的缓冲区",
+   "retrieved": "2026-10-02",
+   "publisher": "nginx",
+   "cache": "text/fd65f83f0b5bd2c1.txt"
+  },
+  {
+   "id": "S094",
+   "url": "https://nginx.org/en/docs/http/ngx_http_core_module.html",
+   "label": "nginx ngx_http_core_module 文档：chunked_transfer_encoding 默认 on",
+   "retrieved": "2026-10-02",
+   "publisher": "nginx",
+   "cache": "text/87b3aa1a37acc7a2.txt"
+  },
+  {
+   "id": "S095",
+   "url": "https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html",
+   "label": "W3C WAI Understanding SC 1.4.1 Use of Color（Level A）条款原文",
+   "retrieved": "2026-10-02",
+   "publisher": "W3C"
+  },
+  {
+   "id": "S096",
+   "url": "https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html",
+   "label": "W3C WAI Understanding SC 4.1.3 Status Messages（Level AA）条款原文与 role=status / aria-live 充分技术",
+   "retrieved": "2026-10-02",
+   "publisher": "W3C"
+  },
+  {
+   "id": "S097",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/chatgpt",
+   "label": "Microsoft Foundry「Work with chat completion models」：流式响应中 finish_reason 直到最后一个分块之前都是 null",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/8e0f3f25ae65424e.txt"
+  },
+  {
+   "id": "S098",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-streaming",
+   "label": "Microsoft Foundry「Content Streaming in Azure OpenAI」：注解分块 choices 为空数组、样例以 data: [DONE] 收尾、默认模式下内容按缓冲区大小成块返回而非逐 token",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/e854dce103f75d28.txt"
+  },
+  {
+   "id": "S121",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry-classic/openai/how-to/reproducible-output",
+   "label": "Azure OpenAI「可复现输出」官方文档：默认非确定、seed 只是 best effort、原文明确「不保证确定性」、max_tokens 越大越不确定、用 system_fingerprint 观察后端变化",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/9961caecbc88b541.txt"
+  },
+  {
+   "id": "S122",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/working-with-models",
+   "label": "Azure OpenAI 模型部署更新策略：Auto-update to default（默认版本变更后两周内自动升级）与 NoAutoUpgrade（固定版本、永不自动升级）",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/189eb2f331fe11cf.txt"
+  },
+  {
+   "id": "S123",
+   "url": "https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview",
+   "label": "Azure AI Content Safety 总览：Prompt Shields/接地检测/危害分析等能力，及其限制（部分功能仅英文、不能检测违法儿童性剥削图像）",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/ae6584e1c8738bb2.txt"
+  },
+  {
+   "id": "S124",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/agent-evaluators",
+   "label": "Microsoft Foundry 内置 Agent 评估器：Tool Selection、Tool Call Accuracy、Task Adherence 等以 Pass/Fail 输出，用于过程评估",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/62a85c7b377910b0.txt"
+  },
+  {
+   "id": "S125",
+   "url": "https://developers.openai.com/cookbook/examples/reproducible_outputs_with_the_seed_parameter",
+   "label": "OpenAI Cookbook：用 seed 复现输出，原文「Determinism is not guaranteed」，配合 system_fingerprint 判断后端是否变化",
+   "retrieved": "2026-10-02",
+   "publisher": "OpenAI"
+  },
+  {
+   "id": "S126",
+   "url": "https://arxiv.org/abs/2306.05685",
+   "label": "MT-Bench / LLM-as-a-judge 论文（Zheng 等, 2023）：记录位置偏差、冗长偏差、自我增强偏差",
+   "retrieved": "2026-10-02",
+   "publisher": "arXiv",
+   "cache": "text/0016bb034b58b6e5.txt"
+  },
+  {
+   "id": "S127",
+   "url": "https://aclanthology.org/2024.naacl-long.482/",
+   "label": "NAACL 2024《Investigating Data Contamination in Modern Benchmarks for LLMs》（Deng 等）：基准污染使公开分数虚高",
+   "retrieved": "2026-10-02",
+   "publisher": "ACL Anthology",
+   "cache": "text/56eb8d5a9343f0b7.txt"
+  },
+  {
+   "id": "S071",
+   "url": "https://agentskills.io/specification",
+   "label": "Agent Skills 规范：目录结构（SKILL.md 必需，scripts/、references/、assets/ 可选）；元信息字段与约束（name 必填、≤64 字符、须等于目录名；description 必填、≤1024 字符；allowed-tools 实验性且只预批权限）；渐进披露三档（元信息约 100 token、正文建议 5000 token 以内、资源按需）",
+   "retrieved": "2026-10-02",
+   "publisher": "agentskills.io",
+   "cache": "text/9a0dfcb87fa345ac.txt"
+  },
+  {
+   "id": "S072",
+   "url": "https://agentskills.io/home",
+   "label": "Agent Skills 概览：技能是至少含 SKILL.md 的目录；加载分 Discovery／Activation／Execution 三阶段，启动只读 name 与 description；格式由 Anthropic 首创后开放为标准；技能被定位成可移植、受版本控制的文件夹",
+   "retrieved": "2026-10-02",
+   "publisher": "agentskills.io",
+   "cache": "text/1fd9ddd7d6587e46.txt"
+  },
+  {
+   "id": "S073",
+   "url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+   "label": "Anthropic 工程博客 2025-10-16（2025-12-18 更新为开放标准）：启动时把每个已装技能的 name 与 description 预载进系统提示，命中才读全文；技能内脚本可由模型作为工具执行；能装进技能的材料实际上不设上限",
+   "retrieved": "2026-10-02",
+   "publisher": "Anthropic",
+   "cache": "text/77ae700ce1f2f401.txt"
+  },
+  {
+   "id": "S074",
+   "url": "https://code.claude.com/docs/en/skills",
+   "label": "Claude Code 技能文档：项目级路径 .claude/skills/<skill-name>/SKILL.md、个人级 ~/.claude/skills/；捆绑技能是 prompt-based、由模型用自己的工具编排，多数内置命令则直接执行固定逻辑；清单里 description 与 when_to_use 合并截断在 1,536 字符，清单额度按模型上下文窗口的 1% 计；正文进入对话后跨轮保留、不再重读文件",
+   "retrieved": "2026-10-02",
+   "publisher": "Anthropic",
+   "cache": "text/bbd9e46f13d69331.txt"
+  },
+  {
+   "id": "S075",
+   "url": "https://docs.github.com/en/copilot/concepts/agents/about-agent-skills",
+   "label": "GitHub Copilot 文档：Agent Skills 规范是开放标准；项目技能可放 .github/skills、.claude/skills 或 .agents/skills，个人技能放 ~/.copilot/skills 或 ~/.agents/skills",
+   "retrieved": "2026-10-02",
+   "publisher": "GitHub",
+   "cache": "text/4c731d917dc0dc35.txt"
+  },
+  {
+   "id": "S076",
+   "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models",
+   "label": "Azure OpenAI 模型文档 Understand model token limits：模型表以 Context Window 与 Max Output Tokens 两列给出上限；分行标注的 Input 与 Output 是各自上限而非可叠加额度，输入越多留给生成的越少",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft",
+   "cache": "text/4d1286e4103761a8.txt"
+  },
+  {
+   "id": "S077",
+   "url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/server-concepts",
+   "label": "MCP 官方文档：服务端三种原语为 tools（model-controlled，JSON Schema 定义类型化输入输出，tools/list 发现、tools/call 执行）、resources、prompts；该分类中没有 skill",
+   "retrieved": "2026-10-02",
+   "publisher": "Model Context Protocol",
+   "cache": "text/a5c2147f5a650828.txt"
+  },
+  {
+   "id": "S131",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/quota",
+   "label": "Manage Azure OpenAI in Microsoft Foundry Models quota（ms.date 2026-05-04，updated_at 2026-08-13）。429 成因分类、retry-after-ms 与 x-ratelimit-* 响应头、RPM 按 1 或 10 秒小窗评估突发、SDK 默认 max_retries 为 2、建议设最大重试次数（文档举例 5–10 次）避免无限循环、被拒请求仍计入限流。",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/79b595d6585c3a1c.txt"
+  },
+  {
+   "id": "S132",
+   "url": "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-filter-prompt-shields",
+   "label": "Prompt Shields in Microsoft Foundry（ms.date 2026-09-08）。官方把第三方内容里的隐藏指令定义为 document attack，扫描点包括 user input 与 tool response。",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/74c47904f25890e7.txt"
+  },
+  {
+   "id": "S133",
+   "url": "https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns",
+   "label": "AI Agent Orchestration Patterns，Azure Architecture Center（ms.date 2026-02-12，updated_at 2026-09-21）。原文要求为避免无限工具调用循环设置迭代上限，可靠性一节要求实现超时与重试机制。",
+   "retrieved": "2026-10-02",
+   "publisher": "Microsoft Learn",
+   "cache": "text/8340225301c21357.txt"
+  }
+ ],
+ "category": "AI工程",
+ "tags": [
+  "Agent",
+  "聊天框",
+  "Azure AI Foundry",
+  "tool calling",
+  "思维链",
+  "DAG",
+  "流式输出",
+  "结构化输出",
+  "回归测试",
+  "答案漂移"
+ ],
+ "subtitle": "从打开一个对话框到答案不漂移：一个 Agent 聊天框的十二道工序，接口、拆解、工具、数据、流式与测试逐层给代码",
+ "reader": "会写一点后端、想让一个模型带动工具与数据库回答问题的人；不想再读「五步搭建你的第一个 Agent」那种没有代码、没有失败路径的教程的人",
+ "theme": {
+  "token": "agent-terminal",
+  "hero_motif": "turn_caret",
+  "hero_note": "母题是「一轮对话」：上面一条绿的是模型吐出来的那句话，下面一条蓝的是它为这句话调用的一次工具或数据库，右下角一枚实心方块是还在等的光标。两色分开是这篇的骨架——说话的一方与被调用的一方，边界画在哪儿决定了很多成败。绿条比蓝条长只表示「一次回合里模型的话总比一次调用长」，不代表任何数量关系。光标是静态的：产物零运行时 JS，闪不动，也不该闪。"
+ },
+ "generated_date": "2026-10-05",
+ "created_date": "2026-10-02",
+ "data_as_of": "2026-10",
+ "reading_minutes": 19,
+ "research_mode": "online",
+ "site": {
+  "url": "https://ai-engineering-gtqdc11h6po.qoder.website/agent-dev/agent-dev.html",
+  "group": "ai-engineering",
+  "path": "/agent-dev/agent-dev.html",
+  "project_id": "01a104f3-9c36-756f-85ec-954aa6a6c7a9",
+  "content_sha": "0172fe3ccf0cb757",
+  "published_date": "2026-10-05",
+  "access": "public"
+ }
+}

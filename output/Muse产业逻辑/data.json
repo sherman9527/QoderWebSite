@@ -72,7 +72,7 @@
    "images": [
     {
      "file": "images/01_月之暗面_Kimi.jpg",
-     "alt": "中国AI模型KimiK2继DeepSeek之后再次惊艳世界初创公司月之暗面科技（_财富号_东方财富网",
+     "alt": "",
      "caption": "中国AI模型KimiK2继DeepSeek之后再次惊艳世界初创公司月之暗面科技（_财富号_东方财富网",
      "source_page": "https://caifuhao.eastmoney.com/news/20250722132644285218840",
      "width": 767,
@@ -81,7 +81,7 @@
     },
     {
      "file": "images/33_月之暗面_Kimi.png",
-     "alt": "月之暗面 Kimi K2.6 发布并开源：代码能力对标 GPT-5.4- DoNews",
+     "alt": "",
      "caption": "月之暗面 Kimi K2.6 发布并开源：代码能力对标 GPT-5.4- DoNews",
      "source_page": "https://www.donews.com/news/detail/1/6520391.html",
      "width": 1080,
@@ -243,7 +243,7 @@
    "images": [
     {
      "file": "images/41_润泽科技_数据中心.jpg",
-     "alt": "润泽科技：未来将伴随着人工智能 国家算力的不断发展大展宏图_财富号_东方财富网",
+     "alt": "",
      "caption": "润泽科技：未来将伴随着人工智能 国家算力的不断发展大展宏图_财富号_东方财富网",
      "source_page": "https://caifuhao.eastmoney.com/news/20241021091531403621490",
      "width": 1080,
@@ -252,7 +252,7 @@
     },
     {
      "file": "images/42_阿里云.jpg",
-     "alt": "阿里云未来将开放通义千问，为每家企业打造专属大模型！ - 节点财经",
+     "alt": "",
      "caption": "阿里云未来将开放通义千问，为每家企业打造专属大模型！ - 节点财经",
      "source_page": "https://www.jiediancj.com/archives/13722",
      "width": 2560,
@@ -366,7 +366,7 @@
    "images": [
     {
      "file": "images/09_阿里巴巴_西溪_园区.jpg",
-     "alt": "十年建设，阿里巴巴杭州西溪全球总部2023年底前全面建成_手机新浪网",
+     "alt": "",
      "caption": "十年建设，阿里巴巴杭州西溪全球总部2023年底前全面建成_手机新浪网",
      "source_page": "https://finance.sina.cn/chanjing/gsxw/2023-01-27/detail-imycrfmn3752921.d.html",
      "width": 700,
@@ -375,7 +375,7 @@
     },
     {
      "file": "images/45_交换机_网络_机房_阿里云.png",
-     "alt": "计算机网络概述（一）-阿里云开发者社区",
+     "alt": "",
      "caption": "计算机网络概述（一）-阿里云开发者社区",
      "source_page": "https://developer.aliyun.com/article/1164071",
      "width": 730,
@@ -519,12 +519,23 @@
     {
      "type": "prose",
      "heading": "一次中等复杂度任务，算给你看",
-     "text": "设定：2 核 4GB 环境运行 10 分钟，模型往返 12 次，每次喂入约 25k token 的截图加历史、产出 300 token 动作。按阿里云口径逐项算：CPU 2×0.12×10/60＝0.04 元，内存 4×0.05×10/60＝0.033 元，token 300k 输入＋3.6k 输出折 5.5 Credits＝0.28 元，回放存储约 0.01 元。合计 0.36 元，执行环境只占两成，模型占七成半。AWS 官方示例算的是同形状会话（10 分钟、80% 等待、2vCPU/4GB），计算部分 0.012267 美元——币种不同，结论一致：环境按「分」计，token 按「角」计，人工那一头按「元」起。"
+     "text": "设定：2 核 4GB 环境运行 10 分钟，模型往返 12 次，每次喂入约 25k token 的截图加历史、产出 300 token 动作。按阿里云 AgentBay 计费页的单价逐项算：CPU 2×0.12×10/60＝0.04 元，内存 4×0.05×10/60＝0.033 元。token 这一段走 Credits：Browser Use Agent 每百万输入 16.8、每百万输出 134.4 Credits，300k 输入加 3.6k 输出折 5.5 个 Credits，按 0.05 元/Credit 是 0.28 元——页面自己给的例题就是这个算法（10 万输入＋1 万输出＝3.024 Credits，折合 0.1512 元）。上下文与回放记录算在存储一项，0.0002 元/GiB/小时，一个会话留 2 GiB 跑十分钟不足 0.0001 元，可以忽略。合计约 0.35 元：执行环境占两成，模型占八成。AWS 的官方示例是同一形状的十分钟会话（2 vCPU／4GB、按 80% I/O 等待只计 120 秒核时），算出 CPU 0.005967 美元加内存 0.0063 美元＝0.012267 美元——但那一式只有计算与内存两项，不含任何 token 费用，所以它比的是我们这两成那一头，不是整场会话。两边合起来才是结论：环境按「分」计，token 按「角」计，人工那一头按「元」起。",
+     "source_ids": [
+      "S042",
+      "S041"
+     ]
     },
     {
      "type": "prose",
      "heading": "能压的、压不动的",
-     "text": "环境这段能压，抓手是「谁为等待买单」。AWS 写明 agent 会话 30%–70% 的时间在等模型或接口返回，v2 把等期间的核时归零、空闲内存 120 秒后回收；AgentBay 反过来在 FAQ 里明确：只要会话没删除就持续计费。这条差异不是会计口径，是架构选择——你要不要为保住登录态养一个长会话。token 这段压的是结构：百炼 Batch 半价、显式缓存命中按标准输入 10% 计费，而 agent 的输入里绝大部分是重复的屏幕历史；DeepSeek 官方把非峰时段定成峰时的一半，重试和跑批值得排到谷时。压不动的是重试本身。OSWorld 369 个真实任务上，人类做成 72.36%，2024 年最佳模型只有 12.24%——把「重跑」当默认策略，那 0.36 元要乘上重试次数，等待同样翻倍。"
+     "text": "环境这段能压，抓手是「谁为等待买单」。AWS 的计费页写明 agent 工作负载通常 30%–70% 的时间在等模型、工具接口或数据库返回，而 v2 让 CPU 在这些等待期归零、空闲内存 120 秒后自动回收；AgentBay 的 FAQ 说的是反面：「只要会话处于运行中状态（会话未删除），无论其内部进程是否在执行任务，所占用的计算资源（CPU 和内存）都会持续计费」，后付费还不支持暂停。这条差异不是会计口径，是架构选择——你要不要为保住登录态养一个长会话。token 这段压的是结构：百炼 Batch 调用半价、显式缓存命中按标准输入价的 10% 计费，而 agent 的输入里绝大部分是重复的屏幕历史；DeepSeek 官方把非峰时段定成峰时的一半，重试和跑批值得排到谷时。压不动的是重试本身。OSWorld 在 369 个真实计算机任务上给出人类完成超过 72.36%，而 2024 年当时最佳模型只有 12.24%——把「重跑」当默认策略，那 0.35 元要乘上重试次数，等待同样翻倍。",
+     "source_ids": [
+      "S041",
+      "S042",
+      "S047",
+      "S048",
+      "S049"
+     ]
     },
     {
      "type": "prose",
@@ -535,20 +546,20 @@
    "images": [
     {
      "file": "images/13_中际旭创_光模块.png",
-     "alt": "中际旭创：800G硅光芯片及800G硅光模块已研发成功",
+     "alt": "",
      "caption": "中际旭创：800G硅光芯片及800G硅光模块已研发成功",
      "source_page": "https://laoyaoba.com/n/817554",
-     "width": 1080,
-     "height": 384,
+     "width": 800,
+     "height": 284,
      "query": "中际旭创 光模块"
     },
     {
      "file": "images/14_服务器.png",
-     "alt": "技术突破、业界首款！华为云 Flexus 云服务器 X 实例开启柔性算力新时代_服务器_什么值得买",
+     "alt": "",
      "caption": "技术突破、业界首款！华为云 Flexus 云服务器 X 实例开启柔性算力新时代_服务器_什么值得买",
      "source_page": "https://post.smzdm.com/p/a6pqexpz/",
-     "width": 1080,
-     "height": 1080,
+     "width": 800,
+     "height": 800,
      "query": "服务器"
     }
    ]
@@ -629,16 +640,17 @@
       },
       {
        "k": "计费",
-       "v": "CPU 0.12 元/核/小时、内存 0.05 元/GB/小时（精度到秒）；Pro 999 元/月含 200 并发，Ultra 1499 元/月，加购 10 元/并发/月",
+       "v": "CPU 0.12 元/核/小时、内存 0.05 元/GB/小时（均秒级精度）；Pro 999 元/月含 200 并发、Ultra 1499 元/月并支持扩容 10 元/并发/月；Credits 0.05 元/个",
        "source_ids": [
-        "S055"
+        "S042",
+        "S113"
        ]
       },
       {
        "k": "网络出口",
-       "v": "10Mbps 基础带宽无 SLA；高级 0.8 元/GB（入向）",
+       "v": "基础带宽每实例默认 10Mbps、按流入方向计、无 SLA；高级带宽 0.8 元/GB（入方向，提供 SLA）",
        "source_ids": [
-        "S055"
+        "S042"
        ]
       },
       {
@@ -667,7 +679,12 @@
     {
      "type": "prose",
      "heading": "结论二：能力已具备，货架没打开",
-     "text": "缺的是零售入口：这些环境只按企业权益包卖，1499 元/月起、按并发加钱，个人无处像装 App 那样点开就跑。"
+     "text": "缺的是零售入口：这些环境只按企业权益包卖，1499 元/月起、按并发加钱，个人无处像装 App 那样点开就跑。",
+     "source_ids": [
+      "S024",
+      "S042",
+      "S113"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -675,16 +692,16 @@
      "rows": [
       {
        "k": "已付的钱",
-       "v": "金山办公 2025：国内订阅 33.44 亿元 / 付费用户 4615 万；全球月活设备 6.78 亿 → 人均约 72 元/年，付费率 <7%",
+       "v": "金山办公 2025（财报报道）：国内 WPS 个人业务收入 33.44 亿元、累计年度付费个人用户 4615 万，全球月活设备 6.78 亿 → 33.44 亿 ÷ 4615 万 ≈ 人均 72 元/年，付费用户数对设备数约 6.8%",
        "source_ids": [
-        "S059"
+        "S1112"
        ]
       },
       {
        "k": "agent 会员",
-       "v": "Kimi 49/99/199/699 元/月；49 元档约 30 个 Agent 任务",
+       "v": "Kimi 连续包月四档 49／99／199／699 元（Andante／Moderato／Allegretto／Allegro，共享额度池）；49 元档原文写「Agent 用量约 30 个 Agent」",
        "source_ids": [
-        "S0510"
+        "S059"
        ]
       },
       {
@@ -713,7 +730,11 @@
     {
      "type": "prose",
      "heading": "合成判断：会出现，但换长相",
-     "text": "付费意愿部分具备，代操作许可是缺。72 元/年的办公订阅与 49 到 199 元/月的 agent 会员并存，中间档暂无第二家披露。两家超级 App 答案一致：agent 不许自己伸手，接口得由商家交出。所以形态大概率不是 Muse 复制品，而是长在微信、抖音自己的对话入口里——第三方拿的是 SKILL 的位置，不是 app 的位置。"
+     "text": "付费意愿部分具备，代操作许可是缺。金山办公 2025 年国内 WPS 个人业务收入 33.44 亿元、累计年度付费个人用户 4615 万，除下来人均约 72 元/年——这是把两笔公开数字相除得到的，公司自己没有报这个人均值。另一头，Kimi 把 agent 会员做成连续包月 49／99／199／699 元四档，共享一个额度池。同样是掏钱，一个买的是「我自己动手快一点」，一个买的是「替我动手」，而后者目前只有这一家把分档与用量都公开写出来。两家超级 App 的答案倒是一致的：agent 不许自己伸手，接口得由商家交出。所以形态大概率不是 Muse 复制品，而是长在微信、抖音自己的对话入口里——第三方拿的是 SKILL 的位置，不是 app 的位置。",
+     "source_ids": [
+      "S059",
+      "S1112"
+     ]
     },
     {
      "type": "note",
@@ -725,7 +746,7 @@
    "images": [
     {
      "file": "images/35_月之暗面_Kimi.webp",
-     "alt": "月之暗面发布Kimi Claw：一个在云端拥有40G空间的24×7运行的OpenClaw，基于Kimi模型驱动 | DataLearnerAI",
+     "alt": "",
      "caption": "月之暗面发布Kimi Claw：一个在云端拥有40G空间的24×7运行的OpenClaw，基于Kimi模型驱动 | DataLearnerAI",
      "source_page": "https://www.datalearner.com/blog/moonshot-kimi-claw-cloud-ai-assistant",
      "width": 1024,
@@ -803,16 +824,16 @@
    "images": [
     {
      "file": "images/51_腾讯云_开发者_大会_现场.png",
-     "alt": "腾讯数字生态大会详解腾讯云全球化发展规划，全真互联为重要发力点 | 每经网",
+     "alt": "",
      "caption": "腾讯数字生态大会详解腾讯云全球化发展规划，全真互联为重要发力点 | 每经网",
      "source_page": "https://www.nbd.com.cn/articles/2022-11-30/2574072.html",
-     "width": 1432,
-     "height": 534,
+     "width": 800,
+     "height": 298,
      "query": "腾讯云 开发者 大会 现场"
     },
     {
      "file": "images/52_抖音.jpg",
-     "alt": "快手、抖音、微视类短视频SDK接入教程，7步就能搞定 - 腾讯云开发者 - 博客园",
+     "alt": "",
      "caption": "快手、抖音、微视类短视频SDK接入教程，7步就能搞定 - 腾讯云开发者 - 博客园",
      "source_page": "https://www.cnblogs.com/qcloud1001/p/9389583.html",
      "width": 1163,
@@ -949,16 +970,16 @@
    "images": [
     {
      "file": "images/23_阿里巴巴_西溪_园区.jpg",
-     "alt": "2026阿里巴巴西溪园区游玩攻略,在访客中心打印个门禁卡就可...【去哪儿攻略】",
+     "alt": "",
      "caption": "2026阿里巴巴西溪园区游玩攻略,在访客中心打印个门禁卡就可...【去哪儿攻略】",
      "source_page": "https://touch.travel.qunar.com/comment/10161139579",
-     "width": 1920,
-     "height": 1440,
+     "width": 1472,
+     "height": 1104,
      "query": "阿里巴巴 西溪 园区"
     },
     {
      "file": "images/55_阿里云.png",
-     "alt": "项目技术栈-解决方案-阿里云架构-大数据云计算引擎/存储案例_阿里云运用云计算的案例-CSDN博客",
+     "alt": "",
      "caption": "项目技术栈-解决方案-阿里云架构-大数据云计算引擎/存储案例_阿里云运用云计算的案例-CSDN博客",
      "source_page": "https://blog.csdn.net/qq_33608000/article/details/103396838",
      "width": 640,
@@ -987,7 +1008,8 @@
      "heading": "会话、状态与计费口径",
      "source_ids": [
       "S082",
-      "S083"
+      "S083",
+      "S042"
      ],
      "text": "会话既隔离也计费。不删则等超时释放，时长在控制台策略里配。数据默认全丢，跨会话保留必须显式建 Context。会话未删除，空闲也按 CPU 与内存持续计费，后付费不支持暂停。单价公开：CPU 0.12 元／核／小时、内存 0.05 元／GB／小时、存储超额 0.0002 元／GiB／小时、高级带宽 0.8 元／GB。模型另走 Credits，0.05 元／个，Browser Use 每百万输入／输出 Token 收 16.8／134.4。"
     },
@@ -1061,7 +1083,7 @@
    "images": [
     {
      "file": "images/27_阿里巴巴_西溪_园区.jpg",
-     "alt": "2026阿里巴巴西溪园区门票,杭州阿里巴巴西溪园区游玩攻略,阿里巴巴西溪园区游览攻略路线/地址/门票价格-【去哪儿攻略】",
+     "alt": "",
      "caption": "2026阿里巴巴西溪园区门票,杭州阿里巴巴西溪园区游玩攻略,阿里巴巴西溪园区游览攻略路线/地址/门票价格-【去哪儿攻略】",
      "source_page": "https://touch.go.qunar.com/poi/23344227",
      "width": 640,
@@ -1083,7 +1105,12 @@
     {
      "type": "prose",
      "heading": "为什么先卡在内存和盘上",
-     "text": "每开一个会话就要起一套自己的操作系统和浏览器。Chrome 桌面端自 67 版起默认开启 Site Isolation，一个站点独占一个渲染进程；论文实测重负载会话的进程数由 35.0 增至 52.7，整个浏览器内存开销上升 9–13%，页面加载延迟只增加不到 2.25%。沙箱侧同理：Firecracker 论文给出每个 microVM 内存开销低于 5 MB、启动低于 125 毫秒、单机每秒可创建 150 个，存储只挂块设备并按设备限 IOPS。会话数一上去，先紧的是内存和盘的读写次数。"
+     "text": "每开一个会话就要起一套自己的操作系统和浏览器。Chromium 的设计文档写着桌面端从 Chrome 67 起对所有站点默认开启 Site Isolation（Android 是 Chrome 77，且只在 2GB 以上内存设备上、仅覆盖用户登录的站点），一个站点独占一个渲染进程。代价有实测：论文 §4.1.1 给的是 99 分位会话的进程数从 35.0 增至 52.7（+50.6%），50 分位从 4.4 增至 6.2（+43.5%）；整浏览器内存开销增加 9–13%；页面加载延迟只涨得很少——摘要的说法是低于 2.25%，逐分位看是 25 分位 457ms 到 467ms（至多 2.25%）、99 分位 14.6s 到 14.8s（1.58%）。沙箱侧同理：Firecracker 论文给出每个 microVM 内存开销低于 5 MB、启动到应用代码低于 125 毫秒、单机每秒最多创建 150 个，存储只支持块设备并按设备设 IOPS 与带宽限速。会话数一上去，先紧的是内存和盘的读写次数。",
+     "source_ids": [
+      "S098",
+      "S099",
+      "S0910"
+     ]
     },
     {
      "type": "compare",
@@ -1177,7 +1204,7 @@
    "images": [
     {
      "file": "images/31_中际旭创_光模块.jpg",
-     "alt": "光通信赛道上的破局者，中际旭创的崛起与全球化征程_财富号_东方财富网",
+     "alt": "",
      "caption": "光通信赛道上的破局者，中际旭创的崛起与全球化征程_财富号_东方财富网",
      "source_page": "https://caifuhao.eastmoney.com/news/20250508121847215841710",
      "width": 1080,
@@ -1186,11 +1213,11 @@
     },
     {
      "file": "images/32_AMD.png",
-     "alt": "基于Zen4打造、最高96核心：AMD第四代霄龙处理器“热那亚”发布_CPU_什么值得买",
+     "alt": "",
      "caption": "基于Zen4打造、最高96核心：AMD第四代霄龙处理器“热那亚”发布_CPU_什么值得买",
      "source_page": "https://post.smzdm.com/p/a4pwqwzl/",
-     "width": 1080,
-     "height": 608,
+     "width": 800,
+     "height": 450,
      "query": "AMD"
     }
    ]
@@ -1367,7 +1394,7 @@
    "images": [
     {
      "file": "images/35_润泽科技_数据中心.jpg",
-     "alt": "润泽科技142亿借壳普丽盛登陆创业板 首年业绩承诺完成116%__凤凰网",
+     "alt": "",
      "caption": "润泽科技142亿借壳普丽盛登陆创业板 首年业绩承诺完成116%__凤凰网",
      "source_page": "https://ishare.ifeng.com/c/s/v002JvXtpy5IuuNif13bpdHvz6E--PW0--gcOUb7WiHTNo41o__",
      "width": 1700,
@@ -1477,7 +1504,7 @@
    "images": [
     {
      "file": "images/61_浪潮信息_服务器_工厂.jpg",
-     "alt": "浪潮信息2022年上半年营收348.5亿元同比增22.05%，归母净利9.54亿元同比增18.81%_财富号_东方财富网",
+     "alt": "",
      "caption": "浪潮信息2022年上半年营收348.5亿元同比增22.05%，归母净利9.54亿元同比增18.81%_财富号_东方财富网",
      "source_page": "https://caifuhao.eastmoney.com/news/20220826205356347718370",
      "width": 640,
@@ -1486,7 +1513,7 @@
     },
     {
      "file": "images/43_浪潮信息_服务器_工厂.jpg",
-     "alt": "浪潮信息G7算力平台-浪潮信息",
+     "alt": "",
      "caption": "浪潮信息G7算力平台-浪潮信息",
      "source_page": "https://www.ieisystem.com/hd_g7_new.thtml?cid=11276",
      "width": 1667,
@@ -1502,14 +1529,16 @@
    "url": "https://www.aliyun.com/product/agentbay",
    "label": "阿里云无影 AgentBay 官方产品页（组件定位：智能调度与安全沙箱、全场景执行）",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/aa547e4f621b9dc6.txt"
   },
   {
    "id": "S032",
    "url": "https://help.aliyun.com/zh/agentbay/developer-reference/all-in-one-sandbox",
    "label": "AgentBay 官方开发文档：linux_latest 镜像构建 All-in-One 一体化沙箱（含浏览器/代码等能力）",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云帮助文档"
+   "publisher": "阿里云帮助文档",
+   "cache": "text/d8e9aa393a3b39cb.txt"
   },
   {
    "id": "S033",
@@ -1523,112 +1552,128 @@
    "url": "https://cloud.tencent.com/developer/article/2668268",
    "label": "腾讯云开发者社区《60ms 启动一个安全沙箱：CubeSandbox 架构设计》",
    "retrieved": "2026-09-24",
-   "publisher": "腾讯云"
+   "publisher": "腾讯云",
+   "cache": "text/2db46acaa1cd22e1.txt"
   },
   {
    "id": "S035",
    "url": "https://firecracker-microvm.github.io/",
    "label": "Firecracker 官方站：KVM 微虚拟机，面向 serverless/不受信场景，启动与开销指标",
    "retrieved": "2026-09-24",
-   "publisher": "Firecracker / AWS"
+   "publisher": "Firecracker / AWS",
+   "cache": "text/886d8c099158a185.txt"
   },
   {
    "id": "S036",
    "url": "https://gvisor.dev/docs/",
    "label": "gVisor 官方文档：用户态应用内核，容器/多租户不受信代码隔离",
    "retrieved": "2026-09-24",
-   "publisher": "Google gVisor"
+   "publisher": "Google gVisor",
+   "cache": "text/130344a4426265fe.txt"
   },
   {
    "id": "S037",
    "url": "https://www.sh.chinanews.com.cn/kjjy/2025-07-29/138576.shtml",
    "label": "中新社上海：阿里云发布无影 AgentBay（公测时间线，2025-07-29）",
    "retrieved": "2026-09-24",
-   "publisher": "中新社"
+   "publisher": "中新社",
+   "cache": "text/b7cd7bd29a219792.txt"
   },
   {
    "id": "S041",
    "url": "https://aws.amazon.com/bedrock/agentcore/pricing/",
-   "label": "Amazon Bedrock AgentCore 官方计费页：microVM v1 每 vCPU 小时 0.0895 美元、每 GB 小时 0.00945 美元；v2 按消耗 0.1276/0.0169；官方示例算出十分钟浏览器会话 0.012267 美元；并写明 agent 工作负载通常 30%-70% 时间处于 I/O 等待",
+   "label": "Amazon Bedrock AgentCore 官方计费页（2026-09-27 直接 curl 页面原文）：microVM v1 每 vCPU 小时 0.0895 美元、每 GB 小时 0.00945 美元；v2 按实际消耗 0.1276 / 0.0169。原文三条：「agent 工作负载通常 30-70% of time in I/O wait (waiting for LLM responses, tool / API calls, or database queries)」「CPU scales to zero during I/O wait … and with v2, memory is reclaimed throughout the session」「Idle memory is reclaimed automatically in Runtime v2 after 120 seconds」；另有「Billing is calculated per second, using actual CPU and memory consumption, with a 1-second minimum」「128MB minimum memory billing applies for memory」「Managed session storage (currently in public preview): Usage is not charged during public preview」「With the active resource consumption-based pricing in AgentCore Browser, I/O wait and idle time is free, if no other background process is running」。官方十分钟浏览器会话示例逐行原文：「CPU cost per session: 120 seconds (adjusting for 80% I/O wait) × 2 vCPU × ($0.0895/3600) = $0.005967」「Memory cost per session: 600 seconds × 4GB × ($0.00945/3600) = $0.0063」「Total cost per session: $0.012267」「Monthly total: 100K sessions × $0.012267 = $1,226.67」——**该例只含 CPU 与内存两项，不含任何模型 token 费用**",
    "retrieved": "2026-09-24",
-   "publisher": "AWS"
+   "publisher": "AWS",
+   "cache": "text/be03ca7fee5079ec.txt"
   },
   {
    "id": "S042",
    "url": "https://help.aliyun.com/zh/agentbay/product-overview/agentbay-billing-instructions",
-   "label": "阿里云无影 AgentBay 计费说明：CPU 0.12 元/核/小时、内存 0.05 元/GB/小时、存储 0.0002 元/GiB/小时、高级带宽 0.8 元/GB、Credits 0.05 元；Browser Use 每百万输入 16.8 / 输出 134.4 Credits；FAQ 明确会话未删除即持续计费",
+   "label": "阿里云无影 AgentBay 计费说明（2026-09-27 直接 curl 页面原文）：权益包价格「Basic 免费+资源后付费」「Pro 999 元/月+资源后付费」「Ultra 1499 元/月+资源后付费」；会话并发上限 Basic 10 个、Pro 200 个、Ultra 200 个且「支持扩容，10 元/并发/月」（扩容只列在 Ultra 一栏）。后付费单价：CPU「0.12 元/核/小时」秒级、内存「0.05 元/GB/小时」秒级（存储计量精确到 MiB 级别）；Credits 单价「0.05 元/Credit」，且原文限定「Credits 仅用于大模型 Token 消耗的计量和扣费，不包含计算资源（CPU/Memory）、存储（Context）或网络（带宽）费用」；Agent 费率表 Browser Use Agent 输入 16.8 / 输出 134.4 Credits 每百万 Token，Mobile Use Agent 11.2 / 89.6；官方计算示例「使用 Browser Use Agent，某次调用消耗 100,000 输入 Token + 10,000 输出 Token，Credits 消耗 = 100,000 ÷ 1,000,000 × 16.8 + 10,000 ÷ 1,000,000 × 134.4 = 3.024 Credits（折合 0.1512 元）」；存储「权益包内包含 100GiB 或 1TiB」，超出部分「0.0002 元/GiB/小时」，用途原文「存储：用于持久化上下文数据（Context）与会话回放记录（Replay）…最小计费单位为 MiB，不包含计算资源中的系统盘和数据盘」；网络「基础带宽每实例默认 10Mbps 免费、按流入方向计算、无 SLA」「高级带宽 0.8 元/GB（入方向，提供 SLA）」。FAQ 原文：「会话空闲时是否计费？是的。只要会话处于运行中状态（会话未删除），无论其内部进程是否在执行任务，所占用的计算资源（CPU 和内存）都会持续计费」「后付费是否支持暂停？后付费不支持暂停…如需停止产生费用，可在控制台禁用 API Key，不调用即不产生后付费费用」「Basic 权益包本身免费…但计算资源、超出额度的存储及其他后付费资源仍需按量付费」。计费示例：Ultra（自定义峰值并发 300）、当月 60,000 个会话、4C8G、平均 10 分钟、高级带宽 1000GB、1000 Credits、Context 等存储合计 10TiB → 当月约 ￥18,676.104，其中权益 ￥1499、Credits 1000×0.05＝￥50、网络 1000×0.8＝￥800、存储（10TiB−1TiB）×0.0002×30×24＝￥1327.104",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/68c0227cea52f79a.txt"
   },
   {
    "id": "S043",
    "url": "https://help.aliyun.com/zh/wuying-workspace/product-overview/pay-as-you-go",
    "label": "阿里云无影云电脑按需购买：计费公式与示例给出 4vCPU/8GiB 计算资源小时价 0.727 元、存储 0.00035 元/GiB/小时；已关机与已休眠状态计算资源停计费",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/3157c94e28e5065f.txt"
   },
   {
    "id": "S044",
    "url": "https://modal.com/pricing",
    "label": "Modal 官方定价页：物理核（按 2 vCPU 等效）0.0000131 美元/秒、内存 0.00000222 美元/GiB/秒、卷 0.09 美元/GiB/月",
    "retrieved": "2026-09-24",
-   "publisher": "Modal"
+   "publisher": "Modal",
+   "cache": "text/d440ff9d2b2e11c5.txt"
   },
   {
    "id": "S045",
    "url": "https://e2b.dev/pricing",
    "label": "E2B 官方定价页：沙箱按秒计费，1 vCPU 0.000014 美元/秒，4 vCPU 0.000056 美元/秒",
    "retrieved": "2026-09-24",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/e750ffd515720d37.txt"
   },
   {
    "id": "S046",
    "url": "https://www.browserbase.com/pricing",
    "label": "Browserbase 官方定价页：$20 档超出部分 0.12 美元/浏览器小时、$99 档 0.10 美元/浏览器小时，代理流量 12 美元/GB",
    "retrieved": "2026-09-24",
-   "publisher": "Browserbase"
+   "publisher": "Browserbase",
+   "cache": "text/7397a77db9430c0a.txt"
   },
   {
    "id": "S047",
    "url": "https://api-docs.deepseek.com/quick_start/pricing",
    "label": "DeepSeek 官方 API 定价：每百万 token 价格，区分缓存命中/未命中与峰谷时段（非峰时为峰时一半）",
    "retrieved": "2026-09-24",
-   "publisher": "DeepSeek"
+   "publisher": "DeepSeek",
+   "cache": "text/bb9241e9781ff882.txt"
   },
   {
    "id": "S048",
    "url": "https://help.aliyun.com/zh/model-studio/billing-for-model-studio",
    "label": "阿里云百炼模型调用价格：qwen3-max 输入 2.5 元/百万、输出 10 元/百万（单次输入 32K 以内档）；qwen3.7-max 12 元/36 元；Batch 调用半价、显式缓存命中按标准输入 10% 计费",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/35bc63de215acf87.txt"
   },
   {
    "id": "S049",
    "url": "https://arxiv.org/abs/2404.07972",
    "label": "OSWorld 论文（2024-04）：369 个真实计算机任务基准，人类完成超过 72.36%，当时最佳模型仅 12.24%",
    "retrieved": "2026-09-24",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/6bc47f6f7f596bec.txt"
   },
   {
    "id": "S011",
    "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
    "label": "Meta 官方博客《Introducing Muse》（2026-09-08）：Muse 运行在带独立浏览器的 Muse Secure VM，由 Muse Spark 驱动，结账走 Stripe 的一次性虚拟卡（Link）",
    "retrieved": "2026-09-24",
-   "publisher": "Meta Newsroom"
+   "publisher": "Meta Newsroom",
+   "cache": "text/1fc754bb849e520a.txt"
   },
   {
    "id": "S012",
    "url": "https://about.fb.com/news/2026/09/introducing-meta-one-subscription-service-more-features-ai/",
    "label": "Meta 官方博客《Introducing Meta One》（2026-09-15）：核心体验免费，Core $7.99/月、Premium $19.99/月，订阅与试用累计 1500 万，含用 Muse 模型生成视频",
    "retrieved": "2026-09-24",
-   "publisher": "Meta Newsroom"
+   "publisher": "Meta Newsroom",
+   "cache": "text/a14f085913fb79c1.txt"
   },
   {
    "id": "S013",
    "url": "https://claude.com/pricing",
    "label": "Anthropic Claude 官方定价页：Pro $20/月（年付折合 $17、$200 预付）、Max 起 $100/月、Team 标准席 $20/席/月（年付）",
    "retrieved": "2026-09-24",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/eb3bbaf1174cb257.txt"
   },
   {
    "id": "S014",
@@ -1642,35 +1687,40 @@
    "url": "https://api-docs.deepseek.com/quick_start/pricing",
    "label": "DeepSeek 官方 API 定价文档：每百万 token 价格（flash 输出 off-peak $0.6 / peak $1.2；v4-pro 输出 $1.98 / $3.00）",
    "retrieved": "2026-09-24",
-   "publisher": "DeepSeek"
+   "publisher": "DeepSeek",
+   "cache": "text/bb9241e9781ff882.txt"
   },
   {
    "id": "S061",
    "url": "https://weixin.qq.com/agreement/service_agreement",
    "label": "《腾讯微信软件许可及服务协议》原文页，8.2.1.6 禁止用未经腾讯授权的第三方软件、插件、外挂等进行自动化操作并访问、读取、控制软件组件与数据；正文由脚本加载、页面未标注生效日期，为 2026-09-24 抓取版本",
    "retrieved": "2026-09-24",
-   "publisher": "腾讯"
+   "publisher": "腾讯",
+   "cache": "text/7c34068c66aec93b.txt"
   },
   {
    "id": "S062",
    "url": "https://www.douyin.com/agreements/?id=6773906068725565448",
    "label": "《抖音用户服务协议》原文页，页首标注更新日期 2026年2月13日、生效日期 2026年2月20日；2.4 禁止未经授权的爬虫、垂直搜索、镜像，5.1 禁止用自动化程序或类似工具接入并收集处理内容",
    "retrieved": "2026-09-24",
-   "publisher": "北京抖音科技有限公司"
+   "publisher": "北京抖音科技有限公司",
+   "cache": "text/f15bdc23e959cd48.txt"
   },
   {
    "id": "S063",
    "url": "https://mp.weixin.qq.com/robots.txt",
    "label": "微信公众平台 robots.txt：User-Agent: * 下 Disallow: /，仅 Allow 首页、/qa/、/wiki、登录页与小程序落地页等少数路径（2026-09-24 实测）",
    "retrieved": "2026-09-24",
-   "publisher": "腾讯"
+   "publisher": "腾讯",
+   "cache": "text/5c98b5f5b6593215.txt"
   },
   {
    "id": "S064",
    "url": "https://www.xiaohongshu.com/robots.txt",
    "label": "小红书 robots.txt：Googlebot 与通配 User-agent: * 均为 Disallow: /，仅对百度、必应、搜狗等指定蜘蛛放行首页、/explore、下载页与 sitemap（2026-09-24 实测）",
    "retrieved": "2026-09-24",
-   "publisher": "小红书"
+   "publisher": "小红书",
+   "cache": "text/f3bd27006aeedc7e.txt"
   },
   {
    "id": "S065",
@@ -1684,140 +1734,160 @@
    "url": "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
    "label": "国家网信办等七部门《生成式人工智能服务管理暂行办法》全文（令第15号），2023年7月10日公布、自2023年8月15日起施行；第十七条要求具有舆论属性或社会动员能力的服务开展安全评估并履行算法备案",
    "retrieved": "2026-09-24",
-   "publisher": "中国网信网"
+   "publisher": "中国网信网",
+   "cache": "text/970809f15e8cf094.txt"
   },
   {
    "id": "S067",
    "url": "https://www.cac.gov.cn/2026-01/09/c_1769688009588554.htm",
    "label": "网信办《关于发布2025年生成式人工智能服务已备案信息的公告》（2026年1月9日）：截至2025年12月31日累计748款生成式人工智能服务完成备案、435款应用或功能完成登记",
    "retrieved": "2026-09-24",
-   "publisher": "中国网信网"
+   "publisher": "中国网信网",
+   "cache": "text/849be39c2e85d7da.txt"
   },
   {
    "id": "S068",
    "url": "https://www.cac.gov.cn/2026-07/15/c_1785861480767004.htm",
    "label": "网信办《关于发布7款提供手机端侧生成式人工智能服务已备案信息的公告》（2026年7月15日）：新增「Apple智能」等7款手机端侧生成式人工智能服务备案信息",
    "retrieved": "2026-09-24",
-   "publisher": "中国网信网"
+   "publisher": "中国网信网",
+   "cache": "text/c9cffaeca6d2c043.txt"
   },
   {
    "id": "S069",
    "url": "https://artificialintelligenceact.eu/implementation-timeline/",
    "label": "欧盟 AI Act 实施时间表：2025年8月2日起 GPAI 模型（第五章）、治理（第七章）等规则开始适用",
    "retrieved": "2026-09-24",
-   "publisher": "Future of Life Institute"
+   "publisher": "Future of Life Institute",
+   "cache": "text/bf27211b55032cb8.txt"
   },
   {
    "id": "S0610",
    "url": "https://www.cac.gov.cn/2024-03/22/c_1712776611775634.htm",
    "label": "《促进和规范数据跨境流动规定》（国家互联网信息办公室令第16号），2024年3月22日公布并自公布之日起施行，规定数据出境安全评估、个人信息出境标准合同与保护认证的申报口径",
    "retrieved": "2026-09-24",
-   "publisher": "中国网信网"
+   "publisher": "中国网信网",
+   "cache": "text/f96e6746f2d19d82.txt"
   },
   {
    "id": "S0611",
    "url": "http://politics.people.com.cn/n1/2023/1218/c1024-40140906.html",
    "label": "人民网刊发《非银行支付机构监督管理条例》全文（国务院令第768号），2023年12月9日公布、自2024年5月1日起施行；第二条要求境外非银行机构拟为境内用户提供跨境支付服务的，应依条例在境内设立非银行支付机构",
    "retrieved": "2026-09-24",
-   "publisher": "人民日报"
+   "publisher": "人民日报",
+   "cache": "text/c97a511ade186b4b.txt"
   },
   {
    "id": "S051",
    "url": "https://www.tau-bench.com/",
    "label": "Sierra τ-bench 官方榜单首页，实测检索于 2026-09-24：τ²-bench（Text，Retail/Airline/Telecom）榜首为 Qwen3.5-397B-A17B（Alibaba Cloud）Pass^1 87.9，其后为 Gemini 3.0 Pro 85.4、Claude Opus 4.5 85.3",
    "retrieved": "2026-09-24",
-   "publisher": "Sierra Research"
+   "publisher": "Sierra Research",
+   "cache": "text/9598fa98362ab9ee.txt"
   },
   {
    "id": "S052",
    "url": "https://arxiv.org/abs/2507.20534",
    "label": "Kimi K2 技术报告摘要（v2 修订于 2026-02-03）：非思考设定下 Tau2-Bench 66.1、SWE-Bench Verified 65.8",
    "retrieved": "2026-09-24",
-   "publisher": "Moonshot AI / arXiv"
+   "publisher": "Moonshot AI / arXiv",
+   "cache": "text/a8f79856ebd4850c.txt"
   },
   {
    "id": "S053",
    "url": "https://docs.bigmodel.cn/cn/guide/models/text/glm-4.7",
    "label": "智谱官方模型文档：GLM-4.7 在 BrowseComp 得 67 分、在 τ²-Bench 交互式工具调用评测得 84.7 分并称开源 SOTA",
    "retrieved": "2026-09-24",
-   "publisher": "智谱 AI"
+   "publisher": "智谱 AI",
+   "cache": "text/0158547d87a171ed.txt"
   },
   {
    "id": "S054",
    "url": "https://www.minimaxi.com/news/minimax-m27-zh",
    "label": "MiniMax M2.7 官方发布公告：Toolathon 正确率 46.3%、Terminal Bench 2 为 57.0%、GDPval-AA ELO 1495",
    "retrieved": "2026-09-24",
-   "publisher": "MiniMax"
+   "publisher": "MiniMax",
+   "cache": "text/4429a9897e972f1f.txt"
   },
   {
    "id": "S055",
    "url": "https://www.stdaily.com/web/gdxw/2025-12/18/content_449412.html",
    "label": "科技日报 2025-12-18 报道：豆包大模型 1.8 在通用智能体测评集 BrowseComp 表现全球领先；截至当年 12 月豆包日均 token 使用量突破 50 万亿、同比增长超 10 倍",
    "retrieved": "2026-09-24",
-   "publisher": "科技日报"
+   "publisher": "科技日报",
+   "cache": "text/d65dae17f63279d8.txt"
   },
   {
    "id": "S056",
    "url": "https://www.aliyun.com/product/news/27353",
    "label": "阿里云产品动态：无影 Agent 开发套件 AgentBay 公测版发布（2025.09.18），覆盖浏览器/云电脑/代码空间/云手机四类运行环境，称秒级弹性伸缩与千级并发运维",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/49718f3574eee20e.txt"
   },
   {
    "id": "S057",
    "url": "https://help.aliyun.com/zh/agentbay/support/agentbay-billing",
    "label": "AgentBay 计费文档：计费时长精确到秒、每小时整点结算；云浏览器 0.5 积分/小时、云手机 1 积分/小时、积分 1.2 元/积分",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/35f4e92a73e737db.txt"
   },
   {
    "id": "S058",
    "url": "https://cloud.tencent.com/document/product/1814/133249",
    "label": "腾讯云 Agent 沙箱（Agent Runtime）计费模式，页面标注最近更新时间 2026-09-09：按量后付费、按秒计费（不足 1 秒按 1 秒），CPU 0.000081 元/核/秒、内存 0.000025 元/GiB/秒、系统盘 0.0021 元/GiB/小时",
    "retrieved": "2026-09-24",
-   "publisher": "腾讯云"
+   "publisher": "腾讯云",
+   "cache": "text/565cfdd51897b826.txt"
   },
   {
    "id": "S059",
    "url": "https://www.kimi.com/help/membership/membership-pricing",
-   "label": "Kimi 官方帮助中心：会员四档连续包月 ¥49/¥99/¥199/¥699，共享额度池",
+   "label": "Kimi 官方帮助中心《会员是怎么收费的/套餐包括什么？》（2026-09-27 直接 curl 页面原文）：「Kimi 提供四档会员计划，均支持连续包月和连续包年两种订阅方式。所有 Kimi 会员功能共享一个额度池，额度可自由分配使用」。连续包月四档：Andante 日常使用 ¥49/月、Moderato 效率升级 ¥99/月、Allegretto 专业优选 ¥199/月、Allegro 全能尊享 ¥699/月；「选择连续包年可享受更大折扣，最高立省 ¥1,680」。各档 Agent 用量原文：Andante「Agent 用量约 30 个 Agent、优先生成队列（4 倍速）、专业数据库 1000 次调用、项目数 20 个」；Moderato（在 Andante 基础上）「Agent 用量约 60 个、任务并行 2 个、集群可用 25 次（2 个子任务并行）、专业数据库 2000 次调用」；Allegretto「Agent 用量约 150 个、任务并行 2 个、集群可用 50 次（4 个子任务并行）、专业数据库 5000 次调用」；Allegro「Agent 用量约 360 个、任务并行 4 个、集群可用 120 次（8 个子任务并行）、支持百万 Tokens 超长对话容量、项目数 100 个」",
    "retrieved": "2026-09-24",
-   "publisher": "月之暗面"
+   "publisher": "月之暗面",
+   "cache": "text/55043bbe09fab467.txt"
   },
   {
    "id": "S0510",
    "url": "https://www.stcn.com/article/detail/3522211.html",
    "label": "证券时报网 2025-12-02：智谱 CEO 张鹏称 GLM Coding Plan ARR 已超 1 亿元人民币，该订阅计划用户超 15 万，月费低至 20 元",
    "retrieved": "2026-09-24",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/7fa6e2476951a3c1.txt"
   },
   {
    "id": "S0511",
    "url": "https://www.cls.cn/detail/2287882",
    "label": "财联社 2026-02-12：智谱发布 GLM Coding Plan 价格调整函，取消首购优惠、套餐价格整体涨幅自 30% 起，已订阅用户价格不变",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/57c75c104a2229b8.txt"
   },
   {
    "id": "S0512",
    "url": "https://weixin.qq.com/cgi-bin/readtemplate?&t=weixin_agreement&s=default",
    "label": "《腾讯微信软件许可及服务协议》条款原文第 8.2.1.6 条：禁止通过非腾讯开发、授权的第三方软件、插件、外挂、系统注册登录使用本服务或进行自动化操作，并禁止制作发布传播相关工具",
    "retrieved": "2026-09-24",
-   "publisher": "腾讯"
+   "publisher": "腾讯",
+   "cache": "text/486933612f381d3e.txt"
   },
   {
    "id": "S071",
    "url": "https://www.aliyun.com/product/agentbay",
    "label": "阿里云官网「无影 AgentBay」产品页，定位为全场景 AI Agent 执行平台（智能调度与安全沙箱）",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/aa547e4f621b9dc6.txt"
   },
   {
    "id": "S072",
    "url": "https://aws.amazon.com/about-aws/whats-new/2025/10/amazon-bedrock-agentcore-available/",
    "label": "AWS 官方公告：Amazon Bedrock AgentCore 于 2025 年 10 月正式可用（GA）",
    "retrieved": "2026-09-24",
-   "publisher": "AWS"
+   "publisher": "AWS",
+   "cache": "text/511bc1a8d3178a24.txt"
   },
   {
    "id": "S073",
@@ -1831,7 +1901,8 @@
    "url": "https://www.zhipuai.cn/zh/research/145",
    "label": "智谱官网研究页「AutoGLM 开源：每台手机，都可以成为 AI 手机」",
    "retrieved": "2026-09-24",
-   "publisher": "智谱 AI"
+   "publisher": "智谱 AI",
+   "cache": "text/9a293e02aa5566ce.txt"
   },
   {
    "id": "S075",
@@ -1859,7 +1930,8 @@
    "url": "https://m.bjnews.com.cn/detail/1704788856169873.html",
    "label": "报道钉钉宣布用户数达 7 亿并正式发布 AI 助理产品",
    "retrieved": "2026-09-24",
-   "publisher": "新京报"
+   "publisher": "新京报",
+   "cache": "text/c2662261095f0af8.txt"
   },
   {
    "id": "S079",
@@ -1873,119 +1945,136 @@
    "url": "https://www.apple.com.cn/newsroom/2026/06/apple-unveils-next-generation-of-apple-intelligence-siri-ai-and-more/",
    "label": "苹果中国官方新闻稿：新一代 Apple 智能与 Siri AI",
    "retrieved": "2026-09-24",
-   "publisher": "Apple Newsroom"
+   "publisher": "Apple Newsroom",
+   "cache": "text/f8ad6a88add97a2b.txt"
   },
   {
    "id": "S021",
    "url": "https://api-docs.deepseek.com/quick_start/pricing",
    "label": "DeepSeek 官方 API 定价页：V4.1-Flash 与 V4-Pro 每百万 token 峰谷价、缓存命中价（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "DeepSeek"
+   "publisher": "DeepSeek",
+   "cache": "text/bb9241e9781ff882.txt"
   },
   {
    "id": "S022",
    "url": "https://www.anthropic.com/pricing",
    "label": "Anthropic 官方定价页：同一页并列 Sonnet 4.5 与 Sonnet 5 等每百万 token 输入/输出价（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/b6f3b95da77502be.txt"
   },
   {
    "id": "S023",
    "url": "https://www.langchain.com/pricing",
    "label": "LangChain / LangSmith 官方定价页：按席位与 LCU/LSU 计价（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "LangChain"
+   "publisher": "LangChain",
+   "cache": "text/c71d648afbac6033.txt"
   },
   {
    "id": "S024",
    "url": "https://help.aliyun.com/zh/agentbay/product-overview/agentbay-billing-instructions",
    "label": "阿里云无影 AgentBay 计费说明：Basic 免费、Pro 999 元/月、Ultra 1499 元/月、CPU 0.12 元/核/小时、10 元/并发/月（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/68c0227cea52f79a.txt"
   },
   {
    "id": "S025",
    "url": "https://e2b.dev/pricing",
    "label": "E2B 官方定价页：Hobby 免费含 100 美元额度、Pro 150 美元/月、vCPU 与内存按秒价（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/e750ffd515720d37.txt"
   },
   {
    "id": "S026",
    "url": "https://www.browserbase.com/pricing",
    "label": "Browserbase 官方定价页：Free $0/月、Developer $20/月含 100 浏览器小时后按 $0.12/小时、代理 $12/GB（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "Browserbase"
+   "publisher": "Browserbase",
+   "cache": "text/7397a77db9430c0a.txt"
   },
   {
    "id": "S027",
    "url": "https://www.spheron.network/blog/aws-capacity-blocks-pricing-2026-b200-b300-hike/",
    "label": "第三方整理的 AWS Capacity Blocks 调价记录，引用 The Register 与 AWS 官方定价页：2026-01-04 p5e.48xlarge $34.61→$39.80/小时、2026-07-01 再涨约 20%（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "Spheron"
+   "publisher": "Spheron",
+   "cache": "text/bd49beccfa5ae702.txt"
   },
   {
    "id": "S028",
    "url": "https://aws.amazon.com/blogs/aws/announcing-up-to-45-price-reduction-for-amazon-ec2-nvidia-gpu-accelerated-instances/",
    "label": "AWS 官方博客 2025-06-05：EC2 P4/P5 NVIDIA GPU 实例按需与 Savings Plan 价格下调最多 45%，自 2025-06-01 生效",
    "retrieved": "2026-09-24",
-   "publisher": "AWS"
+   "publisher": "AWS",
+   "cache": "text/1ec40dbc5976e12c.txt"
   },
   {
    "id": "S029",
    "url": "https://www.daytona.io/pricing",
    "label": "Daytona 官方定价页：vCPU $0.0504/小时、H100 按需 $3.95/小时与抢占式 $2.27/小时（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "Daytona"
+   "publisher": "Daytona",
+   "cache": "text/760fafb6c22561cb.txt"
   },
   {
    "id": "S0210",
    "url": "https://modal.com/pricing",
    "label": "Modal 官方定价页：Starter $0 含 $30/月额度、Team $250/月、CPU $0.00003942/核/秒、H100 SXM5 $0.001097/秒（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "Modal"
+   "publisher": "Modal",
+   "cache": "text/d440ff9d2b2e11c5.txt"
   },
   {
    "id": "S0211",
    "url": "https://help.aliyun.com/zh/agent-sandbox/product-overview/billing-overview",
    "label": "阿里云智能体沙箱计费概述：秒级计费、中国内地通用型 vCPU 0.078 元/小时、磁盘 15 GiB 免费额度（2026-09-24 抓取）",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/aba31b150a11f29e.txt"
   },
   {
    "id": "S101",
    "url": "https://www.zte.com.cn/china/about/news/20241011c1.html",
    "label": "中兴通讯官方新闻：IDC报告称其云终端登顶中国桌面云终端市场第一",
    "retrieved": "2026-09-24",
-   "publisher": "ZTE"
+   "publisher": "ZTE",
+   "cache": "text/90062ec8fcbdc0d5.txt"
   },
   {
    "id": "S102",
    "url": "https://www.zte.com.cn/china/about/news/20251015C1.html",
    "label": "中兴通讯：蝉联中国云终端市场第一（IDC）",
    "retrieved": "2026-09-24",
-   "publisher": "ZTE"
+   "publisher": "ZTE",
+   "cache": "text/cc6d713f2f012692.txt"
   },
   {
    "id": "S103",
    "url": "https://finance.sina.com.cn/tech/roll/2026-01-27/doc-inhiuixs5472875.shtml",
    "label": "约50亿元中国移动AI推理服务器集采落地报道",
    "retrieved": "2026-09-24",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/257c2ceed5b56746.txt"
   },
   {
    "id": "S104",
    "url": "https://m.c114.com.cn/w118-1295279.html",
    "label": "中国移动AI服务器集采：中兴、超聚变等中标",
    "retrieved": "2026-09-24",
-   "publisher": "C114通信网"
+   "publisher": "C114通信网",
+   "cache": "text/7af91058c1ecb63f.txt"
   },
   {
    "id": "S105",
    "url": "https://www.nbd.com.cn/articles/2026-04-11/4335187.html",
    "label": "浪潮信息2025年报解读：AI服务器放量但增收不增利",
    "retrieved": "2026-09-24",
-   "publisher": "每日经济新闻"
+   "publisher": "每日经济新闻",
+   "cache": "text/61fab0514f667d0e.txt"
   },
   {
    "id": "S106",
@@ -2006,84 +2095,96 @@
    "url": "https://www.tmtpost.com/7935028.html",
    "label": "中际旭创2025年报：净利超百亿，光模块主业",
    "retrieved": "2026-09-24",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/7c889dff19d55322.txt"
   },
   {
    "id": "S109",
    "url": "https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=300308&id=12041853",
    "label": "中际旭创2025年年度报告公告",
    "retrieved": "2026-09-24",
-   "publisher": "新浪财经公告页"
+   "publisher": "新浪财经公告页",
+   "cache": "text/1f02af5e00415ff2.txt"
   },
   {
    "id": "S1010",
    "url": "http://static.cninfo.com.cn/finalpage/2026-04-24/1225172597.PDF",
    "label": "新易盛2025年年度报告摘要（净利同比+235.89%）",
    "retrieved": "2026-09-24",
-   "publisher": "巨潮资讯网"
+   "publisher": "巨潮资讯网",
+   "cache": "text/53f296e24337bd2a.txt"
   },
   {
    "id": "S1011",
    "url": "https://static.cninfo.com.cn/finalpage/2026-04-08/1225083108.PDF",
    "label": "海光信息2025年年度报告摘要",
    "retrieved": "2026-09-24",
-   "publisher": "巨潮资讯网"
+   "publisher": "巨潮资讯网",
+   "cache": "text/4e5e2424bd3c5284.txt"
   },
   {
    "id": "S1012",
    "url": "https://www.cls.cn/detail/2337024",
    "label": "海光信息Q1营收同比增68%，DCU适配主流大模型",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/df357b8b9cf94fa0.txt"
   },
   {
    "id": "S1013",
    "url": "http://static.cninfo.com.cn/finalpage/2026-03-28/1225040066.PDF",
    "label": "锐捷网络2025年年度报告摘要",
    "retrieved": "2026-09-24",
-   "publisher": "巨潮资讯网"
+   "publisher": "巨潮资讯网",
+   "cache": "text/651dfc52de9ff5f4.txt"
   },
   {
    "id": "S1014",
    "url": "https://m.c114.com.cn/w123-1307718.html",
    "label": "锐捷网络2025年营收143.16亿元、同比+22.37%",
    "retrieved": "2026-09-24",
-   "publisher": "C114通信网"
+   "publisher": "C114通信网",
+   "cache": "text/b066e96c4c9b1c18.txt"
   },
   {
    "id": "S1015",
    "url": "https://www.sangfor.com.cn/news/9e6b4702d5014771beaee06d071e2793",
    "label": "深信服：桌面云终端市占率第一（公司援引IDC）",
    "retrieved": "2026-09-24",
-   "publisher": "深信服"
+   "publisher": "深信服",
+   "cache": "text/c779a4333005cdd0.txt"
   },
   {
    "id": "S1016",
    "url": "http://static.cninfo.com.cn/finalpage/2026-04-28/1225214127.PDF",
    "label": "江波龙2025年年度报告摘要（端侧AI/存储）",
    "retrieved": "2026-09-24",
-   "publisher": "巨潮资讯网"
+   "publisher": "巨潮资讯网",
+   "cache": "text/2fe1d22742798d35.txt"
   },
   {
    "id": "S1017",
    "url": "https://ir.p5w.net/question/0001A0E06385BF6E4D4293BF4E2435BD36DF.shtml",
    "label": "中科创达投资者问答：被问端侧AI/AIPC布局",
    "retrieved": "2026-09-24",
-   "publisher": "全景网互动"
+   "publisher": "全景网互动",
+   "cache": "text/24749406262b0a28.txt"
   },
   {
    "id": "S1018",
    "url": "https://www.thundercomm.com/zh/intelligent-home-life/",
    "label": "中科创达子公司创通联达CES 2026发布AI Agent产品",
    "retrieved": "2026-09-24",
-   "publisher": "Thundercomm"
+   "publisher": "Thundercomm",
+   "cache": "text/c93e95158f77bfcc.txt"
   },
   {
    "id": "S1019",
    "url": "https://nvidianews.nvidia.com/news/nvidia-announces-financial-results-for-fourth-quarter-and-fiscal-2026",
    "label": "NVIDIA 2026财年第四季度及全年财报（数据中心分部）",
    "retrieved": "2026-09-24",
-   "publisher": "NVIDIA IR"
+   "publisher": "NVIDIA IR",
+   "cache": "text/2cad770edf91d18f.txt"
   },
   {
    "id": "S1020",
@@ -2111,14 +2212,16 @@
    "url": "https://www.stcn.com/article/detail/3602925.html",
    "label": "证券时报：AI智能体概念股盘点名单",
    "retrieved": "2026-09-24",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/69547a6aa0ff862f.txt"
   },
   {
    "id": "S1024",
    "url": "https://www.cls.cn/detail/1965127",
    "label": "财联社：AI智能体加速元年受益上市公司一览",
    "retrieved": "2026-09-24",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/053c0223c97ea9a3.txt"
   },
   {
    "id": "S1025",
@@ -2132,70 +2235,80 @@
    "url": "http://www.cninfo.com.cn/",
    "label": "巨潮资讯网（A股公告/年报PDF原文）",
    "retrieved": "2026-09-24",
-   "publisher": "巨潮资讯网"
+   "publisher": "巨潮资讯网",
+   "cache": "text/c5766e3b5f5170e6.txt"
   },
   {
    "id": "S091",
    "url": "https://www.trendforce.com/presscenter/news/20260120-12887.html",
    "label": "TrendForce 新闻稿（2026-01-20）：2026 年全球服务器出货同比 +12.8%、AI 服务器 +28% 以上，GPU 机型占 AI 服务器出货 69.7%、ASIC 27.8%，并点名 Google/微软扩大通用服务器采购以承接推理流量、替换 2019–2021 年旧机",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/f01a24acf05d7a7c.txt"
   },
   {
    "id": "S092",
    "url": "https://www.trendforce.com/presscenter/news/20260105-12860.html",
    "label": "TrendForce 新闻稿（2026-01-05）：1Q26 常规 DRAM 合约价预估 +55–60% QoQ、服务器 DRAM +60% 以上、NAND +33–38%、客户端 SSD 至少 +40%",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/07e1d1edc733afa4.txt"
   },
   {
    "id": "S093",
    "url": "https://www.trendforce.com/presscenter/news/20260611-13092.html",
    "label": "TrendForce 新闻稿（2026-06-11）：AI Agent 热潮引发企业级 SSD 供给紧张，1Q26 行业营收环比 +86.1% 至 184.6 亿美元、季内合约价涨约 80%；并称 SSD 正成为支撑计算的存储层、高容量 QLC 与 245TB 产品在验证中",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/64910f2aa12a2a0e.txt"
   },
   {
    "id": "S094",
    "url": "https://www.trendforce.com/presscenter/news/20260703-13134.html",
    "label": "TrendForce 新闻稿（2026-07-03）：3Q26 常规 DRAM 合约价预估 +13–18% QoQ、NAND +10–15%；并写明基于 x86 CPU 与 RDIMM 的通用服务器仍是 Agentic AI 负载的主要内存平台",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/d3ea7dbbf91e4100.txt"
   },
   {
    "id": "S095",
    "url": "https://www.trendforce.com/presscenter/news/20260709-13140.html",
    "label": "TrendForce 新闻稿（2026-07-09）：服务器 DRAM 3Q26 合约价 +13–18% QoQ；服务器 CPU 短缺拖慢整机组装；RDIMM 位元供给 2027 年仅 +15–20% YoY，落后服务器 CPU 出货增速",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/5783d4369b62590f.txt"
   },
   {
    "id": "S096",
    "url": "https://www.idc.com/resource-center/blog/ai-infrastructure-spending-holds-near-90-billion-in-q1-2026-as-arm-overtakes-x86-in-accelerated-servers-2026-forecast-raised-to-497-billion/",
    "label": "IDC 官方博客（2026-07-21）：Q1 2026 AI 基础设施支出 897 亿美元、+33.1% YoY，全年预测上调至 4,970 亿美元；明确指出一块 AI 需求落在非 GPU 加速的基础设施上——CPU-only 推理集群、AI 编排工具、数据管道",
    "retrieved": "2026-09-24",
-   "publisher": "IDC"
+   "publisher": "IDC",
+   "cache": "text/6974d1ed39714721.txt"
   },
   {
    "id": "S097",
    "url": "https://www.biztechreports.com/news-archive/2026/3/19/worldwide-server-market-finished-2025-with-an-all-time-record-of-444-billion-dollars-revenue-idc-march-19-2026",
    "label": "IDC Worldwide Quarterly Server Tracker 数据转载（2026-04-02）：2025 年全球服务器营收 4,441 亿美元、+80.4%；4Q25 嵌 GPU 服务器营收 +59.1% YoY 且已占整体服务器营收一半以上；含 non-accelerated（无嵌入式加速器）的口径定义",
    "retrieved": "2026-09-24",
-   "publisher": "BizTechReports / IDC"
+   "publisher": "BizTechReports / IDC",
+   "cache": "text/a9ef693e2e6f14a9.txt"
   },
   {
    "id": "S098",
    "url": "https://www.chromium.org/developers/design-documents/site-isolation/",
-   "label": "Chromium 官方设计文档 Site Isolation：桌面端 Chrome 67 起默认全站点开启、Android Chrome 77 起对已登录站点开启；目标是每个渲染进程最多只承载一个站点",
+   "label": "Chromium 官方设计文档《Site Isolation》（2026-09-27 直接 curl 页面原文）Status 段原文：「Site Isolation has been enabled by default on desktop platforms (for all sites) in Chrome 67, and on Android (for sites users log into) in Chrome 77」；正文另两句：「Until version 67, Chrome made an effort to place pages from different web sites in different renderer processes when possible, but due to compatibility constraints, there were many cases in which pages from different sites share a process」「In Chrome 77, Site Isolation was also enabled on Android devices with at least 2 GB of RAM, but only for sites that users log into (to keep memory overhead lower)」——即桌面全站点是 67，Android 是 77 且仅限 2GB 以上内存设备、只覆盖登录站点，两个数字不能混用",
    "retrieved": "2026-09-24",
-   "publisher": "The Chromium Projects"
+   "publisher": "The Chromium Projects",
+   "cache": "text/78f93b4e67f077cd.txt"
   },
   {
    "id": "S099",
    "url": "https://www.usenix.org/conference/usenixsecurity19/presentation/reis",
-   "label": "Reis 等《Site Isolation: Process Separation for Web Sites within the Browser》USENIX Security 2019：99 分位会话进程数由 35.0 增至 52.7（+50.6%），总内存开销增加 9–13%，页面加载延迟增幅低于 2.25%",
+   "label": "Reis、Moshchuk、Oskov《Site Isolation: Process Separation for Web Sites within the Browser》，USENIX Security 2019（2026-09-27 复核：标签原写的 presentation 页摘要里**没有任何数值**，下列各句取自该页「Download Reis PDF」指向的 https://www.usenix.org/system/files/sec19-reis.pdf，19 页）。摘要原文：「we describe our successful deployment of the Site Isolation architecture to all desktop users of Google Chrome」「it incurs a total memory overhead of 9-13% in practice and increases page load latency by less than 2.25%」「Google Chrome has enabled Site Isolation by default」。正文 §4.1.1 原文：「At the 99th percentile, the process count increased 50.6% from 35.0 to 52.7 processes」「At the 50th percentile, the number of processes increased 43.5% from 4.4 without Site Isolation to 6.2」。页加载口径原文：「Across all navigations, we observe this to increase at most 2.25% at the 25th percentile (457 ms to 467 ms) and 1.58% (14.6 s to 14.8 s) at the 99th percentile」。另记：论文全文不写 Chrome 版本号（版本号在 Chromium 设计文档 S098）",
    "retrieved": "2026-09-24",
-   "publisher": "USENIX Association"
+   "publisher": "USENIX Association",
+   "cache": "text/22c8acf8eaf28daf.txt"
   },
   {
    "id": "S0910",
@@ -2209,63 +2322,72 @@
    "url": "https://help.aliyun.com/zh/agentbay/product-overview/what-is-eds-agentbay",
    "label": "阿里云帮助中心《什么是无影 AgentBay》：四大核心环境、SDK/MCP 两种接入、企业级安全容器、秒级弹性伸缩与千级并发、内置 ToolUseAgent 依赖百炼",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/ffaf10746bd24430.txt"
   },
   {
    "id": "S082",
    "url": "https://help.aliyun.com/zh/agentbay/developer-reference/core-concept",
    "label": "AgentBay SDK 核心概念：会话建/用/删、超时自动释放需在控制台策略管理配置、五个系统镜像 ID、数据默认临时、跨会话保留须显式建 Context",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/41a937f6c778d2d0.txt"
   },
   {
    "id": "S083",
    "url": "https://help.aliyun.com/zh/agentbay/product-overview/agentbay-billing-instructions",
    "label": "AgentBay 计费说明（中国站，人民币）：Basic/Pro/Ultra 权益包价格与并发上限、CPU/内存/带宽/存储/Credits 单价、空闲仍计费与后付费不可暂停、计费示例",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/68c0227cea52f79a.txt"
   },
   {
    "id": "S084",
    "url": "https://www.alibabacloud.com/help/en/agentbay/product-overview/agentbay-billing-instructions",
    "label": "AgentBay Billing 国际站英文版（美元）：Pro 149／Ultra 225 美元每月、CPU 0.027 美元每核每小时，证明同一形态在境外站也是云上托管",
    "retrieved": "2026-09-24",
-   "publisher": "Alibaba Cloud"
+   "publisher": "Alibaba Cloud",
+   "cache": "text/ba3ccf34fe66435a.txt"
   },
   {
    "id": "S085",
    "url": "https://help.aliyun.com/zh/agentbay/developer-reference/mcp-tool-list",
    "label": "AgentBay MCP 工具汇总与支持矩阵，按五类环境逐条标注支持与否；2026 年 9 月抓取可数出 106 个工具名",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/937b26e01b220ce5.txt"
   },
   {
    "id": "S086",
    "url": "https://help.aliyun.com/zh/agentbay/support/faq",
    "label": "AgentBay FAQ：GetLink 需企业实名认证、ASP 协议端云串流、SDK+API 与 MCP Server 两种接法",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/36d9e61fb3df255b.txt"
   },
   {
    "id": "S087",
    "url": "https://cloud.tencent.com/product/ags",
    "label": "腾讯云 Agent Runtime 产品页：VM 级隔离、100 毫秒启动、数十万实例每分钟、兼容 E2B 协议、MiniMax 与元宝为客户",
    "retrieved": "2026-09-24",
-   "publisher": "腾讯云"
+   "publisher": "腾讯云",
+   "cache": "text/abca5826b5787f53.txt"
   },
   {
    "id": "S088",
    "url": "https://cloud.tencent.com/document/product/1814/133249",
    "label": "腾讯云 Agent Runtime 计费模式，页面标注最近更新 2026-09-09：按秒计费按小时结算、CPU 0.000081 元每核每秒、内存 0.000025 元每 GiB 每秒、暂停后计算停计",
    "retrieved": "2026-09-24",
-   "publisher": "腾讯云"
+   "publisher": "腾讯云",
+   "cache": "text/565cfdd51897b826.txt"
   },
   {
    "id": "S089",
    "url": "https://www.prnewswire.com/news-releases/tencent-cloud-cube-sandbox-goes-fully-open-source-with-five-major-breakthroughs-enabling-large-scale-agent-deployment-302751501.html",
    "label": "腾讯云官方通稿 2026-04-23：Cube Sandbox 于 4 月 21 日以 Apache 2.0 全栈开源、KVM 每沙箱独立 Guest 内核、冷启动低于 60 毫秒（均值 67 毫秒）、称业界均值 150 毫秒、MiniMax 并发数十万异构沙箱",
    "retrieved": "2026-09-24",
-   "publisher": "Tencent Cloud"
+   "publisher": "Tencent Cloud",
+   "cache": "text/81dad9b20ec00706.txt"
   },
   {
    "id": "S0810",
@@ -2279,21 +2401,24 @@
    "url": "https://e2b.dev/pricing",
    "label": "E2B 定价页：Hobby 免费档与 Pro 150 美元每月、单会话 1 小时／24 小时、并发 20／100 可扩至 1,100、vCPU 0.000014 美元每秒、企业档 BYOC",
    "retrieved": "2026-09-24",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/e750ffd515720d37.txt"
   },
   {
    "id": "S0812",
    "url": "https://e2b.dev/docs/sandbox",
    "label": "E2B 官方文档 Sandbox 生命周期：isolated Linux VM、pause 保留完整状态、Pro 最长 24 小时／Base 1 小时",
    "retrieved": "2026-09-24",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/638c7a27a7cf595d.txt"
   },
   {
    "id": "S0813",
    "url": "https://modal.com/pricing",
    "label": "Modal 定价页：Sandbox 物理核 0.00003942 美元每秒、内存 0.00000667 美元每 GiB 每秒，Starter 每月送 30 美元算力",
    "retrieved": "2026-09-24",
-   "publisher": "Modal"
+   "publisher": "Modal",
+   "cache": "text/d440ff9d2b2e11c5.txt"
   },
   {
    "id": "S0814",
@@ -2307,91 +2432,112 @@
    "url": "https://www.alibabagroup.com/zh-HK/document-2026456290057781248",
    "label": "阿里巴巴集团截至 2026 年 6 月 30 日止季度业绩（2026-08-20）：AI 云与算力服务分部收入 484.37 亿元同比增 45%、AI 相关产品收入 123.76 亿元、资本性支出 676.78 亿元同比增 75%",
    "retrieved": "2026-09-24",
-   "publisher": "阿里巴巴集团"
+   "publisher": "阿里巴巴集团",
+   "cache": "text/5f0b9ea7470a459e.txt"
   },
   {
    "id": "S111",
    "url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
    "label": "Anthropic 工程博客《Beyond permission prompts: making Claude Code more secure and autonomous with sandboxing》，2025-10-20 发布：Claude Code 的沙箱建立文件系统与网络两层隔离边界，并称内部实测把权限提示减少 84%",
    "retrieved": "2026-09-24",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/5a3989c21b009b87.txt"
   },
   {
    "id": "S112",
    "url": "https://aws.amazon.com/bedrock/agentcore/pricing/",
    "label": "AWS Bedrock AgentCore 官方定价页：Runtime microVMs v1 CPU 0.0895 美元/vCPU 小时、v1 内存 0.00945 美元/GB 小时；改按消耗计费的 v2 CPU 为 0.1276 美元/vCPU 小时，按秒计费、1 秒起算",
    "retrieved": "2026-09-24",
-   "publisher": "AWS"
+   "publisher": "AWS",
+   "cache": "text/be03ca7fee5079ec.txt"
   },
   {
    "id": "S113",
    "url": "https://help.aliyun.com/zh/agentbay/product-overview/agentbay-billing-instructions",
    "label": "阿里云《无影 AgentBay 计费说明》官方文档：后付费计算资源 CPU 0.12 元/核/小时、内存 0.05 元/GB/小时，均按秒级精度计费；权益包 Pro 999 元/月、Ultra 1499 元/月",
    "retrieved": "2026-09-24",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/68c0227cea52f79a.txt"
   },
   {
    "id": "S114",
    "url": "https://developers.weixin.qq.com/miniprogram/product/",
    "label": "《微信小程序运营规范》官方页，5.4「外挂行为」条款原文：小程序不得使用或推荐、介绍使用插件、外挂或其他违规第三方工具、服务接入本服务和相关系统",
    "retrieved": "2026-09-24",
-   "publisher": "腾讯微信"
+   "publisher": "腾讯微信",
+   "cache": "text/17db3a367c171efc.txt"
   },
   {
    "id": "S115",
    "url": "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
    "label": "中国网信网 2025-03-14 关于印发《人工智能生成合成内容标识办法》的通知（国信办通字〔2025〕2 号，2025-03-07 签署；第十四条自 2025-09-01 施行）",
    "retrieved": "2026-09-24",
-   "publisher": "国家互联网信息办公室"
+   "publisher": "国家互联网信息办公室",
+   "cache": "text/9fc6a3f16edf8f30.txt"
   },
   {
    "id": "S116",
    "url": "https://www.cac.gov.cn/2026-04/28/c_1779119736411711.htm",
    "label": "中国网信网 2026-04-28 公告：网信部门发现「剪映」「猫箱」App 及「即梦AI」网站未有效落实生成合成内容标识规定要求，采取约谈、责令改正、警告等处置",
    "retrieved": "2026-09-24",
-   "publisher": "国家互联网信息办公室"
+   "publisher": "国家互联网信息办公室",
+   "cache": "text/adec6e28b2f94a2e.txt"
   },
   {
    "id": "S117",
    "url": "https://www.cac.gov.cn/2026-05/13/c_1780413225190669.htm",
    "label": "中国网信网 2026-05-13《关于发布生成式人工智能服务已备案信息的公告（2026 年 3 月至 4 月）》：新增 72 款备案、49 款登记；截至 2026-04-30 累计 868 款完成备案、530 款完成登记。同系列公告约每两个月发布一批",
    "retrieved": "2026-09-24",
-   "publisher": "国家互联网信息办公室"
+   "publisher": "国家互联网信息办公室",
+   "cache": "text/212948d6a63d02cb.txt"
   },
   {
    "id": "S118",
    "url": "https://www.trendforce.cn/presscenter/news/20260415-13012.html",
    "label": "TrendForce 集邦咨询 2026-04-15 服务器产业研究：2026 年整体服务器出货增幅由近 20% 下调至 13%，因供应商优先把产能分配给 AI Server、通用型 Server 零部件交期拉长（PMIC 由 21—26 周延至 35—40 周）；AI Server 出货年增约 28%",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/e41da2f56652a7e1.txt"
   },
   {
    "id": "S119",
    "url": "https://www.trendforce.cn/presscenter/news/20260803-13160.html",
    "label": "TrendForce 集邦咨询 2026-08-03 研究：2026 年 AI Server 出货增幅由 28% 上调至近 31%，九大 CSP 资本支出同比预估增长约 90%、总额突破 8,867 亿美元",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/c9622c618dacf9c1.txt"
   },
   {
    "id": "S1110",
    "url": "https://www.trendforce.cn/presscenter/news/20260703-13133.html",
    "label": "TrendForce 集邦咨询 2026-07-03 存储器价格调查：预估 3Q26 一般型 DRAM 合约价季增 13—18%、NAND Flash 季增 10—15%；Server DRAM 段落写明「搭配 x86 CPU 及 RDIMM 方案的通用型 Server 聚焦于多任务计算，持续作为 Agentic AI 应用场景的主要存储器配置」",
    "retrieved": "2026-09-24",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/f7b0d459d61eb21d.txt"
   },
   {
    "id": "S1111",
    "url": "https://www.idc.com/tracker/showproductinfo.jsp?containerId=IDC_P348",
    "label": "IDC《Worldwide Quarterly Server Tracker》产品页：按季度发布的服务器市场数据库，给出各细分市场分地区的规模、份额与预测",
    "retrieved": "2026-09-24",
-   "publisher": "IDC"
+   "publisher": "IDC",
+   "cache": "text/5c313b2fa07146dd.txt"
   },
   {
    "id": "S0513",
    "url": "https://developer.open-douyin.com/docs/resource/zh-CN/mini-app/operation/agreement/agreement",
    "label": "抖音开放平台《小程序服务协议》3.6.2、3.7.1 条原文，禁止插件外挂类工具施加影响、禁止蜘蛛式获取信息",
    "retrieved": "2026-09-24",
-   "publisher": "抖音开放平台"
+   "publisher": "抖音开放平台",
+   "cache": "text/e8353ab7361fbfe5.txt"
+  },
+  {
+   "id": "S1112",
+   "url": "https://www.cls.cn/detail/2324910",
+   "publisher": "科创板日报（财联社）",
+   "retrieved": "2026-09-27",
+   "label": "科创板日报 2026-03-25（记者郭辉）《金山办公2025年净利同比增12% WPS AI月活同比增长超3倍》（2026-09-27 直接 curl 原文）：2025 年金山办公实现营业收入 59.29 亿元、同比 +15.78%，归母净利润 18.36 亿元、同比 +11.63%，扣非归母 18.03 亿元、同比 +15.82%；分业务 WPS 365 收入 7.20 亿元 +64.93%、WPS 软件 14.61 亿元 +15.24%。截至 2025 年末「WPS Office全球月度活跃设备数达6.78亿，同比增长7.29%」（PC 版 3.29 亿 +13.18%、移动版 3.49 亿 +2.28%）；个人业务「国内WPS个人业务收入33.44亿元，同比增长7.87%，累计年度付费个人用户数达4615万，同比增长10.67%」，海外个人业务收入 2.82 亿元 +53.67%、海外累计年度付费个人用户 285 万 +63.39%、海外月活设备 2.45 亿；WPS AI 国内月活用户超 8013 万、同比 +307%。口径提醒：33.44 亿元在原文里叫「国内 WPS 个人业务收入」（订阅为主体但未逐字写订阅），人均付费额需要自己除",
+   "cache": "text/243ef7c4fd4518b4.txt"
   }
  ],
  "category": "人工智能",
@@ -2412,10 +2558,10 @@
   "hero_motif": "stack_layers",
   "hero_note": "以 agent 一次调用穿过的五层为母题：模型、编排、执行、网络出口、算力与机房。条子从窄到宽——越往下越厚、越贵、越像生意，强调色标在执行层，因为这一篇的争论全在这一层。"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-05",
+ "data_as_of": "2026-10",
  "research_mode": "online",
- "reading_minutes": 17,
+ "reading_minutes": 18,
  "cover": {
   "file": "images/41_润泽科技_数据中心.jpg",
   "alt": "润泽科技：未来将伴随着人工智能 国家算力的不断发展大展宏图_财富号_东方财富网",
@@ -2427,11 +2573,12 @@
  },
  "created_date": "2026-09-24",
  "site": {
-  "url": "https://muse-industry-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72d-5cd4-77d7-8ccc-5353d6870222",
-  "slug": "muse-industry",
-  "content_sha": "bcb8a75055e8732a",
-  "published_date": "2026-09-25",
+  "url": "https://ai-industry-gtqdc11h6po.qoder.website/muse-industry/muse-industry.html",
+  "group": "ai-industry",
+  "path": "/muse-industry/muse-industry.html",
+  "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
+  "content_sha": "bc56d6140c1133fa",
+  "published_date": "2026-10-10",
   "access": "public"
  }
 }

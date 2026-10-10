@@ -19,7 +19,10 @@
     {
      "type": "prose",
      "heading": "问两遍为什么答案不一样",
-     "text": "下一个 token 是抽出来的，不是查表查出来的。DeepSeek 官方文档写着：temperature 取 0 到 2、默认 1，调高更随机、调低更确定；top_p 是核采样，0.1 表示只在概率质量占前 10% 的候选里抽，而且两个建议只调一个。调高温度不是让它变笨，是让小概率的词更容易被抽中——同一个问题问三遍，你会看到三种开头。\n\n同一页还有反直觉的一处：temperature 在思考模式下不生效，top_p 反过来只在思考模式生效、低于 0.95 按 0.95 算。"
+     "text": "下一个 token 是抽出来的，不是查表查出来的。DeepSeek 官方文档写着：temperature 取 0 到 2、默认 1，调高更随机、调低更确定；top_p 是核采样，0.1 表示只在概率质量占前 10% 的候选里抽，而且两个建议只调一个。调高温度不是让它变笨，是让小概率的词更容易被抽中——同一个问题问三遍，你会看到三种开头。\n\n同一页还有反直觉的一处：temperature 在思考模式下不生效，top_p 反过来只在思考模式生效、低于 0.95 按 0.95 算。",
+     "source_ids": [
+      "S013"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -150,7 +153,7 @@
    "images": [
     {
      "file": "images/01_大模型.jpg",
-     "alt": "大模型入门必读：一文轻松读懂大模型的基本概念！-CSDN博客",
+     "alt": "",
      "caption": "大模型入门必读：一文轻松读懂大模型的基本概念！-CSDN博客",
      "source_page": "https://blog.csdn.net/2401_84495872/article/details/148743818",
      "width": 1080,
@@ -296,7 +299,7 @@
    "images": [
     {
      "file": "images/07_英伟达.jpg",
-     "alt": "英伟达：A100/A800/H100/H800/L40/L40S/RTX4090对华出口都将受限|英伟达|芯片|高性能计算_新浪新闻",
+     "alt": "",
      "caption": "英伟达：A100/A800/H100/H800/L40/L40S/RTX4090对华出口都将受限|英伟达|芯片|高性能计算_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_5772303575_1580e5cd7027013jh0.html",
      "width": 1080,
@@ -305,11 +308,11 @@
     },
     {
      "file": "images/08_H100.png",
-     "alt": "全球哄抢H100！英伟达成GPU霸主，首席科学家揭秘成功四要素 - 智源社区",
+     "alt": "",
      "caption": "全球哄抢H100！英伟达成GPU霸主，首席科学家揭秘成功四要素 - 智源社区",
      "source_page": "https://hub.baai.ac.cn/view/30568",
-     "width": 1080,
-     "height": 567,
+     "width": 800,
+     "height": 420,
      "query": "H100"
     }
    ]
@@ -428,16 +431,16 @@
    "images": [
     {
      "file": "images/09_OpenAI.png",
-     "alt": "OpenAI 计划发布开源语言模型：AI 领域的新变革与深远影响_技术突破的背后是算力与数据的双重驱动:据 openai 测算,2012 ...",
+     "alt": "",
      "caption": "OpenAI 计划发布开源语言模型：AI 领域的新变革与深远影响_技术突破的背后是算力与数据的双重驱动:据 openai 测算,2012 ...",
      "source_page": "https://blog.csdn.net/panqiangqiangqiang/article/details/146897966",
-     "width": 1367,
-     "height": 771,
+     "width": 800,
+     "height": 451,
      "query": "OpenAI"
     },
     {
      "file": "images/17_Anthropic.jpg",
-     "alt": "Anthropic发布首份AI经济指数报告：软件工程师、作家成AI应用先锋_凤凰网",
+     "alt": "",
      "caption": "Anthropic发布首份AI经济指数报告：软件工程师、作家成AI应用先锋_凤凰网",
      "source_page": "https://tech.ifeng.com/c/8gswkw1ykDp",
      "width": 840,
@@ -596,7 +599,7 @@
    "images": [
     {
      "file": "images/23_DeepSeek.jpg",
-     "alt": "DeepSeek全场景使用指南：从入门到精通的多维探索",
+     "alt": "",
      "caption": "DeepSeek全场景使用指南：从入门到精通的多维探索",
      "source_page": "https://www.solinkup.com/blog/8689",
      "width": 967,
@@ -605,7 +608,7 @@
     },
     {
      "file": "images/24_Qwen.png",
-     "alt": "Qwen2大模型微调入门实战（完整代码）_qwen微调-CSDN博客",
+     "alt": "",
      "caption": "Qwen2大模型微调入门实战（完整代码）_qwen微调-CSDN博客",
      "source_page": "https://blog.csdn.net/2301_81888214/article/details/156295737",
      "width": 1400,
@@ -701,7 +704,7 @@
    "images": [
     {
      "file": "images/11_大模型.png",
-     "alt": "什么是大模型？一文读懂大模型的基本概念，看完这篇就足够了~_通俗 解释 什么是大模型 大模型介绍 大模型是什么-CSDN博客",
+     "alt": "",
      "caption": "什么是大模型？一文读懂大模型的基本概念，看完这篇就足够了~_通俗 解释 什么是大模型 大模型介绍 大模型是什么-CSDN博客",
      "source_page": "https://blog.csdn.net/m0_71745484/article/details/147551687",
      "width": 643,
@@ -710,7 +713,7 @@
     },
     {
      "file": "images/43_AI.jpg",
-     "alt": "一文读懂 AI 最新进展！打工人使用指南→|GPT-4|Google|AI技术|google i/o|开发者大会_新浪新闻",
+     "alt": "",
      "caption": "一文读懂 AI 最新进展！打工人使用指南→|GPT-4|Google|AI技术|google i/o|开发者大会_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_5104880035_1304649a301901bb6v.html",
      "width": 1280,
@@ -869,7 +872,7 @@
    "images": [
     {
      "file": "images/27_Google_Gemini_发布会.png",
-     "alt": "谷歌Gemini 3 发布！这次发布带来哪些更新？ - AI 智能体",
+     "alt": "",
      "caption": "谷歌Gemini 3 发布！这次发布带来哪些更新？ - AI 智能体",
      "source_page": "https://www.szxn.com/58168.html",
      "width": 1080,
@@ -878,11 +881,11 @@
     },
     {
      "file": "images/28_谷歌_TPU_芯片.jpg",
-     "alt": "谷歌2019开发者大会下周开幕：8大看点一网打尽-谷歌 ——快科技(驱动之家旗下媒体)--科技改变未来",
+     "alt": "",
      "caption": "谷歌2019开发者大会下周开幕：8大看点一网打尽-谷歌 ——快科技(驱动之家旗下媒体)--科技改变未来",
      "source_page": "http://news.mydrivers.com/1/625/625536.htm",
-     "width": 1600,
-     "height": 1200,
+     "width": 1472,
+     "height": 1104,
      "query": "谷歌 TPU 芯片"
     }
    ]
@@ -994,7 +997,7 @@
    "images": [
     {
      "file": "images/31_模型.png",
-     "alt": "大模型技术全面解析，从大模型的概念，技术，应用和挑战多个方面介绍大模型，零基础入门到精通，收藏这一篇就够了_大模型技术详解-CSDN博客",
+     "alt": "",
      "caption": "大模型技术全面解析，从大模型的概念，技术，应用和挑战多个方面介绍大模型，零基础入门到精通，收藏这一篇就够了_大模型技术详解-CSDN博客",
      "source_page": "https://blog.csdn.net/Everly_/article/details/144160022",
      "width": 840,
@@ -1003,7 +1006,7 @@
     },
     {
      "file": "images/32_大模型.png",
-     "alt": "什么是大模型？一文读懂大模型的基本概念，零基础入门到精通，收藏这一篇就够了-CSDN博客",
+     "alt": "",
      "caption": "什么是大模型？一文读懂大模型的基本概念，零基础入门到精通，收藏这一篇就够了-CSDN博客",
      "source_page": "https://blog.csdn.net/Javachichi/article/details/147710981",
      "width": 720,
@@ -1105,7 +1108,10 @@
     {
      "type": "prose",
      "heading": "比日期更要命的是条件",
-     "text": "ARC Prize 于 2024 年 12 月替 OpenAI 测 o3：同一份题目、同一套流程，只调推理预算和题目集，就测出四个都算数的分数。注意后两根柱子——题目换成公开发布的那 400 题，成绩立刻再抬一截。"
+     "text": "ARC Prize 于 2024 年 12 月替 OpenAI 测 o3：同一份题目、同一套流程，只调推理预算和题目集，就测出四个都算数的分数。注意后两根柱子——题目换成公开发布的那 400 题，成绩立刻再抬一截。",
+     "source_ids": [
+      "S083"
+     ]
     },
     {
      "type": "bar_chart",
@@ -1195,7 +1201,11 @@
     {
      "type": "prose",
      "heading": "跨榜单比大小是最常见的读错",
-     "text": "一个榜单的 88 分和另一个榜单的 65 分不是同一个量，量表、题目难度、评分方式都不同。一张柱状图里若混进了不同评测、不同日期、不同单位（Elo、准确率、pass@1）的数字，这张图整体作废，不必逐条讨论。"
+     "text": "往上翻本页那两张图，它们并排放着就是现成的反例：LiveBench 2024 年 11 月那一轮里 o1-preview-2024-09-12 总分 64.7，ARC-AGI 公开题、采样 1,024 次那一档 o3 是 91.5。两个数都写成百分数，量的却不是同一件事——题库不同、评分方式不同、跑分方一个是论文作者自测、一个是第三方代测，日期差一个月。64.7 与 91.5 谁高谁低说明不了任何事。一张柱状图里若混进了不同评测、不同日期、不同单位（Elo、准确率、pass@1）的数字，这张图整体作废，不必逐条讨论。",
+     "source_ids": [
+      "S081",
+      "S083"
+     ]
     },
     {
      "type": "note",
@@ -1207,20 +1217,20 @@
    "images": [
     {
      "file": "images/35_大模型.png",
-     "alt": "大模型初解，一文了解大模型_大模型csdn-CSDN博客",
+     "alt": "",
      "caption": "大模型初解，一文了解大模型_大模型csdn-CSDN博客",
      "source_page": "https://blog.csdn.net/ry18341992216/article/details/140489873",
-     "width": 1378,
-     "height": 1216,
+     "width": 800,
+     "height": 705,
      "query": "大模型"
     },
     {
      "file": "images/36_大模型_排行榜.png",
-     "alt": "AI大模型排行榜【2026年4月更新】— 实时评测排名 | DataLearnerAI",
+     "alt": "",
      "caption": "AI大模型排行榜【2026年4月更新】— 实时评测排名 | DataLearnerAI",
      "source_page": "https://www.lmlearning.cn/leaderboards",
-     "width": 3564,
-     "height": 2370,
+     "width": 1000,
+     "height": 664,
      "query": "大模型 排行榜"
     }
    ]
@@ -1379,7 +1389,13 @@
     {
      "type": "prose",
      "heading": "首字延迟和输出速度是两件事",
-     "text": "首字延迟是等第一个 token，输出速度是之后每秒吐多少，端到端约等于首字延迟加输出 token 除以速度。同一模型的推理档位能把它拉开十几倍：GPT-6 Astra 低档 2.6 秒、高档 41.2 秒。按 1,000 token 的输出估：56 token/s 的 Claude Opus 5 要 18 秒，343 token/s 的 Gemini 3.8 Flash 要 3 秒。"
+     "text": "首字延迟是等第一个 token，输出速度是之后每秒吐多少，端到端约等于首字延迟加输出 token 除以速度。同一颗模型换推理档位，改的主要是等待：Artificial Analysis 上 GPT-6 Astra 低档首字 2.63 秒，max 档 333.51 秒，差出一百多倍；同一对页面的输出速度却只是从 52.2 变到 61.6 token/s。跨模型比输出速度才看出另一件事：Claude Opus 5（max 档页）58.8 token/s、首字 37.90 秒，Gemini 3.8 Flash（high 档页）277.9 token/s、首字 23.49 秒。按 1,000 token 的输出估，Opus 5 约 17 秒、Gemini 3.8 Flash 约 3.6 秒——这两个数是拿前面那两个 token/s 直接除出来的，不是任何页面上的读数。",
+     "source_ids": [
+      "S093",
+      "S1123",
+      "S1124",
+      "S1125"
+     ]
     },
     {
      "type": "bar_chart",
@@ -1501,12 +1517,25 @@
     {
      "type": "prose",
      "heading": "标称上下文不等于可用上下文",
-     "text": "2026 年 9 月旗舰的标称窗口普遍是 100 万 token，Claude Haiku 4.5 仍是 20 万，多数 GPT-5.x 是 40 万。两处折扣常被忽略：长上下文加价——阿里云 qwen3-max 单次输入 32K 以内每百万 2.5 元，落到 128K–256K 档是 7 元，整次调用的全部 token 按落入档结算；塞满即失效——vLLM 官方 recipe 提示 1M 需限制上下文或并发，GPUStack 实测后建议生产按 128K–512K 使用。"
+     "text": "2026 年 9 月旗舰的标称窗口普遍是 100 万 token：OpenRouter 接口里 Claude Opus 5 与 Sonnet 5 各 1,000,000，GPT-6 Astra 1,050,000，Kimi K3 1,048,576，而 Claude Haiku 4.5 仍是 200,000。同一家族在 Azure 目录里并不齐一——gpt-5（2025-08-07）那行是 400,000，gpt-5.6-sol／terra／luna（2026-07-09）三行都是 1,050,000。两处折扣常被忽略：长上下文加价——阿里云百炼把 qwen3-max 切成三档，0<Token≤32K 输入每百万 2.5 元、32K<Token≤128K 是 4 元、128K<Token≤256K 是 7 元，而原文写明「该请求的所有 Token 均按对应阶梯的单价结算」；塞满即失效——vLLM 官方 recipe 提示 1M 需限制上下文或并发，GPUStack 实测后建议生产按 128K–512K 使用。",
+     "source_ids": [
+      "S037",
+      "S093",
+      "S094",
+      "S095",
+      "S097",
+      "S098"
+     ]
     },
     {
      "type": "prose",
      "heading": "自建的量级",
-     "text": "自建门槛先是显存不是算力：DeepSeek V4.1 Flash 权重 511GB，vLLM recipe 给的单机底线 614GB，对应一个 8 卡 H200 节点或一托盘 GB200 NVL4。RunPod 挂牌 H200 每卡每小时 4.59 美元、Lambda 的 B200 起价 6.69 美元，整机一个月约 2.7 万美元；同机实测 DP8 峰值 10,289 token/s、TP8 单请求 68 token/s，峰值与真实利用率的落差才是账单上最大的变量。"
+     "text": "自建门槛先是显存不是算力：DeepSeek V4.1 Flash 权重 511GB，vLLM recipe 给的单机底线 614GB，对应一个 8 卡 H200 节点或一托盘 GB200 NVL4。RunPod 挂牌（页头写 Updated September 13, 2026）Secure Cloud 是 H200 每卡每小时 4.59 美元、B200 6.79 美元，Community Cloud 降到 3.59 与 5.98 美元，Serverless 又是 5.93 与 8.64 美元——同一张卡在一个页面上就有好几个价。这一页不给任何整机月价，Reserved Clusters 那一栏每格都是 Contact sales；把 4.59 美元乘满八卡三十天是 26,438 美元，那是挂牌时租的理论上界，不是成交价。吞吐侧另一笔账：同一规格的 8 卡 H200 上跑 V4-Pro 的实测给出 DP8+EP 整机峰值 10,289 token/s、TP8 单请求 68 token/s——峰值与真实利用率之间的落差，才是账单上最大的变量。",
+     "source_ids": [
+      "S096",
+      "S097",
+      "S098"
+     ]
     },
     {
      "type": "prose",
@@ -1520,16 +1549,16 @@
    "images": [
     {
      "file": "images/39_大模型.png",
-     "alt": "【大模型入门必看】AI大模型学习路线图：全方位指南，零基础入门到精通，收藏我这一篇就够了！_大模型应用学习路线图-CSDN博客",
+     "alt": "",
      "caption": "【大模型入门必看】AI大模型学习路线图：全方位指南，零基础入门到精通，收藏我这一篇就够了！_大模型应用学习路线图-CSDN博客",
      "source_page": "https://blog.csdn.net/m0_63171455/article/details/148555977",
-     "width": 1080,
-     "height": 526,
+     "width": 800,
+     "height": 389,
      "query": "大模型"
     },
     {
      "file": "images/40_英伟达.jpg",
-     "alt": "CES 2025：英伟达50系显卡震撼发布_显卡_什么值得买",
+     "alt": "",
      "caption": "CES 2025：英伟达50系显卡震撼发布_显卡_什么值得买",
      "source_page": "https://post.smzdm.com/p/a7p5o4gg/",
      "width": 1080,
@@ -1730,7 +1759,7 @@
    "images": [
     {
      "file": "images/43_ChatGPT_移动端_App.jpg",
-     "alt": "DeepSeek开源大模型有多强？一文带你深入了解这个AI界的“黑马“_deepseek解题速度比gpt-4快3倍-CSDN博客",
+     "alt": "",
      "caption": "DeepSeek开源大模型有多强？一文带你深入了解这个AI界的“黑马“_deepseek解题速度比gpt-4快3倍-CSDN博客",
      "source_page": "https://blog.csdn.net/2401_84009235/article/details/145668654",
      "width": 1007,
@@ -1739,7 +1768,7 @@
     },
     {
      "file": "images/44_DeepSeek.png",
-     "alt": "DeepSeek实现原理，如何用算法突破算力瓶颈",
+     "alt": "",
      "caption": "DeepSeek实现原理，如何用算法突破算力瓶颈",
      "source_page": "https://www.talktop.cn/?p=7443",
      "width": 1021,
@@ -1863,7 +1892,7 @@
    "images": [
     {
      "file": "images/47_OpenAI.jpg",
-     "alt": "OpenAI启动先锋计划，旨在重塑AI模型评分体系 - VRAR星球",
+     "alt": "",
      "caption": "OpenAI启动先锋计划，旨在重塑AI模型评分体系 - VRAR星球",
      "source_page": "https://www.vrarworld.cn/xinwenrili/10039.html",
      "width": 1268,
@@ -1872,7 +1901,7 @@
     },
     {
      "file": "images/48_AI.png",
-     "alt": "豆包绘画 - AI图像生成工具，让创意轻松变具象 | AI工具阁",
+     "alt": "",
      "caption": "豆包绘画 - AI图像生成工具，让创意轻松变具象 | AI工具阁",
      "source_page": "https://ai-to.cn/sites/doubao-draw/",
      "width": 1639,
@@ -1895,77 +1924,88 @@
    "url": "https://markhuang.ai/zh/blog/chinese-token-myth",
    "label": "《中文和英文谁更省 Token？六种分词器实测》：同一份文档的中英两版（中文 2,452 字符）分别跑 p50k/cl100k/o200k 等分词器，附逐分词器计数与可复现代码",
    "retrieved": "2026-09-22",
-   "publisher": "markhuang.ai"
+   "publisher": "markhuang.ai",
+   "cache": "text/c2d6fb40266d5ad7.txt"
   },
   {
    "id": "S013",
    "url": "https://api-docs.deepseek.com/api/create-chat-completion/",
-   "label": "DeepSeek API 官方文档 Chat Completions 参数表：temperature（0–2、默认 1）与 top_p（核采样、思考模式下 0.95–1.0 生效）的取值与生效规则",
+   "label": "DeepSeek API 官方文档「Create chat completion」参数表（2026-09-27 直接 curl 页面原文）：temperature —「Possible values: <= 2」「Default value: 1」「What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic」「We generally recommend altering this or top_p but not both」「Has no effect in thinking mode」；top_p —「Possible values: <= 1」「Default value: 1」「An alternative to sampling with temperature, called nucleus sampling, where the model considers the results of the tokens with top_p probability mass」「So 0.1 means only the tokens comprising the top 10% probability mass are considered」「The value must be greater than 0 and at most 1」「It only takes effect in thinking mode, where the effective range is 0.95–1.0: values below 0.95 are treated as 0.95. In non-thinking mode it is fixed at 1.0 and the value you pass is ignored」；同页 reasoning_effort —「Possible values: [none, low, high, max]…none disables thinking mode; low / high / max enable thinking mode. The default effort is high」",
    "retrieved": "2026-09-22",
-   "publisher": "DeepSeek"
+   "publisher": "DeepSeek",
+   "cache": "text/da1a670bfd38c44c.txt"
   },
   {
    "id": "S014",
    "url": "https://arxiv.org/abs/2307.03172",
    "label": "《Lost in the Middle: How Language Models Use Long Contexts》论文页（2023-07-06 首次提交，v3 2023-11-20），摘要给出信息位置与性能的 U 形关系",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/b5e5a678823e0fff.txt"
   },
   {
    "id": "S015",
    "url": "https://www.trychroma.com/research/context-rot",
    "label": "Chroma《Context Rot: How Increasing Input Tokens Impacts LLM Performance》（2025 年 7 月），评测 18 个模型的输入长度—性能关系",
    "retrieved": "2026-09-22",
-   "publisher": "Chroma"
+   "publisher": "Chroma",
+   "cache": "text/78cc2112e633e5c8.txt"
   },
   {
    "id": "S016",
    "url": "https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai",
    "label": "微软 Azure「Foundry Models sold by Azure」规格表：逐快照版本列出 Context Window 与 Max Output Tokens（gpt-4o 输入 128,000／输出 16,384；gpt-4.1 输入 1,047,576／输出 32,768）",
    "retrieved": "2026-09-22",
-   "publisher": "Microsoft Learn"
+   "publisher": "Microsoft Learn",
+   "cache": "text/ae02181dea4d9b3e.txt"
   },
   {
    "id": "S017",
    "url": "https://hidekazu-konishi.com/entry/llm_context_window_growth_timeline.html",
    "label": "《LLM Context Window Growth Timeline》（2026-07-26 发布、2026-09-13 更新）：上下文窗口里程碑年表，每行为日期＋型号＋官方数值，并链向厂商一手来源",
    "retrieved": "2026-09-22",
-   "publisher": "hidekazu-konishi.com"
+   "publisher": "hidekazu-konishi.com",
+   "cache": "text/8e3ee375309ea58b.txt"
   },
   {
    "id": "S031",
    "url": "https://arxiv.org/abs/2408.03314",
    "label": "Snell 等《Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters》arXiv 摘要页，2024-08-06 提交；含四倍效率与十四倍模型两项结论",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/bafe8b51a18f1824.txt"
   },
   {
    "id": "S032",
    "url": "https://simonwillison.net/2024/Sep/12/openai-o1/",
    "label": "2024-09-12 对 o1-preview / o1-mini 发布的逐条记录：链式思考训练、隐藏推理 token、成本与延迟取舍",
    "retrieved": "2026-09-22",
-   "publisher": "Simon Willison's Weblog"
+   "publisher": "Simon Willison's Weblog",
+   "cache": "text/89d299b7b00f6bf3.txt"
   },
   {
    "id": "S033",
    "url": "https://arxiv.org/abs/2412.16720",
    "label": "OpenAI o1 System Card（OpenAI 署名，arXiv v1 2024-12-21）：o1 系列以大规模强化学习训练链式思考",
    "retrieved": "2026-09-22",
-   "publisher": "OpenAI / arXiv"
+   "publisher": "OpenAI / arXiv",
+   "cache": "text/959dd0c7a8aee3ac.txt"
   },
   {
    "id": "S034",
    "url": "https://www.anthropic.com/news/claude-3-7-sonnet",
    "label": "Anthropic 官方发布稿 2025-02-24：首个混合推理模型、API 思考预算、思考 token 计入输出计费",
    "retrieved": "2026-09-22",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/80d76661dadff945.txt"
   },
   {
    "id": "S035",
    "url": "https://simonwillison.net/2024/Dec/19/gemini-thinking-mode/",
    "label": "2024-12-19 gemini-2.0-flash-thinking-exp 实验模型发布记录，并引谷歌模型文档说明其 thinking 定位",
    "retrieved": "2026-09-22",
-   "publisher": "Simon Willison's Weblog"
+   "publisher": "Simon Willison's Weblog",
+   "cache": "text/3f3d1dccbfff13ee.txt"
   },
   {
    "id": "S036",
@@ -1977,16 +2017,18 @@
   {
    "id": "S037",
    "url": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models",
-   "label": "微软 Foundry/Azure OpenAI 模型目录：gpt-5(2025-08-07) 上下文 400,000、gpt-5.6 系列(2026-07-09) 1,050,000，均标 Reasoning；gpt-oss 单列为 open-weight reasoning models",
+   "label": "微软 Azure 模型目录（标签里的原地址 learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models 已于 2026-09-27 确认改名重定向到 …/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai，标题「Foundry Models sold by Azure」）。表头原文「Model ID | Description | Context Window | Max Output Tokens | Training Data (up to)」。逐行：gpt-5（2025-08-07）Context Window 列原文「400,000 Input: 272,000 Output: 128,000」；gpt-5.6-sol / -terra / -luna（均 2026-07-09）与 gpt-5.5（2026-04-24）、gpt-5.4（2026-03-05）、gpt-5.4-pro 均为「1,050,000 Input: 922,000 Output: 128,000」；gpt-5.4-mini、gpt-5.4-nano、gpt-5.3-codex、gpt-5.2-codex、gpt-5.2、gpt-5.1、gpt-5.1-codex、gpt-5.1-codex-mini、gpt-5.1-codex-max、gpt-5、gpt-5-mini、gpt-5-nano、gpt-5-codex、gpt-5-pro 均列 400,000；各 *-chat 条目（多已标 Retired）列「128,000 Input: 111,616 Output: 16,384」。注意别在这张表上给聚合比例：同一格文本在渲染 DOM 里的出现次数（400,000 三次组 15 / 1,050,000 9 / 128,000 组 7）与逐行读出的行数（14 / 6 / 6）不一致，因为部分型号在第二张表（列头是区域/US/RFT/GA*）里重复出现、且那张表没有 Context Window 列——要说就点名列，别说「多数」",
    "retrieved": "2026-09-22",
-   "publisher": "Microsoft Learn"
+   "publisher": "Microsoft Learn",
+   "cache": "text/4d1286e4103761a8.txt"
   },
   {
    "id": "S038",
    "url": "https://openrouter.ai/api/v1/models",
    "label": "聚合平台模型接口 2026-09-22 返回的 pricing.prompt / pricing.completion 与 context_length 字段（GPT-5.6-sol、Claude Opus 4.8、Gemini 3.1 Pro）",
    "retrieved": "2026-09-22",
-   "publisher": "OpenRouter"
+   "publisher": "OpenRouter",
+   "cache": "text/eede074b536b88dd.txt"
   },
   {
    "id": "S041",
@@ -2000,7 +2042,8 @@
    "url": "https://arxiv.org/abs/2412.19437",
    "label": "DeepSeek-V3 Technical Report 摘要，训练开销为厂商自述",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/d7650744d57d399e.txt"
   },
   {
    "id": "S043",
@@ -2063,49 +2106,56 @@
    "url": "https://arxiv.org/abs/2412.19437",
    "label": "DeepSeek-V3 技术报告摘要页：671B 总参数、每 token 激活 37B、14.8 万亿 token、全量训练 2.788M H800 GPU 小时",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/d7650744d57d399e.txt"
   },
   {
    "id": "S022",
    "url": "https://arxiv.org/html/2412.19437v2",
    "label": "DeepSeek-V3 技术报告全文（含 Table 1 训练成本）：预训练 2664K GPU 小时 / 532.8 万美元、后训练 5K GPU 小时 / 1 万美元，按 H800 每小时 2 美元估算；2048 张 H800 集群每万亿 token 约 3.7 天",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/d04a86a312f4ffa7.txt"
   },
   {
    "id": "S023",
    "url": "https://arxiv.org/abs/2401.04088",
    "label": "Mixtral 8x7B 论文摘要：每层 8 个专家、路由器选 2 个，每个 token 可见 47B 参数但只用 13B 激活参数",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/89014a838848ab34.txt"
   },
   {
    "id": "S024",
    "url": "https://arxiv.org/html/2407.21783v3",
    "label": "《The Llama 3 Herd of Models》全文：最大模型为 405B 稠密 Transformer；正文写明 Llama 3 405B 在最多 16K 张 H100（每张 700W TDP、80GB HBM3）上训练",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/70a856bb0a829dd3.txt"
   },
   {
    "id": "S025",
    "url": "https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use",
    "label": "Epoch AI 2025 年 2 月的估算：与 GPT-4o 同量级的训练任务功率约 20–25 兆瓦、持续约三个月",
    "retrieved": "2026-09-22",
-   "publisher": "Epoch AI"
+   "publisher": "Epoch AI",
+   "cache": "text/ff61fb7975739951.txt"
   },
   {
    "id": "S026",
    "url": "https://arxiv.org/abs/2203.02155",
    "label": "InstructGPT 论文摘要（OpenAI，2022）：先收集标注员写的示范做监督微调，再收集回答排序训奖励模型、用 RLHF 微调",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/a3655fc041c8dff4.txt"
   },
   {
    "id": "S027",
    "url": "https://arxiv.org/abs/2305.18290",
    "label": "DPO 论文摘要（2023）：指出 RLHF 要先拟合奖励模型再做强化学习、复杂且不稳定；DPO 用一个分类损失替代，微调期间无需从模型采样",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/0e8a4b3694e7bc1d.txt"
   },
   {
    "id": "S028",
@@ -2119,28 +2169,32 @@
    "url": "https://arxiv.org/abs/2505.09388",
    "label": "Qwen3 技术报告摘要：参数规模 0.6B 至 235B，明确写明借助旗舰模型的知识显著降低小模型所需算力",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/fbd1fbf977f6419f.txt"
   },
   {
    "id": "S051",
    "url": "https://arxiv.org/abs/2001.08361",
    "label": "Kaplan 等人《Scaling Laws for Neural Language Models》摘要页，2020 年 1 月提交，OpenAI 团队",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/a61ab06e49df52f1.txt"
   },
   {
    "id": "S052",
    "url": "https://arxiv.org/abs/2203.15556",
    "label": "Hoffmann 等人《Training Compute-Optimal Large Language Models》（Chinchilla，70B 参数 / 1.4 万亿 token）摘要页，2022 年 3 月",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/ac31afbbba5e18bb.txt"
   },
   {
    "id": "S053",
    "url": "https://towardsdatascience.com/a-new-ai-trend-chinchilla-70b-greatly-outperforms-gpt-3-175b-and-gopher-280b-408b9b4510/",
    "label": "第三方解说：Chinchilla 70B 在评测上超过 GPT-3 175B 与 Gopher 280B",
    "retrieved": "2026-09-22",
-   "publisher": "Towards Data Science"
+   "publisher": "Towards Data Science",
+   "cache": "text/e550b61c3cb281ca.txt"
   },
   {
    "id": "S054",
@@ -2154,14 +2208,16 @@
    "url": "https://epoch.ai/publications/can-ai-scaling-continue-through-2030",
    "label": "Epoch AI《Can AI scaling continue through 2030?》，2024 年 8 月 20 日",
    "retrieved": "2026-09-22",
-   "publisher": "Epoch AI"
+   "publisher": "Epoch AI",
+   "cache": "text/b454be1b763af3a3.txt"
   },
   {
    "id": "S056",
    "url": "https://arxiv.org/abs/2211.04325",
    "label": "《Will we run out of data? Limits of LLM scaling based on human-generated data》Epoch AI 与斯坦福团队，2024 年 6 月更新版（25.3 / 30.3 万亿 token、2026–2032 用尽区间）",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/20e5d7425162cc85.txt"
   },
   {
    "id": "S057",
@@ -2175,21 +2231,24 @@
    "url": "https://arxiv.org/abs/2305.16264",
    "label": "Muennighoff 等人《Scaling Data-Constrained Language Models》（NeurIPS 2023）摘要页：重复数据约 4 个 epoch 内性能几乎不降",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/c01d5319d18414f3.txt"
   },
   {
    "id": "S059",
    "url": "https://www.nature.com/articles/s41586-024-07566-y",
    "label": "Shumailov 等人《AI models collapse when trained on recursively generated data》，Nature 2024 年 7 月 24 日",
    "retrieved": "2026-09-22",
-   "publisher": "Nature"
+   "publisher": "Nature",
+   "cache": "text/cc8942718b61c4fe.txt"
   },
   {
    "id": "S0510",
    "url": "https://arxiv.org/abs/2404.01413",
    "label": "Gerstgrasser 等人《Is Model Collapse Inevitable? Breaking the Curse of Recursion by Accumulating Real and Synthetic Data》，2024 年 4 月",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/4366815fa8751e78.txt"
   },
   {
    "id": "S0511",
@@ -2217,14 +2276,16 @@
    "url": "https://deepmind.google/blog/genie-3-a-new-frontier-for-world-models/",
    "label": "Google DeepMind 官方博客《Genie 3: A new frontier for world models》，2025 年 8 月（720p、24fps 可交互）",
    "retrieved": "2026-09-22",
-   "publisher": "Google DeepMind"
+   "publisher": "Google DeepMind",
+   "cache": "text/f020e8dd54713346.txt"
   },
   {
    "id": "S0515",
    "url": "https://www.machine.news/ilya-sutskever-peak-data-ai-openai/",
    "label": "对 Sutskever 在 NeurIPS 2024 发言的报道：峰值数据已到、预训练将结束，2024 年 12 月",
    "retrieved": "2026-09-22",
-   "publisher": "Machine News"
+   "publisher": "Machine News",
+   "cache": "text/3a3e435e66d3adaf.txt"
   },
   {
    "id": "S071",
@@ -2238,21 +2299,24 @@
    "url": "https://www.langchain.com/blog/building-a-harness-with-jev",
    "label": "LangChain 官方博客：把 Jev 接进 agent 的工程用法（2026-09-17，第三方）",
    "retrieved": "2026-09-22",
-   "publisher": "LangChain"
+   "publisher": "LangChain",
+   "cache": "text/13132063a1918e82.txt"
   },
   {
    "id": "S073",
    "url": "https://www.mindstudio.ai/blog/jev-system-one-model-launch",
    "label": "MindStudio 解读：转述厂商宣称数字、创始人背景与质疑点（2026-09-18，二手）",
    "retrieved": "2026-09-22",
-   "publisher": "MindStudio"
+   "publisher": "MindStudio",
+   "cache": "text/50ff7fd8e8bf9ba2.txt"
   },
   {
    "id": "S074",
    "url": "https://flaviocopes.com/jev/",
    "label": "开发者 Flavio Copes 深度笔记：发布日期/融资、延迟区间、价格、40–200 倍口径、局限（更新至 2026-09-21）",
    "retrieved": "2026-09-22",
-   "publisher": "Flavio Copes"
+   "publisher": "Flavio Copes",
+   "cache": "text/2ab109aa840ae1aa.txt"
   },
   {
    "id": "S075",
@@ -2264,170 +2328,194 @@
   {
    "id": "S081",
    "url": "https://arxiv.org/html/2406.19314v2",
-   "label": "LiveBench 论文 v2 正文的结果表：2024 年 11 月那一轮各快照型号的总分与分项分",
+   "label": "LiveBench 论文 v2 正文结果表（arXiv 2406.19314v2，2026-09-27 curl 取回原文）：表列头「Model | LiveBench | Coding | Data | Instruction | Language | Math | Reasoning | …」，逐行原数——o1-preview-2024-09-12 总分 64.7（50.8 / 64.0 / 74.6 / 68.7 / 62.9 / 67.4）；claude-3-5-sonnet-20241022 58.5；claude-3-5-sonnet-20240620 58.2；o1-mini-2024-09-12 56.7；gemini-exp-1114 56.0；gemini-exp-1121 56.0；step-2-16k-202411 55.1；gpt-4o-2024-08-06 53.8；gemini-1.5-pro-002 53.4；gpt-4o-2024-05-13 52.6；gpt-4o-2024-11-20 50.6；meta-llama-3.1-405b-instruct-turbo 51.1。注意两处口径：① 表内那一行写的是 405b-instruct-**turbo**，别把它当成无后缀的 instruct；② 同一型号多个快照分列（gpt-4o 有 2024-05-13 / 08-06 / 11-20 三行），这正是「同型号三个快照」那条的来源",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/722b523fdc807706.txt"
   },
   {
    "id": "S082",
    "url": "https://arxiv.org/abs/2406.19314",
    "label": "LiveBench 论文（Colin White 等，Abacus.AI）摘要：题目每月更新、按标准答案自动评分，写明本轮最强模型总分未过 70%",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/d3521ffec12bc710.txt"
   },
   {
    "id": "S083",
    "url": "https://arcprize.org/blog/oai-o3-pub-breakthrough",
-   "label": "ARC Prize 官方测试报告：替 OpenAI 测 o3，四种条件下的得分/样本数/token/成本，并记录 OpenAI 自述训练见过公开训练集 75%",
+   "label": "ARC Prize 官方博客「OpenAI o3 Breakthrough High Score on ARC-AGI-Pub」，署名 François Chollet，PUBLISHED 20 DEC 2024（2026-09-27 复核：DOM 与逐字转述两遍一致）。全页唯一一张表，表头「Set | Tasks | Efficiency | Score | Retail Cost* | Samples | Tokens | Cost/Task* | Time/Task (mins)」，四行原文：Semi-Private / 100 / High / 75.7% / $2,680 / 6 / 33.5M / $26 / 1.3；Semi-Private / 100 / Low / 87.5% / $456,000 / 1024 / 5.7B / $4,560 / 13.8；Public / 400 / High / 82.8% / $66,772 / 6 / 111M / $167 / N/A；Public / 400 / Low / 91.5% / $760,000 / 1024 / 9.5B / $1,900 / N/A。测试设置原文：「Semi-Private Eval: 100 private tasks used to assess overfitting」「Public Eval: 400 public tasks」「At OpenAI's direction, we tested at two levels of compute with variable sample sizes: 6 (high-efficiency) and 1024 (low-efficiency, 172x compute)」。污染一条原文：「OpenAI shared they trained the o3 we tested on 75% of the Public Training set. They have not shared more details.」成本两条更正注：Note 3/24/2025 改用 o1-pro 定价、Note 12/10/2025 改用 o3-pro 的 $80/M Tokens。另有 Update 12/20/2024（OpenAI 的 Sam Altman 与 Mark Chen 当场发布）与 Updated April 16, 2025（OpenAI 已正式发布 o3，并确认 released 版与本文测的不是同一个）",
    "retrieved": "2026-09-22",
-   "publisher": "ARC Prize"
+   "publisher": "ARC Prize",
+   "cache": "text/d09a7076a61cdc4b.txt"
   },
   {
    "id": "S084",
    "url": "https://arxiv.org/abs/2311.09783",
    "label": "Deng 等《Investigating Data Contamination in Modern Benchmarks for LLMs》：MMLU 缺项填空完全匹配率 ChatGPT 52%、GPT-4 57%",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/8afc9d995cb4dbe0.txt"
   },
   {
    "id": "S085",
    "url": "https://arxiv.org/abs/2406.01574",
    "label": "MMLU-Pro 论文：相比 MMLU 准确率下降 16%–33%；24 种提示风格下 MMLU 分数摆动 4–5%",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/109f2f1dd1070a39.txt"
   },
   {
    "id": "S086",
    "url": "https://arxiv.org/abs/2609.02899",
    "label": "Xiao & Cheng（2026-07）：47 个公开模型的污染审计，原榜与同义改写题控制榜秩相关 0.997",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/4c9f1fa85f2524b2.txt"
   },
   {
    "id": "S101",
    "url": "https://arxiv.org/abs/2307.03172",
    "label": "Liu et al.《Lost in the Middle: How Language Models Use Long Contexts》arXiv 摘要原文",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv / TACL 2024"
+   "publisher": "arXiv / TACL 2024",
+   "cache": "text/b5e5a678823e0fff.txt"
   },
   {
    "id": "S102",
    "url": "https://arxiv.org/abs/2404.06654",
    "label": "NVIDIA《RULER: What's the Real Context Size of Your Long-Context Language Models?》arXiv 摘要原文",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/6e27823f32cbd6b7.txt"
   },
   {
    "id": "S103",
    "url": "https://arxiv.org/abs/2402.01030",
    "label": "《Executable Code Actions Elicit Better LLM Agents》(CodeAct) arXiv 摘要原文",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv / ICML 2024"
+   "publisher": "arXiv / ICML 2024",
+   "cache": "text/a12ff844ce1be3b3.txt"
   },
   {
    "id": "S104",
    "url": "https://arxiv.org/abs/2406.18665",
    "label": "Ong et al.《RouteLLM: Learning to Route LLMs with Preference Data》arXiv 摘要原文",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/35a73f77367bfa66.txt"
   },
   {
    "id": "S105",
    "url": "https://arxiv.org/abs/2305.05176",
    "label": "Chen et al.《FrugalGPT》arXiv 摘要原文",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/8a39e89a26ca565b.txt"
   },
   {
    "id": "S106",
    "url": "https://arxiv.org/abs/2506.04645",
    "label": "《Inference economics of language models》arXiv 正文（含投机解码吞吐数据）",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/1901b267daa96a7c.txt"
   },
   {
    "id": "S107",
    "url": "https://epoch.ai/data-insights/llm-inference-price-trends",
    "label": "Epoch AI 数据洞察：按固定能力档位统计的每百万 token 单价下降速度",
    "retrieved": "2026-09-22",
-   "publisher": "Epoch AI"
+   "publisher": "Epoch AI",
+   "cache": "text/e22ce539e3e75b92.txt"
   },
   {
    "id": "S108",
    "url": "https://www.anthropic.com/engineering/building-effective-agents",
    "label": "Anthropic 工程博客《Building effective agents》：workflow 与 agent 的定义",
    "retrieved": "2026-09-22",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/7d24e5faa28b319b.txt"
   },
   {
    "id": "S091",
    "url": "https://www.anthropic.com/pricing",
-   "label": "Anthropic 官方定价页（API 标签）：Fable 5.1 / Opus 5 / Sonnet 5 / Haiku 4.5 每百万 token 的输入、输出、缓存读写单价；batch 五折；美区推理按 1.1 倍计价；Opus 5 fast mode 以 2 倍标准价换最高 2.5 倍速度；上下文标注为「Up to 1M, varies by model」",
+   "label": "Anthropic 官方定价页（www.anthropic.com/pricing 于 2026-09-27 确认 301 跳到 claude.com/pricing，模型价在页内 API 标签下）：逐模型每百万 Token 原价原样——Haiku 4.5「Input $1 / MTok」「Output $5 / MTok」「Prompt caching Read $0.10 / Write $1.25」；Opus 5「Read $0.50 / Write $6.25 / Input $5 / Output $25」；Opus 5.5「Read $0.20 / Write $5 / Input $4 / Output $20」。缓存脚注「Prompt caching pricing reflects 5-minute TTL」。**这一页给不出逐模型的上下文窗口**：全页关于 context window 只有计划对比表里的「Context window | Up to 1M | varies by model」，模型卡上没有该字段；**也给不出任何 token/s**（token/s、tokens per second、output speed 在渲染文本与源码里命中均为 0），沾速度的只有一句相对倍数「Get up to 2.5x faster speeds with fast mode for Opus 5.5 at 2x standard pricing」。要窗口数值请走 S094（OpenRouter 接口）或各模型的 Artificial Analysis 页",
    "retrieved": "2026-09-22",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/b6f3b95da77502be.txt"
   },
   {
    "id": "S092",
    "url": "https://api-docs.deepseek.com/quick_start/pricing",
    "label": "DeepSeek 官方 API 价目：deepseek-flash（V4.1-Flash）与 deepseek-v4-pro（V4-Pro-0813），缓存命中/未命中输入价与输出价各分高峰、低谷两档（谷价为峰价一半），上下文 1M，并发上限 2500 / 500",
    "retrieved": "2026-09-22",
-   "publisher": "DeepSeek"
+   "publisher": "DeepSeek",
+   "cache": "text/bb9241e9781ff882.txt"
   },
   {
    "id": "S093",
    "url": "https://artificialanalysis.ai/models/gpt-6-astra",
-   "label": "Artificial Analysis 排行榜页面，内嵌 JSON-LD 数据集（Output Speed、Latency: Time To First Answer Token、Context Window、Pricing: Cache Hit/Input/Output）。本次抓取于 2026-09-22；文中数值即取自该页面",
+   "label": "Artificial Analysis「GPT-6 Astra (max)」单版本分析页（2026-09-27 复核，页头 Released September 2026、effort=max）：页面可见原句只有两个数值——「GPT-6 Astra (max) generates output at 61.6 tokens per second (based on OpenAI's API), which is below average compared to other reasoning models in a similar price tier (median: 79.4 t/s)」与「has a time to first token (TTFT) of 333.51s (based on OpenAI's API), which is at the higher end compared to other reasoning models in a similar price tier (median: 3.74s)」；另有 Intelligence Index 53（同类中位 26）、$10.00 每百万输入 / $50.00 每百万输出、$3.26 每题。取数注意两条：① 页面内嵌的 JSON-LD 只是数据集元信息（name、variableMeasured、citation），逐模型数值在 Next.js flight 数据里，DOM 与 JSON-LD 都不可当同一份「表」来读；② 低/中/高/xhigh 档是各自独立的页面（/models/gpt-6-astra-low 等），本页不给跨档对照。09-27 复核：09-22 那次抓走的 56 token/s 与 41.2 秒首字**已不在当前页面上**（当日全页无 41.2 这个延迟值），故正文改按本页现值写",
    "retrieved": "2026-09-22",
-   "publisher": "Artificial Analysis"
+   "publisher": "Artificial Analysis",
+   "cache": "text/5aa93b5c3d4104c8.txt"
   },
   {
    "id": "S094",
    "url": "https://openrouter.ai/api/v1/models",
-   "label": "OpenRouter 模型接口：各模型 input / output / 缓存命中单价（USD/百万 token）与 context_length、batch 价（五折）",
+   "label": "OpenRouter 模型接口 /api/v1/models（2026-09-27 直接取 JSON，共 458 条）逐条 context_length 与 pricing 字段（USD/Token，乘 1e6 即每百万价）：anthropic/claude-haiku-4.5 = 200,000，输入 0.000001（$1）、输出 0.000005（$5）、缓存读 0.0000001（$0.10）；anthropic/claude-opus-5 = 1,000,000，$5 / $25 / 缓存读 $0.50；anthropic/claude-sonnet-5 = 1,000,000，$2 / $10 / $0.20；openai/gpt-6-astra = 1,050,000，$10 / $50 / 缓存读 $1；moonshotai/kimi-k3 = 1,048,576，$3 / $15；z-ai/glm-5.3 = 1,310,720（batch 变体列 1,048,576），$1.4 / $4.4；deepseek/deepseek-v4.1-flash = 1,048,576。注意：同一模型在这个接口与 Artificial Analysis 上标的窗口可以不同（gpt-6-astra 这里 1,050,000、AA 页 1,000,000；glm-5.3 这里 1,310,720），窗口口径要写清是哪一家",
    "retrieved": "2026-09-22",
-   "publisher": "OpenRouter"
+   "publisher": "OpenRouter",
+   "cache": "text/eede074b536b88dd.txt"
   },
   {
    "id": "S095",
    "url": "https://help.aliyun.com/zh/model-studio/model-pricing",
-   "label": "阿里云百炼「模型调用价格」：qwen3.8-max 输入 12 元、输出 36 元（每百万 token）；qwen3-max 阶梯 2.5/4/7 元；阶梯计费规则（整次调用按落入档结算）；显式缓存创建按输入价 125%、命中按 10%；Batch 五折",
+   "label": "阿里云百炼「模型调用价格」（2026-09-27 直接 curl 页面原文）：qwen3-max（页面注「当前能力等同于 qwen3-max-2026-01-23」「Batch 调用 半价」「上下文缓存 享有折扣」「非思考和思考模式」）输入单价每百万 Token 分三档——「0<Token≤32K 2.5 元 10 元」（输入/输出）、「32K<Token≤128K 4 元 16 元」、「128K<Token≤256K 7 元 28 元」，免费额度列「100 万 Token」。阶梯计费规则原文：「百炼部分模型实行阶梯计费。单价取决于单次请求的输入 Token 总量。该请求的所有 Token 均按对应阶梯的单价结算」，并给例：「若输入 100K Token，因数值落在第二区间（32K < 100K ≤ 128K），所有 Token 均按第二档单价结算」；口径定义原文：「计费区间中的 K 表示 1,000，M 表示 1,000,000」。qwen3.8-max 单档「0<Token≤1M 12 元 36 元」。缓存：「显式缓存创建按标准输入单价的 125% 计费、命中按 10% 计费」「本文价格表中的输入单价不含缓存单价」",
    "retrieved": "2026-09-22",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/4f93e19bacec9d31.txt"
   },
   {
    "id": "S096",
    "url": "https://www.runpod.io/pricing",
-   "label": "RunPod GPU 挂牌时租：H200 141GB $4.59/hr、B200 180GB $6.79/hr、H100 SXM 80GB $3.49/hr、A100 SXM 80GB $1.59/hr",
+   "label": "RunPod「GPU Cloud Pricing」（页头标 Updated September 13, 2026；2026-09-27 用真实浏览器读渲染后的 DOM）：Pods 表分两个单选档——Secure Cloud 为 H200（141 GB VRAM、276 GB RAM、24 vCPUs）$4.59/hr、B200（180 GB VRAM、283 GB RAM、28 vCPUs）$6.79/hr；Community Cloud 切过去后是 H200 $3.59/hr、B200 $5.98/hr。Serverless 表：H200 $5.93/hr、B200 $8.64/hr、B300（280GB）$9.98/hr。Clusters 表：H200 SXM $4.31/hr，B200 为 Contact sales。另 H100 SXM 80GB $3.49/hr、A100 SXM 80GB $1.59/hr。**这一页没有任何整机或节点的月度价格数字**：Reserved Clusters 的列头是 1mo/3mo/6mo/12mo/12mo+，但每一格都写 Contact sales；页面上所有 /mo 都是存储单价（$0.05/GB/mo、$0.10/GB/mo 等）。页面上「lambda」一词（不区分大小写）在 innerText 与整页源码里命中 0 次——别的供应商不能引这一页",
    "retrieved": "2026-09-22",
-   "publisher": "RunPod"
+   "publisher": "RunPod",
+   "cache": "text/6b8032048f94b724.txt"
   },
   {
    "id": "S097",
    "url": "https://news.qiniu.com/archives/1789024203476",
    "label": "七牛云《DeepSeek V4.1 Flash 部署完整指南》（2026-09-10）：权重原生 FP8+FP4 混合量化、磁盘约 511GB；vLLM recipe 单机最低显存 614GB；已验证平台为 8 卡 H200（1,128GB）或 1 托盘 GB200 NVL4（768GB），8 卡 H100（640GB）刚过线未验证；1M 上下文需限制上下文或并发",
    "retrieved": "2026-09-22",
-   "publisher": "七牛云"
+   "publisher": "七牛云",
+   "cache": "text/f4426f37d1c78209.txt"
   },
   {
    "id": "S098",
    "url": "https://junxinzhang.com/deepseek-v4-h20-benchmark-tpm-rpm-real-test/",
    "label": "GPUStack 在 8×NVIDIA H200 141GB 上跑 DeepSeek V4-Pro（官方 FP4+FP8 权重）的转述实测：TP8 单请求 68 token/s，DP8+EP 整机峰值 10,289 token/s ≈ 617K TPM；1M 上下文高并发易 OOM，生产建议限制在 128K–512K",
    "retrieved": "2026-09-22",
-   "publisher": "Just Jason（转述 GPUStack 实测）"
+   "publisher": "Just Jason（转述 GPUStack 实测）",
+   "cache": "text/07edc78ccc04c08d.txt"
   },
   {
    "id": "S099",
    "url": "https://platform.kimi.com/docs/pricing/chat",
    "label": "Kimi 开放平台「模型推理价格说明」：1M = 1,000,000 token；通常中文文本 1 token 约相当于 1.5–2 汉字；上下文缓存按 TTL 分 5min / 1h 两档，命中仅按缓存价计费",
    "retrieved": "2026-09-22",
-   "publisher": "Moonshot AI"
+   "publisher": "Moonshot AI",
+   "cache": "text/875f63e86b429afc.txt"
   },
   {
    "id": "S111",
    "url": "https://arxiv.org/html/2504.17550v1",
    "label": "Meta 的 HalluLens 幻觉基准论文，把「是否弃答」列为独立指标",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/7d147c733af94068.txt"
   },
   {
    "id": "S112",
@@ -2454,14 +2542,16 @@
    "id": "S115",
    "url": "https://truestandard.ai/blog/ai-hallucination-rates-2026",
    "label": "2026 年横评，标题给出 26 个模型 22%–94% 的幻觉率区间",
-   "retrieved": "2026-09-22"
+   "retrieved": "2026-09-22",
+   "cache": "text/064119655bb6589d.txt"
   },
   {
    "id": "S116",
    "url": "https://machinelearning.apple.com/research/gsm-symbolic",
    "label": "Apple GSM-Symbolic：改写应用题后模型成绩下滑",
    "retrieved": "2026-09-22",
-   "publisher": "Apple ML Research"
+   "publisher": "Apple ML Research",
+   "cache": "text/6f0eb1575bddd17b.txt"
   },
   {
    "id": "S117",
@@ -2475,7 +2565,8 @@
    "url": "https://arxiv.org/html/2506.12286v4",
    "label": "The SWE-Bench Illusion：模型逐字复述测试用例的证据",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/db9dbf9917355e64.txt"
   },
   {
    "id": "S119",
@@ -2510,7 +2601,8 @@
    "url": "https://www.lw.com/en/insights/getty-images-v-stability-ai-english-high-court-rejects-secondary-copyright-claim",
    "label": "英国高院驳回 Getty 的二次侵权主张",
    "retrieved": "2026-09-22",
-   "publisher": "Latham & Watkins"
+   "publisher": "Latham & Watkins",
+   "cache": "text/c280eea8a3cebe10.txt"
   },
   {
    "id": "S1114",
@@ -2545,21 +2637,24 @@
    "url": "https://www.anthropic.com/news/updating-restrictions-of-sales-to-unsupported-regions",
    "label": "Anthropic 更新不受支持地区的销售限制，含中资控股企业",
    "retrieved": "2026-09-22",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/49a2b0a5f9076808.txt"
   },
   {
    "id": "S1119",
    "url": "https://mlq.ai/news/anthropic-faces-infrastructure-challenges-as-claude-popularity-strains-system-resources/",
    "label": "Claude 用量增长导致基础设施吃紧的报道",
    "retrieved": "2026-09-22",
-   "publisher": "MLQ"
+   "publisher": "MLQ",
+   "cache": "text/d254a38d4ed4b333.txt"
   },
   {
    "id": "S1120",
    "url": "https://www.anthropic.com/news/higher-limits-spacex",
    "label": "Anthropic：新的算力协议与更高的用量上限",
    "retrieved": "2026-09-22",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/cb85d5cc4e125d63.txt"
   },
   {
    "id": "S1121",
@@ -2579,14 +2674,16 @@
    "url": "https://arxiv.org/abs/2312.11805",
    "label": "Gemini 1.0 技术报告（arXiv 2312.11805，2023-12-19 提交，v5 修订至 2025-05）：摘要自述为跨 image/audio/video/text 的多模态模型家族，Ultra 在 32 项基准中的 30 项刷新 SOTA、并称首个在 MMLU 达到人类专家水平",
    "retrieved": "2026-09-22",
-   "publisher": "Google / arXiv"
+   "publisher": "Google / arXiv",
+   "cache": "text/4c13734dbfa68af4.txt"
   },
   {
    "id": "S062",
    "url": "https://arxiv.org/abs/2403.05530",
    "label": "Gemini 1.5 技术报告（arXiv 2403.05530，2024-03-08 提交）：摘要自述可处理百万 token 级上下文，含多份长文档与数小时视频音频，检索召回在至少 10M token 下 >99%",
    "retrieved": "2026-09-22",
-   "publisher": "Google DeepMind / arXiv"
+   "publisher": "Google DeepMind / arXiv",
+   "cache": "text/a1e2fe26c016817a.txt"
   },
   {
    "id": "S063",
@@ -2628,14 +2725,39 @@
    "url": "https://arxiv.org/abs/2407.12220",
    "label": "Questionable practices in machine learning（arXiv 2407.12220，2024-07 提交、v2 2024-10）：把污染/挑榜/基线削弱等列成清单，正文指出数据污染在 GPT-4、Llama 2 与 Gemini 的技术报告里被明确承认过",
    "retrieved": "2026-09-22",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/b4cd4035f9d31d60.txt"
   },
   {
    "id": "S069",
    "url": "https://deepmind.google/models/model-cards/gemini-3-1-pro/",
    "label": "Google DeepMind Gemini 3.1 Pro 模型卡（2026-02）：输入含文本、图像、音频、视频，'token context window of up to 1M'、输出 64K；架构与训练数据一栏写的是'见 Gemini 3 Pro 模型卡'，未给参数量或专家数",
    "retrieved": "2026-09-22",
-   "publisher": "Google DeepMind"
+   "publisher": "Google DeepMind",
+   "cache": "text/c5e46d3994ee6d3b.txt"
+  },
+  {
+   "id": "S1123",
+   "url": "https://artificialanalysis.ai/models/gpt-6-astra-low",
+   "publisher": "Artificial Analysis",
+   "retrieved": "2026-09-27",
+   "label": "Artificial Analysis「GPT-6 Astra (low)」单版本页（2026-09-27 curl 原文）：标题即写明本页版本是 low。FAQ 原句「GPT-6 Astra (low) has a time to first token (TTFT) of 2.63s (based on OpenAI's API), which is better than average compared to other reasoning models in a similar price tier (median: 3.74s)」；「GPT-6 Astra (low) generates output at 52.2 tokens per second (based on OpenAI's API), which is at the lower end compared to other reasoning models in a similar price tier (median: 79.4 t/s)」。页面上每个数值只对应本页那一个推理档位，跨档要换 URL",
+   "cache": "text/252d7b59072d3b32.txt"
+  },
+  {
+   "id": "S1124",
+   "url": "https://artificialanalysis.ai/models/claude-opus-5",
+   "publisher": "Artificial Analysis",
+   "retrieved": "2026-09-27",
+   "label": "Artificial Analysis「Claude Opus 5 (max)」单版本页（2026-09-27 curl 原文）：标题写明本页版本是 max，Comparison Summary 写作「Claude Opus 5 (Adaptive Reasoning, Max Effort)」，页头 Released July 2026。FAQ 原句「generates output at 58.8 tokens per second (based on Anthropic's API), which is below average compared to other reasoning models in a similar price tier (median: 79.4 t/s)」；「has a time to first token (TTFT) of 37.90s (based on Anthropic's API), which is at the higher end compared to other reasoning models in a similar price tier (median: 3.74s)」。同页价格 In $5.00 / Out $25.00 / Cache Discount 90%，Intelligence Index 51（#11 / 211）",
+   "cache": "text/f2afb3ad28959430.txt"
+  },
+  {
+   "id": "S1125",
+   "url": "https://artificialanalysis.ai/models/gemini-3-8-flash",
+   "publisher": "Artificial Analysis",
+   "retrieved": "2026-09-27",
+   "label": "Artificial Analysis「Gemini 3.8 Flash (high)」单版本页（2026-09-27 curl 原文）：标题写明本页版本是 high，页头 Released September 2026。FAQ 原句「generates output at 277.9 tokens per second (based on Google's API), which is well above average compared to other reasoning models in a similar price tier (median: 79.4 t/s)」；「has a time to first token (TTFT) of 23.49s (based on Google's API), which is at the higher end compared to other reasoning models in a similar price tier (median: 3.74s)」。同页价格 In $0.75 / Out $3.75 / Cache Discount 90%，Intelligence Index 41（#40 / 211）。与 S1124 的档位不同（high 对 max），跨页比数值要先对齐档位"
   }
  ],
  "category": "人工智能",
@@ -2656,8 +2778,8 @@
   "hero_motif": "attention_matrix",
   "hero_note": "以 12×7 的注意力方阵为母题：亮格沿对角线扫过，对应自回归模型「每个 token 最关心近邻」这一结构事实。品红与孔雀绿是这一组主题里唯一未被占用的色相。"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-05",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 16,
  "cover": {
@@ -2665,17 +2787,18 @@
   "alt": "全球哄抢H100！英伟达成GPU霸主，首席科学家揭秘成功四要素 - 智源社区",
   "caption": "全球哄抢H100！英伟达成GPU霸主，首席科学家揭秘成功四要素 - 智源社区",
   "source_page": "https://hub.baai.ac.cn/view/30568",
-  "width": 1080,
-  "height": 567,
+  "width": 800,
+  "height": 420,
   "query": "H100"
  },
  "created_date": "2026-09-23",
  "site": {
-  "url": "https://large-models-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72c-9e82-7bb9-a7b8-b7f38798e3a8",
-  "slug": "large-models",
-  "content_sha": "2b1dce8a650b8c8f",
-  "published_date": "2026-09-25",
+  "url": "https://ai-industry-gtqdc11h6po.qoder.website/large-models/large-models.html",
+  "group": "ai-industry",
+  "path": "/large-models/large-models.html",
+  "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
+  "content_sha": "8e34c0e96ee83ef7",
+  "published_date": "2026-10-10",
   "access": "public"
  }
 }

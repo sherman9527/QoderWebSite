@@ -9,7 +9,9 @@ import type { IndexEntry, TopicData } from "./types";
 
 export { BLOCK_TYPES };
 
-/** 模板指纹：产物必须能证明自己是这份模板渲染的（validate.py G-08 用它比对）。 */
+/** 模板指纹：产物必须能证明自己是这份模板渲染的（validate.py G-08 用它比对）。
+ *  这里只声明**模块契约**（区块枚举与 rev）；模板源哈希 `src` 由 scripts/render.mjs
+ *  在渲染时补进去——它才是知道"这份产物出自哪一版模板源"的地方。 */
 export const TEMPLATE_FINGERPRINT = JSON.stringify({
   blocks: BLOCK_TYPES,
   rev: "ke-template-1",
@@ -36,18 +38,28 @@ ${body}
 </html>`;
 }
 
-/** 索引主页：一份自包含静态 HTML，卡片按 category 归类并下钻到各专题页。 */
-export function renderIndexDocument(entries: IndexEntry[], generatedDate: string): string {
+/** 索引主页：一份自包含静态 HTML，卡片按 category 归类并下钻到各专题页。
+ *  同一个函数也用来渲染**组落地页**——传 title/homeUrl 即可，不另写一套。 */
+export function renderIndexDocument(
+  entries: IndexEntry[],
+  generatedDate: string,
+  opts?: { title?: string; homeUrl?: string },
+): string {
+  const title = opts?.title || "";
   const body = renderToStaticMarkup(
-    createElement(IndexPage, { entries, generatedDate, hideStyle: true }),
+    createElement(IndexPage, {
+      entries, generatedDate, hideStyle: true,
+      title: title || undefined, homeUrl: opts?.homeUrl || undefined,
+    }),
   );
   const style = "<style>" + indexCss() + "</style>";
+  const pageTitle = title ? `${title} · 知识专题` : "知识专题索引";
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>知识专题索引</title>
+<title>${pageTitle}</title>
 <meta name="description" content="按类别归档的科普长文索引，每篇约十分钟读完。">
 <!--template-fingerprint:${TEMPLATE_FINGERPRINT}-->
 <!--index-document-->

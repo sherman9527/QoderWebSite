@@ -19,8 +19,16 @@ CHANGE = os.path.join(ROOT, "openspec", "changes", "build-knowledge-html-generat
 
 
 def _gate_test_names():
-    src = io.open(os.path.join(TESTS, "test_gates.py"), encoding="utf-8").read()
-    named = set(re.findall(r"def test_(G\d\d)_", src))
+    # 原来只扫 test_gates.py，于是"闸门必须有针对性反例"这条实际在考**文件名**：
+    # G-15 的反例写在 tests/test_freshness.py（与 G-03 的价格反例在
+    # test_caption_price_gate.py 同一个道理），矩阵看不见就把真有的反例判成没有。
+    # 对账的对象是仓库，不是某一个文件。
+    named = set()
+    for f in sorted(os.listdir(TESTS)):
+        if not f.startswith("test_") or not f.endswith(".py"):
+            continue
+        src = io.open(os.path.join(TESTS, f), encoding="utf-8").read()
+        named |= set(re.findall(r"def test_(G\d\d)_", src))
     # 参数化基线 test_valid_input_passes_all_gates 覆盖全部闸门，但只有针对性反例
     # 才算"这条闸门真的会被触发"，所以要求显式命名的反例测试。
     return named

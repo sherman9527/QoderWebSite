@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent开发 · 从打开一个对话框到答案不漂移：一个 Agent 聊天框的十二道工序，接口、拆解、工具、数据、流式与测试逐层给代码</title>
+<meta name="description" content="从打开一个对话框到答案不漂移：一个 Agent 聊天框的十二道工序，接口、拆解、工具、数据、流式与测试逐层给代码">
+<!--template-fingerprint:{"blocks":["prose","keyvalue_table","timeline","price_table","card_grid","steps","quote","fact_strip","bar_chart","compare","note","code"],"rev":"ke-template-1"}-->
+<style>:root{
+  --pad:clamp(1.1rem, 4vw, 5rem);
+  --cap:168rem;
+  --col:min(100% - var(--pad) * 2, var(--cap));
+  /* 文章版心与索引版心是两回事：索引是照片墙，越宽越好；
+     文章是长文，宽度用来放"结构"（目录栏 + 正文列），不是用来拉长句子。
+     一条列只有一个右边界：封面、正文、图、表、卡片全部收在同一个边上。
+     以前正文 44rem、图 50rem、表格/卡片撑满"正文 + 24rem 余量"，
+     三条边差到 384px，开发者实测反馈"看上去很不平整"（W-81）。
+     外壳 = 目录栏 14 + 间距 2.5 + 正文列 46，正好等于「一栏 + 正文列」，
+     封面标题才和正文左边缘对齐、右边缘也一起收口。 */
+  --shell:min(100% - var(--pad) * 2, 62.5rem);
+  --rail:14rem;
+  --measure:46rem;
+}
+:root{
+  --bg:#F5F7F3;--surface:#EAEFE8;--ink:#181D19;--muted:#5B6660;--rule:#D7DED6;
+  --primary:#0F5D3C;--accent:#33507A;--soft:#DDE8DF;
+  --accent-ink:#33507A;--primary-ink:#0F5D3C;--muted-ink:#5B6660;
+  --display:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Source Han Sans SC','Noto Sans SC',system-ui,sans-serif;--body:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Source Han Sans SC','Noto Sans SC',system-ui,sans-serif;--num:'SFMono-Regular','Cascadia Mono',Consolas,'Courier New',monospace;
+  --r-card:14px;--r-img:12px;--r-pill:999px;--r-chip:8px;
+  --sh-1:0 1px 2px rgba(17,17,20,.045);
+  --sh-2:0 1px 2px rgba(17,17,20,.045),0 10px 28px -14px rgba(17,17,20,.18);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:clamp(16px, .95rem + .3vw, 22px);line-height:1.78;letter-spacing:.01em;
+  text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+p{margin:.75rem 0}
+
+/* ---------- 封面型 hero：图占主导，标题压在图上或紧随其后 ---------- */
+.cover{position:relative;width:var(--shell);margin:clamp(1rem,2vw,2.2rem) auto 0;padding:0}
+/* 封面必须封顶高度。只给 aspect-ratio 的话，容器多宽图就多高：
+   3737px 视口下容器 2688px → 封面 1512px 高，整屏被一张（还是从小图放大来的）
+   糊图占满，标题被推到屏幕外。横幅化：高度锁在视口一半以内，多余部分裁掉。 */
+.cover-media{position:relative;border-radius:var(--r-card);overflow:hidden;background:var(--soft);
+  box-shadow:var(--sh-2);width:100%;height:clamp(220px,26vw,420px);
+  max-width:var(--cover-w,100%);margin-inline:auto}
+.cover-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+/* 标题不压图：封面图来自检索、亮度完全不可控，白字压浅图必然糊。
+   小红书详情页本身就是"图在上、标题在下"，照做顺带消掉对比度风险。 */
+/* 没有合格封面时由领域记忆点撑场。记忆点必须铺满整块封面——
+   之前是一条 8px 色带浮在 240px 空色块里，开发者评价"像坏版"。 */
+.cover-noimg .cover-media{height:clamp(180px,20vw,320px);padding:0;aspect-ratio:auto}
+.cover-noimg .motif{position:absolute;inset:0;margin:0}
+.cover-noimg .motif-roast,.cover-noimg .motif-bar,.cover-noimg .motif-dots,.cover-noimg .motif-comb,.cover-noimg .motif-attn,.cover-noimg .motif-choice{height:100%;border-radius:0}
+.cover-noimg .motif-tiles{height:100%;gap:0;border:0}
+.cover-noimg .motif-tiles i{height:100%;border-radius:0;border-left:1px solid var(--rule)}
+.cover-noimg .motif-tiles i:first-child{border-left:0}
+/* 通用条状记忆点铺满后会变成一块纯色油漆样块——加斜向光泽与细刻度线，
+   让它读起来像"领域图形"而不是一屏底色。 */
+.cover-noimg .motif-bar{height:100%;border-radius:0;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 44px),
+    linear-gradient(115deg,var(--primary),var(--accent) 52%,var(--primary))}
+.cover-noimg .motif-label{position:absolute;left:0;right:0;bottom:0;margin:0;
+  padding:2.2rem 1.4rem .95rem;color:#fff;font-size:.74rem;
+  background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.cover-noimg .motif-label span{color:#fff}
+.cover-body{margin:1.15rem 0 0}
+.cover-body h1{font-family:var(--display);font-size:clamp(1.55rem,4vw,2.35rem);line-height:1.3;
+  margin:0;font-weight:500;letter-spacing:.01em;max-width:26ch;color:var(--ink)}
+.cover-kicker{font-family:var(--num);font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  color:var(--accent-ink);margin-bottom:.45rem}
+
+.wrap{width:var(--shell);margin:0 auto;padding:0 0 clamp(3rem,6vw,6rem)}
+/* 返回主页：一个文字链接，不做按钮——它不是这一篇的行动号召，
+   而且按钮化的东西压在封面下面会把封面构图的注意力抢走。 */
+.backhome{padding-top:clamp(.7rem,2vw,1.1rem)}
+.backhome-link{font-size:.82rem;color:var(--muted);text-decoration:none;
+  border-bottom:1px solid var(--rule);padding-bottom:.15rem}
+.backhome-link:hover{color:var(--accent-ink);border-bottom-color:var(--accent-ink)}
+
+/* ---------- 宽屏用"结构"填，而不是用"行长"填 ----------
+   目录进左侧常驻栏，正文锁在可读行长（44rem ≈ 32 个汉字/行）。
+   之前把整页铺到 2688px 的结果是：一行 120 字 + 一张 828px 的原图被放大到
+   2688px 的糊图。宽度给图和目录，句子不给。 */
+.layout{display:block}
+.body{margin:0}
+@media (min-width:60rem){
+  /* 正文列不再预留"图表余量"：一条列只有一个宽度，图与表想宽只能整栏出血（目前没有）。
+     注意：grid 子项上写 margin-inline:auto 会关掉 stretch，
+     列宽会塌成内容宽（实测 1272 的列被压成 704 并居中），别这么干。 */
+  .layout{display:grid;align-items:start;gap:2.5rem;
+    grid-template-columns:var(--rail) minmax(0,var(--measure))}
+  /* 标题跟正文左边缘对齐，不然封面标题会往左戳出去一个目录栏的宽度 */
+  .cover-body{padding-left:calc(var(--rail) + 2.5rem)}
+}
+/* 一条列一个右边界（W-81）：正文、图、表、卡片全部收到 --measure 上。
+   以前是 44rem / 50rem / 撑满"正文+24rem"三条边，差到 384px，看着参差。
+   文字叶子仍单独锁 --measure，是为了窄屏时盒子贴边、文字不贴边。 */
+p,li,blockquote,.note p,.blk h3,.chap-head h2,.cover-body h1,.foot>div{
+  max-width:var(--measure)}
+.lede,.note{max-width:var(--measure)}
+.figs,.steps,.timeline{max-width:none}
+.figs.c2,.tablewrap,.cards,.facts,.chart,.cmp{max-width:none}
+
+/* ---------- 笔记式 meta 行 + tag pill ---------- */
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;margin:1.1rem 0 .2rem;
+  font-size:.78rem;color:var(--muted)}
+.meta .who{font-weight:600;color:var(--ink)}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--rule)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0 0}
+.tag{font-size:.74rem;padding:.2rem .68rem;border-radius:var(--r-pill);
+  background:var(--soft);color:var(--primary-ink);border:1px solid transparent;text-decoration:none}
+a.tag:hover{border-color:var(--accent);color:var(--accent)}
+
+.lede{margin:1.5rem 0 0;padding:1.1rem 1.25rem;background:var(--surface);
+  border:1px solid var(--rule);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.lede p{margin:0;font-size:1.02em}
+
+/* ---------- 目录：宽屏是左侧常驻栏，窄屏退回两列卡片 ---------- */
+nav.toc{margin:2.2rem 0 0;padding:1.15rem 1.25rem;background:var(--surface);
+  border:1px solid var(--rule);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+@media (min-width:60rem){
+  nav.toc{position:sticky;top:1.5rem;margin:0;padding:.4rem 0;background:transparent;
+    border:0;box-shadow:none}
+  nav.toc ol{grid-template-columns:1fr}
+}
+nav.toc h2{font-size:.72rem;font-weight:600;letter-spacing:.12em;margin:0 0 .8rem;color:var(--muted)}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(15rem,100%),1fr));gap:.3rem .9rem}
+nav.toc li a{display:flex;gap:.6rem;align-items:baseline;font-size:.87rem;max-width:none;
+  text-decoration:none;padding:.34rem .4rem;border-radius:var(--r-chip)}
+nav.toc li a:hover{background:var(--soft);color:var(--primary-ink)}
+nav.toc .anch{flex:none;font-family:var(--display);font-size:.8rem;color:var(--primary-ink);
+  font-weight:600;min-width:1.4em}
+
+/* ---------- 章节：图先于文 ---------- */
+section.chap{margin:2.8rem 0 0;padding:0}
+.chap-head{display:flex;align-items:baseline;gap:.7rem;margin-bottom:.15rem}
+.chap-head .num{font-family:var(--num);font-size:.74rem;font-weight:600;color:var(--accent-ink);
+  min-width:2.2em;letter-spacing:.06em}
+.chap-head h2{font-family:var(--display);font-size:1.5rem;line-height:1.32;margin:0;
+  font-weight:400;letter-spacing:.012em}
+.chap > .intro{color:var(--muted);font-size:.95em;margin:.35rem 0 0 0}
+
+figure{margin:1.2rem 0 0}
+figcaption{font-size:.75rem;color:var(--muted);margin-top:.5rem;line-height:1.6;
+  overflow-wrap:anywhere}
+figcaption a{color:var(--muted)}
+/* 自画示意图的角标（kind=illustration 才渲染）。压在图左上角，
+   不依赖图片本身有没有留白，也不参与 G-13 的正文对比度检查（它是白字深底）。 */
+figure .ratio{position:relative}
+.fig-kind{position:absolute;left:.55rem;top:.55rem;font-size:.66rem;font-weight:600;
+  letter-spacing:.02em;padding:.16rem .5rem;border-radius:999px;
+  background:rgba(20,18,16,.74);color:#FFFDFB}
+.figs{display:grid;gap:.9rem;margin:1.2rem 0 0}
+.figs.c2{grid-template-columns:repeat(auto-fit,minmax(min(14rem,100%),1fr))}
+/* 文章内配图不能用 feed 的 4:5 竖幅：915px 宽 × 4/5 = 1144px 高的空色块，
+   图没加载出来时就是开发者截图里那一大片"白色遮挡"。横图 + 高度封顶。 */
+.figs .ratio{aspect-ratio:16/10;overflow:hidden;
+  border-radius:var(--r-img);background:var(--soft)}
+.figs .ratio img{margin:0;width:100%;height:100%;object-fit:cover;border-radius:0;box-shadow:none}
+.figs.c2 .ratio{aspect-ratio:4/3}
+
+/* 网格/弹性子项一律允许收缩到 0，并让长 URL、型号串在叶子节点内断行。
+   缺了这两条，一个不可断 token 就能把整页顶出横向滚动条。 */
+.cards>*,.facts>*,.cmp>*,.cmp .col,.figs>*,.figs .ratio,.figs figure,
+nav.toc ol>*,nav.toc li,nav.toc li a,.motif-tiles>*,.mets span,
+.chart,.chart .row,.chart .row>*{min-width:0}
+.facts .v,.facts .l,.card p,.card .mets span,.cmp li,.cmp .verdict,.steps .spec,
+.timeline li>span,.note p,.lede p,.blk p,td,th,.tag,.chart .lab,.chart .val,.chart .axis,
+h1,h2,h3,h4{overflow-wrap:anywhere}
+
+/* ---------- 区块卡片 ---------- */
+.blk{margin:1.4rem 0 0}
+.blk h3{font-family:var(--display);font-size:1.02rem;margin:0 0 .1rem;
+  font-weight:600;letter-spacing:.01em}
+.blk p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+.tablewrap{margin:1.2rem 0 0;border:1px solid var(--rule);border-radius:var(--r-card);
+  overflow-x:auto;overflow-y:hidden;background:var(--surface);box-shadow:var(--sh-1);
+  overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.tablewrap table{min-width:32rem}
+th,td{padding:.7rem .85rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+thead th{background:transparent;color:var(--muted);font-size:.7rem;font-weight:600;
+  letter-spacing:.1em;border-bottom:1px solid var(--rule);white-space:normal}
+tbody tr:last-child td{border-bottom:0}
+td.k{font-weight:600}
+.num,td.num{font-family:var(--num);font-variant-numeric:tabular-nums;font-size:.86em}
+caption{caption-side:bottom;text-align:left;font-size:.74rem;color:var(--muted);padding:.55rem .85rem}
+
+/* ---------- 代码块：示例代码 / API 请求响应 / 文件树 ----------
+   滚动容器是 <pre> 本身，不是外面的 figure：语言标要留在原地，
+   跟着代码一起横滚的话第一行字会被推出可视区；两块代码也绝不共用一个滚动容器。
+   字族用 var(--num)——24 套主题的 numFamily 全是同一份等宽栈，不再抄第二份。 */
+figure.codewrap{margin:1.2rem 0 0;padding:0;border:1px solid var(--rule);border-radius:var(--r-card);
+  background:var(--surface);box-shadow:var(--sh-1);overflow:hidden}
+.codebar{display:flex;flex-wrap:wrap;align-items:baseline;gap:.45rem .8rem;
+  padding:.5rem .9rem;border-bottom:1px solid var(--rule)}
+.codebar .lang{font-family:var(--num);font-size:.68rem;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--primary-ink)}
+.codecap{font-size:.76rem;color:var(--muted-ink)}
+pre.code{margin:0;padding:.85rem .95rem;overflow-x:auto;overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;background:transparent;color:var(--ink);
+  font-family:var(--num);font-size:.79rem;line-height:1.72;letter-spacing:0;
+  white-space:pre;tab-size:2}
+
+@media (max-width:47.99rem){
+  pre.code{font-size:.72rem;padding:.7rem .75rem}
+  .codebar{padding:.45rem .7rem}
+}
+
+.timeline{list-style:none;margin:.5rem 0 0;padding:0 0 0 .35rem}
+.timeline li{position:relative;padding:0 0 1.05rem 1.3rem;border-left:1px solid var(--rule)}
+.timeline li:last-child{border-left-color:transparent;padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:-.36rem;top:.55rem;width:.68rem;height:.68rem;
+  background:var(--accent);border-radius:50%;box-shadow:0 0 0 3px var(--surface)}
+.timeline .yr{font-family:var(--num);font-size:.76rem;font-weight:600;color:var(--accent-ink);display:block}
+.timeline .tl-title{font-weight:600;display:block;margin-top:.12rem}
+
+.cards{display:grid;gap:.8rem;margin:.8rem 0 0;
+  grid-template-columns:repeat(auto-fit,minmax(min(14rem,100%),20rem));justify-content:start}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-card);
+  padding:1rem 1.05rem;box-shadow:var(--sh-1)}
+.card:hover{box-shadow:var(--sh-2)}
+.card .kick{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.06em}
+.card h4{font-family:var(--display);font-size:1rem;margin:.2rem 0 .35rem;font-weight:600}
+.card p{font-size:.87rem;margin:.25rem 0}
+.card .mets{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem;font-size:.72rem}
+.card .mets span{background:var(--soft);padding:.16rem .55rem;border-radius:var(--r-pill)}
+
+.steps{counter-reset:st;list-style:none;margin:.6rem 0 0;padding:0}
+.steps li{counter-increment:st;position:relative;padding:.6rem 0 .6rem 2.5rem;
+  border-bottom:1px solid var(--rule)}
+.steps li:last-child{border-bottom:0}
+.steps li::before{content:counter(st);position:absolute;left:0;top:.62rem;
+  font-family:var(--num);font-size:.74rem;font-weight:600;color:var(--primary-ink);
+  background:var(--soft);width:1.7rem;height:1.7rem;display:grid;place-items:center;
+  border-radius:var(--r-pill)}
+.steps .sp-title{font-weight:600;display:block}
+.steps .spec{font-family:var(--num);font-size:.76rem;color:var(--accent-ink)}
+
+blockquote{margin:1.3rem 0 0;padding:1rem 1.15rem;background:var(--surface);
+  border:1px solid var(--rule);border-left:3px solid var(--accent);
+  border-radius:var(--r-card);font-family:var(--display);font-size:1.04rem;line-height:1.62}
+blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);margin-top:.4rem}
+
+.facts{display:grid;gap:.9rem;justify-content:start;
+  grid-template-columns:repeat(auto-fit,minmax(min(8.5rem,100%),15rem));
+  margin:1.2rem 0 0;padding:1.05rem 1.1rem;background:var(--surface);
+  border:1px solid var(--rule);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.facts .f .v{font-family:var(--num);font-size:1.55rem;font-weight:400;color:var(--primary);line-height:1.15}
+.facts .f .l{font-size:.75rem;color:var(--muted);margin-top:.18rem}
+
+/* 评分图：柱子是画出来的数字，不是榜单截图，所以每个数都能挂自己的来源。
+   数值单独占一列而不是贴在柱头——那样每行的右边界才落在同一条线上，
+   能被 G-13 的"同一列右边界一致"量到（W-81 的教训：量不到的地方就会跑偏）。 */
+.chart{display:grid;gap:.6rem;margin:1.2rem 0 0;padding:1.05rem 1.1rem;
+  background:var(--surface);border:1px solid var(--rule);
+  border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.chart .row{display:grid;gap:.35rem .8rem;align-items:center;
+  grid-template-columns:minmax(0,11rem) minmax(0,1fr) auto}
+.chart .lab{font-size:.82rem;font-weight:500;color:var(--ink)}
+.chart .track{height:.6rem;border-radius:var(--r-pill);background:var(--soft);overflow:hidden}
+.chart .bar{height:100%;border-radius:var(--r-pill);background:var(--primary)}
+/* 小字用 --primary-ink 而不是 --primary：inkFor() 就是为这件事存在的（见文件末尾），
+   系统里 .tag / .chap-head .num / .timeline .yr / .refs .ref 全都走它。
+   这三处是漏改：G-13 实测 深芥 #8A8421 压在 surface 上只有 3.25:1。
+   别改回 var(--primary)——品牌色是为识别选的，不是为易读选的。 */
+.chart .val{font-family:var(--num);font-size:.95rem;color:var(--primary-ink)}
+.chart .val .unit{font-size:.7rem;color:var(--muted);margin-left:.16rem}
+.chart .axis{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+@media(max-width:640px){
+  .chart .row{grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"lab val" "track track"}
+  .chart .lab{grid-area:lab}.chart .val{grid-area:val}.chart .track{grid-area:track}
+}
+
+/* 对照块天生两列；auto-fit 会因为 verdict 的 1/-1 跨列而保住 5 个 229px 窄条 */
+.cmp{display:grid;gap:.8rem;grid-template-columns:repeat(2,minmax(0,1fr));margin:.8rem 0 0}
+.cmp .col{border:1px solid var(--rule);padding:.9rem 1rem;background:var(--surface);
+  border-radius:var(--r-card)}
+.cmp .col.pro{border-top:3px solid var(--accent)}
+.cmp .col.con{border-top:3px solid var(--muted)}
+.cmp h4{font-family:var(--display);margin:0 0 .45rem;font-size:.96rem;font-weight:600}
+.cmp ul{margin:.2rem 0 0;padding-left:1.1rem;font-size:.87rem}
+.cmp .verdict{grid-column:1/-1;font-size:.88rem;background:var(--soft);
+  padding:.8rem .95rem;border-radius:var(--r-card);color:var(--primary-ink)}
+
+.note{margin:1.2rem 0 0;padding:.9rem 1rem;border-radius:var(--r-card);
+  background:var(--surface);border:1px solid var(--rule);font-size:.88rem}
+.note.warn{border-color:var(--accent);background:var(--soft);color:var(--ink)}
+.note.myth{border-color:var(--primary);background:var(--soft);color:var(--ink)}
+.note.tip{border-color:var(--rule);color:var(--ink)}
+.note h4{margin:0 0 .3rem;font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--muted-ink)}
+.note p{margin:.2rem 0}
+
+.srcs{margin-top:2.8rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+.srcs h2{font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--muted);margin:0 0 .6rem}
+.srcs ol{margin:0;padding-left:1.5rem;font-size:.76rem;color:var(--muted)}
+.srcs li{margin:.3rem 0;overflow-wrap:anywhere}
+.foot{margin-top:1.8rem;padding-top:1.1rem;font-size:.74rem;color:var(--muted);line-height:1.75}
+.warnbox{margin:1.4rem 0 0;padding:.9rem 1.05rem;border:1px solid var(--accent);background:var(--soft);
+  font-size:.85rem;border-radius:var(--r-card)}
+
+.refs{font-family:var(--num);font-size:.66em;font-weight:600}
+.refs .ref{color:var(--accent-ink);margin-left:.18em;text-decoration:none}
+.refs .ref:hover{text-decoration:underline}
+
+.motif{margin:1.3rem 0 0;position:relative}
+.motif-roast{display:flex;height:.5rem;border-radius:var(--r-pill);overflow:hidden}
+.motif-roast i{flex:1}
+.motif-label{font-size:.7rem;color:var(--muted);display:flex;justify-content:space-between;margin-top:.35rem}
+.motif-dots{height:3.4rem;border-radius:var(--r-card);overflow:hidden;background:var(--soft);position:relative}
+.motif-dots i{position:absolute;width:.2rem;height:.2rem;border-radius:50%;background:var(--accent)}
+.motif-tiles{display:grid;grid-template-columns:repeat(12,1fr);gap:.22rem}
+.motif-tiles i{height:1.2rem;border-radius:4px;background:var(--soft);border:1px solid var(--rule)}
+.motif-bar{height:.3rem;border-radius:var(--r-pill);background:var(--primary)}
+.motif-bar i{display:none}
+/* 娇兰：蜂巢。三件事缺一不可——铺满（换行 + 自动填充）、偶数列下沉半格（才像巢）、
+   空格用主色 12% 透明（在 soft 底色上原来那版几乎看不见，只剩两颗金格像 bug）。 */
+.motif-comb{display:flex;flex-wrap:wrap;gap:.34rem;align-items:center;height:2.4rem}
+.motif-comb i{width:1.5rem;height:1.72rem;background:var(--primary);opacity:.12;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.motif-comb i:nth-child(even){transform:translateY(.32rem)}
+.motif-comb i.gold{background:var(--accent);opacity:.95}
+/* 无封面的大色块里：垂直居中铺几行，而不是贴顶堆一层 */
+.cover-noimg .motif-comb{align-content:center;padding:1.2rem}
+
+/* 注意力方阵：12×7 的格子，亮格沿对角线扫过去 */
+.motif-attn{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+  grid-auto-rows:minmax(0,1fr);gap:.3rem;height:2.4rem}
+.motif-attn i{border-radius:2px;background:var(--primary);opacity:.1;min-height:.28rem}
+.motif-attn i.near{opacity:.3}
+.motif-attn i.hot{background:var(--accent);opacity:.95}
+.motif-choice{display:flex;flex-direction:column;gap:.34rem;justify-content:center;height:100%;padding:.2rem 0}
+.motif-choice i{display:block;height:.42rem;border-radius:99px;background:var(--primary);opacity:.26}
+.motif-choice i.hot{background:var(--accent);opacity:.95;height:.62rem}
+/* 摩根：一条干在 1933 那道口子上断成两条腿。左边是家族干（一条连续实线），
+   中间那道虚线是分家本身——它是断开而不是接上的，所以画成 gap + 断口，
+   不能画成一条实线穿过（那读起来像"延续"，正是这个记忆点要反对的误读）。
+   右边两条腿粗细一致、长度一致：两条腿都是独立法人，谁也不是谁的分支，
+   所以不画成一大一小。区别只放在颜色上——主色是银行、强调色是证券。 */
+.motif-morgan{display:grid;grid-template-columns:38% 2px 1fr;grid-template-rows:1fr 1fr;
+  gap:.42rem 0;align-items:center;height:2.6rem}
+.motif-morgan .stem{grid-column:1;grid-row:1/3;height:.52rem;border-radius:99px;
+  background:var(--primary);opacity:.9}
+.motif-morgan .cut{grid-column:2;grid-row:1/3;align-self:stretch;
+  background:repeating-linear-gradient(180deg,var(--muted) 0 4px,transparent 4px 9px);opacity:.7}
+.motif-morgan .leg{grid-column:3;height:.52rem;border-radius:99px}
+.motif-morgan .leg.bank{grid-row:1;background:var(--primary);opacity:.85}
+.motif-morgan .leg.sec{grid-row:2;background:var(--accent);opacity:.85}
+.cover-noimg .motif-morgan{height:100%;padding:1.2rem;gap:.9rem}
+.cover-noimg .motif-morgan .stem{height:1.1rem}
+.cover-noimg .motif-morgan .leg{height:1.1rem}
+.cover-noimg .motif-attn{height:100%;padding:1.2rem}
+/* Agent 开发篇记忆点：一轮对话。绿条是模型吐出来的那一句，蓝条是它调用的
+   tool / 数据库，右下角实心方块是还在等的光标。
+   两条的宽度用内缩百分比表达"一次回合里模型的话总比一次调用长"，
+   它不代表任何数量关系，图上也不写数字（D-22）。
+   光标是**静态**的：产物零运行时 JS，闪不动，也不该闪。 */
+.motif-turn{position:relative;display:flex;flex-direction:column;justify-content:center;
+  gap:.4rem;height:2.6rem}
+.motif-turn .turn{height:.52rem;border-radius:99px}
+.motif-turn .turn.out{width:82%;background:var(--primary);opacity:.88}
+.motif-turn .turn.call{width:56%;background:var(--accent);opacity:.88}
+.motif-turn .caret{position:absolute;right:.1rem;bottom:.16rem;width:.6rem;height:1rem;
+  background:var(--primary)}
+.cover-noimg .motif-turn{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-turn .turn{height:1.1rem}
+.cover-noimg .motif-turn .caret{width:1.1rem;height:2.1rem;right:.9rem;bottom:1.1rem}
+/* 晶圆记忆点：左半是切开的 die 阵列，右半是整片不切。
+   两边的格子密度刻意不同——右半的线是"还在晶圆上的划格线"，
+   左半的缝是"已经切开的道"，读出来就是这道切割线落没落下。 */
+.motif-wafer{display:grid;grid-template-columns:1fr 3px 1fr;gap:.5rem;align-items:stretch;
+  height:2.6rem}
+.motif-wafer .half{border-radius:6px;min-width:0}
+.motif-wafer .half.diced{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);
+  gap:.16rem;padding:.16rem;background:var(--soft);border:1px solid var(--rule)}
+.motif-wafer .half.diced i{background:var(--primary);border-radius:1px;opacity:.85}
+.motif-wafer .scribe{background:repeating-linear-gradient(180deg,var(--accent) 0 4px,transparent 4px 9px);
+  opacity:.85}
+.motif-wafer .half.whole{background-color:var(--primary);opacity:.9;
+  background-image:linear-gradient(to right,rgba(255,255,255,.34) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(255,255,255,.34) 1px,transparent 1px);
+  background-size:12.5% 12.5%}
+.cover-noimg .motif-wafer{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-wafer .scribe{width:6px}
+/* 外溢记忆点：左边一条主干，右边四条长短错开的分叉。
+   用 align-items:center 让主干垂直居中，四条臂从它右端散开。 */
+.motif-fan{display:grid;grid-template-columns:6px 1fr;gap:.42rem;align-items:center;height:2.6rem}
+.motif-fan .trunk{align-self:stretch;border-radius:99px;background:var(--accent);opacity:.9}
+.motif-fan .fan{display:flex;flex-direction:column;justify-content:center;gap:.28rem;min-width:0}
+.motif-fan .fan i{height:.34rem;border-radius:99px;background:var(--primary)}
+.motif-fan .fan .a0{width:96%;opacity:.9}
+.motif-fan .fan .a1{width:78%;opacity:.72}
+.motif-fan .fan .a2{width:60%;opacity:.55}
+.motif-fan .fan .a3{width:42%;opacity:.4}
+.cover-noimg .motif-fan{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-fan .trunk{width:10px}
+.cover-noimg .motif-fan .fan i{height:.85rem}
+/* 收益率曲线：两条等高柱阵，上面正常、下面倒挂。
+   align-items:end 让柱高读成"从基线长起来"，而不是从顶上挂下来。 */
+.motif-curve{display:grid;grid-template-rows:1fr 1fr;gap:.34rem;height:2.6rem}
+.motif-curve .cline{display:flex;align-items:flex-end;gap:.24rem;min-height:0}
+.motif-curve .cline i{flex:1 1 0;min-width:0;background:var(--primary);
+  border-radius:2px 2px 0 0;opacity:.85}
+.motif-curve .cline.inv i{background:var(--muted);opacity:.5}
+.motif-curve .cline.inv i.hot{background:var(--accent);opacity:.92}
+.cover-noimg .motif-curve{height:100%;padding:1.2rem;gap:1.1rem}
+.cover-noimg .motif-curve .cline i{border-radius:3px 3px 0 0}
+/* 光波导：一排耦出栅，越靠出瞳越亮 */
+.motif-guide{display:flex;align-items:stretch;gap:.22rem;height:2.4rem}
+.motif-guide i{flex:1 1 0;min-width:0;background:var(--primary);border-radius:1px}
+.motif-guide i.hot{opacity:.95}
+.motif-guide i.alt{background:var(--accent)}
+
+/* 多数门槛线：25 格席位，第 13 格左边那道粗线就是"过半"的位置 */
+.motif-seats{display:flex;align-items:stretch;gap:.14rem;height:2.4rem}
+.motif-seats i{flex:1 1 0;min-width:0;border-radius:2px}
+.motif-seats i.a{background:var(--primary);opacity:.85}
+.motif-seats i.b{background:var(--accent);opacity:.85}
+.motif-seats i.line{border-left:3px solid var(--ink);margin-left:-.07rem}
+.cover-noimg .motif-seats{height:100%;align-items:center;padding:1.2rem;gap:.3rem}
+.cover-noimg .motif-seats i{height:55%}
+
+/* 思考预算：左三格「立刻答」，右二十一格「先想清楚再答」 */
+.motif-budget{display:flex;align-items:stretch;gap:.16rem;height:2.4rem}
+.motif-budget i{flex:1 1 0;min-width:0;border-radius:2px;background:var(--accent);
+  border:1px solid var(--rule)}
+.motif-budget i.quick{background:var(--primary);border-color:var(--primary)}
+.cover-noimg .motif-budget{height:100%;align-items:center;padding:1.2rem;gap:.3rem}
+.cover-noimg .motif-budget i{height:55%}
+
+/* 货架 vs 盲盒：左半三排货架（每格一样），右半一格一格盲盒（三格亮着），共用一条基线 */
+.motif-duel{display:flex;align-items:flex-end;gap:1rem;height:2.4rem;
+  border-bottom:2px solid var(--primary)}
+.motif-duel-shelf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.3rem;flex:1 1 0}
+.motif-duel-shelf i{height:.5rem;border-radius:2px;background:var(--primary);opacity:.82}
+.motif-duel-boxes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.3rem;flex:1 1 0}
+.motif-duel-boxes i{aspect-ratio:1;border-radius:4px;background:var(--soft);
+  border:1px solid var(--rule)}
+.motif-duel-boxes i.lit{background:var(--accent);border-color:var(--accent)}
+.cover-noimg .motif-duel{height:100%;align-items:center;padding:1.2rem;border-bottom-width:3px}
+.cover-noimg .motif-duel-shelf i{height:.8rem}
+.cover-noimg .motif-guide{height:100%;padding:1.2rem;gap:.4rem}
+
+/* 沙箱矩阵：一格一台实例，绝大多数已经销毁、只有几格还在跑。
+   格子尺寸用 minmax 而不是固定列数：固定 12 列在 375px 会把每格压到 24px 以下，
+   记忆点就糊了。反过来，1440 的封面是 1000×288，格数不够就变成三行方块漂在
+   一大片空白里（第一版实测就是这样，桌面截图才发现）——所以要够密，
+   并且超出封面的部分直接裁掉：它是装饰，不是内容。 */
+.motif-rack{display:grid;grid-template-columns:repeat(auto-fill,minmax(24px,1fr));
+  gap:.3rem;align-content:center;height:2.4rem;overflow:hidden}
+.motif-rack i{aspect-ratio:1/1;min-width:0;background:var(--primary);
+  opacity:.13;border-radius:2px}
+.motif-rack i.on{opacity:.9}
+.motif-rack i.alt{background:var(--accent);opacity:.95}
+.cover-noimg .motif-rack{height:100%;padding:1.2rem;gap:.34rem;align-content:start}
+
+/* 架构分层堆栈：五条从窄到宽的横条，越往下越厚=越像生意。
+   高度用 fr 而不是固定值，封面从 288px（桌面）压到 180px（手机）时
+   五层都还在——固定 px 高在窄封面上会把最下面两层挤出去。 */
+.motif-stack{display:flex;flex-direction:column;justify-content:center;
+  gap:.3rem;height:2.4rem}
+.motif-stack i{height:.34rem;min-height:0;background:var(--primary);
+  opacity:.42;border-radius:99px}
+.motif-stack i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-stack{height:100%;padding:1.4rem 1.2rem;gap:.55rem;justify-content:center}
+.cover-noimg .motif-stack i{height:.62rem}
+
+/* 价值链三层与"钱搬到了哪一层"：三条左对齐的横带，宽度由组件按含义给。
+   最上面那条只描边——它表示开源权重这一层**不收钱**，画成实心就把整幅的意思反了。
+   高度同样用固定 rem 而非 fr：这里只有三条，窄封面上挤不出去。 */
+.motif-rent{display:flex;flex-direction:column;align-items:flex-start;
+  justify-content:center;gap:.34rem;height:2.6rem}
+.motif-rent i{height:.42rem;min-height:0;border-radius:99px}
+.motif-rent i.open{background:transparent;border:1px solid var(--primary);opacity:.75}
+.motif-rent i.hot{background:var(--accent);opacity:.95}
+.motif-rent i.capex{background:var(--primary);opacity:.82}
+.cover-noimg .motif-rent{height:100%;padding:1.4rem 1.2rem;gap:.8rem;justify-content:center}
+.cover-noimg .motif-rent i{height:.8rem}
+
+/* MLCC 的交错内电极：竖条一半挂顶、一半挂底，交错才成电容。
+   高度用百分比、条宽用 flex:1，封面从桌面压到手机窄盒时条数与交错关系都还在。 */
+.motif-interleave{display:flex;align-items:stretch;gap:.14rem;height:2.4rem}
+.motif-interleave i{flex:1 1 0;min-width:0;height:64%;background:var(--primary);
+  opacity:.38;border-radius:2px}
+.motif-interleave i.up{align-self:flex-start}
+.motif-interleave i.down{align-self:flex-end}
+.motif-interleave i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-interleave{height:100%;padding:1.4rem 1.2rem;gap:.26rem}
+.cover-noimg .motif-interleave i{height:70%}
+
+/* 大模型与加密货币篇：无限层联立。一层压一层、越往下越窄、收到一个点，
+   最后两层用强调色——那是 AI 补上的唯一一步。层数与耗时都不标。 */
+.motif-cascade{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:.2rem;height:2.4rem}
+.motif-cascade i{height:.26rem;min-height:0;border-radius:99px;
+  background:var(--primary);opacity:.34}
+.motif-cascade i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-cascade{height:100%;padding:1.6rem 1.4rem;gap:.44rem}
+.cover-noimg .motif-cascade i{height:.5rem}
+
+/* AI制药篇的漏斗：五条逐段收窄的横条，最后一条是强调色——
+   只有它进了实验室。宽度按对数收，线性收到最后两格会看不见。 */
+.motif-funnel{display:flex;flex-direction:column;justify-content:center;
+  gap:.22rem;height:2.4rem}
+.motif-funnel i{height:.34rem;min-height:0;border-radius:99px;
+  background:var(--primary);opacity:.42}
+.motif-funnel i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-funnel{height:100%;padding:1.6rem 1.4rem;gap:.5rem}
+.cover-noimg .motif-funnel i{height:.7rem}
+
+/* 骁龙篇的等能效线：点阵里那条斜穿的亮线。数值一个都不标，
+   标了它就成了一张没有来源的图表。 */
+.motif-ppw{display:grid;grid-template-columns:repeat(6,1fr);gap:.22rem;
+  align-content:center;height:2.4rem}
+.motif-ppw i{height:.3rem;min-height:0;border-radius:99px;background:var(--primary);opacity:.16}
+.motif-ppw i.near{opacity:.34}
+.motif-ppw i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-ppw{height:100%;padding:1.2rem;gap:.55rem}
+.cover-noimg .motif-ppw i{height:.7rem}
+
+@media (max-width:640px){:root{--pad:.95rem}}
+@media (max-width:640px){
+  body{font-size:15.5px;line-height:1.74}
+  /* 手机上封面改横幅比例：不给 height:auto 的话桌面那条 clamp() 高度还在，
+     aspect-ratio 会被忽略；给 max-height 又会被 aspect-ratio 反推宽度。 */
+  .cover-media{height:auto;aspect-ratio:4/3}
+  .cover-body{margin-top:.9rem}
+  .facts,.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav.toc ol{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes ke-rise{from{opacity:0;transform:translateY(.6rem)}to{opacity:1;transform:none}}
+  .cover{animation:ke-rise .55s cubic-bezier(.2,.7,.3,1) both}
+  .card{transition:box-shadow .18s ease}
+}
+</style>
+</head>
+<body>
+<header class="cover cover-noimg"><div class="cover-media"><div class="motif motif-turn" aria-hidden="true"><i class="turn out"></i><i class="turn call"></i><i class="caret"></i></div></div><div class="cover-body"><div class="cover-kicker">AI工程 · 知识专题</div><h1>从打开一个对话框到答案不漂移：一个 Agent 聊天框的十二道工序，接口、拆解、工具、数据、流式与测试逐层给代码</h1></div></header><div class="wrap"><nav class="backhome" aria-label="返回专题主页"><a class="backhome-link" href="../index.html">← AI工程全部专题</a></nav><div class="layout"><nav class="toc" aria-label="目录"><h2>目录</h2><ol><li><a href="#build-order"><span class="anch">工序</span><span>先把「从零」拆开：十二道工序，和它们为什么是这个顺序</span></a></li><li><a href="#azure-foundry"><span class="anch">接口</span><span>接口这一层：Azure AI Foundry 给什么，我们把「gpt-6」当成假设说清楚</span></a></li><li><a href="#one-turn"><span class="anch">回合</span><span>一次回合：提问从浏览器走到模型再走回来，路上经过谁</span></a></li><li><a href="#decompose"><span class="anch">拆解</span><span>拆解这件事：把「帮我看看这个订单为什么还没到」变成能执行的东西</span></a></li><li><a href="#dag"><span class="anch">DAG</span><span>要设 DAG 的话，设的是什么：节点、边、并行，和谁说了算</span></a></li><li><a href="#tools"><span class="anch">工具</span><span>工具写在哪：一个函数怎么变成模型敢调的东西</span></a></li><li><a href="#skills"><span class="anch">技能</span><span>skill 不是 tool：能力的说明书放哪、什么时候被读进来</span></a></li><li><a href="#db-and-service"><span class="anch">service</span><span>后端 service：把模型的话变成一条安全的查询</span></a></li><li><a href="#streaming-ui"><span class="anch">流式</span><span>流式与「正在想」：前端怎么把过程显示出来而不骗人</span></a></li><li><a href="#format-contract"><span class="anch">格式</span><span>输出格式怎么保证：契约、约束解码、修复回环，三段都不能少</span></a></li><li><a href="#framework"><span class="anch">框架</span><span>要不要 LangChain：三个选项和各自的还债方式</span></a></li><li><a href="#eval-no-drift"><span class="anch">漂移</span><span>同一个问题答案不一样：怎么测到它漂，又怎么让它别漂</span></a></li><li><a href="#runbook"><span class="anch">清单</span><span>上线前那一小时：十件必须做完的事，和五种会先炸的方式</span></a></li></ol></nav><div class="body"><div class="meta"><span class="who">Agent开发</span><span class="dot"></span><span>19 分钟读完</span><span class="dot"></span><span>13 章</span><span class="dot"></span><span>数据时点 2026-10</span><span class="dot"></span><span>核对于 2026-10-02</span><span class="dot"></span><span>生成于 2026-10-05</span></div><div class="tags"><span class="tag">#Agent</span><span class="tag">#聊天框</span><span class="tag">#Azure AI Foundry</span><span class="tag">#tool calling</span><span class="tag">#思维链</span><span class="tag">#DAG</span><span class="tag">#流式输出</span><span class="tag">#结构化输出</span><span class="tag">#回归测试</span><span class="tag">#答案漂移</span></div><div class="meta"><span>写给：会写一点后端、想让一个模型带动工具与数据库回答问题的人；不想再读「五步搭建你的第一个 Agent」那种没有代码、没有失败路径的教程的人</span></div><section class="chap" id="build-order"><div class="chap-head"><span class="num">01</span><h2>先把「从零」拆开：十二道工序，和它们为什么是这个顺序</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/01_pipeline-order.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/01_pipeline-order.drawio 里继续编辑；按正文「接口先定，UI 最后画」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>顺序由依赖决定</h3><p>判据只有一条：后一步是否依赖前一步已经定死的东西。定接口不依赖任何事；画界面依赖接口形状；工具循环依赖单轮闭环先跑通；评测依赖前面十一项都有产物。</p></div></div><div><div class="blk"><h3>调用形态是三样东西</h3><p>后端配置先钉死三项：资源端点、鉴权凭据、部署名。鉴权微软给两条路，原文是「Azure OpenAI provides two methods for authentication. You can use either API Keys or Microsoft Entra ID」。走密钥时所有请求「must include the API Key in the api-key HTTP header」；走 Entra 时令牌进 Authorization 头，「must be preceded by Bearer」，并且要先给身份装上 Cognitive Services OpenAI User 角色。端点从资源属性里读，一条 CLI 加 jq 就能取。</p><span class="refs"><wbr/><a href="#src-S011" class="ref" title="Azure OpenAI REST API 参考（2024-10-21 GA）：Authentication 一节写明两种鉴权方式与 api-key / Authorization 头；REST API versioning 一节给出 chat/completions 的请求地址形状与 api-version 查询参数">S011</a><wbr/><a href="#src-S012" class="ref" title="创建并部署 Azure OpenAI 资源的 how-to：Deployment name 字段的「Choose a name carefully」提示、Important 框里关于「Azure OpenAI always requires deployment name」的原文，以及用 CLI 取 .properties.endpoint 与 .key1 的命令">S012</a><wbr/><a href="#src-S014" class="ref" title="v1 API / API 版本生命周期页：说明过去按月发布 API 版本、2025 年 8 月起可选用 v1、v1 GA 不再要求 api-version，以及 Entra 鉴权需要 Cognitive Services OpenAI User 角色">S014</a></span></div></div><div><div class="blk"><figure class="codewrap"><figcaption class="codebar"><span class="lang">http</span><span class="codecap">地址形状与 api-key 头照抄微软 REST API 参考页「REST API versioning」小节的示例，是文档模板而非真跑通过的响应。同一页另给出去掉 api-version 的 v1 写法。</span></figcaption><pre class="code">POST https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/chat/completions?api-version=2024-06-01
+api-key: YOUR_API_KEY
+Content-Type: application/json
+
+{
+  &quot;messages&quot;: [
+    { &quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;why is my order still not delivered&quot; }
+  ]
+}</pre></figure><span class="refs"><wbr/><a href="#src-S011" class="ref" title="Azure OpenAI REST API 参考（2024-10-21 GA）：Authentication 一节写明两种鉴权方式与 api-key / Authorization 头；REST API versioning 一节给出 chat/completions 的请求地址形状与 api-version 查询参数">S011</a></span></div></div><div><div class="blk"><h3>部署名不等于模型名</h3><p>微软把这点列为两家接口的关键差异：「you need to refer to the deployment name rather than the underlying model name in API calls」，并补一句「OpenAI only requires the model name. Azure OpenAI always requires deployment name, even when using the model parameter」。要紧的地方在于模型版本挂在部署下面，进 URL 那一段是你起的部署名；门户建部署时提示「Choose a name carefully」，因为「The deployment name is used in your code to call the model」。</p><span class="refs"><wbr/><a href="#src-S012" class="ref" title="创建并部署 Azure OpenAI 资源的 how-to：Deployment name 字段的「Choose a name carefully」提示、Important 框里关于「Azure OpenAI always requires deployment name」的原文，以及用 CLI 取 .properties.endpoint 与 .key1 的命令">S012</a></span></div></div><div><div class="blk"><h3>api-version 是契约</h3><p>官方定义写得很硬：「The API version indicates the contract that you use to interface with the model in code」。REST 用查询参数指明它，取值形如 2024-06-01，全按日期排。SDK 那侧更该记住：「Azure SDK versions are usually paired with specific API versions, but you can specify the API version you want to use」——升 SDK 通常顺带换了契约，所以它要落在配置里。微软也说旧节奏结束：自 2025 年 8 月起可选用 v1，而「api-version is no longer a required parameter with the v1 GA API」。</p><span class="refs"><wbr/><a href="#src-S011" class="ref" title="Azure OpenAI REST API 参考（2024-10-21 GA）：Authentication 一节写明两种鉴权方式与 api-key / Authorization 头；REST API versioning 一节给出 chat/completions 的请求地址形状与 api-version 查询参数">S011</a><wbr/><a href="#src-S013" class="ref" title="模型版本概念页：Version of the API used to consume a model deployment 一节，定义 api-version 为「代码里那份契约」并说明 SDK 版本通常与特定 API 版本配对">S013</a><wbr/><a href="#src-S014" class="ref" title="v1 API / API 版本生命周期页：说明过去按月发布 API 版本、2025 年 8 月起可选用 v1、v1 GA 不再要求 api-version，以及 Entra 鉴权需要 Cognitive Services OpenAI User 角色">S014</a></span></div></div><div><div class="blk"><h3>前端不直连的三条硬理由</h3><p>一、密钥：凭据要进请求头，而任何进了浏览器的字符串都等于公开。二、审计与限流：速率按部署配额限（配额值换算成每分钟 token 数，1 等于 1,000 TPM），前端直连把所有用户压成同一个来源，超支分不清是谁。三、重试与成本没有单一落点：超时、退避、截断历史、记用量得在同一个函数里发生，散进组件就聚不回来。</p><span class="refs"><wbr/><a href="#src-S011" class="ref" title="Azure OpenAI REST API 参考（2024-10-21 GA）：Authentication 一节写明两种鉴权方式与 api-key / Authorization 头；REST API versioning 一节给出 chat/completions 的请求地址形状与 api-version 查询参数">S011</a><wbr/><a href="#src-S015" class="ref" title="管理模型部署页：部署的 capacity 字段说明「A value of 1 equals 1,000 Tokens per Minute (TPM)」，以及 rateLimits 的返回示例">S015</a></span></div></div><div><div class="blk"><h3>十二道工序</h3><ol class="steps"><li><span class="sp-title">步骤 1</span><span>定调用形态。产物：一份后端配置，四行（端点、密钥、部署名、api-version）。</span></li><li><span class="sp-title">步骤 2</span><span>建后端代理层。产物：一个转发端点，唯一出网处。</span></li><li><span class="sp-title">步骤 3</span><span>打通单轮无工具闭环。产物：一个输入框加一段回复，本机可复现。</span></li><li><span class="sp-title">步骤 4</span><span>落请求日志。产物：一张结构化表，记用量与耗时。</span></li><li><span class="sp-title">步骤 5</span><span>加流式。产物：一个增量输出端点。</span></li><li><span class="sp-title">步骤 6</span><span>加会话持久化。产物：一张消息表与一个会话标识。</span></li><li><span class="sp-title">步骤 7</span><span>声明工具。产物：一份签名到 schema 的映射文件。</span></li><li><span class="sp-title">步骤 8</span><span>加工具执行循环。产物：一个处理工具调用的回合函数。</span></li><li><span class="sp-title">步骤 9</span><span>建后端 service 层。产物：一个只收参数不拼 SQL 的查询模块。</span></li><li><span class="sp-title">步骤 10</span><span>加格式契约。产物：一份模式文件加一次修复回环。</span></li><li><span class="sp-title">步骤 11</span><span>加拆解展示。产物：一种过程事件类型与对应渲染分支。</span></li><li><span class="sp-title">步骤 12</span><span>加评测。产物：一组固定问句脚本与一个基线文件。</span></li></ol></div></div><div><div class="blk"><div class="note warn"><h4>新手最常犯的顺序错误</h4><p>先画漂亮的聊天 UI，气泡、头像、打字动效都齐了，最后才把密钥塞进前端，发现必须补一层代理，于是刚画的东西要重接一遍。正确起点是反过来：先有丑但跑通的一问一答，再谈外观。</p></div></div></div><div><div class="blk"><figure class="codewrap"><figcaption class="codebar"><span class="lang">text</span><span class="codecap">依赖图：每个节点只依赖它上方的节点；3（单轮无工具闭环）是承重块，后面每一步都要在它之上才能测。</span></figcaption><pre class="code">[1 interface + creds] -&gt; [2 proxy layer] -&gt; [3 single-turn loop, no tools]
+                                                    |
+                        +---------------------------+---------------------------+
+                        v                           v                           v
+                 [4 request log]             [5 streaming]             [6 thread store]
+                        |                           |
+                        +-------------+-------------+
+                                      v
+                          [7 tool schema] -&gt; [8 tool loop] -&gt; [9 backend service]
+                                                                   |
+                                     +-----------------------------+
+                                     v                             v
+                          [10 format contract]            [11 plan/thinking view]
+                                     \                           /
+                                      v                         v
+                                   [12 eval suite + baseline]
+
+read top-to-bottom: every node only needs the nodes above it already fixed.
+3 is the load-bearing one - nothing after it is testable until it works.</pre></figure></div></div><div><div class="blk"><figure class="codewrap"><figcaption class="codebar"><span class="lang">text</span><span class="codecap">照这一篇做完应得到的最小文件集：凭据只出现在 server/ 与 .env，web/ 里没有任何密钥。</span></figcaption><pre class="code">agent-chat/
+  .env.example                AZURE_OPENAI_ENDPOINT / _API_KEY / DEPLOYMENT / API_VERSION
+  server/
+    main.py                   POST /api/chat and /api/chat/stream - the only place that talks to Azure
+    upstream.py               headers, retry, history truncation, usage accounting
+    tools/
+      registry.py             function signature -&gt; tool schema
+      orders.py               parameterized lookup; accepts fields, never SQL
+  db/
+    schema.sql                messages / tool_calls / request_log
+  web/
+    App.tsx                   input box, message list, streaming + plan rendering
+    api.ts                    fetches same-origin /api/* only; holds no secret
+  evals/
+    cases.jsonl               fixed question set
+    run.py                    rerun after every change, diff against baseline
+  baseline.json</pre></figure></div></div></section><section class="chap" id="azure-foundry"><div class="chap-head"><span class="num">02</span><h2>接口这一层：Azure AI Foundry 给什么，我们把「gpt-6」当成假设说清楚</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/02_api-layers.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/02_api-layers.drawio 里继续编辑；按正文「密钥只允许出现在后端」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>门户、资源、项目：三层不是一件事</h3><p>对齐名词。ai.azure.com 这个门户现在叫 Microsoft Foundry，原名 Azure AI Studio 与 Azure AI Foundry；原 Azure AI Services 改称 Foundry Tools。资源模型旧拼法是 Hub 加 Azure OpenAI 加 Azure AI Services，新拼法收敛成一个 Foundry resource 带 projects，hub 型项目只能在 Foundry (classic) 门户管。模型调用属数据面：URL 与字段名以 REST 文档为准，与门户上点过什么无关。</p><span class="refs"><wbr/><a href="#src-S021" class="ref" title="What is Microsoft Foundry —含「Previous/Current」对照表：Azure AI Studio / Azure AI Foundry → Microsoft Foundry，Azure AI Services → Foundry Tools，Hub + Azure OpenAI + Azure AI Services → 单个 Foundry resource 带 projects，月度 api-version → /openai/v1 稳定路由">S021</a></span></div></div><div><div class="blk"><h3>端点形状两套，字段名一张表</h3><p>GA 版 2024-10-21 把部署名写进路径、版本当查询参数；新 v1 走稳定路由 /openai/v1/chat/completions，模型改成请求体里的 model 字段，api-version 只取 v1 或 preview。鉴权两条：api-key 头传资源密钥，或 Authorization 头加 Bearer 与 Entra 令牌，scope 是 https://ai.azure.com/.default。微软口径：生产用 Entra；密钥只适合快速验证，不被企业生产接受。</p><span class="refs"><wbr/><a href="#src-S022" class="ref" title="Azure OpenAI 数据面 REST 参考（2024-10-21 GA）：api-key 头与 Authorization Bearer 两种鉴权、deployment 路径 + api-version 查询参数的端点示例、控制面/数据面版本表">S022</a><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a><wbr/><a href="#src-S024" class="ref" title="Foundry 鉴权与授权：Entra ID 用 OAuth 2.0 bearer token，scope https://ai.azure.com/.default；生产用 Entra，API key 限于快速验证且「generally not accepted by enterprise production workloads and not recommended by Microsoft」；控制面/数据面与 RBAC 分层">S024</a></span></div></div><div><div class="blk"><div class="tablewrap"><table><caption>聊天补全请求体：照 v1 那张字段表抄，弃用标记一并抄</caption><tbody><tr><td class="k">messages</td><td>数组，必填，至少 1 项 <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></td></tr><tr><td class="k">temperature / top_p</td><td>可空数值 <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></td></tr><tr><td class="k">max_completion_tokens</td><td>整数上限，含思考 token <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></td></tr><tr><td class="k">max_tokens</td><td>已标弃用 <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></td></tr><tr><td class="k">stream / seed</td><td>布尔 / 整数；seed 已标弃用 <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></td></tr><tr><td class="k">tools / tool_choice / parallel_tool_calls</td><td>工具、调用约束、并行开关（默认开） <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></td></tr><tr><td class="k">response_format</td><td>含 type；配 json_schema 与 strict <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a><wbr/><a href="#src-S026" class="ref" title="结构化输出 how-to：Chat Completions 用 response_format 的 json_schema、Responses 用 text.format，strict 开启函数约束；curl 与 Python 的 /openai/v1 端点写法；「Supported models」清单最新为 gpt-5.1（2025-11-13），未列 gpt-6；首个支持版本 2024-08-01-preview">S026</a></span></td></tr><tr><td class="k">n / tools / functions</td><td>上限都是 128 <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a><wbr/><a href="#src-S028" class="ref" title="Azure OpenAI 配额与限制：门户 ai.azure.com/resource/quota 查区域配额，程序化用 Usages API 与 Model Capacities API；2026-05-07 起改为订阅级配额共享池；/chat/completions 的 tools 与 functions 上限 128">S028</a></span></td></tr><tr><td class="k">max_output_tokens</td><td>这张表里没有 <span class="refs"><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><h3>SSE 分块与收尾标记</h3><p>每块 object 为 chat.completion.chunk，正文在 choices[0].delta.content 里逐块追加，头一块的 delta 只有 role，收尾那块 finish_reason 转 stop 且 delta 是空对象，随后单独一行 data: [DONE]。finish_reason 只有 stop、length、tool_calls、content_filter、function_call 五个取值。另一个坑：默认模式把内容缓冲成块再吐，不是逐 token；要逐 token 须在部署级过滤配置里选 Asynchronous Filter，并要求 API 版本 2024-02-01 以上。</p><span class="refs"><wbr/><a href="#src-S025" class="ref" title="Azure OpenAI 内容流式处理：chat.completion.chunk 分块样例、choices[].delta、末块 finish_reason stop 配空 delta、收尾单独一行 data: [DONE]；默认模式缓冲成块而非逐 token，Asynchronous Filter 需 API 2024-02-01 及以上">S025</a><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></div></div><div><div class="blk"><h3>gpt-6：假设的是名字，不是接口</h3><p>GPT-6 在目录里是真的，但 ID 全带后缀：gpt-6-astra（2026-09-03）、gpt-6-sol 与 gpt-6-luna（2026-09-22）、gpt-6.1-sol（2026-09-29），上下文 1,050,000，输入 922,000、输出 128,000。裸名 gpt-6 不在任何目录表里，本书按开发者指定把 MODEL = gpt-6 记为假设部署名。假设只加在模型名与能力边界，不加在接口形状：示例字段名全取自上面那张 v1 表。一处不一致：结构化输出 how-to 的支持清单只列到 gpt-5.1，没列 gpt-6 ID，目录页却把 structured outputs 算作 GPT-6 能力，以实测为准。</p><span class="refs"><wbr/><a href="#src-S027" class="ref" title="Foundry Models sold by Azure 模型目录：GPT-6 系列 Model ID 为 gpt-6-astra（2026-09-03）、gpt-6-luna 与 gpt-6-sol（2026-09-22）、gpt-6.1-sol（2026-09-29），上下文 1,050,000（输入 922,000／输出 128,000）；能力列含 Chat Completions、Streaming、Structured outputs；GPT-6 家族仅 Tier 5／Tier 6 默认带配额；裸名 gpt-6 不在表内">S027</a><wbr/><a href="#src-S026" class="ref" title="结构化输出 how-to：Chat Completions 用 response_format 的 json_schema、Responses 用 text.format，strict 开启函数约束；curl 与 Python 的 /openai/v1 端点写法；「Supported models」清单最新为 gpt-5.1（2025-11-13），未列 gpt-6；首个支持版本 2024-08-01-preview">S026</a></span></div></div><div><div class="blk"><h3>curl 非流式</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">bash</span><span class="codecap">假设接口，尖括号全是占位符；旧路由写法见上一节。</span></figcaption><pre class="code">curl -s -X POST &quot;https://&lt;resource-name&gt;.openai.azure.com/openai/v1/chat/completions&quot; \
+  -H &quot;api-key: &lt;AZURE_OPENAI_API_KEY&gt;&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d &#x27;{
+    &quot;model&quot;: &quot;gpt-6&quot;,
+    &quot;messages&quot;: [
+      {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;Call get_order_status when the status is unknown.&quot;},
+      {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Where is order 12345?&quot;}
+    ],
+    &quot;temperature&quot;: 0.2,
+    &quot;max_completion_tokens&quot;: 512,
+    &quot;stream&quot;: false,
+    &quot;tools&quot;: [
+      {&quot;type&quot;: &quot;function&quot;,
+       &quot;function&quot;: {&quot;name&quot;: &quot;get_order_status&quot;, &quot;strict&quot;: true,
+         &quot;parameters&quot;: {&quot;type&quot;: &quot;object&quot;,
+           &quot;properties&quot;: {&quot;order_id&quot;: {&quot;type&quot;: &quot;string&quot;}},
+           &quot;required&quot;: [&quot;order_id&quot;], &quot;additionalProperties&quot;: false}}}
+    ],
+    &quot;tool_choice&quot;: &quot;auto&quot;
+  }&#x27;</pre></figure><span class="refs"><wbr/><a href="#src-S026" class="ref" title="结构化输出 how-to：Chat Completions 用 response_format 的 json_schema、Responses 用 text.format，strict 开启函数约束；curl 与 Python 的 /openai/v1 端点写法；「Supported models」清单最新为 gpt-5.1（2025-11-13），未列 gpt-6；首个支持版本 2024-08-01-preview">S026</a><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></div></div><div><div class="blk"><h3>Python SDK 非流式</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">假设接口，字段名同上表。</span></figcaption><pre class="code">import os
+from openai import OpenAI
+
+MODEL = &quot;gpt-6&quot;  # assumed deployment name, not a catalog ID
+
+client = OpenAI(
+    base_url=&quot;https://&lt;resource-name&gt;.openai.azure.com/openai/v1/&quot;,
+    api_key=os.environ[&quot;AZURE_OPENAI_API_KEY&quot;],
+)
+
+resp = client.chat.completions.create(
+    model=MODEL,
+    messages=[{&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Where is order 12345?&quot;}],
+    temperature=0.2,
+    max_completion_tokens=512,
+    seed=None,
+    stream=False,
+)
+
+print(resp.choices[0].message.content, resp.usage.total_tokens)</pre></figure><span class="refs"><wbr/><a href="#src-S026" class="ref" title="结构化输出 how-to：Chat Completions 用 response_format 的 json_schema、Responses 用 text.format，strict 开启函数约束；curl 与 Python 的 /openai/v1 端点写法；「Supported models」清单最新为 gpt-5.1（2025-11-13），未列 gpt-6；首个支持版本 2024-08-01-preview">S026</a><wbr/><a href="#src-S023" class="ref" title="Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举">S023</a></span></div></div><div><div class="blk"><h3>区域与配额：只给查法，不给数字</h3><p>区域可用性看按部署类别分表那页，行是 Model ID 加版本，列是 eastus2 这类区域名。配额在 Foundry 门户 quota 页按订阅、区域、模型看；程序化用 Usages API 查已用量、Model Capacities API 查某区域剩余部署能力。单位是每分钟 token 数，2026-05-07 起部分模型改成订阅级共享池；GPT-6 家族只有 Tier 5 与 Tier 6 默认带配额，其余要提申请。配额按订阅发放，数字写进书里就是错的。</p><span class="refs"><wbr/><a href="#src-S029" class="ref" title="按部署类别（Global Standard 等）分表的区域可用性页：行是 Model ID 加版本，列是 brazilsouth、eastus2 这类区域名，以勾选标记表示">S029</a><wbr/><a href="#src-S028" class="ref" title="Azure OpenAI 配额与限制：门户 ai.azure.com/resource/quota 查区域配额，程序化用 Usages API 与 Model Capacities API；2026-05-07 起改为订阅级配额共享池；/chat/completions 的 tools 与 functions 上限 128">S028</a><wbr/><a href="#src-S027" class="ref" title="Foundry Models sold by Azure 模型目录：GPT-6 系列 Model ID 为 gpt-6-astra（2026-09-03）、gpt-6-luna 与 gpt-6-sol（2026-09-22）、gpt-6.1-sol（2026-09-29），上下文 1,050,000（输入 922,000／输出 128,000）；能力列含 Chat Completions、Streaming、Structured outputs；GPT-6 家族仅 Tier 5／Tier 6 默认带配额；裸名 gpt-6 不在表内">S027</a><wbr/><a href="#src-S0210" class="ref" title="配额管理指南：Azure 按订阅、区域、模型以 tokens per minute（TPM）分配配额，含程序化查配额与容量的章节">S0210</a></span></div></div><div><div class="blk"><div class="note tip"><h4>换模型时改三处</h4><p>一、模型标识：v1 改请求体的 model，旧版改路径里的部署名。二、长度字段：聊天补全用 max_completion_tokens，max_tokens 已标弃用，思考型还要加 reasoning_effort。三、路由与版本：走 deployment 路径必须带 api-version，走 /openai/v1 不带。工具与 response_format 能不能用，按新 ID 的能力行重查。</p></div></div></div></section><section class="chap" id="one-turn"><div class="chap-head"><span class="num">03</span><h2>一次回合：提问从浏览器走到模型再走回来，路上经过谁</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/03_turn-sequence.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/03_turn-sequence.drawio 里继续编辑；按正文「一次回合是一个循环不是单向流水线」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>先分清四个进程</h3><p>一次提问走过四个进程：浏览器、后端 service、模型端点、数据库。浏览器不持有真相，模型端点不认识「会话」，数据库只在工具那一步被碰到。第 5 与第 8 步之间是个环，不是流水线。</p><span class="refs"><wbr/><a href="#src-S031" class="ref" title="Microsoft Foundry「Work with chat completion models」：多轮对话示例、system 角色定义、每个新问题都要带上进行中的对话记录、model 参数填部署名">S031</a><wbr/><a href="#src-S034" class="ref" title="Microsoft Foundry「Azure OpenAI reasoning models - GPT-6 Astra and GPT-5」：reasoning.summary 取值与限制、两个 API 各自的 reasoning_tokens 字段、推理 token 按输出计费、调工具时要把 reasoning 项传回、store 与 previous_response_id、绕开摘要提取原始推理不受支持且可能违反使用政策">S034</a></span></div></div><div><div class="blk"><h3>路径图</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">text</span><span class="codecap">结构示意，非实抓报文。</span></figcaption><pre class="code">浏览器        后端 service        模型端点        数据库
+   |                |                 |              |
+   |-- POST /api/chat --&gt;|             |              |
+   |                |-- SELECT history ----------------&gt;|
+   |                |-- req #1  messages[全部历史] ----&gt;|
+   |                |&lt;-- resp  text | function_call ----|
+   |&lt;-- 流式文本 ---|                                    |
+   |                |-- 校验参数 -&gt; SELECT rows -------&gt;|
+   |                |-- req #2  +function_call_output -&gt;|
+   |                |&lt;-- resp --------------------------|
+   |                `-- 没出 text 就再转一圈，直到出 text 或撞最大轮数</pre></figure></div></div><div><div class="blk"><h3>一次回合的调用顺序</h3><ol class="steps"><li><span class="sp-title">步骤 1</span><span>前端 POST /api/chat，附自生成的 turn_id。</span><span class="spec"> 浏览器｜未落盘</span></li><li><span class="sp-title">步骤 2</span><span>按 conversation_id 取历史，ID 后端生成。</span><span class="spec"> 后端→数据库｜读写</span></li><li><span class="sp-title">步骤 3</span><span>拼 system、历史、本轮 user 成 messages。</span><span class="spec"> 后端｜未落盘</span></li><li><span class="sp-title">步骤 4</span><span>POST /openai/v1/responses，model 填部署名。</span><span class="spec"> 后端→模型｜未落盘</span></li><li><span class="sp-title">步骤 5</span><span>回的可能只是 function_call，回合未完。</span><span class="spec"> 模型｜服务端存</span></li><li><span class="sp-title">步骤 6</span><span>查注册表，校验参数与白名单。</span><span class="spec"> 后端｜落工具日志</span></li><li><span class="sp-title">步骤 7</span><span>参数绑成占位符执行，不拼 SQL。</span><span class="spec"> 后端→数据库｜读</span></li><li><span class="sp-title">步骤 8</span><span>第二次请求，连同上一轮 reasoning 与 function_call_output 发回。</span><span class="spec"> 后端→模型｜未落盘</span></li><li><span class="sp-title">步骤 9</span><span>答案与 usage 落库，流回浏览器。</span><span class="spec"> 后端→浏览器｜写</span></li></ol></div></div><div><div class="blk"><h3>模型没有记忆，真相在后端</h3><p>文档译过来是：模型没有记忆，每个新问题都要把更新后的对话记录一起发过去。所以 conversation_id 由后端生成并持久化，客户端的 ID 只当索引。Responses API 能替你存——示例里 store 为 true、可用 previous_response_id 串下一轮；那是服务端存储，不是模型的记忆。</p><span class="refs"><wbr/><a href="#src-S031" class="ref" title="Microsoft Foundry「Work with chat completion models」：多轮对话示例、system 角色定义、每个新问题都要带上进行中的对话记录、model 参数填部署名">S031</a><wbr/><a href="#src-S032" class="ref" title="Microsoft Foundry「Use the Azure OpenAI Responses API」：页面自述以 Python 或 REST 创建、取回、删除 stateful responses，含流式与工具">S032</a><wbr/><a href="#src-S034" class="ref" title="Microsoft Foundry「Azure OpenAI reasoning models - GPT-6 Astra and GPT-5」：reasoning.summary 取值与限制、两个 API 各自的 reasoning_tokens 字段、推理 token 按输出计费、调工具时要把 reasoning 项传回、store 与 previous_response_id、绕开摘要提取原始推理不受支持且可能违反使用政策">S034</a></span></div></div><div><div class="blk"><h3>角色口径</h3><p>system：数组开头那条初始指令，定义助手的目的、行为与规则。developer：v1 API 的 REST 示例把同一条写成 developer；Azure 侧最早可用的 api-version 我没查到。tool：这两页没有它的角色定义，Responses 侧工具结果是 function_call_output 项。</p><span class="refs"><wbr/><a href="#src-S031" class="ref" title="Microsoft Foundry「Work with chat completion models」：多轮对话示例、system 角色定义、每个新问题都要带上进行中的对话记录、model 参数填部署名">S031</a><wbr/><a href="#src-S034" class="ref" title="Microsoft Foundry「Azure OpenAI reasoning models - GPT-6 Astra and GPT-5」：reasoning.summary 取值与限制、两个 API 各自的 reasoning_tokens 字段、推理 token 按输出计费、调工具时要把 reasoning 项传回、store 与 previous_response_id、绕开摘要提取原始推理不受支持且可能违反使用政策">S034</a><wbr/><a href="#src-S035" class="ref" title="Microsoft Foundry「Azure OpenAI v1 API」：v1 自 2025 年 8 月起可选用、REST 示例把初始指令写成 role=developer、变更记录列出 completion_tokens_details/reasoning_tokens 与 reasoning summary 所属 api-version">S035</a></span></div></div><div><div class="blk"><h3>推理内容：拿得到摘要和计数</h3><p>Azure 没有可取回的原始思维链字段。拿得到的是摘要——Responses API 的 reasoning.summary，取值 auto/concise/detailed，gpt-5 系列不支持 concise；以及计数——Chat Completions 叫 completion_tokens_details.reasoning_tokens，Responses 叫 output_tokens_details.reasoning_tokens，都按输出计费。变更记录：这两个字段随 2024-09-01-preview 加入，摘要随 2025-04-01-preview。绕开 reasoning summary 提取原始推理不受支持，可能违反使用政策、招致限流或封禁。</p><span class="refs"><wbr/><a href="#src-S034" class="ref" title="Microsoft Foundry「Azure OpenAI reasoning models - GPT-6 Astra and GPT-5」：reasoning.summary 取值与限制、两个 API 各自的 reasoning_tokens 字段、推理 token 按输出计费、调工具时要把 reasoning 项传回、store 与 previous_response_id、绕开摘要提取原始推理不受支持且可能违反使用政策">S034</a><wbr/><a href="#src-S035" class="ref" title="Microsoft Foundry「Azure OpenAI v1 API」：v1 自 2025 年 8 月起可选用、REST 示例把初始指令写成 role=developer、变更记录列出 completion_tokens_details/reasoning_tokens 与 reasoning summary 所属 api-version">S035</a></span></div></div><div><div class="blk"><div class="note warn"><h4>别把原始推理透给前端</h4><p>一，推理文本常原样复述 system 提示与工具定义，等于公开它们。二，它是未校验的中间产物，一显示读者就当事实，第 6 步的校验对它不成立。三，格式即契约，换了字段名前端就断。要展示过程，就展示摘要与工具步骤。</p></div></div></div><div><div class="blk"><h3>可观测最小集</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">text</span><span class="codecap">字段名取自文档表头与示例。</span></figcaption><pre class="code">响应头
+  x-request-id
+  x-ms-client-request-id        客户端自生成
+  x-ratelimit-limit-requests
+  x-ratelimit-limit-tokens
+  x-ratelimit-remaining-requests
+  x-ratelimit-remaining-tokens
+  x-ratelimit-reset-requests
+  x-ratelimit-reset-tokens
+  retry-after-ms                仅 429
+
+响应体
+  id                            resp_... / chatcmpl_...
+  model                         gpt-5-2025-08-07
+  usage.prompt_tokens      usage.completion_tokens      usage.total_tokens
+  usage.input_tokens       usage.output_tokens          usage.total_tokens
+  usage.completion_tokens_details.reasoning_tokens
+  usage.output_tokens_details.reasoning_tokens
+
+接口不返回
+  部署名                        仅请求侧
+  分段耗时                      无现成字段</pre></figure><span class="refs"><wbr/><a href="#src-S033" class="ref" title="Microsoft Foundry「Manage Azure OpenAI quota」：Rate limit response headers 一节列出六条 x-ratelimit-*，称每次调用都在响应头带上限流信息，retry-after-ms 仅出现在 429">S033</a><wbr/><a href="#src-S034" class="ref" title="Microsoft Foundry「Azure OpenAI reasoning models - GPT-6 Astra and GPT-5」：reasoning.summary 取值与限制、两个 API 各自的 reasoning_tokens 字段、推理 token 按输出计费、调工具时要把 reasoning 项传回、store 与 previous_response_id、绕开摘要提取原始推理不受支持且可能违反使用政策">S034</a><wbr/><a href="#src-S035" class="ref" title="Microsoft Foundry「Azure OpenAI v1 API」：v1 自 2025 年 8 月起可选用、REST 示例把初始指令写成 role=developer、变更记录列出 completion_tokens_details/reasoning_tokens 与 reasoning summary 所属 api-version">S035</a><wbr/><a href="#src-S036" class="ref" title="Microsoft Foundry REST API reference（官方文档站）：每个失败请求应记录完整 URL、状态码、x-request-id 与 x-ms-client-request-id，重试时复用客户端自生成的请求 ID">S036</a></span></div></div></section><section class="chap" id="decompose"><div class="chap-head"><span class="num">04</span><h2>拆解这件事：把「帮我看看这个订单为什么还没到」变成能执行的东西</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/04_decompose-shapes.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/04_decompose-shapes.drawio 里继续编辑；按正文「拆解结果也要过格式校验」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>拆解的三种形态，各有代价</h3><p>计划清单是有序步骤，最直白，但表达不了并列与回退；子问题树能画出「先查再定」的分叉；DAG 编码依赖、并行与局部失败重试，代价是那张图难讲给业务方听。</p><p>ReAct 让推理与动作交替，Plan-and-Solve 先出计划再执行，Reflexion 在执行后自我反思——三种范式只约定流程，不约定中间结构。工具调用的返回块只有 type、tool_use_id、content，没有原生「步骤」字段，结构得你自己定。</p><span class="refs"><wbr/><a href="#src-S041" class="ref" title="ReAct: Synergizing Reasoning and Acting in Language Models（Yao 等，ICLR 2023）：让模型把推理轨迹与动作交替产出">S041</a><wbr/><a href="#src-S042" class="ref" title="Plan-and-Solve Prompting（Wang 等，2023）：先 devised 一个把任务拆成子任务的计划，再逐项执行">S042</a><wbr/><a href="#src-S043" class="ref" title="Reflexion: Language Agents with Verbal Reinforcement Learning（Shinn 等，2023）：执行后用文字自我反思并把教训带回下一轮">S043</a><wbr/><a href="#src-S044" class="ref" title="Amazon Bedrock 上 Anthropic Claude tool use 的官方参数文档：给出 tool_use 块（type/id/name/input）与 tool_result 块（type/tool_use_id/content）的确切字段，无原生「步骤」对象；并说明工具调用按输入 token 计费、各模型 tool use 系统提示词的 token 数（Claude 4.5 系在 auto 下 346）">S044</a></span></div></div><div><div class="blk"><h3>拆解结果的最小契约</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">json</span><span class="codecap">schema 与例子；应用自定义形态，非模型 API 原生字段。</span></figcaption><pre class="code">{
+  &quot;type&quot;: &quot;array&quot;,
+  &quot;items&quot;: {
+    &quot;type&quot;: &quot;object&quot;,
+    &quot;required&quot;: [&quot;id&quot;, &quot;question&quot;, &quot;depends_on&quot;, &quot;handler&quot;, &quot;expects&quot;, &quot;on_fail&quot;],
+    &quot;properties&quot;: {
+      &quot;id&quot;:         {&quot;type&quot;: &quot;string&quot;},
+      &quot;question&quot;:   {&quot;type&quot;: &quot;string&quot;},
+      &quot;depends_on&quot;: {&quot;type&quot;: &quot;array&quot;, &quot;items&quot;: {&quot;type&quot;: &quot;string&quot;}},
+      &quot;handler&quot;:    {&quot;type&quot;: &quot;string&quot;, &quot;pattern&quot;: &quot;^(tool:[a-z_.]+|model)$&quot;},
+      &quot;expects&quot;:    {&quot;type&quot;: &quot;string&quot;},
+      &quot;on_fail&quot;:    {&quot;enum&quot;: [&quot;retry&quot;, &quot;fallback_model&quot;, &quot;skip&quot;, &quot;abort&quot;]}
+    }
+  }
+}
+
+// filled example
+[
+  {&quot;id&quot;: &quot;st1&quot;, &quot;question&quot;: &quot;卡在哪个节点&quot;,
+   &quot;depends_on&quot;: [], &quot;handler&quot;: &quot;tool:logistics.trace&quot;,
+   &quot;expects&quot;: &quot;节点与时间&quot;, &quot;on_fail&quot;: &quot;fallback_model&quot;},
+  {&quot;id&quot;: &quot;st2&quot;, &quot;question&quot;: &quot;节点超时了吗&quot;,
+   &quot;depends_on&quot;: [&quot;st1&quot;], &quot;handler&quot;: &quot;model&quot;,
+   &quot;expects&quot;: &quot;是否加依据&quot;, &quot;on_fail&quot;: &quot;skip&quot;},
+  {&quot;id&quot;: &quot;st3&quot;, &quot;question&quot;: &quot;该赔还是该催&quot;,
+   &quot;depends_on&quot;: [&quot;st1&quot;, &quot;st2&quot;], &quot;handler&quot;: &quot;tool:policy.compensation&quot;,
+   &quot;expects&quot;: &quot;金额或话术&quot;, &quot;on_fail&quot;: &quot;abort&quot;}
+]</pre></figure></div></div><div><div class="blk"><div class="tablewrap"><table><caption>拆解失败的三种典型形态</caption><tbody><tr><td class="k">调了没有的工具</td><td>handler 比对工具注册表，没命中就不跑，回失败让模型重拆 </td></tr><tr><td class="k">子问题互相等</td><td>按 depends_on 拓扑排序，排不完即成环；这是拆错，重试改不了结构 </td></tr><tr><td class="k">同一问题答两次不一致</td><td>question 去标点归一化，撞车就比对产出，不一致则整条作废 </td></tr></tbody></table></div></div></div><div><div class="blk"><div class="cmp"><div class="col "><h4>一次全量规划</h4><ul><li>只调一次模型出计划，便宜、可提前审、条目稳定</li><li>开头看不到后面的事实，查到「已签收」即作废剩余步骤</li></ul></div><div class="col "><h4>每步重新规划</h4><ul><li>中途有新线索时更稳，能就地改道</li><li>每步都重发已有结果，任务越长越贵</li></ul></div><div class="verdict">默认全量规划，某一步失败时只重写它下游那一段。</div></div></div></div><div><div class="blk"><h3>什么时候不该拆，以及给人看什么</h3><p>不该拆的判据写成一行：没有任何子问题需要工具或数据库给新事实，就整题一次答完。「这个 SKU 多少钱」是单跳事实，「把结论说人话」是纯改写——拆了只是把一次生成换成多次，每多一次多一次出错机会。</p><p>展示层只声明「准备做什么」，不是模型的内心活动；每条旁边必须挂状态，否则读者判断不了它跑没跑，待办工具的 pending、in_progress、completed 三态就是干这个的。重规划的账也算得出来：请求按输入 token 计费，每轮那份启用工具的系统提示词，Claude 4.5 系在 auto 下要 346 token；历史变长也不等于信息可用，同一事实的召回随位置呈 U 形，落在中间最容易丢。</p><p>拆解步骤本身也是模型输出，必须走输出格式一章的校验、约束解码与修复回环，不能当可信输入执行。</p><span class="refs"><wbr/><a href="#src-S044" class="ref" title="Amazon Bedrock 上 Anthropic Claude tool use 的官方参数文档：给出 tool_use 块（type/id/name/input）与 tool_result 块（type/tool_use_id/content）的确切字段，无原生「步骤」对象；并说明工具调用按输入 token 计费、各模型 tool use 系统提示词的 token 数（Claude 4.5 系在 auto 下 346）">S044</a><wbr/><a href="#src-S045" class="ref" title="Claude Agent SDK「Track todos」官方文档：待办清单由应用提供的工具承载，状态为 pending / in_progress / completed">S045</a><wbr/><a href="#src-S046" class="ref" title="Lost in the Middle: How Language Models Use Long Contexts（Liu 等，TACL 2024）：相关信息在上下文开头或结尾时表现最好、落在中间时下降，呈 U 形性能曲线">S046</a></span></div></div></section><section class="chap" id="dag"><div class="chap-head"><span class="num">05</span><h2>要设 DAG 的话，设的是什么：节点、边、并行，和谁说了算</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/05_dag-run.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/05_dag-run.drawio 里继续编辑；按正文「边是数据依赖不是执行顺序」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>定义与环检测</h3><p>DAG 即有向无环图，写的是优先级约束：A 不做完，B 不能开始。拓扑排序把顶点排成一条线，使每条边 u→v 里 u 在前。图存在拓扑序当且仅当它无环——排序写完，环检测也顺手做完了。</p><span class="refs"><wbr/><a href="#src-S051" class="ref" title="MIT 6.042J《Mathematics for Computer Science》第 9.5 节 Directed Acyclic Graphs (DAGs) &amp; Scheduling：DAG 与拓扑排序的正式定义，并用于机器调度">S051</a><wbr/><a href="#src-S052" class="ref" title="MIT 6.006 Introduction to Algorithms 第 14 讲：用 DFS 做环检测与拓扑排序">S052</a></span></div></div><div><div class="blk"><h3>节点粒度：三种切法</h3><p>最细：一次工具调用一个节点，图由人写死，运行时只管调度与并发，模型只在节点里干活——可控可测，换问法要发版。中间：一个子问题一个节点，节点内模型连调几个工具，图小了、失败半径大了。最粗：一次模型推理单列成节点。</p><span class="refs"><wbr/><a href="#src-S053" class="ref" title="Airflow 官方文档 Dags 核心概念：任务间通过上下游关系显式定义依赖">S053</a><wbr/><a href="#src-S054" class="ref" title="Airflow 官方文档 Tasks 核心概念：任务重试默认固定次数与延迟，可按异常类型配 retry policy">S054</a></span></div></div><div><div class="blk"><h3>边是数据依赖，不是执行顺序</h3><p>反例：三个互不消费彼此输出的检索节点，按看着顺眼的顺序串成链。没人沿边传数据，并行度就是假的。判据：后一个节点的输入里有没有前一个的输出？没有就不该连边。正例：三条检索从 plan 同时分叉、在显式 join 处等齐，收尾约束交给 join。</p><span class="refs"><wbr/><a href="#src-S053" class="ref" title="Airflow 官方文档 Dags 核心概念：任务间通过上下游关系显式定义依赖">S053</a><wbr/><a href="#src-S059" class="ref" title="LangGraph Graph API overview：并行节点属于同一 super-step、fan-out/fan-in、recursion limit 默认值（1.0.6 起为 1000）">S059</a></span></div></div><div><div class="blk"><div class="cmp"><div class="col "><h4>静态编排：人写死</h4><ul><li>模型只在节点内干活，失败半径落在单节点</li><li>固定输入可逐节点断言</li></ul></div><div class="col "><h4>模型规划：运行时生成</h4><ul><li>接住没预料到的问法</li><li>图可能含环，测计划合法性而非路径</li></ul></div><div class="verdict">多数取混合：人钉骨架，模型只填参数。</div></div></div></div><div><div class="blk"><h3>四件事在各家的名字</h3><p>一、环检测：加载时先排一遍，有环就拒绝启动。二、并发上限：并行要限流，否则打爆连接池。LangGraph 把并行节点归进同一 super-step，recursion limit 默认 25 步、1.0.6 起为 1000；Airflow 用 max_active_runs 分层限。三、重试与幂等：次数与退避是配置，幂等是设计。Durable Task 说 activity 只保证至少一次执行、建议写成 upsert，Logic Apps 默认重试 4 次，而编排代码要求确定性，因为它会被重放。重放非幂等写操作等于重复扣款，Stripe 的 idempotency key 存下首次响应，24 小时内同 key 返回原结果。四、失败传播：跳过、降级、整图失败要显式声明；Airflow 有 trigger_rule，Prefect 3 有 transactions。</p><span class="refs"><wbr/><a href="#src-S059" class="ref" title="LangGraph Graph API overview：并行节点属于同一 super-step、fan-out/fan-in、recursion limit 默认值（1.0.6 起为 1000）">S059</a><wbr/><a href="#src-S056" class="ref" title="Airflow 官方 FAQ：max_active_runs 限制同时活跃的 DAG Run 数、concurrency 限制单 DAG 并发任务数">S056</a><wbr/><a href="#src-S054" class="ref" title="Airflow 官方文档 Tasks 核心概念：任务重试默认固定次数与延迟，可按异常类型配 retry policy">S054</a><wbr/><a href="#src-S0511" class="ref" title="Azure Durable Functions 错误处理与重试：重试策略字段（最大尝试次数、首次重试间隔、退避系数等）">S0511</a><wbr/><a href="#src-S055" class="ref" title="Airflow 官方文档 DAG-level Retry：任务应在任务级设计成幂等，重跑任务才是幂等的">S055</a><wbr/><a href="#src-S0510" class="ref" title="Azure Durable Task 编程模型总览：activity 只保证 at-least-once，官方建议把逻辑写成幂等（例如 upsert）">S0510</a><wbr/><a href="#src-S0512" class="ref" title="Azure Durable 编排器代码约束：编排函数必须确定性，因为会被多次重放">S0512</a><wbr/><a href="#src-S0513" class="ref" title="Azure Logic Apps 错误处理：多数操作的 Default 重试策略为指数间隔、最多 4 次重试">S0513</a><wbr/><a href="#src-S0515" class="ref" title="Stripe API 参考 Idempotent requests：客户端生成 idempotency key，服务端保存首次请求的状态码与响应体用于重放，并比对入参防止误用">S0515</a><wbr/><a href="#src-S0516" class="ref" title="Stripe Advanced error handling：带同一 idempotency key 的重放在 24 小时内安全；改参数要换新 key">S0516</a><wbr/><a href="#src-S057" class="ref" title="Prefect 3 官方文档 How to write transactional workflows：事务语义、失败回滚、可原子成组的任务">S057</a><wbr/><a href="#src-S058" class="ref" title="Prefect 3 官方文档 How to automatically rerun your workflow when it fails：重试配置，父流重试时复用已持久化的子流结果">S058</a></span></div></div><div><div class="blk"><h3>DAG 定义示例</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">yaml</span><span class="codecap">假设形态，非真实 schema；边的另一种写法是 Logic Apps 的 dependsOn。</span></figcaption><pre class="code">apiVersion: agent.local/v1
+kind: TaskGraph
+nodes:
+  - id: plan
+    kind: model                    # one model call, emits sub-questions
+    schema: { subquestions: &quot;list[str]&quot; }
+    retry: { max_attempts: 2, backoff: exponential }
+  - id: fetch_order
+    kind: tool
+    tool: order_service.get
+    args_from: &quot;$.query.order_id&quot;   # depends on the request, not on plan
+  - id: fetch_logistics
+    kind: tool
+    tool: logistics_service.track
+    args_from: &quot;$.query.order_id&quot;
+  - id: fetch_policy
+    kind: tool
+    tool: kb.search
+    args_from: &quot;$.plan.subquestions&quot;
+    on_failure: degrade            # feed &quot;no policy found&quot; downstream
+  - id: join
+    kind: barrier                  # waits for data, not for tidiness
+    waits_for: [fetch_order, fetch_logistics, fetch_policy]
+  - id: answer
+    kind: model
+    prompt_ref: prompts/answer.md
+edges:
+  - { from: plan,            to: fetch_policy }
+  - { from: fetch_order,     to: join }
+  - { from: fetch_logistics, to: join }
+  - { from: fetch_policy,    to: join }
+  - { from: join,            to: answer }
+limits:
+  max_parallel_nodes: 4
+  idempotency_key_template: &quot;{run_id}:{node_id}&quot;
+runtime:
+  cycle_check: on_load
+  default_on_failure: fail_graph</pre></figure><span class="refs"><wbr/><a href="#src-S0514" class="ref" title="Azure Logic Apps Workflow Definition Language JSON schema 参考：工作流定义与 dependsOn 依赖表达">S0514</a><wbr/><a href="#src-S053" class="ref" title="Airflow 官方文档 Dags 核心概念：任务间通过上下游关系显式定义依赖">S053</a></span></div></div><div><div class="blk"><h3>执行器伪代码</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">未实跑。</span></figcaption><pre class="code">def run(graph, query):
+    indeg, adj = build_indegree(graph)        # adj[u] = u&#x27;s downstream
+    ready = deque(n for n in graph.nodes if indeg[n] == 0)
+    done, failed, ran = {}, set(), 0
+
+    while ready:
+        n = ready.popleft()
+        ran += 1
+        try:
+            with slot(graph.max_parallel_nodes):      # concurrency cap
+                done[n.id] = call_with_retry(n, bind(n.args_from, done, query))
+        except NodeFailed:
+            failed.add(n.id)
+            propagate(n, graph, adj, indeg, ready, done)
+            continue
+        release(n, adj, indeg, ready)
+
+    if ran &lt; len(graph.nodes) and not failed:
+        raise CycleError(stranded(graph, ran))  # stranded with no failure =&gt; a cycle
+
+def release(n, adj, indeg, ready):
+    for v in adj[n.id]:
+        indeg[v] -= 1
+        if indeg[v] == 0:
+            ready.append(v)
+
+def call_with_retry(n, args):
+    key = &quot;%s:%s&quot; % (run_id, n.id)             # same key across attempts
+    for attempt in range(n.retry.max_attempts):
+        try:
+            return n.kind.invoke(args, idempotency_key=key)
+        except Retryable:
+            sleep(n.retry.backoff(attempt))
+    raise NodeFailed(n)
+
+def propagate(n, graph, adj, indeg, ready, done):
+    policy = graph.policy_of(n)                # skip | degrade | fail_graph
+    if policy == &quot;fail_graph&quot;:
+        raise GraphFailed(n)
+    if policy == &quot;degrade&quot;:
+        done[n.id] = graph.placeholder_of(n)
+    release(n, adj, indeg, ready)              # unblock downstream either way</pre></figure></div></div><div><div class="blk"><h3>什么时候别上 DAG</h3><p>三个节点以内的直线流程，函数调用就够。上图要多养调度器、状态存储、限流，和每个写节点的幂等改造。直线失败是「第二步抛异常」，图失败是「join 等三个上游、一个降级返回」。</p></div></div></section><section class="chap" id="tools"><div class="chap-head"><span class="num">06</span><h2>工具写在哪：一个函数怎么变成模型敢调的东西</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/06_where-things-live.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/06_where-things-live.drawio 里继续编辑；按正文「描述、实现、权限元数据是三样东西」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>一个 tool 其实是三份东西，各住各的</h3><p>把「写一个工具」想成一件事是误解。真正跑起来的是三份分离的东西:给模型看的只有 name、description、parameters 三段;实现是一个普通函数,模型看不见它长什么样;而是否只读、要不要用户确认、超时多久、成本高低,属于你运行时注册表里的元数据,不进 schema。Azure Foundry 的 Chat Completions 里,工具定义被按模型训练时的语法拼进系统提示、和用户消息一起构成上下文——所以这三份天生就是分开的。</p><span class="refs"><wbr/><a href="#src-S061" class="ref" title="微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议">S061</a></span></div></div><div><div class="blk"><h3>落地到目录:三份各归一处</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">text</span><span class="codecap">本章示例的工程布局(示意目录,非某个官方仓库)。</span></figcaption><pre class="code">services/agent/
+  tools/
+    schema.py            # 给模型看的 tools 数组: name/description/parameters
+    registry.py          # 元数据: readonly? confirm? timeout_ms cost_tier
+    handlers/
+      query_order.py     # 真正的实现, 普通函数, 模型看不见
+      read_file.py
+  auth/
+    session_principal.py # 从会话注入 user_id, 不让模型填
+  loop/
+    turn.py              # 主循环: 只调度, 不写超时/重试
+</pre></figure></div></div><div><div class="blk"><h3>① 给模型看的那份：照 Foundry 的字段写</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">json</span><span class="codecap">字段形状照 Foundry 文档写；末尾那行元数据属于 registry，不进发给模型的 schema。</span></figcaption><pre class="code">tools = [
+  {
+    &quot;type&quot;: &quot;function&quot;,
+    &quot;function&quot;: {
+      &quot;name&quot;: &quot;query_order&quot;,
+      &quot;description&quot;: &quot;按订单号查当前物流节点与预计送达。只读; 不处理改地址。&quot;,
+      &quot;parameters&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;order_id&quot;: {&quot;type&quot;: &quot;string&quot;},
+          &quot;detail&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;brief&quot;, &quot;full&quot;]}
+        },
+        &quot;required&quot;: [&quot;order_id&quot;]
+      }
+    }
+  }
+]
+# registry.py:  ToolMeta(readonly=True, confirm=False, timeout_ms=2000, cost=&quot;low&quot;)
+</pre></figure><span class="refs"><wbr/><a href="#src-S061" class="ref" title="微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议">S061</a></span></div></div><div><div class="blk"><div class="tablewrap"><table><caption>② 定义放在哪：加载时机与风险</caption><tbody><tr><td class="k">写死在代码里</td><td>随进程启动加载、跟版本发布;改描述要发版,但最可控、不会漂 </td></tr><tr><td class="k">配置文件(YAML/JSON)</td><td>启动时读入;可不发版改文案,风险是描述与实现分头改、对不上 </td></tr><tr><td class="k">数据库 / 远端注册表</td><td>请求时才拉、可按租户热更新;风险最大——缓存过期,且不可信描述会进上下文 </td></tr></tbody></table></div></div></div><div><div class="blk"><h3>③ 描述文案是接口的一部分，不是注释</h3><p>模型只会照着 description 选工具,措辞含糊就变成选错。Foundry 文档把这点说得很实:函数定义连同系统/用户消息一起,构成模型判断要不要调用、调用哪个的上下文。还有一条硬约束——tool 与 function 的描述目前锁死在 1,024 字符。一个回合里它还可能并行发出多个调用,在 tool_calls 数组中各带唯一 id。</p><span class="refs"><wbr/><a href="#src-S061" class="ref" title="微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议">S061</a></span></div></div><div><div class="blk"><div class="note warn"><h4>两个描述互相抢活</h4><p>反例:query_order 写「获取订单相关信息」,get_shipping_eta 也写「获取订单相关信息」——两个都敢调,结果随机。修法:把 description 写成互斥的,各自限定输入与动作,如「按订单号查物流节点,只读」对上「按订单号改收货地址,需用户确认」,让边界一眼可辨。</p></div></div></div><div><div class="blk"><h3>④⑤⑥⑦ 实现层做的四件事</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">这是示意结构, ToolOk/ToolError/principal 等命名并非 Foundry 官方 API 形态;真正的校验、裁剪、鉴权、超时都发生在函数内部。</span></figcaption><pre class="code"># handlers/query_order.py
+@tool(name=&quot;query_order&quot;)
+def query_order(order_id, detail=&quot;brief&quot;, *, principal):   # principal 从会话注入, 非模型可填参数
+    if not ORDER_RE.match(order_id):                        # 拒绝原始SQL/白名单外输入, 回可行动错误
+        return ToolError(hint=&quot;order_id 需形如 A+4位数字; 合法 detail: brief|full&quot;)
+    rows = repo.fetch(order_id, limit=MAX+1)                # repo 用 service key(模型拿不到)+只读账号
+    return ToolOk(node=rows[0].node, eta=rows[0].eta,       # 裁剪: 只回必要字段
+                  count=len(rows), truncated=len(rows) &gt; MAX)
+</pre></figure></div></div><div><div class="blk"><h3>②③④⑤ 一个回合的两端：请求里的工具定义，与响应里的调用</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">json</span><span class="codecap">请求侧的 tools 定义与响应侧的 tool_calls：一个回合返回三个并行调用，各带唯一 id。</span></figcaption><pre class="code">{
+  &quot;tools&quot;: [ { &quot;type&quot;: &quot;function&quot;, &quot;function&quot;: {
+      &quot;name&quot;: &quot;query_order&quot;,
+      &quot;description&quot;: &quot;Get the current logistics node and ETA for an order.&quot;,
+      &quot;parameters&quot;: { &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: { &quot;order_id&quot;: {&quot;type&quot;: &quot;string&quot;},
+                        &quot;detail&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;brief&quot;, &quot;full&quot;]} },
+        &quot;required&quot;: [&quot;order_id&quot;] } } } ],
+  &quot;tool_choice&quot;: &quot;auto&quot;,
+
+  &quot;choices&quot;: [ { &quot;message&quot;: { &quot;role&quot;: &quot;assistant&quot;, &quot;content&quot;: null, &quot;tool_calls&quot;: [
+      { &quot;id&quot;: &quot;call_a1&quot;, &quot;type&quot;: &quot;function&quot;, &quot;function&quot;: { &quot;name&quot;: &quot;query_order&quot;, &quot;arguments&quot;: &quot;{\&quot;order_id\&quot;:\&quot;A1024\&quot;}&quot; } },
+      { &quot;id&quot;: &quot;call_b2&quot;, &quot;type&quot;: &quot;function&quot;, &quot;function&quot;: { &quot;name&quot;: &quot;query_order&quot;, &quot;arguments&quot;: &quot;{\&quot;order_id\&quot;:\&quot;A2048\&quot;}&quot; } },
+      { &quot;id&quot;: &quot;call_c3&quot;, &quot;type&quot;: &quot;function&quot;, &quot;function&quot;: { &quot;name&quot;: &quot;query_order&quot;, &quot;arguments&quot;: &quot;{\&quot;order_id\&quot;:\&quot;A4096\&quot;}&quot; } }
+  ] } } ]
+}
+</pre></figure><span class="refs"><wbr/><a href="#src-S061" class="ref" title="微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议">S061</a></span></div></div><div><div class="blk"><h3>⑤⑥ 把结果喂回去，以及怎么处理失败</h3><p>收到 tool_calls 后,你的代码解析 arguments(它是 JSON 字符串,Foundry 的示例用 json.loads 解开)去执行函数,再把结果以 role=tool 的消息拼回对话,每条都带上对应调用里那个 id 填进 tool_call_id——三个调用就补三条。返回值务必裁剪:整张表回灌既烧 token 又招幻觉,只留必要字段,外加条数与 truncated 标记。错误同样要回,但得可行动:参数名写错就报出合法名,内部超时就如实说超时,否则模型只会照原样再试一次。</p><span class="refs"><wbr/><a href="#src-S061" class="ref" title="微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议">S061</a></span></div></div><div><div class="blk"><h3>③⑤ 一个调用结果回填：role 固定为 tool</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">json</span><span class="codecap">role 必须是 tool,tool_call_id 指回 assistant 里对应的 call_c3;并行时另两个 call 也各回一条。name 可选,content 是回给模型的字符串,这里已裁成必要字段加 truncated。</span></figcaption><pre class="code">{
+  &quot;role&quot;: &quot;tool&quot;,
+  &quot;tool_call_id&quot;: &quot;call_c3&quot;,
+  &quot;name&quot;: &quot;query_order&quot;,
+  &quot;content&quot;: &quot;{\&quot;node\&quot;:\&quot;上海分拨中心已发出\&quot;,\&quot;eta\&quot;:\&quot;2026-10-04\&quot;,\&quot;count\&quot;:1,\&quot;truncated\&quot;:false}&quot;
+}
+</pre></figure><span class="refs"><wbr/><a href="#src-S061" class="ref" title="微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议">S061</a></span></div></div><div><div class="blk"><div class="tablewrap"><table><caption>tool_choice 四个取值的官方定义</caption><tbody><tr><td class="k">none</td><td>模型不调用任何工具,只生成消息 <span class="refs"><wbr/><a href="#src-S062" class="ref" title="微软 Foundry Chat Completions REST 参考(中文)：tool_choice 各取值的官方定义——none 不调用工具、auto 可在生成消息与调用一个或多个工具间选择、required 必须调用一个或多个工具">S062</a></span></td></tr><tr><td class="k">auto</td><td>模型自行决定生成消息还是调用一个或多个工具 <span class="refs"><wbr/><a href="#src-S062" class="ref" title="微软 Foundry Chat Completions REST 参考(中文)：tool_choice 各取值的官方定义——none 不调用工具、auto 可在生成消息与调用一个或多个工具间选择、required 必须调用一个或多个工具">S062</a></span></td></tr><tr><td class="k">required</td><td>模型必须调用一个或多个工具 <span class="refs"><wbr/><a href="#src-S062" class="ref" title="微软 Foundry Chat Completions REST 参考(中文)：tool_choice 各取值的官方定义——none 不调用工具、auto 可在生成消息与调用一个或多个工具间选择、required 必须调用一个或多个工具">S062</a></span></td></tr><tr><td class="k">指定某函数</td><td>传 {&quot;type&quot;:&quot;function&quot;,&quot;function&quot;:{&quot;name&quot;:&quot;query_order&quot;}} 强制调那个 <span class="refs"><wbr/><a href="#src-S061" class="ref" title="微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议">S061</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><h3>⑦ 鉴权：密钥和身份都不能经过模型</h3><p>服务账号的密钥绝不能经模型之手——它既不该看见,也不该填。工具需要的用户身份(如 user_id)要从会话上下文注入实现层,而不是开一个参数让模型自己填,否则伪造一个 id 就能越权。Foundry 关于负责任使用的建议说得很直白:按最小权限来,查库只给只读账号;而且不要把「在工具定义里删掉某能力」当成安全边界。</p><span class="refs"><wbr/><a href="#src-S061" class="ref" title="微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议">S061</a></span></div></div><div><div class="blk"><h3>⑧ 超时、重试、熔断放工具层，不放主循环</h3><p>这三样属于工具层而非主循环。原因是主循环不该知道某个 tool 是两秒的 HTTP 还是三十秒的批处理:让每个 tool 自带 timeout 与 max_retry,熔断按工具维度跳闸——一个下游挂了,不至于拖垮整个回合格。</p></div></div></section><section class="chap" id="skills"><div class="chap-head"><span class="num">07</span><h2>skill 不是 tool：能力的说明书放哪、什么时候被读进来</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/07_skill-loading.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/07_skill-loading.drawio 里继续编辑；按正文「清单常驻，命中才读正文」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><div class="cmp"><div class="col "><h4>工具</h4><ul><li>名字加 JSON Schema</li><li>模型决定何时调</li><li>一次调用一次副作用</li></ul></div><div class="col "><h4>技能</h4><ul><li>一个目录，核心是 SKILL.md</li><li>不执行，只改下一步怎么想</li><li>能规定先调哪个才答</li></ul></div><div class="verdict">工具是「能做什么」：一次调用、有输入输出、由运行时执行；技能是「该怎么做」：注入提示词的说明，不执行任何东西。</div></div></div></div><div><div class="blk"><h3>技能放哪：一个技能一个文件夹</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">text</span><span class="codecap">Claude Code 项目级放 .claude/skills/&lt;name&gt;/SKILL.md，个人级放 ~/.claude/skills/；Copilot 还认 .github/skills。</span></figcaption><pre class="code">skills/
+└── order-delay-triage/
+    ├── SKILL.md              # required
+    ├── references/
+    │   └── carriers.md       # level 3, read on demand
+    ├── scripts/
+    │   └── fetch_trace.py    # run it, don&#x27;t read it
+    └── assets/
+        └── reply-template.md</pre></figure><span class="refs"><wbr/><a href="#src-S071" class="ref" title="Agent Skills 规范：目录结构（SKILL.md 必需，scripts/、references/、assets/ 可选）；元信息字段与约束（name 必填、≤64 字符、须等于目录名；description 必填、≤1024 字符；allowed-tools 实验性且只预批权限）；渐进披露三档（元信息约 100 token、正文建议 5000 token 以内、资源按需）">S071</a><wbr/><a href="#src-S074" class="ref" title="Claude Code 技能文档：项目级路径 .claude/skills/&lt;skill-name&gt;/SKILL.md、个人级 ~/.claude/skills/；捆绑技能是 prompt-based、由模型用自己的工具编排，多数内置命令则直接执行固定逻辑；清单里 description 与 when_to_use 合并截断在 1,536 字符，清单额度按模型上下文窗口的 1% 计；正文进入对话后跨轮保留、不再重读文件">S074</a><wbr/><a href="#src-S075" class="ref" title="GitHub Copilot 文档：Agent Skills 规范是开放标准；项目技能可放 .github/skills、.claude/skills 或 .agents/skills，个人技能放 ~/.copilot/skills 或 ~/.agents/skills">S075</a></span></div></div><div><div class="blk"><h3>渐进披露：清单常驻，正文按需</h3><p>正文全塞进上下文，先被挤掉的是用户的问题与结果。加载因此分两级：启动只预载 name 与 description 进系统提示，命中才读全文。三档：元信息约 100 token、正文 5000 token 以内、资源按需。Claude Code 把预算写成硬数字：description 与 when_to_use 合并截断在 1,536 字符，清单额度取上下文窗口的 1%。</p><span class="refs"><wbr/><a href="#src-S071" class="ref" title="Agent Skills 规范：目录结构（SKILL.md 必需，scripts/、references/、assets/ 可选）；元信息字段与约束（name 必填、≤64 字符、须等于目录名；description 必填、≤1024 字符；allowed-tools 实验性且只预批权限）；渐进披露三档（元信息约 100 token、正文建议 5000 token 以内、资源按需）">S071</a><wbr/><a href="#src-S072" class="ref" title="Agent Skills 概览：技能是至少含 SKILL.md 的目录；加载分 Discovery／Activation／Execution 三阶段，启动只读 name 与 description；格式由 Anthropic 首创后开放为标准；技能被定位成可移植、受版本控制的文件夹">S072</a><wbr/><a href="#src-S073" class="ref" title="Anthropic 工程博客 2025-10-16（2025-12-18 更新为开放标准）：启动时把每个已装技能的 name 与 description 预载进系统提示，命中才读全文；技能内脚本可由模型作为工具执行；能装进技能的材料实际上不设上限">S073</a><wbr/><a href="#src-S074" class="ref" title="Claude Code 技能文档：项目级路径 .claude/skills/&lt;skill-name&gt;/SKILL.md、个人级 ~/.claude/skills/；捆绑技能是 prompt-based、由模型用自己的工具编排，多数内置命令则直接执行固定逻辑；清单里 description 与 when_to_use 合并截断在 1,536 字符，清单额度按模型上下文窗口的 1% 计；正文进入对话后跨轮保留、不再重读文件">S074</a></span></div></div><div><div class="blk"><h3>两个字段决定它会不会被用上</h3><p>必填只有 name（≤64 字符，小写加连字符，等于目录名）与 description（≤1024 字符）。后者要同时回答「做什么」与「什么时候用」，带上用户真会说的词：「帮忙处理文档」几乎不触发，「提取 PDF 文本与表格、填表单——提到 PDF 或字段时用」才命中。清单只给这一栏位置：写窄了永不触发，写宽了到处误触发。</p><span class="refs"><wbr/><a href="#src-S071" class="ref" title="Agent Skills 规范：目录结构（SKILL.md 必需，scripts/、references/、assets/ 可选）；元信息字段与约束（name 必填、≤64 字符、须等于目录名；description 必填、≤1024 字符；allowed-tools 实验性且只预批权限）；渐进披露三档（元信息约 100 token、正文建议 5000 token 以内、资源按需）">S071</a></span></div></div><div><div class="blk"><h3>一段技能文件</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">markdown</span><span class="codecap">头决定触发，正文决定做法。</span></figcaption><pre class="code">---
+name: order-delay-triage
+description: &gt;-
+  排查订单没到：查轨迹、判承运商异常、给赔付口径。
+  用户提到「没到」「延迟」「催派」「签收」时用。
+metadata:
+  owner: order-platform
+  version: &quot;3&quot;
+allowed-tools: Read Grep
+---
+
+# Steps
+
+1. Call get_order; confirm status and promised date.
+2. Call get_tracking. An empty trace is not a conclusion: call
+   get_carrier_incident first.
+3. Answer as delivered only when signed_at is present.
+
+Look up rates in references/carriers.md; never write one from memory.</pre></figure><span class="refs"><wbr/><a href="#src-S071" class="ref" title="Agent Skills 规范：目录结构（SKILL.md 必需，scripts/、references/、assets/ 可选）；元信息字段与约束（name 必填、≤64 字符、须等于目录名；description 必填、≤1024 字符；allowed-tools 实验性且只预批权限）；渐进披露三档（元信息约 100 token、正文建议 5000 token 以内、资源按需）">S071</a></span></div></div><div><div class="blk"><h3>重叠区</h3><p>技能可以规定「按这个顺序调这三个工具」：流程写在技能里，执行仍在工具里。别把这段编排注册成第四个工具——那样失败时看不见中间态。</p></div></div><div><div class="blk"><h3>加载器伪代码</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">read_skill 本身做成工具：正文靠一次调用进上下文。</span></figcaption><pre class="code"># startup: the listing stays resident, bodies do not
+def system_prompt(skills):
+    listing = [{&quot;name&quot;: s.name,
+                &quot;description&quot;: s.description[:1536]}
+               for s in skills]
+    return SYSTEM + json.dumps(listing)
+
+# main loop: injection point is right before each model call
+def run(question, skills, tools):
+    msgs = [user(question)]
+    while True:
+        out = model(system_prompt(skills),
+                    tools + [read_skill], msgs)
+        if out.calls(&quot;read_skill&quot;):            # hit: body enters context
+            msgs.append(body(skills[out.name]))
+            continue
+        if out.calls_tool():
+            msgs.append(execute(out, tools))   # execution stays in tools
+            continue
+        return out.text</pre></figure><span class="refs"><wbr/><a href="#src-S074" class="ref" title="Claude Code 技能文档：项目级路径 .claude/skills/&lt;skill-name&gt;/SKILL.md、个人级 ~/.claude/skills/；捆绑技能是 prompt-based、由模型用自己的工具编排，多数内置命令则直接执行固定逻辑；清单里 description 与 when_to_use 合并截断在 1,536 字符，清单额度按模型上下文窗口的 1% 计；正文进入对话后跨轮保留、不再重读文件">S074</a></span></div></div><div><div class="blk"><h3>这层约束去哪里查</h3><p>最大输入输出 token 就写在供应商的模型表里：Azure OpenAI 用 Context Window 与 Max Output Tokens 两列，并说明 Input 与 Output 是各自上限、不可叠加。</p><span class="refs"><wbr/><a href="#src-S076" class="ref" title="Azure OpenAI 模型文档 Understand model token limits：模型表以 Context Window 与 Max Output Tokens 两列给出上限；分行标注的 Input 与 Output 是各自上限而非可叠加额度，输入越多留给生成的越少">S076</a></span></div></div><div><div class="blk"><h3>版本管理，以及这条分界算不算标准</h3><p>技能得进版本库、和代码一起发布：规范把它定位成「可移植、受版本控制的文件夹」。放进数据库由运营改，就丢掉三样——哪一版说明对应那次回答（无从回滚）、改动经谁审、评测集还能不能复跑。我没找到官方给出的 skill 与 tool 分层定义：MCP 只列 tools、resources、prompts，其中没有 skill。这条分界是工程约定。</p><span class="refs"><wbr/><a href="#src-S072" class="ref" title="Agent Skills 概览：技能是至少含 SKILL.md 的目录；加载分 Discovery／Activation／Execution 三阶段，启动只读 name 与 description；格式由 Anthropic 首创后开放为标准；技能被定位成可移植、受版本控制的文件夹">S072</a><wbr/><a href="#src-S074" class="ref" title="Claude Code 技能文档：项目级路径 .claude/skills/&lt;skill-name&gt;/SKILL.md、个人级 ~/.claude/skills/；捆绑技能是 prompt-based、由模型用自己的工具编排，多数内置命令则直接执行固定逻辑；清单里 description 与 when_to_use 合并截断在 1,536 字符，清单额度按模型上下文窗口的 1% 计；正文进入对话后跨轮保留、不再重读文件">S074</a><wbr/><a href="#src-S077" class="ref" title="MCP 官方文档：服务端三种原语为 tools（model-controlled，JSON Schema 定义类型化输入输出，tools/list 发现、tools/call 执行）、resources、prompts；该分类中没有 skill">S077</a></span></div></div></section><section class="chap" id="db-and-service"><div class="chap-head"><span class="num">08</span><h2>后端 service：把模型的话变成一条安全的查询</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/08_db-fanout.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/08_db-fanout.drawio 里继续编辑；按正文「只允许参数化查询」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>密钥与账单只能有一个出口</h3><p>密钥、限流、审计、重试、成本统计只能有一个地方做。逻辑写两遍，密钥就会出现两处，出事时也拼不出完整调用链。OWASP 2025 版生成式 AI 十大风险把成本失控单列为 LLM10 Unbounded Consumption。</p><span class="refs"><wbr/><a href="#src-S0811" class="ref" title="OWASP GenAI/LLM 十大风险 2025 版清单，含 LLM05 Improper Output Handling、LLM06 Excessive Agency、LLM10 Unbounded Consumption">S0811</a></span></div></div><div><div class="blk"><h3>调模型：把隐式默认改成显式设定</h3><p>默认值是按能跑通选的，不是按你的延迟目标选的，逐项见下表。要显式写四件：连接超时与读超时分开，读超时必须大于首字节到达时间，否则流式响应被自己掐断；重试上限压到 1，超时与重试叠乘会放大雪崩；两条路径共用同一套超时；每个回合设最大工具调用次数，超限就返回降级答案。</p><span class="refs"><wbr/><a href="#src-S084" class="ref" title="OpenAI Python SDK README：默认 10 分钟超时、默认重试 2 次，重试仅覆盖连接错误与 408/409/429/5xx，支持 httpx.Timeout 分设 connect/read">S084</a><wbr/><a href="#src-S085" class="ref" title="httpx 官方超时文档：默认对网络静默 5 秒抛 TimeoutException，可细粒度分设 connect/read/write/pool">S085</a><wbr/><a href="#src-S086" class="ref" title="SQLAlchemy 连接池文档：pool_size 默认 5、max_overflow 默认 10，池允许的同时连接数为两者之和，等待连接超时默认 30 秒">S086</a><wbr/><a href="#src-S089" class="ref" title="Node.js http 官方文档：server.requestTimeout 默认 300000 毫秒，headersTimeout 取其与 60000 的较小值">S089</a></span></div></div><div><div class="blk"><h3>模型客户端与回合预算</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">接口形态示意。回合上限由本服务自己计数，SDK 不提供该字段；stream=False 走同一组超时常量。</span></figcaption><pre class="code">import httpx
+from openai import OpenAI
+
+MODEL = OpenAI(
+    timeout=httpx.Timeout(60.0, connect=3.0, read=20.0),
+    max_retries=1,
+)
+
+def run_turn(msgs, tools, max_tool_calls=6):
+    for _ in range(max_tool_calls):
+        resp = MODEL.chat.completions.create(
+            model=MODEL_ID, messages=msgs, tools=tools, stream=True)
+        step = consume(resp)
+        if not step.tool_calls:
+            return step.text
+        msgs += execute(step.tool_calls)
+    return degraded_answer(msgs)</pre></figure></div></div><div><div class="blk"><h3>查库这条链路：只接受参数</h3><p>入参只能是订单号、用户 ID、日期区间这类标量，不该有字段容得下一段 SQL。这条攻击路径已被命名为 P₂SQL 注入：自然语言经 LangChain 一类中间件转成 SQL 后原样执行；论文测了 7 个主流模型，结论是这类应用高度易受攻击，并提出 4 种可集成的防御。参数化还必须发生在服务端。</p><span class="refs"><wbr/><a href="#src-S083" class="ref" title="《From Prompt Injections to SQL Injection Attacks》提出 P2SQL 注入，以 LangChain 为案例评测 7 个主流 LLM，提出 4 种防御；发表于 ICSE 2025">S083</a><wbr/><a href="#src-S082" class="ref" title="OWASP《查询参数化速查表》：SQL 注入最好由参数化查询防住，并提醒参数化必须在服务端完成">S082</a></span></div></div><div><div class="blk"><h3>模型递来一段 SQL 时的拒绝路径</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">语句常量写死在代码里，模型只填绑定变量；OWASP 把参数化查询列为防注入的首选手段。</span></figcaption><pre class="code">class OrderArgs(BaseModel):
+    order_id: str = Field(pattern=r&quot;^[A-Z0-9]{8,14}$&quot;)
+
+ORDER_SQL = (&quot;SELECT status, shipped_at, carrier &quot;
+             &quot;FROM v_order_agent WHERE order_id = :oid LIMIT 50&quot;)
+
+@tool(args_schema=OrderArgs)
+def lookup_order(raw: dict) -&gt; dict:
+    for poison in (&quot;sql&quot;, &quot;query&quot;, &quot;statement&quot;):
+        if poison in raw:
+            audit.reject(tool=&quot;lookup_order&quot;, reason=&quot;raw_sql&quot;)
+            raise ToolArgumentError(&quot;only order_id is accepted&quot;)
+    if set(raw) - set(OrderArgs.model_fields):
+        raise ToolArgumentError(&quot;unknown argument&quot;)
+    return shape(repo.fetch(ORDER_SQL, {&quot;oid&quot;: raw[&quot;order_id&quot;]}))</pre></figure><span class="refs"><wbr/><a href="#src-S081" class="ref" title="OWASP《SQL 注入防范速查表》：首选防御是预处理语句与参数化查询，另设「最小权限」「用视图强化最小权限」两节">S081</a><wbr/><a href="#src-S082" class="ref" title="OWASP《查询参数化速查表》：SQL 注入最好由参数化查询防住，并提醒参数化必须在服务端完成">S082</a></span></div></div><div><div class="blk"><h3>返回结构稳定，截断要明说</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">少了行而 truncated 不为真，模型会把它当全量并断言不存在。</span></figcaption><pre class="code">def shape(rows, limit=50):
+    truncated = len(rows) &gt; limit
+    return {
+        &quot;ok&quot;: True,
+        &quot;rows&quot;: rows[:limit],
+        &quot;row_count&quot;: min(len(rows), limit),
+        &quot;truncated&quot;: truncated,
+        &quot;cursor&quot;: rows[limit - 1][&quot;order_id&quot;] if truncated else None,
+    }</pre></figure></div></div><div><div class="blk"><h3>给模型看到的表要比给用户的窄</h3><p>生产库连接不能交给 agent；只读账号、列白名单视图、按租户过滤是同一件事的三个面。OWASP 建议：账号只需要表的一部分时建视图，把权限指向视图而不是底表，并尽量永不授予建表或删表权。PostgreSQL 行级安全在没有任何策略时默认全拒，但表主通常不受策略约束。</p><span class="refs"><wbr/><a href="#src-S081" class="ref" title="OWASP《SQL 注入防范速查表》：首选防御是预处理语句与参数化查询，另设「最小权限」「用视图强化最小权限」两节">S081</a><wbr/><a href="#src-S087" class="ref" title="PostgreSQL 官方文档 5.9 Row Security Policies：按用户限制可见行；无策略时默认全拒；表主通常不受策略约束">S087</a></span></div></div><div><div class="blk"><h3>只读角色、收窄视图与行级策略</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">sql</span><span class="codecap">写法示意，未在你的库上执行过。CONNECTION LIMIT 按实例配额定；视图与策略可同用，也可只留一个。</span></figcaption><pre class="code">CREATE ROLE agent_ro LOGIN CONNECTION LIMIT 20;
+GRANT USAGE ON SCHEMA app TO agent_ro;
+
+CREATE VIEW v_order_agent AS
+    SELECT order_id, status, shipped_at, carrier
+    FROM orders
+    WHERE tenant_id = current_setting(&#x27;app.tenant_id&#x27;)::bigint;
+
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+CREATE POLICY tenant_read ON orders
+    AS PERMISSIVE FOR SELECT TO agent_ro
+    USING (tenant_id = current_setting(&#x27;app.tenant_id&#x27;)::bigint);</pre></figure><span class="refs"><wbr/><a href="#src-S087" class="ref" title="PostgreSQL 官方文档 5.9 Row Security Policies：按用户限制可见行；无策略时默认全拒；表主通常不受策略约束">S087</a><wbr/><a href="#src-S081" class="ref" title="OWASP《SQL 注入防范速查表》：首选防御是预处理语句与参数化查询，另设「最小权限」「用视图强化最小权限」两节">S081</a></span></div></div><div><div class="blk"><div class="tablewrap"><table><caption>各层出厂默认值</caption><tbody><tr><td class="k">OpenAI SDK 总超时</td><td>10 分钟 <span class="refs"><wbr/><a href="#src-S084" class="ref" title="OpenAI Python SDK README：默认 10 分钟超时、默认重试 2 次，重试仅覆盖连接错误与 408/409/429/5xx，支持 httpx.Timeout 分设 connect/read">S084</a></span></td></tr><tr><td class="k">OpenAI SDK 重试</td><td>2 次，仅连接错误与 408/409/429/5xx <span class="refs"><wbr/><a href="#src-S084" class="ref" title="OpenAI Python SDK README：默认 10 分钟超时、默认重试 2 次，重试仅覆盖连接错误与 408/409/429/5xx，支持 httpx.Timeout 分设 connect/read">S084</a></span></td></tr><tr><td class="k">httpx 默认</td><td>5 秒无活动即超时 <span class="refs"><wbr/><a href="#src-S085" class="ref" title="httpx 官方超时文档：默认对网络静默 5 秒抛 TimeoutException，可细粒度分设 connect/read/write/pool">S085</a></span></td></tr><tr><td class="k">SQLAlchemy 池</td><td>5 条常驻 + 10 条溢出，等连接 30 秒 <span class="refs"><wbr/><a href="#src-S086" class="ref" title="SQLAlchemy 连接池文档：pool_size 默认 5、max_overflow 默认 10，池允许的同时连接数为两者之和，等待连接超时默认 30 秒">S086</a></span></td></tr><tr><td class="k">PostgreSQL</td><td>max_connections 通常 100 <span class="refs"><wbr/><a href="#src-S088" class="ref" title="PostgreSQL 连接设置文档：max_connections 默认为 100（内核不支持时更少），只能服务端启动时设置">S088</a></span></td></tr><tr><td class="k">Node.js</td><td>requestTimeout 300000 毫秒 <span class="refs"><wbr/><a href="#src-S089" class="ref" title="Node.js http 官方文档：server.requestTimeout 默认 300000 毫秒，headersTimeout 取其与 60000 的较小值">S089</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><h3>会话落库：写两次，标一次</h3><p>收到请求就先写用户那一行并带幂等键，拿到回复再补助手那一行；补写失败只把该行标成待补，不回滚用户输入，重放靠幂等键去重。历史表给人看上下文，审计表记谁调了哪个工具、参数摘要、耗时与花费，两者写入路径和保留期分开。</p><span class="refs"><wbr/><a href="#src-S0810" class="ref" title="OWASP《日志速查表》：访问令牌、数据库连接串、口令、敏感个人信息等不得原样入日志，应删除、掩码、散列或加密">S0810</a></span></div></div><div><div class="blk"><h3>连接池、并发与日志红线</h3><p>两本账一起算：一次回合会串行触发多次调用，每次各占一条连接时，两三个并发就占满单进程 15 条的池，后来的请求只在等连接超时后报错，看起来却像模型变慢。日志既不放用户原文也不放密钥整段——OWASP 把访问令牌、数据库连接串、口令列为必须删除、掩码或散列的对象，只留摘要与请求 ID。</p><span class="refs"><wbr/><a href="#src-S086" class="ref" title="SQLAlchemy 连接池文档：pool_size 默认 5、max_overflow 默认 10，池允许的同时连接数为两者之和，等待连接超时默认 30 秒">S086</a><wbr/><a href="#src-S0810" class="ref" title="OWASP《日志速查表》：访问令牌、数据库连接串、口令、敏感个人信息等不得原样入日志，应删除、掩码、散列或加密">S0810</a></span></div></div></section><section class="chap" id="streaming-ui"><div class="chap-head"><span class="num">09</span><h2>流式与「正在想」：前端怎么把过程显示出来而不骗人</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/09_stream-states.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/09_stream-states.drawio 里继续编辑；按正文「事件契约决定前端能显示什么」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>传输选型</h3><p>轮询把首字延迟钉在间隔上。WebSocket 双向，但重连、心跳、帧序和鉴权都要自己写。SSE 是一条普通 HTTP 响应，鉴权沿用请求头与 cookie，断线自动重连并把最后收到的 id 放进 Last-Event-ID 头报回服务端。模型输出本来就单向，于是聊天框多用它。</p><span class="refs"><wbr/><a href="#src-S091" class="ref" title="WHATWG HTML Living Standard 9.2 Server-sent events：text/event-stream 的 ABNF、event/data/id/retry 四字段与空行结束、默认事件名 message、9.2.4 Last-Event-ID 头、9.2.7 关于中间层分块与每服务器连接上限的告诫、约 15 秒一条注释行、204 停止重连">S091</a></span></div></div><div><div class="blk"><figure class="codewrap"><figcaption class="codebar"><span class="lang">http</span><span class="codecap">帧格式来自 WHATWG。</span></figcaption><pre class="code">Content-Type: text/event-stream
+
+event: start
+id: 1
+data: {&quot;turn_id&quot;:&quot;t_01&quot;,&quot;steps&quot;:[{&quot;id&quot;:&quot;s_1&quot;,&quot;title&quot;:&quot;lookup&quot;}]}
+
+: keepalive
+
+event: delta
+id: 2
+data: {&quot;text&quot;:&quot;Because&quot;}
+
+event: tool_call
+id: 3
+data: {&quot;call_id&quot;:&quot;c_9&quot;,&quot;name&quot;:&quot;order.lookup&quot;,&quot;arguments&quot;:{&quot;order_id&quot;:&quot;A-7742&quot;}}
+
+event: tool_result
+id: 4
+data: {&quot;call_id&quot;:&quot;c_9&quot;,&quot;ok&quot;:true}
+
+event: step
+id: 5
+data: {&quot;step_id&quot;:&quot;s_1&quot;,&quot;status&quot;:&quot;running&quot;}
+
+event: done
+id: 6
+data: {&quot;finish_reason&quot;:&quot;stop&quot;}
+
+data: [DONE]</pre></figure><span class="refs"><wbr/><a href="#src-S091" class="ref" title="WHATWG HTML Living Standard 9.2 Server-sent events：text/event-stream 的 ABNF、event/data/id/retry 四字段与空行结束、默认事件名 message、9.2.4 Last-Event-ID 头、9.2.7 关于中间层分块与每服务器连接上限的告诫、约 15 秒一条注释行、204 停止重连">S091</a><wbr/><a href="#src-S098" class="ref" title="Microsoft Foundry「Content Streaming in Azure OpenAI」：注解分块 choices 为空数组、样例以 data: [DONE] 收尾、默认模式下内容按缓冲区大小成块返回而非逐 token">S098</a></span></div></div><div><div class="blk"><h3>关掉缓冲</h3><p>流式变成整段蹦出来，几乎总是中间层在攒字节。nginx 的 proxy_buffering 默认开着，先塞满 proxy_buffers 才往外发，关掉才是收到即转；gzip_buffers 是压缩响应的缓冲区。后端也可自己回 X-Accel-Buffering: no 关掉它。</p><span class="refs"><wbr/><a href="#src-S092" class="ref" title="nginx ngx_http_proxy_module 文档：proxy_buffering 默认 on、proxy_buffers 默认 8 4k|8k、X-Accel-Buffering 响应头可开关缓冲">S092</a><wbr/><a href="#src-S093" class="ref" title="nginx ngx_http_gzip_module 文档：gzip_buffers 默认 32 4k|16 8k，用于压缩响应的缓冲区">S093</a><wbr/><a href="#src-S094" class="ref" title="nginx ngx_http_core_module 文档：chunked_transfer_encoding 默认 on">S094</a></span></div></div><div><div class="blk"><figure class="codewrap"><figcaption class="codebar"><span class="lang">nginx</span></figcaption><pre class="code">location /v1/chat/stream {
+    proxy_pass http://agent_backend;
+    proxy_http_version 1.1;
+    proxy_set_header Connection &quot;&quot;;
+    proxy_buffering off;
+    gzip off;
+    chunked_transfer_encoding on;
+    proxy_read_timeout 3600s;
+}
+
+# or let the backend decide, per response:
+#   X-Accel-Buffering: no</pre></figure><span class="refs"><wbr/><a href="#src-S092" class="ref" title="nginx ngx_http_proxy_module 文档：proxy_buffering 默认 on、proxy_buffers 默认 8 4k|8k、X-Accel-Buffering 响应头可开关缓冲">S092</a><wbr/><a href="#src-S094" class="ref" title="nginx ngx_http_core_module 文档：chunked_transfer_encoding 默认 on">S094</a></span></div></div><div><div class="blk"><h3>事件契约</h3><p>契约的价值是顺序可断言：start 在最前且一次，delta 只追加，tool_call 早于配对的 tool_result，done 在最后。微软文档两条边界要抄进解析器：finish_reason 直到最后一个分块都是 null，注解分块的 choices 是空数组。未知事件类型要忽略，不抛错。</p><span class="refs"><wbr/><a href="#src-S097" class="ref" title="Microsoft Foundry「Work with chat completion models」：流式响应中 finish_reason 直到最后一个分块之前都是 null">S097</a><wbr/><a href="#src-S098" class="ref" title="Microsoft Foundry「Content Streaming in Azure OpenAI」：注解分块 choices 为空数组、样例以 data: [DONE] 收尾、默认模式下内容按缓冲区大小成块返回而非逐 token">S098</a></span></div></div><div><div class="blk"><figure class="codewrap"><figcaption class="codebar"><span class="lang">typescript</span><span class="codecap">建议的接口形态，非真跑通过的响应。</span></figcaption><pre class="code">type StreamEvent =
+  | { type: &quot;start&quot;;       turnId: string; steps: { id: string; title: string }[] }
+  | { type: &quot;delta&quot;;       text: string }
+  | { type: &quot;tool_call&quot;;   callId: string; name: string; arguments: unknown }
+  | { type: &quot;tool_result&quot;; callId: string; ok: boolean; error?: string }
+  | { type: &quot;step&quot;;        stepId: string;
+      status: &quot;pending&quot; | &quot;running&quot; | &quot;done&quot; | &quot;failed&quot; }
+  | { type: &quot;error&quot;;       code: string; message: string; retryable: boolean }
+  | { type: &quot;done&quot;;        finishReason: string; stopped?: boolean };
+
+function onEvent(raw: Record&lt;string, string&gt;) {
+  const e = parse(raw) as StreamEvent;
+  switch (e.type) {
+    case &quot;delta&quot;: append(e.text); break;
+    case &quot;tool_call&quot;: openCollapsedCard(e); break;
+    case &quot;step&quot;: markStep(e.stepId, e.status); break;
+    case &quot;done&quot;: finalize(e); break;
+    default: break; // unknown type: ignore, never throw
+  }
+}</pre></figure><span class="refs"><wbr/><a href="#src-S091" class="ref" title="WHATWG HTML Living Standard 9.2 Server-sent events：text/event-stream 的 ABNF、event/data/id/retry 四字段与空行结束、默认事件名 message、9.2.4 Last-Event-ID 头、9.2.7 关于中间层分块与每服务器连接上限的告诫、约 15 秒一条注释行、204 停止重连">S091</a></span></div></div><div><div class="blk"><ol class="steps"><li><span class="sp-title">步骤 1</span><span>每个 delta 只 append；整段重渲会抹掉选中文本与输入法候选。</span></li><li><span class="sp-title">步骤 2</span><span>思考文本、工具入参与结果收进 details，展开是显式动作。</span></li><li><span class="sp-title">步骤 3</span><span>任何 running 都挂计时器，到点改无响应并允许重试。</span></li></ol></div></div><div><div class="blk"><div class="note myth"><h4>思维链不是进度</h4><p>进度该显示拆解那一章声明过的步骤和它们的真实状态：名字能对账，状态由执行器回报。模型的内部文本没有校验，可能在任务已经失败时照样写得通顺。</p></div></div></div><div><div class="blk"><h3>取消与重连</h3><p>点停止不能只把按钮切灰：AbortController 掐掉这条流，服务端同步真中止上游调用，并落一条被中止的记录，否则计费与审计会以为答完了。重连按事件 id 从那格续发，不是重问一遍模型；彻底终止就回 204。</p><span class="refs"><wbr/><a href="#src-S091" class="ref" title="WHATWG HTML Living Standard 9.2 Server-sent events：text/event-stream 的 ABNF、event/data/id/retry 四字段与空行结束、默认事件名 message、9.2.4 Last-Event-ID 头、9.2.7 关于中间层分块与每服务器连接上限的告诫、约 15 秒一条注释行、204 停止重连">S091</a></span></div></div><div><div class="blk"><h3>滚动与无障碍</h3><p>自动跟随只认一个条件：还在贴底，用户一上滑就停。长代码块用 overflow-x: auto，别让一行 SQL 撑破版心。WCAG SC 4.1.3 要求状态消息能由 role 或属性程序化确定、不夺焦点也能播报，故挂 role=status；SC 1.4.1 要求颜色不能是唯一手段。</p><span class="refs"><wbr/><a href="#src-S096" class="ref" title="W3C WAI Understanding SC 4.1.3 Status Messages（Level AA）条款原文与 role=status / aria-live 充分技术">S096</a><wbr/><a href="#src-S095" class="ref" title="W3C WAI Understanding SC 1.4.1 Use of Color（Level A）条款原文">S095</a></span></div></div><div><div class="blk"><h3>延迟指标</h3><p>两个数分开量：首字时间与完整时间。只盯前者会教人作弊：攒够缓冲一次性 flush，指标好看而观感更差。微软文档的默认模式正是如此——内容先缓冲、过完护栏才放行，按缓冲区大小成块而非逐 token，完整时间几乎不变。</p><span class="refs"><wbr/><a href="#src-S098" class="ref" title="Microsoft Foundry「Content Streaming in Azure OpenAI」：注解分块 choices 为空数组、样例以 data: [DONE] 收尾、默认模式下内容按缓冲区大小成块返回而非逐 token">S098</a></span></div></div></section><section class="chap" id="format-contract"><div class="chap-head"><span class="num">10</span><h2>输出格式怎么保证：契约、约束解码、修复回环，三段都不能少</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/10_format-loop.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/10_format-loop.drawio 里继续编辑；按正文「schema 保证语法不保证内容」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>先分清两种「格式」</h3><p>先分清给用户看的排版与给程序用的结构（JSON）。混在一句话里的系统，改一次前端样式要重跑模型，模型换个字段名版式就塌。</p><p>排版归渲染层保证，结构归 schema 保证，两条路分开走。</p></div></div><div><div class="blk"><figure class="codewrap"><figcaption class="codebar"><span class="lang">json</span><span class="codecap">请求体形态照官方 REST 示例改写，字段为自拟示例。</span></figcaption><pre class="code">{
+  &quot;model&quot;: &quot;YOUR_MODEL_DEPLOYMENT_NAME&quot;,
+  &quot;messages&quot;: [
+    {&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: &quot;Answer with the order status.&quot;},
+    {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: &quot;Why has order 12345 not arrived?&quot;}
+  ],
+  &quot;response_format&quot;: {
+    &quot;type&quot;: &quot;json_schema&quot;,
+    &quot;json_schema&quot;: {
+      &quot;name&quot;: &quot;OrderStatusResponse&quot;,
+      &quot;strict&quot;: true,
+      &quot;schema&quot;: {
+        &quot;type&quot;: &quot;object&quot;,
+        &quot;properties&quot;: {
+          &quot;status&quot;: {&quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;ok&quot;, &quot;refused&quot;]},
+          &quot;rows&quot;: {
+            &quot;type&quot;: &quot;array&quot;,
+            &quot;items&quot;: {
+              &quot;type&quot;: &quot;object&quot;,
+              &quot;properties&quot;: {
+                &quot;order_id&quot;: {&quot;type&quot;: &quot;string&quot;},
+                &quot;carrier&quot;:  {&quot;type&quot;: &quot;string&quot;, &quot;enum&quot;: [&quot;sf&quot;, &quot;jd&quot;, &quot;zto&quot;]},
+                &quot;eta&quot;:      {&quot;type&quot;: [&quot;string&quot;, &quot;null&quot;]}
+              },
+              &quot;required&quot;: [&quot;order_id&quot;, &quot;carrier&quot;, &quot;eta&quot;],
+              &quot;additionalProperties&quot;: false
+            }
+          }
+        },
+        &quot;required&quot;: [&quot;status&quot;, &quot;rows&quot;],
+        &quot;additionalProperties&quot;: false
+      }
+    }
+  }
+}</pre></figure><span class="refs"><wbr/><a href="#src-S101" class="ref" title="微软 Learn「Azure OpenAI structured outputs 使用指南」：Chat Completions 在 response_format、Responses 在 text.format 里给 JSON Schema 并设 strict: true；首个支持的 API 版本为 2024-08-01-preview，最新 GA API v1 亦支持；官方只收 JSON Schema 子集——所有字段必须列进 required、object 必须 additionalProperties: false、一份 schema 最多 100 个属性且嵌套不超过 5 层，字符串的 minlength/maxLength/pattern/format、数值的 minimum/maximum/multipleOf、数组的 minItems/maxItems 等不支持；与并行函数调用互斥（parallel_tool_calls 设为 false）；含递归界面 schema 示例（type 限定 div/button/header/section/field/form，children 以 $ref 自引用）与 query 工具示例（table_name/columns/operator 全部写成 enum）；Responses 示例检查 status 是否为 completed 并读 incomplete_details">S101</a></span></div></div><div><div class="blk"><h3>约束解码锁的是语法，不是内容</h3><p>给程序用的结构首选结构化输出：Azure 的说法是让模型遵循你附上的 JSON Schema 定义，手段是约束解码。它保证语法，不保证内容。</p><p>边界要读清：首个支持的 API 版本是 2024-08-01-preview，GA 的 v1 同样支持；官方只收 JSON Schema 的一个子集——字段全部列进 required、additionalProperties 必须为 false、最多 100 个属性、嵌套不超过 5 层，而 maxLength、pattern、minimum、maximum、minItems 都不支持。枚举能锁死，取值范围与长度锁不死。</p><span class="refs"><wbr/><a href="#src-S101" class="ref" title="微软 Learn「Azure OpenAI structured outputs 使用指南」：Chat Completions 在 response_format、Responses 在 text.format 里给 JSON Schema 并设 strict: true；首个支持的 API 版本为 2024-08-01-preview，最新 GA API v1 亦支持；官方只收 JSON Schema 子集——所有字段必须列进 required、object 必须 additionalProperties: false、一份 schema 最多 100 个属性且嵌套不超过 5 层，字符串的 minlength/maxLength/pattern/format、数值的 minimum/maximum/multipleOf、数组的 minItems/maxItems 等不支持；与并行函数调用互斥（parallel_tool_calls 设为 false）；含递归界面 schema 示例（type 限定 div/button/header/section/field/form，children 以 $ref 自引用）与 query 工具示例（table_name/columns/operator 全部写成 enum）；Responses 示例检查 status 是否为 completed 并读 incomplete_details">S101</a><wbr/><a href="#src-S103" class="ref" title="JSON Schema 官方文档 object 页：properties 定义的属性默认不必填，required 用来列出必填属性，取值是零个或多个互异字符串的数组；additionalProperties 控制未列进 properties、也不匹配 patternProperties 的额外属性，默认允许，设为 false 则不允许">S103</a><wbr/><a href="#src-S104" class="ref" title="JSON Schema 官方文档 enum 页：enum 把值限制在一个固定集合内，必须是至少含一个元素且元素互异的数组">S104</a></span></div></div><div><div class="blk"><h3>给人看的那一侧：只让模型发语义标记</h3><p>给人看的那一侧别让模型写 Markdown。官方的递归界面 schema 例子已经给了形态：type 只在 div、button、header、section、field、form 六个值里选，children 自引用。模型发语义标记，渲染交给前端——Markdown 在跨端与截断时的不稳定不该由模型承担。</p><span class="refs"><wbr/><a href="#src-S101" class="ref" title="微软 Learn「Azure OpenAI structured outputs 使用指南」：Chat Completions 在 response_format、Responses 在 text.format 里给 JSON Schema 并设 strict: true；首个支持的 API 版本为 2024-08-01-preview，最新 GA API v1 亦支持；官方只收 JSON Schema 子集——所有字段必须列进 required、object 必须 additionalProperties: false、一份 schema 最多 100 个属性且嵌套不超过 5 层，字符串的 minlength/maxLength/pattern/format、数值的 minimum/maximum/multipleOf、数组的 minItems/maxItems 等不支持；与并行函数调用互斥（parallel_tool_calls 设为 false）；含递归界面 schema 示例（type 限定 div/button/header/section/field/form，children 以 $ref 自引用）与 query 工具示例（table_name/columns/operator 全部写成 enum）；Responses 示例检查 status 是否为 completed 并读 incomplete_details">S101</a></span></div></div><div><div class="blk"><h3>截断之后，JSON 是残缺的</h3><p>截断是另一类失败：解析前先查 finish_reason 是不是 length——输出超出请求里的 max_tokens 时模型只生成了部分 JSON，微软文档建议调大它再重试，别去解析残缺结果；Responses API 对应的是 status 不为 completed 时读 incomplete_details。</p><p>结构上防一手：外层包装状态加数据，正文没写完时状态仍可判定，或者一次只让它返回一段。</p><span class="refs"><wbr/><a href="#src-S101" class="ref" title="微软 Learn「Azure OpenAI structured outputs 使用指南」：Chat Completions 在 response_format、Responses 在 text.format 里给 JSON Schema 并设 strict: true；首个支持的 API 版本为 2024-08-01-preview，最新 GA API v1 亦支持；官方只收 JSON Schema 子集——所有字段必须列进 required、object 必须 additionalProperties: false、一份 schema 最多 100 个属性且嵌套不超过 5 层，字符串的 minlength/maxLength/pattern/format、数值的 minimum/maximum/multipleOf、数组的 minItems/maxItems 等不支持；与并行函数调用互斥（parallel_tool_calls 设为 false）；含递归界面 schema 示例（type 限定 div/button/header/section/field/form，children 以 $ref 自引用）与 query 工具示例（table_name/columns/operator 全部写成 enum）；Responses 示例检查 status 是否为 completed 并读 incomplete_details">S101</a><wbr/><a href="#src-S102" class="ref" title="微软 Learn「Azure OpenAI JSON mode 使用指南」：json_object 模式保证输出是合法 JSON 但不保证符合某个 schema，即使把 schema 写进 prompt 也不保证；必须在 messages 中出现 &quot;JSON&quot; 一词，否则返回 400 invalid_request_error（&quot;&#x27;messages&#x27; must contain the word &#x27;json&#x27; in some form, to use &#x27;response_format&#x27; of type &#x27;json_object&#x27;.&quot;），未提示时模型可能持续输出空白直到撞上 token 上限；Other considerations 与 Troubleshooting 明确要求解析前检查 finish_reason 是否为 length，因为超出请求里的 max_tokens 时模型会生成残缺 JSON，应调大 max_tokens 或缩短提示后重试、不要解析部分 JSON。该页同时把 schema 保证指向 structured outputs">S102</a></span></div></div><div><div class="blk"><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">修复回环的最小实现；接口字段按 Azure 文档，代码未实跑。</span></figcaption><pre class="code">MAX_RETRY = 1
+
+def ask_structured(client, messages, schema, business_rules):
+    last_err = None
+    for _ in range(MAX_RETRY + 1):
+        req = list(messages)
+        if last_err:
+            req.append({&quot;role&quot;: &quot;user&quot;,
+                        &quot;content&quot;: &quot;Previous reply failed validation: &quot; + last_err})
+        r = client.chat.completions.create(
+            model=DEPLOYMENT,
+            messages=req,
+            response_format={&quot;type&quot;: &quot;json_schema&quot;, &quot;json_schema&quot;: schema},
+            max_tokens=800,
+        )
+        choice = r.choices[0]
+        if choice.finish_reason == &quot;length&quot;:
+            break  # truncated: feeding the error back will not help
+        try:
+            data = json.loads(choice.message.content)
+            jsonschema.validate(data, schema)   # grammar
+            business_rules(data)                # enum member, id exists, date parses
+            return data
+        except Exception as exc:
+            last_err = str(exc)
+    emit_event(&quot;agent.output_format_degraded&quot;, error=last_err)
+    return {&quot;status&quot;: &quot;plain_text&quot;, &quot;text&quot;: ask_plain(client, messages)}</pre></figure><span class="refs"><wbr/><a href="#src-S101" class="ref" title="微软 Learn「Azure OpenAI structured outputs 使用指南」：Chat Completions 在 response_format、Responses 在 text.format 里给 JSON Schema 并设 strict: true；首个支持的 API 版本为 2024-08-01-preview，最新 GA API v1 亦支持；官方只收 JSON Schema 子集——所有字段必须列进 required、object 必须 additionalProperties: false、一份 schema 最多 100 个属性且嵌套不超过 5 层，字符串的 minlength/maxLength/pattern/format、数值的 minimum/maximum/multipleOf、数组的 minItems/maxItems 等不支持；与并行函数调用互斥（parallel_tool_calls 设为 false）；含递归界面 schema 示例（type 限定 div/button/header/section/field/form，children 以 $ref 自引用）与 query 工具示例（table_name/columns/operator 全部写成 enum）；Responses 示例检查 status 是否为 completed 并读 incomplete_details">S101</a><wbr/><a href="#src-S102" class="ref" title="微软 Learn「Azure OpenAI JSON mode 使用指南」：json_object 模式保证输出是合法 JSON 但不保证符合某个 schema，即使把 schema 写进 prompt 也不保证；必须在 messages 中出现 &quot;JSON&quot; 一词，否则返回 400 invalid_request_error（&quot;&#x27;messages&#x27; must contain the word &#x27;json&#x27; in some form, to use &#x27;response_format&#x27; of type &#x27;json_object&#x27;.&quot;），未提示时模型可能持续输出空白直到撞上 token 上限；Other considerations 与 Troubleshooting 明确要求解析前检查 finish_reason 是否为 length，因为超出请求里的 max_tokens 时模型会生成残缺 JSON，应调大 max_tokens 或缩短提示后重试、不要解析部分 JSON。该页同时把 schema 保证指向 structured outputs">S102</a></span></div></div><div><div class="blk"><div class="tablewrap"><table><caption>五种失败，各自的处理与给用户的措辞</caption><tbody><tr><td class="k">模型没按要求格式</td><td>错误原文回喂，重试上限一次；仍失败降级纯文本并记一次可观测事件 <span class="refs"><wbr/><a href="#src-S102" class="ref" title="微软 Learn「Azure OpenAI JSON mode 使用指南」：json_object 模式保证输出是合法 JSON 但不保证符合某个 schema，即使把 schema 写进 prompt 也不保证；必须在 messages 中出现 &quot;JSON&quot; 一词，否则返回 400 invalid_request_error（&quot;&#x27;messages&#x27; must contain the word &#x27;json&#x27; in some form, to use &#x27;response_format&#x27; of type &#x27;json_object&#x27;.&quot;），未提示时模型可能持续输出空白直到撞上 token 上限；Other considerations 与 Troubleshooting 明确要求解析前检查 finish_reason 是否为 length，因为超出请求里的 max_tokens 时模型会生成残缺 JSON，应调大 max_tokens 或缩短提示后重试、不要解析部分 JSON。该页同时把 schema 保证指向 structured outputs">S102</a></span></td></tr><tr><td class="k">要求调不存在的工具</td><td>工具名走白名单，命中不了就拒执行，回一句「没有这个能力」 </td></tr><tr><td class="k">字段缺失</td><td>不补默认值、不猜，渲染缺数据占位 <span class="refs"><wbr/><a href="#src-S103" class="ref" title="JSON Schema 官方文档 object 页：properties 定义的属性默认不必填，required 用来列出必填属性，取值是零个或多个互异字符串的数组；additionalProperties 控制未列进 properties、也不匹配 patternProperties 的额外属性，默认允许，设为 false 则不允许">S103</a></span></td></tr><tr><td class="k">返回了幻觉 id</td><td>逐个回查存在性，查不到整条丢弃，显示「未找到对应记录」 </td></tr><tr><td class="k">返回了 SQL</td><td>拒执行；只让模型从表名、列名、运算符的枚举里选，参数化查询由后端拼 <span class="refs"><wbr/><a href="#src-S101" class="ref" title="微软 Learn「Azure OpenAI structured outputs 使用指南」：Chat Completions 在 response_format、Responses 在 text.format 里给 JSON Schema 并设 strict: true；首个支持的 API 版本为 2024-08-01-preview，最新 GA API v1 亦支持；官方只收 JSON Schema 子集——所有字段必须列进 required、object 必须 additionalProperties: false、一份 schema 最多 100 个属性且嵌套不超过 5 层，字符串的 minlength/maxLength/pattern/format、数值的 minimum/maximum/multipleOf、数组的 minItems/maxItems 等不支持；与并行函数调用互斥（parallel_tool_calls 设为 false）；含递归界面 schema 示例（type 限定 div/button/header/section/field/form，children 以 $ref 自引用）与 query 工具示例（table_name/columns/operator 全部写成 enum）；Responses 示例检查 status 是否为 completed 并读 incomplete_details">S101</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><div class="note warn"><h4>校验过的数字才允许显示</h4><p>schema 过了不等于数据是对的：枚举值是否合法、引用的 order_id 在库里存不存在、日期能否解析，都要在渲染前再查一遍。校验通过的数字才允许显示，校验不过的一律不显示，宁可缺一块内容。</p></div></div></div><div><div class="blk"><h3>格式要求只写一处，改动要带版本号</h3><p>提示词里对格式的要求越少越好：字段名、必填、枚举既然已写进 schema，就别用文字再复述一遍，两处描述迟早不一致——微软文档也提醒，即使把 schema 要求写进 prompt，json_object 模式也不保证输出符合那个 schema。</p><p>变更兼容：加字段可以，改类型或删字段必须带版本号，并同时保留旧版本的渲染，否则历史对话重放时会当场报错。</p><span class="refs"><wbr/><a href="#src-S102" class="ref" title="微软 Learn「Azure OpenAI JSON mode 使用指南」：json_object 模式保证输出是合法 JSON 但不保证符合某个 schema，即使把 schema 写进 prompt 也不保证；必须在 messages 中出现 &quot;JSON&quot; 一词，否则返回 400 invalid_request_error（&quot;&#x27;messages&#x27; must contain the word &#x27;json&#x27; in some form, to use &#x27;response_format&#x27; of type &#x27;json_object&#x27;.&quot;），未提示时模型可能持续输出空白直到撞上 token 上限；Other considerations 与 Troubleshooting 明确要求解析前检查 finish_reason 是否为 length，因为超出请求里的 max_tokens 时模型会生成残缺 JSON，应调大 max_tokens 或缩短提示后重试、不要解析部分 JSON。该页同时把 schema 保证指向 structured outputs">S102</a></span></div></div></section><section class="chap" id="framework"><div class="chap-head"><span class="num">11</span><h2>要不要 LangChain：三个选项和各自的还债方式</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/11_framework-tradeoff.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/11_framework-tradeoff.drawio 里继续编辑；按正文「自研、框架、托管是三种还债方式」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>三条路</h3><p>三条路：自研一个几百行的主循环；用框架（LangChain、LlamaIndex 这类）；用平台托管，把拆解与工具循环交给服务侧。都能到终点，只是这笔债记在谁账上、什么时候还。</p></div></div><div><div class="blk"><div class="tablewrap"><table><caption>换来什么，付出什么</caption><tbody><tr><td class="k">自研主循环</td><td>换可读可控；付重造轮子——重试、取消、可观测、多模型兼容都得自己补 <span class="refs"><wbr/><a href="#src-S1110" class="ref" title="Anthropic 工程文章 Building Effective Agents：主张简单可组合模式而非复杂框架，指出抽象层带来的调试困难">S1110</a></span></td></tr><tr><td class="k">框架</td><td>换起步速度与连接器（工具、向量库、数据源）；付抽象层调试成本与版本破坏性变更 <span class="refs"><wbr/><a href="#src-S116" class="ref" title="LlamaIndex 官方文档：定位为构建于自有数据之上的 agent 工具箱">S116</a><wbr/><a href="#src-S117" class="ref" title="LlamaIndex 官方仓库 README：自称 data framework，提供数据连接器">S117</a><wbr/><a href="#src-S113" class="ref" title="LangChain v1 发布说明：包被精简聚焦 agent 基本构件">S113</a><wbr/><a href="#src-S114" class="ref" title="LangChain 官方博客：LangChain/LangGraph 1.0 破坏性变更与迁移">S114</a><wbr/><a href="#src-S115" class="ref" title="LangChain v1 迁移指南：旧功能移入 @langchain/classic">S115</a></span></td></tr><tr><td class="k">平台托管</td><td>换省事与现成的身份、网络隔离；付对数据路径和提示词的完全控制权 <span class="refs"><wbr/><a href="#src-S118" class="ref" title="Microsoft Foundry Agent Service 官方概览：托管平台、工具循环、身份、私有网络、版本化">S118</a><wbr/><a href="#src-S119" class="ref" title="Foundry Agent Service 官方限制与配额页">S119</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><h3>两种还债方式</h3><p>自研最常见的结局：三周后你写了半个调度器——重试带指数退避、取消沿回调链下传、每次调用补超时和埋点、再套一层多模型兼容，这些都不是业务。托管反过来：Foundry 把工具循环与追踪放到服务侧，附 Entra 身份、私有网络、版本化；但数据落在哪、谁能看到不再全由你定，合规与可审计要在第一天正面算清。</p><span class="refs"><wbr/><a href="#src-S118" class="ref" title="Microsoft Foundry Agent Service 官方概览：托管平台、工具循环、身份、私有网络、版本化">S118</a><wbr/><a href="#src-S1110" class="ref" title="Anthropic 工程文章 Building Effective Agents：主张简单可组合模式而非复杂框架，指出抽象层带来的调试困难">S1110</a></span></div></div><div><div class="blk"><h3>出现什么信号就换</h3><p>别数日子，看四个信号：工具多到十几个、异构数据源不止一种、要在不同模型家族间来回切、团队里没人长期维护这套东西。任意一条成立，自研就开始亏；反之只有三五个工具、只想把回路讲清楚，框架的抽象反而是负担。</p></div></div><div><div class="blk"><h3>只借稳定子集</h3><p>用框架就只借它最稳的一层：模型客户端与工具定义抽象，别把主循环、记忆、链式组合一并交出去。抽象越厚，出错时的栈越难读。Anthropic 的判断也一致：成功实现多用简单、可组合的模式，而非复杂框架。</p><span class="refs"><wbr/><a href="#src-S111" class="ref" title="LangChain 官方文档 Tools：工具抽象的定位">S111</a><wbr/><a href="#src-S112" class="ref" title="LangChain 官方文档 Memory overview：记忆作为 agent state 由 LangGraph 管理">S112</a><wbr/><a href="#src-S1110" class="ref" title="Anthropic 工程文章 Building Effective Agents：主张简单可组合模式而非复杂框架，指出抽象层带来的调试困难">S1110</a></span></div></div><div><div class="blk"><h3>第一天算迁移成本</h3><p>解耦别等重构：提示词、工具 schema 各是文件，评测集是一张数据表，框架只是读它们的一层皮——换框架改的是装配，不是资产。跨框架工具走 MCP：2024 年 11 月由 Anthropic 提出，LangChain、LlamaIndex、Foundry 都有官方支持，当成约定而非选边。</p><span class="refs"><wbr/><a href="#src-S1111" class="ref" title="Anthropic 官方公告：2024 年 11 月推出 MCP 开放标准">S1111</a><wbr/><a href="#src-S1112" class="ref" title="LangChain 官方文档：通过 MCPAdapter 调用 MCP 服务器工具">S1112</a><wbr/><a href="#src-S1113" class="ref" title="LlamaIndex 官方文档：MCP 集成模块指南">S1113</a><wbr/><a href="#src-S118" class="ref" title="Microsoft Foundry Agent Service 官方概览：托管平台、工具循环、身份、私有网络、版本化">S118</a></span></div></div><div><div class="blk"><div class="note tip"><h4>本篇的实现</h4><p>这一章的实现是自研主循环加自己写的工具注册表。不是反对框架，而是教学重点是那条回路本身：拆任务、选工具、执行、回填、判断是否结束。回路看懂了，换成任何框架都只是换一种写法。</p></div></div></div></section><section class="chap" id="eval-no-drift"><div class="chap-head"><span class="num">12</span><h2>同一个问题答案不一样：怎么测到它漂，又怎么让它别漂</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/12_drift-pyramid.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/12_drift-pyramid.drawio 里继续编辑；按正文「温度为零不等于输出确定」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>先说死一个前提：温度为零不等于输出确定</h3><p>地基先讲清楚：Azure 官方文档写明，同一问题重复问，默认就会得到不同回答，属非确定性；可复现输出目前仍是预览特性。即便设了 seed、system_fingerprint 也一致，官方原文仍然写「不保证确定性」，而且 max_tokens 越大越不确定。所谓确定只是 best effort（尽力），不是承诺。写测试前不接受这一点，整章都是假的。</p><span class="refs"><wbr/><a href="#src-S121" class="ref" title="Azure OpenAI「可复现输出」官方文档：默认非确定、seed 只是 best effort、原文明确「不保证确定性」、max_tokens 越大越不确定、用 system_fingerprint 观察后端变化">S121</a><wbr/><a href="#src-S125" class="ref" title="OpenAI Cookbook：用 seed 复现输出，原文「Determinism is not guaranteed」，配合 system_fingerprint 判断后端是否变化">S125</a></span></div></div><div><div class="blk"><h3>别再说「不稳定」：先拆成四种可分别观测的漂移</h3><p>把模糊的「不稳定」拆开，它们严重性与修法完全不同：事实变了（数字或实体错）、结构不合规（schema 破了）、工具选择变了（该调的没调）、措辞变了（意思一样话不同）。混成一个指标，就没法测、也没法定位。</p></div></div><div><div class="blk"><h3>可复现的前提清单</h3><p>要让「重复跑」有意义，先固定四件事：部署版本号选 NoAutoUpgrade，别用 Auto-update to default——后者在默认版本变更后两周内会自动升级你的部署；固定 seed 并记录 system_fingerprint，用来抓后端偷换；把检索命中的资料快照进用例；今天/本周这类时间敏感输入也冻进用例。</p><span class="refs"><wbr/><a href="#src-S122" class="ref" title="Azure OpenAI 模型部署更新策略：Auto-update to default（默认版本变更后两周内自动升级）与 NoAutoUpgrade（固定版本、永不自动升级）">S122</a></span></div></div><div><div class="blk"><h3>三层测试金字塔</h3><p>契约层：输出结构必须过 JSON Schema，这一层能 100% 断言。事实层：关键数字与实体必须落进用例给定的允许集合。语义层：改写类输出只能用语义相似度或评审模型判分，给阈值不给逐字——评审模型自身带位置、冗长、自我偏好偏差，不能当绝对裁判。</p><span class="refs"><wbr/><a href="#src-S126" class="ref" title="MT-Bench / LLM-as-a-judge 论文（Zheng 等, 2023）：记录位置偏差、冗长偏差、自我增强偏差">S126</a></span></div></div><div><div class="blk"><h3>统计判分，而不是单次断言</h3><p>随机系统上，一次通过或一次失败几乎不含信息量。同一用例跑固定若干次，按通过率判：跑几次、几次算过，是参数不是事实，写在下面那段代码里（N, MIN_PASS），不在正文里当结论讲。你断言的是分布，不是某一句话。</p></div></div><div><div class="blk"><h3>一段能跑的漂移回归（pytest）</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">换成你应用真实的问题集与工具即可；run() 打固定版本部署，是集成测试形态而非 mock。N、MIN_PASS 是可调阈值，held-out 用例另留一份、不进本表。</span></figcaption><pre class="code">import os, json, pytest
+from openai import AzureOpenAI
+from jsonschema import validate
+
+# 部署指向一个固定版本(NoAutoUpgrade)，不要用 latest/默认滚动
+client = AzureOpenAI(api_key=os.environ[&quot;AOAI_KEY&quot;],
+                     azure_endpoint=os.environ[&quot;AOAI_ENDPOINT&quot;],
+                     api_version=&quot;2024-10-21&quot;)
+DEPLOY = &quot;order-agent-pin&quot;
+N, MIN_PASS = 20, 18          # 通过率判分，不看单次
+
+TOOLS = [{&quot;type&quot;:&quot;function&quot;,&quot;function&quot;:{&quot;name&quot;:&quot;get_order_status&quot;,&quot;parameters&quot;:{&quot;type&quot;:&quot;object&quot;}}},
+         {&quot;type&quot;:&quot;function&quot;,&quot;function&quot;:{&quot;name&quot;:&quot;refund&quot;,&quot;parameters&quot;:{&quot;type&quot;:&quot;object&quot;}}}]
+
+CASES = [{
+  &quot;id&quot;: &quot;order-late&quot;,
+  &quot;input&quot;: &quot;订单 A1024 为什么还没到&quot;,
+  &quot;corpus&quot;: &quot;orders_A1024.json&quot;,      # 检索资料快照进用例
+  &quot;must_call&quot;: [&quot;get_order_status&quot;],  # 该调的工具
+  &quot;forbid_call&quot;: [&quot;refund&quot;],          # 不该调的工具
+  &quot;max_calls&quot;: 3,
+  &quot;fact_allow&quot;: {&quot;eta_days&quot;: [2, 3, 4]},   # 事实层的允许集合
+  &quot;schema&quot;: {&quot;type&quot;: &quot;object&quot;, &quot;required&quot;: [&quot;summary&quot;, &quot;eta_days&quot;],
+             &quot;properties&quot;: {&quot;summary&quot;: {&quot;type&quot;: &quot;string&quot;}, &quot;eta_days&quot;: {&quot;type&quot;: &quot;integer&quot;}}},
+  &quot;min_similarity&quot;: 0.55,               # 语义层阈值(改写类才用)
+}]
+
+def run(case):
+    ctx = open(case[&quot;corpus&quot;], encoding=&quot;utf-8&quot;).read()
+    return client.chat.completions.create(
+        model=DEPLOY, seed=42, temperature=0,   # seed 只是 best effort，不保证一致
+        messages=[{&quot;role&quot;: &quot;system&quot;, &quot;content&quot;: ctx},
+                  {&quot;role&quot;: &quot;user&quot;, &quot;content&quot;: case[&quot;input&quot;]}],
+        tools=TOOLS)
+
+def check(case, resp):
+    msg = resp.choices[0].message
+    calls = [t.function.name for t in (msg.tool_calls or [])]
+    assert all(m in calls for m in case[&quot;must_call&quot;]), f&quot;漏调: {calls}&quot;
+    assert not any(c in calls for c in case[&quot;forbid_call&quot;]), f&quot;误调: {calls}&quot;
+    assert len(calls) &lt;= case[&quot;max_calls&quot;], f&quot;调用过多: {calls}&quot;
+    ans = json.loads(msg.content)
+    validate(ans, case[&quot;schema&quot;])                # 契约层
+    for k, v in case[&quot;fact_allow&quot;].items():      # 事实层
+        assert ans.get(k) in v, f&quot;{k}={ans.get(k)} 不在允许集 {v}&quot;
+    if &quot;min_similarity&quot; in case:                 # 语义层(便宜代理指标)
+        import difflib
+        ratio = difflib.SequenceMatcher(None, ans[&quot;summary&quot;], case[&quot;input&quot;]).ratio()
+        assert ratio &gt;= case[&quot;min_similarity&quot;], f&quot;相似度 {ratio:.2f} 偏低&quot;
+
+@pytest.mark.parametrize(&quot;case&quot;, CASES, ids=lambda c: c[&quot;id&quot;])
+def test_no_drift(case):
+    outcomes = []
+    for _ in range(N):
+        try:
+            check(case, run(case)); outcomes.append(&quot;通过&quot;)
+        except Exception as e:
+            outcomes.append(str(e))
+    passed = outcomes.count(&quot;通过&quot;)
+    if passed &lt; MIN_PASS:
+        report = &quot;\n&quot;.join(f&quot;#{i+1} {o}&quot; for i, o in enumerate(outcomes))  # N 次全打出来
+        pytest.fail(f&quot;{case[&#x27;id&#x27;]}: {passed}/{N} 通过 &lt; 阈值 {MIN_PASS}\n{report}&quot;)</pre></figure><span class="refs"><wbr/><a href="#src-S122" class="ref" title="Azure OpenAI 模型部署更新策略：Auto-update to default（默认版本变更后两周内自动升级）与 NoAutoUpgrade（固定版本、永不自动升级）">S122</a><wbr/><a href="#src-S124" class="ref" title="Microsoft Foundry 内置 Agent 评估器：Tool Selection、Tool Call Accuracy、Task Adherence 等以 Pass/Fail 输出，用于过程评估">S124</a></span></div></div><div><div class="blk"><h3>golden 存约束，不存字符串；把工具调用写进断言</h3><p>golden 答案是存期望约束而非期望字符串：该出现的实体、该调用的工具、该满足的 schema，而不是整段原文。工具层是防漂移最有力的一环——这道题必须调哪个工具、不该调哪个、调用次数上限，官方就用 Tool Selection 和 Tool Call Accuracy 这类评估器输出 Pass/Fail。选对工具通常比措辞更稳。</p><span class="refs"><wbr/><a href="#src-S124" class="ref" title="Microsoft Foundry 内置 Agent 评估器：Tool Selection、Tool Call Accuracy、Task Adherence 等以 Pass/Fail 输出，用于过程评估">S124</a></span></div></div><div><div class="blk"><h3>回归基线，与快照录制重放</h3><p>同一份用例集每日跑，比较的是通过率而非结论本身，跌破阈值就报警。要分清漂移来自哪一侧：模型侧靠版本固定和 system_fingerprint 暴露，检索侧靠把命中文档冻进用例。CI 里再把模型响应缓存下来做录制重放，让流水线不依赖外部服务，失败可复现。</p><span class="refs"><wbr/><a href="#src-S121" class="ref" title="Azure OpenAI「可复现输出」官方文档：默认非确定、seed 只是 best effort、原文明确「不保证确定性」、max_tokens 越大越不确定、用 system_fingerprint 观察后端变化">S121</a><wbr/><a href="#src-S122" class="ref" title="Azure OpenAI 模型部署更新策略：Auto-update to default（默认版本变更后两周内自动升级）与 NoAutoUpgrade（固定版本、永不自动升级）">S122</a></span></div></div><div><div class="blk"><h3>防过拟合、线上兜底，以及测不到什么</h3><p>评测集要防过拟合：留一部分用例永不进提示词优化循环——把用例本身写进提示词是最常见的作弊，公开基准早已被污染抬高分数。线上兜底三件套：抽样人评、用户反馈自动回流用例池、改动前灰度对比。内容审核是另一道与安全相关的独立闸门（如 Content Safety，接地检测等部分能力仅英文、且不保证全拦），别把它当漂移指标。最后承认测不到什么：语义正确性无法穷尽，测试只把漂移从「不可见」变成「有阈值可见」。</p><span class="refs"><wbr/><a href="#src-S127" class="ref" title="NAACL 2024《Investigating Data Contamination in Modern Benchmarks for LLMs》（Deng 等）：基准污染使公开分数虚高">S127</a><wbr/><a href="#src-S123" class="ref" title="Azure AI Content Safety 总览：Prompt Shields/接地检测/危害分析等能力，及其限制（部分功能仅英文、不能检测违法儿童性剥削图像）">S123</a></span></div></div></section><section class="chap" id="runbook"><div class="chap-head"><span class="num">13</span><h2>上线前那一小时：十件必须做完的事，和五种会先炸的方式</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/13_failure-map.png" alt="" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>本项目自画的结构图，可在 drawio/13_failure-map.drawio 里继续编辑；按正文「五种先炸方式的第一现场」绘制，图上不含任何数字与日期</figcaption></figure></div><div><div class="blk"><h3>十个能勾的框</h3><ol class="steps"><li><span class="sp-title">密钥出仓</span><span>前端与代码零密钥。</span><span class="spec"> 扫全历史提交而非只工作区。</span></li><li><span class="sp-title">两层上限</span><span>请求层有超时与重试上限，回合层有最大调用次数。</span><span class="spec"> 两个数字在配置里读得出。</span></li><li><span class="sp-title">参数化查询</span><span>工具落库全是绑定参数。</span><span class="spec"> 喂带引号分号的输入看反应。</span></li><li><span class="sp-title">版本固定</span><span>模型版本写死，不跟 latest。</span><span class="spec"> 比对两次发布的版本字段。</span></li><li><span class="sp-title">事件兜底</span><span>不认识的事件类型走默认分支。</span><span class="spec"> 注入一条假类型看是否断流。</span></li><li><span class="sp-title">修复回环</span><span>校验失败先修复一次，再失败降级。</span><span class="spec"> 喂缺字段输出看它选哪条。</span></li><li><span class="sp-title">离线重放</span><span>评测不依赖外部服务。</span><span class="spec"> 断网重跑，复现同一个数。</span></li><li><span class="sp-title">日志脱敏</span><span>不留用户原文与工具整段返回。</span><span class="spec"> 按手机号形态跑正则。</span></li><li><span class="sp-title">成本告警</span><span>单回合与单日成本各一条阈值。</span><span class="spec"> 监控里有指标名和数字。</span></li><li><span class="sp-title">回滚演练</span><span>代码、配置、提示词一并退回。</span><span class="spec"> 写下上次演练的起止时间。</span></li></ol></div></div><div><div class="blk"><div class="tablewrap"><table><caption>五种先炸的方式</caption><tbody><tr><td class="k">工具循环不收敛</td><td>一次回答烧掉几十次调用。数同一请求下的调用条数，多半在同两个工具间来回；架构中心建议设迭代上限。 <span class="refs"><wbr/><a href="#src-S133" class="ref" title="AI Agent Orchestration Patterns，Azure Architecture Center（ms.date 2026-02-12，updated_at 2026-09-21）。原文要求为避免无限工具调用循环设置迭代上限，可靠性一节要求实现超时与重试机制。">S133</a></span></td></tr><tr><td class="k">流式被代理缓冲</td><td>静默很久后一次性出全文。看网络面板是否分块到达，再绕过网关 curl 对照。 </td></tr><tr><td class="k">幻觉出不存在的工具名</td><td>报错在分发层不在模型层。把请求里的 function.name 与注册表比对。 </td></tr><tr><td class="k">旧资料与新数据打架</td><td>答案引用的时间比库里还早。打印本轮实际进上下文的文档标识与更新时间。 </td></tr><tr><td class="k">把内部推理当事实</td><td>读者把「我猜」当结论。查推理与终答是否同一字段渲染。 </td></tr></tbody></table></div></div></div><div><div class="blk"><div class="tablewrap"><table><caption>限流与注入的官方口径</caption><tbody><tr><td class="k">429 与重试上限</td><td>等待优先按 retry-after-ms，缺它才退到指数退避加抖动；SDK 默认重试 2 次，文档建议再设 5 到 10 次上限，自接重试库要先关内置。RPM 按 1 或 10 秒小窗评估，总量没超也可能被 429。 <span class="refs"><wbr/><a href="#src-S131" class="ref" title="Manage Azure OpenAI in Microsoft Foundry Models quota（ms.date 2026-05-04，updated_at 2026-08-13）。429 成因分类、retry-after-ms 与 x-ratelimit-* 响应头、RPM 按 1 或 10 秒小窗评估突发、SDK 默认 max_retries 为 2、建议设最大重试次数（文档举例 5–10 次）避免无限循环、被拒请求仍计入限流。">S131</a></span></td></tr><tr><td class="k">注入面在工具返回</td><td>官方把第三方内容里的隐藏指令称为 document attack，扫描点除用户输入还包括 tool response。 <span class="refs"><wbr/><a href="#src-S132" class="ref" title="Prompt Shields in Microsoft Foundry（ms.date 2026-09-08）。官方把第三方内容里的隐藏指令定义为 document attack，扫描点包括 user input 与 tool response。">S132</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><div class="note warn"><h4>这篇没覆盖</h4><p>多模态输入的注入面与计价、长时任务的断点续跑、多租户隔离与合规审计、模型训练与微调。这四块各自成章，勾全了不等于碰齐了所有问题。</p></div></div></div></section><div class="srcs" id="sources"><h2>来源</h2><ol><li id="src-S011"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/reference" rel="noreferrer" target="_blank">Azure OpenAI REST API 参考（2024-10-21 GA）：Authentication 一节写明两种鉴权方式与 api-key / Authorization 头；REST API versioning 一节给出 chat/completions 的请求地址形状与 api-version 查询参数</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S012"><a href="https://learn.microsoft.com/en-us/azure/foundry-classic/openai/how-to/create-resource" rel="noreferrer" target="_blank">创建并部署 Azure OpenAI 资源的 how-to：Deployment name 字段的「Choose a name carefully」提示、Important 框里关于「Azure OpenAI always requires deployment name」的原文，以及用 CLI 取 .properties.endpoint 与 .key1 的命令</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S013"><a href="https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/model-versions" rel="noreferrer" target="_blank">模型版本概念页：Version of the API used to consume a model deployment 一节，定义 api-version 为「代码里那份契约」并说明 SDK 版本通常与特定 API 版本配对</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S014"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/api-version-lifecycle" rel="noreferrer" target="_blank">v1 API / API 版本生命周期页：说明过去按月发布 API 版本、2025 年 8 月起可选用 v1、v1 GA 不再要求 api-version，以及 Entra 鉴权需要 Cognitive Services OpenAI User 角色</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S015"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/working-with-models" rel="noreferrer" target="_blank">管理模型部署页：部署的 capacity 字段说明「A value of 1 equals 1,000 Tokens per Minute (TPM)」，以及 rateLimits 的返回示例</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S041"><a href="https://arxiv.org/abs/2210.03629" rel="noreferrer" target="_blank">ReAct: Synergizing Reasoning and Acting in Language Models（Yao 等，ICLR 2023）：让模型把推理轨迹与动作交替产出</a>（arXiv） · 查阅 2026-10-02</li><li id="src-S042"><a href="https://arxiv.org/abs/2305.04091" rel="noreferrer" target="_blank">Plan-and-Solve Prompting（Wang 等，2023）：先 devised 一个把任务拆成子任务的计划，再逐项执行</a>（arXiv） · 查阅 2026-10-02</li><li id="src-S043"><a href="https://arxiv.org/abs/2303.11366" rel="noreferrer" target="_blank">Reflexion: Language Agents with Verbal Reinforcement Learning（Shinn 等，2023）：执行后用文字自我反思并把教训带回下一轮</a>（arXiv） · 查阅 2026-10-02</li><li id="src-S044"><a href="https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages-tool-use.html" rel="noreferrer" target="_blank">Amazon Bedrock 上 Anthropic Claude tool use 的官方参数文档：给出 tool_use 块（type/id/name/input）与 tool_result 块（type/tool_use_id/content）的确切字段，无原生「步骤」对象；并说明工具调用按输入 token 计费、各模型 tool use 系统提示词的 token 数（Claude 4.5 系在 auto 下 346）</a>（AWS Documentation） · 查阅 2026-10-02</li><li id="src-S045"><a href="https://code.claude.com/docs/en/agent-sdk/todo-tracking" rel="noreferrer" target="_blank">Claude Agent SDK「Track todos」官方文档：待办清单由应用提供的工具承载，状态为 pending / in_progress / completed</a>（Claude Code Docs） · 查阅 2026-10-02</li><li id="src-S046"><a href="https://arxiv.org/abs/2307.03172" rel="noreferrer" target="_blank">Lost in the Middle: How Language Models Use Long Contexts（Liu 等，TACL 2024）：相关信息在上下文开头或结尾时表现最好、落在中间时下降，呈 U 形性能曲线</a>（arXiv） · 查阅 2026-10-02</li><li id="src-S021"><a href="https://learn.microsoft.com/en-us/azure/foundry/what-is-foundry" rel="noreferrer" target="_blank">What is Microsoft Foundry —含「Previous/Current」对照表：Azure AI Studio / Azure AI Foundry → Microsoft Foundry，Azure AI Services → Foundry Tools，Hub + Azure OpenAI + Azure AI Services → 单个 Foundry resource 带 projects，月度 api-version → /openai/v1 稳定路由</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S022"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/reference" rel="noreferrer" target="_blank">Azure OpenAI 数据面 REST 参考（2024-10-21 GA）：api-key 头与 Authorization Bearer 两种鉴权、deployment 路径 + api-version 查询参数的端点示例、控制面/数据面版本表</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S023"><a href="https://learn.microsoft.com/en-us/rest/api/microsoft-foundry/azureopenai/chat?view=rest-microsoft-foundry-2024-10-21" rel="noreferrer" target="_blank">Chat Completions REST 参考 v1：POST {endpoint}/openai/v1/chat/completions 与完整请求体字段类型表（messages、temperature、top_p、max_completion_tokens、max_tokens 标 deprecated、stream、stop、seed 标 deprecated、tools、tool_choice、parallel_tool_calls 默认 true、response_format、n 上限 128），以及 finish_reason 取值枚举</a>（Microsoft Learn REST API docs） · 查阅 2026-10-02</li><li id="src-S024"><a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/authentication-authorization-foundry" rel="noreferrer" target="_blank">Foundry 鉴权与授权：Entra ID 用 OAuth 2.0 bearer token，scope https://ai.azure.com/.default；生产用 Entra，API key 限于快速验证且「generally not accepted by enterprise production workloads and not recommended by Microsoft」；控制面/数据面与 RBAC 分层</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S025"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-streaming" rel="noreferrer" target="_blank">Azure OpenAI 内容流式处理：chat.completion.chunk 分块样例、choices[].delta、末块 finish_reason stop 配空 delta、收尾单独一行 data: [DONE]；默认模式缓冲成块而非逐 token，Asynchronous Filter 需 API 2024-02-01 及以上</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S026"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs" rel="noreferrer" target="_blank">结构化输出 how-to：Chat Completions 用 response_format 的 json_schema、Responses 用 text.format，strict 开启函数约束；curl 与 Python 的 /openai/v1 端点写法；「Supported models」清单最新为 gpt-5.1（2025-11-13），未列 gpt-6；首个支持版本 2024-08-01-preview</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S027"><a href="https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure" rel="noreferrer" target="_blank">Foundry Models sold by Azure 模型目录：GPT-6 系列 Model ID 为 gpt-6-astra（2026-09-03）、gpt-6-luna 与 gpt-6-sol（2026-09-22）、gpt-6.1-sol（2026-09-29），上下文 1,050,000（输入 922,000／输出 128,000）；能力列含 Chat Completions、Streaming、Structured outputs；GPT-6 家族仅 Tier 5／Tier 6 默认带配额；裸名 gpt-6 不在表内</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S028"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/quotas-limits" rel="noreferrer" target="_blank">Azure OpenAI 配额与限制：门户 ai.azure.com/resource/quota 查区域配额，程序化用 Usages API 与 Model Capacities API；2026-05-07 起改为订阅级配额共享池；/chat/completions 的 tools 与 functions 上限 128</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S029"><a href="https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure-region-availability" rel="noreferrer" target="_blank">按部署类别（Global Standard 等）分表的区域可用性页：行是 Model ID 加版本，列是 brazilsouth、eastus2 这类区域名，以勾选标记表示</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S0210"><a href="https://learn.microsoft.com/en-us/azure/foundry/how-to/quota" rel="noreferrer" target="_blank">配额管理指南：Azure 按订阅、区域、模型以 tokens per minute（TPM）分配配额，含程序化查配额与容量的章节</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S061"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/function-calling" rel="noreferrer" target="_blank">微软 Foundry《How to use function calling》：给出 tools 数组的字段与嵌套(type/function.name/description/parameters/required/enum)、模型返回的 tool_calls 数组与每 call 的 id/name/arguments(JSON 字符串)、回填消息 role=tool 且带 tool_call_id、一个回合多个调用(并行)、tool_choice 的 auto/none/指定函数写法、description 会被注入系统提示、描述上限 1,024 字符、以及最小权限/只读/用户确认等安全建议</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S062"><a href="https://learn.microsoft.com/zh-cn/rest/api/microsoft-foundry/azureopenai/chat" rel="noreferrer" target="_blank">微软 Foundry Chat Completions REST 参考(中文)：tool_choice 各取值的官方定义——none 不调用工具、auto 可在生成消息与调用一个或多个工具间选择、required 必须调用一个或多个工具</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S031"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/chatgpt" rel="noreferrer" target="_blank">Microsoft Foundry「Work with chat completion models」：多轮对话示例、system 角色定义、每个新问题都要带上进行中的对话记录、model 参数填部署名</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S032"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/responses" rel="noreferrer" target="_blank">Microsoft Foundry「Use the Azure OpenAI Responses API」：页面自述以 Python 或 REST 创建、取回、删除 stateful responses，含流式与工具</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S033"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/quota" rel="noreferrer" target="_blank">Microsoft Foundry「Manage Azure OpenAI quota」：Rate limit response headers 一节列出六条 x-ratelimit-*，称每次调用都在响应头带上限流信息，retry-after-ms 仅出现在 429</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S034"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/reasoning" rel="noreferrer" target="_blank">Microsoft Foundry「Azure OpenAI reasoning models - GPT-6 Astra and GPT-5」：reasoning.summary 取值与限制、两个 API 各自的 reasoning_tokens 字段、推理 token 按输出计费、调工具时要把 reasoning 项传回、store 与 previous_response_id、绕开摘要提取原始推理不受支持且可能违反使用政策</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S035"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/api-version-lifecycle" rel="noreferrer" target="_blank">Microsoft Foundry「Azure OpenAI v1 API」：v1 自 2025 年 8 月起可选用、REST 示例把初始指令写成 role=developer、变更记录列出 completion_tokens_details/reasoning_tokens 与 reasoning summary 所属 api-version</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S036"><a href="https://ai.azure.com/api-reference/" rel="noreferrer" target="_blank">Microsoft Foundry REST API reference（官方文档站）：每个失败请求应记录完整 URL、状态码、x-request-id 与 x-ms-client-request-id，重试时复用客户端自生成的请求 ID</a>（Microsoft） · 查阅 2026-10-02</li><li id="src-S051"><a href="https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-spring-2015/mit6_042js15_session17.pdf" rel="noreferrer" target="_blank">MIT 6.042J《Mathematics for Computer Science》第 9.5 节 Directed Acyclic Graphs (DAGs) &amp; Scheduling：DAG 与拓扑排序的正式定义，并用于机器调度</a>（MIT OpenCourseWare） · 查阅 2026-10-02</li><li id="src-S052"><a href="https://ocw.mit.edu/courses/6-006-introduction-to-algorithms-fall-2011/resources/lecture-14-depth-first-search-dfs-topological-sort/" rel="noreferrer" target="_blank">MIT 6.006 Introduction to Algorithms 第 14 讲：用 DFS 做环检测与拓扑排序</a>（MIT OpenCourseWare） · 查阅 2026-10-02</li><li id="src-S053"><a href="https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/dags.html" rel="noreferrer" target="_blank">Airflow 官方文档 Dags 核心概念：任务间通过上下游关系显式定义依赖</a>（Apache Airflow） · 查阅 2026-10-02</li><li id="src-S054"><a href="https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/tasks.html" rel="noreferrer" target="_blank">Airflow 官方文档 Tasks 核心概念：任务重试默认固定次数与延迟，可按异常类型配 retry policy</a>（Apache Airflow） · 查阅 2026-10-02</li><li id="src-S055"><a href="https://airflow.apache.org/docs/apache-airflow/stable/howto/dag-level-retry-via-callback.html" rel="noreferrer" target="_blank">Airflow 官方文档 DAG-level Retry：任务应在任务级设计成幂等，重跑任务才是幂等的</a>（Apache Airflow） · 查阅 2026-10-02</li><li id="src-S056"><a href="https://airflow.apache.org/docs/apache-airflow/stable/faq.html" rel="noreferrer" target="_blank">Airflow 官方 FAQ：max_active_runs 限制同时活跃的 DAG Run 数、concurrency 限制单 DAG 并发任务数</a>（Apache Airflow） · 查阅 2026-10-02</li><li id="src-S057"><a href="https://docs.prefect.io/v3/advanced/transactions" rel="noreferrer" target="_blank">Prefect 3 官方文档 How to write transactional workflows：事务语义、失败回滚、可原子成组的任务</a>（Prefect） · 查阅 2026-10-02</li><li id="src-S058"><a href="https://docs.prefect.io/v3/how-to-guides/workflows/retries" rel="noreferrer" target="_blank">Prefect 3 官方文档 How to automatically rerun your workflow when it fails：重试配置，父流重试时复用已持久化的子流结果</a>（Prefect） · 查阅 2026-10-02</li><li id="src-S059"><a href="https://docs.langchain.com/oss/python/langgraph/graph-api" rel="noreferrer" target="_blank">LangGraph Graph API overview：并行节点属于同一 super-step、fan-out/fan-in、recursion limit 默认值（1.0.6 起为 1000）</a>（LangChain） · 查阅 2026-10-02</li><li id="src-S0510"><a href="https://learn.microsoft.com/en-us/azure/durable-task/common/programming-model-overview" rel="noreferrer" target="_blank">Azure Durable Task 编程模型总览：activity 只保证 at-least-once，官方建议把逻辑写成幂等（例如 upsert）</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S0511"><a href="https://learn.microsoft.com/en-us/azure/durable-task/common/durable-task-error-handling" rel="noreferrer" target="_blank">Azure Durable Functions 错误处理与重试：重试策略字段（最大尝试次数、首次重试间隔、退避系数等）</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S0512"><a href="https://learn.microsoft.com/en-us/azure/durable-task/common/durable-task-code-constraints" rel="noreferrer" target="_blank">Azure Durable 编排器代码约束：编排函数必须确定性，因为会被多次重放</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S0513"><a href="https://learn.microsoft.com/en-us/azure/logic-apps/error-exception-handling" rel="noreferrer" target="_blank">Azure Logic Apps 错误处理：多数操作的 Default 重试策略为指数间隔、最多 4 次重试</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S0514"><a href="https://learn.microsoft.com/en-us/azure/logic-apps/workflow-definition-language-schema" rel="noreferrer" target="_blank">Azure Logic Apps Workflow Definition Language JSON schema 参考：工作流定义与 dependsOn 依赖表达</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S0515"><a href="https://docs.stripe.com/api/idempotent_requests" rel="noreferrer" target="_blank">Stripe API 参考 Idempotent requests：客户端生成 idempotency key，服务端保存首次请求的状态码与响应体用于重放，并比对入参防止误用</a>（Stripe） · 查阅 2026-10-02</li><li id="src-S0516"><a href="https://docs.stripe.com/error-low-level" rel="noreferrer" target="_blank">Stripe Advanced error handling：带同一 idempotency key 的重放在 24 小时内安全；改参数要换新 key</a>（Stripe） · 查阅 2026-10-02</li><li id="src-S081"><a href="https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html" rel="noreferrer" target="_blank">OWASP《SQL 注入防范速查表》：首选防御是预处理语句与参数化查询，另设「最小权限」「用视图强化最小权限」两节</a>（OWASP） · 查阅 2026-10-02</li><li id="src-S082"><a href="https://cheatsheetseries.owasp.org/cheatsheets/Query_Parameterization_Cheat_Sheet.html" rel="noreferrer" target="_blank">OWASP《查询参数化速查表》：SQL 注入最好由参数化查询防住，并提醒参数化必须在服务端完成</a>（OWASP） · 查阅 2026-10-02</li><li id="src-S083"><a href="https://arxiv.org/abs/2308.01990" rel="noreferrer" target="_blank">《From Prompt Injections to SQL Injection Attacks》提出 P2SQL 注入，以 LangChain 为案例评测 7 个主流 LLM，提出 4 种防御；发表于 ICSE 2025</a>（arXiv） · 查阅 2026-10-02</li><li id="src-S084"><a href="https://github.com/openai/openai-python/blob/main/README.md" rel="noreferrer" target="_blank">OpenAI Python SDK README：默认 10 分钟超时、默认重试 2 次，重试仅覆盖连接错误与 408/409/429/5xx，支持 httpx.Timeout 分设 connect/read</a>（OpenAI） · 查阅 2026-10-02</li><li id="src-S085"><a href="https://www.python-httpx.org/advanced/timeouts/" rel="noreferrer" target="_blank">httpx 官方超时文档：默认对网络静默 5 秒抛 TimeoutException，可细粒度分设 connect/read/write/pool</a>（encode） · 查阅 2026-10-02</li><li id="src-S086"><a href="https://docs.sqlalchemy.org/en/20/core/pooling.html" rel="noreferrer" target="_blank">SQLAlchemy 连接池文档：pool_size 默认 5、max_overflow 默认 10，池允许的同时连接数为两者之和，等待连接超时默认 30 秒</a>（SQLAlchemy） · 查阅 2026-10-02</li><li id="src-S087"><a href="https://www.postgresql.org/docs/current/ddl-rowsecurity.html" rel="noreferrer" target="_blank">PostgreSQL 官方文档 5.9 Row Security Policies：按用户限制可见行；无策略时默认全拒；表主通常不受策略约束</a>（PostgreSQL Global Development Group） · 查阅 2026-10-02</li><li id="src-S088"><a href="https://www.postgresql.org/docs/current/runtime-config-connection.html" rel="noreferrer" target="_blank">PostgreSQL 连接设置文档：max_connections 默认为 100（内核不支持时更少），只能服务端启动时设置</a>（PostgreSQL Global Development Group） · 查阅 2026-10-02</li><li id="src-S089"><a href="https://nodejs.org/api/http.html" rel="noreferrer" target="_blank">Node.js http 官方文档：server.requestTimeout 默认 300000 毫秒，headersTimeout 取其与 60000 的较小值</a>（Node.js） · 查阅 2026-10-02</li><li id="src-S0810"><a href="https://cheatsheetseries.owasp.org/cheatsheets/Logging_Cheat_Sheet.html" rel="noreferrer" target="_blank">OWASP《日志速查表》：访问令牌、数据库连接串、口令、敏感个人信息等不得原样入日志，应删除、掩码、散列或加密</a>（OWASP） · 查阅 2026-10-02</li><li id="src-S0811"><a href="https://genai.owasp.org/llm-top-10/" rel="noreferrer" target="_blank">OWASP GenAI/LLM 十大风险 2025 版清单，含 LLM05 Improper Output Handling、LLM06 Excessive Agency、LLM10 Unbounded Consumption</a>（OWASP Foundation） · 查阅 2026-10-02</li><li id="src-S111"><a href="https://docs.langchain.com/oss/python/langchain/tools" rel="noreferrer" target="_blank">LangChain 官方文档 Tools：工具抽象的定位</a>（LangChain） · 查阅 2026-10-02</li><li id="src-S112"><a href="https://docs.langchain.com/oss/python/concepts/memory" rel="noreferrer" target="_blank">LangChain 官方文档 Memory overview：记忆作为 agent state 由 LangGraph 管理</a>（LangChain） · 查阅 2026-10-02</li><li id="src-S113"><a href="https://docs.langchain.com/oss/python/releases/langchain-v1" rel="noreferrer" target="_blank">LangChain v1 发布说明：包被精简聚焦 agent 基本构件</a>（LangChain） · 查阅 2026-10-02</li><li id="src-S114"><a href="https://www.langchain.com/blog/langchain-langgraph-1dot0" rel="noreferrer" target="_blank">LangChain 官方博客：LangChain/LangGraph 1.0 破坏性变更与迁移</a>（LangChain） · 查阅 2026-10-02</li><li id="src-S115"><a href="https://docs.langchain.com/oss/javascript/migrate/langchain-v1" rel="noreferrer" target="_blank">LangChain v1 迁移指南：旧功能移入 @langchain/classic</a>（LangChain） · 查阅 2026-10-02</li><li id="src-S116"><a href="https://developers.llamaindex.ai/python/framework/" rel="noreferrer" target="_blank">LlamaIndex 官方文档：定位为构建于自有数据之上的 agent 工具箱</a>（LlamaIndex） · 查阅 2026-10-02</li><li id="src-S117"><a href="https://github.com/run-llama/llama_index" rel="noreferrer" target="_blank">LlamaIndex 官方仓库 README：自称 data framework，提供数据连接器</a>（run-llama） · 查阅 2026-10-02</li><li id="src-S118"><a href="https://learn.microsoft.com/en-us/azure/foundry/agents/overview" rel="noreferrer" target="_blank">Microsoft Foundry Agent Service 官方概览：托管平台、工具循环、身份、私有网络、版本化</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S119"><a href="https://learn.microsoft.com/en-us/azure/foundry/agents/concepts/limits-quotas-regions" rel="noreferrer" target="_blank">Foundry Agent Service 官方限制与配额页</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S1110"><a href="https://www.anthropic.com/engineering/building-effective-agents" rel="noreferrer" target="_blank">Anthropic 工程文章 Building Effective Agents：主张简单可组合模式而非复杂框架，指出抽象层带来的调试困难</a>（Anthropic） · 查阅 2026-10-02</li><li id="src-S1111"><a href="https://www.anthropic.com/news/model-context-protocol" rel="noreferrer" target="_blank">Anthropic 官方公告：2024 年 11 月推出 MCP 开放标准</a>（Anthropic） · 查阅 2026-10-02</li><li id="src-S1112"><a href="https://docs.langchain.com/oss/python/langchain/mcp" rel="noreferrer" target="_blank">LangChain 官方文档：通过 MCPAdapter 调用 MCP 服务器工具</a>（LangChain） · 查阅 2026-10-02</li><li id="src-S1113"><a href="https://developers.llamaindex.ai/python/framework/module_guides/mcp/" rel="noreferrer" target="_blank">LlamaIndex 官方文档：MCP 集成模块指南</a>（LlamaIndex） · 查阅 2026-10-02</li><li id="src-S101"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/structured-outputs" rel="noreferrer" target="_blank">微软 Learn「Azure OpenAI structured outputs 使用指南」：Chat Completions 在 response_format、Responses 在 text.format 里给 JSON Schema 并设 strict: true；首个支持的 API 版本为 2024-08-01-preview，最新 GA API v1 亦支持；官方只收 JSON Schema 子集——所有字段必须列进 required、object 必须 additionalProperties: false、一份 schema 最多 100 个属性且嵌套不超过 5 层，字符串的 minlength/maxLength/pattern/format、数值的 minimum/maximum/multipleOf、数组的 minItems/maxItems 等不支持；与并行函数调用互斥（parallel_tool_calls 设为 false）；含递归界面 schema 示例（type 限定 div/button/header/section/field/form，children 以 $ref 自引用）与 query 工具示例（table_name/columns/operator 全部写成 enum）；Responses 示例检查 status 是否为 completed 并读 incomplete_details</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S102"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/json-mode" rel="noreferrer" target="_blank">微软 Learn「Azure OpenAI JSON mode 使用指南」：json_object 模式保证输出是合法 JSON 但不保证符合某个 schema，即使把 schema 写进 prompt 也不保证；必须在 messages 中出现 &quot;JSON&quot; 一词，否则返回 400 invalid_request_error（&quot;&#x27;messages&#x27; must contain the word &#x27;json&#x27; in some form, to use &#x27;response_format&#x27; of type &#x27;json_object&#x27;.&quot;），未提示时模型可能持续输出空白直到撞上 token 上限；Other considerations 与 Troubleshooting 明确要求解析前检查 finish_reason 是否为 length，因为超出请求里的 max_tokens 时模型会生成残缺 JSON，应调大 max_tokens 或缩短提示后重试、不要解析部分 JSON。该页同时把 schema 保证指向 structured outputs</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S103"><a href="https://json-schema.org/understanding-json-schema/reference/object" rel="noreferrer" target="_blank">JSON Schema 官方文档 object 页：properties 定义的属性默认不必填，required 用来列出必填属性，取值是零个或多个互异字符串的数组；additionalProperties 控制未列进 properties、也不匹配 patternProperties 的额外属性，默认允许，设为 false 则不允许</a>（json-schema.org） · 查阅 2026-10-02</li><li id="src-S104"><a href="https://json-schema.org/understanding-json-schema/reference/enum" rel="noreferrer" target="_blank">JSON Schema 官方文档 enum 页：enum 把值限制在一个固定集合内，必须是至少含一个元素且元素互异的数组</a>（json-schema.org） · 查阅 2026-10-02</li><li id="src-S091"><a href="https://html.spec.whatwg.org/multipage/server-sent-events.html" rel="noreferrer" target="_blank">WHATWG HTML Living Standard 9.2 Server-sent events：text/event-stream 的 ABNF、event/data/id/retry 四字段与空行结束、默认事件名 message、9.2.4 Last-Event-ID 头、9.2.7 关于中间层分块与每服务器连接上限的告诫、约 15 秒一条注释行、204 停止重连</a>（WHATWG） · 查阅 2026-10-02</li><li id="src-S092"><a href="https://nginx.org/en/docs/http/ngx_http_proxy_module.html" rel="noreferrer" target="_blank">nginx ngx_http_proxy_module 文档：proxy_buffering 默认 on、proxy_buffers 默认 8 4k|8k、X-Accel-Buffering 响应头可开关缓冲</a>（nginx） · 查阅 2026-10-02</li><li id="src-S093"><a href="https://nginx.org/en/docs/http/ngx_http_gzip_module.html" rel="noreferrer" target="_blank">nginx ngx_http_gzip_module 文档：gzip_buffers 默认 32 4k|16 8k，用于压缩响应的缓冲区</a>（nginx） · 查阅 2026-10-02</li><li id="src-S094"><a href="https://nginx.org/en/docs/http/ngx_http_core_module.html" rel="noreferrer" target="_blank">nginx ngx_http_core_module 文档：chunked_transfer_encoding 默认 on</a>（nginx） · 查阅 2026-10-02</li><li id="src-S095"><a href="https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html" rel="noreferrer" target="_blank">W3C WAI Understanding SC 1.4.1 Use of Color（Level A）条款原文</a>（W3C） · 查阅 2026-10-02</li><li id="src-S096"><a href="https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html" rel="noreferrer" target="_blank">W3C WAI Understanding SC 4.1.3 Status Messages（Level AA）条款原文与 role=status / aria-live 充分技术</a>（W3C） · 查阅 2026-10-02</li><li id="src-S097"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/chatgpt" rel="noreferrer" target="_blank">Microsoft Foundry「Work with chat completion models」：流式响应中 finish_reason 直到最后一个分块之前都是 null</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S098"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-streaming" rel="noreferrer" target="_blank">Microsoft Foundry「Content Streaming in Azure OpenAI」：注解分块 choices 为空数组、样例以 data: [DONE] 收尾、默认模式下内容按缓冲区大小成块返回而非逐 token</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S121"><a href="https://learn.microsoft.com/en-us/azure/foundry-classic/openai/how-to/reproducible-output" rel="noreferrer" target="_blank">Azure OpenAI「可复现输出」官方文档：默认非确定、seed 只是 best effort、原文明确「不保证确定性」、max_tokens 越大越不确定、用 system_fingerprint 观察后端变化</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S122"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/working-with-models" rel="noreferrer" target="_blank">Azure OpenAI 模型部署更新策略：Auto-update to default（默认版本变更后两周内自动升级）与 NoAutoUpgrade（固定版本、永不自动升级）</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S123"><a href="https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview" rel="noreferrer" target="_blank">Azure AI Content Safety 总览：Prompt Shields/接地检测/危害分析等能力，及其限制（部分功能仅英文、不能检测违法儿童性剥削图像）</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S124"><a href="https://learn.microsoft.com/en-us/azure/foundry/concepts/evaluation-evaluators/agent-evaluators" rel="noreferrer" target="_blank">Microsoft Foundry 内置 Agent 评估器：Tool Selection、Tool Call Accuracy、Task Adherence 等以 Pass/Fail 输出，用于过程评估</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S125"><a href="https://developers.openai.com/cookbook/examples/reproducible_outputs_with_the_seed_parameter" rel="noreferrer" target="_blank">OpenAI Cookbook：用 seed 复现输出，原文「Determinism is not guaranteed」，配合 system_fingerprint 判断后端是否变化</a>（OpenAI） · 查阅 2026-10-02</li><li id="src-S126"><a href="https://arxiv.org/abs/2306.05685" rel="noreferrer" target="_blank">MT-Bench / LLM-as-a-judge 论文（Zheng 等, 2023）：记录位置偏差、冗长偏差、自我增强偏差</a>（arXiv） · 查阅 2026-10-02</li><li id="src-S127"><a href="https://aclanthology.org/2024.naacl-long.482/" rel="noreferrer" target="_blank">NAACL 2024《Investigating Data Contamination in Modern Benchmarks for LLMs》（Deng 等）：基准污染使公开分数虚高</a>（ACL Anthology） · 查阅 2026-10-02</li><li id="src-S071"><a href="https://agentskills.io/specification" rel="noreferrer" target="_blank">Agent Skills 规范：目录结构（SKILL.md 必需，scripts/、references/、assets/ 可选）；元信息字段与约束（name 必填、≤64 字符、须等于目录名；description 必填、≤1024 字符；allowed-tools 实验性且只预批权限）；渐进披露三档（元信息约 100 token、正文建议 5000 token 以内、资源按需）</a>（agentskills.io） · 查阅 2026-10-02</li><li id="src-S072"><a href="https://agentskills.io/home" rel="noreferrer" target="_blank">Agent Skills 概览：技能是至少含 SKILL.md 的目录；加载分 Discovery／Activation／Execution 三阶段，启动只读 name 与 description；格式由 Anthropic 首创后开放为标准；技能被定位成可移植、受版本控制的文件夹</a>（agentskills.io） · 查阅 2026-10-02</li><li id="src-S073"><a href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" rel="noreferrer" target="_blank">Anthropic 工程博客 2025-10-16（2025-12-18 更新为开放标准）：启动时把每个已装技能的 name 与 description 预载进系统提示，命中才读全文；技能内脚本可由模型作为工具执行；能装进技能的材料实际上不设上限</a>（Anthropic） · 查阅 2026-10-02</li><li id="src-S074"><a href="https://code.claude.com/docs/en/skills" rel="noreferrer" target="_blank">Claude Code 技能文档：项目级路径 .claude/skills/&lt;skill-name&gt;/SKILL.md、个人级 ~/.claude/skills/；捆绑技能是 prompt-based、由模型用自己的工具编排，多数内置命令则直接执行固定逻辑；清单里 description 与 when_to_use 合并截断在 1,536 字符，清单额度按模型上下文窗口的 1% 计；正文进入对话后跨轮保留、不再重读文件</a>（Anthropic） · 查阅 2026-10-02</li><li id="src-S075"><a href="https://docs.github.com/en/copilot/concepts/agents/about-agent-skills" rel="noreferrer" target="_blank">GitHub Copilot 文档：Agent Skills 规范是开放标准；项目技能可放 .github/skills、.claude/skills 或 .agents/skills，个人技能放 ~/.copilot/skills 或 ~/.agents/skills</a>（GitHub） · 查阅 2026-10-02</li><li id="src-S076"><a href="https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models" rel="noreferrer" target="_blank">Azure OpenAI 模型文档 Understand model token limits：模型表以 Context Window 与 Max Output Tokens 两列给出上限；分行标注的 Input 与 Output 是各自上限而非可叠加额度，输入越多留给生成的越少</a>（Microsoft） · 查阅 2026-10-02</li><li id="src-S077"><a href="https://modelcontextprotocol.io/docs/2026-07-28/learn/server-concepts" rel="noreferrer" target="_blank">MCP 官方文档：服务端三种原语为 tools（model-controlled，JSON Schema 定义类型化输入输出，tools/list 发现、tools/call 执行）、resources、prompts；该分类中没有 skill</a>（Model Context Protocol） · 查阅 2026-10-02</li><li id="src-S131"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/quota" rel="noreferrer" target="_blank">Manage Azure OpenAI in Microsoft Foundry Models quota（ms.date 2026-05-04，updated_at 2026-08-13）。429 成因分类、retry-after-ms 与 x-ratelimit-* 响应头、RPM 按 1 或 10 秒小窗评估突发、SDK 默认 max_retries 为 2、建议设最大重试次数（文档举例 5–10 次）避免无限循环、被拒请求仍计入限流。</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S132"><a href="https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/content-filter-prompt-shields" rel="noreferrer" target="_blank">Prompt Shields in Microsoft Foundry（ms.date 2026-09-08）。官方把第三方内容里的隐藏指令定义为 document attack，扫描点包括 user input 与 tool response。</a>（Microsoft Learn） · 查阅 2026-10-02</li><li id="src-S133"><a href="https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns" rel="noreferrer" target="_blank">AI Agent Orchestration Patterns，Azure Architecture Center（ms.date 2026-02-12，updated_at 2026-09-21）。原文要求为避免无限工具调用循环设置迭代上限，可靠性一节要求实现超时与重试机制。</a>（Microsoft Learn） · 查阅 2026-10-02</li></ol></div><footer class="foot"><div>《Agent开发》知识专题 · 生成于 2026-10-05 · 价格与状态类信息截至 2026-10</div><div>本文为科普整理，不构成购买建议；价格、产期、政策随时间变化，请以品牌官方与权威来源为准。</div></footer></div></div></div>
+</body>
+</html>

@@ -51,7 +51,7 @@
     "hero_motif": "attention_matrix",
     "hero_note": "以 12×7 的注意力方阵为母题：亮格沿对角线扫过，对应自回归模型「每个 token 最关心近邻」这一结构事实。品红与孔雀绿是这一组主题里唯一未被占用的色相。"
   },
-  "reading_target_minutes": 10,
+  "reading_target_minutes": 11,
   "sections": [
     {
       "id": "how-it-works",

@@ -42,7 +42,8 @@ def test_every_gate_has_id_and_spec():
 def test_gate_ids_are_explicit_and_stable():
     """编号显式绑定，不按位置生成：加一条闸门不得让既有闸门改号。"""
     assert [g.id for g in ALL_GATES] == [
-        "G-01", "G-02", "G-03", "G-04", "G-05", "G-06", "G-07", "G-08", "G-09", "G-10", "G-13"]
+        "G-01", "G-02", "G-03", "G-04", "G-05", "G-06", "G-07", "G-08", "G-09", "G-10",
+        "G-13", "G-15"]
     glob = [g.id for g in V.GATES if g.scope == "global"]
     assert glob == ["G-12", "G-14"], "全站级闸门应单独标注，不参与逐领域校验"
 
@@ -217,6 +218,65 @@ def test_G03_rejects_missing_image_file(passing_ctx):
     assert any("不存在" in str(x) for x in f), "图片文件被删却没报错"
 
 
+def test_G03_rejects_a_diagram_as_the_cover(passing_ctx):
+    """封面框约 3.7:1、手机上限 345px 宽。一张 1500px 宽的机制图塞进去，
+    `object-fit: cover` 会裁掉上下（截图自查看到的是两条悬空的箭头），
+    改成 contain 又会让字缩到读不了——两种都比没有封面差。
+    无封面走的是主题记忆点那条路（`.cover-noimg`），那才是这类页面的排面。
+    撞出来的现场：Agent开发 / 利率外溢 / 开源权重与算力估值 三篇的封面都是自画图。"""
+    data = copy.deepcopy(passing_ctx.data)
+    data["cover"] = {"file": "images/01_test.jpg", "kind": "illustration",
+                     "alt": u"示意图 · 非实拍：测试", "based_on": [u"sec-1#要点"]}
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    msgs = [str(x) for x in run(by_id("G-03"), ctx)]
+    assert any(u"封面" in m and u"示意图" in m for m in msgs), msgs
+
+
+def test_G03_accepts_a_page_with_no_cover(passing_ctx):
+    """反向钉住：没有封面是**合法形态**，不能因为少了这个字段就报错——
+    否则上一条的修法会变成"随便塞张图当封面"。"""
+    data = copy.deepcopy(passing_ctx.data)
+    data.pop("cover", None)
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    msgs = [str(x) for x in run(by_id("G-03"), ctx)]
+    assert not any(u"封面" in m and "/fail" in m for m in msgs), msgs
+
+
+def test_G03_warns_when_the_cover_is_still_decided_by_widest_image(passing_ctx):
+    """没声明封面而这篇**有实拍图** → 首图由"最宽的一张"决定，必须喊一声（warn 不是 fail）。
+
+    这条不是假想风险：`cover_of` 的注释自己就写着 W-119 的结论——那条规则会选中
+    排行榜截图与宣传横幅。10-04 压图之后它真的让 5 篇的线上首图**无声换人**，
+    而 400 KB 上限是逐张按宽度起作用的，所以任何一次改宽度都可能再换一次。
+    判据不是"这张好不好看"，是**不许无声变动**。
+    """
+    data = copy.deepcopy(passing_ctx.data)
+    data.pop("cover", None)
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    hits = [f for f in run(by_id("G-03"), ctx) if u"封面" in str(f)]
+    assert hits and hits[0].level == "warn", [str(f) for f in hits]
+    assert u"最宽" in str(hits[0]), str(hits[0])
+
+
+def test_G03_says_nothing_when_the_page_has_only_self_drawn_diagrams(passing_ctx):
+    """反向钉住：全是自画示意图的页面**本来就不该有封面**（示意图不许当门面），
+    退到主题记忆点是设计态。对它喊话等于逼作者塞一张不相干的图。
+    真例子：Agent开发 / 开源权重与算力估值 / 美国中期选举与全球资产。"""
+    data = copy.deepcopy(passing_ctx.data)
+    data.pop("cover", None)
+    for s in data["sections"]:
+        for im in s.get("images") or []:
+            im["kind"] = "illustration"
+            im["based_on"] = [u"sec-1#要点"]
+    ctx = copy.copy(passing_ctx)
+    ctx.data = data
+    msgs = [str(f) for f in run(by_id("G-03"), ctx) if u"封面" in str(f)]
+    assert msgs == [], msgs
+
+
 def test_G03_rejects_too_few_images(passing_ctx):
     data = copy.deepcopy(passing_ctx.data)
     for s in data["sections"][3:]:
@@ -227,15 +287,17 @@ def test_G03_rejects_too_few_images(passing_ctx):
     assert run(by_id("G-03"), ctx)
 
 
-def test_G03_rejects_remote_image_and_empty_alt(passing_ctx):
+def test_G03_rejects_remote_image(passing_ctx):
     html = passing_ctx.html.replace('src="images/01_test.jpg"',
                                     'src="https://cdn.example.com/x.jpg"')
-    html = html.replace('alt="第 2 章测试配图"', 'alt=""')
     ctx = copy.copy(passing_ctx)
     ctx.html = html
     msgs = [str(x) for x in run(by_id("G-03"), ctx)]
     assert any("远程" in m for m in msgs), msgs
-    assert any("alt" in m for m in msgs), msgs
+    # 10-05 之前这半个测试还判 `alt=""` 必须有罪。现在判的是
+    # "空 alt 又没有可见图注"（W-188 ②），夹具里那张图有 caption，所以不该再报。
+    # 正反两面都在 tests/test_alt_caption_pair.py，这里只留远程地址这一条。
+    assert not any("alt" in m for m in msgs), msgs
 
 
 def test_G03_flags_orphan_image(passing_ctx):
@@ -250,10 +312,39 @@ def test_G03_orphan_check_only_looks_at_image_files(passing_ctx):
     真孤儿（没人引用的 .jpg）照样要报。"""
     d = passing_ctx.out_dir
     io.open(os.path.join(d, "images", "search-stats.json"), "w", encoding="utf-8").write("{}")
+    # 入库压缩的源哈希侧车：它挂在每张图后面，但既不是图片也不该上线。
+    io.open(os.path.join(d, "images", "96_x.jpg.srcsha"), "w", encoding="utf-8").write("ab12\n")
     open(os.path.join(d, "images", "97_junk.jpg"), "wb").write(b"x")
     msgs = [str(x) for x in run(by_id("G-03"), passing_ctx)]
     assert not any("search-stats" in m for m in msgs),         u"非图片文件被判成孤儿图片：%s" % [m for m in msgs if u"孤儿" in m][:2]
+    assert not any("srcsha" in m for m in msgs),               u"源哈希侧车被判成孤儿图片：%s" % [m for m in msgs if u"孤儿" in m][:2]
     assert any("97_junk" in m for m in msgs), u"真孤儿却漏了"
+
+
+def test_G03_fails_an_oversize_image_with_no_srcsha(passing_ctx):
+    """超过软上限**又没有 `.srcsha` 侧车** = 这张图没经过入库策略。
+    来源可能是手工塞进 images/、`add_illustration` 之外的路径，或 `collect` 里那一步被改回去。
+
+    判 fail 不判 warn：warn 会被 28 条 G-14 埋掉（validate.py 里就记着"52 条真 G-03 fail
+    被埋在 warn 里"这回事）。而今天全库 465 张都有侧车，这条**一条都不响**——
+    它守的是"以后别绕过"，不是"把已经登记过的例外再报一遍"。
+    """
+    d = passing_ctx.out_dir
+    open(os.path.join(d, "images", "90_huge.jpg"), "wb").write(
+        b"\xff\xd8\xff\xe0" + b"\x00" * 800000)
+    msgs = [str(x) for x in run(by_id("G-03"), passing_ctx)]
+    assert any(u"体积策略" in m for m in msgs), u"绕过入库策略的大图却没报：%s" % msgs[:2]
+
+
+def test_G03_accepts_an_oversize_image_that_the_policy_registered(passing_ctx):
+    """同一张大图，带侧车就是"策略跑过、在自己的格式里到不了线、已点名"——那是登记的例外，
+    不是违规。再报一遍就是把 48 条已知事实变成常响的噪声。"""
+    d = passing_ctx.out_dir
+    p = os.path.join(d, "images", "91_huge.jpg")
+    open(p, "wb").write(b"\xff\xd8\xff\xe0" + b"\x00" * 800000)
+    io.open(p + ".srcsha", "w", encoding="utf-8").write(u"a" * 64 + u"\n")
+    msgs = [str(x) for x in run(by_id("G-03"), passing_ctx)]
+    assert not any(u"体积策略" in m for m in msgs), u"已登记的例外又被报成违规：%s" % msgs[:2]
 
 
 def test_G03_does_not_call_another_pages_image_an_orphan(passing_ctx):
@@ -375,6 +466,28 @@ def test_G08_rejects_missing_and_stale_fingerprint(passing_ctx):
     ctx2.data = passing_ctx.data
     assert run(by_id("G-08"), ctx2), "旧模板产物应被识别为需要重渲染"
 
+
+
+def test_G08_notices_a_template_edit_the_old_fingerprint_cannot_see(tmp_path, passing_ctx):
+    """W-163：改 CSS、改措辞都不动区块枚举与 rev，旧指纹完全看不见。
+
+    实测过代价：`web/src` 30 次提交里只有 1 次动过 TEMPLATE_FINGERPRINT，
+    也就是说 29 次模板改动 G-08 一声不吭，产物可以永远不重渲染。
+    修法是把**模板源哈希**记在产物旁边的侧车文件里，而不是嵌进 HTML——
+    嵌进去的话改一句注释会让 24 篇的产物字节全变，逼着把 24 个站再发一遍；
+    侧车只要求"重渲染"，HTML 没变就不必重发。
+    """
+    ctx = copy.copy(passing_ctx)
+    side = ctx.page_path + ".srchash"
+    io.open(side, "w", encoding="utf-8").write(u"deadbeef0000" + chr(10))
+
+    assert run(by_id("G-08"), ctx), "侧车是旧值，G-08 必须要求重渲染"
+    io.open(side, "w", encoding="utf-8").write(V.current_sources_hash() + chr(10))
+
+    fails = [f for f in run(by_id("G-08"), ctx) if f.level == "fail"]
+    assert not fails, "侧车与当前一致却仍判死：%s" % [f.message for f in fails]
+    os.remove(side)
+    assert run(by_id("G-08"), ctx), "侧车缺失说明这一篇没走渲染流程，不能算已验证"
 
 def test_G09_is_empty_when_no_active_red_lines(monkeypatch):
     monkeypatch.setattr(V, "active_red_lines", lambda: [])
@@ -641,6 +754,20 @@ def test_G05_warns_when_slightly_over_the_soft_ceiling(passing_ctx):
     assert [f for f in got if f.level == "warn"], "超软上限却一声不吭，篇幅承诺就没人守了"
 
 
+def test_G05_an_outline_cannot_lift_the_hard_cap(passing_ctx):
+    """R-05 的硬上限是红线，大纲不能靠声明一个更大的时长把它关掉。
+
+    10-01 给 13 篇重设 reading_target_minutes 时撞出来的：G-05 原来写的是
+    `if hard > hi and n > hard`，于是软上限一旦被我抬到硬上限之上，
+    这一篇就**永远不会判死**——红线变成可协商项。
+    """
+    hard = passing_ctx.bar["words"]["hard_max_chars"]
+    ctx = _pad_to(passing_ctx, hard + 1500)
+    ctx.get_outline = lambda: type("O", (), {"words_range": (100, hard * 3)})()
+    got = run(by_id("G-05"), ctx)
+    assert [f for f in got if f.level == "fail"],         u"大纲声明 %d 字上限就顶掉硬上限 %d，R-05 失效" % (hard * 3, hard)
+
+
 def test_G05_still_fails_when_grossly_over(passing_ctx):
     hard = passing_ctx.bar["words"]["hard_max_chars"]
     ctx = _pad_to(passing_ctx, hard + 1500)
@@ -715,15 +842,51 @@ def test_G06_rejects_a_source_label_printed_as_plain_text(passing_ctx):
         u"页面上不可点的 [S1] 没被判：\n%s" % "\n".join(hits)
 
 
+def test_G06_rejects_a_source_label_printed_in_full_width_parens(passing_ctx):
+    """全角括号里的来源编号一样是印在纸面上的假凭证。
+
+    09-27 在 AI眼镜 篇撞上：正文写着「（S16）」「（S7）」这类内联编号，
+    线上 32 处、爱马仕 12 处，而**没有一个 id 真的存在**（真身是补零的 S016）。
+    W-159 那条页面级检查只匹配半角 `[...]`，于是整类静默放行——
+    形状跟 `[S033]` 一模一样，只是换了括号。中文正文里全角才是自然写法，
+    所以这一档不是补充，是原来那条判据的半个漏洞。
+    """
+    ctx = copy.copy(passing_ctx)
+    ctx.html = passing_ctx.html.replace(
+        "</body>", '<p>衍射光波导的光能利用率只有 1% 左右（S7），'
+                   '换成波导只剩几十尼特（S16）。</p></body>')
+    hits = [str(x) for x in run(by_id("G-06"), ctx)]
+    assert any("印" in h and "S7" in h for h in hits), \
+        u"页面上不可点的（S7）没被判：\n%s" % "\n".join(hits)
+
+
 def test_G06_is_silent_about_links_and_plain_numbers(passing_ctx):
     """反向：`<a class="ref">S1</a>` 与 `[2024]`、`[约65%]` 都不是这条要抓的东西。
     判据写成"页面文本里有方括号"会变成全站噪声源。"""
     ctx = copy.copy(passing_ctx)
     ctx.html = passing_ctx.html.replace(
         "</body>",
-        '<p>读数 <a href="#src-S1" class="ref">S1</a> 与 [2024] [约65%] [注3]</p></body>')
+        '<p>读数 <a href="#src-S1" class="ref">S1</a> 与 [2024] [约65%] [注3]'
+        ' （第三代）（约 65%）（SKU 125530）</p></body>')
     hits = [str(x) for x in run(by_id("G-06"), ctx)]
     assert not any("印" in h for h in hits), u"正常链接或普通方括号被误判：%s" % hits
+
+
+def test_G06_is_silent_about_parentheses_that_are_not_citations(passing_ctx):
+    """括号里带 S+数字**不等于**那是引用——真实内容会撞这个形状。
+
+    骁龙笔电 页面写着 `Modern Standby（S0 低功率空闲）`：S0 是 ACPI 功耗状态名。
+    第一版判据写成"括号里能搜出 S\\d"，于是把一篇正常页面判成 fail。
+    现在要求整段只由编号与分隔符组成。
+    """
+    ctx = copy.copy(passing_ctx)
+    ctx.html = passing_ctx.html.replace(
+        "</body>",
+        '<p>待机取自 Windows 的 Modern Standby（S0 低功率空闲），'
+        '另一档叫（S3 深度睡眠）；脚注（见 S016 的约 1960 年说法）</p></body>')
+    hits = [str(x) for x in run(by_id("G-06"), ctx)]
+    assert not any("印" in h for h in hits), \
+        u"功耗状态名或普通括注被当成假凭证：%s" % [h for h in hits if u"印" in h]
 
 
 def test_G06_says_out_loud_when_prose_carries_unsourced_numbers(passing_ctx):

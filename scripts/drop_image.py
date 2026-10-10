@@ -14,6 +14,9 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "scripts"))
+
+import images  # noqa: E402  —— 只为 srcsha_path：侧车命名不许在两个地方各写一遍
 
 
 class DropError(Exception):
@@ -112,6 +115,10 @@ def drop(topic, target, root=None, apply=False, config_root=None):
     fp = os.path.join(domain_dir, want)
     if os.path.isfile(fp):
         os.remove(fp)
+        # 侧车跟着图走。命名规则只在 images.srcsha_path 一处，不在这里抄一遍。
+        sp = images.srcsha_path(fp)
+        if os.path.isfile(sp):
+            os.remove(sp)
 
     excluded = _exclude_page(topic, source_page, config_root)
     return {"file": want, "section": sec.get("id"), "emptied_sections": emptied,

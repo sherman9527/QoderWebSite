@@ -14,6 +14,7 @@ export const BLOCK_TYPES = [
   "bar_chart",
   "compare",
   "note",
+  "code",
 ] as const;
 
 export type BlockType = (typeof BLOCK_TYPES)[number];

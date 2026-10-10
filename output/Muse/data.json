@@ -150,11 +150,11 @@
    "images": [
     {
      "file": "images/02_Llama.png",
-     "alt": "LLaMA 羊驼系大语言模型的前世今生_拉玛大语言模型-CSDN博客",
+     "alt": "",
      "caption": "LLaMA 羊驼系大语言模型的前世今生_拉玛大语言模型-CSDN博客",
      "source_page": "https://blog.csdn.net/u011026329/article/details/138487682",
-     "width": 1080,
-     "height": 602,
+     "width": 800,
+     "height": 445,
      "query": "Llama"
     }
    ]
@@ -221,7 +221,7 @@
    "images": [
     {
      "file": "images/05_muse.png",
-     "alt": "Muse火了，然后呢？_新浪财经_新浪网",
+     "alt": "",
      "caption": "Muse火了，然后呢？_新浪财经_新浪网",
      "source_page": "https://finance.sina.com.cn/jjxw/2026-09-23/doc-inisviwc1177907.shtml",
      "width": 1018,
@@ -386,7 +386,7 @@
    "images": [
     {
      "file": "images/07_Linux.png",
-     "alt": "Rocky Linux – 最受欢迎的企业级 Linux 发行版 - Linux迷",
+     "alt": "",
      "caption": "Rocky Linux – 最受欢迎的企业级 Linux 发行版 - Linux迷",
      "source_page": "https://www.linuxmi.com/rocky-linux-enterprise-linux-distribution.html",
      "width": 1920,
@@ -395,11 +395,11 @@
     },
     {
      "file": "images/08_Ubuntu.png",
-     "alt": "（二）Ubuntu基本操作 - 知乎",
+     "alt": "",
      "caption": "（二）Ubuntu基本操作 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/400062029",
-     "width": 2878,
-     "height": 1066,
+     "width": 1472,
+     "height": 545,
      "query": "Ubuntu"
     }
    ]
@@ -535,13 +535,17 @@
     {
      "type": "prose",
      "heading": "规模呢",
-     "text": "很少。AWS 2024 年 11 月的十周年博客说 Lambda 每月有数十万亿次调用；沙箱这一层没有厂商公布过同时在线实例数或每日创建次数——Modal 2026 年 7 月的百万并发，正文写明是能力演示。"
+     "text": "很少。AWS 2024 年 11 月的十周年博客说 Lambda 每月有数十万亿次调用；沙箱这一层没有厂商公布过同时在线实例数或每日创建次数——Modal 2026 年 7 月的百万并发，正文写明是能力演示。",
+     "source_ids": [
+      "S0421",
+      "S0422"
+     ]
     }
    ],
    "images": [
     {
      "file": "images/12_会议.jpg",
-     "alt": "华为云会议让企业会议想开就开 - 知乎",
+     "alt": "",
      "caption": "华为云会议让企业会议想开就开 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/587755437",
      "width": 933,
@@ -558,7 +562,10 @@
     {
      "type": "prose",
      "heading": "判的是网络身份，不是账号身份",
-     "text": "反爬判的不是“你是谁”，而是“你从哪张网络来”。Cloudflare 把它写成了字段：verified_bot 靠反向 DNS 确认源 IP 属于声称的服务，再比对 ASN 段与公开名单，没通过的落进 1–99 的 bot score。同一 ASN 下有滥用记录，整段信誉被拉平，机房段因此吃亏。多账号还要彼此隔离：同一出口 IP 上的 N 个账户会被当协同信号，共用出口容易被一起处置。"
+     "text": "反爬判的不是“你是谁”，而是“你从哪张网络来”。Cloudflare 把它写成了字段：verified_bot 靠反向 DNS 确认源 IP 属于声称的服务，再比对 ASN 段与公开名单，没通过的落进 1–99 的 bot score。同一 ASN 下有滥用记录，整段信誉被拉平，机房段因此吃亏。多账号还要彼此隔离：同一出口 IP 上的 N 个账户会被当协同信号，共用出口容易被一起处置。",
+     "source_ids": [
+      "S056"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -613,7 +620,7 @@
    "images": [
     {
      "file": "images/15_muse_IP.png",
-     "alt": "拆解Muse叙事：「新入口」逻辑并不成立",
+     "alt": "",
      "caption": "拆解Muse叙事：「新入口」逻辑并不成立",
      "source_page": "https://www.msn.cn/zh-cn/news/other/%E6%8B%86%E8%A7%A3muse%E5%8F%99%E4%BA%8B-%E6%96%B0%E5%85%A5%E5%8F%A3-%E9%80%BB%E8%BE%91%E5%B9%B6%E4%B8%8D%E6%88%90%E7%AB%8B/ar-AA2cOyTG",
      "width": 768,
@@ -622,7 +629,7 @@
     },
     {
      "file": "images/16_地址.png",
-     "alt": "202.96.128.86地理位置查询及详细问答 | IP地址 (简体中文) 🔍",
+     "alt": "",
      "caption": "202.96.128.86地理位置查询及详细问答 | IP地址 (简体中文) 🔍",
      "source_page": "https://zh-hans.ipshu.com/ipv4/202.96.128.86",
      "width": 1980,
@@ -721,17 +728,17 @@
    "images": [
     {
      "file": "images/19_AMD.png",
-     "alt": "基于Zen4打造、最高96核心：AMD第四代霄龙处理器“热那亚”发布_CPU_什么值得买",
+     "alt": "",
      "caption": "基于Zen4打造、最高96核心：AMD第四代霄龙处理器“热那亚”发布_CPU_什么值得买",
      "source_page": "https://post.smzdm.com/p/a4pwqwzl/",
-     "width": 1080,
-     "height": 608,
+     "width": 800,
+     "height": 450,
      "query": "AMD"
     },
     {
      "file": "images/20_处理器.jpg",
-     "alt": "英特尔发布 12 代酷睿桌面处理器：国行 2079 元起 | 爱搞机",
-     "caption": "英特尔发布 12 代酷睿桌面处理器：国行 2079 元起 | 爱搞机",
+     "alt": "",
+     "caption": "英特尔发布 12 代酷睿桌面处理器",
      "source_page": "https://www.igao7.com/news/202110/HXCvzqvJ7aYn04RA.html?from=feed",
      "width": 1920,
      "height": 1080,
@@ -1016,7 +1023,7 @@
    "images": [
     {
      "file": "images/23_muse.jpg",
-     "alt": "Meta AI launches Muse personal agent app for iPhone and Mac | News ...",
+     "alt": "",
      "caption": "Meta AI launches Muse personal agent app for iPhone and Mac | News ...",
      "source_page": "https://www.newsminimalist.com/articles/meta-ai-launches-muse-personal-agent-app-for-iphone-and-mac-96084903",
      "width": 2000,
@@ -1025,7 +1032,7 @@
     },
     {
      "file": "images/24_光模块.png",
-     "alt": "BGM1025G SFP28光模块万兆25G多模双纤光纤模块(850nm,100m,LC)兼容华为/锐捷/中兴/普联交换机 - 光模块(10G ...",
+     "alt": "",
      "caption": "BGM1025G SFP28光模块万兆25G多模双纤光纤模块(850nm,100m,LC)兼容华为/锐捷/中兴/普联交换机 - 光模块(10G ...",
      "source_page": "http://www.newshengwei.com/proshow-6.html",
      "width": 800,
@@ -1090,7 +1097,8 @@
        "label": "无影 4核8G、120 小时/月",
        "hint": "按需 0.727 元/小时",
        "source_ids": [
-        "S083"
+        "S083",
+        "S092"
        ]
       },
       {
@@ -1106,7 +1114,8 @@
        "label": "AgentBay 沙箱 CPU",
        "hint": "按秒计费",
        "source_ids": [
-        "S084"
+        "S084",
+        "S0311"
        ]
       },
       {
@@ -1200,20 +1209,20 @@
    "images": [
     {
      "file": "images/27_腾讯云_阿里云_园区_建筑.png",
-     "alt": "腾讯数字生态大会详解腾讯云全球化发展规划，全真互联为重要发力点 | 每经网",
+     "alt": "",
      "caption": "腾讯数字生态大会详解腾讯云全球化发展规划，全真互联为重要发力点 | 每经网",
      "source_page": "https://www.nbd.com.cn/articles/2022-11-30/2574072.html",
-     "width": 1432,
-     "height": 534,
+     "width": 800,
+     "height": 298,
      "query": "腾讯云 阿里云 园区 建筑"
     },
     {
      "file": "images/28_天翼云.jpg",
-     "alt": "历经十年发展，中国电信天翼云宣布进入4.0阶段",
+     "alt": "",
      "caption": "历经十年发展，中国电信天翼云宣布进入4.0阶段",
      "source_page": "https://huacheng.gz-cmc.com/pages/2021/11/15/f68fb53b13ea4b178a00ed9f6df5adcf.html",
-     "width": 1706,
-     "height": 1279,
+     "width": 1472,
+     "height": 1103,
      "query": "天翼云"
     }
    ]
@@ -1226,12 +1235,21 @@
     {
      "type": "prose",
      "heading": "一次任务，而不是一个机柜",
-     "text": "别按「一台机器多少钱」想，按「一次 agent 任务多少钱」想。天翼云电脑政企版 4核8GB 按需 0.52 元/台·小时，阿里云无影 4vCPU/8GiB 按需 0.727 元/台·小时，两家都只有运行状态计计算费、关机休眠停计；盘另算：阿里云 0.00035 元/GiB·小时，从创建到释放全程照收。\n\n假设日均 2000 个任务、每任务 12 分钟、集中在 8 小时窗口（平均并发 50 台，峰值取两倍 100 台），一个月 12000 台·小时，计算费 6240 元（天翼云）到 8724 元（阿里云）。"
+     "text": "别按「一台机器多少钱」想，按「一次 agent 任务多少钱」想。天翼云电脑政企版 4核8GB 按需 0.52 元/台·小时，阿里云无影 4vCPU/8GiB 按需 0.727 元/台·小时，两家都只有运行状态计计算费、关机休眠停计；盘另算：阿里云 0.00035 元/GiB·小时，从创建到释放全程照收。\n\n假设日均 2000 个任务、每任务 12 分钟、集中在 8 小时窗口（平均并发 50 台，峰值取两倍 100 台），一个月 12000 台·小时，计算费 6240 元（天翼云）到 8724 元（阿里云）。",
+     "source_ids": [
+      "S091",
+      "S092"
+     ]
     },
     {
      "type": "prose",
      "heading": "最容易漏的三项：流量、IP、盘",
-     "text": "流量：天翼云 0.36 元/GB，阿里云华北 2、华东 1 等 BGP 多线 0.80 元/GB，香港精品线路 3.0 元/GB。按每任务 100MB、月 6 万任务算，是 2160 元到 4800 元。\n\n出口 IP：阿里云公网 IP 保有费 0.02 元/个·小时，100 个地址常驻持有是 1440 元/月；两家都写明 IP 直绑实例时免收——「一个沙箱一个出口 IP」走绑定还是地址池，是写进账单的决策。存储：用完即销毁近乎为零，保留 100 台 × 80GiB、0.25 元/GiB·月就是 2000 元。"
+     "text": "流量：天翼云 0.36 元/GB，阿里云华北 2、华东 1 等 BGP 多线 0.80 元/GB，香港精品线路 3.0 元/GB。按每任务 100MB、月 6 万任务算，是 2160 元到 4800 元。\n\n出口 IP：阿里云公网 IP 保有费 0.02 元/个·小时，100 个地址常驻持有是 1440 元/月；两家都写明 IP 直绑实例时免收——「一个沙箱一个出口 IP」走绑定还是地址池，是写进账单的决策。存储：用完即销毁近乎为零，保留 100 台 × 80GiB、0.25 元/GiB·月就是 2000 元。",
+     "source_ids": [
+      "S091",
+      "S093",
+      "S094"
+     ]
     },
     {
      "type": "price_table",
@@ -1270,7 +1288,7 @@
       {
        "cells": [
         "E2B 沙箱 4vCPU/8GiB",
-        "0.000092 美元/秒 ≈ 0.33 美元/小时",
+        "0.000056＋0.000036＝0.000092 美元/秒（vCPU 4×0.000014、内存 8GiB×0.0000045）≈ 0.33 美元/小时",
         "平台费 150 美元/月含 100 并发；1100 并发再 +1000 美元/月",
         "存储 20GiB 内免费"
        ],
@@ -1295,7 +1313,13 @@
     {
      "type": "prose",
      "heading": "闲置率才是分水岭",
-     "text": "同样的活儿：按需付 8724 元；改买「不限时长包月」199 元/台、常驻 100 台，要 19900 元。这 100 台容量 72000 台·小时，实际用掉 12000——利用率 16.7%。\n\n交叉点可以直接算：199 ÷ 0.727 = 274 台·小时/月，即 38% 利用率；天翼云 162 ÷ 0.52 = 312 小时，43%。跑不到这条线，买包月就是替闲置付费。E2B 拆得更明：按秒计价之外，并发数是另一笔钱——Pro 档 150 美元/月含 100 并发，加到 1100 并发要 1000 美元/月。"
+     "text": "同样的活儿：按需付 8724 元；改买「不限时长包月」199 元/台、常驻 100 台，要 19900 元。这 100 台容量 72000 台·小时，实际用掉 12000——利用率 16.7%。\n\n交叉点可以直接算：199 ÷ 0.727 = 274 台·小时/月，即 38% 利用率；天翼云 162 ÷ 0.52 = 312 小时，43%。跑不到这条线，买包月就是替闲置付费。E2B 拆得更明：按秒计价之外，并发数是另一笔钱——Pro 档 150 美元/月含 100 并发，加到 1100 并发要 1000 美元/月。",
+     "source_ids": [
+      "S091",
+      "S092",
+      "S093",
+      "S097"
+     ]
     },
     {
      "type": "bar_chart",
@@ -1339,18 +1363,26 @@
     {
      "type": "prose",
      "heading": "自建什么时候反超",
-     "text": "2025 年 1 月中央国家机关政采一份中标公告里，浪潮 NF5280G7（2U 双路，2 × 至强 6530 共 64 核、512GB 内存）单价 78000 元、买了 12 台。假设 3 年直线折旧、无残值，摊 2167 元/月；北京一家 IDC 公开报价单上 42U 整柜含 10M 独享带宽 50000 元/年，一柜放 20 台 2U，摊 208 元/台·月。合计 2375 元。\n\n再把核切开：64 核 ÷ 4vCPU = 16 份（内存 512÷8 = 64 份，CPU 先到瓶颈），每份 148 元/月，按 720 小时满摊即 0.21 元/台·小时。自建 3 台 7125 元/月，对应天翼云按需 13700 台·小时——月运行量过了这个数（约每天 2300 个 12 分钟任务）自建才便宜，这还没算运维人力、备件和超额电力。"
+     "text": "2025 年 1 月中央国家机关政采一份中标公告里，浪潮 NF5280G7（2U 双路，2 × 至强 6530 共 64 核、512GB 内存）单价 78000 元、买了 12 台。假设 3 年直线折旧、无残值，摊 2167 元/月；北京一家 IDC 公开报价单上 42U 整柜含 10M 独享带宽 50000 元/年，一柜放 20 台 2U，摊 208 元/台·月。合计 2375 元。\n\n再把核切开：64 核 ÷ 4vCPU = 16 份（内存 512÷8 = 64 份，CPU 先到瓶颈），每份 148 元/月，按 720 小时满摊即 0.21 元/台·小时。自建 3 台 7125 元/月，对应天翼云按需 13700 台·小时——月运行量过了这个数（约每天 2300 个 12 分钟任务）自建才便宜，这还没算运维人力、备件和超额电力。",
+     "source_ids": [
+      "S095",
+      "S096"
+     ]
     },
     {
      "type": "prose",
      "heading": "报价页不等于合同价",
-     "text": "以上全是公开标价：政采单价是 12 台的批量成交价，IDC 报价单自己注明「促销价、每月限量前 20 名」，云厂商大客户折扣走合同、不上网。这些数只够比量级、找交叉点，真做预算得自己询价。"
+     "text": "以上全是公开标价：政采单价是 12 台的批量成交价，IDC 报价单自己注明「促销价、每月限量前 20 名」，云厂商大客户折扣走合同、不上网。这些数只够比量级、找交叉点，真做预算得自己询价。",
+     "source_ids": [
+      "S095",
+      "S096"
+     ]
     }
    ],
    "images": [
     {
      "file": "images/31_muse.jpg",
-     "alt": "Meta puso humanos en llamadas del agente IA Muse: 98% éxito – El ...",
+     "alt": "",
      "caption": "Meta puso humanos en llamadas del agente IA Muse: 98% éxito – El ...",
      "source_page": "https://ecosistemastartup.com/meta-puso-humanos-en-llamadas-del-agente-ia-muse-98-exito/",
      "width": 2048,
@@ -1469,7 +1501,7 @@
    "images": [
     {
      "file": "images/33_muse.jpg",
-     "alt": "Meta's Muse AI: Inspired by OpenClaw, Claims Product Head, ETEnterpriseai",
+     "alt": "",
      "caption": "Meta's Muse AI: Inspired by OpenClaw, Claims Product Head, ETEnterpriseai",
      "source_page": "https://enterpriseai.economictimes.indiatimes.com/news/industry/meta-admits-muse-is-inspired-by-openclaw-after-users-draw-comparison/134439233",
      "width": 1200,
@@ -1495,12 +1527,19 @@
     {
      "type": "prose",
      "heading": "合规：当天就没有产出",
-     "text": "Cloudflare 在 2025 年 8 月点名 Perplexity 用未声明的爬虫绕过站点禁令，并拦掉它自称「用户驱动」的流量。同一片防护下的站点，人和 agent 一起进不去。出口 IP 越像住宅宽带、共用网段越大，连带被封的面积越大。这一条不以罚款收场，是当天没有产出。"
+     "text": "Cloudflare 在 2025 年 8 月点名 Perplexity 用未声明的爬虫绕过站点禁令，并拦掉它自称「用户驱动」的流量。同一片防护下的站点，人和 agent 一起进不去。出口 IP 越像住宅宽带、共用网段越大，连带被封的面积越大。这一条不以罚款收场，是当天没有产出。",
+     "source_ids": [
+      "S116"
+     ]
     },
     {
      "type": "prose",
      "heading": "平台依赖，和经济性",
-     "text": "模型厂商自带执行环境：OpenAI 2025 年 7 月的 ChatGPT agent 自带一台虚拟机，微软 2025 年 11 月的 Ignite 也把「给 agent 用的 Windows」列为主线。模型方开始送机器，中间层丢的是续约谈判里的定价权。成本要按重试算——一次成功背后是几次白烧的机器时和 token，所以完成率比单价更能决定这门生意。"
+     "text": "模型厂商自带执行环境：OpenAI 2025 年 7 月的 ChatGPT agent 自带一台虚拟机，微软 2025 年 11 月的 Ignite 也把「给 agent 用的 Windows」列为主线。模型方开始送机器，中间层丢的是续约谈判里的定价权。成本要按重试算——一次成功背后是几次白烧的机器时和 token，所以完成率比单价更能决定这门生意。",
+     "source_ids": [
+      "S119",
+      "S1110"
+     ]
     },
     {
      "type": "fact_strip",
@@ -1551,13 +1590,17 @@
     {
      "type": "prose",
      "heading": "哪条是真的",
-     "text": "派生自「agent 需要一台机器」的 CPU、内存与出口 IP 需求是真的，已经写在价目表里。要时间证明的是量级：一个任务值多少机器时，以及人不再自己开电脑这个前提。资本开支的口径里大头仍是卡与电，路透 2026 年 7 月已在写有人为增速放缓布局。两件同时成立，外溢到沙箱的那部分更像存量重分配。"
+     "text": "派生自「agent 需要一台机器」的 CPU、内存与出口 IP 需求是真的，已经写在价目表里。要时间证明的是量级：一个任务值多少机器时，以及人不再自己开电脑这个前提。资本开支只披露到总额一层——Meta 提交 SEC 的二季度数是 310.8 亿美元、全年指引 1,300 亿—1,450 亿美元，粒度到不了机时；路透 2026 年 7 月已在写有人为增速放缓布局。两件同时成立，外溢到沙箱的那部分更像存量重分配。",
+     "source_ids": [
+      "S1010",
+      "S118"
+     ]
     }
    ],
    "images": [
     {
      "file": "images/35_muse.png",
-     "alt": "Aion 3.5 Mini vs Muse Spark 1.3 Contributor - AI Model Comparison",
+     "alt": "",
      "caption": "Aion 3.5 Mini vs Muse Spark 1.3 Contributor - AI Model Comparison",
      "source_page": "https://openrouter.ai/compare/aion-labs/aion-3.5-mini/meta/muse-spark-1.3-contributor",
      "width": 1200,
@@ -1573,14 +1616,16 @@
    "url": "https://help.aliyun.com/zh/agentbay/product-overview/what-is-eds-agentbay",
    "label": "阿里云官方文档《什么是无影 AgentBay》：浏览器/代码空间/云电脑/移动端四大环境、企业级安全容器与权限隔离、支持跨平台数据持久化和状态连续性、计费项含会话回放记录",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/ffaf10746bd24430.txt"
   },
   {
    "id": "S022",
    "url": "https://help.aliyun.com/zh/agentbay/developer-reference/all-in-one-sandbox",
    "label": "阿里云官方文档《All in One Sandbox》：单个 linux_latest 会话同时提供 session.computer / session.browser / session.code；隔离为 VPC 网络 + 独立容器环境",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/d8e9aa393a3b39cb.txt"
   },
   {
    "id": "S023",
@@ -1594,56 +1639,64 @@
    "url": "https://arxiv.org/abs/2404.07972",
    "label": "OSWorld 论文（NeurIPS 2024）：369 个真实桌面任务、每任务初始状态配置与执行式评分脚本、人类 72.36% 对当时最好模型 12.24%",
    "retrieved": "2026-09-23",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/6bc47f6f7f596bec.txt"
   },
   {
    "id": "S025",
    "url": "https://arxiv.org/abs/2307.13854",
    "label": "WebArena 论文：电商/论坛/代码托管/内容管理四类自建站点，最好的 GPT-4 智能体端到端成功率 14.41%，人类 78.24%",
    "retrieved": "2026-09-23",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/aeaa3ee0c371fcf0.txt"
   },
   {
    "id": "S026",
    "url": "https://help.aliyun.com/zh/agentbay/manage-policies",
    "label": "阿里云官方文档《策略管理》：桌面单次运行最长时限、交互空闲后自动释放等会话生命周期参数（取值以分钟计）",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/66cfb0dce6368288.txt"
   },
   {
    "id": "S027",
    "url": "https://www.swebench.com/",
    "label": "SWE-bench 官方榜单页：原版 2294 个实例取自真实 GitHub issue",
    "retrieved": "2026-09-23",
-   "publisher": "SWE-bench"
+   "publisher": "SWE-bench",
+   "cache": "text/cf42ebe435fb4a58.txt"
   },
   {
    "id": "S011",
    "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
    "label": "Meta 官方新闻室发布稿《Introducing Muse: The World's First Personal AI Agent》，2026-09-08。确认发布日期、Muse Secure VM（每人一台云端虚拟机、自带浏览器）、Sentinel 审查、iOS/Android/muse.ai/WhatsApp 形态、免费+订阅",
    "retrieved": "2026-09-23",
-   "publisher": "Meta Newsroom"
+   "publisher": "Meta Newsroom",
+   "cache": "text/1fc754bb849e520a.txt"
   },
   {
    "id": "S012",
    "url": "https://finance.sina.com.cn/jjxw/2026-09-22/doc-inissuii2070812.shtml",
    "label": "界面新闻（新浪财经转载）《两周登顶App Store榜首，Meta Muse智能体应用爆红》2026-09-22。含 Sensor Tower 分端下载数与逐日节奏、20/100 美元订阅、9 月 21 日股价涨幅与市值增量",
    "retrieved": "2026-09-23",
-   "publisher": "界面新闻"
+   "publisher": "界面新闻",
+   "cache": "text/7d92e8bd07f276b8.txt"
   },
   {
    "id": "S013",
    "url": "https://www.163.com/dy/article/L7DVKFVH0519QIKK.html",
    "label": "金融界（网易转载）《上线两周下载量超73万，Muse超越ChatGPT登顶美国App Store》。独立交叉核对「5 天 73 万」与「上周五超越 ChatGPT 升至榜首」",
    "retrieved": "2026-09-23",
-   "publisher": "金融界"
+   "publisher": "金融界",
+   "cache": "text/abe74e5706e27846.txt"
   },
   {
    "id": "S014",
    "url": "https://www.infoq.cn/article/NSFJ4JFUjL6KaYUDV5Wv",
    "label": "InfoQ 中文《Meta Muse突袭：人手一台AI虚拟机，全天候干活》2026-09-10。梳理每人一台 Secure VM、Sentinel 双系统、扎克伯格访谈中的每周 1 亿 token 免费额度",
    "retrieved": "2026-09-23",
-   "publisher": "InfoQ"
+   "publisher": "InfoQ",
+   "cache": "text/8c83770dc0be8d8b.txt"
   },
   {
    "id": "S015",
@@ -1657,14 +1710,16 @@
    "url": "https://about.fb.com/news/2026/04/introducing-muse-spark-meta-superintelligence-labs/",
    "label": "Meta 官方新闻室《Introducing Muse Spark: Meta's Most Powerful Model Yet》，2026 年 4 月。确认驱动模型的名称与发布时间",
    "retrieved": "2026-09-23",
-   "publisher": "Meta Newsroom"
+   "publisher": "Meta Newsroom",
+   "cache": "text/74b6e885b1babaeb.txt"
   },
   {
    "id": "S017",
    "url": "https://view.inews.qq.com/a/20260911A03EX200",
    "label": "手机中国（腾讯新闻）2026-09-11。Sensor Tower 早期数据：美国 iOS 下载超 8.3 万次、免费榜第 2、安卓仅 Play 生产力榜第 338、网页与 WhatsApp 未纳入统计、Threads 上线首日 430 万次对照",
    "retrieved": "2026-09-23",
-   "publisher": "手机中国"
+   "publisher": "手机中国",
+   "cache": "text/386e16701433917a.txt"
   },
   {
    "id": "S018",
@@ -1699,7 +1754,8 @@
    "url": "https://firecracker-microvm.github.io/",
    "label": "Firecracker 项目主页：Boot in <125ms、Create up to 150 microVMs per second per host、Only 5 emulated devices、<5 MiB overhead per VM，并称支撑 15 trillion+ monthly Lambda function invocations（页面无发布日期，本次抓取 2026-09）",
    "retrieved": "2026-09-23",
-   "publisher": "AWS"
+   "publisher": "AWS",
+   "cache": "text/886d8c099158a185.txt"
   },
   {
    "id": "S045",
@@ -1713,49 +1769,56 @@
    "url": "https://modal.com/docs/guide/cold-start",
    "label": "Modal 官方文档：Containers boot in about one second. 同页写明 The time taken for a container to become warm and ready for inputs can range from seconds to minutes，原因是容器需先执行代码全局作用域的 import 等逻辑",
    "retrieved": "2026-09-23",
-   "publisher": "Modal"
+   "publisher": "Modal",
+   "cache": "text/40de968894d20d5c.txt"
   },
   {
    "id": "S047",
    "url": "https://modal.com/docs/guide/sandbox",
    "label": "Modal 官方沙箱文档：cold-spins up sandboxes in less than one second，并限定 sub-second 冷启动的前提是 pre-cached containers",
    "retrieved": "2026-09-23",
-   "publisher": "Modal"
+   "publisher": "Modal",
+   "cache": "text/c875fce049fcb62c.txt"
   },
   {
    "id": "S048",
    "url": "https://www.daytona.io/docs/en/sandboxes/",
    "label": "Daytona 官方文档：spinning up in under 90ms from code to execution，页面未定义该数字的起止点；同页状态机含 Creating / Pulling Snapshot / Building Snapshot / Pending Build / Starting / Started",
    "retrieved": "2026-09-23",
-   "publisher": "Daytona"
+   "publisher": "Daytona",
+   "cache": "text/c6389c870a3f5ca4.txt"
   },
   {
    "id": "S049",
    "url": "https://fly.io/blog/fly-machines/",
    "label": "Fly.io 官方博客（2022-05-24）：Fly Machines are VMs with a fast REST API that can boot instances in about 300ms；同文把口径落在 API 的 start 调用送达（同区域 10-50ms），并写明 Your application boot time is something you should optimize",
    "retrieved": "2026-09-23",
-   "publisher": "Fly.io"
+   "publisher": "Fly.io",
+   "cache": "text/1c7d274b37199a06.txt"
   },
   {
    "id": "S0410",
    "url": "https://docs.e2b.dev/agents/eve",
    "label": "E2B 官方文档对比表：Startup | ~150 ms from a snapshot or custom template（即从快照/模板加载，不含首次构建）",
    "retrieved": "2026-09-23",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/366bdf1988c3b941.txt"
   },
   {
    "id": "S0411",
    "url": "https://docs.e2b.dev/template/how-it-works",
    "label": "E2B 官方模板文档：模板本质是已运行沙箱的快照，This allows us to load the sandbox in ~80ms any time later with all the processes already running；构建流程另列 Wait for readiness（默认 20 秒）",
    "retrieved": "2026-09-23",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/19890673b0bfac25.txt"
   },
   {
    "id": "S0412",
    "url": "https://www.together.ai/blog/code-sandbox-code-interpreter",
    "label": "Together AI 官方博客：starts VMs from a snapshot in 500 ms (P95) and clones them in under 1 second（口径为从快照启动、取 P95）",
    "retrieved": "2026-09-23",
-   "publisher": "Together AI"
+   "publisher": "Together AI",
+   "cache": "text/35a04f9e6059c890.txt"
   },
   {
    "id": "S0413",
@@ -1790,42 +1853,48 @@
    "url": "https://d7y.io/docs/",
    "label": "Dragonfly 官方文档：基于 P2P 技术利用节点空闲带宽做数据分发与加速，并含可选的内容可寻址文件系统以加速 OCI 容器启动；CNCF 历程为 2018-11-13 接受、2020-04-09 孵化、2025-10-28 毕业",
    "retrieved": "2026-09-23",
-   "publisher": "CNCF / Dragonfly"
+   "publisher": "CNCF / Dragonfly",
+   "cache": "text/36b7c0a59e16ecd4.txt"
   },
   {
    "id": "S0418",
    "url": "https://knative.dev/docs/serving/autoscaling/scale-bounds/",
    "label": "Knative 官方自动扩缩文档（预热池的官方术语不是 warm pool）：min-scale 释义 Knative will attempt to never have less than this number of replicas at any one point in time；scale-down-delay 用于 to keep containers around for a configurable duration to avoid a cold start penalty if new requests come in",
    "retrieved": "2026-09-23",
-   "publisher": "Knative / CNCF"
+   "publisher": "Knative / CNCF",
+   "cache": "text/07ad6058d95fdbe3.txt"
   },
   {
    "id": "S0419",
    "url": "https://docs.aws.amazon.com/lambda/latest/dg/provisioned-concurrency.html",
    "label": "AWS Lambda 预置并发官方文档：Provisioned concurrency – This is the number of pre-initialized execution environments allocated to your function. These execution environments are ready to respond immediately to incoming function requests… designed to make functions available with double-digit millisecond response times",
    "retrieved": "2026-09-23",
-   "publisher": "AWS"
+   "publisher": "AWS",
+   "cache": "text/f36e0bc6c9786a22.txt"
   },
   {
    "id": "S0420",
    "url": "https://aws.amazon.com/lambda/pricing/",
    "label": "AWS Lambda 官方定价页：Provisioned Concurrency is calculated from the time you enable it on your function until it is disabled, rounded up to the nearest five minutes；官方计费示例给出 The Provisioned Concurrency price is $0.0000041667 per GB-s（对照按需 Duration 示例单价 $0.0000166667/GB-s）；并写明 The Lambda free tier does not apply to functions enabling Provisioned Concurrency，以及 AWS 会周期性回收执行环境并重跑初始化代码",
    "retrieved": "2026-09-23",
-   "publisher": "AWS"
+   "publisher": "AWS",
+   "cache": "text/736e75cb574eb025.txt"
   },
   {
    "id": "S0421",
    "url": "https://aws.amazon.com/blogs/aws/aws-lambda-turns-ten-the-first-decade-of-serverless-innovation/",
    "label": "AWS 官方博客（2024-11-18）：Today, over 1.5 million Lambda users collectively make tens of trillion function invocations per month。口径为每月函数调用次数聚合，非同时在线实例数；未发现一手来源给出每秒启动数百万容器的数字",
    "retrieved": "2026-09-23",
-   "publisher": "AWS"
+   "publisher": "AWS",
+   "cache": "text/7c976fa11ca628fe.txt"
   },
   {
    "id": "S0422",
    "url": "https://modal.com/blog/scaling-to-1-million-concurrent-sandboxes-in-seconds",
    "label": "Modal 官方博客（2026-07-16）：we've run a million sandboxes concurrently, creating all 1 million in under a minute。同页把它限定为能力演示：As a demonstration of what our platform is capable of——不是稳态生产峰值",
    "retrieved": "2026-09-23",
-   "publisher": "Modal"
+   "publisher": "Modal",
+   "cache": "text/dfff518bed115361.txt"
   },
   {
    "id": "S0423",
@@ -1846,35 +1915,40 @@
    "url": "https://www.kernel.org/doc/html/latest/filesystems/overlayfs.html",
    "label": "Linux 内核官方 overlayfs 文档：upper/lower 两层合并、同名对象 upper 可见、写 lower 触发 copy_up——容器镜像分层与快照共享内存页的底层机制",
    "retrieved": "2026-09-23",
-   "publisher": "kernel.org"
+   "publisher": "kernel.org",
+   "cache": "text/5a846f8806589907.txt"
   },
   {
    "id": "S0426",
    "url": "https://docs.runpod.io/flash/execution-model",
    "label": "RunPod 官方文档给出的另一头基线：冷启动 Typical timing: 10-60 seconds total, depending on GPU availability and image size；warm start 约 1 秒——用于说明镜像体积与资源池决定量级差异",
    "retrieved": "2026-09-23",
-   "publisher": "RunPod"
+   "publisher": "RunPod",
+   "cache": "text/66a3198830540f26.txt"
   },
   {
    "id": "S031",
    "url": "https://modal.com/docs/guide/images",
    "label": "Modal 官方文档《Images》：原文写明 By default, Modal Functions and Sandboxes run in a Debian Linux container",
    "retrieved": "2026-09-23",
-   "publisher": "Modal"
+   "publisher": "Modal",
+   "cache": "text/90a5047e927adfb6.txt"
   },
   {
    "id": "S032",
    "url": "https://docs.e2b.dev/template/base-image",
    "label": "E2B 官方文档《Base image》：模板基础镜像从 /etc/os-release 识别发行版，支持 Debian/Ubuntu、Fedora 与 RHEL 系、Arch、Alpine",
    "retrieved": "2026-09-23",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/efa4c39873d6953e.txt"
   },
   {
    "id": "S033",
    "url": "https://www.daytona.io/docs/en/sandboxes/",
    "label": "Daytona 官方文档《Sandboxes》：原文 Sandboxes run as Linux containers by default；同页规格表把 daytona-small（1 核 / 1GiB / 3GiB，Container）与 windows-small（1 核 / 4GiB / 30GiB，Windows）并列，容器档标注 <90ms",
    "retrieved": "2026-09-23",
-   "publisher": "Daytona"
+   "publisher": "Daytona",
+   "cache": "text/c6389c870a3f5ca4.txt"
   },
   {
    "id": "S034",
@@ -1888,140 +1962,160 @@
    "url": "https://learn.microsoft.com/en-us/azure/virtual-desktop/licensing",
    "label": "微软官方授权页《Licensing Azure Virtual Desktop》：合格许可含 Microsoft 365 E3/E5、Windows Enterprise E3/E5、Windows VDA per user；对外场景为 Per-user access pricing；Windows Server 需 RDS CAL；原文要求为每个访问 Azure Virtual Desktop 的员工各买一份",
    "retrieved": "2026-09-23",
-   "publisher": "Microsoft Learn"
+   "publisher": "Microsoft Learn",
+   "cache": "text/f59d29ea58971c58.txt"
   },
   {
    "id": "S036",
    "url": "https://www.microsoft.com/en-us/windows/windows-11-specifications",
    "label": "微软 Windows 11 官方规格页：最低系统要求 4 GB 内存、64 GB 存储、UEFI 且支持 Secure Boot、TPM 2.0",
    "retrieved": "2026-09-23",
-   "publisher": "Microsoft"
+   "publisher": "Microsoft",
+   "cache": "text/3533267172810fcc.txt"
   },
   {
    "id": "S037",
    "url": "https://cloud-images.ubuntu.com/minimal/releases/noble/release/",
    "label": "Ubuntu 官方云镜像发布目录：ubuntu-24.04-minimal-cloudimg-amd64.img，2026-09-05 构建，252M",
    "retrieved": "2026-09-23",
-   "publisher": "Canonical"
+   "publisher": "Canonical",
+   "cache": "text/471a1408d55d420a.txt"
   },
   {
    "id": "S038",
    "url": "https://cloud.debian.org/images/cloud/bookworm/latest/",
    "label": "Debian 官方云镜像目录：debian-12-genericcloud-amd64.qcow2 323M、debian-12-nocloud-amd64.qcow2 400M（2026-09-09 构建）",
    "retrieved": "2026-09-23",
-   "publisher": "Debian"
+   "publisher": "Debian",
+   "cache": "text/8dcb9e118d436d6e.txt"
   },
   {
    "id": "S039",
    "url": "https://learn.microsoft.com/en-us/virtualization/windowscontainers/manage-containers/container-base-images",
    "label": "微软官方文档《Windows 容器基础映像概述》：最大一档 Windows 基础镜像 3.4 GB，Windows Server 基础镜像 3.1 GB",
    "retrieved": "2026-09-23",
-   "publisher": "Microsoft Learn"
+   "publisher": "Microsoft Learn",
+   "cache": "text/5882da1dc0caca74.txt"
   },
   {
    "id": "S0310",
    "url": "https://playwright.dev/docs/intro",
    "label": "Playwright 官方文档《Get started》系统要求：Debian 12/13、Ubuntu 22.04/24.04/26.04（x86-64 或 arm64），headless 与 headed 两种模式均可用",
    "retrieved": "2026-09-23",
-   "publisher": "Playwright"
+   "publisher": "Playwright",
+   "cache": "text/af7495b3eb2ee4d1.txt"
   },
   {
    "id": "S0311",
    "url": "https://help.aliyun.com/zh/agentbay/product-overview/agentbay-billing-instructions",
    "label": "阿里云无影 AgentBay 官方《计费说明》：后付费计算资源只有 CPU 0.12 元/核/小时、内存 0.05 元/GB/小时，另有网络与存储单价；全表无操作系统许可计费项",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/68c0227cea52f79a.txt"
   },
   {
    "id": "S0312",
    "url": "https://help.aliyun.com/zh/agentbay/developer-reference/all-in-one-sandbox",
    "label": "阿里云 AgentBay 官方《All in One Sandbox》：基于 Computer Use 的 linux_latest 镜像，在一个 Linux 沙箱会话内同时提供 session.computer 桌面自动化、session.browser 浏览器自动化、session.code 代码执行",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/d8e9aa393a3b39cb.txt"
   },
   {
    "id": "S0313",
    "url": "https://help.aliyun.com/zh/agentbay/developer-reference/manage-images-through-agentbay-cli",
    "label": "阿里云 AgentBay CLI 官方文档：image list 的 --os-type 可按 Linux、Android、Windows 过滤；示例系统镜像 ID 为 code-space-debian-12",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/00b032f82fbd4f6a.txt"
   },
   {
    "id": "S051",
    "url": "https://blog.apnic.net/2026-01-20/ip-addresses-through-2025/",
    "label": "APNIC Blog《IP addresses through 2025》（Geoff Huston，2026-01-20）：按 Hilco Streambank 的 IPv4.Global 成交数据给出历年二级市场单价（2021 年底 USD 45–60、2023 年底 USD 26–40、截至 2026-01-10 前 40 天均值 USD 22、/14 低点 USD 9）、2025 年 RIR 系统内转移约 3,300 万个地址、2025 年均价下跌约 50%",
    "retrieved": "2026-09-23",
-   "publisher": "APNIC"
+   "publisher": "APNIC",
+   "cache": "text/d2396c841b2f5004.txt"
   },
   {
    "id": "S052",
    "url": "https://aws.amazon.com/blogs/aws/new-aws-public-ipv4-address-charge-public-ip-insights/",
    "label": "AWS 官方博客（Jeff Barr，2023-07-28）：自 2024-02-01 起所有公网 IPv4 按 $0.005/IP/小时计费，无论是否挂载；用 BYOIP 自带的地址不收此项",
    "retrieved": "2026-09-23",
-   "publisher": "Amazon Web Services"
+   "publisher": "Amazon Web Services",
+   "cache": "text/8e1b62c473251a59.txt"
   },
   {
    "id": "S053",
    "url": "https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-byoip.html",
    "label": "Amazon EC2 BYOIP 官方文档：可在 ARIN/RIPE/APNIC 登记、主体须为企业或机构；IPv4 最小粒度 /24；用 RDAP 记录与 ROA 证明控制权；BYOASN 可在宣告时指定自有 ASN；RADb/IRR 由 AWS 自动更新；会审查地址历史与声誉并可拒收",
    "retrieved": "2026-09-23",
-   "publisher": "Amazon Web Services"
+   "publisher": "Amazon Web Services",
+   "cache": "text/7f93c771fca0c4bc.txt"
   },
   {
    "id": "S054",
    "url": "https://aws.amazon.com/vpc/pricing/",
    "label": "Amazon VPC 定价页：NAT 网关按小时计费（示例区域 $0.045/小时）并按处理的数据量另收 $0.045/GB；出站流量 $0.09/GB",
    "retrieved": "2026-09-23",
-   "publisher": "Amazon Web Services"
+   "publisher": "Amazon Web Services",
+   "cache": "text/ce0bfedf2a5b751a.txt"
   },
   {
    "id": "S055",
    "url": "https://www.rfc-editor.org/rfc/rfc6598",
    "label": "RFC 6598（2012 年 4 月）IANA-Reserved IPv4 Prefix for Shared Address Space：为运营商级 NAT（CGN）预留 100.64.0.0/10 共享地址段",
    "retrieved": "2026-09-23",
-   "publisher": "IETF"
+   "publisher": "IETF",
+   "cache": "text/9ae4819baf3707c6.txt"
   },
   {
    "id": "S056",
    "url": "https://developers.cloudflare.com/bots/reference/bot-management-variables/",
    "label": "Cloudflare Bot Management 参考文档：cf.bot_management.verified_bot 布尔字段、verified_bot_category、bot score 为 1–99；验证方式含反向 DNS「确保源 IP 与声称的服务一致」，并「比对 ASN 段与公开名单」；另有 JA3/JA4 指纹字段",
    "retrieved": "2026-09-23",
-   "publisher": "Cloudflare"
+   "publisher": "Cloudflare",
+   "cache": "text/538eb80e028ebb77.txt"
   },
   {
    "id": "S057",
    "url": "https://www.linkedin.com/legal/user-agreement",
    "label": "LinkedIn 用户协议（2025-11-03 生效）第 8.2 条：禁止使用脚本、机器人、爬虫等手段抓取服务，禁止「覆盖安全功能或绕过、规避访问控制与使用限制」，禁止用 bot 驱动非真实互动",
    "retrieved": "2026-09-23",
-   "publisher": "LinkedIn"
+   "publisher": "LinkedIn",
+   "cache": "text/f5e039157b9e2015.txt"
   },
   {
    "id": "S058",
    "url": "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
    "label": "GitHub Terms of Service（生效日 2026-04-27）：D.9 Access Reciprocity 规定以自动化手段抓取公开内容训练商用 AI 系统即放弃自家反爬条款保护，并不得施加针对性技术限制；豁免学术研究与月活低于 7 亿的主体；H 节 API 滥用或超频可致封禁",
    "retrieved": "2026-09-23",
-   "publisher": "GitHub"
+   "publisher": "GitHub",
+   "cache": "text/9caa5d834f5cef6b.txt"
   },
   {
    "id": "S059",
    "url": "https://www.arin.net/resources/manage/rpki/",
    "label": "ARIN《Resource Public Key Infrastructure (RPKI)》：RPKI 让地址持有者以密码学签名声明其前缀应由哪个 ASN 发起；ROA 用于验证路由宣告是否 valid；同级导航含 Internet Routing Registry (IRR)",
    "retrieved": "2026-09-23",
-   "publisher": "ARIN"
+   "publisher": "ARIN",
+   "cache": "text/9b593c864c6cd635.txt"
   },
   {
    "id": "S0510",
    "url": "https://www.searchenginejournal.com/amazon-wins-preliminary-injunction-against-perplexitys-comet/569256/",
    "label": "Search Engine Journal 2026-03-10 报道：旧金山联邦法院（Chesney 法官）就 Perplexity 的 Comet 代理发布初步禁令，禁止其访问受密码保护的 Amazon 账户与系统，并要求销毁已抓取数据",
    "retrieved": "2026-09-23",
-   "publisher": "Search Engine Journal"
+   "publisher": "Search Engine Journal",
+   "cache": "text/2e67475d4352d901.txt"
   },
   {
    "id": "S061",
    "url": "https://about.fb.com/news/2026/09/introducing-muse-personal-ai-agent/",
    "label": "Meta 官方新闻稿（2026-09-08）：Muse 运行在 Muse Secure VM——每用户一台专属云上虚拟机，自带浏览器，同机另跑 Sentinel 审批出口流量",
    "retrieved": "2026-09-23",
-   "publisher": "Meta Newsroom"
+   "publisher": "Meta Newsroom",
+   "cache": "text/1fc754bb849e520a.txt"
   },
   {
    "id": "S062",
@@ -2035,182 +2129,208 @@
    "url": "https://arxiv.org/abs/2512.15834",
    "label": "arXiv:2512.15834（2025-12-17 提交）Optimizing Agentic Language Model Inference via Speculative Tool Execution，摘要明确指出工具调用在 agent 推理过程中引入性能瓶颈",
    "retrieved": "2026-09-23",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/b8fdc2416f99f5d4.txt"
   },
   {
    "id": "S064",
    "url": "https://ir.amd.com/news-events/press-releases/detail/1295/amd-reports-second-quarter-2026-financial-results",
    "label": "AMD 2026 年二季度财报新闻稿（2026-08-04）：数据中心业务收入 67 亿美元、同比增 107%，由 EPYC 处理器与 Instinct GPU 共同驱动；公司总营收 115.36 亿美元、同比增 50%",
    "retrieved": "2026-09-23",
-   "publisher": "AMD"
+   "publisher": "AMD",
+   "cache": "text/3ef7b56bd11e89f0.txt"
   },
   {
    "id": "S065",
    "url": "https://ir.amd.com/news-events/press-releases/detail/1284/amd-reports-first-quarter-2026-financial-results",
    "label": "AMD 2026 年一季度财报新闻稿（2026-05-05）：数据中心业务收入 58 亿美元、同比增 57%",
    "retrieved": "2026-09-23",
-   "publisher": "AMD"
+   "publisher": "AMD",
+   "cache": "text/6235efd76b5460f4.txt"
   },
   {
    "id": "S066",
    "url": "https://www.intc.com/news-events/press-releases/detail/1776/intel-reports-second-quarter-2026-financial-results",
    "label": "英特尔 2026 年二季度财报（2026-07-23）：DCAI 数据中心与 AI 业务收入 63 亿美元、同比增 59%；总营收 161 亿美元、同比增 25%",
    "retrieved": "2026-09-23",
-   "publisher": "Intel"
+   "publisher": "Intel",
+   "cache": "text/03516b05a7b759a2.txt"
   },
   {
    "id": "S067",
    "url": "https://www.intc.com/news-events/press-releases/detail/1767/intel-reports-first-quarter-2026-financial-results",
    "label": "英特尔 2026 年一季度财报（2026-04-23）：DCAI 收入 51 亿美元、同比增 22%；CEO 陈立武称从基础模型到推理再到 agentic 的迁移显著提升了对其 CPU 的需求",
    "retrieved": "2026-09-23",
-   "publisher": "Intel"
+   "publisher": "Intel",
+   "cache": "text/7140e03b1a9e17c3.txt"
   },
   {
    "id": "S068",
    "url": "https://www.trendforce.com/presscenter/news/20260415-13013.html",
    "label": "TrendForce 2026-04-15：2026 年 AI 服务器出货同比约增 28%；整体服务器出货增速由接近 20% 下调到约 13%；PCB 与 CPU 等通用服务器关键元器件交期已拉长到接近一年",
    "retrieved": "2026-09-23",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/312e1f449feb196a.txt"
   },
   {
    "id": "S069",
    "url": "https://www.trendforce.com/presscenter/news/20260709-13140.html",
    "label": "TrendForce 2026-07-09：服务器 DRAM 合约价 3Q26 预计环比涨 13%–18%，多家美国 CSP 签多年期长约锁价；服务器 CPU 缺货拖慢整机组装；部分 CSP/OEM 自 2026 上半年起把 RDIMM 从 96GB、128GB 调整为 32GB、64GB",
    "retrieved": "2026-09-23",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/5783d4369b62590f.txt"
   },
   {
    "id": "S0610",
    "url": "https://www.trendforce.com/presscenter/news/20260601-13070.html",
    "label": "TrendForce 2026-06-01：1Q26 常规 DRAM 合约价环比上涨约 93%–98%，带动DRAM 产业单季营收 970 亿美元、环比增 81%",
    "retrieved": "2026-09-23",
-   "publisher": "TrendForce"
+   "publisher": "TrendForce",
+   "cache": "text/31a5fdbef2701148.txt"
   },
   {
    "id": "S0611",
    "url": "https://www.trendforce.com/news/2026-09-22/news-metas-muse-highlights-ai-agents-higher-cpu-to-gpu-needs-could-benefit-intel-amd-and-arm/",
    "label": "TrendForce News 2026-09-22：转述第三方报道给出的 agent 负载 CPU:GPU 配比 4:1 至 40:1；agentic AI 需要 CPU 承担编排层；援引 Barron's 称英特尔 CEO 陈立武表示目前只能满足约 50% 的客户需求",
    "retrieved": "2026-09-23",
-   "publisher": "TrendForce News"
+   "publisher": "TrendForce News",
+   "cache": "text/98df9a25a67807e8.txt"
   },
   {
    "id": "S0612",
    "url": "https://www.implicator.ai/amd-tops-1-trillion-as-investors-bet-metas-muse-agent-will-drive-cpu-demand/",
    "label": "2026-09-22 行情复盘：2026-09-21（周一）AMD 市值首破 1 万亿美元，Arm 收涨 17.16%、英特尔涨 12.14%；同时明确指出当天报道未说明 Muse 实际消耗多少 CPU、用的是谁的处理器，4:1–40:1 的估算跨度达十倍且未对应实测负载",
    "retrieved": "2026-09-23",
-   "publisher": "Implicator.ai"
+   "publisher": "Implicator.ai",
+   "cache": "text/9179e5ed728a060d.txt"
   },
   {
    "id": "S091",
    "url": "https://www.ctyun.cn/document/10027004/10028040",
-   "label": "天翼云官网《计费说明-天翼云电脑（政企版）》，含普通云电脑各规格的包月价、按小时价（区分白天与 20:00~07:59 夜间档）、存储每 10GB 单价、带宽包月/按小时价、按流量计费的流量单价与弹性 IP 保有费",
+   "label": "天翼云官网《计费说明-天翼云电脑（政企版）》（页面标注最近更新时间 2026-08-21）：普通 AI 云电脑 4核8GB 包月 162 元/台·月、按需「不限使用时间」0.52 元/台·小时、「限 20:00:00~07:59:59 使用」0.26 元/台·小时；公网流量 0.36 元/GB（按出云流量每小时结算）；弹性 IP 保有费 0.02 元/个·小时，直绑云电脑实例时免收",
    "retrieved": "2026-09-23",
-   "publisher": "天翼云科技有限公司"
+   "publisher": "天翼云科技有限公司",
+   "cache": "text/e4398d6c181a0332.txt"
   },
   {
    "id": "S092",
    "url": "https://help.aliyun.com/zh/wuying-workspace/product-overview/pay-as-you-go",
    "label": "阿里云官方文档《无影云电脑 按需购买》，给出 4vCPU/8GiB 计算资源小时价 0.727 元、存储 0.00035 元/GiB·小时，以及「仅运行状态计计算费、关机休眠停计、存储全程计费」的计费规则",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云计算有限公司"
+   "publisher": "阿里云计算有限公司",
+   "cache": "text/3157c94e28e5065f.txt"
   },
   {
    "id": "S093",
    "url": "https://help.aliyun.com/zh/wuying-workspace/product-overview/subscription",
    "label": "阿里云官方文档《无影云电脑 按月购买》，计费示例给出 4vCPU/8GiB 的 120 小时/月套餐 59 元、不限时长 199 元、存储 0.25 元/GiB·月，并写明月度消费封顶 229 元不含存储与带宽",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云计算有限公司"
+   "publisher": "阿里云计算有限公司",
+   "cache": "text/f3a2986a359b7dac.txt"
   },
   {
    "id": "S094",
    "url": "https://help.aliyun.com/zh/eip/product-overview/pay-as-you-go",
    "label": "阿里云官方文档《弹性公网 IP 按量付费》，含 BGP 多线各地域流量单价（华北2/华东1 等 0.80 元/GB、青岛 0.72、中国香港 1.00、精品线路 3.0）、公网 IP 地址单价 0.02 元/个·小时及免收保有费的条件",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云计算有限公司"
+   "publisher": "阿里云计算有限公司",
+   "cache": "text/909099ad782e464c.txt"
   },
   {
    "id": "S095",
    "url": "http://caigou.ucas.ac.cn/zfjghw/2091.chtml",
    "label": "中央国家机关政府采购中心中标公告（中国科学院大学网上采购平台转发，2025-01-06）：浪潮信息元脑 NF5280G7 2U 机架服务器，双路至强 6530 + 16×32GB DDR5 + 2×480GB SSD，数量 12、单价 78000 元",
    "retrieved": "2026-09-23",
-   "publisher": "中央国家机关政府采购中心"
+   "publisher": "中央国家机关政府采购中心",
+   "cache": "text/eab1b43216cddfe8.txt"
   },
   {
    "id": "S096",
    "url": "https://www.linktom.com/Home/Trusteeship/quote.html",
    "label": "北京互联互通科技公开 IDC 托管报价单：北京数据中心 42U 整柜含 10M 独享带宽 50000 元/年（50M 100000 元/年、100M 150000 元/年），备注 2U 服务器每年加 1200 元、促销价每月限量前 20 名",
    "retrieved": "2026-09-23",
-   "publisher": "北京互联互通科技有限公司"
+   "publisher": "北京互联互通科技有限公司",
+   "cache": "text/0200eb069bb27f8f.txt"
   },
   {
    "id": "S097",
    "url": "https://e2b.dev/pricing",
    "label": "E2B 官方定价页：按秒计费，vCPU 0.000014 美元/秒、内存 0.0000045 美元/GiB·秒，Pro 档 150 美元/月含 100 并发、可加购至 600（+500 美元/月）与 1100 并发（+1000 美元/月），企业档 3000 美元/月起步",
    "retrieved": "2026-09-23",
-   "publisher": "FoundryLabs (E2B)"
+   "publisher": "FoundryLabs (E2B)",
+   "cache": "text/e750ffd515720d37.txt"
   },
   {
    "id": "S081",
    "url": "https://www.ctyun.cn/document/10026992/10027298",
    "label": "天翼云官网《计费说明-天翼云电脑（公众版）》，页面标注更新时间 2026-07-22",
    "retrieved": "2026-09-23",
-   "publisher": "天翼云"
+   "publisher": "天翼云",
+   "cache": "text/3163b7eeb225bc95.txt"
   },
   {
    "id": "S082",
    "url": "https://www.ctyun.cn/document/10027004/10028040",
    "label": "天翼云官网《计费说明-天翼云电脑（政企版）》，含计算包、存储包、带宽包与 IP 保有费规则",
    "retrieved": "2026-09-23",
-   "publisher": "天翼云"
+   "publisher": "天翼云",
+   "cache": "text/e4398d6c181a0332.txt"
   },
   {
    "id": "S083",
    "url": "https://help.aliyun.com/zh/wuying-workspace/product-overview/subscription",
    "label": "阿里云文档《无影云电脑企业版·按月购买》，含 120 小时套餐价、按需小时价与 EIP 关机仍计费提醒",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/f3a2986a359b7dac.txt"
   },
   {
    "id": "S084",
    "url": "https://help.aliyun.com/zh/agentbay/product-overview/agentbay-billing-instructions",
    "label": "阿里云文档《无影 AgentBay 计费说明》：CPU/内存秒级单价、权益包档位、高级带宽按 UID 分配独享 IP",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/68c0227cea52f79a.txt"
   },
   {
    "id": "S085",
    "url": "https://e2b.dev/pricing",
    "label": "E2B 官方定价页：按秒计费的 vCPU 与内存单价、并发套餐",
    "retrieved": "2026-09-23",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/e750ffd515720d37.txt"
   },
   {
    "id": "S086",
    "url": "https://www.gc.com.cn/news/hszdsqjgb.htm",
    "label": "红手指官网价格套餐表：VIP/GVIP/KVIP 月卡、天卡、年卡",
    "retrieved": "2026-09-23",
-   "publisher": "红手指"
+   "publisher": "红手指",
+   "cache": "text/d0428fe7cbe58aaf.txt"
   },
   {
    "id": "S087",
    "url": "https://gh.lnut.edu.cn/info/13312/110141.htm",
    "label": "辽宁工业大学虚拟仿真实训中心云桌面系统建设项目中标（成交）结果公告，含锐捷各型号数量与单价",
    "retrieved": "2026-09-23",
-   "publisher": "辽宁工业大学"
+   "publisher": "辽宁工业大学",
+   "cache": "text/64e1e184afe61782.txt"
   },
   {
    "id": "S088",
    "url": "https://finance.sina.cn/2025-03-17/detail-inepxywp3553564.d.html",
    "label": "中国经营报报道：中国移动终端公司 2024—2026 年云电脑终端采购公告，数量上限 100 万台、预算 20 亿元",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/07a94070103b6695.txt"
   },
   {
    "id": "S089",
    "url": "https://www.zte.com.cn/china/about/news/20251015C1.html",
    "label": "中兴通讯新闻页转引 IDC《2025H1 中国云终端市场跟踪报告》出货量与份额",
    "retrieved": "2026-09-23",
-   "publisher": "中兴通讯"
+   "publisher": "中兴通讯",
+   "cache": "text/cc6d713f2f012692.txt"
   },
   {
    "id": "S0810",
@@ -2224,35 +2344,40 @@
    "url": "https://e2b.dev/security",
    "label": "E2B 安全页：每个沙箱一台 Firecracker microVM、独立内核，不与他人共享文件系统与内存",
    "retrieved": "2026-09-23",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/6f5cdb87a873ebed.txt"
   },
   {
    "id": "S0812",
    "url": "https://www.aliyun.com/product/news/27353",
    "label": "阿里云产品动态《无影 AgentBay 公测版发布》（2025.09.18）：四类运行环境、SDK 与 MCP 接入",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/49718f3574eee20e.txt"
   },
   {
    "id": "S0813",
    "url": "https://intl.cloud.tencent.com/zh/document/product/1167/75746",
    "label": "腾讯云《云桌面 CVD 计费概述》：各规格包月与按量单价，按量时长精确到秒",
    "retrieved": "2026-09-23",
-   "publisher": "腾讯云"
+   "publisher": "腾讯云",
+   "cache": "text/b4ca43a18d5e1c11.txt"
   },
   {
    "id": "S071",
    "url": "https://futurumgroup.com/insights/intel-q1-fy-2026-earnings-point-to-agentic-cpu-demand-and-foundry-upside/",
    "label": "Intel 2026 财年一季度：数据中心与 AI 营收同比增 22%，CEO 陈立武将 CPU 需求归因于从基础模型到推理再到 agentic",
    "retrieved": "2026-09-23",
-   "publisher": "Futurum"
+   "publisher": "Futurum",
+   "cache": "text/ec0b060d383d6b94.txt"
   },
   {
    "id": "S072",
    "url": "https://www.cls.cn/detail/2363503",
    "label": "AMD 2026 年一季度电话会实录：受智能体 AI 与推理负载驱动，2030 年服务器 CPU 市场空间由 600 亿上调至 1200 亿美元",
    "retrieved": "2026-09-23",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/039a0400e2b1f91c.txt"
   },
   {
    "id": "S073",
@@ -2266,133 +2391,152 @@
    "url": "https://www.trendforce.cn/presscenter/news/20260202-12910.html",
    "label": "2026 年一季度存储调查：服务器 DRAM 与企业级 SSD 合约价季度涨幅",
    "retrieved": "2026-09-23",
-   "publisher": "集邦咨询"
+   "publisher": "集邦咨询",
+   "cache": "text/5288ec6d94ad7470.txt"
   },
   {
    "id": "S075",
    "url": "https://www.trendforce.cn/presscenter/news/20260916-13238.html",
    "label": "预估 2026 年全球数据中心用电需求年增 31% 及 AI 服务器占比",
    "retrieved": "2026-09-23",
-   "publisher": "集邦咨询"
+   "publisher": "集邦咨询",
+   "cache": "text/6b76fe1a6c8c95bc.txt"
   },
   {
    "id": "S076",
    "url": "https://www.nbd.com.cn/articles/2026-04-11/4335187.html",
    "label": "浪潮信息 2025 年报解读：营收增四成三、净利仅增五成二，服务器毛利率降至 4.52%",
    "retrieved": "2026-09-23",
-   "publisher": "每日经济新闻"
+   "publisher": "每日经济新闻",
+   "cache": "text/61fab0514f667d0e.txt"
   },
   {
    "id": "S077",
    "url": "https://www.huaon.com/channel/trend/1182818.html",
    "label": "中国 DPU 市场规模由 2021 年 150.44 亿元增至 2025 年 497.58 亿元",
    "retrieved": "2026-09-23",
-   "publisher": "华经情报网"
+   "publisher": "华经情报网",
+   "cache": "text/ea3f6411e5a6f765.txt"
   },
   {
    "id": "S078",
    "url": "https://www.nea.gov.cn/20260529/18c09743776c4dddb55288ceea38b8b1/c.html",
    "label": "2025 年全国算力中心总用电量 1700 亿千瓦时、占全社会用电量 1.6%",
    "retrieved": "2026-09-23",
-   "publisher": "国家能源局"
+   "publisher": "国家能源局",
+   "cache": "text/31c9ebb4b2d1a29b.txt"
   },
   {
    "id": "S079",
    "url": "https://ipv4center.com/ipv4-market-report",
    "label": "IPv4 二级市场年度成交均价与成交地址数（交易商自建指数）",
    "retrieved": "2026-09-23",
-   "publisher": "IPv4Center"
+   "publisher": "IPv4Center",
+   "cache": "text/95d11541d21f2f46.txt"
   },
   {
    "id": "S0710",
    "url": "https://my.idc.com/getdoc.jsp?containerId=prCHC53577725",
    "label": "中国 DaaS 与 VCC 市场半年度跟踪：2024 年 DaaS 规模与增速，运营商部署及智能体工作站、边缘云电脑",
    "retrieved": "2026-09-23",
-   "publisher": "IDC"
+   "publisher": "IDC",
+   "cache": "text/4a0065d4836beb5b.txt"
   },
   {
    "id": "S0711",
    "url": "https://www.ctyun.cn/newsboard/1000129925",
    "label": "2025 上半年中国 DaaS 份额：天翼云连续三次居首，推出内置 AI 助手与智能体工作站的 AI 云电脑",
    "retrieved": "2026-09-23",
-   "publisher": "天翼云"
+   "publisher": "天翼云",
+   "cache": "text/315d5983f9e81839.txt"
   },
   {
    "id": "S0712",
    "url": "https://help.aliyun.com/zh/wuying-workspace/product-overview/billing-overview",
    "label": "无影云电脑企业版计费概述：4vCPU/8GiB、120 小时/月套餐单价与超额按小时价（文档标注为示例价）",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/a1e9e6360a2dbde0.txt"
   },
   {
    "id": "S0713",
    "url": "https://help.aliyun.com/zh/agent-sandbox/product-overview/billing-overview",
    "label": "智能体沙箱计费概述：秒级计费、三档 QoS 单价、活跃态 15GiB 磁盘免费、深休眠仅按快照存储计费",
    "retrieved": "2026-09-23",
-   "publisher": "阿里云"
+   "publisher": "阿里云",
+   "cache": "text/aba31b150a11f29e.txt"
   },
   {
    "id": "S0714",
    "url": "https://gh-proxy.com/https://raw.githubusercontent.com/UCloudDoc-Team/agent-sandbox/master/docs/product/02-concepts.md",
    "label": "Agent Sandbox 文档：快照含运行中进程的内存状态，从模板创建可在 50–200 毫秒就绪",
    "retrieved": "2026-09-23",
-   "publisher": "优刻得"
+   "publisher": "优刻得",
+   "cache": "text/2484462f9c72e84f.txt"
   },
   {
    "id": "S0715",
    "url": "https://my.idc.com/getdoc.jsp?containerId=prCHC53879525",
    "label": "中国智算云基础设施市场（AI IaaS）2025 上半年跟踪及 2029 年推理占比预测",
    "retrieved": "2026-09-23",
-   "publisher": "IDC"
+   "publisher": "IDC",
+   "cache": "text/dfb2eed8c9e909cd.txt"
   },
   {
    "id": "S0716",
    "url": "https://finance.sina.com.cn/stock/relnews/cn/2025-04-21/doc-inetxsms4962220.shtml",
    "label": "《通信产业报》转引 IDC：2024 年中国云终端出货量与增速、运营商家庭云电脑用户数、商用市场行业构成",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/b86dedb298e0c849.txt"
   },
   {
    "id": "S0717",
    "url": "https://www.tvoao.com/a/223715.aspx",
    "label": "中国联通 2025 年业绩：算力业务收入占比超 15%、联通云收入同比增长 5.2%",
    "retrieved": "2026-09-23",
-   "publisher": "天吴网转联通业绩公告"
+   "publisher": "天吴网转联通业绩公告",
+   "cache": "text/1326ba710d57d93e.txt"
   },
   {
    "id": "S0718",
    "url": "https://mtz.china.com/touzi/2026/0414/227246.html",
    "label": "稳卖 AI 浏览器宣布接入视频生成模型并给出按秒定价（厂商宣传稿）",
    "retrieved": "2026-09-23",
-   "publisher": "中华网"
+   "publisher": "中华网",
+   "cache": "text/b0dca7e0420ea32c.txt"
   },
   {
    "id": "S0719",
    "url": "https://www.cww.net.cn/article?id=612296",
    "label": "中国信通院文章：智能体改写 Token 消耗逻辑，含国家数据局公布的日均 Token 调用量里程碑",
    "retrieved": "2026-09-23",
-   "publisher": "通信世界网"
+   "publisher": "通信世界网",
+   "cache": "text/80632032c5cda943.txt"
   },
   {
    "id": "S0720",
    "url": "https://finance.sina.cn/2025-06-16/detail-infahksf7552130.d.html",
    "label": "IDC 行业研究报告：上架率、传统 IDC 与 AIDC 机柜功率、折旧与能耗占营业成本比重",
    "retrieved": "2026-09-23",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/ea80b8194676f0fe.txt"
   },
   {
    "id": "S0721",
    "url": "https://docs.e2b.dev/faq/calculate-sandbox-price",
    "label": "沙箱定价：按秒计费的 vCPU 与内存单价，及默认规格每小时成本推算例",
    "retrieved": "2026-09-23",
-   "publisher": "E2B"
+   "publisher": "E2B",
+   "cache": "text/8c4864bb3c3987fb.txt"
   },
   {
    "id": "S111",
    "url": "https://www.itu.int/rec/T-REC-G.1010",
    "label": "ITU-T G.1010《End-user multimedia QoS categories》建议书正式条目页（2001-11），交互式网络服务的时延与丢包门限出处",
    "retrieved": "2026-09-23",
-   "publisher": "ITU"
+   "publisher": "ITU",
+   "cache": "text/0038aea0771cb970.txt"
   },
   {
    "id": "S112",
@@ -2406,35 +2550,40 @@
    "url": "https://arxiv.org/abs/2404.07972",
    "label": "OSWorld 论文摘要页：369 个真实桌面任务、当时最好智能体完成率 12.24%、人类 72.36%",
    "retrieved": "2026-09-23",
-   "publisher": "arXiv / NeurIPS 2024"
+   "publisher": "arXiv / NeurIPS 2024",
+   "cache": "text/6bc47f6f7f596bec.txt"
   },
   {
    "id": "S114",
    "url": "https://osworld-v1.xlang.ai/",
    "label": "OSWorld 官方项目页与智能体成绩榜，用于逐季复查完成率是否还在动",
    "retrieved": "2026-09-23",
-   "publisher": "xlang"
+   "publisher": "xlang",
+   "cache": "text/fb70364b4f8541f8.txt"
   },
   {
    "id": "S115",
    "url": "https://www.theverge.com/news/718319/perplexity-stealth-crawling-cloudflare-ai-bots-report",
    "label": "2025-08-04 主流媒体报道：Cloudflare 称 Perplexity 的机器人在对被禁站点做「隐形抓取」",
    "retrieved": "2026-09-23",
-   "publisher": "The Verge"
+   "publisher": "The Verge",
+   "cache": "text/26600536f699b510.txt"
   },
   {
    "id": "S116",
    "url": "https://blog.cloudflare.com/perplexity-is-using-stealth-undeclared-crawlers-to-evade-website-no-crawl-directives/",
    "label": "2025-08-04 Cloudflare 官方博客原文，一手来源：未声明爬虫绕过 no-crawl，以及随后的拦截措施",
    "retrieved": "2026-09-23",
-   "publisher": "Cloudflare"
+   "publisher": "Cloudflare",
+   "cache": "text/2ed11831071b4acc.txt"
   },
   {
    "id": "S117",
    "url": "https://www.goldmansachs.com/insights/articles/global-investment-is-forecast-to-exceed-1-trillion-in-2026",
    "label": "2026-08 发布的 2026 年全球 AI 投资超 1 万亿美元预测（口径为 AI 总投资，非沙箱收入）",
    "retrieved": "2026-09-23",
-   "publisher": "Goldman Sachs"
+   "publisher": "Goldman Sachs",
+   "cache": "text/a821d9520a7d1f94.txt"
   },
   {
    "id": "S118",
@@ -2462,21 +2611,24 @@
    "url": "https://static.cninfo.com.cn/finalpage/2026-03-11/1225004416.PDF",
    "label": "工业富联《2025年年度报告摘要》PDF：营业收入9,028.87亿元、云计算业务6,026.79亿元同比增88.70%、云服务商AI服务器营收增超3倍（2026-03-11披露）",
    "retrieved": "2026-09-23",
-   "publisher": "巨潮资讯网"
+   "publisher": "巨潮资讯网",
+   "cache": "text/fbdaf3059349dc58.txt"
   },
   {
    "id": "S102",
    "url": "https://www.nbd.com.cn/articles/2026-04-11/4335187.html",
    "label": "每日经济新闻转述浪潮信息2025年年度报告（2026-04-10披露）：营收1,647.82亿元、服务器产品营收1,546.05亿元占总营收93.82%、服务器毛利率4.52%",
    "retrieved": "2026-09-23",
-   "publisher": "每日经济新闻"
+   "publisher": "每日经济新闻",
+   "cache": "text/61fab0514f667d0e.txt"
   },
   {
    "id": "S103",
    "url": "https://finance.sina.com.cn/tech/roll/2026-07-28/doc-inikirnm0409455.shtml",
    "label": "C114/新浪科技：中国移动2026—2027年PC服务器集采中标候选人公示落地，总投标约177亿元、约6.29万台，浪潮计算机约19.20亿元、新华三约18.03亿元、联想北京约8.84亿元（2026-07-28）",
    "retrieved": "2026-09-23",
-   "publisher": "新浪科技"
+   "publisher": "新浪科技",
+   "cache": "text/6f04ae6ed4b69295.txt"
   },
   {
    "id": "S104",
@@ -2490,14 +2642,16 @@
    "url": "https://www.xinhuanet.com/finance/20260410/27cbbb69491740d3bb618570989235e6/c.html",
    "label": "新华网：润泽科技2025年年度报告（2026-04-09晚间披露）——营收56.74亿元，AIDC业务收入25.1亿元、占总营收44.24%",
    "retrieved": "2026-09-23",
-   "publisher": "新华网"
+   "publisher": "新华网",
+   "cache": "text/6233419281a0b8f0.txt"
   },
   {
    "id": "S106",
    "url": "https://www.21jingji.com/article/20260526/herald/9a7bb59cb475fd3e7705a27fa3836e2f.html",
    "label": "中国证券报（21财经转载）：顺网科技2025年营收17.44亿元、2026年一季度云业务收入3,305.82万元、全国超330个边缘节点机房（2026-05-26）",
    "retrieved": "2026-09-23",
-   "publisher": "中国证券报"
+   "publisher": "中国证券报",
+   "cache": "text/c28074cee20e3606.txt"
   },
   {
    "id": "S107",
@@ -2511,7 +2665,8 @@
    "url": "https://news.lenovo.com/pressroom/press-releases/fy-2025-26/?lg=zh",
    "label": "联想集团2025/26财年第四季度及全年业绩新闻稿：全年营业额831亿美元，基础设施方案业务（ISG）全年营业额192亿美元，AI相关业务占全年营业额33%（2026-05-22）",
    "retrieved": "2026-09-23",
-   "publisher": "Lenovo StoryHub"
+   "publisher": "Lenovo StoryHub",
+   "cache": "text/7cff56393b4bcbd7.txt"
   },
   {
    "id": "S109",
@@ -2532,7 +2687,8 @@
    "url": "https://static.cninfo.com.cn/finalpage/2026-09-05/1225549157.PDF",
    "label": "新炬网络《股票交易异常波动公告》PDF（公告编号2026-024，2026-09-05）：公司不持有数据中心、不涉及数据中心商业化运营；IT运维智能体业务尚处研发阶段，2026年上半年相关收入占比不足营业收入1%",
    "retrieved": "2026-09-23",
-   "publisher": "巨潮资讯网"
+   "publisher": "巨潮资讯网",
+   "cache": "text/715e138ad245554d.txt"
   },
   {
    "id": "S1012",
@@ -2546,14 +2702,16 @@
    "url": "https://q.futunn.com/feed/117313769832452",
    "label": "富途牛牛圈：Meta于9月8日发布个人AI代理Muse，官方介绍每个Muse运行在独立云端虚拟机Muse Secure VM中；援引Apptopia称上线12天全球安装约280万次（2026-09-22）",
    "retrieved": "2026-09-23",
-   "publisher": "富途"
+   "publisher": "富途",
+   "cache": "text/4c7518436a50ab8c.txt"
   },
   {
    "id": "S1014",
    "url": "https://www.cninfo.com.cn/index.html",
    "label": "巨潮资讯网首页：沪深公告原文（中标公示、异常波动公告）检索入口",
    "retrieved": "2026-09-23",
-   "publisher": "深圳证券信息有限公司"
+   "publisher": "深圳证券信息有限公司",
+   "cache": "text/6def066b067164f3.txt"
   },
   {
    "id": "S1015",
@@ -2567,7 +2725,8 @@
    "url": "https://sns.sseinfo.com/",
    "label": "上证e互动首页：沪市上市公司问答原文检索入口",
    "retrieved": "2026-09-23",
-   "publisher": "上证所信息网络有限公司"
+   "publisher": "上证所信息网络有限公司",
+   "cache": "text/d4f6d45c06932f54.txt"
   },
   {
    "id": "S1017",
@@ -2595,8 +2754,8 @@
   "hero_motif": "sandbox_rack",
   "hero_note": "以沙箱矩阵为母题：一格是一台几分钟拉起、用完即销毁的 Linux 实例，绝大多数早已暗下去，只有当下还在跑的几格亮着，个别是正在被调度的橙色——「上万台」这件事靠密度说话。"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-10",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 15,
  "cover": {
@@ -2610,11 +2769,12 @@
  },
  "created_date": "2026-09-23",
  "site": {
-  "url": "https://muse-app-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72d-5475-7816-aec2-2b54197c2325",
-  "slug": "muse-app",
-  "content_sha": "e2c4cde572dcbc91",
-  "published_date": "2026-09-25",
+  "url": "https://ai-industry-gtqdc11h6po.qoder.website/muse-app/muse-app.html",
+  "group": "ai-industry",
+  "path": "/muse-app/muse-app.html",
+  "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
+  "content_sha": "cc881068631180db",
+  "published_date": "2026-10-10",
   "access": "public"
  }
 }

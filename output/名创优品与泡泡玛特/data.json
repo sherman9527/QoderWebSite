@@ -119,7 +119,7 @@
    "images": [
     {
      "file": "images/01_泡泡玛特.jpg",
-     "alt": "泡泡玛特 MEGA 珍藏系列再添新丁，100% 系列重磅上线 – NOWRE现客",
+     "alt": "",
      "caption": "泡泡玛特 MEGA 珍藏系列再添新丁，100% 系列重磅上线 – NOWRE现客",
      "source_page": "https://nowre.com/lifestyle/703127/paopaomate-mega-zhencangxiliezaitianxinding100-xiliezhongbangshangxian/",
      "width": 1424,
@@ -128,7 +128,7 @@
     },
     {
      "file": "images/02_名创优品.jpg",
-     "alt": "名创优品看上了这门新生意，明年要开300家店 | CBNData",
+     "alt": "",
      "caption": "名创优品看上了这门新生意，明年要开300家店 | CBNData",
      "source_page": "https://www.cbndata.com/information/26868",
      "width": 1520,
@@ -181,7 +181,8 @@
        "k": "泡泡玛特 · 海外",
        "v": "零售店销售 71.79 亿元 ÷ 185 店 = 3,880.6 万元/年、323.4 万元/月；亚太 85、美洲 64、欧洲及其他 36",
        "source_ids": [
-        "S023"
+        "S023",
+        "S107"
        ]
       },
       {
@@ -197,7 +198,12 @@
     {
      "type": "prose",
      "heading": "拆开分子，这个商就散了",
-     "text": "名创 2025 年 214.44 亿元收入里，自营门店零售 54.10 亿元，占 25.2%；卖给加盟商与线下经销商的货 127.41 亿元，占 59.4%；另有授权费与分成类收入 10.62 亿元。所以那个商的分子大头是出厂价。泡泡玛特 445 家中国门店的 100.75 亿元，是门店零售额本身。"
+     "text": "名创 2025 年 214.44 亿元收入里，自营门店零售 54.10 亿元，占 25.2%；卖给加盟商与线下经销商的货 127.41 亿元、占 59.4%（这两个数是把 20-F 渠道表的 8,853,156 与 3,887,954 两千元位相加得来）；另有授权费与销售分成类收入 10.62 亿元。那个「商」的分子大头是出厂价。泡泡玛特那边，445 家实体门店（中国内地 410 家、港澳 35 家）报出的门店零售收入是 100.75 亿元——**记的就是门店零售额本身**，不是发给谁的货价。",
+     "source_ids": [
+      "S014",
+      "S022",
+      "S012"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -244,7 +250,8 @@
        "k": "泡泡玛特 · 机器人商店",
        "v": "全球 2,637 台、净增 165 台；收入 16.89 亿元、占 4.6%；内地 2,396 台对应 13.46 亿元，每台 56.2 万元/年",
        "source_ids": [
-        "S023"
+        "S023",
+        "S063"
        ]
       },
       {
@@ -289,8 +296,8 @@
    "images": [
     {
      "file": "images/05_名创优品.jpg",
-     "alt": "名创优品：10元店如何做到营收50亿？靠这4点_TMT观察网",
-     "caption": "名创优品：10元店如何做到营收50亿？靠这4点_TMT观察网",
+     "alt": "",
+     "caption": "名创优品：如何做到营收50亿？靠这4点",
      "source_page": "http://www.looktmt.com/0092/297/16676774441.html",
      "width": 2230,
      "height": 1470,
@@ -299,7 +306,7 @@
     {
      "file": "images/03_per_store_division.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：同一道除法的两种分子——直营确认零售额，加盟与代理确认发给加盟商的批发额",
+     "alt": "",
      "caption": "示意图·非实拍：同一道除法的两种分子——直营确认零售额，加盟与代理确认发给加盟商的批发额",
      "based_on": [
       "unit-economics#同一道除法",
@@ -331,7 +338,8 @@
      "source_ids": [
       "S031",
       "S032",
-      "S033"
+      "S033",
+      "S013"
      ]
     },
     {
@@ -361,7 +369,8 @@
        "k": "分担永辉亏损（权益法，税后）",
        "v": "8.127 亿元",
        "source_ids": [
-        "S031"
+        "S031",
+        "S0711"
        ]
       },
       {
@@ -452,7 +461,8 @@
        "source_ids": [
         "S032",
         "S035",
-        "S038"
+        "S038",
+        "S115"
        ]
       },
       {
@@ -488,7 +498,7 @@
     {
      "file": "images/04_three_rulers.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：三把尺子（IFRS / US GAAP / 经调整）与「经调整」通常加回的四类项目",
+     "alt": "",
      "caption": "示意图·非实拍：三把尺子（IFRS / US GAAP / 经调整）与「经调整」通常加回的四类项目",
      "based_on": [
       "align-the-rulers#两套准则",
@@ -521,7 +531,9 @@
        "k": "名创优品集团 净增",
        "v": "8,485 → 8,674 家（+189）",
        "source_ids": [
-        "S041"
+        "S041",
+        "S013",
+        "S014"
        ]
       },
       {
@@ -635,7 +647,7 @@
    "images": [
     {
      "file": "images/11_名创优品.png",
-     "alt": "名创优品官网_miniso名创优品官网_淘宝助理",
+     "alt": "",
      "caption": "名创优品官网_miniso名创优品官网_淘宝助理",
      "source_page": "http://p.freep.cn/shownews740955.html",
      "width": 797,
@@ -652,7 +664,12 @@
     {
      "type": "prose",
      "heading": "同一栏里的两种钱",
-     "text": "名创海外门店分三种模式：截至2026年6月30日，海外3,644家中代理2,410家、合伙人439家、直营795家。与代理商的交易在发货或送达时确认收入，代理商取得所有权并承担损失风险；名创通常要求全额预付、不接受滞销退货，2025财年退货率接近零。代价是看不见终端：20-F自述对代理商动销的跟踪能力有限。\n\n泡泡玛特的海外收入是在终端卖出来的，零售即时结算，只有批发商享有30至90天账期。"
+     "text": "名创海外门店分三种模式：截至 2026 年 6 月 30 日，海外 3,644 家里代理商 2,410 家、零售合伙人 439 家、直营 795 家——前两种合计 2,849 家，占 78%（三个门店数相除得来，不是页面给的读数）。20-F 写得很直白：与代理的交易在产品控制权按约定交货条款转移时确认收入，公司通常要求 20% 到 100% 的预付款，除潜在缺陷召回这类罕见情形外不接受未售出商品退回，2024 与 2025 年代理端退货额占总 GMV 接近零。钱在发给代理那一刻就结清了。风险因素里自己写着：「我们准确跟踪代理商业绩与库存水平的能力是有限的」。  泡泡玛特相反：它的海外收入是在终端卖出来的，零售即时结算，中期公告里唯一给账期的是批发商——30 至 90 天的信贷期。两种现金流形状写进同一栏「海外收入」，读的人以为在比同一种钱。",
+     "source_ids": [
+      "S013",
+      "S022",
+      "S012"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -728,7 +745,12 @@
     {
      "type": "prose",
      "heading": "关税与汇率",
-     "text": "关税：名创20-F只作定性披露，产品基本在中国制造后出口，进口国可能加征关税；2025年靠调整本地采购、定价与出货节奏应对，未单列美国敞口。唯一量化在2026年中期公告：关税退税使上半年毛利率受益约0.6个百分点，未来季度约410万美元。泡泡玛特2025年报与2026年中期公告里检索不到「关税」。\n\n汇率：两家均以人民币出报表，名创按美联储H.10的6.7851兑1美元折算。上半年汇兑亏损净额1.424亿元，剔除汇兑损益的经调整净利润12.216亿元、未剔除10.791亿元，2025全年净汇兑损失仅1,940万元。泡泡玛特母公司功能货币是美元，汇兑损益进「其他（亏损）／收益—净额」，2026年上半年汇兑损失7.203亿元、去年同期收益1.201亿元，并称未对冲外币波动。"
+     "text": "关税：名创20-F只作定性披露，产品基本在中国制造后出口，进口国可能加征关税；2025年靠调整本地采购、定价与出货节奏应对，未单列美国敞口。唯一量化在2026年中期公告：关税退税使上半年毛利率受益约0.6个百分点，未来季度约410万美元。泡泡玛特2025年报与2026年中期公告里检索不到「关税」。\n\n汇率：两家均以人民币出报表，名创按美联储H.10的6.7851兑1美元折算。上半年汇兑亏损净额1.424亿元，剔除汇兑损益的经调整净利润12.216亿元、未剔除10.791亿元，2025全年净汇兑损失仅1,940万元。泡泡玛特母公司功能货币是美元，汇兑损益进「其他（亏损）／收益—净额」，2026年上半年汇兑损失7.203亿元、去年同期收益1.201亿元，并称未对冲外币波动。",
+     "source_ids": [
+      "S013",
+      "S051",
+      "S054"
+     ]
     },
     {
      "type": "note",
@@ -740,16 +762,16 @@
    "images": [
     {
      "file": "images/15_MINISO.png",
-     "alt": "「见识冰块」：名创优品MINISO在拉美的本地化迭代",
+     "alt": "",
      "caption": "「见识冰块」：名创优品MINISO在拉美的本地化迭代",
      "source_page": "https://k.sina.cn/article_6589734409_188c75e09019015xzm.html",
-     "width": 1080,
-     "height": 720,
+     "width": 800,
+     "height": 533,
      "query": "MINISO"
     },
     {
      "file": "images/16_泡泡玛特_海外.jpg",
-     "alt": "唯想国际 | 泡泡玛特全球旗舰店 | Hi设计",
+     "alt": "",
      "caption": "唯想国际 | 泡泡玛特全球旗舰店 | Hi设计",
      "source_page": "https://www.hisheji.com/project/space-type/commercial-space/2022/11/16/152091",
      "width": 1000,
@@ -896,16 +918,16 @@
    "images": [
     {
      "file": "images/19_Labubu.png",
-     "alt": "单价拍出108万，LABUBU到底是怎么火爆全球的？",
+     "alt": "",
      "caption": "单价拍出108万，LABUBU到底是怎么火爆全球的？",
      "source_page": "https://www.lifeweek.com.cn/h5/article/detail.do?artId=247898",
-     "width": 1080,
-     "height": 1437,
+     "width": 800,
+     "height": 1064,
      "query": "Labubu"
     },
     {
      "file": "images/20_泡泡玛特.jpg",
-     "alt": "泡泡玛特",
+     "alt": "",
      "caption": "泡泡玛特",
      "source_page": "https://huaban.com/pins/5470060323",
      "width": 658,
@@ -1073,7 +1095,7 @@
    "images": [
     {
      "file": "images/23_永辉超市_门店.jpg",
-     "alt": "赢商大数据_永辉超市_简介_电话_门店分布_选址标准_开店计划",
+     "alt": "",
      "caption": "赢商大数据_永辉超市_简介_电话_门店分布_选址标准_开店计划",
      "source_page": "https://www.winshangdata.com/brandDetail?brandId=20074",
      "width": 886,
@@ -1082,7 +1104,7 @@
     },
     {
      "file": "images/24_泡泡玛特.jpg",
-     "alt": "唯想国际 | 泡泡玛特全球旗舰店 | Hi设计",
+     "alt": "",
      "caption": "唯想国际 | 泡泡玛特全球旗舰店 | Hi设计",
      "source_page": "https://www.hisheji.com/project/space-type/commercial-space/2022/11/16/152091",
      "width": 1000,
@@ -1138,7 +1160,8 @@
        "v": "114.99亿元，增22.4%，落在预告的114.5亿至115.5亿元内",
        "source_ids": [
         "S081",
-        "S083"
+        "S083",
+        "S018"
        ]
       },
       {
@@ -1169,7 +1192,8 @@
        "v": "171.73亿元，增23.8%，越过全年20%的目标线",
        "source_ids": [
         "S082",
-        "S084"
+        "S084",
+        "S011"
        ]
       },
       {
@@ -1229,7 +1253,7 @@
     {
      "file": "images/07_inflection_three.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：拐点拆成经营、单店模型、估值三类，各给可证伪的观测条件",
+     "alt": "",
      "caption": "示意图·非实拍：拐点拆成经营、单店模型、估值三类，各给可证伪的观测条件",
      "based_on": [
       "what-inflection-means#三类拐点",
@@ -1364,7 +1388,7 @@
     {
      "file": "images/08_disclosure_gap.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：自述与披露是两种性质的信息，以及「跟随」在结构上不成立的四条",
+     "alt": "",
      "caption": "示意图·非实拍：自述与披露是两种性质的信息，以及「跟随」在结构上不成立的四条",
      "based_on": [
       "duan-yongping#自述与披露",
@@ -1594,7 +1618,7 @@
    "images": [
     {
      "file": "images/31_盲盒.jpg",
-     "alt": "有哪些系列的盲盒是很值得入手的？ - 知乎",
+     "alt": "",
      "caption": "有哪些系列的盲盒是很值得入手的？ - 知乎",
      "source_page": "https://www.zhihu.com/question/385238500",
      "width": 720,
@@ -1603,7 +1627,7 @@
     },
     {
      "file": "images/32_名创优品.jpg",
-     "alt": "叶国富焕新名创优品：产品学习苹果，开心对标迪士尼__财经头条",
+     "alt": "",
      "caption": "叶国富焕新名创优品：产品学习苹果，开心对标迪士尼__财经头条",
      "source_page": "https://t.cj.sina.com.cn/articles/view/6221119472/172cebff001902690k",
      "width": 1080,
@@ -1732,7 +1756,7 @@
     {
      "file": "images/06_five_moves.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：五个可迁移的读数动作，和一个不建议（把「我看好了」当成分析）",
+     "alt": "",
      "caption": "示意图·非实拍：五个可迁移的读数动作，和一个不建议（把「我看好了」当成分析）",
      "based_on": [
       "how-to-read#五个动作",
@@ -1750,63 +1774,71 @@
    "url": "https://www.hkexnews.hk/listedco/listconews/sehk/2026/0924/2026092400545_c.pdf",
    "label": "泡泡玛特国际集团《二零二六年中报》原文 PDF（港交所披露易，2026-09-24 刊登）：截至 2026 年 6 月 30 日止六个月收益 17,172,921 千元、同比 23.8%，非 IFRS 经调整净利润 5,155,777 千元、股份支付调整 55,467 千元，全球 676 家门店与 2,827 台机器人商店，分地区收入",
    "retrieved": "2026-09-25",
-   "publisher": "HKEXnews / Pop Mart International Group Limited"
+   "publisher": "HKEXnews / Pop Mart International Group Limited",
+   "cache": "text/76e639cd270d2402.txt"
   },
   {
    "id": "S012",
    "url": "https://www1.hkexnews.hk/listedco/listconews/sehk/2026/0325/2026032500285.pdf",
-   "label": "泡泡玛特《截至 2025 年 12 月 31 日止年度业绩公告》原文 PDF（港交所披露易）：收益 37,120,052 千元、同比 184.7%，非 IFRS 经调整净利润 13,083,646 千元，截至 2025-12-31 在 20 个国家运营 630 家门店",
+   "label": "泡泡玛特《截至 2025 年 12 月 31 日止年度业绩公告》原文 PDF（港交所披露易；2026-09-28 重读全文 48 页）：全年收益 RMB37,120,052 千元（+184.7%）、非 IFRS 经调整净利润 RMB13,083,646 千元。门店：「The total number of physical stores increased from 431 as of 31 December 2024 to **445** as of 31 December 2025」，其中中国内地报告期净增 14 家。分地区分渠道表（RMB'000）：Chinese mainland 门店 410 家、零售收入 8,502,705；Hong Kong, Macao and Taiwan 门店 35 家、1,572,727；**合计 445 家、10,075,432**（另有机器人商店 2,396 台、1,345,930 千元，其他渠道 2,339 台/项、750,815 千元）。原文：「Revenue from retail stores increased by 119.0% year-on-year from RMB4,600.8 million in 2024 to **RMB10,075.4 million** in 2025」。口径提醒：445 家是含港澳的实体门店合计，不是「中国门店」",
    "retrieved": "2026-09-25",
    "publisher": "HKEXnews / Pop Mart"
   },
   {
    "id": "S013",
    "url": "https://ir.miniso.com/2026-08-28-MINISO-Group-Announces-2026-June-Quarter-and-Interim-Unaudited-Financial-Results",
-   "label": "名创优品《2026 年 6 月季度及中期未经审计财务业绩》（NYSE: MNSO; HKEX: 9896）：26H1 营收 RMB11,498.9 百万、同比 22.4%，期内利润 RMB956.6 百万，经调整净利润 RMB1,079.1 百万，26Q2 期内亏损 RMB291.5 百万，截至 2026-06-30 全球 8,674 家门店（内地 4,665、海外 3,644、TOP TOY 365）",
+   "label": "名创优品《2026 年 6 月季度及中期未经审计财务业绩》（NYSE: MNSO; HKEX: 9896；2026-08-28 发稿；2026-09-28 直接 curl 原文）：26H1 营收 RMB11,498.9 百万（+22.4% YoY）、毛利 RMB5,093.7 百万、毛利率 44.3%（同比持平，**当期毛利率含关税退税约 0.6 个百分点的增益，公司估计未来季度还有约 US$4.1 million**）、经营溢利 RMB1,639.9 百万、期内利润 RMB956.6 百万、经调整净利润 RMB1,079.1 百万、**26H1 净汇兑损失 RMB142.4 million（US$21.0 million），上年同期为净汇兑收益 RMB36.6 million**、调整后净利润（剔除汇兑）RMB1,221.6 百万、调整后 EBITDA RMB2,255.5 百万、经营净现金 RMB1,475.4 百万、26H1 回报股东 RMB1,309.8 百万；26Q2 期内为亏损 RMB291.5 百万（主因永辉份额亏损与公允价值变动）。门店网络表（截至 2026-06-30，单位：家）：集团合计 8,674（YoY +769、YTD +189），名创品牌 8,309；内地 4,665（直营 41、合伙人 4,624、代理 26 之类分列，其中合伙人模式 4,624）；**海外市场 3,644 = 直营 795 + 零售合伙人 439 + 代理商 2,410**；TOP TOY 365。美元折算原文：「The conversion of Renminbi into US$ … based on the exchange rate set forth in the H.10 statistical release … as of June 30, 2026, which was RMB6.7851 to US$1.0000」",
    "retrieved": "2026-09-25",
-   "publisher": "MINISO Group Investor Relations"
+   "publisher": "MINISO Group Investor Relations",
+   "cache": "text/5d726a6ea6689854.txt"
   },
   {
    "id": "S014",
    "url": "https://ir-tc.miniso.com/2026-03-31-MINISO-Group-Announces-December-Quarter-and-Full-Year-of-2025-Unaudited-Financial-Results",
    "label": "名创优品《2025 年 12 月季度及 2025 全年未经审计财务业绩》：全年营收 RMB21,443.8 百万、同比 26.2%，期内利润 RMB1,209.8 百万，经调整净利润 RMB2,898.2 百万、同比 6.5%，截至 2025-12-31 共 8,485 家门店",
    "retrieved": "2026-09-25",
-   "publisher": "MINISO Group Investor Relations（中文页）"
+   "publisher": "MINISO Group Investor Relations（中文页）",
+   "cache": "text/43ceef966a2f6be3.txt"
   },
   {
    "id": "S015",
    "url": "https://ir-tc.miniso.com/2026-05-26-MINISO-Group-Announces-March-Quarter-2026-Unaudited-Financial-Results",
    "label": "名创优品《2026 年 3 月季度未经审计财务业绩》：营收 RMB5,688.4 百万、同比 28.5%，毛利率 43.3%（上年同期 44.2%）；文末逐项列出经调整净利润的七类剔除项，含投资 AI 行业有限合伙份额的公允价值变动",
    "retrieved": "2026-09-25",
-   "publisher": "MINISO Group Investor Relations（中文页）"
+   "publisher": "MINISO Group Investor Relations（中文页）",
+   "cache": "text/a894ca188c593cb6.txt"
   },
   {
    "id": "S016",
    "url": "https://finance.sina.com.cn/stock/s/2026-08-21/doc-inipakum6461948.shtml",
    "label": "新浪财经 2026-08-21：泡泡玛特中期业绩公布后股价一度大跌超 8%，收盘 149 港元、跌 3%，市值跌破 2,000 亿港元",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/88ad8b8cf8d9a5b6.txt"
   },
   {
    "id": "S017",
    "url": "https://m.21jingji.com/article/20260903/herald/9acabe4e088dadba2978afbe30707db2.html",
    "label": "21 财经 2026-09-03：名创优品财报后首个交易日港股暴跌 12.57%、收于 18.57 港元创近两年新低；9 月 2 日收盘名创总市值约 225 亿港元、泡泡玛特约 2,053.6 亿港元；名创自有 IP 约 16 个、手握近 200 个 IP",
    "retrieved": "2026-09-25",
-   "publisher": "21 世纪经济报道"
+   "publisher": "21 世纪经济报道",
+   "cache": "text/c6480f04bf073fff.txt"
   },
   {
    "id": "S018",
    "url": "https://finance.sina.com.cn/roll/2026-08-31/doc-iniqetnv7478824.shtml",
    "label": "新浪财经 2026-08-31：名创优品当日盘中最大跌幅超过 12%，下探至 2024 年 9 月以来低点；上半年总营收 114.99 亿元、同比增 22.4%",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/52e2e56a458fa4b8.txt"
   },
   {
    "id": "S019",
    "url": "https://www.guancha.cn/GongSi/2026_08_31_829346.shtml",
    "label": "观察者网 2026-08-31：名创优品 26H1 名创品牌营收 105.13 亿元、TOP TOY 营收 9.85 亿元、全球门店 8,674 家同比净增 769 家；二季度因 MINIMAX 公允价值浮亏约 5.97 亿元，单季净亏 2.92 亿元",
    "retrieved": "2026-09-25",
-   "publisher": "观察者网"
+   "publisher": "观察者网",
+   "cache": "text/4e913de11d4a036c.txt"
   },
   {
    "id": "S041",
@@ -1820,7 +1852,8 @@
    "url": "https://ir-sc.miniso.com/image/MINISO_26Q2+Earnings+Call+PPT_final.pdf",
    "label": "名创优品2026年二季度业绩演示材料：第33页库存周转天数（集团/中国大陆/海外/TOP TOY，2023H1—2026H1），第36页2026年全年与下半年净开店指引，第8页店态与面积表",
    "retrieved": "2026-09-25",
-   "publisher": "MINISO Group Holding Limited"
+   "publisher": "MINISO Group Holding Limited",
+   "cache": "text/a3a1142bb51036bd.txt"
   },
   {
    "id": "S043",
@@ -1841,12 +1874,13 @@
    "url": "https://www.prnewswire.com/news-releases/miniso-group-announces-december-quarter-and-full-year-of-2025-unaudited-financial-results-302729720.html",
    "label": "名创优品 2025 年 12 月季度及全年未经审计业绩新闻稿（2026-03-31）：按模式与地区拆分的门店网络表、名创品牌分地区收入、SSSG 定性档位",
    "retrieved": "2026-09-25",
-   "publisher": "MINISO Group / PR Newswire"
+   "publisher": "MINISO Group / PR Newswire",
+   "cache": "text/7f97043661aeaa65.txt"
   },
   {
    "id": "S022",
    "url": "https://www.sec.gov/Archives/edgar/data/1815846/000110465926048172/mnso-20251231x20f.htm",
-   "label": "名创优品 2025 财年 20-F（截至 2025-12-31，2026-04-24 递交）：收入按渠道/模式分解附注、revenue per MINISO store、分地区同店 GMV 增速表",
+   "label": "名创优品 2025 财年 20-F（截至 2025-12-31，2026-04-24 递交；2026-09-28 从 SEC 下载全文，10,065,591 B，需带申报用途的 User-Agent 否则返回「Your Request Originates from an Undeclared Automated Tool」拦截页）。按渠道拆分收入表（RMB'000，2025 年及占比）：Retail sales in self-operated stores 5,410,291／25.2%；Product sales to franchisees 8,853,156／41.3%；Sales to offline distributors 3,887,954／18.1%；Online sales 1,412,624／6.6%；Other sales channels 109,188／0.5%；License fees, sales-based royalties, and sales-based management and consultation service fees 1,061,883／4.9%（其中纯 License fees 155,123）。收入确认政策原文：「Retail sales in self-operated stores … recognized at the point when the end customer takes possession of and pays for the products」；线上经销商「recognized at the point in time when the control of the products has transferred … according to the contractually agreed shipping terms」；特许经营是 license agreement 与 sales agreement 合称 Franchise Agreements，且「the franchisees are the customers of the Group」。风险因素与条款原文：「We normally request **20% to 100% advance payment** for purchase of goods from certain overseas distributors prior to our delivery of goods」；不接受滞销退货「…return of unsold products, except in rare cases such as a latent defect subject to a product recall, which is in line with industry practice」，并不设最低采购/销售目标；「our product return rates as a percentage of total GMV during … the years ended December 31, 2024 and 2025 were **close to zero**」；对代理的可见度「our ability to accurately track the sales of our products by and the inventory level of our distributors is **limited**」",
    "retrieved": "2026-09-25",
    "publisher": "MINISO Group / SEC EDGAR"
   },
@@ -1862,7 +1896,8 @@
    "url": "https://www.prnewswire.com/news-releases/miniso-group-announces-2026-june-quarter-and-interim-unaudited-financial-results-302862628.html",
    "label": "名创优品 2026 年 6 月季度及中期业绩（2026-08-28）：内地收入 +26.2%、SSSG 中个位数",
    "retrieved": "2026-09-25",
-   "publisher": "MINISO Group / PR Newswire"
+   "publisher": "MINISO Group / PR Newswire",
+   "cache": "text/95a8cbffa87b4507.txt"
   },
   {
    "id": "S025",
@@ -1875,13 +1910,15 @@
    "id": "S031",
    "url": "https://ir-tc.miniso.com/2026-03-31-MINISO-Group-Announces-December-Quarter-and-Full-Year-of-2025-Unaudited-Financial-Results",
    "label": "名创优品 2025 年 12 月季度及全年业绩稿（2026-03-31，IFRS 口径，含非 IFRS 指标定义、五项加回金额与未经审核合并资产负债表）",
-   "retrieved": "2026-09-25"
+   "retrieved": "2026-09-25",
+   "cache": "text/43ceef966a2f6be3.txt"
   },
   {
    "id": "S032",
    "url": "https://www.prnewswire.com/news-releases/miniso-group-announces-2026-june-quarter-and-interim-unaudited-financial-results-302862628.html",
    "label": "名创优品 2026 年 6 月季度及中期业绩稿（2026-08-28，含上半年两种口径的同比、永辉权益法损益、美元折算基准价）",
-   "retrieved": "2026-09-25"
+   "retrieved": "2026-09-25",
+   "cache": "text/95a8cbffa87b4507.txt"
   },
   {
    "id": "S033",
@@ -1893,7 +1930,8 @@
    "id": "S034",
    "url": "https://stockn.xueqiu.com/09992/20260421018143.pdf",
    "label": "泡泡玛特国际集团 2025 年度报告（中英对照，含非 IFRS 经调整纯利调节表、五年期财务概要、负债率定义与借款说明）",
-   "retrieved": "2026-09-25"
+   "retrieved": "2026-09-25",
+   "cache": "text/ee3b2f5eacdfbf32.txt"
   },
   {
    "id": "S035",
@@ -1905,7 +1943,8 @@
    "id": "S036",
    "url": "https://www.yicai.com/news/102283501.html",
    "label": "第一财经 2024-09-23：名创优品以 62.7 亿元收购永辉超市 29.4% 股权，完成后不并表、按联营公司核算",
-   "retrieved": "2026-09-25"
+   "retrieved": "2026-09-25",
+   "cache": "text/2935705274d1430b.txt"
   },
   {
    "id": "S037",
@@ -1917,77 +1956,88 @@
    "id": "S038",
    "url": "https://www.guancha.cn/economy/2026_08_20_828012.shtml",
    "label": "观察者网 2026-08-20：泡泡玛特上半年营收 171.7 亿元、毛利率 69.7%、经调整净利润 51.6 亿元",
-   "retrieved": "2026-09-25"
+   "retrieved": "2026-09-25",
+   "cache": "text/de2e3d7e2181f96d.txt"
   },
   {
    "id": "S071",
    "url": "https://www.yicai.com/news/102283501.html",
    "label": "第一财经：名创优品约63亿收购永辉超市29.4%股权，将成为第一大股东（2024-09-23）",
    "retrieved": "2026-09-25",
-   "publisher": "第一财经"
+   "publisher": "第一财经",
+   "cache": "text/2935705274d1430b.txt"
   },
   {
    "id": "S072",
    "url": "https://stcn.com/article/detail/1330647.html",
    "label": "证券时报：63亿元入股不控股，名创优品抄底永辉超市（2024-09-25）",
    "retrieved": "2026-09-25",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/7b62d58038de5543.txt"
   },
   {
    "id": "S073",
    "url": "https://m.bjnews.com.cn/detail/1740705778168934.html",
    "label": "新京报：叶国富等名创优品成员被提名为永辉超市董事候选人（2025-02-28）",
    "retrieved": "2026-09-25",
-   "publisher": "新京报"
+   "publisher": "新京报",
+   "cache": "text/0af2ebca3e5957e6.txt"
   },
   {
    "id": "S074",
    "url": "https://www.cls.cn/detail/1974589",
    "label": "财联社：叶国富入局永辉超市董事会（2025-03-17）",
    "retrieved": "2026-09-25",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/5261cfe970f5989b.txt"
   },
   {
    "id": "S075",
    "url": "https://www.yicai.com/news/102430204.html",
    "label": "第一财经：名创优品发行总额5.5亿美元可转债，用于股票回购及海外业务拓展（2025-01-06）",
    "retrieved": "2026-09-25",
-   "publisher": "第一财经"
+   "publisher": "第一财经",
+   "cache": "text/49406db993d57fcf.txt"
   },
   {
    "id": "S076",
    "url": "https://finance.sina.com.cn/stock/usstock/c/2025-01-06/doc-ineeacvv5471850.shtml",
    "label": "新浪财经：名创优品发行5.5亿美元可转债，转股价达102港元",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/40ec1ab7d62c6a74.txt"
   },
   {
    "id": "S077",
    "url": "https://www.guandian.cn/m/show/514284",
    "label": "观点网：名创优品分拆TOP TOY于港交所主板独立上市，已提交申请（2025-09-26）",
    "retrieved": "2026-09-25",
-   "publisher": "观点网"
+   "publisher": "观点网",
+   "cache": "text/6d99500e5c07a3df.txt"
   },
   {
    "id": "S078",
    "url": "http://finance.sina.com.cn/stock/hkstock/ggscyd/2026-03-26/doc-inhshhri9193497.shtml",
    "label": "新浪财经：TOP TOY港股IPO招股书失效（2026-03-26）",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/722403ecd4d84217.txt"
   },
   {
    "id": "S079",
    "url": "https://www.news.cn/finance/20260403/8c25846597dd463bbf746f8c80f968ab/c.html",
    "label": "新华网：TOP TOY更新招股书，2025年营收同比增长87.9%（2026-04-03）",
    "retrieved": "2026-09-25",
-   "publisher": "新华网"
+   "publisher": "新华网",
+   "cache": "text/d9fea80582984825.txt"
   },
   {
    "id": "S0710",
    "url": "https://www.tmtpost.com/7960290.html",
    "label": "钛媒体：5天极速递表，5.74亿赎回负债，TOP TOY在急什么（2026-04-21）",
    "retrieved": "2026-09-25",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/726a06e719d42780.txt"
   },
   {
    "id": "S0711",
@@ -2001,21 +2051,24 @@
    "url": "https://www.cls.cn/detail/2331185",
    "label": "财联社：名创优品2025净利腰斩，投资永辉亏8亿（2026-03-31）",
    "retrieved": "2026-09-25",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/d7d8e8cee907de56.txt"
   },
   {
    "id": "S0713",
    "url": "https://stcn.com/article/detail/3717747.html",
    "label": "证券时报：名创优品2025年总营收同比增长26.2%，全球门店达8485家（2026-03-31）",
    "retrieved": "2026-09-25",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/dabd71f3a67671aa.txt"
   },
   {
    "id": "S0714",
    "url": "https://finance.eastmoney.com/a/202606293786780410.html",
    "label": "东方财富：名创优品宣布20亿港元股份回购计划（2026-06-29）",
    "retrieved": "2026-09-25",
-   "publisher": "东方财富"
+   "publisher": "东方财富",
+   "cache": "text/0756904bb2989d98.txt"
   },
   {
    "id": "S0715",
@@ -2028,49 +2081,56 @@
    "url": "https://www.thepaper.cn/newsDetail_forward_33283547",
    "label": "澎湃新闻：叶国富斥资超5300万港元增持名创优品，持股增至63.9%（2026-06-01）",
    "retrieved": "2026-09-25",
-   "publisher": "澎湃新闻"
+   "publisher": "澎湃新闻",
+   "cache": "text/cc03393787820ba7.txt"
   },
   {
    "id": "S0717",
    "url": "https://finance.sina.com.cn/tech/roll/2026-03-26/doc-inhsikav8953708.shtml",
    "label": "新浪财经：泡泡玛特斥资近6亿港元回购394万股，全部用于注销（2026-03-26）",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/539f185d6bee8f15.txt"
   },
   {
    "id": "S0718",
    "url": "https://stcn.com/article/detail/3706029.html",
    "label": "证券时报：泡泡玛特连续两日回购，年内累计回购金额超12亿港元（2026-03-27）",
    "retrieved": "2026-09-25",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/db8fbef2af52448a.txt"
   },
   {
    "id": "S0719",
    "url": "https://finance.sina.com.cn/jjxw/2026-03-25/doc-inhseqfw1027953.shtml",
    "label": "新浪财经：泡泡玛特2025年收益同比增185%，将派发股息2.38元/股（2026-03-25）",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/c3d9f5970df6b687.txt"
   },
   {
    "id": "S0720",
    "url": "https://finance.sina.com.cn/hy/hyjz/2026-03-25/doc-inhseupy3581145.shtml",
    "label": "新浪财经：泡泡玛特乐园二期预计2027年启动建设（2026-03-25）",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/0e17de4727906229.txt"
   },
   {
    "id": "S0721",
    "url": "https://www.cls.cn/detail/2400233",
    "label": "财联社：泡泡玛特游戏梦折戟，自研手游《梦想家园》停运（2026-06-15）",
    "retrieved": "2026-09-25",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/57fcb5fc12e2bf32.txt"
   },
   {
    "id": "S0722",
    "url": "https://www.guandian.cn/m/show/566936",
    "label": "观点网：泡泡玛特自研手游《梦想家园》8月12日停运（2026-06-12）",
    "retrieved": "2026-09-25",
-   "publisher": "观点网"
+   "publisher": "观点网",
+   "cache": "text/b2c78adff5fbddb6.txt"
   },
   {
    "id": "S0723",
@@ -2084,70 +2144,80 @@
    "url": "https://cbgc.scol.com.cn/news/7531743",
    "label": "成都商报：售价5999元，泡泡玛特发售两款Labubu冰箱，每款限量999台（2026-04-25）",
    "retrieved": "2026-09-25",
-   "publisher": "成都商报"
+   "publisher": "成都商报",
+   "cache": "text/d0b257d79afa7bc2.txt"
   },
   {
    "id": "S0725",
    "url": "https://www.guancha.cn/economy/2026_03_26_811454.shtml",
    "label": "观察者网：泡泡玛特家电产品将面市，代工方涨停（2026-03-26）",
    "retrieved": "2026-09-25",
-   "publisher": "观察者网"
+   "publisher": "观察者网",
+   "cache": "text/7989d1ccb425169c.txt"
   },
   {
    "id": "S0726",
    "url": "https://finance.sina.com.cn/tech/2025-12-30/doc-inheqixk7141928.shtml",
    "label": "新浪科技：泡泡玛特全球六大生产基地全面落地，含印尼、柬埔寨（2025-12-30）",
    "retrieved": "2026-09-25",
-   "publisher": "新浪科技"
+   "publisher": "新浪科技",
+   "cache": "text/e66c9a74f91ab1dc.txt"
   },
   {
    "id": "S0727",
    "url": "https://m.caixin.com/m/2026-01-08/102401805.html",
    "label": "财新：泡泡玛特印尼、柬埔寨、墨西哥合作工厂开始出货，全球六大生产基地（2026-01-08）",
    "retrieved": "2026-09-25",
-   "publisher": "财新"
+   "publisher": "财新",
+   "cache": "text/77875d62804197c0.txt"
   },
   {
    "id": "S0728",
    "url": "https://www.guancha.cn/internation/2026_01_31_805675.shtml",
    "label": "观察者网：唐宁街10号官宣，泡泡玛特欧洲总部将设在伦敦（2026-01-31）",
    "retrieved": "2026-09-25",
-   "publisher": "观察者网"
+   "publisher": "观察者网",
+   "cache": "text/664502b696327afc.txt"
   },
   {
    "id": "S0729",
    "url": "https://wap.eastmoney.com/a/202601313637748376.html",
    "label": "东方财富：泡泡玛特宣布伦敦为欧洲总部，将在欧洲新增27家门店（2026-01-31）",
    "retrieved": "2026-09-25",
-   "publisher": "东方财富"
+   "publisher": "东方财富",
+   "cache": "text/c82d7925dd314826.txt"
   },
   {
    "id": "S061",
    "url": "https://prod-out-res.popmart.com/cms/ANNUAL_REPORT_2025_bd4e173872.pdf",
    "label": "泡泡玛特《二零二五年年報》PDF：“根據IP劃分的收入”表、附註2(d)授權IP攤銷年限、附註30應付授權費",
    "retrieved": "2026-09-25",
-   "publisher": "Pop Mart International Group"
+   "publisher": "Pop Mart International Group",
+   "cache": "text/cff6556868fd3d26.txt"
   },
   {
    "id": "S062",
    "url": "https://m.dutenews.com/n/article/60066590",
    "label": "泡泡玛特2026半年报报道：营收171.7亿元同比+23.8%、毛利率69.7%、经调整净利率30%、THE MONSTERS 44.5亿元占比26%",
    "retrieved": "2026-09-25",
-   "publisher": "读特客户端（晶报）"
+   "publisher": "读特客户端（晶报）",
+   "cache": "text/3affc671635958eb.txt"
   },
   {
    "id": "S063",
    "url": "https://www.stcn.com/article/detail/3698616.html",
    "label": "泡泡玛特2025年财报报道：营收371.2亿元同比+184.7%、THE MONSTERS 141.6亿元、SKULLPANDA 35.4亿元、CRYBABY 29.3亿元",
    "retrieved": "2026-09-25",
-   "publisher": "证券时报网"
+   "publisher": "证券时报网",
+   "cache": "text/50082d0a98042272.txt"
   },
   {
    "id": "S064",
    "url": "https://www.nbd.com.cn/articles/2026-02-03/4247711.html",
    "label": "名创优品全球合作伙伴大会（2026-01-30）：180个国际授权IP与16个自有IP、《疯狂动物城2》联名近10亿元、客单价序列、授权费用金额与增速（记者查阅历年财报）",
    "retrieved": "2026-09-25",
-   "publisher": "每日经济新闻"
+   "publisher": "每日经济新闻",
+   "cache": "text/010c3a32072bcc5b.txt"
   },
   {
    "id": "S065",
@@ -2161,21 +2231,24 @@
    "url": "https://finance.cnr.cn/jjgd/20260109/t20260109_527487614.shtml",
    "label": "得物平台口径的LABUBU二手价回调：隐藏款“本我”较峰值跌近88%、4.0“爱心”较峰值991元跌逾70%、CRYBABY“度假模式”破129元发售价",
    "retrieved": "2026-09-25",
-   "publisher": "央广网"
+   "publisher": "央广网",
+   "cache": "text/f05f8498ded3a9bc.txt"
   },
   {
    "id": "S067",
    "url": "https://www.stcn.com/article/detail/3329267.html",
    "label": "千岛App与得物App的LABUBU 3.0成交价（2025-09-09查询）",
    "retrieved": "2026-09-25",
-   "publisher": "证券时报网（转第一财经）"
+   "publisher": "证券时报网（转第一财经）",
+   "cache": "text/e5ea778d2f4679fa.txt"
   },
   {
    "id": "S068",
    "url": "https://www.cqnews.net/web/content_1540387196701966336.html",
    "label": "星星人“农场系列”得物与千岛成交价（2026-08-21查询）；星星人2026上半年收入约26.5亿元、增速超580%",
    "retrieved": "2026-09-25",
-   "publisher": "华龙网"
+   "publisher": "华龙网",
+   "cache": "text/092e83b9e3e75cf0.txt"
   },
   {
    "id": "S081",
@@ -2196,35 +2269,40 @@
    "url": "https://finance.eastmoney.com/a/202608173843058913.html",
    "label": "2026年8月17日名创优品中期业绩预告：营收114.5亿至115.5亿元、经营利润16.2亿至16.6亿元、期内利润9.4亿至9.6亿元",
    "retrieved": "2026-09-25",
-   "publisher": "东方财富网转载北京商报"
+   "publisher": "东方财富网转载北京商报",
+   "cache": "text/ab656dfed67272f7.txt"
   },
   {
    "id": "S084",
    "url": "https://www.cls.cn/detail/2324402",
    "label": "2026年3月25日泡泡玛特2025年报与业绩会：全年收入371.2亿元同比增184.7%，王宁给出2026年不低于20%的增长目标",
    "retrieved": "2026-09-25",
-   "publisher": "科创板日报（财联社）"
+   "publisher": "科创板日报（财联社）",
+   "cache": "text/28365e3d18de226e.txt"
   },
   {
    "id": "S085",
    "url": "https://finance.sina.com.cn/wm/2026-03-26/doc-inhshxnu0283686.shtml",
    "label": "2026年3月26日报道：3月25日开盘223.4港元、收盘168.3港元跌22.51%、收盘市值2257亿港元；2025年8月历史高点339.8港元；并称收入略低于机构一致预期约380亿元（第三方一致预期口径，非公司披露）",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经（第一风口）"
+   "publisher": "新浪财经（第一风口）",
+   "cache": "text/3ebedc6a83bea315.txt"
   },
   {
    "id": "S086",
    "url": "https://www.lanjinger.com/d/1788255402103779341",
    "label": "2026年9月报道：名创8月31日港股收18.57港元跌12.57%、2025年高点53.06港元；上半年海外收入40.6亿元增14.9%，低于公司此前高双位数指引；业绩会披露海外对集团利润贡献由2023年的35%至40%降至10%至15%；现有近800家海外直营店，下半年海外门店计划净减50至70家",
    "retrieved": "2026-09-25",
-   "publisher": "蓝鲸财经"
+   "publisher": "蓝鲸财经",
+   "cache": "text/f5e37e4fd709b150.txt"
   },
   {
    "id": "S087",
    "url": "https://qt.gtimg.cn/q=hk09992,hk09896",
    "label": "腾讯行情接口2026年9月25日返回的报价与市盈率字段：09992报152.30港元、14.34倍；09896报17.33港元、15.27倍",
    "retrieved": "2026-09-25",
-   "publisher": "腾讯证券"
+   "publisher": "腾讯证券",
+   "cache": "text/0555dce6b9a5f317.txt"
   },
   {
    "id": "S088",
@@ -2236,7 +2314,7 @@
   {
    "id": "S051",
    "url": "https://stockn.xueqiu.com/09992/20260820328239.pdf",
-   "label": "泡泡玛特《截至2026年6月30日止六个月的中期业绩公告》港交所公告原文（44页）：分部及收益资料（中国业务／海外业务两个可呈报分部的分部业绩）、分区域与分渠道收入表、汇兑损失7.203亿元、批发商30至90天信贷期、外汇风险管理（集团未对冲外币波动）",
+   "label": "泡泡玛特《截至2026年6月30日止六个月的中期业绩公告》港交所原文（44 页；2026-09-28 下载 PDF 用 fitz 取字）：「其他（虧損）╱收益－淨額」段原文——本公司的其他收益由 2025 年上半年的淨利得人民幣 179.2 百萬元下降到 2026 上半年的淨損失人民幣 688.8 百萬元，其中「(1) 受匯率波動，2026 年上半年匯兌損失人民幣 720.3 百萬元，而 2025 年上半年匯兌收益人民幣 120.1 百萬元；及 (2) 按公平值計入損益的金融工具公平值變動的收益由 23.7 百萬元增長到 37.4 百萬元」。另有：其他收益由 672.4 百萬元（示例区间内政府补助 239.5 百萬元、IP 授權費及其他服務收入 60.6 百萬元）、經營溢利由 6,043.7 百萬元增至 6,724.7 百萬元（+11.3%）、財務收入淨額由 65.5 百萬元降至 11.5 百萬元；批发商信贷期 30 至 90 天；外汇风险管理段写明集团未就外币波动作对冲。注意本报告功能货币为美元、以人民币列示，汇兑损益因此落在「其他（亏损）／收益—净额」而不是名创那种单列行",
    "retrieved": "2026-09-25",
    "publisher": "泡泡玛特国际集团（9992.HK）"
   },
@@ -2245,7 +2323,8 @@
    "url": "https://prod-out-res.popmart.com/cms/ANNUAL_REPORT_2025_bd4e173872.pdf",
    "label": "泡泡玛特2025年度报告（370页，中英对照）：附注5分部资料说明2025年因组织架构升级新增中国／海外两个可呈报分部并重述2024年，海外分部收入162.68亿元、分部业绩80.00亿元；附注3.1披露本公司功能货币为美元，及港元／美元／新加坡元±10%对税后利润的敏感度",
    "retrieved": "2026-09-25",
-   "publisher": "泡泡玛特国际集团"
+   "publisher": "泡泡玛特国际集团",
+   "cache": "text/cff6556868fd3d26.txt"
   },
   {
    "id": "S053",
@@ -2259,7 +2338,8 @@
    "url": "https://ir.miniso.com/2026-08-28-MINISO-Group-Announces-2026-June-Quarter-and-Interim-Unaudited-Financial-Results",
    "label": "名创优品2026年6月季度及中期业绩英文新闻稿：tariff refunds 措辞与未来季度约410万美元估计、美元折算采用美联储H.10于2026年6月30日的6.7851兑1美元、海外同店GMV按上年月均汇率折算以剔除汇率影响",
    "retrieved": "2026-09-25",
-   "publisher": "MINISO Group IR"
+   "publisher": "MINISO Group IR",
+   "cache": "text/5d726a6ea6689854.txt"
   },
   {
    "id": "S055",
@@ -2273,84 +2353,96 @@
    "url": "https://finance.sina.com.cn/roll/2025-12-09/doc-inhaeiwp1041428.shtml",
    "label": "《共同说》第三季对话实录（中信书院稿，新浪财经转载），含“虽然我看不懂这家公司，我不会去买他们股票”逐字原话",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/89dfb8a6fa9e8709.txt"
   },
   {
    "id": "S092",
    "url": "https://finance.sina.com.cn/wm/2026-05-07/doc-inhxanxc2732032.shtml",
    "label": "读商时代梳理其 2025-12 至 2026-05-07 各条雪球发言原文（3-30 收回说法、4-09 保险公司开张、5-07 换神华），及当日涨幅",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经转载"
+   "publisher": "新浪财经转载",
+   "cache": "text/13ce5f136d793f9c.txt"
   },
   {
    "id": "S093",
    "url": "https://www.cls.cn/detail/2389833",
    "label": "财联社：5-28 增持至 6.04% 的披露细节；南向资金截至 6-02 持股 25.6%；6-03 收盘 179.3 港元",
    "retrieved": "2026-09-25",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/83bfd6f92295876e.txt"
   },
   {
    "id": "S094",
    "url": "https://www.thepaper.cn/newsDetail_forward_33247339",
    "label": "澎湃新闻：5-25 买入 982.32 万股、合计 5.69% 触发强制披露；5-27 收盘 154.2 港元",
    "retrieved": "2026-09-25",
-   "publisher": "澎湃新闻"
+   "publisher": "澎湃新闻",
+   "cache": "text/11a96fb15940d171.txt"
   },
   {
    "id": "S095",
    "url": "https://www.cls.cn/detail/2383703",
    "label": "科创板日报：均价 150 港元、涉资 14.7 亿港元、合计 7637.16 万股的权益变动表格内容",
    "retrieved": "2026-09-25",
-   "publisher": "科创板日报"
+   "publisher": "科创板日报",
+   "cache": "text/34b9c65bdf9ca03f.txt"
   },
   {
    "id": "S096",
    "url": "https://www.stcn.com/article/detail/3747773.html",
    "label": "证券时报网：4-09“我的泡泡玛特保险公司正式开张了”、4-14 确认卖 put 及当日盘中涨超 8% 重回 160 港元上方",
    "retrieved": "2026-09-25",
-   "publisher": "证券时报网"
+   "publisher": "证券时报网",
+   "cache": "text/aa07b5f22ae716c6.txt"
   },
   {
    "id": "S097",
    "url": "https://www.21jingji.com/article/20260604/herald/930150837914cbb65359d21e857cee14.html",
    "label": "券商中国：5-28 买入 466 万股、均价 162.5 港元、约 7.57 亿港元、升至 6.04%",
    "retrieved": "2026-09-25",
-   "publisher": "21 经济网"
+   "publisher": "21 经济网",
+   "cache": "text/2bb6581725b1f592.txt"
   },
   {
    "id": "S098",
    "url": "https://www.cls.cn/detail/2423334",
    "label": "科创板日报：7-06 买入 1059 万股、6.85% 升至 7.65%，7-10 收盘 150.70 港元",
    "retrieved": "2026-09-25",
-   "publisher": "科创板日报"
+   "publisher": "科创板日报",
+   "cache": "text/c421651b609289ca.txt"
   },
   {
    "id": "S099",
    "url": "https://news.qq.com/rain/a/20260807A0ACOY00",
    "label": "财闻：披露易 8-05 记录 7-30 由 7.65% 降至 5.55%、事由编码 1203，及他当晚雪球回应“就是 put expired，部分被 call 走了”",
    "retrieved": "2026-09-25",
-   "publisher": "腾讯新闻"
+   "publisher": "腾讯新闻",
+   "cache": "text/731b13d18647113f.txt"
   },
   {
    "id": "S0910",
    "url": "https://www.guancha.cn/economy/2026_08_12_827072.shtml",
    "label": "观察者网：8-12 披露易显示 8-06 持股由 5.55% 升至 7.70%、事由代码 11032、当日收盘 151 港元",
    "retrieved": "2026-09-25",
-   "publisher": "观察者网"
+   "publisher": "观察者网",
+   "cache": "text/433a3ced940302f9.txt"
   },
   {
    "id": "S0911",
    "url": "https://tidenews.com.cn/news.html?id=3530440",
    "label": "潮新闻：8-06 这轮增持估算耗资近 46 亿港元",
    "retrieved": "2026-09-25",
-   "publisher": "潮新闻"
+   "publisher": "潮新闻",
+   "cache": "text/094c8e1169edc382.txt"
   },
   {
    "id": "S0912",
    "url": "https://finance.sina.cn/2025-06-30/detail-infcvier0067784.d.html",
    "label": "《大道：段永平投资问答录》摘录：不懂不碰（2020-10-10）、“任何跟进都是错的”（2010-07-23）、跟着买阿里是投机分子（2014-09-23）",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经 / 砺石商业评论"
+   "publisher": "新浪财经 / 砺石商业评论",
+   "cache": "text/e1924125d70b218c.txt"
   },
   {
    "id": "S111",
@@ -2371,119 +2463,136 @@
    "url": "https://view.inews.qq.com/a/20260829A003IG00",
    "label": "华尔街见闻《名创优品收紧海外扩张，全年利润率预计下滑3—4个百分点》（2026-08-29，腾讯新闻转载）：名创2026年中期业绩会管理层指引，含下半年海外门店净减50—70家、海外库存周转天数由214天升至273天",
    "retrieved": "2026-09-25",
-   "publisher": "华尔街见闻"
+   "publisher": "华尔街见闻",
+   "cache": "text/70de54813a443e14.txt"
   },
   {
    "id": "S114",
    "url": "https://m.dzplus.dzng.com/share/general/0/NEWS3625310CONRTEIMQXRZV",
    "label": "大众新闻·海报新闻《泡泡玛特的“调整年”》（2026-08-22）：2026年中期业绩会上王宁把2026年定义为经营调整年；上半年THE MONSTERS家族营收44.5亿元、LABUBU营收占比降至26%",
    "retrieved": "2026-09-25",
-   "publisher": "海报新闻"
+   "publisher": "海报新闻",
+   "cache": "text/caee0f40ba13f159.txt"
   },
   {
    "id": "S115",
    "url": "http://www.eeo.com.cn/2026/0905/1024645.shtml",
-   "label": "经济观察报《名创优品的隐藏变量：三成利润来自投资》（2026-09-05）：永辉2026年上半年净利润2.53亿元及其对名创的分占贡献、MiniMax投资公允价值变动、叶国富在永辉董事会的角色",
+   "label": "经济观察报《名创优品的隐藏变量：三成利润来自投资》（2026-09-05）：名创 2026 上半年经调整净利润 10.79 亿元、同比 −15.7%（2022 年以来同期首次下滑）、永辉2026年上半年净利润2.53亿元及其对名创的分占贡献、MiniMax投资公允价值变动、叶国富在永辉董事会的角色",
    "retrieved": "2026-09-25",
-   "publisher": "经济观察网"
+   "publisher": "经济观察网",
+   "cache": "text/fa2c9919852f8036.txt"
   },
   {
    "id": "S116",
    "url": "https://www.tmtpost.com/8128022.html",
    "label": "钛媒体《名创优品正在杀死自己的轻资产神话》（2026-09-04）：转述名创CFO张靖京在业绩电话会给出的收入结构（加盟47%、代理12%、海外直营25%）及三者经营利润率差异",
    "retrieved": "2026-09-25",
-   "publisher": "钛媒体"
+   "publisher": "钛媒体",
+   "cache": "text/b0f0211c56eed2ea.txt"
   },
   {
    "id": "S101",
    "url": "https://www.shanghaiinvest.com/cn/viewfile.php?id=18665",
    "label": "市场监管总局关于印发《盲盒经营行为规范指引（试行）》的通知全文转载（2023 年 6 月印发）",
    "retrieved": "2026-09-25",
-   "publisher": "市场监管总局"
+   "publisher": "市场监管总局",
+   "cache": "text/88d41ddb10f32ac6.txt"
   },
   {
    "id": "S102",
    "url": "https://www.news.cn/fortune/20260911/59b3175b04d04bda9161c8f01a9d215c/c.html",
    "label": "新华社：市场监管总局公布六起盲盒经营违法行为典型案例",
    "retrieved": "2026-09-25",
-   "publisher": "新华社"
+   "publisher": "新华社",
+   "cache": "text/bfdfba7e1310cb69.txt"
   },
   {
    "id": "S103",
    "url": "https://m.bjnews.com.cn/detail/1782434514129230.html",
    "label": "新京报：LABUBU 新品常规款出现破发，价格降幅超 30%",
    "retrieved": "2026-09-25",
-   "publisher": "新京报"
+   "publisher": "新京报",
+   "cache": "text/08281d51c67738f3.txt"
   },
   {
    "id": "S104",
    "url": "https://www.cls.cn/detail/2410082",
    "label": "财联社：LABUBU 常规款破发跳水，隐藏款溢价缩水至 5 倍",
    "retrieved": "2026-09-25",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/9fb1dbe7bf491f24.txt"
   },
   {
    "id": "S105",
    "url": "https://finance.cnr.cn/jjgd/20260109/t20260109_527487614.shtml",
    "label": "央广财经：从一娃难求到跌破官方价，LABUBU 部分二手价跳水",
    "retrieved": "2026-09-25",
-   "publisher": "央广网"
+   "publisher": "央广网",
+   "cache": "text/f05f8498ded3a9bc.txt"
   },
   {
    "id": "S106",
    "url": "https://finance.sina.com.cn/stock/t/2026-01-04/doc-inhfcasw7615618.shtml",
    "label": "新浪财经：LABUBU 部分二手价低于官方价，转为放量任买",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/616d46a0f528ab38.txt"
   },
   {
    "id": "S107",
    "url": "http://www.eeo.com.cn/2026/0822/1007956.shtml",
    "label": "经济观察报：泡泡玛特海外收入减少 11%，王宁称 2026 是调整年",
    "retrieved": "2026-09-25",
-   "publisher": "经济观察报"
+   "publisher": "经济观察报",
+   "cache": "text/4f5ee1a808094410.txt"
   },
   {
    "id": "S108",
    "url": "https://www.guancha.cn/economy/2026_08_21_828134.shtml",
    "label": "观察者网：泡泡玛特中国收入占比升至 71%，海外狂飙告一段落",
    "retrieved": "2026-09-25",
-   "publisher": "观察者网"
+   "publisher": "观察者网",
+   "cache": "text/9947b5c1e2959952.txt"
   },
   {
    "id": "S109",
    "url": "https://companies.caixin.com/2026-03-25/102427307.html",
    "label": "财新：LABUBU 成首个百亿潮玩 IP，泡泡玛特 2025 年营收破 300 亿元",
    "retrieved": "2026-09-25",
-   "publisher": "财新"
+   "publisher": "财新",
+   "cache": "text/41daa8d77a27e7a6.txt"
   },
   {
    "id": "S1010",
    "url": "https://stcn.com/article/detail/3717747.html",
    "label": "证券时报：名创优品 2025 年总营收同比增长 26.2%，全球门店达 8485 家",
    "retrieved": "2026-09-25",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/dabd71f3a67671aa.txt"
   },
   {
    "id": "S1011",
    "url": "https://www.news.cn/finance/20260403/8c25846597dd463bbf746f8c80f968ab/c.html",
    "label": "新华社客户端：TOP TOY 更新招股书，2025 年营收同比增长 87.9%",
    "retrieved": "2026-09-25",
-   "publisher": "新华社"
+   "publisher": "新华社",
+   "cache": "text/d9fea80582984825.txt"
   },
   {
    "id": "S1012",
    "url": "https://www.21jingji.com/article/20260106/herald/c7517c94a5d76d8bb0279ab235c0af01.html",
    "label": "21 世纪经济报道：KKV 与深圳卓悦中心的撤店罗生门，双方就是否清退各执一词",
    "retrieved": "2026-09-25",
-   "publisher": "21 世纪经济报道"
+   "publisher": "21 世纪经济报道",
+   "cache": "text/64b9d2ce9b87dde0.txt"
   },
   {
    "id": "S1013",
    "url": "https://xinwen.bjd.com.cn/content/s6a82ea4ce4b03fa51a8307c2.html",
    "label": "北京日报：YOYO 手办宣传物料错印泡泡玛特字样，名创优品回应称失误",
    "retrieved": "2026-09-25",
-   "publisher": "北京日报"
+   "publisher": "北京日报",
+   "cache": "text/859ec12dd156e2e1.txt"
   },
   {
    "id": "S1014",
@@ -2497,42 +2606,48 @@
    "url": "https://news.bjd.com.cn/2026/08/30/11938792.shtml",
    "label": "北京日报：名创优品二季度净亏 2.9 亿元",
    "retrieved": "2026-09-25",
-   "publisher": "北京日报"
+   "publisher": "北京日报",
+   "cache": "text/1a83b0fe7a127f87.txt"
   },
   {
    "id": "S1016",
    "url": "https://finance.sina.cn/stock/estate/2024-09-23/detail-incqeerp1799034.d.html",
    "label": "新浪财经：名创优品 62.7 亿元收购永辉超市 29.4% 股权，将成为第一大股东",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/fa189eca2e0562b2.txt"
   },
   {
    "id": "S1017",
    "url": "https://stcn.com/article/detail/1330647.html",
    "label": "证券时报：63 亿元入股不控股，名创优品抄底永辉超市",
    "retrieved": "2026-09-25",
-   "publisher": "证券时报"
+   "publisher": "证券时报",
+   "cache": "text/7b62d58038de5543.txt"
   },
   {
    "id": "S1018",
    "url": "https://www.cls.cn/detail/2331185",
    "label": "财联社：名创优品 2025 年净利腰斩，投资永辉亏 8 亿元",
    "retrieved": "2026-09-25",
-   "publisher": "财联社"
+   "publisher": "财联社",
+   "cache": "text/d7d8e8cee907de56.txt"
   },
   {
    "id": "S1019",
    "url": "https://policy.mofcom.gov.cn/claw/policyInfo.shtml?id=5424",
    "label": "商务部全球法规网：《盲盒经营行为规范指引（试行）》解读",
    "retrieved": "2026-09-25",
-   "publisher": "商务部"
+   "publisher": "商务部",
+   "cache": "text/0e128206a6f0205f.txt"
   },
   {
    "id": "S1020",
    "url": "https://finance.sina.com.cn/jjxw/2026-01-21/doc-inhhzyea3558913.shtml",
    "label": "新浪财经：遭强制清退后，曾估值 200 亿的 KK 集团（KKV、THE GREEN PARTY 母公司）求变",
    "retrieved": "2026-09-25",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/62c0e86aa622df0c.txt"
   }
  ],
  "category": "消费零售",
@@ -2552,17 +2667,27 @@
   "hero_motif": "shelf_vs_blindbox",
   "hero_note": "全篇的记忆点：左半是一排等宽的货架格（名创——效率、周转、可预测），右半是一片盲盒格，其中几格被点亮（泡泡玛特——稀缺、抽中、不可预测）。两半用同一根基线连着，提醒读者这是同一场消费的两侧，不是两个行业。哪一格亮，是潮玩全部的定价权所在；货架上每一格都长一样，是性价比零售全部的护城河所在。"
  },
- "generated_date": "2026-09-26",
+ "generated_date": "2026-10-06",
  "created_date": "2026-09-25",
- "data_as_of": "2026-09",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 19,
  "site": {
-  "url": "https://miniso-vs-popmart-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d7c1-d143-7be5-8704-b792fcf42a83",
-  "slug": "miniso-vs-popmart",
-  "content_sha": "e903ae03e0478834",
-  "published_date": "2026-09-25",
+  "url": "https://retail-gtqdc11h6po.qoder.website/miniso-vs-popmart/miniso-vs-popmart.html",
+  "group": "retail",
+  "path": "/miniso-vs-popmart/miniso-vs-popmart.html",
+  "project_id": "01a104f2-33c6-7200-b29d-72a9a4a2533e",
+  "content_sha": "9a8f1ace451dacb0",
+  "published_date": "2026-10-06",
   "access": "public"
+ },
+ "cover": {
+  "file": "images/05_名创优品.jpg",
+  "alt": "名创优品：10元店如何做到营收50亿？靠这4点_TMT观察网",
+  "caption": "名创优品：10元店如何做到营收50亿？靠这4点_TMT观察网",
+  "source_page": "http://www.looktmt.com/0092/297/16676774441.html",
+  "width": 2230,
+  "height": 1470,
+  "query": "名创优品"
  }
 }

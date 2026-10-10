@@ -9,7 +9,12 @@
     {
      "type": "prose",
      "heading": "这一百年其实是三次重启",
-     "text": "你今天撞上的配货和涨价，跟康朋街那间帽子店没有直接的继承关系。香奈儿的历史要拆成三段看：第一段解决的是女人身上那些束缚怎么去掉；第二段是 1954 年一次被巴黎媒体围攻的复出；第三段从 1983 年开始，Lagerfeld 把一家店改造成一台能批量复制符号的机器。"
+     "text": "你今天撞上的配货和涨价，跟康朋街那间帽子店没有直接的继承关系。香奈儿的历史要拆成三段看：第一段解决的是女人身上那些束缚怎么去掉；第二段是 1954 年一次被巴黎媒体围攻的复出；第三段从 1983 年开始，Lagerfeld 把一家店改造成一台能批量复制符号的机器。",
+     "source_ids": [
+      "S016",
+      "S017",
+      "S018"
+     ]
     },
     {
      "type": "timeline",
@@ -103,8 +108,15 @@
     },
     {
      "type": "prose",
-     "heading": "经典款为什么都出在缺东西的年代",
-     "text": "规律很清楚：小黑裙、N°5、后来的 2.55，都出现在物资紧张或品牌快撑不住的时候。Coco 那一代的设计是被现实逼出来的：面料便宜、女人开始上班、需要能自己走动的衣服。\n\nLagerfeld 时代把逻辑倒过来：先立符号，再往符号上挂产品，涨价和配货都属这套节奏。你觉得某只包贵是因为稀缺，更贴近史实的解释是——稀缺本身是 1983 年之后被设计出来的。"
+     "heading": "三件经典款，只有一件接在停摆后面",
+     "text": "规律要说准才站得住：三件经典款里只有一件接在困境后面。N°5 是 1921 年，小黑裙是 1926 年——美国版《Vogue》给小黑裙的比喻恰恰不是稀缺，而是 Chanel's Ford，说它能像汽车一样量产。真正接着一段停摆的是 2.55：1939 年二战爆发后关闭高定业务、此后十几年基本停摆，1954 年 2 月复出被巴黎评论界成片差评而英美订单照常进来，一年之后有了那只包。\n\nLagerfeld 时代把逻辑倒过来：先立符号，再往符号上挂产品，涨价和配货都属这套节奏。你觉得某只包贵是因为稀缺——至于稀缺是不是 1983 年之后被设计出来的，这一篇只能把证据摆在哪个方向说清楚，给不了结论。",
+     "source_ids": [
+      "S015",
+      "S016",
+      "S017",
+      "S102",
+      "S018"
+     ]
     },
     {
      "type": "quote",
@@ -119,7 +131,7 @@
    "images": [
     {
      "file": "images/01_香奈儿_Coco.jpg",
-     "alt": "9张图看懂chanel香奈儿12个系列区别详情尺寸比价_女包_什么值得买",
+     "alt": "",
      "caption": "9张图看懂chanel香奈儿12个系列区别详情尺寸比价_女包_什么值得买",
      "source_page": "https://post.smzdm.com/p/aqnd92kx/",
      "width": 1080,
@@ -127,7 +139,7 @@
     },
     {
      "file": "images/02_Chanel.jpg",
-     "alt": "Chanel以冬日之花姿态，游走于优雅与反叛之间",
+     "alt": "",
      "caption": "Chanel以冬日之花姿态，游走于优雅与反叛之间",
      "source_page": "https://www.vogue.com.cn/fashion/industry/news_1221f7ee0be68470.html",
      "width": 1080,
@@ -143,12 +155,21 @@
     {
      "type": "prose",
      "heading": "醛：新东西不是配方，是用量",
-     "text": "醛不是香奈儿发明的：1912 年 Houbigant 的 Quelques Fleurs 已经用过它。调香师恩尼斯·鲍（1881—1961，生于莫斯科，在沙俄的 Rallet 厂入行，1919 年后转到格拉斯）真正做的，是把 C-10、C-11、C-12 三种脂肪醛混到足够高的浓度，让它们决定整支香水的骨架，而不是当点缀。这类分子原液刺鼻，通常要稀释到 1% 以下才好闻，给出的是没有对应天然花料的\"干净\"感。"
+     "text": "醛不是香奈儿发明的：1912 年 Houbigant 的 Quelques Fleurs 已经用过它。调香师恩尼斯·鲍（1881—1961，生于莫斯科，在沙俄的 Rallet 厂入行，1919 年后转到格拉斯）真正做的，是把 C-10、C-11、C-12 三种脂肪醛混到足够高的浓度，让它们决定整支香水的骨架，而不是当点缀。这类分子原液刺鼻，通常要稀释到 1% 以下才好闻，给出的是没有对应天然花料的\"干净\"感。",
+     "source_ids": [
+      "S022",
+      "S024"
+     ]
     },
     {
      "type": "prose",
      "heading": "名字来自第五个样品，但细节有两个版本",
-     "text": "鲍生前的说法是：他交去的样品分两组编号，1 到 5 与 20 到 24，香奈儿挑了第 5 号，并说\"我每年五月五日发表作品，就保留它已有的编号\"。另一版本是\"十支里挑第五支\"。一致的只有\"编号即名字\"。在香水普遍以花名或人名命名的年代，拿一个数字当名字本身就很反常。官方口径只承认 1921 年推出，配方、名字和瓶身都颠覆传统。"
+     "text": "鲍生前的说法是：他交去的样品分两组编号，1 到 5 与 20 到 24，香奈儿挑了第 5 号，并说\"我每年五月五日发表作品，就保留它已有的编号\"。另一版本是\"十支里挑第五支\"。一致的只有\"编号即名字\"。在香水普遍以花名或人名命名的年代，拿一个数字当名字本身就很反常。官方口径只承认 1921 年推出，配方、名字和瓶身都颠覆传统。",
+     "source_ids": [
+      "S023",
+      "S024",
+      "S021"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -177,7 +198,7 @@
       },
       {
        "k": "五号随身喷雾 3×20 ml",
-       "v": "1520 元（每毫升约 25.3 元）",
+       "v": "1520 元 ÷ 60 ml（每毫升约 25.3 元）",
        "source_ids": [
         "S025"
        ]
@@ -243,7 +264,11 @@
     {
      "type": "prose",
      "heading": "为什么香水是大多数人唯一买得起的香奈儿",
-     "text": "买得起的原因可以写成两个数字：100 ml 五号淡香精 1800 元，线上最小的可售单元是一块 150 g 香皂，320 元。香水在官网明码标价、直接下单，不搭别的商品。同一条线内部也分档：150 ml 装折每毫升约 14.1 元，100 ml 装 18 元，3×20 ml 随身装 25.3 元。想试味买香皂和身体乳，日常用挑大容量。"
+     "text": "买得起的原因可以写成两个数字：100 ml 五号淡香精 1800 元，全页最便宜的一件是一块 150 g 香皂，320 元。香水在官网明码标价、直接下单，不搭别的商品。同一条线内部也分档，但比之前先看浓度：150 ml 那档是淡香水，2,120 元，折每毫升约 14.1 元；100 ml 是淡香精，1800 元，折 18 元；3×20 ml 淡香精随身装 1,520 元、一共 60 ml，折每毫升 25.3 元。第一档看着最划算，一部分原因它本来就不是同一个浓度——跨浓度比每毫升单价，跟跨市场比标价是同一类错。想试味买香皂和身体乳，日常用挑大容量。",
+     "source_ids": [
+      "S025",
+      "S026"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -321,7 +346,7 @@
    "images": [
     {
      "file": "images/05_香奈儿_香水_广告_历史.jpg",
-     "alt": "香奈儿品牌：独特香水系列的经典之选！_女士香水_什么值得买",
+     "alt": "",
      "caption": "香奈儿品牌：独特香水系列的经典之选！_女士香水_什么值得买",
      "source_page": "https://post.smzdm.com/p/aevwonn3/",
      "width": 1080,
@@ -329,7 +354,7 @@
     },
     {
      "file": "images/06_香奈儿_恩尼斯_鲍_调香师.jpg",
-     "alt": "关于香奈儿的品牌故事与历程 - 知乎",
+     "alt": "",
      "caption": "关于香奈儿的品牌故事与历程 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/353045738",
      "width": 1440,
@@ -435,7 +460,8 @@
        "v": "约 25.5×15.5×6.5 cm，走量最大的一档",
        "source_ids": [
         "S032",
-        "S034"
+        "S034",
+        "S062"
        ]
       },
       {
@@ -524,7 +550,7 @@
    "images": [
     {
      "file": "images/09_香奈儿_限量款_季节_手袋.jpg",
-     "alt": "香奈儿最值得入手的5款香水推荐，邂逅你的专属芬芳_女士香水_什么值得买",
+     "alt": "",
      "caption": "香奈儿最值得入手的5款香水推荐，邂逅你的专属芬芳_女士香水_什么值得买",
      "source_page": "https://post.smzdm.com/p/aqq40ol2/",
      "width": 1080,
@@ -532,7 +558,7 @@
     },
     {
      "file": "images/10_Chanel.jpg",
-     "alt": "Chanel以冬日之花姿态，游走于优雅与反叛之间",
+     "alt": "",
      "caption": "Chanel以冬日之花姿态，游走于优雅与反叛之间",
      "source_page": "https://www.vogue.com.cn/fashion/industry/news_1221f7ee0be68470.html",
      "width": 1080,
@@ -630,7 +656,7 @@
    "images": [
     {
      "file": "images/13_香奈儿_专柜_手袋_陈列.jpg",
-     "alt": "香奈儿30句优雅名言 时尚帝国背后的秘密_新浪图片",
+     "alt": "",
      "caption": "香奈儿30句优雅名言 时尚帝国背后的秘密_新浪图片",
      "source_page": "https://photo.sina.cn/album_24_32725_22833.htm",
      "width": 640,
@@ -638,7 +664,7 @@
     },
     {
      "file": "images/14_香奈儿_奢侈品_配货_收据.jpg",
-     "alt": "香奈儿珠宝简介_Chanel珠宝知识及历史|腕表之家-珠宝",
+     "alt": "",
      "caption": "香奈儿珠宝简介_Chanel珠宝知识及历史|腕表之家-珠宝",
      "source_page": "http://www.xbiao.com/fashion/chanel/introduction.html",
      "width": 1200,
@@ -654,7 +680,12 @@
     {
      "type": "prose",
      "heading": "一个市场一个市场地报",
-     "text": "香奈儿的调价不是全球同步，而是一站一价：同一轮里欧洲能涨两位数、美国只有个位数，当红的 22 Bag 也可以分文不动。官方口径是原材料与人工成本上涨，但同款不同命，调的是价格结构。时尚总裁 Bruno Pavlovsky 说得更直白：不做最贵的品牌，只让价格配得上定位。"
+     "text": "香奈儿的调价不是全球同步，而是一站一价：同一轮里欧洲能涨两位数、美国只有个位数，当红的 22 Bag 也可以分文不动。官方口径是原材料与人工成本上涨，但同款不同命，调的是价格结构。时尚总裁 Bruno Pavlovsky 说得更直白：不做最贵的品牌，只让价格配得上定位。",
+     "source_ids": [
+      "S053",
+      "S054",
+      "S055"
+     ]
     },
     {
      "type": "timeline",
@@ -705,7 +736,8 @@
        "title": "欧洲刹车",
        "text": "欧洲整年未调价，停在 10,300 欧元",
        "source_ids": [
-        "S051"
+        "S051",
+        "S053"
        ]
       },
       {
@@ -714,7 +746,8 @@
        "text": "4 月 2 日美国 11,700 美元、欧洲 10,500 欧元",
        "source_ids": [
         "S052",
-        "S051"
+        "S051",
+        "S062"
        ]
       }
      ]
@@ -748,7 +781,9 @@
         "约 +2%"
        ],
        "source_ids": [
-        "S051"
+        "S051",
+        "S053",
+        "S062"
        ]
       },
       {
@@ -837,7 +872,7 @@
    "images": [
     {
      "file": "images/17_香奈儿_涨价_公告.png",
-     "alt": "香奈儿5号：经典与优雅的完美融合_女士香水_什么值得买",
+     "alt": "",
      "caption": "香奈儿5号：经典与优雅的完美融合_女士香水_什么值得买",
      "source_page": "https://post.smzdm.com/p/a30z3d27/",
      "width": 1080,
@@ -845,11 +880,11 @@
     },
     {
      "file": "images/18_香奈儿_奢侈品_价格指数.jpg",
-     "alt": "香奈儿品牌形象大使身穿CHANEL 2019“巴黎-纽约”高级手工坊系列外套|大使|手工坊|香奈儿_新浪新闻",
+     "alt": "",
      "caption": "香奈儿品牌形象大使身穿CHANEL 2019“巴黎-纽约”高级手工坊系列外套|大使|手工坊|香奈儿_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_1303913170_p4db822d202700jenb.html",
-     "width": 2048,
-     "height": 2678
+     "width": 1472,
+     "height": 1924
     }
    ]
   },
@@ -1064,7 +1099,7 @@
    "images": [
     {
      "file": "images/21_香奈儿_免税店_奢侈品_购物.gif",
-     "alt": "【香奈儿手表价格及图片】CHANEL香奈儿手表官网型号查询_香奈儿官网|腕表之家",
+     "alt": "",
      "caption": "【香奈儿手表价格及图片】CHANEL香奈儿手表官网型号查询_香奈儿官网|腕表之家",
      "source_page": "https://watch.xbiao.com/chanel/",
      "width": 1200,
@@ -1072,7 +1107,7 @@
     },
     {
      "file": "images/22_香奈儿_欧洲_退税_单据.jpg",
-     "alt": "香奈儿_这块火了35年的手表，刚复出又一表难求？|腕表之家xbiao.com",
+     "alt": "",
      "caption": "香奈儿_这块火了35年的手表，刚复出又一表难求？|腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/20221220/70664.html",
      "width": 1080,
@@ -1378,7 +1413,7 @@
    "images": [
     {
      "file": "images/25_香奈儿_高级手工坊_Lesage_刺绣.png",
-     "alt": "香奈儿上海恒隆广场精品店全新开幕 | ConCall",
+     "alt": "",
      "caption": "香奈儿上海恒隆广场精品店全新开幕 | ConCall",
      "source_page": "https://cn.concall.com/article/detail/article_id/4443",
      "width": 1417,
@@ -1386,7 +1421,7 @@
     },
     {
      "file": "images/26_香奈儿_手工坊_羽笔画_pinceau.jpg",
-     "alt": "香奈儿北京国贸店盛大揭幕_品牌新闻_潮流服饰频道_VOGUE时尚网",
+     "alt": "",
      "caption": "香奈儿北京国贸店盛大揭幕_品牌新闻_潮流服饰频道_VOGUE时尚网",
      "source_page": "https://www.vogue.com.cn/invogue/brand-news/news_1834ae174b722cca.html",
      "width": 1181,
@@ -1459,7 +1494,8 @@
         "买断 4.2 万至 4.8 万元"
        ],
        "source_ids": [
-        "S083"
+        "S083",
+        "S059"
        ]
       },
       {
@@ -1538,7 +1574,7 @@
    "images": [
     {
      "file": "images/29_香奈儿_奢侈品_鉴定_中古_市场.jpg",
-     "alt": "让多少人魂牵梦绕的表，终于又回来了|香奈儿_腕表之家xbiao.com",
+     "alt": "",
      "caption": "让多少人魂牵梦绕的表，终于又回来了|香奈儿_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/chanel/71475.html",
      "width": 1400,
@@ -1546,7 +1582,7 @@
     },
     {
      "file": "images/30_香奈儿_二手.webp",
-     "alt": "CHANEL | 香奈儿2021#春夏高级成衣系列#发布秀，纯白的巴黎大皇宫（Grand Palais）上演极致优雅。 时尚超话#时尚##活动 ...",
+     "alt": "",
      "caption": "CHANEL | 香奈儿2021#春夏高级成衣系列#发布秀，纯白的巴黎大皇宫（Grand Palais）上演极致优雅。 时尚超话#时尚##活动 ...",
      "source_page": "https://huaban.com/pins/5862791235",
      "width": 658,
@@ -1562,7 +1598,10 @@
     {
      "type": "prose",
      "heading": "先把预算摆上台阶",
-     "text": "香奈儿不是价格线，是六级台阶，相邻两级常差十倍。先确定自己站在哪一级：千元级买的是气味和颜色，万元级买入门皮具与入门珠宝，四万以上才进经典包袋，十万元以上是腕表和到店议价的高级珠宝。同一件单品在不同市场也不等价，比预算之前先比市场。"
+     "text": "香奈儿不是价格线，是六级台阶。先确定自己站在哪一级：千元级买的是气味和颜色，万元级买入门皮具与入门珠宝，四万以上才进经典包袋，十万元以上是腕表和高级珠宝。往上并没有哪一层是「到店才报价」——官网山茶花系列 24 件珠宝每件都标着建议零售价。同一件单品在不同市场也不等价，比预算之前先比市场。",
+     "source_ids": [
+      "S0130"
+     ]
     },
     {
      "type": "price_table",
@@ -1615,7 +1654,8 @@
         "美国公价 2026-04-02"
        ],
        "source_ids": [
-        "S094"
+        "S094",
+        "S052"
        ]
       },
       {
@@ -1666,8 +1706,12 @@
     },
     {
      "type": "prose",
-     "heading": "Coco Crush 与高级珠宝不是一回事",
-     "text": "Coco Crush 是按款定价的固定系列：18K 金（品牌自研的米色金）压出 2.55 的菱格纹，型号、尺寸、镶不镶钻都写在目录里，官网直接查得到价——素圈精致款 15,300 元，镶钻款 38,500 到 48,500 元。卖的是设计符号和日常佩戴，钻石是点缀不是主角。高级珠宝走另一套：一季一个主题系列，镶大克拉主石，一件一个价，通常不公开标价，要预约精品店谈。两者的差别不在工艺高低，而在定价方式：一个是目录价，一个是议价。"
+     "heading": "Coco Crush 与高级珠宝的差别不在标价方式",
+     "text": "Coco Crush 是按款定价的固定系列：米色 18K 金或白 18K 金压出菱格纹，型号、尺寸、镶不镶钻都写在页面里，官网直接查得到价——素圈精致款 J11793 15,300 元，镶钻的精致款 J11786 38,500 元、标准款 J13162 48,500 元。卖的是设计符号和日常佩戴，钻石是点缀不是主角。往上一层的高级珠宝也不是另一套规则：官网山茶花系列 24 件珠宝每件都挂着建议零售价，最贵的一件是 504,100 元的长项链，全站搜不到「价格详询」这类文案。所以这两层的差别不在公不公开标价，而在款式是常年不动的目录，还是按主题系列一批一批出。",
+     "source_ids": [
+      "S093",
+      "S0130"
+     ]
     },
     {
      "type": "keyvalue_table",
@@ -1678,7 +1722,9 @@
        "v": "Classic Flap 中号美国 11,700 美元（2026-04），中国大陆约 89,500 元（2026-09 行情），退税口径不同",
        "source_ids": [
         "S094",
-        "S095"
+        "S095",
+        "S052",
+        "S062"
        ]
       },
       {
@@ -1718,7 +1764,7 @@
    "images": [
     {
      "file": "images/33_香奈儿_彩妆_口红_产品.jpg",
-     "alt": "香奈儿发布2026春夏系列_时尚芭莎_BAZAAR中文网",
+     "alt": "",
      "caption": "香奈儿发布2026春夏系列_时尚芭莎_BAZAAR中文网",
      "source_page": "http://fashion.bazaar.com.cn/2025/1007/351320.shtml",
      "width": 730,
@@ -1726,7 +1772,7 @@
     },
     {
      "file": "images/34_香奈儿_珠宝_Coco_Crush.jpg",
-     "alt": "服装设计 | 加布里埃尔-香奈儿作品展中的现代主义美学 - 知乎",
+     "alt": "",
      "caption": "服装设计 | 加布里埃尔-香奈儿作品展中的现代主义美学 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/554158096",
      "width": 1312,
@@ -1742,7 +1788,12 @@
     {
      "type": "prose",
      "heading": "三个元素怎么变成符号",
-     "text": "香奈儿官网上，Classic Flap 的正式型号写作 11.12，称它是第一只装上双C转锁与皮穿链的包，并列出双C、编链、菱格、双翻盖、微笑口袋五种签名。前身 2.55 出自 1955 年，用没有标志的 Mademoiselle 方扣；把双C搬上包盖的是 1983 年入主的 Lagerfeld。一只 11.12 要过 180 多道工序。"
+     "text": "香奈儿官网上，Classic Flap 的正式型号写作 11.12，称它是第一只装上双C转锁与皮穿链的包，并列出双C、编链、菱格、双翻盖、微笑口袋五种签名。前身 2.55 出自 1955 年，用没有标志的 Mademoiselle 方扣；把双C搬上包盖的是 1983 年入主的 Lagerfeld。一只 11.12 要过 180 多道工序。",
+     "source_ids": [
+      "S101",
+      "S102",
+      "S109"
+     ]
     },
     {
      "type": "note",
@@ -1863,7 +1914,7 @@
    "images": [
     {
      "file": "images/37_香奈儿_双C_logo_细节.jpg",
-     "alt": "香奈儿5号：经典与优雅的完美融合_女士香水_什么值得买",
+     "alt": "",
      "caption": "香奈儿5号：经典与优雅的完美融合_女士香水_什么值得买",
      "source_page": "https://post.smzdm.com/p/a30z3d27/",
      "width": 1080,
@@ -1871,11 +1922,11 @@
     },
     {
      "file": "images/38_香奈儿_奢侈品_鉴定_五金_细节.jpg",
-     "alt": "香奈儿发布2026春夏系列 | ConCall",
+     "alt": "",
      "caption": "香奈儿发布2026春夏系列 | ConCall",
      "source_page": "https://cn.concall.com/article/detail/article_id/4146",
-     "width": 2040,
-     "height": 3015
+     "width": 1472,
+     "height": 2175
     }
    ]
   },
@@ -1971,15 +2022,15 @@
    "images": [
     {
      "file": "images/41_香奈儿_皮草_禁用_声明.gif",
-     "alt": "【香奈儿手表价格及图片】CHANEL香奈儿手表官网型号查询_香奈儿官网|腕表之家",
+     "alt": "",
      "caption": "【香奈儿手表价格及图片】CHANEL香奈儿手表官网型号查询_香奈儿官网|腕表之家",
      "source_page": "https://watch.xbiao.com/chanel/",
-     "width": 1200,
-     "height": 1800
+     "width": 800,
+     "height": 1200
     },
     {
      "file": "images/42_香奈儿_珍稀皮革_短吻鳄_手袋.jpg",
-     "alt": "香奈儿美妆哪些值得买？这20件亲测好用__财经头条",
+     "alt": "",
      "caption": "香奈儿美妆哪些值得买？这20件亲测好用__财经头条",
      "source_page": "https://cj.sina.com.cn/articles/view/5268288076/13a03b24c01900i2hm",
      "width": 1080,
@@ -1994,7 +2045,8 @@
    "url": "https://www.chanel.com/gb/about-chanel/the-house-of-chanel/1910/",
    "label": "CHANEL 官方品牌年表 1910 年代页：康朋街 21 号女帽店起家",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL.com"
+   "publisher": "CHANEL.com",
+   "cache": "text/951265488d92117b.txt"
   },
   {
    "id": "S012",
@@ -2008,7 +2060,8 @@
    "url": "https://www.parisamericanacademy.fr/gabrielle-chanel-ernest-beaux-chanels-n5s-terrible-parents/",
    "label": "Gabrielle Chanel & Ernest Beaux：N°5 的两位作者",
    "retrieved": "2026-09-20",
-   "publisher": "Paris American Academy"
+   "publisher": "Paris American Academy",
+   "cache": "text/31a9189d989573e4.txt"
   },
   {
    "id": "S014",
@@ -2043,21 +2096,24 @@
    "url": "https://wwd.com/fashion-news/fashion-features/gallery/karl-lagerfeld-chanel-archive-photos-1238276685/",
    "label": "档案照片：Karl Lagerfeld 1983 年在 Chanel 的高定首秀",
    "retrieved": "2026-09-20",
-   "publisher": "WWD"
+   "publisher": "WWD",
+   "cache": "text/6265ff88192c39a0.txt"
   },
   {
    "id": "S019",
    "url": "https://wwd.com/fashion-news/designer-luxury/karl-lagerfeld-dies-in-paris-1203034873/",
    "label": "Karl Lagerfeld 在巴黎去世，2019 年 2 月 19 日",
    "retrieved": "2026-09-20",
-   "publisher": "WWD"
+   "publisher": "WWD",
+   "cache": "text/4b6d79af5353a62c.txt"
   },
   {
    "id": "S0110",
    "url": "https://www.stylist.co.uk/fashion/virginie-viard-chanel-new-designer/256041",
    "label": "Who is Virginie Viard（2019 年 3 月 11 日刊发）：接任 Chanel 创意总监",
    "retrieved": "2026-09-20",
-   "publisher": "Stylist"
+   "publisher": "Stylist",
+   "cache": "text/4ca12e14f4ce8693.txt"
   },
   {
    "id": "S0111",
@@ -2071,7 +2127,8 @@
    "url": "https://ouispeakfashion.com/2024-06-05-virginie-viard/",
    "label": "Virginie Viard To Leave Chanel（2024 年 6 月 5 日）",
    "retrieved": "2026-09-20",
-   "publisher": "Oui Speak Fashion"
+   "publisher": "Oui Speak Fashion",
+   "cache": "text/53676057a0a3359a.txt"
   },
   {
    "id": "S0113",
@@ -2085,202 +2142,231 @@
    "url": "https://www.celebremagazine.world/style/fashion/in-the-words-of-mademoiselle-chanel-in-order-to-be-irreplaceable-one-must-always-be-different/",
    "label": "In the words of Mademoiselle Chanel：语录出处页",
    "retrieved": "2026-09-20",
-   "publisher": "Celebre Magazine"
+   "publisher": "Celebre Magazine",
+   "cache": "text/2247605c19423775.txt"
   },
   {
    "id": "S031",
    "url": "https://www.fashionphile.com/blogs/academy/the-chanel-classic-flap-vs-the-chanel-2-55-reissue-flap",
    "label": "Fashionphile Academy：Classic Flap 与 2.55 Reissue 逐项对比（1955 年 2 月命名、1983 年改版、2005 年复刻，锁扣与链条差异、七个内袋）",
    "retrieved": "2026-09-20",
-   "publisher": "Fashionphile"
+   "publisher": "Fashionphile",
+   "cache": "text/7f4ad47db2afaae3.txt"
   },
   {
    "id": "S032",
    "url": "https://www.fashionphile.com/blogs/academy/the-ultimate-chanel-flap-guide",
    "label": "Fashionphile Academy：Chanel Flap 完全指南（尺寸命名、季节配色与材质绑定、2008/2014/2019 停产节点）",
    "retrieved": "2026-09-20",
-   "publisher": "Fashionphile"
+   "publisher": "Fashionphile",
+   "cache": "text/a48cc6009f36605e.txt"
   },
   {
    "id": "S033",
    "url": "https://www.fashionphile.com/blogs/academy/chanel-255-reissue-guide",
    "label": "Fashionphile Academy：2.55 Reissue 指南（Mini/224/225/226/227/228 六档实测尺寸）",
    "retrieved": "2026-09-20",
-   "publisher": "Fashionphile"
+   "publisher": "Fashionphile",
+   "cache": "text/88fb5c2b87cb823e.txt"
   },
   {
    "id": "S034",
    "url": "https://lovedbags.fi/decoding-chanel-classic-flap-bag-sizes-a-comprehensive-guide/",
    "label": "Lovedbags：Classic Flap 各尺寸公制实测、肩带落差与 Mini Square 推出年份",
    "retrieved": "2026-09-20",
-   "publisher": "Lovedbags"
+   "publisher": "Lovedbags",
+   "cache": "text/6e2452e19c7d165f.txt"
   },
   {
    "id": "S035",
    "url": "https://mygemma.com/blogs/news/guide-to-chanel-flap-bag-sizes",
    "label": "myGemma：Chanel Flap 尺寸表（与 Lovedbags 标注有 1 cm 级出入，用于交叉核对）",
    "retrieved": "2026-09-20",
-   "publisher": "myGemma"
+   "publisher": "myGemma",
+   "cache": "text/4c6d1bf9a4ccaf73.txt"
   },
   {
    "id": "S036",
    "url": "https://www.bragmybag.com/chanel-reissue-2-55-bag/",
    "label": "BragMyBag：2.55 命名来自 1955 年 2 月、Reissue 于 2005 年五十周年推出",
    "retrieved": "2026-09-20",
-   "publisher": "BragMyBag"
+   "publisher": "BragMyBag",
+   "cache": "text/a9d3f78a47811dfd.txt"
   },
   {
    "id": "S021",
    "url": "https://www.chanel.cn/cn/about-chanel/the-house-of-chanel/1920/",
    "label": "香奈儿中国官网品牌史 1920 年代页：1921 年五号问世，由嘉柏丽尔·香奈儿与调香师恩尼斯·鲍共同创造，配方、名字和香水瓶的设计均颠覆传统；1922 年二十二号以问世年份命名；1924 年香奈儿香水公司成立、鲍成为首位专属调香师",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL"
+   "publisher": "CHANEL",
+   "cache": "text/e85670adb778943a.txt"
   },
   {
    "id": "S022",
    "url": "https://osmetheca.be/en/faq/history-schools/what-is-the-history-of-chanel-no5.html",
    "label": "香水史站点 Osmetheca 的五号条目：鲍 1881—1961 生于莫斯科、在 Rallet 入行、1919 年后在格拉斯 Chiris 实验室做样品、挑第 5 号样品命名；C9—C12 脂肪醛各自气味；1912 年 Houbigant Quelques Fleurs 早于五号用醛；1987 年起独家锁定 Pégomas 的 Mul 家族约 20 公顷；玫瑰与茉莉采摘窗口；历代专属调香师年份；2016 年五号之水、2017 年嘉柏丽尔",
    "retrieved": "2026-09-20",
-   "publisher": "Osmetheca"
+   "publisher": "Osmetheca",
+   "cache": "text/dbfe762a584f092a.txt"
   },
   {
    "id": "S023",
    "url": "https://www.parisamericanacademy.fr/gabrielle-chanel-ernest-beaux-chanels-n5s-terrible-parents/",
    "label": "巴黎美国学院转载《费加罗报》长文，引恩尼斯·鲍本人访谈：样品分两组编号 1—5 与 20—24、香奈儿挑第 5 号、她说五月五日发表系列所以保留这个编号会带来好运",
    "retrieved": "2026-09-20",
-   "publisher": "Le Figaro / Paris American Academy"
+   "publisher": "Le Figaro / Paris American Academy",
+   "cache": "text/31a9189d989573e4.txt"
   },
   {
    "id": "S024",
    "url": "https://iberchem.com/ingredient-profile-aldehydes-the-success-behind-chanel-no-5/",
    "label": "西班牙香精公司 Iberchem 醛类专文：五号用 C-10、C-11、C-12 混合醛；醛原液刺鼻需稀释到 1% 以下；另一版本称十支样品中挑第五支",
    "retrieved": "2026-09-20",
-   "publisher": "Iberchem"
+   "publisher": "Iberchem",
+   "cache": "text/2ac9294022247fdd.txt"
   },
   {
    "id": "S025",
    "url": "https://www.chanel.cn/cn/fragrance/women/c/7x1x1x30/n5/",
-   "label": "香奈儿中国官网五号香水系列列表页，2026-09-20 抓取，页面内嵌结构化数据给出各 SKU 的容量与人民币标价",
+   "label": "香奈儿中国官网五号香水系列列表页（2026-09-20 抓取，09-27 复核）：页面内嵌结构化数据给出各 SKU 默认档的容量与人民币标价——125530 五号淡香精 100 ml 1800 元、105680 五号淡香水 150 ml 2,120 元、125407 五号淡香精随行手袋装 3×20 ml 1,520 元、105700 五号润肤香水皂 150 g 320 元；15 张卡片可见价里最低的就是那块 320 元的香皂。注意：卡片正文不写容量，标着「起」的三条（125530 ¥950 起、105680 ¥1,500 起、105340 ¥930 起）对应哪个容量页面未给出，各 SKU 的完整容量×价格阶梯也未给出",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL"
+   "publisher": "CHANEL",
+   "cache": "text/9b0bc5c578fade32.txt"
   },
   {
    "id": "S026",
    "url": "https://www.chanel.cn/cn/fragrance/p/125530/n5-eau-de-parfum-spray/",
    "label": "香奈儿中国官网五号淡香精 100 ml 商品页（SKU 125530，中文名「香奈儿五号香水（经典）」，结构化数据标价 1800 CNY）",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL"
+   "publisher": "CHANEL",
+   "cache": "text/f25acbb38f4903e8.txt"
   },
   {
    "id": "S027",
    "url": "https://www.chanel.cn/cn/fragrance/women/c/7x1x1x31/coco-mademoiselle/",
    "label": "香奈儿中国官网可可小姐系列列表页（2026-09-20 抓取）",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL"
+   "publisher": "CHANEL",
+   "cache": "text/c504524020cb0587.txt"
   },
   {
    "id": "S028",
    "url": "https://www.chanel.cn/cn/fragrance/the-chance-line/c/7x3x5/",
    "label": "香奈儿中国官网邂逅系列列表页（2026-09-20 抓取）",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL"
+   "publisher": "CHANEL",
+   "cache": "text/b358175c75d6ac13.txt"
   },
   {
    "id": "S029",
    "url": "https://www.chanel.cn/cn/fragrance/women/c/7x1x1x40/gabrielle-chanel/",
    "label": "香奈儿中国官网嘉柏丽尔系列列表页（2026-09-20 抓取）",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL"
+   "publisher": "CHANEL",
+   "cache": "text/1aabaeadddacc927.txt"
   },
   {
    "id": "S0210",
    "url": "https://www.chanel.cn/cn/fragrance/men/c/7x1x2x34/bleu-de-chanel/",
    "label": "香奈儿中国官网蔚蓝男士系列列表页（2026-09-20 抓取）",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL"
+   "publisher": "CHANEL",
+   "cache": "text/b48289affa3da273.txt"
   },
   {
    "id": "S041",
    "url": "https://finance.cnr.cn/jjgd/20240112/t20240112_526556015.shtml",
    "label": "央广网财经调查：宁波消费者为买一只包按店员要求先配了 140 多万元其他商品，含项链、杯子、碟子、衣服、腰带、鞋子、珠宝，店方仍称无货；爱马仕官方与客服均称没有配货这一说法，10 万元其他商品对 9 万多铂金包即 1:1，热门款可达 1:1.5",
    "retrieved": "2026-09-20",
-   "publisher": "央广网"
+   "publisher": "央广网",
+   "cache": "text/f2a9b0ec0d127dea.txt"
   },
   {
    "id": "S042",
    "url": "http://www.eeo.com.cn/2024/0326/647346.shtml",
    "label": "经济观察网转述每日经济新闻采访：中国市场配货比在 1:1.15 到 1:2 之间；美国集体诉讼指控把包袋与其他服饰配饰捆绑销售涉嫌违反反垄断法，诉状称需有足够购买记录才能购买 Birkin；记者致电，对方称没有配货这一说法",
    "retrieved": "2026-09-20",
-   "publisher": "经济观察网"
+   "publisher": "经济观察网",
+   "cache": "text/17dd2525776a9a7d.txt"
   },
   {
    "id": "S043",
    "url": "https://user.guancha.cn/main/content?id=1202808",
    "label": "风闻社区转载新浪财经调查：中国市场配货比例最低 1:0.5，普遍 1:1，更高可达 1:1.5 或 1:2；客服称强制配货属违规",
    "retrieved": "2026-09-20",
-   "publisher": "观察者网·风闻（原载新浪财经）"
+   "publisher": "观察者网·风闻（原载新浪财经）",
+   "cache": "text/52b5b4bb0395de03.txt"
   },
   {
    "id": "S044",
    "url": "https://ubeauty.com.hk/trend/bags/20029908/",
    "label": "U Beauty 授权转载《女人我最大》消费者向报道：Birkin 25 官方定价约 93400 港元、需先消费 24 万至 36 万港元、折算约 1:5；指香奈儿几年前起也有配货迹象但没有可参考的明确比例，要先买小皮件、特殊色、冷门款，黑金黑银最难拿，关键在跟 SA 的关系与基本消费额；原文称没有官方规定",
    "retrieved": "2026-09-20",
-   "publisher": "U Beauty / 女人我最大"
+   "publisher": "U Beauty / 女人我最大",
+   "cache": "text/125979a66cdb210e.txt"
   },
   {
    "id": "S045",
    "url": "https://tidenews.com.cn/news.html?id=2751293",
    "label": "潮新闻 2024-03-27 调价当日报道：大号 CF 与大号 2.55 均为 90600 元、CF 小号 77000 涨至 80800 元、leboy 与 19bag 涨幅 2200–2500 元、22bag 中号 48100 元未涨；记者走访杭州大厦香奈儿精品店，销售称 CF、2.55、leboy 店内有货；另引 Chanel 全球精品部总裁 Bruno Pavlovsky 关于定价的表态",
    "retrieved": "2026-09-20",
-   "publisher": "潮新闻"
+   "publisher": "潮新闻",
+   "cache": "text/0cc982ac6d20f02d.txt"
   },
   {
    "id": "S046",
    "url": "https://www.chanel.com/hk-zh/faq/fashion/",
    "label": "香奈儿官网时装常见问题页（繁体中文）：全文无配货、限购或库存分配条款，仅说明精品店销售顾问按客人品味提供产品资讯与配搭建议，并把时装精品店与香水、美容专门店分列两套渠道",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL.com"
+   "publisher": "CHANEL.com",
+   "cache": "text/ca370149e683134a.txt"
   },
   {
    "id": "S047",
    "url": "https://www.meihua.info/article/6136966349161472",
    "label": "行业报道引述受访从业者：部分高净值客户因香奈儿涨价与品控争议转投爱马仕、接受其配货游戏（养马）",
    "retrieved": "2026-09-20",
-   "publisher": "梅花网（Vista 氢商业）"
+   "publisher": "梅花网（Vista 氢商业）",
+   "cache": "text/a3d41012e29223cd.txt"
   },
   {
    "id": "S051",
    "url": "https://saclab.com/chanel-investment-report/",
    "label": "SACLÀB《Chanel Investment Report 2026》（二手商自家 2020–2025 成交数据）：欧洲专柜 CF 中号 2019–2026 逐年价格表（2025 年零涨幅、2026 年 +2%）、Timeless 与 2.55 二手均价、各尺寸回价比例、颗粒牛皮溢价与成色折价、联合创始人 Jan-Oliver Stueck 观点；文中将 2025 年欧洲涨价放缓归因于需求敏感与强欧元",
    "retrieved": "2026-09-20",
-   "publisher": "SACLÀB"
+   "publisher": "SACLÀB",
+   "cache": "text/5335a07a3871f70f.txt"
   },
   {
    "id": "S052",
    "url": "https://www.pursebop.com/breaking-news-chanel-price-increase-us-europe-2026/",
    "label": "PurseBop 2026-04-02 涨价报道：逐款列出 2026-03-30 与 2026-04-02 价格，Classic 11.12 由 11,300 涨至 11,700 美元（+3.5%）、小号 10,900→11,300 美元；美国普涨 2%–5%、欧洲 2%–4%",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/38dc7d656749152f.txt"
   },
   {
    "id": "S053",
    "url": "https://lvbagaholic.com/blogs/lv_bagaholic/chanel-2024-price-increase",
    "label": "2024 年香奈儿涨价分区域整理：美国 Medium 11.12 由 10,200 涨至 10,800 美元（+5.9%），欧洲中号 9,700→10,300 欧元（+6.19%）、欧洲 Jumbo +11%；记录中号改名 11.12、Maxi 与 30cm 爱马仕 Birkin 同档",
-   "retrieved": "2026-09-20"
+   "retrieved": "2026-09-20",
+   "cache": "text/663f590555a68494.txt"
   },
   {
    "id": "S054",
    "url": "https://m.mp.oeeee.com/a/BAAFRD000020240327925949.html",
    "label": "南方都市报 2024-03-27 走访+官网比价：国内 CF 中号 80,500→84,000 元、2015 年 2.98 万元；2022 年 11 月至 2023 年 9 月三次调价，2023 年 3 月 +12.6%、9 月约 +7%，中号 7.49 万→8.05 万；Chanel 22 该轮未涨；归因原材料与人力成本；1 月 2 日腕表珠宝先涨 4%–5%",
    "retrieved": "2026-09-20",
-   "publisher": "南方都市报"
+   "publisher": "南方都市报",
+   "cache": "text/7b777eb161b53407.txt"
   },
   {
    "id": "S055",
    "url": "https://tidenews.com.cn/news.html?id=2751293",
    "label": "潮新闻 2024-03-27：本轮国内普涨约 5%，CF 大号 90,600 元、小号涨 3,800 元；2019 年国内 CF 中号约 3.8 万元；香奈儿时尚总裁 Bruno Pavlovsky 称目标不是做最贵的品牌、而是让价格与定位相符；贝恩口径下 2% 的 VIC 客户贡献超四成销售额",
    "retrieved": "2026-09-20",
-   "publisher": "潮新闻"
+   "publisher": "潮新闻",
+   "cache": "text/0cc982ac6d20f02d.txt"
   },
   {
    "id": "S056",
@@ -2301,77 +2387,88 @@
    "url": "https://post.smzdm.com/p/a8258q3q",
    "label": "什么值得买社区 2026-09 帖：国内专柜中号 CF 晒单口径 86,200 元、2026 年 8 月回收行情 CF 约 5.3 万元、日本中号 CF 突破 200 万日元、港汇走好时到手约 7.5 万元；作者自述均为晒单与商家说法、非官方价目",
    "retrieved": "2026-09-20",
-   "publisher": "什么值得买"
+   "publisher": "什么值得买",
+   "cache": "text/f357d794ca606e2e.txt"
   },
   {
    "id": "S059",
    "url": "https://post.smzdm.com/p/a95gm330",
    "label": "什么值得买社区帖：回收商报 CF 中号二手回收均价 4.2 万–4.8 万元，据此折算保值率约 49%–56%",
    "retrieved": "2026-09-20",
-   "publisher": "什么值得买"
+   "publisher": "什么值得买",
+   "cache": "text/4b5ea43beac97767.txt"
   },
   {
    "id": "S061",
    "url": "https://www.pursebop.com/breaking-news-chanel-price-increase-us-europe-2026/",
    "label": "PurseBop 2026-04-02 香奈儿美国/欧元区官方调价前后对照表（Classic 11.12、Small、2.55、WOC 逐款欧元/美元价）",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/38dc7d656749152f.txt"
   },
   {
    "id": "S062",
    "url": "https://konesseur.com/blogs/guide/chanel-classic-flap-price-guide",
    "label": "Classic Flap 2026 尺码与价格指南：中号 15.5×25.5×6.5 cm、美国 11,700 美元、欧洲约 10,500–10,800 欧元、2010 年中号 2,850 美元",
    "retrieved": "2026-09-20",
-   "publisher": "Konesseur"
+   "publisher": "Konesseur",
+   "cache": "text/fd39bc0805508cf9.txt"
   },
   {
    "id": "S063",
    "url": "https://column.kaitori-senka.co.jp/chanel-price-increase/",
    "label": "日本 2026-01-14 前后手袋调价表：マトラッセ25（A01112／25cm）税込 1,776,500→1,925,000 円；2023-02 为 1,364,000 円",
    "retrieved": "2026-09-20",
-   "publisher": "買取専科"
+   "publisher": "買取専科",
+   "cache": "text/74b71bf099bede20.txt"
   },
   {
    "id": "S064",
    "url": "https://m.mp.oeeee.com/a/BAAFRD000020240327925949.html",
    "label": "南方都市报 2024-03-27 官网比价：中国内地中号 CF 80,500→84,000 元、小号 77,000→80,800 元、CF maxi 92,000→95,500 元、2015 年中号 2.98 万元",
    "retrieved": "2026-09-20",
-   "publisher": "南方都市报"
+   "publisher": "南方都市报",
+   "cache": "text/7b777eb161b53407.txt"
   },
   {
    "id": "S065",
    "url": "https://hzf.mofcom.gov.cn/article/zyfw/jrfw/jrfwywzn/jrfwwh/hlfxglzy/202609/7872.html",
    "label": "中国外汇交易中心受权公布 2026-09-04 中间价：1 欧元 7.8397 元、1 美元 6.7787 元、100 日元 4.3135 元、1 元 202.07 韩元",
    "retrieved": "2026-09-20",
-   "publisher": "商务部"
+   "publisher": "商务部",
+   "cache": "text/2ef3944a67ee02ca.txt"
   },
   {
    "id": "S066",
    "url": "https://guangdong.chinatax.gov.cn/gdsw/lvxx/2026-09/01/content_58d1e4ccd4504e3fb5abe9a7a345916a.shtml",
    "label": "2026-09-01 中间价：1 欧元 7.8406 元、1 美元 6.7809 元、100 日元 4.2301 元、1 元 203.49 韩元",
    "retrieved": "2026-09-20",
-   "publisher": "国家税务总局广东省税务局（转中国人民银行）"
+   "publisher": "国家税务总局广东省税务局（转中国人民银行）",
+   "cache": "text/ec37f4f34da4cd0c.txt"
   },
   {
    "id": "S067",
    "url": "http://www.eeo.com.cn/2025/1227/775627.shtml",
    "label": "经济观察报 2025-12-27：2025-12-25 人民币对欧元中间价 8.2825；2025 年美元指数跌约 9.9%、欧元涨超 14%",
    "retrieved": "2026-09-20",
-   "publisher": "经济观察报"
+   "publisher": "经济观察报",
+   "cache": "text/606ea9e74ded4306.txt"
   },
   {
    "id": "S068",
    "url": "https://zapptax.com/zh/blog/vat-refund-france-step-by-step-guide-for-non-eu-residents",
    "label": "法国退税指南：TVA 20% 计入标价、增值税占含税价 16.66%、游客实得约含税价 12%–15%、传统方式需同日同店含税满 100 欧元",
    "retrieved": "2026-09-20",
-   "publisher": "Zapptax"
+   "publisher": "Zapptax",
+   "cache": "text/3ce46b15a9a18e7d.txt"
   },
   {
    "id": "S069",
    "url": "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00021.html",
    "label": "日本国土交通省·观光厅「消費税免税店」旅行者页：2026-11-01 购买分起改为出境持出确认后返金的 refund 方式；同一店铺一日税拔 5,000 円以上；购买日起 90 日内完成税关确认",
    "retrieved": "2026-09-20",
-   "publisher": "国土交通省"
+   "publisher": "国土交通省",
+   "cache": "text/65f8d9c2e6359ec3.txt"
   },
   {
    "id": "S0610",
@@ -2399,126 +2496,144 @@
    "url": "https://www.chanel.com/us/fashion/collection/savoir-faire-metiers-art/",
    "label": "香奈儿官方《The Maisons d'art ateliers》页：Métiers d'art 系列自 2002 年起每年一次；各家进入手工坊体系的年份（Lemarié 1996、Maison Michel 1997、Lesage 与 Massaro 2002、Goossens 2005、Montex 2011）；le19M 于 2021 年由香奈儿发起、驻有 11 家手工坊；绣法工具（手针、Lunéville 钩针、Cornely 绣机）与扎孔拍粉描样；Goossens 1954 年首批拜占庭风首饰、Massaro 1957 年双色鞋、Lemarié 自 1962 年合作、Lognon 2013 年并入 Lemarié、Lesage 自 1998 年重做粗花呢",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL.com"
+   "publisher": "CHANEL.com",
+   "cache": "text/71c360c5710107a4.txt"
   },
   {
    "id": "S072",
    "url": "https://www.lemarie-paris.com/en/la-maison/",
    "label": "Lemarié 官方店史页：1880 年由帽匠 Palmyre Coyette 以羽毛作坊创立，1946 年 André Lemarié 接手并发展布花，1960 年代起做香奈儿山茶花，2013 年并入折褶工坊 Lognon（含三千多块纸板折模），2021 年并入 Dynale；自述 1880 年创立、1996 年成为香奈儿时装手工坊、2019 年入驻 le19M",
    "retrieved": "2026-09-20",
-   "publisher": "Maison Lemarié"
+   "publisher": "Maison Lemarié",
+   "cache": "text/6ec1610ac835c51b.txt"
   },
   {
    "id": "S073",
    "url": "https://www.harpersbazaar.com/uk/fashion/a35976732/chanel-quilted-handbag/",
    "label": "Harper's Bazaar UK 报道香奈儿请 Sofia Coppola 拍的包袋工艺片：包袋工坊为巴黎以北的 Ateliers de Verneuil-en-Halatte；工序含选皮、每片单独绗缝、缝内袋、翻盖下缝双 C、手工以 bag-in-the-bag 装配、金属链穿皮条手编、装气眼与双 C 扣；工序名 piqué retourné、points de bride、point droit de couturière；菱格灵感来自马；2.55 由加布里埃·香奈儿于 1955 年 2 月设计",
    "retrieved": "2026-09-20",
-   "publisher": "Harper's Bazaar UK"
+   "publisher": "Harper's Bazaar UK",
+   "cache": "text/d56ec18ae5e93af7.txt"
   },
   {
    "id": "S074",
    "url": "https://desrues-paris.com/en/our-history/",
    "label": "Desrues 官方店史页：George Desrues 1929 年在巴黎 rue Amelot 开作坊，做刻字、打磨、镀金；1960 年代为加布里埃·香奈儿的套装做出第一批纽扣；香奈儿 1985 年接管公司，并称其为 1985 年第一家加入后来的 Métiers d'Art 体系的工坊",
    "retrieved": "2026-09-20",
-   "publisher": "Maison Desrues"
+   "publisher": "Maison Desrues",
+   "cache": "text/d093c8987fe253ee.txt"
   },
   {
    "id": "S075",
    "url": "https://www.wallpaper.com/fashion/chanel-19m-metiers-dart-ateliers-paris",
    "label": "Wallpaper* 关于 Le 19M 的报道（2021 年 10 月刊）：Rudy Ricciotti 设计、位于奥贝维利耶、25,000 平方米七层、容纳 600 人与 11 家 métiers d'art，Montex 与 MTX 于 2021 年 3 月最先入驻；香奈儿自 1985 年收购 Desrues 起开始收编工坊，通过子公司 Paraffection 拥有 38 家 métiers d'art、约 5,000 个岗位",
    "retrieved": "2026-09-20",
-   "publisher": "Wallpaper*"
+   "publisher": "Wallpaper*",
+   "cache": "text/b6d537f0526f836e.txt"
   },
   {
    "id": "S076",
    "url": "https://bagaholicboy.com/2025/10/chanel-10-things-to-know-chanel-255",
    "label": "Bagaholicboy 的 2.55 十件事：菱格灵感来自马夫（stable boys）外套、2.55 像高级定制那样从反面做好再翻正、Mademoiselle 转锁与扁平链节肩带",
    "retrieved": "2026-09-20",
-   "publisher": "Bagaholicboy"
+   "publisher": "Bagaholicboy",
+   "cache": "text/eab0e10fe15440db.txt"
   },
   {
    "id": "S081",
    "url": "https://clebag.com/magazine/chanel-market-price",
    "label": "日本中古平台 clebag 行情稿《シャネルバッグの中古相場一覧》，2026年8月26日发布、9月1日更新，统计口径为2026年6月 clebag／ALLU／メルカリ／ラクマ／ヤフオク 五渠道中央值、状态×素材价格矩阵与各渠道买断试算",
    "retrieved": "2026-09-20",
-   "publisher": "クレバッグマガジン"
+   "publisher": "クレバッグマガジン",
+   "cache": "text/aaeb78fd32f175bd.txt"
   },
   {
    "id": "S082",
    "url": "https://saclab.com/chanel-investment-report/",
    "label": "欧洲中古精品平台 SACLÀB《Chanel Investment Report 2026》，含 2019-2026 欧洲专柜公价表与 2020-2025 自营二手成交均价",
    "retrieved": "2026-09-20",
-   "publisher": "SACLÀB"
+   "publisher": "SACLÀB",
+   "cache": "text/5335a07a3871f70f.txt"
   },
   {
    "id": "S083",
    "url": "https://www.163.com/dy/article/KUEHTAOA0556DD6W.html",
    "label": "上海回收商「恒天奢侈品」2026年6月发布的各品牌回收折扣行情稿，含 CF 黑金与米色羊皮的具体回收报价、成色与附件折价比例（商家自述数据，仅作参考）",
    "retrieved": "2026-09-20",
-   "publisher": "网易号 · 恒天奢侈品"
+   "publisher": "网易号 · 恒天奢侈品",
+   "cache": "text/404b9094d9137aa3.txt"
   },
   {
    "id": "S084",
    "url": "https://romestation.ca/blogs/news/why-some-chanel-bags-depreciate-faster-than-others-on-resale",
    "label": "加拿大二手店 RoMe Station 按款型分析哪些香奈儿包在二手市场跌得更快，给出各款保值率百分比与皮质、五金、颜色的影响",
    "retrieved": "2026-09-20",
-   "publisher": "RoMe Station"
+   "publisher": "RoMe Station",
+   "cache": "text/2fae4acedb7cab5a.txt"
   },
   {
    "id": "S085",
    "url": "https://www.fashionphile.com/blogs/academy/chanel-resale-value-how-to-maximize-profits",
    "label": "美国二手平台 Fashionphile Academy 保值指南，2025年8月更新，记录 Classic Jumbo Flap 公价与 2025 年 8 月调价幅度",
    "retrieved": "2026-09-20",
-   "publisher": "Fashionphile"
+   "publisher": "Fashionphile",
+   "cache": "text/1ae4b7bfdb1e7710.txt"
   },
   {
    "id": "S086",
    "url": "https://www.twentythree.com.tw/blog/posts/vintage-chanel",
    "label": "台湾二手精品收购平台「二拾衫」估价指南，列出 SA／A／AB／B 包况分级与附件、皮质、五金对买断价的影响",
    "retrieved": "2026-09-20",
-   "publisher": "二拾衫"
+   "publisher": "二拾衫",
+   "cache": "text/c808222fb99501a0.txt"
   },
   {
    "id": "S087",
    "url": "https://relight-official.jp/column/ennyasu-enndaka/",
    "label": "日本买取店 ReLight 关于日元汇率如何传导到名牌包收购价的说明，含海外买家进场与再出口机制",
    "retrieved": "2026-09-20",
-   "publisher": "買取専門店 ReLight"
+   "publisher": "買取専門店 ReLight",
+   "cache": "text/11acd7eaba933e71.txt"
   },
   {
    "id": "S091",
    "url": "https://www.chanel.cn/cn/makeup/lips/c/5x1x1x31/lipstick/",
    "label": "香奈儿中国官网唇膏列表页，页面内嵌商品数据含各支官方标价（Rouge Coco、Rouge Allure Velvet 均为 420 元）",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL 中国官网"
+   "publisher": "CHANEL 中国官网",
+   "cache": "text/219f644a729802fc.txt"
   },
   {
    "id": "S092",
    "url": "https://www.chanel.cn/cn/fragrance/p/125430/n5-eau-de-parfum-spray/",
    "label": "香奈儿中国官网 N°5 eau de parfum 50 ml 商品页，结构化数据标出 price 1270.0 CNY",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL 中国官网"
+   "publisher": "CHANEL 中国官网",
+   "cache": "text/5e3e471af2ee11cd.txt"
   },
   {
    "id": "S093",
    "url": "https://www.chanel.cn/cn/fine-jewelry/p/J11786/coco-crush-ring/",
-   "label": "香奈儿中国官网 Coco Crush 戒指 J11786 商品页，含同系列关联款报价：J11793 精致款白18K金 15,300 元、J13162 标准款米色18K金镶钻 48,500 元、BOY·FRIEND 腕表 H6588 135,800 元",
+   "label": "香奈儿中国官网 Coco Crush 戒指 J11786 商品页（2026-09-20 抓取，09-27 复核）：首屏原文「COCO CRUSH戒指／菱格纹图案，精致款，米色18K金，镶嵌钻石／参考编号 J11786／￥ 38,500」，结构化数据标 price 38500 CNY、availability OutOfStock、sellableOnline false；同页关联款 J11793 精致款白18K金 15,300 元、J13162 标准款米色18K金镶钻 48,500 元、J12104 COCO项链白18K金镶钻 54,600 元；页面上另挂 135,800 元的 BOY·FRIEND 腕表 H6588，属腕表不是珠宝",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL 中国官网"
+   "publisher": "CHANEL 中国官网",
+   "cache": "text/b4321b2724a18376.txt"
   },
   {
    "id": "S094",
    "url": "https://www.pursebop.com/breaking-news-chanel-price-increase-us-europe-2026/",
    "label": "二手精品商 PurseBop 2026-04-02 发布的香奈儿美国/欧洲调价表，逐型号列出 3 月 30 日旧价与 4 月 2 日新价",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/38dc7d656749152f.txt"
   },
   {
    "id": "S095",
    "url": "https://cj.sina.cn/articles/view/7879996759/1d5af355706801g16w",
    "label": "新浪财经头条号 2026-09-13 行情文，给出 CF 中号中国大陆专柜价 89,500–90,000 元与二手回收价；属自媒体口径，只作行情参照",
    "retrieved": "2026-09-20",
-   "publisher": "新浪财经（自媒体）"
+   "publisher": "新浪财经（自媒体）",
+   "cache": "text/6956273ba6a815ee.txt"
   },
   {
    "id": "S096",
@@ -2532,56 +2647,64 @@
    "url": "https://www.chanel.com/au/fashion/handbags/classic/",
    "label": "香奈儿官网 Classic 手袋专页：官方称 11.12 为第一只装上双C转锁与皮穿链的包，列出双C、编链、微笑口袋、双翻盖、菱格五种视觉签名，并写明需 180 多道工序、由内向外缝合",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL.com"
+   "publisher": "CHANEL.com",
+   "cache": "text/44fae43970122565.txt"
   },
   {
    "id": "S102",
    "url": "https://www.chanel.com/au/fashion/handbags/2-55/",
    "label": "香奈儿官网 2.55 专页：1955 年由 Gabrielle Chanel 创作，菱格配平扣链，锁扣为无标志的 Mademoiselle 转锁",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL.com"
+   "publisher": "CHANEL.com",
+   "cache": "text/db1fff724bcd05bd.txt"
   },
   {
    "id": "S103",
    "url": "https://www.chanel.com/us/anti-counterfeit/",
    "label": "香奈儿官网反假冒页：只认专柜与品牌授权零售商，声明没有任何线上授权卖家",
    "retrieved": "2026-09-20",
-   "publisher": "CHANEL.com"
+   "publisher": "CHANEL.com",
+   "cache": "text/5f418302344cb63a.txt"
   },
   {
    "id": "S104",
    "url": "https://re-luxry.com/blogs/news/when-did-chanel-start-using-microchips-in-bags",
    "label": "二手奢侈品商 2025 年说明：2021 年 4 月 21A 系列起嵌入 NFC 芯片，取消序号贴纸与保卡，改刻有 8 位字母数字的金属牌，消费者手机无法读取",
    "retrieved": "2026-09-20",
-   "publisher": "Re-Luxry"
+   "publisher": "Re-Luxry",
+   "cache": "text/98923d741c2cc481.txt"
   },
   {
    "id": "S105",
    "url": "https://collectorscage.com/blogs/authentication/how-to-authenticate-a-chanel-bag-the-complete-2026-guide-sticker-vs-mi",
    "label": "鉴定机构 2026 年指南：2021 前后两套身份载体对照表、序号位数与系列区间、全息标黑金翻色、烫金箔色须与五金同色、双C咬合方向、高仿已能复制芯片金属牌",
    "retrieved": "2026-09-20",
-   "publisher": "Collector's Cage"
+   "publisher": "Collector's Cage",
+   "cache": "text/fe7ecaca99742e09.txt"
   },
   {
    "id": "S106",
    "url": "https://baghunter.com/blogs/insights/how-to-authenticate-a-chanel-bag",
    "label": "二手平台鉴定团队十步法：双C上方右压左/下方左压右、背板只用一字槽螺钉、烫金宽 3.3 厘米与 0.9 厘米间距、序号 6/7/8 位对应年份、复古链环有不穿皮者、拉链厂牌清单",
    "retrieved": "2026-09-20",
-   "publisher": "Baghunter"
+   "publisher": "Baghunter",
+   "cache": "text/4b1d9c325336125c.txt"
   },
   {
    "id": "S107",
    "url": "https://www.aurealuxurylab.com/en/blogs/tendenze/come-riconoscere-una-borsa-chanel-originale-seriale-microchip-e-dettagli-che-fanno-la-differenza",
    "label": "意大利鉴定实验室技术指南：2021 年前为 7 或 8 位序号贴纸加保卡，2021 年起改芯片且只能由专业设备读取，合盖时菱格须与包身对齐",
    "retrieved": "2026-09-20",
-   "publisher": "Aurea Luxury Lab"
+   "publisher": "Aurea Luxury Lab",
+   "cache": "text/9604fdfd1ef24709.txt"
   },
   {
    "id": "S108",
    "url": "https://www.tongluodi.com/blogs/boutiquechat/2025-chanel-%E9%A6%99%E5%A5%88%E5%85%92%E4%BF%9D%E5%8D%A1%E5%B9%B4%E4%BB%BD%E5%B0%8D%E7%85%A7",
    "label": "台湾中古商保卡年份对照：保卡制度最后一年为 2022（32 开），7 码约 1986–2005、8 码约 2006–2022，2021–2022 为过渡期，晶片资料消费者无法读取",
    "retrieved": "2026-09-20",
-   "publisher": "銅鑼地精品"
+   "publisher": "銅鑼地精品",
+   "cache": "text/3a475393fa1bcbe4.txt"
   },
   {
    "id": "S109",
@@ -2595,28 +2718,32 @@
    "url": "https://lafilledescordeliers.com/en/blogs/histoires-maisons-luxe/histoire-logo-cc-chanel-vintage",
    "label": "中古珠宝商的品牌史：双C 出现于 1925 年前后、先用于香水瓶；假说含尼斯 Château de Crémat 彩窗与本人姓名首字母，后者为多数品牌文献采信",
    "retrieved": "2026-09-20",
-   "publisher": "La Fille des Cordeliers"
+   "publisher": "La Fille des Cordeliers",
+   "cache": "text/5606aacebb7e16e8.txt"
   },
   {
    "id": "S111",
    "url": "https://edition.cnn.com/style/article/chanel-fur-ban-scli-intl",
    "label": "CNN 2018年12月4日：香奈儿宣布系列中停用皮草与鳄鱼、蜥蜴、蛇等珍稀皮，发言人对CNN说明原因",
    "retrieved": "2026-09-20",
-   "publisher": "CNN"
+   "publisher": "CNN",
+   "cache": "text/45c29ae17e4dc27b.txt"
   },
   {
    "id": "S112",
    "url": "https://www.nylon.com/chanel-animal-skin-fur-ban",
    "label": "NYLON 2018年12月4日引述 WWD 对 Bruno Pavlovsky 的采访：禁用的四种皮料、库存撤柜时间、转向农食副产物皮革研发",
    "retrieved": "2026-09-20",
-   "publisher": "NYLON"
+   "publisher": "NYLON",
+   "cache": "text/cffd2bff30210cc0.txt"
   },
   {
    "id": "S113",
    "url": "https://wwd.com/business-news/business-features/chanel-powers-towards-greener-future-sugar-beets-wood-chips-1203534949/",
    "label": "WWD 2020年3月10日：《Chanel Mission 1.5》四项承诺、首席可持续发展官 Andrea d'Avack 访谈、每年至少六场大秀",
    "retrieved": "2026-09-20",
-   "publisher": "WWD"
+   "publisher": "WWD",
+   "cache": "text/cf5696882ac2aeec.txt"
   },
   {
    "id": "S114",
@@ -2630,21 +2757,32 @@
    "url": "https://www.pursebop.com/chanel-spring-summer-2026-26s-collection-is-arriving-in-boutiques/",
    "label": "PurseBop 2026年3月12日：26S 系列到柜清单，多款标注 crocodile-embossed calfskin（压纹小牛皮）",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/57a21ccb88c64a35.txt"
   },
   {
    "id": "S116",
    "url": "https://www.vogue.com/article/lily-rose-depp-new-face-chanel",
    "label": "Vogue 2015年7月15日：Lily-Rose Depp 出任香奈儿新面孔，与 Vanessa Paradis 同拍 Chanel Pearl 眼镜广告",
    "retrieved": "2026-09-20",
-   "publisher": "Vogue"
+   "publisher": "Vogue",
+   "cache": "text/8646d6b9a5f1c898.txt"
   },
   {
    "id": "S117",
    "url": "https://www.vogue.co.uk/article/lily-rose-depp-chanel-no5-fragrance-campaign",
    "label": "British Vogue：Lily-Rose Depp 出演 N°5 L'Eau 香水广告",
    "retrieved": "2026-09-20",
-   "publisher": "British Vogue"
+   "publisher": "British Vogue",
+   "cache": "text/e2d03ab191147af7.txt"
+  },
+  {
+   "id": "S0130",
+   "url": "https://www.chanel.cn/cn/fine-jewelry/camelia/c/3x2x1/",
+   "label": "香奈儿中国官网山茶花系列列表页（2026-09-27 抓取）：标题「CAMÉLIA系列 - 18K金 - 高级珠宝」，共 24 张商品卡、每张都带价格，价格后统一以星号注明「*建议零售价」。含 EXTRAIT DE CAMÉLIA手链 J13531 24,500 元、BOUTON DE CAMÉLIA戒指 J12122 159,600 元、CAMÉLIA BLOOM胸饰项链 J13845 487,200 元、LES INFINIS DE CAMÉLIA长项链 J11876 504,100 元。整站检索「价格请向／向店员／咨询／POA／price on request」命中 0 次；「预约」仅出现在页脚「预约店铺服务」",
+   "publisher": "CHANEL 香奈儿中国官网",
+   "retrieved": "2026-09-27",
+   "cache": "text/732885391d670145.txt"
   }
  ],
  "category": "箱包时装",
@@ -2664,17 +2802,26 @@
   "hero_motif": "chain_and_camellia",
   "hero_note": "只用黑、白、米三色与一条包带菱格链作为开场母题，让'克制'本身成为记忆点"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-10",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 16,
  "created_date": "2026-09-20",
  "site": {
-  "url": "https://chanel-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72c-d98c-7ba8-a17c-0e6ff18a60df",
-  "slug": "chanel",
-  "content_sha": "de2fc53d7472d9a1",
-  "published_date": "2026-09-25",
+  "url": "https://fashion-gtqdc11h6po.qoder.website/chanel/chanel.html",
+  "group": "fashion",
+  "path": "/chanel/chanel.html",
+  "project_id": "01a104e7-35a1-77e3-be3f-78846ddc6565",
+  "content_sha": "79eedf4fec1ab3c3",
+  "published_date": "2026-10-10",
   "access": "public"
+ },
+ "cover": {
+  "file": "images/18_香奈儿_奢侈品_价格指数.jpg",
+  "alt": "香奈儿品牌形象大使身穿CHANEL 2019“巴黎-纽约”高级手工坊系列外套|大使|手工坊|香奈儿_新浪新闻",
+  "caption": "香奈儿品牌形象大使身穿CHANEL 2019“巴黎-纽约”高级手工坊系列外套|大使|手工坊|香奈儿_新浪新闻",
+  "source_page": "https://k.sina.com.cn/article_1303913170_p4db822d202700jenb.html",
+  "width": 1472,
+  "height": 1924
  }
 }

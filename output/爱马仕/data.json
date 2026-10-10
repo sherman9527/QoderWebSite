@@ -149,11 +149,11 @@
    "images": [
     {
      "file": "images/01_爱马仕_马鞍_马具_历史.jpg",
-     "alt": "爱马仕 Hermès 2019早春度假系列—-包品|爱马仕|姜黄|流行色|度假|设计_新浪新闻",
+     "alt": "",
      "caption": "爱马仕 Hermès 2019早春度假系列—-包品|爱马仕|姜黄|流行色|度假|设计_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_1303913170_p4db822d202700ckeb.html",
-     "width": 2000,
-     "height": 3000,
+     "width": 1472,
+     "height": 2208,
      "query": "爱马仕 马鞍 马具 历史"
     }
    ]
@@ -262,16 +262,16 @@
    "images": [
     {
      "file": "images/05_爱马仕_Grace_Kelly_凯莉包_杂志封面.jpg",
-     "alt": "爱马仕 Hermès 2019早春度假系列—-包品|爱马仕|姜黄|流行色|度假|设计_新浪新闻",
+     "alt": "",
      "caption": "爱马仕 Hermès 2019早春度假系列—-包品|爱马仕|姜黄|流行色|度假|设计_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_1303913170_p4db822d202700ckeb.html",
-     "width": 2000,
-     "height": 3000,
+     "width": 1472,
+     "height": 2208,
      "query": "爱马仕 Grace Kelly"
     },
     {
      "file": "images/45_爱马仕_Jane.jpg",
-     "alt": "“奢侈品巨头”爱马仕家族：富过6代，200年不衰的秘诀 - 知乎",
+     "alt": "",
      "caption": "“奢侈品巨头”爱马仕家族：富过6代，200年不衰的秘诀 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/391194228",
      "width": 720,
@@ -288,16 +288,23 @@
     {
      "type": "prose",
      "heading": "包不在货架上",
-     "text": "铂金包、凯莉包和 Constance 属于内部所说的配额包：不上货架、不进官网购物车，一家店分到几只、给谁，由销售和店长定（S8）。你能做的只有先攒记录。PurseBop 说这是一份跟着门店走的消费档案，关联店花过的钱累在一起，销售给包前要先报经理批（S2）。\n\n比例从来没有官方数字：买手社区的通行理解是 1:1，部分地区报到 1:1.5 至 1:2（S2）；前爱马仕销售 Joanna Uzunova 对《财富》说，她本人达到的是 1:1（S1）。中国市场各口径更宽：1:0.5 到 1:2（S3）。",
+     "text": "铂金包、凯莉包和 Constance 属于内部所说的配额包：不上货架、不进官网购物车，一家店分到几只、给谁，由销售和店长定。你能做的只有先攒记录。PurseBop 说这是一份跟着门店走的消费档案，关联店花过的钱累在一起，销售给包前要先报经理批。\n\n比例从来没有官方数字：买手社区的通行理解是 1:1，部分地区报到 1:1.5 至 1:2；前爱马仕销售 Joanna Uzunova 对《财富》说，她本人达到的是 1:1。中国市场各口径更宽：1:0.5 到 1:2。",
      "source_ids": [
       "S032",
-      "S033"
+      "S033",
+      "S038",
+      "S031"
      ]
     },
     {
      "type": "prose",
      "heading": "哪些品类计入，且不等值",
-     "text": "计入的品类覆盖全店：成衣、珠宝、围巾、鞋履、瓷器、手表、家居都算。宁波那位消费者的真实小票上是项链、杯子、碟子、衣服、腰带（S4）；美国起诉书点名鞋子、围巾、瓷器、珠宝（S5）。\n\n但金额相等不等于权重相等。Uzunova 说，被更频繁 offer 包的是买成衣、高级珠宝和家居的人；手链、Oran 凉拖、带 H 标志的腰带属于诱饵商品，反而暗示你还不懂这个牌子（S1）。南都的说法同向：越是性价比低的小件，配货价值越高，丝巾、手表、挂饰被点名（S4）。"
+     "text": "计入的品类覆盖全店：成衣、珠宝、围巾、鞋履、瓷器、手表、家居都算。宁波那位消费者的真实小票上是项链、杯子、碟子、衣服、腰带；美国起诉书点名鞋子、围巾、瓷器、珠宝。\n\n但金额相等不等于权重相等。Uzunova 说，被更频繁 offer 包的是买成衣、高级珠宝和家居的人；手链、Oran 凉拖、带 H 标志的腰带属于诱饵商品，反而暗示你还不懂这个牌子。南都的说法同向：越是性价比低的小件，配货价值越高，丝巾、手表、挂饰被点名。",
+     "source_ids": [
+      "S034",
+      "S035",
+      "S031"
+     ]
     },
     {
      "type": "price_table",
@@ -357,19 +364,27 @@
     {
      "type": "prose",
      "heading": "官方口径",
-     "text": "官方口径是否认。新浪财经与潮新闻分头问过客服，答复一致：没有「配货」这个说法，也没有累计消费制度，有库存即可正常选购；销售若强制要求，属违规（S3、S7）。「配货」在店里近乎违禁词，通行的说法是「消费积累」（S6）。\n\n这套表述有一半站得住：计入额度的商品由你自己挑，也没有白纸黑字的合同，所以事后难举证（S6）。站不住的是决定权——能不能拿到包、几时拿到、什么颜色和皮质，都不在你手上。"
+     "text": "官方口径是否认。新浪财经与潮新闻分头问过客服，答复一致：没有「配货」这个说法，也没有累计消费制度，有库存即可正常选购；销售若强制要求，属违规。「配货」在店里近乎违禁词，通行的说法是「消费积累」。\n\n这套表述有一半站得住：计入额度的商品由你自己挑，也没有白纸黑字的合同，所以事后难举证。站不住的是决定权——能不能拿到包、几时拿到、什么颜色和皮质，都不在你手上。",
+     "source_ids": [
+      "S033",
+      "S037",
+      "S036"
+     ]
     },
     {
      "type": "note",
      "tone": "warn",
      "title": "配满不等于拿得到",
-     "text": "配满不保证给包：宁波一位消费者半年花掉 140 多万元，门店仍称无货（S4）。比例随城市、门店、销售而变，金额一分散就都排不到。建议集中在一家店、认准一位销售。"
+     "text": "配满不保证给包：宁波一位消费者半年花掉 140 多万元，门店仍称无货。比例随城市、门店、销售而变，金额一分散就都排不到。建议集中在一家店、认准一位销售。",
+     "source_ids": [
+      "S034"
+     ]
     }
    ],
    "images": [
     {
      "file": "images/09_爱马仕_门店_陈列_包袋.jpg",
-     "alt": "青春活力 爱马仕2020春夏新品鉴赏在京举行|爱马仕_腕表之家xbiao.com",
+     "alt": "",
      "caption": "青春活力 爱马仕2020春夏新品鉴赏在京举行|爱马仕_腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/hermes/56877.html",
      "width": 1400,
@@ -378,11 +393,11 @@
     },
     {
      "file": "images/10_爱马仕_奢侈品_配货_消费记录.jpg",
-     "alt": "爱马仕 Hermès 2019早春度假系列—-包品",
+     "alt": "",
      "caption": "爱马仕 Hermès 2019早春度假系列—-包品",
      "source_page": "https://k.sina.cn/article_1303913170_p4db822d202700ckeb.html",
-     "width": 2000,
-     "height": 3000,
+     "width": 1472,
+     "height": 2208,
      "query": "爱马仕 奢侈品 配货"
     }
    ]
@@ -535,20 +550,20 @@
    "images": [
     {
      "file": "images/13_爱马仕_工匠_手工缝制.jpg",
-     "alt": "爱马仕仍然是最保值的奢侈品牌 – NOWRE现客",
+     "alt": "",
      "caption": "爱马仕仍然是最保值的奢侈品牌 – NOWRE现客",
      "source_page": "https://nowre.com/fashion/720845/aimashirengranshizuibaozhideshechipinpai/",
-     "width": 2250,
-     "height": 1350,
+     "width": 1472,
+     "height": 883,
      "query": "爱马仕 工匠 手工缝制"
     },
     {
      "file": "images/14_爱马仕_马鞍针法_saddle_stitch.gif",
-     "alt": "【爱马仕手表价格及图片】Hermès爱马仕手表官网型号查询_爱马仕官网|腕表之家",
+     "alt": "",
      "caption": "【爱马仕手表价格及图片】Hermès爱马仕手表官网型号查询_爱马仕官网|腕表之家",
      "source_page": "https://watch.xbiao.com/hermes/",
-     "width": 1200,
-     "height": 1800,
+     "width": 800,
+     "height": 1200,
      "query": "爱马仕 马鞍针法 saddle"
     }
    ]
@@ -700,7 +715,7 @@
    "images": [
     {
      "file": "images/18_爱马仕_Epsom_皮革_纹路.jpg",
-     "alt": "爱马仕Hermès最新芝加哥美学概念旗舰店设计 – 米尚丽零售设计网 MISUNLY- 美好品牌店铺空间发现者",
+     "alt": "",
      "caption": "爱马仕Hermès最新芝加哥美学概念旗舰店设计 – 米尚丽零售设计网 MISUNLY- 美好品牌店铺空间发现者",
      "source_page": "http://www.misunly.com/store-case/39127.html",
      "width": 900,
@@ -709,7 +724,7 @@
     },
     {
      "file": "images/17_爱马仕_Togo_皮革_纹理.jpg",
-     "alt": "爱马仕包包产品系列有哪些？Hermes经典款式大盘点！ - 知乎",
+     "alt": "",
      "caption": "爱马仕包包产品系列有哪些？Hermes经典款式大盘点！ - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/428426527",
      "width": 1080,
@@ -878,16 +893,16 @@
    "images": [
     {
      "file": "images/21_爱马仕_丝巾_carr_90.jpg",
-     "alt": "爱马仕 Hermès 2019早春度假系列—-包品",
+     "alt": "",
      "caption": "爱马仕 Hermès 2019早春度假系列—-包品",
      "source_page": "https://k.sina.cn/article_1303913170_p4db822d202700ckeb.html",
-     "width": 2000,
-     "height": 3000,
+     "width": 1472,
+     "height": 2208,
      "query": "爱马仕 丝巾 carré 90"
     },
     {
      "file": "images/22_爱马仕_瓷器_餐盘.png",
-     "alt": "历时八年打造，爱马仕全球最大旗舰店之一10月3日在纽约麦迪逊大道全新开业 - 知乎",
+     "alt": "",
      "caption": "历时八年打造，爱马仕全球最大旗舰店之一10月3日在纽约麦迪逊大道全新开业 - 知乎",
      "source_page": "https://zhuanlan.zhihu.com/p/571492297?just_published=1",
      "width": 730,
@@ -1119,7 +1134,7 @@
    "images": [
     {
      "file": "images/25_爱马仕_Birkin_价格_上涨.jpg",
-     "alt": "爱马仕_爱马仕持续投资其生产能力，宣布至2026年将新开两家皮革工坊，分别位于法国夏朗德省和吉伦特省，创造500个就业机会|腕表之家xbiao.com",
+     "alt": "",
      "caption": "爱马仕_爱马仕持续投资其生产能力，宣布至2026年将新开两家皮革工坊，分别位于法国夏朗德省和吉伦特省，创造500个就业机会|腕表之家xbiao.com",
      "source_page": "https://www.xbiao.com/hermes/66930.html",
      "width": 1400,
@@ -1128,11 +1143,11 @@
     },
     {
      "file": "images/26_爱马仕_奢侈品_价格指数_图表.jpg",
-     "alt": "爱马仕 Hermès 2019早春度假系列—-包品",
+     "alt": "",
      "caption": "爱马仕 Hermès 2019早春度假系列—-包品",
      "source_page": "https://k.sina.cn/article_1303913170_p4db822d202700ckeb.html",
-     "width": 2000,
-     "height": 3000
+     "width": 1472,
+     "height": 2208
     }
    ]
   },
@@ -1288,20 +1303,20 @@
    "images": [
     {
      "file": "images/29_爱马仕_拍卖行_成交.jpg",
-     "alt": "HERMES爱马仕2019春夏高定时装周",
+     "alt": "",
      "caption": "HERMES爱马仕2019春夏高定时装周",
      "source_page": "https://k.sina.cn/article_6617262424_p18a6b695800100gr5r.html",
-     "width": 2048,
-     "height": 2867,
+     "width": 1472,
+     "height": 2060,
      "query": "爱马仕 拍卖行 成交"
     },
     {
      "file": "images/30_爱马仕_喜马拉雅.jpg",
-     "alt": "爱马仕王府井门店已完成升级改造，目前中国门店数量已达27家|财经|王府半岛|奢侈品品牌|贾宁|南京_新浪新闻",
+     "alt": "",
      "caption": "爱马仕王府井门店已完成升级改造，目前中国门店数量已达27家|财经|王府半岛|奢侈品品牌|贾宁|南京_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_1644114654_61ff32de02001ne95.html",
-     "width": 2048,
-     "height": 1280
+     "width": 1472,
+     "height": 920
     }
    ]
   },
@@ -1356,7 +1371,8 @@
         "另付州销售税"
        ],
        "source_ids": [
-        "S091"
+        "S091",
+        "S071"
        ]
       }
      ]
@@ -1555,7 +1571,8 @@
         "高于美国专柜标价"
        ],
        "source_ids": [
-        "S091"
+        "S091",
+        "S072"
        ]
       }
      ]
@@ -1617,16 +1634,16 @@
    "images": [
     {
      "file": "images/33_爱马仕_退税_购物_单据_欧洲.jpg",
-     "alt": "HERMES爱马仕2019春夏高定时装周",
+     "alt": "",
      "caption": "HERMES爱马仕2019春夏高定时装周",
      "source_page": "https://k.sina.cn/article_6617262424_p18a6b695800100gr5r.html",
-     "width": 2048,
-     "height": 2867,
+     "width": 1472,
+     "height": 2060,
      "query": "爱马仕 退税 购物"
     },
     {
      "file": "images/34_爱马仕_巴黎.jpg",
-     "alt": "2024 年 5 月 27 日， 爱马仕北京 SKP 专卖店正式焕新启幕|新启|爱马仕|专卖店_新浪新闻",
+     "alt": "",
      "caption": "2024 年 5 月 27 日， 爱马仕北京 SKP 专卖店正式焕新启幕|新启|爱马仕|专卖店_新浪新闻",
      "source_page": "https://k.sina.com.cn/article_1768578257_696a5cd1040015ejm.html",
      "width": 690,
@@ -1784,7 +1801,7 @@
    "images": [
     {
      "file": "images/38_爱马仕_奢侈品_鉴定_刻印.jpg",
-     "alt": "爱马仕(Hermes)品牌资料简介档案库_爱马仕是哪个国家的品牌 - 时尚生活实验室",
+     "alt": "",
      "caption": "爱马仕(Hermes)品牌资料简介档案库_爱马仕是哪个国家的品牌 - 时尚生活实验室",
      "source_page": "http://www.voguelife.net/brand/11/",
      "width": 1920,
@@ -1793,7 +1810,7 @@
     },
     {
      "file": "images/37_爱马仕_刻印_年份_字母.jpg",
-     "alt": "爱马仕 Hermès 2024春夏男装秀(细节) - Paris Sping 2024-天天时装-口袋里的时尚指南",
+     "alt": "",
      "caption": "爱马仕 Hermès 2024春夏男装秀(细节) - Paris Sping 2024-天天时装-口袋里的时尚指南",
      "source_page": "https://www.dailyfashion.cn/lookbook/68295",
      "width": 682,
@@ -1839,7 +1856,8 @@
        "title": "年报的百分比",
        "text": "鳄鱼皮全部来自通过外部审核的认证场，鸵鸟皮自 2021 年底同样全部认证；蜥蜴皮的认证比例只有 43%。",
        "source_ids": [
-        "S116"
+        "S116",
+        "S054"
        ]
       }
      ]
@@ -1896,7 +1914,7 @@
    "images": [
     {
      "file": "images/41_爱马仕_鳄鱼_养殖_皮革_争议.jpg",
-     "alt": "爱马仕哈尔滨专卖店重新开幕_品牌新闻_潮流服饰频道_VOGUE时尚网",
+     "alt": "",
      "caption": "爱马仕哈尔滨专卖店重新开幕_品牌新闻_潮流服饰频道_VOGUE时尚网",
      "source_page": "https://www.vogue.com.cn/invogue/brand-news/news_16339df1cf03a9b9.html",
      "width": 800,
@@ -1905,7 +1923,7 @@
     },
     {
      "file": "images/42_爱马仕_可持续_报告.jpg",
-     "alt": "爱马仕标志设计理念及历史，极精极美之巅峰-美研设计公司",
+     "alt": "",
      "caption": "爱马仕标志设计理念及历史，极精极美之巅峰-美研设计公司",
      "source_page": "http://www.logo2008.net/biaozhi/549.html",
      "width": 870,
@@ -1920,42 +1938,48 @@
    "url": "https://www.hermes.com/us/en/content/235056-six-generations-of-artisans/",
    "label": "爱马仕官网「六代匠人」年表：1837 年 Thierry Hermès（1801–1878）在 rue Basse-du-Rempart 开设马具作坊、1867 年世博会获奖、1880 年迁至 24 Faubourg Saint-Honoré、1922 年取得拉链独家使用权、1976 年并入 John Lobb、1993 年 Puiforcat、1995 年 Saint-Louis、Jean-Louis Dumas 1978 年起主政",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès International"
+   "publisher": "Hermès International",
+   "cache": "text/a484f1edc9c0a21c.txt"
   },
   {
    "id": "S012",
    "url": "https://www.christies.com/en/stories/the-history-of-hermes-217f8a0c0f494e16995f51679a9ca0d4",
    "label": "佳士得品牌史专文：Thierry Hermès 生于克雷费尔德、1801 年，1837 年设马具作坊，客户含欧洲贵族与拿破仑三世；Haut à Courroies 世纪初问世；Sac à Dépêches 1935 年推出、1956 年凯利照片、1977 年改名 Kelly；1937 年第一条方巾；1984 年 Birkin；包装 1920 年代米色、1930 年代芥末黄、二战改橙",
    "retrieved": "2026-09-20",
-   "publisher": "Christie's"
+   "publisher": "Christie's",
+   "cache": "text/d10c3cce83d99767.txt"
   },
   {
    "id": "S013",
    "url": "https://brandvelle.com/articles/hermes-orange-box-wartime-origin-1942",
    "label": "橙色包装起源专文：明确给出 1942 年这一年份，德军占领巴黎、卡纸短缺，Émile-Maurice Hermès 接受供应商仅剩的橙色卡纸并加深棕丝带与马车徽记；1949 年加入 Bolduc 丝带；内部色号 93",
    "retrieved": "2026-09-20",
-   "publisher": "Brandvelle"
+   "publisher": "Brandvelle",
+   "cache": "text/44829a8cb64d810b.txt"
   },
   {
    "id": "S014",
    "url": "https://colorindicator.com/academy/why-hermes-is-orange",
    "label": "品牌色史：独立佐证 1942 年因二战包装材料短缺改用橙色，此前 1920 年代仿猪皮奶油色、1930 年代芥末黄加棕边",
    "retrieved": "2026-09-20",
-   "publisher": "ColorIndicator"
+   "publisher": "ColorIndicator",
+   "cache": "text/392aa0dce3867d06.txt"
   },
   {
    "id": "S015",
    "url": "https://wwd.com/business-news/business-features/feature/jean-louis-dumas-dies-at-72-3056860-1324762/",
    "label": "WWD 讣告：Jean-Louis Dumas 1938 年 2 月 2 日生于巴黎，1978 至 2006 年任 Hermès International CEO，接任时年收入约 5,000 万美元；1986–1996 销售额平均年增 24%；1993 年上市、家族持约四分之三股份；2010 年 5 月去世，终年 72 岁；引语 \"We love tradition, but we are not tradition bound\" 与 \"The hand is the rival of the mind\"",
    "retrieved": "2026-09-20",
-   "publisher": "Women's Wear Daily"
+   "publisher": "Women's Wear Daily",
+   "cache": "text/cdcb28cb193b576a.txt"
   },
   {
    "id": "S021",
    "url": "https://crfashionbook.com/the-history-of-the-hermes-birkin/",
    "label": "CR Fashion Book《The History of the Hermès Birkin》：1984 年 Jane Birkin 与 Jean-Louis Dumas 在同趟国际航班上相遇，她的草编包在行李架处倾倒、她说找不到喜欢的大号真皮包；第一只成品为 40 厘米、当年零售价约 2,000 美元。",
    "retrieved": "2026-09-20",
-   "publisher": "CR Fashion Book"
+   "publisher": "CR Fashion Book",
+   "cache": "text/70d1ef0b51870a02.txt"
   },
   {
    "id": "S022",
@@ -1969,28 +1993,32 @@
    "url": "https://romestation.ca/blogs/news/how-fashion-eras-influenced-the-design-of-the-hermes-kelly-bag",
    "label": "Rome Station《How Fashion Eras Influenced the Design of the Hermès Kelly Bag》：Kelly 由 Robert Dumas 在 1930 年代参照马鞍袋 HAC 改小定型；1956 年 Grace Kelly 在摩纳哥 Hôtel de Paris 外拍摄、经 Life 杂志扩散；1977 年官方命名；1960 年代末加入可拆卸肩带。",
    "retrieved": "2026-09-20",
-   "publisher": "Rome Station"
+   "publisher": "Rome Station",
+   "cache": "text/8d277e90dec83928.txt"
   },
   {
    "id": "S024",
    "url": "https://romestation.ca/blogs/news/birkin-vs-kelly-how-to-choose-between-hermes-two-iconic-bags",
    "label": "Rome Station 的对比文：尺寸与肩带对照表（Birkin 25/30/35/40 不含肩带；Kelly 15/20/25/28/32/35 含可拆肩带），以及“Birkin 翻盖向内塞、Kelly 翻盖向外锁”的开合差别。",
    "retrieved": "2026-09-20",
-   "publisher": "Rome Station"
+   "publisher": "Rome Station",
+   "cache": "text/4df8b6559426ddfe.txt"
   },
   {
    "id": "S025",
    "url": "https://rare.gallery/zh-cg/blogs/our-journal/birkin-vs-kelly-comparison",
    "label": "Rare.Gallery 对比文：逐号尺寸（Birkin 25 为 25×20×13cm、Birkin 30 为 30×22×16cm；Kelly 25 为 25×19×9.5cm、Kelly 28 为 28×21×11cm、Kelly 32 为 32×23×12cm），并说明 Birkin 翻盖有开口让前手柄立起、Kelly 32 即王妃本人那只的尺寸。",
    "retrieved": "2026-09-20",
-   "publisher": "Rare.Gallery"
+   "publisher": "Rare.Gallery",
+   "cache": "text/468e1f73b9a42876.txt"
   },
   {
    "id": "S026",
    "url": "https://blog.yoogiscloset.com/hermes-birkin-bag-vs-kelly-bag/",
    "label": "yoogis Closet 鉴定博客：锁具细节差异（两者同为皮带 + 转锁 + 挂锁与钥匙套，Birkin 有金属环、Kelly 没有）、Birkin 双手柄且无肩带、Kelly 单手柄且新款附肩带。",
    "retrieved": "2026-09-20",
-   "publisher": "yoogis Closet"
+   "publisher": "yoogis Closet",
+   "cache": "text/34349816dd372252.txt"
   },
   {
    "id": "S031",
@@ -2004,49 +2032,56 @@
    "url": "https://www.pursebop.com/dearpursebop/question/can-you-explain-the-concept-and-terms-of-the-hermes-spend-ratio",
    "label": "PurseBop 问答专栏：1:1 的定义、部分地区 1:1.5–1:2、按门店累积的消费档案与经理审批；并明确爱马仕从未公开承认任何比例",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/c6812b20a3d6ef97.txt"
   },
   {
    "id": "S033",
    "url": "https://finance.sina.com.cn/chanjing/gsnews/2024-03-22/doc-inaperrk1211520.shtml",
    "label": "新浪财经 2024-03-22 调查：中国市场 1:0.5／1:1／1:1.5–1:2 区间、爱马仕中国客服的答复、2024 年初调价后的中国公价",
    "retrieved": "2026-09-20",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/9c6af183bda0875f.txt"
   },
   {
    "id": "S034",
    "url": "https://news.cqnews.net/1/detail/1221008418333917184/h5/content_1221008418333917184.html",
    "label": "华龙网转载南方都市报 2024-03-23：宁波消费者 140 多万元配货清单、爱马仕官网公开电话答复、1:1.15–1:2、单店每日经典款发售上限",
    "retrieved": "2026-09-20",
-   "publisher": "南方都市报"
+   "publisher": "南方都市报",
+   "cache": "text/0ab3059e143469dd.txt"
   },
   {
    "id": "S035",
    "url": "http://www.ce.cn/xwzx/gnsz/gdxw/202403/22/t20240322_38944065.shtml",
    "label": "中国经济网转载央视财经 2024-03-22：旧金山联邦法院集体诉讼起诉书点名的计入品类，与「卖包无佣金、卖其他商品 3%」的激励结构",
    "retrieved": "2026-09-20",
-   "publisher": "央视财经"
+   "publisher": "央视财经",
+   "cache": "text/ff8890e6deca67fe.txt"
   },
   {
    "id": "S036",
    "url": "https://m.thepaper.cn/newsDetail_forward_27077471",
    "label": "澎湃新闻转载《中国商界》2024-04-21：爱马仕官方客服原话、「配货」为店内违禁词、改用「消费积累」表述",
    "retrieved": "2026-09-20",
-   "publisher": "《中国商界》"
+   "publisher": "《中国商界》",
+   "cache": "text/68dc15ce7297b1af.txt"
   },
   {
    "id": "S037",
    "url": "https://cbgc.scol.com.cn/news/4851839",
    "label": "川观新闻转载潮新闻 2024-03-26：12 万–20 万元门槛，以及爱马仕体验店小程序客服否认存在累计消费制度",
    "retrieved": "2026-09-20",
-   "publisher": "潮新闻"
+   "publisher": "潮新闻",
+   "cache": "text/1769921e2ac20df2.txt"
   },
   {
    "id": "S038",
    "url": "https://www.readrps.com/p/the-hermes-stores-most-likely-to",
    "label": "Rich People Shit 2026-04-28 从业者圆桌：配额包（Birkin／Kelly／Constance）不能从货架购买、由门店自行分配，规则随国家与门店而变",
    "retrieved": "2026-09-20",
-   "publisher": "Rich People Shit"
+   "publisher": "Rich People Shit",
+   "cache": "text/b4f5a1cc793ca608.txt"
   },
   {
    "id": "S041",
@@ -2060,56 +2095,64 @@
    "url": "https://www.vogue.com/article/hermes-opens-new-workshop-to-keep-up-with-kelly-bag-demand",
    "label": "Vogue Business 关于爱马仕诺曼底 Louviers 工坊开幕的报道（2023-04-07），含部分手袋 25 小时、马鞍至少 30 小时、每名工匠独立完成整包、法国第 21 间皮具工坊、4,700 名皮具工匠",
    "retrieved": "2026-09-20",
-   "publisher": "Vogue Business"
+   "publisher": "Vogue Business",
+   "cache": "text/d5d4f82da8550316.txt"
   },
   {
    "id": "S043",
    "url": "https://www.ownever.com/blogs/leather-luxe-blog/hermes-and-the-art-of-saddle-stitching",
    "label": "皮具修复工作室 OWNEVER 的马鞍针法说明，含两针一线、锥子预打孔、蜂蜡麻线、0.6–1.2 mm 线径、机器锁式线迹断一针即整条脱散，以及马鞍针法不超过整包一成的估算",
    "retrieved": "2026-09-20",
-   "publisher": "OWNEVER"
+   "publisher": "OWNEVER",
+   "cache": "text/a8393cfc3f806bce.txt"
   },
   {
    "id": "S044",
    "url": "https://romestation.ca/blogs/news/craftsman-amp-workshop-marks-at-hermes-beyond-the-date-code",
    "label": "二手商 Rome Station 的刻印解读，含盲印构成、1945 年起始的字母年份、2015 年编号格式改版、2016 年 Birkin/Kelly 刻印位置迁移、3–4 毫米压凹尺寸",
    "retrieved": "2026-09-20",
-   "publisher": "Rome Station"
+   "publisher": "Rome Station",
+   "cache": "text/95130bf9324b095c.txt"
   },
   {
    "id": "S045",
    "url": "https://ginzaxiaoma.com/guide/hermes-engraving",
    "label": "中古商 GINZA XIAOMA 刻印总表（2025 版），指出盲印同时标出年份、工坊与工匠，并说明工匠编号常被误读为姓名缩写、实际多有例外",
    "retrieved": "2026-09-20",
-   "publisher": "GINZA XIAOMA"
+   "publisher": "GINZA XIAOMA",
+   "cache": "text/a8703d2f217dc7b9.txt"
   },
   {
    "id": "S046",
    "url": "https://www.hermes.com/us/en/content/106191-birkin/",
    "label": "爱马仕官网 Birkin 系列页，列出 Birkin 25/30/35/40 的在售规格，并写明翻盖与马鞍针法的设计关系",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès"
+   "publisher": "Hermès",
+   "cache": "text/bac159d6e9b76969.txt"
   },
   {
    "id": "S051",
    "url": "https://www.christies.com/en/stories/an-expert-guide-to-hermes-leathers-and-materials-e25e70f8ba284616964f4edaa19bceaf",
    "label": "Christie's 官方专题《爱马仕皮革与材质完全指南》（2026-06-09），逐一给出 Togo 1997、Epsom 2004 接替 Courchevel、Clemence 1990 年代、Box 可回溯 1890 年代、Swift 2005 年以 Gulliver 旧名重推，以及鳄鱼/短吻鳄/蜥蜴/鸵鸟的产地与符号标记",
    "retrieved": "2026-09-20",
-   "publisher": "Christie's"
+   "publisher": "Christie's",
+   "cache": "text/7a261162af183f93.txt"
   },
   {
    "id": "S052",
    "url": "https://romestation.ca/blogs/news/understanding-hermes-leather-types-how-each-affects-your-bag-s-durability",
    "label": "二手奢侈品商 Rome Station 的皮革耐用度指南：耐刮排名表（Epsom 优秀、Togo 很好、Clemence 良好、Box 差、亮面珍稀皮差）、Box 遇雨雪留永久痕迹、鸵鸟皮耐刮但怕潮",
    "retrieved": "2026-09-20",
-   "publisher": "Rome Station"
+   "publisher": "Rome Station",
+   "cache": "text/2728538b769528de.txt"
   },
   {
    "id": "S053",
    "url": "https://www.saikacollective.com/blogs/saika-luxury-authentication-journal/hermes-leather-guide",
    "label": "鉴定平台 SAIKA 的 2025 收藏向对照表：给 Epsom/Togo/Clemence 打结构、软硬、重量、耐刮与雨水分级，耐刮一项把 Clemence 列第一、Togo 次之、Epsom 三者中最低，并指出 Epsom 泡水会变形",
    "retrieved": "2026-09-20",
-   "publisher": "SAIKA Collective"
+   "publisher": "SAIKA Collective",
+   "cache": "text/93f9b04a6f106305.txt"
   },
   {
    "id": "S054",
@@ -2123,77 +2166,88 @@
    "url": "https://www.worldanimalprotection.org.au/news/australian-crocodiles-be-cruelly-slaughtered-new-hermes-farm/",
    "label": "世界动物保护协会澳洲分会 2021-07-01 报道《Fashion Victims》：澳大利亚占全球咸水鳄皮产量 60%、其中三分之二来自北领地、一张高档包皮对应 3 到 4 条鳄鱼，并列出 Chanel、Mulberry 等已承诺退出或正在退出珍稀皮的品牌",
    "retrieved": "2026-09-20",
-   "publisher": "World Animal Protection Australia"
+   "publisher": "World Animal Protection Australia",
+   "cache": "text/f80b17559dc2e904.txt"
   },
   {
    "id": "S056",
    "url": "https://www.rappler.com/life-and-style/style/134947-hermes-ostrich-farm-cruelty-claims-south-africa-peta/",
    "label": "法新社 2016-06-01 报道：PETA 在爱马仕股东大会就南非鸵鸟场屠宰录像质询 CEO Axel Dumas，Dumas 回应爱马仕没有独家鸵鸟供应商、对合作农场的要求高于国际法规",
    "retrieved": "2026-09-20",
-   "publisher": "AFP / Rappler"
+   "publisher": "AFP / Rappler",
+   "cache": "text/876cf1480cf86f27.txt"
   },
   {
    "id": "S061",
    "url": "https://www.wallpaper.com/fashion-beauty/hermes-silk-scarf-factory-lyon",
    "label": "Wallpaper* 2023 年走访爱马仕里昂丝绸工场的报道：一条方巾最多 48 个颜色即 48 张网版、图案描进印刷程序逾 600 工时、色号目录超 75,000、网版在 Bourgoin-Jallieu 刻制后运往 Pierre-Bénite 印刷、1937 年由 Robert Dumas 发明 carré",
    "retrieved": "2026-09-20",
-   "publisher": "Wallpaper*"
+   "publisher": "Wallpaper*",
+   "cache": "text/fb0a998ca2fa843e.txt"
   },
   {
    "id": "S062",
    "url": "https://www.hermes.cn/cn/en/product/rewilding-nature-scarf-90-H004297Sv08/",
    "label": "爱马仕中国大陆官网 Carré 90 产品页：售价 CN¥5,450、Dimensions 88.5 x 88.5 cm、真丝斜纹绸、手工卷边、法国制造",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès 官网"
+   "publisher": "Hermès 官网",
+   "cache": "text/0e38fc16c6d82cf6.txt"
   },
   {
    "id": "S063",
    "url": "https://www.hermes.cn/cn/en/category/women/scarves-shawls-and-stoles/silk-scarves-and-accessories/",
    "label": "官网丝巾分类页：scarf 70 多为 CN¥4,150、scarf 90 为 CN¥5,450、双面款 scarf 90 为 CN¥6,650",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès 官网"
+   "publisher": "Hermès 官网",
+   "cache": "text/22af168643b5f34f.txt"
   },
   {
    "id": "S064",
    "url": "https://www.hermes.cn/cn/en/category/women/scarves-shawls-and-stoles/twillys-and-other-small-formats/",
    "label": "官网小丝巾分类页：Twilly 常规款 CN¥2,050、长版 Jockey Twilly CN¥3,300",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès 官网"
+   "publisher": "Hermès 官网",
+   "cache": "text/618457a115c23516.txt"
   },
   {
    "id": "S065",
    "url": "https://www.hermes.cn/cn/en/category/women/scarves-shawls-and-stoles/cashmere-shawls-and-stoles/",
    "label": "官网羊绒披肩分类页：shawl 140 为 CN¥12,550",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès 官网"
+   "publisher": "Hermès 官网",
+   "cache": "text/258ea69c6c2c99c6.txt"
   },
   {
    "id": "S066",
    "url": "https://www.hermes.cn/cn/en/category/home-art-living/",
    "label": "官网家居与餐具分类页：Ribambelles 甜点盘 CN¥1,400、马克杯 CN¥1,750 与 1,800、Mises et Relances 迷你铜钱盘 CN¥4,250",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès 官网"
+   "publisher": "Hermès 官网",
+   "cache": "text/dfa00fc95c27cb25.txt"
   },
   {
    "id": "S067",
    "url": "https://www.hermes.cn/cn/en/category/fragrances/",
    "label": "官网香水分类页：Terre d'Hermès 淡香水 CN¥730 起、Twilly d'Hermès 浓香水 CN¥870 起、Hermessence 系列淡香水 CN¥2,860",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès 官网"
+   "publisher": "Hermès 官网",
+   "cache": "text/c8becf38a9483c9f.txt"
   },
   {
    "id": "S068",
    "url": "https://www.hermes.cn/cn/en/category/home/furniture-and-lighting/",
    "label": "官网家具灯具分类页：Les Trotteuses d'Hermès 小款边几 CN¥59,800、Harnais 床头灯 CN¥74,750",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès 官网"
+   "publisher": "Hermès 官网",
+   "cache": "text/838936bf3d830df6.txt"
   },
   {
    "id": "S069",
    "url": "https://www.hermes.cn/cn/en/category/equestrian/horse/",
    "label": "官网马具分类页：Jump 通用鞍垫 CN¥6,300、Saddle box 鞍箱 CN¥8,400、Stepstool 马凳 CN¥51,200、Carrou'Selle 马鞍箱 CN¥54,100；页内无马鞍本体",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès 官网"
+   "publisher": "Hermès 官网",
+   "cache": "text/99b06d2934d1e808.txt"
   },
   {
    "id": "S0610",
@@ -2207,203 +2261,232 @@
    "url": "https://system-magazine.com/issues/issue-05/behind-the-scenes-hermes",
    "label": "System Magazine 专访时任爱马仕女装宇宙艺术总监 Bali Barret：首条 carré 由 Robert Dumas 于 1937 年完成、自 1937 年至今创造 75,000 个颜色、第一个图案只有 9 个颜色",
    "retrieved": "2026-09-20",
-   "publisher": "System Magazine"
+   "publisher": "System Magazine",
+   "cache": "text/b28e8b2b38a3bc19.txt"
   },
   {
    "id": "S071",
    "url": "https://www.sothebys.com/en/articles/hermes-raises-the-birkin-bag-price-what-you-need-to-know",
    "label": "Sotheby's 手袋专栏（Vanessa Wat，2026-01-21），含 Birkin 25/30 从 2016 到 2026 年的公价历史表、2026 年 1 月欧美涨幅与二手成交均价",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/e07483456da6fc0f.txt"
   },
   {
    "id": "S072",
    "url": "https://www.sothebys.com/en/articles/higher-hermes-bag-prices-in-2025-what-you-need-to-know",
    "label": "Sotheby's 手袋专栏（Aurélie Vassy，2025-05-27），2025 年涨价幅度、5 月美国单独调价与二级市场溢价盘点",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/f7bc065771db069e.txt"
   },
   {
    "id": "S073",
    "url": "https://www.pursebop.com/how-the-hermes-birkin-quietly-got-2700-more-expensive/",
    "label": "PurseBop（Maura Carlin，2025-05-21）以 Birkin 25 Togo 为样本的十年美国公价追踪，并与美国生活成本对比",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/9da58be2b1b34ec3.txt"
   },
   {
    "id": "S074",
    "url": "https://www.bragmybag.com/hermes-bag-prices/",
    "label": "Bragmybag 爱马仕包款价格与涨价年表（更新至 2026-05-25），含 Birkin 30 的 2008 年公价与 Togo 二手报价",
    "retrieved": "2026-09-20",
-   "publisher": "Bragmybag"
+   "publisher": "Bragmybag",
+   "cache": "text/e646c2ffbd8c0487.txt"
   },
   {
    "id": "S091",
    "url": "https://www.sothebys.com/en/articles/higher-hermes-bag-prices-in-2026-what-you-need-to-know",
    "label": "Sotheby's 2026 年爱马仕涨价与二级市场行情分析，含美欧专柜公价对照表与拍卖成交区间",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/53fc327dec53ab38.txt"
   },
   {
    "id": "S092",
    "url": "https://www.pursebop.com/new-confirmed-hermes-prices-in-europe-2026/",
    "label": "按型号整理的 2026 年欧元区爱马仕专柜确认价，含 2025 对比价与涨幅",
    "retrieved": "2026-09-20",
-   "publisher": "PurseBop"
+   "publisher": "PurseBop",
+   "cache": "text/ee2b4249cb7ce326.txt"
   },
   {
    "id": "S093",
    "url": "https://www.g-rare.com/column/birkin-regularprice/",
    "label": "日本中古连锁 Gallery Rare 的 Birkin 专题：2026 年 9 月日本国内定価与各尺寸中古行情区间",
    "retrieved": "2026-09-20",
-   "publisher": "ギャラリーレア"
+   "publisher": "ギャラリーレア",
+   "cache": "text/5534f6b9878e1dbe.txt"
   },
   {
    "id": "S094",
    "url": "https://first-class.ne.jp/columns/birkin_price",
    "label": "日本中古商 First Class 的 Birkin 价格专文：日、法、美三地公价换算与热门色二手价",
    "retrieved": "2026-09-20",
-   "publisher": "ファーストクラス"
+   "publisher": "ファーストクラス",
+   "cache": "text/59dceb3cb150a11f.txt"
   },
   {
    "id": "S095",
    "url": "https://www.withprive.com/en/blog/vat-refund-rates-by-country",
    "label": "2026 年各国退税对照表：标准 VAT 税率、实际净退税率、最低消费门槛与系统名称",
    "retrieved": "2026-09-20",
-   "publisher": "Privé"
+   "publisher": "Privé",
+   "cache": "text/c7ec168193768262.txt"
   },
   {
    "id": "S096",
    "url": "https://zapptax.com/en/blog/vat-refund-france-step-by-step-guide-for-non-eu-residents",
    "label": "法国退税分步指南：门槛金额、PABLO 海关验证时点、离境期限与净退款比例",
    "retrieved": "2026-09-20",
-   "publisher": "Zapptax"
+   "publisher": "Zapptax",
+   "cache": "text/0b6b41a89c5f310c.txt"
   },
   {
    "id": "S097",
    "url": "https://u.ae/en/information-and-services/finance-and-investment/taxation/vat/tax-refund-for-tourists",
    "label": "阿联酋政府官方门户的游客 VAT 退税说明：税率、最低消费、运营方与验证方式",
    "retrieved": "2026-09-20",
-   "publisher": "The Official Platform of the UAE Government"
+   "publisher": "The Official Platform of the UAE Government",
+   "cache": "text/90433115a1ff9f50.txt"
   },
   {
    "id": "S098",
    "url": "https://komehyo.jp/include_html/ec/guide/article/index.html",
    "label": "KOMEHYO 官方购物指南：商品等级定义表与包袋保修、返修周期说明",
    "retrieved": "2026-09-20",
-   "publisher": "KOMEHYO"
+   "publisher": "KOMEHYO",
+   "cache": "text/15afcfd47b9d2860.txt"
   },
   {
    "id": "S081",
    "url": "https://www.christies.com/en/stories/deconstructed-the-hermes-himalaya-def19c0046a9443988163435ade14494",
    "label": "佳士得专题文章，梳理喜马拉雅系列历年拍卖成交价与染色工艺",
    "retrieved": "2026-09-20",
-   "publisher": "Christie's"
+   "publisher": "Christie's",
+   "cache": "text/9be6863861b883f9.txt"
   },
   {
    "id": "S082",
    "url": "https://www.christies.com/en/stories/how-to-authenticate-your-hermes-handbag-168f22f901c649ceb8da881b92e62aa1",
    "label": "佳士得手袋部国际主管 Rachel Koffsky Parker 谈鉴定、盲印与年份刻印",
    "retrieved": "2026-09-20",
-   "publisher": "Christie's"
+   "publisher": "Christie's",
+   "cache": "text/3b75fbe6df4513c1.txt"
   },
   {
    "id": "S083",
    "url": "https://www.sothebys.com/en/articles/complete-buying-guide-hermes-himalayan-birkin",
    "label": "苏富比喜马拉雅 Birkin 购买指南：系列年表、二手价格区间、影响价格的因素",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/c9d6182f6380784a.txt"
   },
   {
    "id": "S084",
    "url": "https://www.sothebys.com/en/articles/the-top-6-most-expensive-hermes-birkin-bags",
    "label": "苏富比最贵六只 Birkin：简·铂金原型包与钻石喜马拉雅成交记录",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/b158a5910ab51401.txt"
   },
   {
    "id": "S085",
    "url": "https://www.sothebys.com/en/articles/the-most-expensive-hermes-bag-sales-at-auction-2022",
    "label": "苏富比 2022 年爱马仕包成交榜，含巴黎喜马拉雅 Kelly 25 的估价倍数",
    "retrieved": "2026-09-20",
-   "publisher": "Sotheby's"
+   "publisher": "Sotheby's",
+   "cache": "text/b0c8726f1143b65c.txt"
   },
   {
    "id": "S101",
    "url": "https://www.rebag.com/thevault/hermes-101-stamps/",
    "label": "Rebag 二手平台《Hermès 101: Stamps》：盲刻由年份刻印＋工匠刻印两部分组成、压印（embossed）而非印刷、位置藏在铭牌后或内袋；给出 1922–1944 无刻印、1945–1970 无框、1971–1996 圆框、1997–2014 方框、2015 起无框且改为 L LL NNN LL 结构的完整字母年份表，并记录 2011 年方框 O 与工匠刻印 J 连体、2014 年末出现无框 R 两个过渡期例外",
    "retrieved": "2026-09-20",
-   "publisher": "Rebag"
+   "publisher": "Rebag",
+   "cache": "text/b9758a19500861d3.txt"
   },
   {
    "id": "S102",
    "url": "https://byjull.com/journal/hermes-blind-stamps-explained",
    "label": "伦敦爱马仕买手行 JULL 的盲刻指南（2026 更新）：四个时代划分、2015 起字母不再按字母表排列、逐年份字母表至 2026 = G；明确写出“年份早于款式投产即直接否决”“压印过深／字体走形／位置偏移是红旗”“正确字母只能筛掉低仿，复刻当年代号只需数月”",
    "retrieved": "2026-09-20",
-   "publisher": "BY JULL LTD"
+   "publisher": "BY JULL LTD",
+   "cache": "text/76379e83159ffaf8.txt"
   },
   {
    "id": "S103",
    "url": "https://lilacblue.com/pages/hermes-date-stamps",
    "label": "Lilac Blue London《Full list of Hermès Date Stamps Since 1945》：1945–1970 / 1971–1996 / 1997–2014 / 2015–present 的字母对年份全表（含 2024 = W、2025 = K），特殊皮革符号表（□ 短吻鳄、•• 尼罗鳄、^ 湾鳄、– 与 = 两种巨蜥），并说明爱马仕不像 Chanel 那样出具真伪证书",
    "retrieved": "2026-09-20",
-   "publisher": "Lilac Blue London"
+   "publisher": "Lilac Blue London",
+   "cache": "text/d0b2846462b5abdd.txt"
   },
   {
    "id": "S104",
    "url": "https://montaigne01.com/hermes-stamps/",
    "label": "台中二手精品店蒙田《愛馬仕年刻是什麼？2026 最新改版》（2026-09-08 更新）：以中文复述同一套四时代与字母年份对照、2026 年最新年刻为无框 G；补充刻印位置清单（金属扣背面、内里夹层边缘、内里底部、拉链层）与“2015 年因假货猖獗，位置慢慢转移到包内侧”的说法，以及马蹄形＝特别订购、流星＝工匠自制",
    "retrieved": "2026-09-20",
-   "publisher": "蒙田精品店"
+   "publisher": "蒙田精品店",
+   "cache": "text/4173a0d31cce78a6.txt"
   },
   {
    "id": "S105",
    "url": "https://www.fashionphile.com/blogs/academy/hermes-stamp-symbols",
    "label": "美国二手平台 FASHIONPHILE 鉴定部门《Hermes Stamp Symbols & What They Mean》：逐一说明 □＝Alligator mississippiensis（密西西比河水系养殖）、双点＝Crocodile Niloticus、尖角＝Crocodile Porosus（亚洲与澳洲）、单横／双横＝两种巨蜥、马蹄形＝特别订购 HSS 且紧挨 Hermès Made in France 一行、流星＝工匠自留品；并注明鸵鸟皮没有独立的符号",
    "retrieved": "2026-09-20",
-   "publisher": "FASHIONPHILE"
+   "publisher": "FASHIONPHILE",
+   "cache": "text/7720ce995e2585cc.txt"
   },
   {
    "id": "S106",
    "url": "https://ginzaxiaoma.com/zh-CN/blog/appraisal-details",
    "label": "日本银座 XIAOMA《如何辨别真假爱马仕？专业鉴定到底看哪些细节？》（2026-08 更新）：中文列出专业鉴定的七个检查维度（包型与走线、五金、刻印的字体／深浅／位置／加工完成度、皮革特征、内部结构、整体一致性、与正品数据库比对），结论是刻印本身及任何单一特征都不足以判定真伪",
    "retrieved": "2026-09-20",
-   "publisher": "GINZA XIAOMA"
+   "publisher": "GINZA XIAOMA",
+   "cache": "text/9e206535b20b3db0.txt"
   },
   {
    "id": "S111",
    "url": "https://www.peta.org/media/news-releases/caught-on-video-hermes-horror-live-reptiles-sawed-open-on-suppliers-farm/",
    "label": "PETA 2015 年 6 月新闻稿，公布德州与津巴布韦两家供货场的卧底影像细节",
    "retrieved": "2026-09-20",
-   "publisher": "PETA"
+   "publisher": "PETA",
+   "cache": "text/82a23398ee7b7d9a.txt"
   },
   {
    "id": "S112",
    "url": "https://wwd.com/fashion-news/fashion-scoops/peta-alleges-cruelty-hermes-suppliers-10167133/",
    "label": "WWD 2015 年 6 月报道，含得州主管部门核查结论与爱马仕的 CITES 声明",
    "retrieved": "2026-09-20",
-   "publisher": "WWD"
+   "publisher": "WWD",
+   "cache": "text/17d583debecbf0ff.txt"
   },
   {
    "id": "S113",
    "url": "https://www.vice.com/en/article/hermes-plans-to-build-australias-biggest-crocodile-factory-farm/",
    "label": "VICE 2020 年 11 月报道北领地 Lambells Lagoon 新建鳄鱼场的存栏与扩产幅度",
    "retrieved": "2026-09-20",
-   "publisher": "VICE"
+   "publisher": "VICE",
+   "cache": "text/4f30b36a69c39f01.txt"
   },
   {
    "id": "S114",
    "url": "https://www.worldanimalprotection.org.au/news/australian-crocodiles-be-cruelly-slaughtered-new-hermes-farm/",
    "label": "世界动物保护协会澳大利亚分会 2021 年针对爱马仕扩建的报告要点",
    "retrieved": "2026-09-20",
-   "publisher": "World Animal Protection"
+   "publisher": "World Animal Protection",
+   "cache": "text/f80b17559dc2e904.txt"
   },
   {
    "id": "S115",
    "url": "https://finance.hermes.com/en/animal-welfare/",
    "label": "爱马仕集团官网动物福利专页：政策原则、委员会与各项百分比",
    "retrieved": "2026-09-20",
-   "publisher": "Hermès International"
+   "publisher": "Hermès International",
+   "cache": "text/a9d0f3e4219625c5.txt"
   },
   {
    "id": "S116",
@@ -2424,21 +2507,24 @@
    "url": "https://www.fmglaw.com/commercial-and-complex-litigation/exclusive-access-or-exclusion-hermes-faces-antitrust-lawsuit-over-purchase-policies/",
    "label": "美国律所梳理该加州联邦法院诉状：购物历史筛客与配件捆绑指控",
    "retrieved": "2026-09-20",
-   "publisher": "Freeman Mathis & Gary"
+   "publisher": "Freeman Mathis & Gary",
+   "cache": "text/7fe4ff2de1f10c0d.txt"
   },
   {
    "id": "S119",
    "url": "https://www.vogue.com/article/hermes-wins-birkin-antitrust-case-why-it-matters",
    "label": "Vogue 2025 年 9 月：案件被第二次驳回且不得再诉，含 Donato 法官意见",
    "retrieved": "2026-09-20",
-   "publisher": "Vogue"
+   "publisher": "Vogue",
+   "cache": "text/33b38cc1fd85ed33.txt"
   },
   {
    "id": "S1110",
    "url": "https://app.xinhuanet.com/news/article.html?articleId=350cc4a8-258a-45b4-b35a-b6a0c1d9e1cf",
    "label": "新华网客户端转中央广播电视总台调查：宁波消费者配货 140 多万元、配货比例 1:1 至 1:1.5",
    "retrieved": "2026-09-20",
-   "publisher": "新华网客户端"
+   "publisher": "新华网客户端",
+   "cache": "text/c5441006491d345b.txt"
   }
  ],
  "category": "箱包时装",
@@ -2458,17 +2544,27 @@
   "hero_motif": "saddle_stitch",
   "hero_note": "以爱马仕橙礼盒与马鞍针脚的斜纹作为开场母题，把'手工'两字变成可见的东西"
  },
- "generated_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "generated_date": "2026-10-05",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 17,
  "created_date": "2026-09-20",
  "site": {
-  "url": "https://hermes-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0d72c-11eb-74d5-9178-d732514e54fa",
-  "slug": "hermes",
-  "content_sha": "58c59108802293d8",
-  "published_date": "2026-09-25",
+  "url": "https://fashion-gtqdc11h6po.qoder.website/hermes/hermes.html",
+  "group": "fashion",
+  "path": "/hermes/hermes.html",
+  "project_id": "01a104e7-35a1-77e3-be3f-78846ddc6565",
+  "content_sha": "22985af3025522df",
+  "published_date": "2026-10-10",
   "access": "public"
+ },
+ "cover": {
+  "file": "images/13_爱马仕_工匠_手工缝制.jpg",
+  "alt": "爱马仕仍然是最保值的奢侈品牌 – NOWRE现客",
+  "caption": "爱马仕仍然是最保值的奢侈品牌 – NOWRE现客",
+  "source_page": "https://nowre.com/fashion/720845/aimashirengranshizuibaozhideshechipinpai/",
+  "width": 1472,
+  "height": 883,
+  "query": "爱马仕 工匠 手工缝制"
  }
 }

@@ -75,6 +75,12 @@ p{margin:.75rem 0}
   color:var(--accent-ink);margin-bottom:.45rem}
 
 .wrap{width:var(--shell);margin:0 auto;padding:0 0 clamp(3rem,6vw,6rem)}
+/* 返回主页：一个文字链接，不做按钮——它不是这一篇的行动号召，
+   而且按钮化的东西压在封面下面会把封面构图的注意力抢走。 */
+.backhome{padding-top:clamp(.7rem,2vw,1.1rem)}
+.backhome-link{font-size:.82rem;color:var(--muted);text-decoration:none;
+  border-bottom:1px solid var(--rule);padding-bottom:.15rem}
+.backhome-link:hover{color:var(--accent-ink);border-bottom-color:var(--accent-ink)}
 
 /* ---------- 宽屏用"结构"填，而不是用"行长"填 ----------
    目录进左侧常驻栏，正文锁在可读行长（44rem ≈ 32 个汉字/行）。
@@ -127,8 +133,8 @@ nav.toc ol{list-style:none;margin:0;padding:0;display:grid;
   grid-template-columns:repeat(auto-fill,minmax(min(15rem,100%),1fr));gap:.3rem .9rem}
 nav.toc li a{display:flex;gap:.6rem;align-items:baseline;font-size:.87rem;max-width:none;
   text-decoration:none;padding:.34rem .4rem;border-radius:var(--r-chip)}
-nav.toc li a:hover{background:var(--soft);color:var(--primary)}
-nav.toc .anch{flex:none;font-family:var(--display);font-size:.8rem;color:var(--primary);
+nav.toc li a:hover{background:var(--soft);color:var(--primary-ink)}
+nav.toc .anch{flex:none;font-family:var(--display);font-size:.8rem;color:var(--primary-ink);
   font-weight:600;min-width:1.4em}
 
 /* ---------- 章节：图先于文 ---------- */
@@ -187,6 +193,27 @@ td.k{font-weight:600}
 .num,td.num{font-family:var(--num);font-variant-numeric:tabular-nums;font-size:.86em}
 caption{caption-side:bottom;text-align:left;font-size:.74rem;color:var(--muted);padding:.55rem .85rem}
 
+/* ---------- 代码块：示例代码 / API 请求响应 / 文件树 ----------
+   滚动容器是 <pre> 本身，不是外面的 figure：语言标要留在原地，
+   跟着代码一起横滚的话第一行字会被推出可视区；两块代码也绝不共用一个滚动容器。
+   字族用 var(--num)——24 套主题的 numFamily 全是同一份等宽栈，不再抄第二份。 */
+figure.codewrap{margin:1.2rem 0 0;padding:0;border:1px solid var(--rule);border-radius:var(--r-card);
+  background:var(--surface);box-shadow:var(--sh-1);overflow:hidden}
+.codebar{display:flex;flex-wrap:wrap;align-items:baseline;gap:.45rem .8rem;
+  padding:.5rem .9rem;border-bottom:1px solid var(--rule)}
+.codebar .lang{font-family:var(--num);font-size:.68rem;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--primary-ink)}
+.codecap{font-size:.76rem;color:var(--muted-ink)}
+pre.code{margin:0;padding:.85rem .95rem;overflow-x:auto;overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;background:transparent;color:var(--ink);
+  font-family:var(--num);font-size:.79rem;line-height:1.72;letter-spacing:0;
+  white-space:pre;tab-size:2}
+
+@media (max-width:47.99rem){
+  pre.code{font-size:.72rem;padding:.7rem .75rem}
+  .codebar{padding:.45rem .7rem}
+}
+
 .timeline{list-style:none;margin:.5rem 0 0;padding:0 0 0 .35rem}
 .timeline li{position:relative;padding:0 0 1.05rem 1.3rem;border-left:1px solid var(--rule)}
 .timeline li:last-child{border-left-color:transparent;padding-bottom:0}
@@ -211,7 +238,7 @@ caption{caption-side:bottom;text-align:left;font-size:.74rem;color:var(--muted);
   border-bottom:1px solid var(--rule)}
 .steps li:last-child{border-bottom:0}
 .steps li::before{content:counter(st);position:absolute;left:0;top:.62rem;
-  font-family:var(--num);font-size:.74rem;font-weight:600;color:var(--primary);
+  font-family:var(--num);font-size:.74rem;font-weight:600;color:var(--primary-ink);
   background:var(--soft);width:1.7rem;height:1.7rem;display:grid;place-items:center;
   border-radius:var(--r-pill)}
 .steps .sp-title{font-weight:600;display:block}
@@ -240,7 +267,11 @@ blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);ma
 .chart .lab{font-size:.82rem;font-weight:500;color:var(--ink)}
 .chart .track{height:.6rem;border-radius:var(--r-pill);background:var(--soft);overflow:hidden}
 .chart .bar{height:100%;border-radius:var(--r-pill);background:var(--primary)}
-.chart .val{font-family:var(--num);font-size:.95rem;color:var(--primary)}
+/* 小字用 --primary-ink 而不是 --primary：inkFor() 就是为这件事存在的（见文件末尾），
+   系统里 .tag / .chap-head .num / .timeline .yr / .refs .ref 全都走它。
+   这三处是漏改：G-13 实测 深芥 #8A8421 压在 surface 上只有 3.25:1。
+   别改回 var(--primary)——品牌色是为识别选的，不是为易读选的。 */
+.chart .val{font-family:var(--num);font-size:.95rem;color:var(--primary-ink)}
 .chart .val .unit{font-size:.7rem;color:var(--muted);margin-left:.16rem}
 .chart .axis{font-size:.7rem;color:var(--muted);margin-top:.1rem}
 @media(max-width:640px){
@@ -309,7 +340,79 @@ blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);ma
 .motif-choice{display:flex;flex-direction:column;gap:.34rem;justify-content:center;height:100%;padding:.2rem 0}
 .motif-choice i{display:block;height:.42rem;border-radius:99px;background:var(--primary);opacity:.26}
 .motif-choice i.hot{background:var(--accent);opacity:.95;height:.62rem}
+/* 摩根：一条干在 1933 那道口子上断成两条腿。左边是家族干（一条连续实线），
+   中间那道虚线是分家本身——它是断开而不是接上的，所以画成 gap + 断口，
+   不能画成一条实线穿过（那读起来像"延续"，正是这个记忆点要反对的误读）。
+   右边两条腿粗细一致、长度一致：两条腿都是独立法人，谁也不是谁的分支，
+   所以不画成一大一小。区别只放在颜色上——主色是银行、强调色是证券。 */
+.motif-morgan{display:grid;grid-template-columns:38% 2px 1fr;grid-template-rows:1fr 1fr;
+  gap:.42rem 0;align-items:center;height:2.6rem}
+.motif-morgan .stem{grid-column:1;grid-row:1/3;height:.52rem;border-radius:99px;
+  background:var(--primary);opacity:.9}
+.motif-morgan .cut{grid-column:2;grid-row:1/3;align-self:stretch;
+  background:repeating-linear-gradient(180deg,var(--muted) 0 4px,transparent 4px 9px);opacity:.7}
+.motif-morgan .leg{grid-column:3;height:.52rem;border-radius:99px}
+.motif-morgan .leg.bank{grid-row:1;background:var(--primary);opacity:.85}
+.motif-morgan .leg.sec{grid-row:2;background:var(--accent);opacity:.85}
+.cover-noimg .motif-morgan{height:100%;padding:1.2rem;gap:.9rem}
+.cover-noimg .motif-morgan .stem{height:1.1rem}
+.cover-noimg .motif-morgan .leg{height:1.1rem}
 .cover-noimg .motif-attn{height:100%;padding:1.2rem}
+/* Agent 开发篇记忆点：一轮对话。绿条是模型吐出来的那一句，蓝条是它调用的
+   tool / 数据库，右下角实心方块是还在等的光标。
+   两条的宽度用内缩百分比表达"一次回合里模型的话总比一次调用长"，
+   它不代表任何数量关系，图上也不写数字（D-22）。
+   光标是**静态**的：产物零运行时 JS，闪不动，也不该闪。 */
+.motif-turn{position:relative;display:flex;flex-direction:column;justify-content:center;
+  gap:.4rem;height:2.6rem}
+.motif-turn .turn{height:.52rem;border-radius:99px}
+.motif-turn .turn.out{width:82%;background:var(--primary);opacity:.88}
+.motif-turn .turn.call{width:56%;background:var(--accent);opacity:.88}
+.motif-turn .caret{position:absolute;right:.1rem;bottom:.16rem;width:.6rem;height:1rem;
+  background:var(--primary)}
+.cover-noimg .motif-turn{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-turn .turn{height:1.1rem}
+.cover-noimg .motif-turn .caret{width:1.1rem;height:2.1rem;right:.9rem;bottom:1.1rem}
+/* 晶圆记忆点：左半是切开的 die 阵列，右半是整片不切。
+   两边的格子密度刻意不同——右半的线是"还在晶圆上的划格线"，
+   左半的缝是"已经切开的道"，读出来就是这道切割线落没落下。 */
+.motif-wafer{display:grid;grid-template-columns:1fr 3px 1fr;gap:.5rem;align-items:stretch;
+  height:2.6rem}
+.motif-wafer .half{border-radius:6px;min-width:0}
+.motif-wafer .half.diced{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);
+  gap:.16rem;padding:.16rem;background:var(--soft);border:1px solid var(--rule)}
+.motif-wafer .half.diced i{background:var(--primary);border-radius:1px;opacity:.85}
+.motif-wafer .scribe{background:repeating-linear-gradient(180deg,var(--accent) 0 4px,transparent 4px 9px);
+  opacity:.85}
+.motif-wafer .half.whole{background-color:var(--primary);opacity:.9;
+  background-image:linear-gradient(to right,rgba(255,255,255,.34) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(255,255,255,.34) 1px,transparent 1px);
+  background-size:12.5% 12.5%}
+.cover-noimg .motif-wafer{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-wafer .scribe{width:6px}
+/* 外溢记忆点：左边一条主干，右边四条长短错开的分叉。
+   用 align-items:center 让主干垂直居中，四条臂从它右端散开。 */
+.motif-fan{display:grid;grid-template-columns:6px 1fr;gap:.42rem;align-items:center;height:2.6rem}
+.motif-fan .trunk{align-self:stretch;border-radius:99px;background:var(--accent);opacity:.9}
+.motif-fan .fan{display:flex;flex-direction:column;justify-content:center;gap:.28rem;min-width:0}
+.motif-fan .fan i{height:.34rem;border-radius:99px;background:var(--primary)}
+.motif-fan .fan .a0{width:96%;opacity:.9}
+.motif-fan .fan .a1{width:78%;opacity:.72}
+.motif-fan .fan .a2{width:60%;opacity:.55}
+.motif-fan .fan .a3{width:42%;opacity:.4}
+.cover-noimg .motif-fan{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-fan .trunk{width:10px}
+.cover-noimg .motif-fan .fan i{height:.85rem}
+/* 收益率曲线：两条等高柱阵，上面正常、下面倒挂。
+   align-items:end 让柱高读成"从基线长起来"，而不是从顶上挂下来。 */
+.motif-curve{display:grid;grid-template-rows:1fr 1fr;gap:.34rem;height:2.6rem}
+.motif-curve .cline{display:flex;align-items:flex-end;gap:.24rem;min-height:0}
+.motif-curve .cline i{flex:1 1 0;min-width:0;background:var(--primary);
+  border-radius:2px 2px 0 0;opacity:.85}
+.motif-curve .cline.inv i{background:var(--muted);opacity:.5}
+.motif-curve .cline.inv i.hot{background:var(--accent);opacity:.92}
+.cover-noimg .motif-curve{height:100%;padding:1.2rem;gap:1.1rem}
+.cover-noimg .motif-curve .cline i{border-radius:3px 3px 0 0}
 /* 光波导：一排耦出栅，越靠出瞳越亮 */
 .motif-guide{display:flex;align-items:stretch;gap:.22rem;height:2.4rem}
 .motif-guide i{flex:1 1 0;min-width:0;background:var(--primary);border-radius:1px}
@@ -369,6 +472,18 @@ blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);ma
 .motif-stack i.hot{opacity:.95;background:var(--accent)}
 .cover-noimg .motif-stack{height:100%;padding:1.4rem 1.2rem;gap:.55rem;justify-content:center}
 .cover-noimg .motif-stack i{height:.62rem}
+
+/* 价值链三层与"钱搬到了哪一层"：三条左对齐的横带，宽度由组件按含义给。
+   最上面那条只描边——它表示开源权重这一层**不收钱**，画成实心就把整幅的意思反了。
+   高度同样用固定 rem 而非 fr：这里只有三条，窄封面上挤不出去。 */
+.motif-rent{display:flex;flex-direction:column;align-items:flex-start;
+  justify-content:center;gap:.34rem;height:2.6rem}
+.motif-rent i{height:.42rem;min-height:0;border-radius:99px}
+.motif-rent i.open{background:transparent;border:1px solid var(--primary);opacity:.75}
+.motif-rent i.hot{background:var(--accent);opacity:.95}
+.motif-rent i.capex{background:var(--primary);opacity:.82}
+.cover-noimg .motif-rent{height:100%;padding:1.4rem 1.2rem;gap:.8rem;justify-content:center}
+.cover-noimg .motif-rent i{height:.8rem}
 
 /* MLCC 的交错内电极：竖条一半挂顶、一半挂底，交错才成电容。
    高度用百分比、条宽用 flex:1，封面从桌面压到手机窄盒时条数与交错关系都还在。 */

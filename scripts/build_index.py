@@ -125,9 +125,35 @@ def created_of(topic, data, fallback=""):
 
 
 class NotPublished(Exception):
-    """线上版主页要每一篇都已发布。缺一篇就报错，不悄悄退回相对路径——
+    """线上版主页要**已经分组的**每一篇都已发布。缺一篇就报错，不悄悄退回相对路径——
     退回的结果是一个看起来正常、点进去两篇行为不一致的主页：
-    一篇跳公网、一篇跳本地文件，而在公网托管的站上后者必然 404。"""
+    一篇跳公网、一篇跳本地文件，而在公网托管的站上后者必然 404。
+
+    10-04 重新定范围（memo D-34）：原来"任一篇没有 url 就拒绝出片"在配额挡住一篇时
+    把整张主页冻住了——**一条防呆判据在第二种失败成因下会变成阻塞器**（D-33）。
+    现在只有"声明在某个组里、却没有发布记录"才报错（那是记账坏了）；
+    一篇还没分到组的，跳过并说明，不再连坐。
+    """
+
+
+def _group_of(topic, root):
+    import publish as P
+    return P.group_of(topic, os.path.dirname(os.path.abspath(root)))
+
+
+def _slug_of(topic, fallback):
+    """组包里的目录名。权威是 `publish.topic_stem`，不在这里另定一套
+    ——slug 的"必须是人写下来的"那条规矩只该有一个执行点。"""
+    import publish as P
+    try:
+        return P.topic_stem(topic)
+    except P.PublishError:
+        return fallback
+
+
+def _page_name(topic, page):
+    """`<领域>.html` → `<slug>.html`。只换文件名主干，扩展名跟着包内布局走。"""
+    return page.replace(u"%s.html" % topic, u"%s.html" % _slug_of(topic, topic), 1)
 
 
 def _data_uri(abs_path):
@@ -141,27 +167,44 @@ def _data_uri(abs_path):
     return u"data:%s;base64,%s" % (mime, base64.b64encode(io.open(abs_path, "rb").read()).decode("ascii"))
 
 
-def collect(date=None, output_dir=None, variant="local"):
+def collect(date=None, output_dir=None, variant="local", topics=None, slug_paths=False):
+    """`topics` 给定时只收这些篇——组落地页和全站主页是同一段代码的两次调用。
+    不另写一个"组索引生成器"是刻意的：两套卡片迟早长出不一样。
+
+    `slug_paths` 是这段代码唯一必须知道"我要装进哪个布局"的地方：
+    `output/` 里文章住在 `<领域>/<领域>.html`（中文，file:// 双击能开），
+    而组包里它住在 `<slug>/<slug>.html`——深链不该是一串百分号编码。
+    落地页照抄 output 的布局，包里的每一张卡都会 404，
+    而 `pack` 照样报成功：它只搬文件，不看链接指哪儿。
+    """
     bar = V._bar()
     entries = []
     root = output_dir or OUTPUT
     if not os.path.isdir(root):
         return entries
-    for topic in sorted(os.listdir(root)):
+    dropped = []
+    for topic in (sorted(topics) if topics else sorted(os.listdir(root))):
         d = os.path.join(root, topic)
         dp = os.path.join(d, "data.json")
         if not os.path.isdir(d) or not os.path.isfile(dp):
+            if topics:
+                dropped.append((topic, u"没有 data.json"))
+                continue
             continue
         data = json.load(io.open(dp, encoding="utf-8"))
         # 一篇只有一页，名字稳定（W-145）。真出现多页时不在这里判——G-01 会判死，
         # 上面那个 _publishable 就会把这个领域跳过，两处判据不必各写一遍。
         pages = V.published_pages(d)
         if not pages:
+            if topics:
+                dropped.append((topic, u"没有产物页面"))
             continue
         fails = _publishable(topic, root)
         if fails:
             sys.stderr.write(u"  索引跳过 %s：闸门 %d 条未过（%s）\n"
                              % (topic, len(fails), fails[0][:90]))
+            if topics:
+                dropped.append((topic, u"闸门 %d 条未过" % len(fails)))
             continue
         outline_path = os.path.join(ROOT, "config", "topics", topic + ".json")
         tags = data.get("tags") or []
@@ -170,18 +213,40 @@ def collect(date=None, output_dir=None, variant="local"):
             raw = json.load(io.open(outline_path, encoding="utf-8"))
             tags = tags or raw.get("tags", [])
             category = category or raw.get("category", "")
+        # 组包里的目录名 = 这一篇的 slug；output/ 里的目录名 = 领域名。
+        # 卡片链接和封面引用都必须按**目标布局**算，否则落地页每一张卡都 404。
+        stem = _slug_of(topic, topic) if slug_paths else topic
         cover = cover_of(data)
         if cover and cover.get("file", "").startswith("images/"):
-            # 索引在 output/ 下，封面路径要相对它重算；直接抄 data.json 的相对路径会 404
-            cover = dict(cover, file="%s/%s" % (topic, cover["file"]))
+            # 索引在 output/ 下（或组包的根下），封面路径要相对它重算；
+            # 直接抄 data.json 的相对路径会 404
+            cover = dict(cover, file="%s/%s" % (stem, cover["file"]))
         site = data.get("site") or {}
-        href_local = "%s/%s" % (topic, pages[-1])
+        href_local = "%s/%s" % (stem, _page_name(topic, pages[-1]) if slug_paths
+                                else pages[-1])
         if variant == "hosted":
             if not site.get("url"):
-                raise NotPublished(u"%s 还没有已发布地址，线上版主页不能出" % topic)
+                if _group_of(topic, root):
+                    raise NotPublished(
+                        u"%s 声明在某个组里却没有发布记录——组站已经发出去了，"
+                        u"深链必然 404" % topic)
+                sys.stderr.write(u"  线上版主页跳过 %s：还没分到任何组\n" % topic)
+                continue
             href = site["url"]
             if cover and cover.get("file"):
-                cover = dict(cover, file=_data_uri(os.path.join(root, cover["file"])))
+                # 卡片框只有 ~343 CSS px（`.probe/measure_cards.mjs` 三档量过），
+                # 内联原文那张 1472–2400 px 的图等于白烧一个数量级——主页 9.9 MB
+                # 就是这么来的，而主页是读者点进来的第一屏。见 W-185 / scripts/thumbs.py
+                import thumbs as T
+                src = os.path.join(root, cover["file"])
+                px = (bar.get("index") or {}).get("card_cover_px") or 700
+                th = T.thumb_for(src, px)
+                if th is None:
+                    sys.stderr.write(
+                        u"  %s：卡片缩略图没生成（没装 Pillow 或图打不开），"
+                        u"这张退到原图——主页会明显变大，不是静默降级就好\n" % topic)
+                    th = src
+                cover = dict(cover, file=_data_uri(th))
         else:
             href = href_local
         entries.append({
@@ -200,20 +265,38 @@ def collect(date=None, output_dir=None, variant="local"):
         })
     # DOM 顺序 = 创建时间升序；默认显示是"最新在前"（CSS order 翻过来），
     # 所以 --asc/--desc 两组序号由这里发。
+    if topics and dropped:
+        # 全站主页可以少一篇（那篇还没分组，跳过并说明）。
+        # **组落地页不行**：少一个成员就是那个站里少一页，
+        # 而它的深链已经记在 data.json 与 web_list 上了——线上 404，全站闸门却全绿。
+        raise RuntimeError(
+            u"组落地页拒绝生成：%s。要么修好它，要么把它从这一组里正式摘出去并重发，"
+            u"不许静默少一页"
+            % u"；".join(u"%s（%s）" % d for d in dropped))
     entries.sort(key=lambda e: (e["created"], e["topic"]))
     return entries
 
 
-def build(date=None, output_dir=None, variant="local"):
+def build(date=None, output_dir=None, variant="local", topics=None, out=None,
+          root=None, home_url=None, title=None, slug_paths=False):
     """`output_dir` 让调用方（generate.py）把它自己那套产物目录传进来。
     不传就用模块默认——命令行 `python scripts/build_index.py` 的行为不变。
     为什么必须由调用方传：测试 patch 的是 `generate.OUTPUT`，
-    索引自己算路径就会绕过那个 patch，跑一次测试改一次入库产物。"""
+    索引自己算路径就会绕过那个 patch，跑一次测试改一次入库产物。
+
+    `topics` + `out` + `title` + `home_url` 是组落地页要的四个参数：
+    落地页和全站主页**必须是同一段代码的两次调用**，否则两套卡片迟早长得不一样。
+    """
     root = output_dir or OUTPUT
-    entries = collect(date, root, variant)
+    entries = collect(date, root, variant, topics=topics, slug_paths=slug_paths)
     if not entries:
-        candidates = _candidates(root)
+        candidates = _candidates(root) if not topics else []
         if not candidates:
+            if topics:
+                # 指定了成员却一篇都渲染不出来：这一组会发成一个空站，
+                # 而空站的 index.html 看起来完全正常。必须炸，不能返回 None。
+                raise RuntimeError(u"组落地页拒绝生成：指定的 %d 篇没有一篇可上架"
+                                   % len(topics))
             sys.stderr.write(u"output/ 下还没有任何专题页，索引跳过\n")
             return None
         # 有产物、却被闸门全挡——这不是"还没生成"，是出事了。
@@ -225,13 +308,20 @@ def build(date=None, output_dir=None, variant="local"):
             % (len(candidates), u"、".join(candidates[:5])))
     today = date or dt.date.today().isoformat()
     payload = {"entries": entries, "generated_date": today}
+    if title:
+        payload["title"] = title
+    if home_url:
+        payload["home_url"] = home_url
     tmp = tempfile.NamedTemporaryFile("w", suffix=".json", delete=False, encoding="utf-8")
     json.dump(payload, tmp, ensure_ascii=False)
     tmp.close()
     # 本地版就是 output/index.html（今天的行为）。线上版落在仓库的 dist/home/，
     # 位置从 output_dir 的上一层推——这样测试把它指到 tmp 时不会写进真实仓库，
     # 也不用再多一个"要记得 patch 的常量"。
-    if variant == "hosted":
+    if out:
+        out = os.path.abspath(out)
+        os.makedirs(os.path.dirname(out), exist_ok=True)
+    elif variant == "hosted":
         out = os.path.join(os.path.dirname(os.path.abspath(root)), "dist", "home", "index.html")
         os.makedirs(os.path.dirname(out), exist_ok=True)
     else:
@@ -257,15 +347,25 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=u"生成索引主页 output/index.html")
     ap.add_argument("--date", help=u"覆盖索引显示的生成日期")
     ap.add_argument("--json", action="store_true", help=u"只打印条目清单，不渲染")
+    ap.add_argument("--topics", help=u"逗号分隔的领域名：只渲染这些（组落地页用）。"
+                                     u"不给就是 output/ 下全部")
+    ap.add_argument("--out", help=u"写到这个文件而不是默认位置（组落地页传 "
+                                  u"dist/<组>/index.html）")
+    ap.add_argument("--home-url", dest="home_url",
+                    help=u"全局主页地址。组落地页用它渲染「全部专题」入口；不给就没有这个链接")
+    ap.add_argument("--title", help=u"页面标题与顶栏品牌名（组落地页传类别名）")
     ap.add_argument("--variant", choices=["local", "hosted"], default="local",
                     help=u"local=链相对路径（output/index.html，今天的行为）；"
                          u"hosted=链各篇已发布站点、封面内联 base64（dist/home/index.html）")
     args = ap.parse_args(argv)
+    topics = [t.strip() for t in args.topics.split(u",")] if args.topics else None
     if args.json:
-        print(json.dumps(collect(args.date, variant=args.variant), ensure_ascii=False, indent=1))
+        print(json.dumps(collect(args.date, variant=args.variant, topics=topics),
+                         ensure_ascii=False, indent=1))
         return 0
     try:
-        path = build(args.date, variant=args.variant)
+        path = build(args.date, variant=args.variant, topics=topics, out=args.out,
+                     home_url=args.home_url, title=args.title)
     except Exception as e:
         sys.stderr.write(u"✗ %s\n" % e)
         return 1

@@ -831,7 +831,13 @@ def test_rerun_reuses_images_already_on_disk(tmp_path, bar, monkeypatch):
                        downloader=lambda url, timeout=25, opener=None: same)
     assert len(second) == 1, "重跑一章图都没拿到"
     assert second[0]["file"] == first[0]["file"], "复用了别的文件名，会留下孤儿图"
-    assert len(os.listdir(os.path.join(str(tmp_path), "images"))) == 1
+    # 原来这句数 images/ 里的**所有**文件。入库压缩给每张图配了一个 `.srcsha` 源哈希侧车
+    # （去重要按源字节比，压过的盘上字节和下载字节永不相等），按文件数就变成 2。
+    # 判据本来就是"没有第二张图"，所以按图片扩展名数——数全部文件会把任何新增辅助文件
+    # 都算成回归，那和 G-03 早年"只放过 manifest"的特例是同一种错。
+    imgs = [f for f in os.listdir(os.path.join(str(tmp_path), "images"))
+            if f.lower().endswith((".jpg", ".jpeg", ".png", ".gif", ".webp"))]
+    assert len(imgs) == 1
 
 
 def test_two_sections_never_share_one_image_file(tmp_path, bar, monkeypatch):

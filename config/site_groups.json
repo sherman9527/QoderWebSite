@@ -1,0 +1,184 @@
+{
+ "_comment": "成员与站点身份的唯一权威（memo D-34 授权的合站方案）。为什么要有这个文件而不是从 data.json 的 category 推：组一旦发布，成员就不能再动——换了组 URL 就变，等于把 W-145 刚修掉的「链接天天变」再犯一遍。category 是内容的属性，会随编辑判断改；这个文件是**发布事实**，只许追加。分裂规则：类别超过 40 MiB 才另开 <slug>-2 接新文章，已发布的不搬。键名就是公开地址的前缀，平台限定 3–51 字符：「人工智能」原本叫 ai，两个字符，prepare_site 不报错而是静默换成十六进制前缀，所以改名 ai-industry（2026-10-04）。",
+ "_fields": {
+  "members": "按名字排序；只追加，已发布的成员永不换组",
+  "project_id/site_id/url": "发布后由 publish.py record 写回，不手填",
+  "access": "private | public —— 发布 ≠ 可见，新站默认 private",
+  "published_date": "第一次成功发布的日期，重发不改",
+  "group_sha": "落地页 + 成员 own_sha 的指纹，见 publish.group_sha"
+ },
+ "groups": {
+  "ai-industry": {
+   "display_name": "人工智能",
+   "members": [
+    "AI制药",
+    "AI眼镜",
+    "ClaudeOpus55",
+    "Jev",
+    "Muse",
+    "Muse产业逻辑",
+    "大模型",
+    "大模型与加密货币",
+    "骁龙笔电"
+   ],
+   "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
+   "site_id": null,
+   "url": "https://ai-industry-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "573a88be99c1c42a"
+  },
+  "ai-compute": {
+   "display_name": "AI算力",
+   "members": [
+    "Cerebras",
+    "开源权重与算力估值"
+   ],
+   "project_id": "01a104a3-b5d1-737e-8d1c-6a970248f3c2",
+   "site_id": null,
+   "url": "https://ai-compute-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "9c40050be9c07e90"
+  },
+  "ai-engineering": {
+   "display_name": "AI工程",
+   "members": [
+    "Agent开发"
+   ],
+   "project_id": "01a104f3-9c36-756f-85ec-954aa6a6c7a9",
+   "site_id": null,
+   "url": "https://ai-engineering-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "123ee0e9b805f292"
+  },
+  "cars": {
+   "display_name": "汽车",
+   "members": [
+    "劳斯莱斯",
+    "宾利"
+   ],
+   "project_id": "01a104e7-b7ce-7459-820e-92fdbe79970b",
+   "site_id": null,
+   "url": "https://cars-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "b6dd46b1494d9dc1"
+  },
+  "components": {
+   "display_name": "电子元件",
+   "members": [
+    "MLCC"
+   ],
+   "project_id": "01a104f3-1627-7002-a9fa-7fc436a5d147",
+   "site_id": null,
+   "url": "https://components-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "a8f8783e1b831f47"
+  },
+  "fashion": {
+   "display_name": "箱包时装",
+   "members": [
+    "LV",
+    "爱马仕",
+    "香奈儿"
+   ],
+   "project_id": "01a104e7-35a1-77e3-be3f-78846ddc6565",
+   "site_id": null,
+   "url": "https://fashion-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "cd6fb165673b5793"
+  },
+  "financial-history": {
+   "display_name": "金融史",
+   "members": [
+    "摩根"
+   ],
+   "project_id": "01a104f2-dc84-754d-ae57-9ff25552860d",
+   "site_id": null,
+   "url": "https://financial-history-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "49be437497a2aeda"
+  },
+  "food": {
+   "display_name": "饮食风物",
+   "members": [
+    "咖啡"
+   ],
+   "project_id": "01a104f3-4ba3-7ecd-8c27-5edffa5982d7",
+   "site_id": null,
+   "url": "https://food-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "579205639235b815"
+  },
+  "fragrance": {
+   "display_name": "香水美妆",
+   "members": [
+    "娇兰"
+   ],
+   "project_id": "01a104f2-8599-7311-b1e9-98253ab65001",
+   "site_id": null,
+   "url": "https://fragrance-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "ba26c9147d8a60eb"
+  },
+  "macro-assets": {
+   "display_name": "宏观与资产",
+   "members": [
+    "美国中期选举与全球资产"
+   ],
+   "project_id": "01a104f3-6b3f-778d-b697-cd17ed2d0061",
+   "site_id": null,
+   "url": "https://macro-assets-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "f214a1458d2892df"
+  },
+  "macro-finance": {
+   "display_name": "宏观金融",
+   "members": [
+    "利率外溢",
+    "美债7%情景"
+   ],
+   "project_id": "01a104e8-7f52-7adb-a795-b1263101ba98",
+   "site_id": null,
+   "url": "https://macro-finance-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "a6fe13c78c55bfd3"
+  },
+  "retail": {
+   "display_name": "消费零售",
+   "members": [
+    "名创优品与泡泡玛特"
+   ],
+   "project_id": "01a104f2-33c6-7200-b29d-72a9a4a2533e",
+   "site_id": null,
+   "url": "https://retail-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "cfa8f041872ecfce"
+  },
+  "watches": {
+   "display_name": "腕表",
+   "members": [
+    "劳力士",
+    "浪琴",
+    "百达翡丽",
+    "积家"
+   ],
+   "project_id": "01a104e6-3ec2-72e3-974a-0811cf4dc8f0",
+   "site_id": null,
+   "url": "https://watches-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-04",
+   "group_sha": "9cce780a94adb9c4"
+  }
+ }
+}

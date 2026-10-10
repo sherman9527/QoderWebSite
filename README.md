@@ -9,20 +9,25 @@
 
 ## 1. 现在有什么
 
-20 篇已上架，全站质量闸门 `0 fail`（G-05 正文偏长的 warn 按 D-11/D-18 容忍）：
+**29 篇已上架**，全站质量闸门 `0 fail`（G-05 正文偏长的 warn 按 D-11/D-18 容忍）。发布单位是**组**：29 篇按类别装在 13 个组站里（`memo.md` D-34 授权、D-36 落地），每篇的公开地址是它所在组站的深链 `https://<组站前缀>-…qoder.website/<slug>/<slug>.html`。
 
-| 类别 | 篇 |
-|---|---|
-| 人工智能 | 大模型、Muse、Muse产业逻辑、AI眼镜、骁龙笔电、AI制药、大模型与加密货币 |
-| 腕表 | 劳力士、百达翡丽、积家、浪琴 |
-| 箱包时装 | 香奈儿、爱马仕、LV |
-| 汽车 | 宾利、劳斯莱斯 |
-| 电子元件 | MLCC |
-| 香水美妆 | 娇兰 |
-| 饮食风物 | 咖啡 |
-| 消费零售 | 名创优品与泡泡玛特 |
+| 组站前缀 | 类别 | 篇 |
+|---|---|---|
+| `ai-industry` | 人工智能 | AI制药、AI眼镜、ClaudeOpus55、Jev、Muse、Muse产业逻辑、大模型、大模型与加密货币、骁龙笔电 |
+| `watches` | 腕表 | 劳力士、浪琴、百达翡丽、积家 |
+| `fashion` | 箱包时装 | LV、爱马仕、香奈儿 |
+| `ai-compute` | AI算力 | Cerebras、开源权重与算力估值 |
+| `cars` | 汽车 | 劳斯莱斯、宾利 |
+| `macro-finance` | 宏观金融 | 利率外溢、美债7%情景 |
+| `ai-engineering` | AI工程 | Agent开发 |
+| `components` | 电子元件 | MLCC |
+| `financial-history` | 金融史 | 摩根 |
+| `food` | 饮食风物 | 咖啡 |
+| `fragrance` | 香水美妆 | 娇兰 |
+| `macro-assets` | 宏观与资产 | 美国中期选举与全球资产 |
+| `retail` | 消费零售 | 名创优品与泡泡玛特 |
 
-怎么把页面分享出去（本地文件 / 局域网 / 托管成公开 URL）：见 [`docs/sharing.md`](docs/sharing.md)。**当前状态：20 篇各自一个站、全部已发布且公开可达**，还有一个把它们连起来的主页站 <https://knoweverything-gtqdc11h6po.qoder.website/>，逐篇地址在 [`web_list.md`](web_list.md)。那个文件是派生物——权威源是各篇 `output/<领域>/data.json` 的 `site` 字段，别手改，改完 `python scripts/publish.py ledger` 重生成。实测上限是**单包 50 MiB**（最大的一篇 LV 29.78 MB 通过）；中文图片名不是问题（曾疑过，实验证伪）。
+怎么把页面分享出去（本地文件 / 局域网 / 托管成公开 URL）：见 [`docs/sharing.md`](docs/sharing.md)。**当前状态：29 篇按类别装进 13 个组站，全部已发布且公开可达**（开发者 2026-10-03 授权从"一篇一站"改成"一组一站"，见 `memo.md` D-34 / D-36），再加一个把它们连起来的主页站 <https://knoweverything-gtqdc11h6po.qoder.website/>。每篇的公开地址是它所在组站的深链 `https://<组>-…qoder.website/<slug>/<slug>.html`，逐篇地址在 [`web_list.md`](web_list.md)。那个文件是派生物——权威源是各篇 `output/<领域>/data.json` 的 `site` 字段加 `config/site_groups.json`，别手改，改完 `python scripts/publish.py ledger` 重生成。包的实测上限：工作上限 **40 MiB**（文档给的硬顶 50 MiB 没试过），真发出去过的最大一组 **30.90 MB / 160 个文件**；中文图片名不是问题（两次独立证据，`docs/sharing.md` 第 3 节）。
 
 **要发布或接手发布：[`docs/publishing-for-agents.md`](docs/publishing-for-agents.md) 是给 agent 的完整手册**——先 `python scripts/publish.py playbook` 向脚本要带参数的清单（含每篇该往哪个 projectId 更新），不要凭记忆拼参数。脚本负责出包与记账，托管那几步只有 agent 能调。
 
@@ -86,8 +91,11 @@ python scripts/generate.py 咖啡 --redo-images            # 只重做配图（�
 ### 校验与体检
 
 ```bash
-python scripts/validate.py --all         # 14 条质量闸门，唯一裁判
+python scripts/validate.py --all         # 15 条质量闸门，唯一裁判
 python scripts/audit_images.py           # 配图语义体检（跑题只有这道看得见）
+python scripts/query_naming.py           # 检索词点名体检：81.3% 未点名，成因分作者侧/大纲侧
+python scripts/freshness.py              # 全站到期清单：谁最久没逐条核对过来源（G-15 读同一个数）
+python scripts/sourcecache.py coverage   # 来源原文覆盖度（W-189：这个数在不在来源原文里，先要有原文）
 python scripts/contact_sheet.py 咖啡     # 一篇的配图拼成带标签联络表，给人眼看的
 pytest -q                                # 回归套件（332 项，fixtures 打桩，不碰真模型）
 ```
@@ -124,11 +132,11 @@ config/topics/<领域>.json
 
 ### 正文是**带类型的区块**，不是一坨 markdown
 
-`web/src/template/blocks.ts` 的 11 类区块，与 `config/topic_data.schema.json` 的枚举**必须完全一致**（契约测试钉住，改一处忘改另一处立刻红）：
+`web/src/template/blocks.ts` 的 12 类区块，与 `config/topic_data.schema.json` 的枚举**必须完全一致**（契约测试钉住，改一处忘改另一处立刻红）：
 
 ```
 prose | keyvalue_table | timeline | price_table | card_grid | steps
-quote | fact_strip | bar_chart | compare | note
+quote | fact_strip | bar_chart | compare | note | code
 ```
 
 模板渲染的是**结构**，闸门才能按类型查一致性——比如 `price_table` 每一行必须有 `source`、`timeline` 条目不许只有一个字。
@@ -242,7 +250,7 @@ Bing CN 会把短/歧义中文品牌名切词切进词典与地理内容：`积�
 
 ---
 
-## 7. 质量闸门：14 条，一个裁判
+## 7. 质量闸门：15 条，一个裁判
 
 `scripts/validate.py` 是唯一裁判（D-05）——CI、pre-commit、本地手动都调它，避免规则两处漂移。
 
@@ -250,7 +258,7 @@ Bing CN 会把短/歧义中文品牌名切词切进词典与地理内容：`积�
 |---|---|---|
 | G-01 | 产物命名与位置 | `output/<领域>/<领域>.html`，且**同目录不许出现第二页**——"只留最新版"靠闸门守，不靠约定 |
 | G-02 | 章节覆盖率 | 大纲声明的每节都必须存在且非空 |
-| G-03 | 图片 | 引用存在、有 alt、无孤儿、每章至少一张、数量达标 |
+| G-03 | 图片 | 引用存在、无孤儿、每章至少一张、数量达标；alt 与可见图注**不可皆空**（W-188 ②）；图注里有价格而该图来源没进本篇引用 → fail（W-188 ①）；声明了封面就必须带 alt |
 | G-04 | 自包含 | 零外部网络资源（R-01） |
 | G-05 | 篇幅 | 正文汉字数落在目标区间（R-05，软上限 warn） |
 | G-06 | 来源 | 数字必须有 `source.url`，价格必须有 `as_of`（R-02） |
@@ -262,8 +270,11 @@ Bing CN 会把短/歧义中文品牌名切词切进词典与地理内容：`积�
 | G-12 | 索引主页 | 封面真实存在、链接可达、类别非空（global） |
 | G-13 | 布局几何 | **真开浏览器**量七档视口：溢出、破版、对比度 AA（R-09） |
 | G-14 | 发布账实相符 | `web_list.md` 必须等于由各篇 `data.json.site` 重算出来的那份；还没有任何发布时保持沉默 |
+| G-15 | 新鲜度 | 读 `sources[].retrieved`：本篇**最后核对日**过没过阈值（阈值按该篇每章时点断言密度定，见 `config/quality_bar.json`），只 **warn**；全站到期清单 `python scripts/freshness.py` |
 
 G-13 存在的原因：pytest 全绿过两次，开发者一眼看出"自适应不对"——量几何这件事在字符串层面看不见。它必须指定内核，`scripts/browser.mjs` 探到 Edge 就用 `msedge`。
+
+G-15 存在的原因：29 篇**全部**给每条来源写了 `retrieved`，而 10-04 一查 `grep -n retrieved scripts/validate.py` 一条都没有——页面印满「截至 2026-09」「公价」「同比」，发布之后没有任何东西回头说"这条该重核了"。它只 warn：一条只与时间有关的判据若把产物钉死，等于用闸门逼一次全量重研（W-158 的教训是防呆判据在第二种成因下会变成阻塞器）。
 
 ---
 

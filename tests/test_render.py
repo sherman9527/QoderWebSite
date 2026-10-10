@@ -64,6 +64,18 @@ def _render(tmp_path, data, name):
     return io.open(str(out), encoding="utf-8").read()
 
 
+
+def test_the_page_links_back_home_exactly_once(tmp_path):
+    """「返回主页」是出包时的替换契约：标记必须**恰好一处**、href 是本地相对路径。
+
+    属性顺序也算契约的一部分（publish.py 按整串匹配），所以这里断言整串而不是正则。
+    """
+    data = json.load(io.open(FIX, encoding="utf-8"))
+    html = _render(tmp_path, data, "coffee")
+    mark = u'<a class="backhome-link" href="../index.html">'
+    assert html.count(mark) == 1, u"标记出现 %d 次" % html.count(mark)
+    assert u'class="backhome"' in html
+
 def test_a_bar_chart_draws_every_number_with_its_own_source(tmp_path):
     """评分图的全部意义是"这个数能点开核对"：柱子、数值、来源编号三者都必须在页面上。"""
     html = _render(tmp_path, _with_chart(), u"图表")
@@ -226,7 +238,10 @@ def test_figure_box_spans_the_column_and_keeps_landscape_shape(rendered):
         "aspect-ratio 盒子上加 max-height 会反向缩小宽度，图再也撑不满列宽")
     ar = re.search(r"aspect-ratio:(\d+)/(\d+)", rule)
     assert ar and int(ar.group(1)) > int(ar.group(2)), "文章配图容器必须是横幅"
-    assert "width:100%" in rule or "width:var(--col)" in rule or True  # 块级默认占满
+    # 原来这行写的是 `... or True`，那是永远不会红的断言。真实情况是这条规则
+    # **根本不该出现 width**：块级元素默认占满列宽，一旦加上 width 反而可能像
+    # aspect-ratio + max-height 那样把宽度反推回去（就是这个测试要守的那次事故）。
+    assert "width:" not in rule, "占满列宽靠块级默认，规则里写 width 就是把宽度交回反推那条路"
 
 
 def test_content_grid_tracks_can_shrink_and_wrap(rendered):
@@ -392,6 +407,9 @@ def test_gates_agree_with_a_real_rendered_page(tmp_path, rendered, quality_bar):
     # 用日期名会让 G-01 先判死，这条测试就变成在测文件名而不是测闸门一致性。
     page = d / ("%s.html" % full["topic"])
     page.write_text(make_passing_html(full, fingerprint=fp), encoding="utf-8")
+    # 这个夹具模拟的是"render.mjs 刚写完的页面"，所以模板源哈希侧车也得在（W-163）。
+    (d / (page.name + ".srchash")).write_text(
+        V.current_sources_hash() + chr(10), encoding="utf-8")
 
     outline_stub = type("o", (), {
         "words_range": (4500, 6500),
@@ -525,3 +543,126 @@ def test_a_declared_cover_wins_over_the_widest_image(tmp_path):
     head = html.split("</header>")[0]
     assert want["file"] in head, u"声明的封面没上页面首屏"
     assert BI.cover_of(data)["file"] == want["file"], u"索引卡片与页面用的不是同一张"
+
+
+def _render_compare(tmp_path):
+    data = json.loads(io.open(FIX, encoding="utf-8").read())
+    cmp = next(b for s in data["sections"] for b in s["blocks"]
+               if b.get("type") == "compare")
+    cmp["source_ids"] = [u"S1", u"S2"]
+    return _render(tmp_path, data, u"对照块")
+
+
+def test_a_compare_block_can_cite_at_all(tmp_path):
+    """对照块必须有自己的引用位——否则写的人只能把编号打进字里。
+
+    09-27 量到 AI眼镜 的 compare 块 points 里写着
+    `芯片端不到百万尼特就带不动（S8）`、`效率高 3–7 倍、正面漏光仅 1.5%（S11）`：
+    `Compare` 是 11 个块型里唯一 `Refs` 出现 0 次的（`Note` 同样没有，
+    但没有证据说明 note 需要引用，所以不给它加——为不存在的需要开槽位是给噪声开门）。
+    没有 chip 可挂，出处就只能以点不动的文本形式存在，
+    而那种文本在页面上与真凭证长得一模一样。
+
+    断言必须切在 `.cmp` 到 `</section>` 之间：第一版按块名往后切，
+    一路切到页尾的参考来源列表，那里到处是 `#src-S1`，于是测试假绿。
+    """
+    html = _render_compare(tmp_path)
+    i = html.index('<div class="cmp">')
+    seg = html[i:html.index("</section>", i)]
+    assert u"在意机芯" in seg, u"没切到对照块，这条会空转"
+    chips = re.findall(r'<a[^>]*href="#src-(S\d)"', seg)
+    assert u"S1" in chips and u"S2" in chips,         u"对照块的 source_ids 被静默丢掉，chips=%s" % chips
+
+# ── W-171：code 区块（教学篇《从零做一个 Agent 对话聊天框》需要真代码）────────────
+
+def _code_block():
+    return {
+        "type": "code",
+        "heading": "一次非流式请求的 body",
+        "lang": "json",
+        "code": (
+            "{\n"
+            '  "messages": [\n'
+            '    { "role": "user", "content": <占位> }\n'
+            "  ]\n"
+            "}"),
+    }
+
+
+def _with_code(extra_blocks=1):
+    data = json.loads(io.open(FIX, encoding="utf-8").read())
+    for _ in range(extra_blocks):
+        data["sections"][0]["blocks"].insert(0, _code_block())
+    return data
+
+
+def test_a_code_block_keeps_indentation_and_escapes_angle_brackets(tmp_path):
+    """代码块的全部意义是**可以照着抄**：缩进、换行、尖括号一个都不能丢。
+
+    尖括号这条不是形式主义——示例代码里出现 `<div>`、`<占位>`、`List<T>` 是常态，
+    一个手搓的 innerHTML 渲染器会把它当成标签吃掉，页面当场少一截且不报错。
+    React 的文本节点自动转义，这里钉住它不许被"优化"掉。
+    """
+    html = _render(tmp_path, _with_code(), u"代码")
+    assert u'class="code"' in html, "代码块没渲染出 .code"
+    m = re.search(r'<pre class="code">([\s\S]*?)</pre>', html)
+    assert m, u'代码没有装在 <pre class="code"> 里——不在 pre 里换行和缩进会被 HTML 折叠'
+    raw = m.group(1)
+    # 尖括号在**原始标记**上断言：它证明 React 没把 `<占位>` 当标签吃掉。
+    assert u"&lt;占位&gt;" in raw, "尖括号没转义，示例代码会被当成 HTML 吃掉"
+    # 缩进/引号在**解码后**断言：浏览器复制的是解码文本，`&quot;` 抄出来就是引号。
+    # 早先直接在原始标记上找 `"`，测的是转义实现而不是读者看到的东西。
+    from html import unescape
+    body = unescape(raw)
+    assert u'  "messages"' in body, "两空格缩进丢了"
+    assert u'\n  ]' in body, "<pre> 里的换行丢了"
+    assert u'"role": "user"' in body
+
+
+def test_a_code_block_labels_its_language_without_a_highlighter(tmp_path):
+    """语言标是给人认门的，不是给高亮器用的：引 highlight.js 会撞 R-01（外链）
+    和"零运行时 JS"，所以这里只要求标注在 DOM 上。
+    """
+    html = _render(tmp_path, _with_code(), u"代码")
+    assert u'>json<' in html or u'class="lang">json' in html, "语言标 json 没出现在页面上"
+
+
+def test_two_code_blocks_do_not_share_a_scroll_container(tmp_path):
+    """两块代码要各自可横向滚动。共一个容器时第一块的滚动位置会漏到第二块。"""
+    html = _render(tmp_path, _with_code(2), u"代码")
+    assert html.count(u'class="code"') == 2
+    assert html.count(u'class="codewrap"') == 2, "每个代码块要有自己的滚动容器"
+
+
+def test_an_illustration_cover_carries_the_visible_badge(tmp_path):
+    """R-03 要求自画图在**页面上**有「示意图 · 非实拍」角标，封面也是页面。
+
+    这条测试是 Agent 开发篇撞出来的：它是第一篇拿自画图当封面的，
+    而模板的封面分支只渲染 `<img>`，角标只写在 `alt` 里——
+    alt 是给读屏器和搜索引擎的，读者在页面上什么都看不到。
+    正文里的图一直是对的（`drawn && <span className="fig-kind">`），
+    缺的只有封面这一条分支。
+    """
+    data = json.loads(io.open(FIX, encoding="utf-8").read())
+    sec0 = data["sections"][0]
+    img = dict(sec0["images"][0])
+    img.update({"kind": "illustration", "file": img["file"]})
+    img.pop("source_page", None)
+    img.setdefault("based_on", [u"%s#要点一" % sec0["id"]])
+    data["cover"] = img
+    html = _render(tmp_path, data, u"封面自绘")
+    i = html.index(u'class="cover-media"')
+    seg = html[i:i + 1200]
+    assert u"示意图 · 非实拍" in seg, u"封面是自画图，页面上却没有角标（R-03）"
+
+
+def test_a_photo_cover_does_not_claim_to_be_a_diagram(tmp_path):
+    """上一条的反面：引用图不许有角标，否则"非实拍"变成一句空话。"""
+    data = json.loads(io.open(FIX, encoding="utf-8").read())
+    sec0 = data["sections"][0]
+    img = dict(sec0["images"][0])
+    img.pop("kind", None)          # 缺省 photo
+    data["cover"] = img
+    html = _render(tmp_path, data, u"封面引用")
+    i = html.index(u'class="cover-media"')
+    assert u"示意图 · 非实拍" not in html[i:i + 1200], u"引用图被标成了示意图"

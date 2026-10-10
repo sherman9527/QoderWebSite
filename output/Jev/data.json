@@ -101,7 +101,7 @@
    "images": [
     {
      "file": "images/01_思考快与慢.jpg",
-     "alt": "思考快与慢原版正版丹尼尔卡尼曼诺贝尔经济学奖丹尼尔著作逻辑思维推荐行为经济学颠覆你对思考的看法经济学理论读物新华书_虎窝淘",
+     "alt": "",
      "caption": "思考快与慢原版正版丹尼尔卡尼曼诺贝尔经济学奖丹尼尔著作逻辑思维推荐行为经济学颠覆你对思考的看法经济学理论读物新华书_虎窝淘",
      "source_page": "https://tao.hooos.com/goods_558344411192.html",
      "width": 800,
@@ -218,7 +218,7 @@
     {
      "file": "images/02_示意图_非实拍_两条输出通路对照_开放词表逐_token_生成_与锁在给定选项里.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：两条输出通路对照——开放词表逐 token 生成，与锁在给定选项里点亮一条",
+     "alt": "",
      "caption": "示意图·非实拍：两条输出通路对照——开放词表逐 token 生成，与锁在给定选项里点亮一条",
      "based_on": [
       "not-generating#输出被选项集合封住",
@@ -326,7 +326,7 @@
     {
      "file": "images/03_示意图_非实拍_agent_流程里它被调用的位置_闸门_路由_分类三步_生成仍在.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：agent 流程里它被调用的位置——闸门、路由、分类三步；生成仍在下游",
+     "alt": "",
      "caption": "示意图·非实拍：agent 流程里它被调用的位置——闸门、路由、分类三步；生成仍在下游",
      "based_on": [
       "where-it-fits#LangChain 把它做成分类器与中间件",
@@ -458,7 +458,7 @@
     {
      "file": "images/04_示意图_非实拍_阈值_覆盖率曲线的形状与校准图的形状_图上不标任何数值.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：阈值—覆盖率曲线的形状与校准图的形状，图上不标任何数值",
+     "alt": "",
      "caption": "示意图·非实拍：阈值—覆盖率曲线的形状与校准图的形状，图上不标任何数值",
      "based_on": [
       "how-to-judge#阈值换覆盖率",
@@ -555,7 +555,7 @@
     {
      "file": "images/05_示意图_非实拍_交易链路分段_标出哪几段真吃毫秒_哪一段的瓶颈不是延迟.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：交易链路分段，标出哪几段真吃毫秒、哪一段的瓶颈不是延迟",
+     "alt": "",
      "caption": "示意图·非实拍：交易链路分段，标出哪几段真吃毫秒、哪一段的瓶颈不是延迟",
      "based_on": [
       "quant-feasible#执行与风控吃毫秒",
@@ -653,7 +653,7 @@
     {
      "file": "images/06_示意图_非实拍_容易被复制的三层与抄不走的两层.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：容易被复制的三层与抄不走的两层",
+     "alt": "",
      "caption": "示意图·非实拍：容易被复制的三层与抄不走的两层",
      "based_on": [
       "why-no-followers#任务收窄与输出契约",
@@ -814,7 +814,7 @@
     {
      "file": "images/07_示意图_非实拍_三条路线各自交付什么_各自承认的软肋.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：三条路线各自交付什么、各自承认的软肋",
+     "alt": "",
      "caption": "示意图·非实拍：三条路线各自交付什么、各自承认的软肋",
      "based_on": [
       "three-routes#交付文字/权重/判断",
@@ -912,7 +912,7 @@
     {
      "file": "images/08_示意图_非实拍_封闭选项集合的内外_没列进去的正确答案对它不存在.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：封闭选项集合的内外——没列进去的正确答案对它不存在",
+     "alt": "",
      "caption": "示意图·非实拍：封闭选项集合的内外——没列进去的正确答案对它不存在",
      "based_on": [
       "what-it-cannot#选项漏了就永远选不到",
@@ -1041,7 +1041,7 @@
     {
      "file": "images/09_示意图_非实拍_自建题集到随版本重跑的验证闭环.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：自建题集到随版本重跑的验证闭环",
+     "alt": "",
      "caption": "示意图·非实拍：自建题集到随版本重跑的验证闭环",
      "based_on": [
       "check-list#三张图一起看",
@@ -1125,7 +1125,7 @@
     {
      "file": "images/10_示意图_非实拍_五个可证伪的观察点_每个都配_出现说明什么.png",
      "kind": "illustration",
-     "alt": "示意图·非实拍：五个可证伪的观察点，每个都配「出现说明什么」",
+     "alt": "",
      "caption": "示意图·非实拍：五个可证伪的观察点，每个都配「出现说明什么」",
      "based_on": [
       "what-changes-mind#如果则说明",
@@ -1150,119 +1150,136 @@
    "url": "https://docs.typesafe.ai/concepts/system-one",
    "label": "官方文档 System One 概念页：只接受文本输入；「不写回复、不产代码、不生成对推理的说明」；校准是一群预测上度量的，不保证单次正确",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/3a9180756ed3e37c.txt"
   },
   {
    "id": "S023",
    "url": "https://docs.typesafe.ai/primitives",
    "label": "官方文档三类问题原语页：Choice / Score / Noul 各自回答什么问题、返回哪些字段（Noul 无单独 confidence）",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/065e2bbd0545c9e8.txt"
   },
   {
    "id": "S024",
    "url": "https://docs.typesafe.ai/introduction",
    "label": "官方文档介绍页：把文本生成系统硬拧成结构化决策再解析回来的错位；「No text generation, no parsing」",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/410df76d8078e825.txt"
   },
   {
    "id": "S025",
    "url": "https://docs.typesafe.ai/primitives/choice",
    "label": "官方 Choice 原语页：单个问题最多 255 个选项；覆盖不全时建议加 other / none of the above",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/0229facc13e3a570.txt"
   },
   {
    "id": "S026",
    "url": "https://docs.typesafe.ai/models",
    "label": "官方模型与价格页：Jev 1.13（jev-1.13.0）、$42/Btok 即 $0.042/MTok、输出 token 免费、端点 POST /v1/systemone、64k/32k 上下文预算",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/3042cee4d750daa2.txt"
   },
   {
    "id": "S027",
    "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
    "label": "官方「已知缺陷」页（2026-09-17 复核）：九类失败模式，含按字面理解与生成，末条处置为改用生成模型",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/ef7ac94fbc4c5f4f.txt"
   },
   {
    "id": "S028",
    "url": "https://www.ibm.com/think/topics/large-language-models",
    "label": "IBM 技术词条：LLM 是「反复预测序列中下一个词的巨型统计预测机器」，逐词自回归生成的第三方权威描述",
    "retrieved": "2026-09-26",
-   "publisher": "IBM"
+   "publisher": "IBM",
+   "cache": "text/b26cdbfbd9353d1e.txt"
   },
   {
    "id": "S029",
    "url": "https://www.langchain.com/blog/building-a-harness-with-jev",
    "label": "LangChain 集成文（2026-09-17）：Jev 不是传统 LLM、不生成文本，适合接管 agent 循环里的结构化判断",
    "retrieved": "2026-09-26",
-   "publisher": "LangChain"
+   "publisher": "LangChain",
+   "cache": "text/13132063a1918e82.txt"
   },
   {
    "id": "S0210",
    "url": "https://www.eigent.ai/blog/typesafe-ai-jev-system-one-models",
    "label": "第三方梳理：193.6x/444.6x 应视为厂商宣称；它只知道你递给它的 state；校准不保证单次正确",
    "retrieved": "2026-09-26",
-   "publisher": "Eigent"
+   "publisher": "Eigent",
+   "cache": "text/f2c3ed38d2f023a0.txt"
   },
   {
    "id": "S031",
    "url": "https://www.langchain.com/blog/building-a-harness-with-jev",
    "label": "LangChain 官方博客《Building a Harness with Jev》（Sydney Runkle、Hunter Lovell，2026-09-17）：第三方框架方写的工程集成说明，含 TypeSafeClassifier、两个中间件与被点名的个人项目",
    "retrieved": "2026-09-26",
-   "publisher": "LangChain"
+   "publisher": "LangChain",
+   "cache": "text/13132063a1918e82.txt"
   },
   {
    "id": "S032",
    "url": "https://docs.langchain.com/oss/python/integrations/providers/typesafe",
    "label": "LangChain 官方文档 TypeSafe 集成页：包名与 experimental 额外依赖、ModelRouterMiddleware / AutoModeMiddleware 的 hook 位置、自定义 TriageMiddleware 示例、密钥告警",
    "retrieved": "2026-09-26",
-   "publisher": "LangChain Docs"
+   "publisher": "LangChain Docs",
+   "cache": "text/224a6f77d9edac82.txt"
   },
   {
    "id": "S033",
    "url": "https://docs.typesafe.ai/cookbooks/parallel_questions.md",
    "label": "TypeSafe 官方 Parallel questions cookbook：约 54,000 字符 GDPR 条目、13 题批量与逐题的成本与延迟对照",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI Docs"
+   "publisher": "TypeSafe AI Docs",
+   "cache": "text/7bbcad9a155aac5a.txt"
   },
   {
    "id": "S034",
    "url": "https://www.browserbase.com/blog/what-is-jev",
    "label": "Browserbase 工程博客《What is Jev?》（Kyle Jeong，2026-09-21）：第一方记录 Stagehand act() 的改造、0.7 接受阈值与 1.97 秒降到 0.46 秒",
    "retrieved": "2026-09-26",
-   "publisher": "Browserbase"
+   "publisher": "Browserbase",
+   "cache": "text/88fa6884e81146c5.txt"
   },
   {
    "id": "S035",
    "url": "https://www.width.ai/post/what-is-jev-ai-typesafe",
    "label": "第三方 agent harness 服务商 Width.ai 长文（Matt Payne，2026-09-23）：八项用例清单、路由的 break-even 算术、声明尚未在客户负载上跑过 Jev",
    "retrieved": "2026-09-26",
-   "publisher": "Width.ai"
+   "publisher": "Width.ai",
+   "cache": "text/3701061befc34016.txt"
   },
   {
    "id": "S036",
    "url": "https://docs.typesafe.ai/concepts/use-case-map.md",
    "label": "TypeSafe 官方 Example use cases 地图：按行业与 Harness Engineering 分类的厂商示例清单",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI Docs"
+   "publisher": "TypeSafe AI Docs",
+   "cache": "text/8a52b4ec789c1466.txt"
   },
   {
    "id": "S037",
    "url": "https://docs.typesafe.ai/cookbooks.md",
    "label": "TypeSafe 官方 Cookbooks 索引页：厂商自造但带可跑代码的 worked examples 清单",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI Docs"
+   "publisher": "TypeSafe AI Docs",
+   "cache": "text/b072b22e7cc896c8.txt"
   },
   {
    "id": "S038",
    "url": "https://www.langchain.com/blog/building-prod-with-jev-and-langgraph",
    "label": "LangChain 官方博客《Building Prod with Jev and LangGraph》（2026-09-25）：法务文书 discovery 示例与 Stagehand 数据的框架方复述",
    "retrieved": "2026-09-26",
-   "publisher": "LangChain"
+   "publisher": "LangChain",
+   "cache": "text/f3be81ccd8a434b7.txt"
   },
   {
    "id": "S011",
@@ -1276,14 +1293,16 @@
    "url": "https://docs.typesafe.ai/concepts/system-one",
    "label": "TypeSafe 官方文档 System One 概念页：分类定义、明写名字来自 Kahneman《Thinking, Fast and Slow》、Jev 只接受文本输入",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/3a9180756ed3e37c.txt"
   },
   {
    "id": "S013",
    "url": "https://www.thesaasnews.com/news/typesafe-ai-raises-40m-seed/",
    "label": "The SaaS News 转述 BusinessWire 新闻稿：4,000 万美元种子轮、DCVC 领投、未披露其他投资方、2024 年由 Diogo Almeida 与 Erik Gafni、Sasha Sheng 创立、总部旧金山（2026-09-17）",
    "retrieved": "2026-09-26",
-   "publisher": "The SaaS News"
+   "publisher": "The SaaS News",
+   "cache": "text/49a244dd4f71793c.txt"
   },
   {
    "id": "S014",
@@ -1297,14 +1316,16 @@
    "url": "https://dealroom.co/news/151032-typesafe-exits-stealth-with-40m-seed-to-build-ai-for-software-not-people/",
    "label": "Dealroom 快讯（2026-09-15）：称其为旧金山的前沿 AI 实验室、DCVC 领投、正文记 US$25.9M、称 Almeida 为 RLHF 共同发明人、联创名单",
    "retrieved": "2026-09-26",
-   "publisher": "Dealroom"
+   "publisher": "Dealroom",
+   "cache": "text/d47dfe24eaecc444.txt"
   },
   {
    "id": "S016",
    "url": "https://openrouter.ai/typesafe",
    "label": "OpenRouter 厂商页：Jev 1.13 与 Jev Latest 标注 2026-09-18、Jev Router 标注 2026-09-25、输入 $0.042、输出 0",
    "retrieved": "2026-09-26",
-   "publisher": "OpenRouter"
+   "publisher": "OpenRouter",
+   "cache": "text/cd2d70be332d4780.txt"
   },
   {
    "id": "S017",
@@ -1318,35 +1339,40 @@
    "url": "https://www.latent.space/p/jev",
    "label": "Latent Space 访谈《Jev: System One models for Prod, not God》—— Diogo Almeida 本人解释 Jev 之名对应 Jevons 悖论、公司名 TypeSafe 的由来",
    "retrieved": "2026-09-26",
-   "publisher": "Latent Space"
+   "publisher": "Latent Space",
+   "cache": "text/5d6dae0dda9c1bc3.txt"
   },
   {
    "id": "S019",
    "url": "https://aifunding.me/insights/typesafe-ai-40m-seed-machine-native-intelligence",
    "label": "二手汇总页（2026-09）：把出隐身写成 9 月 16 日、正文记公司 2024 年成立于 San Francisco, CA，并转述 Forbes 的 2 亿美元 post-money 估值",
    "retrieved": "2026-09-26",
-   "publisher": "aifunding.me"
+   "publisher": "aifunding.me",
+   "cache": "text/528088f2c6859d73.txt"
   },
   {
    "id": "S071",
    "url": "https://www.anthropic.com/news/claude-opus-5",
    "label": "Anthropic 官方发布文《Introducing Claude Opus 5》（2026-07-24）：$5/百万输入 token、$25/百万输出 token；Fast mode 约 2.5 倍默认速、按 2 倍基础价计；文中承认网络安全任务仍落后 Mythos 5；automatic fallbacks 以 beta 发布",
    "retrieved": "2026-09-26",
-   "publisher": "Anthropic"
+   "publisher": "Anthropic",
+   "cache": "text/e75df1016aa12143.txt"
   },
   {
    "id": "S072",
    "url": "https://api-docs.deepseek.com/quick_start/pricing",
    "label": "DeepSeek 官方《Models & Pricing》页（2026-09-26 抓取）：deepseek-flash（DeepSeek-V4.1-Flash）输入 $0.003/百万 token 为缓存命中·非高峰价，另列缓存未命中与高峰价，峰谷相差一倍",
    "retrieved": "2026-09-26",
-   "publisher": "DeepSeek"
+   "publisher": "DeepSeek",
+   "cache": "text/bb9241e9781ff882.txt"
   },
   {
    "id": "S073",
    "url": "https://arxiv.org/abs/2412.19437",
    "label": "DeepSeek-V3 Technical Report 摘要（2024-12-27 提交，2025-02-18 修订）：671B 总参数、每个 token 激活 37B、全部训练耗时 2.788M H800 GPU 小时、checkpoint 开源",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/d7650744d57d399e.txt"
   },
   {
    "id": "S074",
@@ -1360,7 +1386,8 @@
    "url": "https://docs.typesafe.ai/models",
    "label": "TypeSafe 官方模型页：Jev 1.13（jev-1.13.0）$42/Btok 即 $0.042/MTok、输出 token 免费、64k 上下文、明写不做逐客户微调或 LoRA 且全账户共用同一份权重、英文为主训练语言",
    "retrieved": "2026-09-26",
-   "publisher": "TypeSafe"
+   "publisher": "TypeSafe",
+   "cache": "text/3042cee4d750daa2.txt"
   },
   {
    "id": "S076",
@@ -1374,21 +1401,24 @@
    "url": "https://arxiv.org/abs/2502.17419",
    "label": "综述《From System 1 to System 2: A Survey of Reasoning Large Language Models》（2025-02-24 提交）：摘要把 OpenAI o1/o3 与 DeepSeek R1 归为模仿 deliberate System 2 推理的模型",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/58461807ff4a4bac.txt"
   },
   {
    "id": "S078",
    "url": "https://arxiv.org/abs/2406.18665",
    "label": "《RouteLLM: Learning to Route LLMs with Preference Data》（2024-06-26 提交，2025-02-23 v4）：摘要称在强弱两个模型之间训路由器，某些场景成本降低超过 2 倍而不牺牲应答质量",
    "retrieved": "2026-09-26",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/35a73f77367bfa66.txt"
   },
   {
    "id": "S079",
    "url": "https://api-docs.deepseek.com/",
    "label": "DeepSeek 官方 API 文档首页（2026-09-26 抓取）：模型名 deepseek-flash 与 deepseek-v4-pro，示例请求体带 thinking 模式与 reasoning_effort 参数",
    "retrieved": "2026-09-26",
-   "publisher": "DeepSeek"
+   "publisher": "DeepSeek",
+   "cache": "text/edfd95646372b282.txt"
   },
   {
    "id": "S061",
@@ -1402,14 +1432,16 @@
    "url": "https://www.digitalocean.com/resources/articles/what-is-jev",
    "label": "DigitalOcean 技术解读（Maddy Osman，更新至 2026-09-24）：转述 TechCrunch 的「Almeida 仍未说明 Jev 跑在什么底座上、外部猜是建在开源权重 LLM 上的 transformer、TypeSafe 两种说法都不确认」，并注明 TypeSafe 自家评测之外「独立第三方基准仍在陆续出现」",
    "retrieved": "2026-09-27",
-   "publisher": "DigitalOcean"
+   "publisher": "DigitalOcean",
+   "cache": "text/eb36d16791e17402.txt"
   },
   {
    "id": "S063",
    "url": "https://docs.typesafe.ai/models",
    "label": "官方模型与价格页：$42/Btok 即 $0.042/百万输入 token、输出免费、64k/32k 上下文预算、限速 250k token/s；页面通篇没有参数量、网络结构与训练细节",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/3042cee4d750daa2.txt"
   },
   {
    "id": "S064",
@@ -1423,21 +1455,24 @@
    "url": "https://github.com/deepanwadhwa/OpenDecision",
    "label": "GitHub 仓库 OpenDecision：本机经 api.github.com 核到 created_at 2026-09-17T21:28:58Z、Apache-2.0，仓库描述为“open-source semantic decision engine like typesafe's jev”",
    "retrieved": "2026-09-27",
-   "publisher": "GitHub"
+   "publisher": "GitHub",
+   "cache": "text/e7253795eff4bc04.txt"
   },
   {
    "id": "S066",
    "url": "https://tech.cnr.cn/techgd/20260924/t20260924_527824101.shtml",
    "label": "央广网 2026-09-24：世纪华通旗下天游软件联合查比曰（上海）自研决策模型，砍掉文本生成、输入环境状态输出动作决策概率、参数量控制在 50M 以内、单次决策毫秒级、通关《2048》、《神庙逃亡》超 70000 米；天游 CEO 纪敏称“路线不一样，方向是一样的”",
    "retrieved": "2026-09-27",
-   "publisher": "央广网"
+   "publisher": "央广网",
+   "cache": "text/b43e023851216522.txt"
   },
   {
    "id": "S067",
    "url": "https://flowtivity.ai/blog/laya-open-source-jev-alternative/",
    "label": "Flowtivity 对 Laya 的实测与梳理（AJ Awan，2026-09-21）：底座 ModernBERT-large 占 421M 中 395M、Choice/Score/Noul 三原语同名、零样本 0.362 低于多数类基线 0.461、微调后 0.766、Banking77 上 0.425 对 Jev 0.870、官方 Kaggle notebook 在两张免费 T4 上微调约四小时；并记录 Nandakishor Mukkunnoth 的优先权主张",
    "retrieved": "2026-09-27",
-   "publisher": "Flowtivity"
+   "publisher": "Flowtivity",
+   "cache": "text/e4774fe83464c25a.txt"
   },
   {
    "id": "S068",
@@ -1451,28 +1486,32 @@
    "url": "https://arxiv.org/abs/2406.18665",
    "label": "RouteLLM（arXiv:2406.18665，2024-06-26 提交）：用轻量 router 模型在强/弱 LLM 之间选路，某些任务上成本降一半以上——意图/质量路由作为独立研究方向早已成文",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/35a73f77367bfa66.txt"
   },
   {
    "id": "S0610",
    "url": "https://arxiv.org/abs/2503.23303",
    "label": "SalesRLAgent（arXiv:2503.23303，2025-03-30 提交）：用强化学习与合成数据把转化概率当顺序决策问题建模，报出 85ms 对 GPT-4 的 3450ms——Laya 作者据此主张优先权",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/c92d0853f6f1d94e.txt"
   },
   {
    "id": "S0611",
    "url": "https://arxiv.org/abs/2609.29429",
    "label": "Just Ask Jev / RLCDAlignBench（arXiv:2609.29429，2026-09-24 提交，Ruoqi Guo 等 9 人，非 TypeSafe 作者）：44 个基准、5 个被测模型，单个通用问题零样本 AUROC 中位数 0.886，成本约为 LLM-judge 打分器的 1/63；文中指出 Llama Guard 这类读 token 概率的分类器每次只出一个固定标签",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/c9ea5f071ea24f65.txt"
   },
   {
    "id": "S0612",
    "url": "https://arxiv.org/abs/2609.28940",
    "label": "Calibrated Decision Models for Autonomous Penetration-Testing Harnesses（arXiv:2609.28940，2026-09-24 提交）：把 Jev 与开源 Laya 并列为 System One 决策层，定义其为「轻量的非生成分类器，返回带类型、校准的判决」，另提出领域适配的同类模型 Rave",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/21445b2aa629205b.txt"
   },
   {
    "id": "S0613",
@@ -1486,7 +1525,8 @@
    "url": "https://docs.typesafe.ai/primitives",
    "label": "官方文档三类问题原语页：Choice（这些选项里选哪个）、Score（落在哪个等级）、Noul（这句话成立吗）——Laya 用的正是同一组名字",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/065e2bbd0545c9e8.txt"
   },
   {
    "id": "S041",
@@ -1500,84 +1540,96 @@
    "url": "https://evals.typesafe.ai/",
    "label": "官方评测站；给出四条工作流平均分与参照标签来自两个前沿模型作答均值的方法学说明",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/4e1ebe220be5a4ce.txt"
   },
   {
    "id": "S043",
    "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
    "label": "官方 jev-1.13 已知短板页；原文劝阻用 Score 期望值在档位间插值",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/ef7ac94fbc4c5f4f.txt"
   },
   {
    "id": "S044",
    "url": "https://docs.typesafe.ai/confidence.md",
    "label": "官方 confidence 文档；说明置信度是从概率分布派生的统计量，阈值需拿自己的数据测",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/a86a62ff084abc86.txt"
   },
   {
    "id": "S045",
    "url": "https://docs.typesafe.ai/cookbooks/classification_using_confidence.md",
    "label": "官方 cookbook：60 份 10-K 上置信度 0.9 分箱的命中率，并说明标签为企业自报行业码",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/fe7bde0ca9cfe044.txt"
   },
   {
    "id": "S046",
    "url": "https://github.com/manjunathshiva/jev-frontier-bench",
    "label": "第三方 200 题六模型对照仓库，附 95% 置信区间、ECE、延迟与每千次单价，可复算",
    "retrieved": "2026-09-27",
-   "publisher": "Manjunath Janardhan"
+   "publisher": "Manjunath Janardhan",
+   "cache": "text/634dbe6e72729472.txt"
   },
   {
    "id": "S047",
    "url": "https://arxiv.org/abs/2609.24574",
    "label": "计算社会科学标注集复算：18 任务 7,977 题，对比 19 个语言模型的准确率与校准度",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/a2e61accd41c1f4e.txt"
   },
   {
    "id": "S048",
    "url": "https://arxiv.org/abs/2609.26758",
    "label": "选项改名对照实验：类型错误恒为 0% 的同时准确率与 AUC 崩塌",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/ce2eea612a17c75c.txt"
   },
   {
    "id": "S049",
    "url": "https://arxiv.org/abs/2609.26550",
    "label": "决策裁判与置信级联：接受高置信、升级低置信可留住对照裁判 99% 的准确率",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/e3fed07906b1c814.txt"
   },
   {
    "id": "S0410",
    "url": "https://sanand0.github.io/llmevals/jev/",
    "label": "BANKING77 77 例配对试测，逐模型给出准确率、均值置信、Brier、ECE、AUROC",
    "retrieved": "2026-09-27",
-   "publisher": "sanand0"
+   "publisher": "sanand0",
+   "cache": "text/47b1f2c5c199727b.txt"
   },
   {
    "id": "S0411",
    "url": "https://dev.to/gde/jev-after-eight-days-of-independent-tests-level-with-mid-price-llms-behind-the-frontier-1kln",
    "label": "发布八天后的第三方证据综述，梳理各项独立测试与厂商未公布项",
    "retrieved": "2026-09-27",
-   "publisher": "DEV Community"
+   "publisher": "DEV Community",
+   "cache": "text/6afb6e675ab05856.txt"
   },
   {
    "id": "S0412",
    "url": "https://arxiv.org/abs/1706.04599",
    "label": "《On Calibration of Modern Neural Networks》，ECE 与可靠性图的标准出处",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv / ICML"
+   "publisher": "arXiv / ICML",
+   "cache": "text/15e1c339ab3011e5.txt"
   },
   {
    "id": "S0413",
    "url": "https://arxiv.org/abs/1705.08500",
    "label": "《Selective Classification for Deep Neural Networks》，以覆盖率换风险的弃权机制",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv / NeurIPS"
+   "publisher": "arXiv / NeurIPS",
+   "cache": "text/219e94d106f4d934.txt"
   },
   {
    "id": "S0414",
@@ -1598,14 +1650,16 @@
    "url": "https://arxiv.org/abs/1806.03822",
    "label": "Know What You Don't Know: Unanswerable Questions for SQuAD（SQuAD 2.0，2018）：在五万多条人工写就的「无答案」问题上评测，系统必须学会弃权；摘要给出 1.1 上 86 F1 / 2.0 上 66 F1 的对比",
    "retrieved": "2026-09-27",
-   "publisher": "Stanford / ACL 2018"
+   "publisher": "Stanford / ACL 2018",
+   "cache": "text/abae93355bbeba49.txt"
   },
   {
    "id": "S092",
    "url": "https://www.swebench.com/verified.html",
    "label": "SWE-bench Verified 官方页：与 OpenAI 合作人工筛出的 500 条子集，逐条由人确认题目描述清晰、测试补丁正确、任务可解",
    "retrieved": "2026-09-27",
-   "publisher": "SWE-bench"
+   "publisher": "SWE-bench",
+   "cache": "text/374353fbb7b64da7.txt"
   },
   {
    "id": "S093",
@@ -1619,63 +1673,72 @@
    "url": "https://numiqo.com/tutorial/cohens-kappa",
    "label": "Cohen's κ 的计算与 Landis & Koch 分档对照表（>0.8 近乎完美、0.6–0.8 实质一致、0.4–0.6 中等），并提醒分档标签并非通用",
    "retrieved": "2026-09-27",
-   "publisher": "NumiQo"
+   "publisher": "NumiQo",
+   "cache": "text/08a3218ce0f90e6e.txt"
   },
   {
    "id": "S095",
    "url": "https://arxiv.org/abs/1705.08500",
    "label": "Geifman & El-Yaniv, Selective Classification for Deep Neural Networks（NeurIPS 2017）：先设风险上限、按置信度弃权，用覆盖率换错误率；摘要给出 ImageNet top-5 错误 2% 对应约 60% 覆盖率",
    "retrieved": "2026-09-27",
-   "publisher": "NeurIPS 2017"
+   "publisher": "NeurIPS 2017",
+   "cache": "text/219e94d106f4d934.txt"
   },
   {
    "id": "S096",
    "url": "https://arxiv.org/abs/1706.04599",
    "label": "Guo et al., On Calibration of Modern Neural Networks（ICML 2017）：现代网络普遍校准变差，需事后校准（含 ECE）",
    "retrieved": "2026-09-27",
-   "publisher": "ICML 2017"
+   "publisher": "ICML 2017",
+   "cache": "text/15e1c339ab3011e5.txt"
   },
   {
    "id": "S097",
    "url": "https://arxiv.org/abs/2305.14975",
    "label": "Just Ask for Calibration：测语言模型口头给出的置信度是否校准，目的是在低置信时把判断转交专家",
    "retrieved": "2026-09-27",
-   "publisher": "EMNLP 2023"
+   "publisher": "EMNLP 2023",
+   "cache": "text/9d4063a52be4c0f1.txt"
   },
   {
    "id": "S098",
    "url": "https://arxiv.org/abs/2011.03395",
    "label": "Underspecification Presents Challenges for Credibility in Modern Machine Learning（JMLR 2021）：验证集同分的模型在部署域表现差异巨大，提出按数据切片的最差值衡量可靠性",
    "retrieved": "2026-09-27",
-   "publisher": "JMLR"
+   "publisher": "JMLR",
+   "cache": "text/9766e2d44a8ba034.txt"
   },
   {
    "id": "S099",
    "url": "https://arxiv.org/abs/1810.03993",
    "label": "Mitchell et al., Model Cards for Model Reporting（FAT* 2019）：模型随附的记录模板，规定要写清用途、限制与分人群表现",
    "retrieved": "2026-09-27",
-   "publisher": "ACM FAT* 2019"
+   "publisher": "ACM FAT* 2019",
+   "cache": "text/4f50053b64dd09d2.txt"
   },
   {
    "id": "S0910",
    "url": "https://arxiv.org/abs/1803.09010",
    "label": "Gebru et al., Datasheets for Datasets：数据集需要标准化说明文档（来源、构成、口径、已知限制），后发表于 CACM 2021",
    "retrieved": "2026-09-27",
-   "publisher": "CACM / arXiv"
+   "publisher": "CACM / arXiv",
+   "cache": "text/f3a2d0b7b8928c52.txt"
   },
   {
    "id": "S0911",
    "url": "https://arxiv.org/abs/2406.19314",
    "label": "LiveBench：为对抗测试集污染而定期更新题目，并按客观标准答案自动判分",
    "retrieved": "2026-09-27",
-   "publisher": "ICLR"
+   "publisher": "ICLR",
+   "cache": "text/d3521ffec12bc710.txt"
   },
   {
    "id": "S0912",
    "url": "https://arxiv.org/abs/2005.04118",
    "label": "Beyond Accuracy: Behavioral Testing of NLP models with CheckList：把造题拆成不变性、方向性期望等可复用模板的行为测试方法",
    "retrieved": "2026-09-27",
-   "publisher": "ACL 2020"
+   "publisher": "ACL 2020",
+   "cache": "text/b531e377070470f8.txt"
   },
   {
    "id": "S101",
@@ -1689,42 +1752,48 @@
    "url": "https://evals.typesafe.ai/",
    "label": "官方工作流评测站：四条工作流、完整查询与分歧样例、Jev 67.8% / $0.0004 / 0.4 s 的对照散点",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/4e1ebe220be5a4ce.txt"
   },
   {
    "id": "S103",
    "url": "https://arxiv.org/abs/2609.24574",
    "label": "第三方复算（2026-09-21 提交）：18 个计算社会科学任务、7,977 条人类标注题，15 项可比任务中 14 项落后当期最强 LLM，中位差 11.6 macro-F1",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/a2e61accd41c1f4e.txt"
   },
   {
    "id": "S104",
    "url": "https://arxiv.org/abs/2609.26758",
    "label": "第三方复算（2026-09-22 提交）：只改选项名 0/1→no/yes，1,200 条决策中 Jev 32.5% 答案翻转、AUROC 0.81→0.58；代码未释出",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/ce2eea612a17c75c.txt"
   },
   {
    "id": "S105",
    "url": "https://arxiv.org/abs/2609.26550",
    "label": "第三方复算（2026-09-22 提交）：以盲评人类裁决为对照，高置信接受/低置信升级的级联保留对照裁判 99% 准确率、花费 0.36%",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/e3fed07906b1c814.txt"
   },
   {
    "id": "S106",
    "url": "https://arxiv.org/abs/2609.29429",
    "label": "第三方复算（2026-09-24 提交）：RLCDAlignBench，单个泛化问题零样本 AUROC 中位 0.886",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/c9ea5f071ea24f65.txt"
   },
   {
    "id": "S107",
    "url": "https://github.com/manjunathshiva/jev-frontier-bench",
    "label": "第三方 200 题六模型对照仓库（2026-09-19 建库），附逐题日志：Jev 准确率 72.5%、ECE 0.161",
    "retrieved": "2026-09-27",
-   "publisher": "GitHub"
+   "publisher": "GitHub",
+   "cache": "text/634dbe6e72729472.txt"
   },
   {
    "id": "S108",
@@ -1738,49 +1807,56 @@
    "url": "https://github.com/deepanwadhwa/OpenDecision",
    "label": "OpenDecision 仓库：GitHub API 核到 created_at 2026-09-17、Apache-2.0，自述「像 typesafe jev 的开源语义决策引擎」",
    "retrieved": "2026-09-27",
-   "publisher": "GitHub"
+   "publisher": "GitHub",
+   "cache": "text/e7253795eff4bc04.txt"
   },
   {
    "id": "S1010",
    "url": "https://dev.to/gde/jev-after-eight-days-of-independent-tests-level-with-mid-price-llms-behind-the-frontier-1kln",
    "label": "发布八天后的独立证据综述（2026-09-24）：梳理 14 篇 arXiv、104 个评测仓库；给出官方未发布任何 ECE/可靠性图/Brier、API 概率舍入到 0.01、开源复刻清单与 Laya 日文三项独立分数、thejevai.com 与 TypeSafe 无公开关联",
    "retrieved": "2026-09-27",
-   "publisher": "DEV Community"
+   "publisher": "DEV Community",
+   "cache": "text/6afb6e675ab05856.txt"
   },
   {
    "id": "S1011",
    "url": "https://finance.sina.com.cn/stock/estate/integration/2026-09-21/doc-inispyne8962439.shtml",
    "label": "新浪财经转载观点网（2026-09-21）：Jev 全面开放注册、送 5 美元额度约 1.2 亿 token；转述 Vercel 换掉 Luna 后快 5 到 18 倍、某营销团队人工判断提速 30 倍、成本 3 美元内",
    "retrieved": "2026-09-27",
-   "publisher": "新浪财经"
+   "publisher": "新浪财经",
+   "cache": "text/e8d188a7a4f2a6a7.txt"
   },
   {
    "id": "S1012",
    "url": "https://www.stdaily.com/web/gdxw/2026-06/18/content_534590.html",
    "label": "科技日报（2026-06-18）：金融监管总局《关于银行业保险业人工智能安全开发应用的指导意见》近日发布，要求对外部引入的生成式模型实施准入管理、履行必要程序、分类分级管理、完善测评体系",
    "retrieved": "2026-09-27",
-   "publisher": "科技日报"
+   "publisher": "科技日报",
+   "cache": "text/f4221fa59f8eaa96.txt"
   },
   {
    "id": "S1013",
    "url": "https://docs.typesafe.ai/models",
    "label": "官方模型页：当前仅 jev-1.13.0 一个型号，$42/Btok（$0.042/百万）输入计价、输出免费",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe Docs"
+   "publisher": "TypeSafe Docs",
+   "cache": "text/3042cee4d750daa2.txt"
   },
   {
    "id": "S1014",
    "url": "https://docs.typesafe.ai/sdk/python/changelog.md",
    "label": "官方 Python SDK 变更日志：v0.5.7（2026-09-14）至 v0.7.1（2026-09-21）五个版本，内容均为客户端改动",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe Docs"
+   "publisher": "TypeSafe Docs",
+   "cache": "text/4a11389c21a4d53d.txt"
   },
   {
    "id": "S1015",
    "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
    "label": "官方 jev-1.13 已知短板页：原文称「很多会在后续版本修掉」，未给出版本日期",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe Docs"
+   "publisher": "TypeSafe Docs",
+   "cache": "text/ef7ac94fbc4c5f4f.txt"
   },
   {
    "id": "S051",
@@ -1794,42 +1870,48 @@
    "url": "http://www.sse.com.cn/lawandrules/sselawsrules2025/trade/universal/c/c_20250612_10781696.shtml",
    "label": "上交所《程序化交易管理实施细则》发布通知：2025 年 4 月 3 日发布、2025 年 7 月 7 日施行",
    "retrieved": "2026-09-27",
-   "publisher": "上海证券交易所"
+   "publisher": "上海证券交易所",
+   "cache": "text/cb2e043dc8d86c1f.txt"
   },
   {
    "id": "S053",
    "url": "http://www.sse.com.cn/aboutus/mediacenter/hotandd/c/c_20250403_10776805.shtml",
    "label": "上交所细则答记者问：高频交易认定标准为单账户每秒申报、撤单笔数合计最高达 300 笔以上，或单日 20000 笔以上；以流速与流量两要素认定",
    "retrieved": "2026-09-27",
-   "publisher": "上海证券交易所，2025-04-03"
+   "publisher": "上海证券交易所，2025-04-03",
+   "cache": "text/c793504808272c7d.txt"
   },
   {
    "id": "S054",
    "url": "https://www.leiphone.com/category/yanxishe/NWrXUxymnfYDTSCF.html",
    "label": "《深度解读：关于 Jev 的几大疑问》：无法写文本、无复杂推理、中文泛化不佳、动态环境易误判；28 秒过完 428 条 vs 生成式模型第 6 条；Monad 开发者 Jarrod Watts 挂限价单做市翻车",
    "retrieved": "2026-09-27",
-   "publisher": "雷峰网，2026-09-21"
+   "publisher": "雷峰网，2026-09-21",
+   "cache": "text/9eaa2ff7a0ebcf3d.txt"
   },
   {
    "id": "S055",
    "url": "https://developer.cloud.tencent.com/article/2747997",
    "label": "Jev 官方口径汇总：端到端 70 至 500 毫秒、输入 0.042 美元/百万 token、输出免费、自报准确率六成八、4000 万美元种子轮 DCVC 领投",
    "retrieved": "2026-09-27",
-   "publisher": "腾讯云开发者社区，2026-09-21"
+   "publisher": "腾讯云开发者社区，2026-09-21",
+   "cache": "text/14f5bc14dc57ade0.txt"
   },
   {
    "id": "S056",
    "url": "https://vonng.com/ai/jev-shutup-model/",
    "label": "《无嘴模型：AI 的 OLTP 时刻》：100 毫秒级判断可同步放进一次 HTTP 请求 / 请求链路，web 请求延迟预算两三百毫秒",
    "retrieved": "2026-09-27",
-   "publisher": "冯若航（Pigsty 创始人）博客，2026-09-17"
+   "publisher": "冯若航（Pigsty 创始人）博客，2026-09-17",
+   "cache": "text/f58ac92a84a011d2.txt"
   },
   {
    "id": "S057",
    "url": "https://caifuhao.eastmoney.com/news/20260918104148559189830",
    "label": "同一篇 Flash Boy 类比文在东方财富财富号的镜像（知乎原文直读被 403 拦下，此处可点开）",
    "retrieved": "2026-09-27",
-   "publisher": "东方财富财富号，2026-09-18"
+   "publisher": "东方财富财富号，2026-09-18",
+   "cache": "text/3f558c861df87a1f.txt"
   },
   {
    "id": "S058",
@@ -1843,35 +1925,40 @@
    "url": "https://tw.stock.yahoo.com/news/typesafe-ai%E7%8D%B24%E5%8D%83%E8%90%AC%E7%BE%8E%E5%85%83%E7%A8%8D%E5%AD%90%E8%BC%AA%E8%9E%8D%E8%B3%87-%E6%89%93%E9%80%A0%E9%AB%98%E9%80%9F%E5%8F%AF%E7%B5%84%E5%90%88ai%E6%A8%A1%E5%9E%8B-000143805.html",
    "label": "TypeSafe AI 获 4000 万美元种子轮融资报道（2026-09-15）；通篇未见持牌金融机构实盘使用披露",
    "retrieved": "2026-09-27",
-   "publisher": "Yahoo 股市"
+   "publisher": "Yahoo 股市",
+   "cache": "text/99dfc10009e2330e.txt"
   },
   {
    "id": "S081",
    "url": "https://docs.typesafe.ai/model-jaggedness/jev-1.13",
    "label": "TypeSafe 官方文档 Jev 1.13 jaggedness 页：九条已知失败模式与处置建议，标注 applies to jev-1.13、last reviewed 2026-09-17",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI Docs"
+   "publisher": "TypeSafe AI Docs",
+   "cache": "text/ef7ac94fbc4c5f4f.txt"
   },
   {
    "id": "S082",
    "url": "https://docs.typesafe.ai/primitives",
    "label": "官方题型文档：Choice 需列出全部选项并在覆盖不全时补 other / none of the above",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI Docs"
+   "publisher": "TypeSafe AI Docs",
+   "cache": "text/065e2bbd0545c9e8.txt"
   },
   {
    "id": "S083",
    "url": "https://docs.typesafe.ai/models",
    "label": "官方模型页：jev-1.13 定价、64k/32k 上下文预算、仅文本输入、不按客户数据微调",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI Docs"
+   "publisher": "TypeSafe AI Docs",
+   "cache": "text/3042cee4d750daa2.txt"
   },
   {
    "id": "S084",
    "url": "https://evals.typesafe.ai/",
    "label": "官方 workflow 评测站：四条真实流程上各模型的准确率、成本与耗时",
    "retrieved": "2026-09-27",
-   "publisher": "TypeSafe AI"
+   "publisher": "TypeSafe AI",
+   "cache": "text/4e1ebe220be5a4ce.txt"
   },
   {
    "id": "S085",
@@ -1885,35 +1972,40 @@
    "url": "https://datasciocean.com/en/ai-concept/jev-overview/",
    "label": "第三方长文复盘：独立测试加速倍数落在 5x–25x、准确率中游、发票流程差 17 个百分点",
    "retrieved": "2026-09-27",
-   "publisher": "DataSci Ocean"
+   "publisher": "DataSci Ocean",
+   "cache": "text/67ac3e755cab6ebf.txt"
   },
   {
    "id": "S087",
    "url": "https://www.firecrawl.dev/blog/what-is-jev",
    "label": "第三方技术博客：Every 的找缺陷测试 6/7 对比 Fable 5.1 的 7/7，并记录 HN 对「类型安全不等于正确」的质疑",
    "retrieved": "2026-09-27",
-   "publisher": "Firecrawl"
+   "publisher": "Firecrawl",
+   "cache": "text/9ac58fb76b0d66a2.txt"
   },
   {
    "id": "S088",
    "url": "https://arxiv.org/abs/1706.04599",
    "label": "Guo, Pleiss, Sun & Weinberger, On Calibration of Modern Neural Networks (2017)：现代神经网络普遍过度自信，提出以 ECE 度量",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/15e1c339ab3011e5.txt"
   },
   {
    "id": "S089",
    "url": "https://arxiv.org/abs/2607.11414",
    "label": "Confidently Wrong: Detecting Hallucinations in Financial Question Answering from LLM Internal States：高置信错答会无声侵蚀下游，检测用重采一致性与内部激活探针",
    "retrieved": "2026-09-27",
-   "publisher": "arXiv"
+   "publisher": "arXiv",
+   "cache": "text/868ee0c61546353f.txt"
   },
   {
    "id": "S0810",
    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3240751/",
    "label": "Goddard, Roudsari & Wyatt, Automation bias: a systematic review of frequency, effect mediators, and mitigators：13,821 篇检索中纳入 74 篇",
    "retrieved": "2026-09-27",
-   "publisher": "PMC"
+   "publisher": "PMC",
+   "cache": "text/ff5953a07e993241.txt"
   }
  ],
  "category": "人工智能",
@@ -1934,17 +2026,27 @@
   "hero_motif": "choice_bars",
   "hero_note": "母题是「封闭选项上的概率条」：一组等高候选里只有一条被点亮，旁边标着置信度。这就是 Jev 与自回归模型最直观的分界——它的输出空间是人给定的那几个选项，不是开放词表。琥珀色点亮、其余压暗，配深墨底。"
  },
- "generated_date": "2026-09-27",
+ "generated_date": "2026-10-05",
  "created_date": "2026-09-26",
- "data_as_of": "2026-09",
+ "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 16,
  "site": {
-  "url": "https://jev-gtqdc11h6po.qoder.website/",
-  "project_id": "01a0deb8-984d-7e78-92c0-38ee86ecb539",
-  "slug": "jev",
-  "content_sha": "a9bc82e71c21ac8a",
-  "published_date": "2026-09-27",
+  "url": "https://ai-industry-gtqdc11h6po.qoder.website/jev/jev.html",
+  "group": "ai-industry",
+  "path": "/jev/jev.html",
+  "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
+  "content_sha": "4cd00f42b76a12d0",
+  "published_date": "2026-10-10",
   "access": "public"
+ },
+ "cover": {
+  "file": "images/01_思考快与慢.jpg",
+  "alt": "思考快与慢原版正版丹尼尔卡尼曼诺贝尔经济学奖丹尼尔著作逻辑思维推荐行为经济学颠覆你对思考的看法经济学理论读物新华书_虎窝淘",
+  "caption": "思考快与慢原版正版丹尼尔卡尼曼诺贝尔经济学奖丹尼尔著作逻辑思维推荐行为经济学颠覆你对思考的看法经济学理论读物新华书_虎窝淘",
+  "source_page": "https://tao.hooos.com/goods_558344411192.html",
+  "width": 800,
+  "height": 800,
+  "query": "思考快与慢"
  }
 }

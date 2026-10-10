@@ -55,7 +55,7 @@
     "hero_motif": "waveguide_rainbow",
     "hero_note": "以光波导的耦出栅为母题：光在几毫米厚的玻璃里靠全反射前传，每过一段栅就漏出一丝，越靠近出瞳越亮，最后三格才出射成蓝紫——这是全彩画面真正离开镜片的位置。"
   },
-  "reading_target_minutes": 10,
+  "reading_target_minutes": 12,
   "sections": [
     {
       "id": "what-it-is",

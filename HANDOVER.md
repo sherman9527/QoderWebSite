@@ -8,81 +8,129 @@
 >
 > IN PROGRESS 用于标记"当前正在做"，防止多会话重复劳动。
 
+## 路径变更（10-02）
+
+本文件与 `memo.md` 里大量证据指针写着 `.probe/w157_*`、`.probe/w162_*`、`.probe/livecmp.py` 等。
+**`.probe/` 被 .gitignore 忽略**，那些路径只在这台机器上存在。
+10-02 起，审计链搬到版本库里（W-170，判据见 `memo.md` D-26）：
+
+| 旧路径（历史条目里的写法） | 现在 |
+|---|---|
+| `.probe/w157_hand.py`、`.probe/w157_scan.py`、`.probe/w162_scan.py`、`.probe/w164_measure.py`、`.probe/livecmp.py`、`.probe/fill_sections.py` | `audit/tools/` 同名 |
+| `.probe/w157_decisions_*.json`、`.probe/w157_debt.json`、`.probe/w157_decisions.jsonl`、`.probe/w162_decisions_*.json`、`.probe/w162_debt.json` | `audit/records/` 同名 |
+
+历史条目**没有改写成新路径**——那些话在当时是真的，改指针等于改历史。
+一次性探针（截图、临时统计、草稿脚本）仍然留在 `.probe/`，它们不是审计链。
+守卫在 `tests/test_audit_trail.py`：工具与记录没进版本库、或台账指向不存在的 `audit/` 文件，测试就红。
+
 ## IN PROGRESS（正在做）
 
-- [ ] W-157 **prose 块的数字欠账：182 → 83，剩下的分三类，只有一类是内容活**（09-26 推进，实测数据在下面）。
-      G-06 那条 `pass` 改成计数 warn 之后露出：**635 个 prose 块里 182 个带数字且无块级来源，22 篇每篇都有**。
-      第一轮用「数字出现在来源 label 里」当凭据挂上 **67 块**（20 块人工逐条判断 + 47 块机器找到
-      唯一/少数来源且**块里每一个有形状的数字都能对上**）；第二轮起按篇清，
-      宾利 1、AI制药 2、百达翡丽 2、ClaudeOpus55 2、积家 4、名创 1、爱马仕 4、美国中期选举 3、
-      咖啡 5、劳斯莱斯 12 共 **36 块**（裁决与逐条理由在 `.probe/w157_decisions.jsonl`，摘要抄进 `memo.md`，
-      工具 `.probe/w157_hand.py`——**不写 `because` 就拒绝执行**）。这 19 块里 18 块一块没改写：
-      它们的凭据本来就在 label 上，只是形状不合自动匹配器（它只认小数/百分号/千分位/
-      四位以上非年份，于是「9 张牛皮」「200 余个裁片」「2025-10-20」「5711/1A-014」全判"无从核对"）。
-      **工具说挂不上 ≠ 页面上没出处**，把这两类混起来要么白白改写好内容，要么让欠账计数失去意义。
-      唯一改写的那块（积家 reverso）反而抓到两处不精确：「之后半年」按专利—买断—注册三个日期
-      其实是八个月（heading 跟着错），「官方档案里**最早的**私人定制」的「最早」来源从没说过。
-      另两类要单独说，它们是**同一句话的两种失败**：
-      ①**来源对、label 太窄**（劳斯莱斯 `spirit blk0`）：S015/S021/S022 三条 label 合起来只覆盖到 The Whisper
-        的委托始末与 1911-02-06 注册，而这块的 Thornton 与勋爵的关系、「只铸三到四只现存不超过两只」、
-        Thornton 1915-12-30 随 SS Persia 号被潜艇击沉、「1920 年代初成标配」四条**没有一条 label 记着**——
-        维基那条目的正文大概率写着，是抓的时候没记进 label。**该修的是 label，不是换来源**，所以整块留欠账。
-      ②**半覆盖就删装饰性数字**（劳斯莱斯 `history blk2` 的「来回 27 趟」、`magic-carpet blk3` 的
-        「100 km/h 安静约一成」与那个工程师轶事）：块里 95% 的数有 label 顶着，剩一小句没有。
-        挂上去 warn 会闭嘴，但那枚芯片从此替一句没凭据的话作保——**删掉那一小句、其余照挂**。
-      ③还有一类是**思想实验被当成测量**（咖啡 `brewing blk0` 的「多焖 30 秒」）：
-        `HAS_NUMBER_RE` 不区分「引用的数」与「举例的数」，只能人判，判完在 because 里写清芯片撑的是哪一句。
-      故意不挂的还有美国中期选举 `what-polls-say blk8`（「2022 净减 9 席 / 1998 只净增 4 席」）：
-      S014 那张 UCSB 表是该引的来源，但 label 没给这两届的数，WebFetch 又撞上限（API 115）核不了。
-      **剩 83 块 / 13 篇，工具挂不上，只有两条路**：
-      ①`只有年份/两三位数，无从核对` 一类——内容本身没错，但要人读 label 或重做该节；
-      ②`部分数字无凭据` / `一个数都对不上` / `要 >4 个来源才全覆盖` 三类——
-      这些**挂上去就是假引用**，只能重做研究（提示词已修，重做出来的块会自带 `source_ids`）。
-      明细在 `.probe/w157_debt.json`（每条带 topic/section/blk/为什么挂不上）。
-      **不要为了消 warn 批量挂**：一块满是 60%–70%、138% 的段落，凭据里只有一个 1.7 万元，
-      挂上去 warn 就闭嘴了，而页面上多数数字仍然没出处——这正是本条要修的毛病本身。
-      另记一条计量事实：**G-06 的 warn 是每页一条**，所以一块挂上不会让页面变绿，
-      除非整页欠账清零——看 warn 数判断进度会误事，要看 `.probe/w157_debt.json` 的条数。
-      推进方式按篇做、每篇一个提交；已按此形状跑通 10 篇（挂源 → `--offline` 重渲染 →
-      闸门 → 提交 → 重发 → `record` → 线上比指纹）。（W-157 进行中。取一条 TODO 移进来，这是并行会话的互斥标记。）
+- [ ] W-193 **357 个「数在同篇另一条来源里」要人逐条读窗口；259 个「查不到」已分成能动与不能动**
+      全站 29 篇 × 两本账 1,180 个缺数（原文层见 `python scripts/sourcecache.py coverage`，数字随抓取变，不抄死）：
+      564 个就在该行**已挂**来源的原文里（label 没写全，不用动指针）、
+      357 个在同篇别的来源里、259 个在**读得到的**来源里查不到。
+      （10-07 起量了五次：557/354/278 →⑨→ 551/360/276 →⑩＋定位下标→ 554/360/273 →量族→ 同数→ **556/360/271**；总盘子 1,189→1,187→1,180。**分档随判据动**，要引用就读 `audit/records/w164_sweep_full.txt` 的合计行，别抄这里）
+      这 360 条不许机器落：过完三道门槛（整行的数都在同一条来源 / 不是本行算出来的派生数 /
+      语境词不许是品牌名与本篇别名）只剩 12 条候选；连命中窗口一起打出来逐条读
+      （`audit/records/w164_windows_all.txt`，`audit/tools/w164_windows.py` 重出），
+      读得清窗口的几乎全是撞号：`$1.875` 属于表里 Phala 那一行、`0.003 元/张` 是 Qwen-MT 的
+      图片价、`70.3%` 是毛利率不是 0.703 亿、`16.9%` 是 TOP TOY 的季度增速不是 16.88 亿。
+      **10-06 真正落盘 1 条**：名创《两把尺子》经调整同比 −15.7% 那一格补挂 S115，
+      依据是读到的原句「经调整净利润为10.79亿元，同比下降15.7%，后者为2022年以来的同期首次下滑」
+      ——同主体、同指标、同期间；同一轮把该源 label 漏写的这条主张补进摘要（`relabel`），
+      这一条**已随 retail 组重发上线**（release `01a11053-8846-746f-8207-ff2772f54d08`：深链 200、线上页面里 S115 出现 3 次与本地一致、剥掉平台注入脚本后字节等于本地、G-14 回到 1 条 warn），
+      并把 `relabel` 从「必须是 prose」的旧限制里放出来（它动的是 `sources[]`，与块型无关）。
+      278 个「查不到」**先分诊再动**（`audit/tools/w193_triage.py`，补完第⑨洞重测：A 54 行 / B 130 行）：
+      （10-08 重测后：A 38 行/54 数，其中 20 个派生 ⇒ 真要动 **34 个 / 26 行**；B 143 行/219 数）
+      B 类 219 个数——该行挂着读不到的来源，或那一族量在来源里根本看不见（`pdf_no_cjk`、抓失败）⇒ 抽取不行，不许删正文，
+      取证走 `scripts/pdfpage.py`（数字层定位页 + 人眼读页面图，W-192）。
+      「状态未知」也归进不许删那一档：`tests/test_w193_triage.py` 钉住。
+      **A 类「真要动」的清单一路在缩：45 行/57 数（⑨）→ 38 行/48 数（⑩＋定位下标）
+      → 26 行/34 数（量族 W-196②）→ 24 行/32 数（取整 W-197）→ **22 行/23 数（ClaudeOpus55 两行改写落地）**，
+      列在 `audit/records/w193_A_list.txt`。**一个数都没删**：缩掉的那 25 个都不是新证据，是尺子瞎造成的假欠账，
+      而剩下这 **32 个**（W-197 已把「来源细、正文粗」那一档认出来：LV `132.1` ← `13,209` 百万）里，
+      劳力士 `8,897`/`11,785`/`27,642`（S071 正文里没有那个数字形状，图表未读）、
+      Cerebras `195.3`/`17.25` 与 ClaudeOpus55 那 9 个（ARC / Artificial Analysis 两页都是 JS 渲染，
+      本地缓存里读到的是壳）。
+      **10-08 联网复验第一条做成了，用的是 playwright（`WebFetch` 那条被 FORBIDDEN 挡住）**：
+      ARC Prize 结果页渲染后的 `innerText` 长 16,499 字，逐串查过——
+      · **认得出**：`Max 97.5% / XHigh 97.5% 92.5% / High 98.5% 93.3% / Medium 97.5% 87.5% / Low 88.5% 70.1%`
+        （正文那些**得分**确实有出处，别动）；
+      · **查不到**：`0.120`、`0.152`、`0.158`、`0.223`、`0.641`、`0.671` 全部不在页面文字里，
+        整页只有三个带美元号的串 `$0.001 / $0.01 / $0.10`——那是**图表坐标轴的刻度**。
+      ⇒ 那几个「每题成本多少美元」是模型从散点图上**读出来/推出来**的，不是来源写着的数。
+      **同一条还查了 S043（Anthropic 官方发布页，缓存 40,390 字，能读）**：`per task` 出现 12 次，
+      但每次都只在句子里说比例（「about a fifth of the cost per task」「40% drop in costs」），
+      带美元号的串全是**坐标轴刻度**与**每百万 token 定价表**（`$0.20 $0.50 $4 $20 $9.92…`）；
+      GDPval 那张图的轴是 `1200 1300 … 1800 Elo` + `0.20 0.50 1 2 5 10 Estimated cost per task (USD, log scale)`，
+      档位名 `Low Med High Xhigh Max` 是**图例**。⇒ 正文里 `1224`、`6.19`、`8.92`、`51.4%` 与那五个
+      ARC 成本数一样，**来源文字里没有**：它们是从对数坐标散点上读点，不是可核对的引用。
+      而 `1846`（GDPval max）与 `40.0%`（AutomationBench）确实在文字里——同一行里**一半有据一半没据**。
+      ⇒ 修法不是整行删，是**把没据的那半改成来源文字支持的说法**：
+      留「max 档 1846 Elo、默认档约为对手五分之一成本」这种原文里就有的表述，
+      删掉逐档美元成本与 low 档 Elo。两行都用 `fixrow`，理由写「来源只有图，图点不可核」。      按 R-02 这一簇该删的是**成本那几个数**，不是整行；得分与排名留着。
+      下一步照这个办：`audit/tools/w157_hand.py fixrow` 改写该行去掉成本数字，
+      理由进 `audit/records/w157_decisions.jsonl`，然后 `python scripts/generate.py ClaudeOpus55 --offline`
+      重渲染 + `validate.py --all` + 重发 model 组。剩下的簇同法：先渲染再读，读到才算数。      逐条摊窗口读原文读出的洞，每一个都在替正文挡刀：
+      · **第⑩洞（来源侧）**：量级词写在**表头**、千分位写空格/NBSP。读到的原文：
+        LVMH S111 部门表 `Fashion & Leather Goods 41 060 37 770 -8% -5%`、S113 `Millions of euros … Revenue 42,169 41,060 37,770`
+        ⇒ 正文「377.7 亿欧元」与「132.1 亿欧元」**都在来源里**（13,209 百万＝132.09 亿）——
+        `377.7` 随第⑩洞修好，`132.1` 差的是**取整**不是量级，仍挂在清单上等 W-197；
+        英特尔 S066 分部表表头 `(In Millions; Unaudited)`、DCAI 那格 `3,939` ⇒ 正文「39.39 亿美元」**在来源里**。
+        `scaled_forms()` 能摊出 `37770`/`3939` 这些写法（第⑨洞补过的），挡住它的是**一道**：
+        单位声明写在表头，而 `DOC_UNITS` 的检查大小写敏感（`Millions` 不认 `million`）又只看 ±WIN。
+        （我 10-07 白天在此处写过「还有另一道：`norm_spans` 把两格粘成 `4106037770`，探针左边撞上
+        上一格的数字」——**那句是错的**：换算探针没有数字边界检查，粘号不影响命中，
+        实测挡住 LV 的只有「声明在表头 + 大小写敏感」这一条。成因写错会把下一轮引去改错的地方。）
+      · **第⑪洞（分诊侧）**：`定位` 写成 `块型[-]` 的行，台账里配的 `行文本` 是**最后一行**那一格，
+        而缺的数来自别的格 ⇒ `split_derived()` 拿错误的 operand 去配对，本该算派生的数漏进「真要动」。
+        读到的实例：娇兰 `price_table[-]` 挂着「补充液 200ml 112.06 €」这行的文本，缺的却是
+        `1.62`（= Mon Guerlain 30ml 48.50 € ÷ 30）、`0.94`（= 100ml 93.76 ÷ 100）、`0.74`（= 125ml 92.11 ÷ 125）。
+      还有一条口径太宽（W-196）：A/B 只问「正文抓得到吗」，没问「抓到的那部分含不含这一类的数」——
+      ARC Prize 结果页 S044 抓到 12,303 字而正文 `$` 出现 0 次、`cost` 0 次（成绩表是 JS 渲染的，
+      壳抓到、表没抓到），这类**抽取失败**被归进了「可以删数」的 A，按 10-05 定下的方向该归 B。
+      另注：K 线 JSON 里 `58624.71000000` 与正文 `58,625` 是**取整**关系（同一条蜡烛的收盘，正文四舍五入到元），
+      同属写法不是欠账；但同一张价表里 `130.97`、`320.07`、`86,209` 在来源里**没有**对得上的格
+      ——那是正文比来源更精确，精度本身是编的，这一类才真要动（见 W-197 的方向判据）。
+      先替它排除过的一种偷懒解释要作废：10-06 写过「用纯数字 + 数字边界把这批数重查一遍，
+      **0 个是分隔符/写法差异**」——那次只拿**同一串数字**去查（`5.379`→`5379`），
+      从没查过量级写法，所以那句话对 W-195 这两例没有覆盖力，别再拿它当「确属无出处」的证据。
+      `derived()` 那一档**没有**放宽——它是 1% 容差的两两配对，把 operand 池从一行扩到一块
+      就几乎什么数都「算得出来」，那会把真欠账洗白，方向比第⑤洞更坏。
+      工具都在：`audit/tools/w164_sweep.py` 出分档、`w193_read.py` 按块摊窗口、
+      `audit/tools/w157_hand.py`（chip / addids / relabel / newsrc）落盘并记理由。
+      **10-07 凌晨停在这里**：一条正文与来源都没改、一个数都没删。停在「这 57 个数该动哪一个」
+      这一步**之前**——逐条摊窗口读来源原文读出了三个新洞（W-195/W-196/W-197），
+      其中 LV 与 Muse 那几个已**核实**在来源里（`37 770`、`13 209`、`3,939`），照清单删就是删对的东西。
+      **W-195、W-196①② 都已修（见 COMPLETE）。下一条动的是 W-197**：取整只认一个方向
+      （来源细、正文粗才认；`13,209` 百万＝132.09 亿 ⇒ LV 那个 `132.1` 属这一类，仍挂在清单上等它）。
+      含不含这一类的数」，ARC 那种只抓到壳的必须退到不许删的 B；然后 W-197（取整的方向）。
+      W-195/196/197 修完之前，`audit/records/w193_A_list.txt` **只读不执行**（那份清单的表头也这么写着）。
+      **10-09 交接：剩下的 23 个数（8 篇，去重后 12 个主张）已经分好两类，两类都不需要再判据**
+      · A 类「派生没显形」——本地就能做完，不联网：`6240`/`8724`/`13700`（页内算术）、
+        `1,344`（劳斯莱斯：来源写 768 红 + 576 白，把两个操作数写进那一格它就成派生）、
+        `25.3`（香奈儿：1520 ÷ (3×20)）、`0.000092`（E2B：4×0.000014 + 8×0.0000045）、
+        `1.52`（娇兰每毫升）、`0.0248`（Wafer 报价换算）。
+        做法统一是「让算式出现在行里」而不是补源或删数；**别为了它们放宽 `derived()`**
+        （三操作数一开，什么数都算得出来，方向比第⑤洞更坏，这条 10-06 就定过）。
+        卡点：`fixrow` 现在只碰 `rows[]`（cells 或 k/v），**碰不到 `card_grid` 的 `metrics[]`**
+        ——劳斯莱斯/积家那两格要走这条路得先给它加一条分支，这是本条剩下的第一件事。
+      · B 类「必须联网复验」：Cerebras `195.3`/`17.25`（Artificial Analysis 是 JS 页，
+        与 ARC 同法：playwright 渲染后读 innerText）、劳力士 `8,897`/`11,785`/`27,642`
+        （Bob's Watches 正文只到「从 $5,051 起、2020 底到 2022-03 冲高」这一级粗话，
+        精确均价大概在图里——读到图才算复验，没读到之前不删）、积家 `4.05`/`1.85`
+        （现挂的 S0411 是**另一只表**的页面：39毫米、868/1 机芯，先找对来源再谈数字）。
+      两条判据教训已进 memo：**「来源是官方页」≠「数字有出处」**；
+      **抓不到 ≠ 没有**——今晚删的 9 个数里，依据全是「读到原文之后」。
+
+
+
+
 
 ## TODO（待办）
 
-- [ ] W-161 **第 23 篇「Jev」：一个不写字的模型，凭什么、能干什么、怎么验**（09-26 开发者点题）。
-      六个问题按章拆开：差异在接口形状（吃 state + 预设问题，吐概率与置信度，不吐 token）／
-      生态位（agent 的护栏、路由、分诊）／**怎么判断它挑得对不对**（全篇最要紧：
-      格式合法 ≠ 判断正确，要准确率 + 阈值—覆盖率曲线 + 校准度 + 每单总成本）／
-      量化决策可行性（只讲机制与边界，不给建议、不给方向、把「会不会赚钱」换成可核验观察条件）／
-      为什么八天没有同类涌现（新的可能不是网络结构，是任务收窄 + 输出契约 + 部署形态；
-      一周这个长度本身不构成证据）／未来差异化（不预测，写「如果 X 则说明 Y」并给出推翻条件）。
-      已就位：`config/topics/Jev.json`（10 章，schema 0 错）、主题 `jev-choice`（橄榄与紫，
-      量过：与 22 套既有主题没有一对两条腿同时靠近）、记忆点 `choice_bars`（封闭选项上的概率条）。
-      与已上线的「大模型」篇 `jev-system-one` 一章是**同一事实的深水区**，
-      数字口径必须一致：延迟/倍数/价格目前全出自厂商，第三方独立跑分截至发稿未见。
-      反方材料必须进正文（36氪「实测Jev：没那么强」、36氪「Jev真是新范式吗」、
-      MIT 科技评论中文、钛媒体），**只抄厂商宣称数字的页面等于软文**。
-      待开发者补：EP227《Top 9 Places to Use Jev》原文链接（按标题搜不到，WebFetch 又撞配额）。
-
-（下面只剩一条大的：W-158 要先量再改）
-
-- [ ] W-158 **`gated_queries` 的领域主语前缀，要让每一章配自己的主语**（09-26 量清机制）。
-      现在 `primary_subject(subject)` 从 aliases 里挑**一个**可检索主语，全篇共用，
-      再 `ensure_subject` 把它拼到每条章节词前面（`scripts/images.py:428` 与 `:456`）。
-      单主体领域（咖啡/香奈儿）里这一步是对的；多主体领域里它把「这章召不到图」
-      稳定退化成「给这章放一张领域地标照」——第 22 篇 11 章抓回 12 张国会大厦，
-      其中多张来自旅游攻略页。**先量再改**：改前先在 22 篇上统计
-      「补前缀之后召回到图、且图注撞上**该章**章题词」的比例，与不补前缀对比；
-      只有确认补前缀净亏，才动 `primary_subject` 的选择逻辑。
-      候选修法：章节级声明主语（大纲里每章可写 `image_subject`），
-      章级零召回才回落到领域主语。**不要**直接调 aliases 顺序——那是给噪声定指标。
 
 
-
-
-（另**保留一条自我更正**：我先前用「raw 检索词里有没有主语 token」扫 Muse产业逻辑，得出「第 6、11 章零点名、只能走放宽档」并据此开了 W-124。量错了对象——`gated_queries` 会给 ≥3 词未点名的检索词补一条兄弟词，而契约测试量的正是补完之后的输出，一直全绿。那两章不是结构性没救，W-124 已删；检索词仍然换成了可拍摄实体，但理由要说准：抽象词本来就要不到图，而补出来的 `muse X Y` 会召回同名乐队与同名手术机器人。）
-
-### 已知没修（等第二例证据再动，别单例过拟合）
-- 同源单调：积家 11 张全部来自腕表之家系、娇兰多数来自花瓣图钉页。W-111 的来源页配额按 **URL** 数，同一站不同页判不出来；要做成闸门会大面积把已上架页面判死（W-97 那种机制），所以只在采集时生效。
 
 
 
@@ -90,6 +138,19 @@
 
 | 日期 | 编号 | 工作项 | 证据 |
 |---|---|---|---|
+| 2026-10-08 | W-197 | **取整那一档补完：判据按整块数值比，不再逐字找——只认「来源细、正文粗」**（`number_cells()` 把来源的数按**千分位形状**切块（1–3 位开头 + 若干个『分隔符 + 恰好 3 位』），所以 `41 060 37 770` 得到 41060 / 37770 而 `Total 2025 5 358` 得到 2025 / 5358，相邻两格不再互相污染；`decimals_of()` 用**正文自己写的小数位**定区间半格宽，`rounded_cover()` 判 `|来源值×f − 正文值×单位| ≤ 0.5·10^−p·单位`；`prepare_text()` 因此多带一份数值索引（三元组），调用方只是原样传进 `hits()`，签名不牵动四个工具；语境门槛一点没降：这一档仍然要求词面重合或量级声明配套，否则不认）。**方向不对称是这条的核心**：`13,209` 百万 ⇒ 正文 `132.1` 亿 认；`86184.39` ⇒ 正文 `86,209` 不认——那是精度本身没出处。反例两条一起写进测试：`13,159`（区间外一格）必须查不到。**我自己在这条上引入过一次全站故障**：新函数用 heredoc 接到文件**末尾**，正好落在 `if __name__ == "__main__"` 之后——`import` 得到（pytest 639 全绿），但 sweep 以子进程跑它时先执行 main()，`number_cells` 还没定义 ⇒ 29 篇全炸，且把 `audit/records/w164_sweep_full.txt` 写成空文件；抓它的正是本项目原有的 `test_importing_a_tool_must_not_truncate_its_own_report`（空报告自己不肯装绿）。补了 `test_the_evidence_tool_still_runs_as_a_cli`：判据文件的**函数定义顺序**也是会被改坏的，而「只跑 pytest」证明不了 CLI 那条路通。 | `tests/test_evidence_context.py`（3 条，先红 `assert []`：LVMH 取整认、`13,159` 不认、K 线 `86,209` 不认）；`tests/test_audit_trail.py::test_the_evidence_tool_still_runs_as_a_cli`；`.probe/after197.txt`（真实来源：LV S113/S111 的 `132.1` 各命中 1 且标为换算＋只靠单位词）；`.probe/rechain.log`（`A=36/52 B=143/219 派生=20 真=32（与合计 none=271 自洽）`、`24 行 / 32 个数`）；`audit/records/w164_sweep_full.txt`（`556/360/271＝1,187`，逐行回读自洽）；`python -m pytest` 639 passed / 1 skipped |
+| 2026-10-08 | W-196 | **分诊两条口径修完：① 定位带上真实行下标（`units()` 产出 (定位, 行文本, source_ids)，行级块型不再是 `块型[-]`，prose/quote 保持 `[-]` 走 `addids`）；② `classify()` 新增 `fam_missing` 一档——该行断言的量族（货币/百分比）在全部已挂来源里一次都没出现就归 B，方向只会 A→B。两次都在缩「可以删」那一档：A 51 行/69 数 → 38 行/54 数，真要动 48 → 34；娇兰每毫升单价与币安 K 线那两簇退出清单。代价也记在同一处：K 线那 12 个数被降进 B 是安全方向但不是它的病根，W-197 的入口因此改成 `.probe/triage_*.txt` 里「这一族看不见」那些行，不再是 A 类清单 | `tests/test_w162_locs.py`（3 条，先红 `assert 2 == 3`）；`tests/test_w193_triage.py`（3 条，先红 `TypeError`/`AttributeError`： 货币族不可见必须归 B、裸数不许降级、`claim_families` 认得出美元/€/%）；`.probe/retriage.log`（`A=38/54 B=143/219 派生=20 真=34（与合计 none=273 自洽）`）；`audit/records/w193_A_list.txt`（26 行/34 个数，由工具自己写） |
+| 2026-10-07 | W-195 | **尺子第⑩洞补完：来源把量级写在表头，判据看不见声明就把财务页最主干的几个数判成「没出处」**（`scaled_forms()` 现在把**生成探针用的因子**一并带回 `hits()`，`declared_scale()` 只在归一化副本上往前看 `RATE_WIN`、且**只认因子配套的那一个声明**——LVMH `Millions of euros … 37,770`、英特尔 `(In Millions; Unaudited) … $ 3,939` 从此认得出，而「表头写 Billions 的 3,939」仍然查不到。放宽的只有「看得见声明」这一件事，证据门槛没动：这类命中一律 `words_ok=False` ⇒ 落进**待眼验**，不算已核。**顺带改掉我 10-07 记下的成因**：当时写「`norm_spans` 把两格粘成 `4106037770`，探针左边撞上的是上一格的数字」——那句话不对，换算探针**没有**数字边界检查，粘号不影响命中，实测挡住 LV 的只有「声明在表头 + 大小写敏感」这一条；「按整块解析来源数字」这套设计留给 W-197（`132.1` ← `13,209` 差的是取整，不是量级）。另：LV 那行的 `132.1` 这次**没有**修好，它归 W-197。） | `tests/test_evidence_context.py`（正向两条：LVMH 表头 / 英特尔分部表——先红后绿，红的时候是 `assert []`；反向两条：量级不配套的表头、完全没有声明的一串裸数字）；`.probe/after195.txt`（真实来源实测：LV S113 与 S111 的 `377.7`、Muse S066 的 `39.39` 各命中 1，全部标为换算＋只靠单位词）；`python -m pytest` 630 passed / 1 skipped |
+| 2026-10-06 | W-194 | **三个尺子洞补完并全站重测：⑤ 裸小数的量级换算、⑥ 欧洲小数逗号、⑦ 报价的分母单位——今晚几组「欠账数」都是它们造出来的**（⑤ `scaled_forms()` 拿裸值除以每个单位词，`0.61` 于是生成出 `1`、`0` 这种探针，每条来源都命中——Jev 一个 κ 数摊出 35 条「候选来源」全报已核；改成行里真有单位词才换算，换算后 <1 或数字位不足 3 的残渣丢掉。⑥ 页上 `48,50 €`、正文 `48.50 €`，`in_label` 把逗号抹平之后 `4850` 与 `48.50` 互不相认，娇兰**整张价表**被判成无据；只在「点+恰好两位」时互认——三位是千分位组，英文 `1,234` 与德文 `1.234` 纯字符串分不开，那种一律不猜。⑦ 表头写「美元/百万 token」、正文写 `1.875`，接口原样是 `"completion":"0.000001875"`；新增 `rate_forms()`，**只有表头显式声明**每百万/每千才生成分母换算，caption 作 `unit_ctx` 传进四个工具。⑦ 差点造成实质伤害：《开源权重与算力估值》里 DeepInfra 那行价是**对的**，我一度把它列进要删的清单——因此新写分诊工具把「查不到」分成「能动」（A 类：挂着的来源全都读得到却不含该数）与「不能动」（B 类：挂着的来源读不到，抽取不行 ≠ 没出处），状态未知一律归进不能动那一档。同轮修掉 `backfill` 重下已拒绝的 PDF、地图有正文却不接指针、`sourcecache.py` 无参数时报 TypeError 三处） | `tests/test_evidence_context.py`（⑤⑥⑦ 各两条正反断言：没声明**必须**查不到、有声明认得出、三位千分位不许互认）；`tests/test_w193_triage.py`（A/B/C 判据 5 条）；`tests/test_sourcecache_pdf.py`（终态跳过 / 先接指针不重抓 / fetch_failed 仍重试）；`tests/test_chip_action.py`（relabel 不该挑块型）；`audit/records/w164_sweep_full.txt`（现数 557/354/278＝1,189，回读 29 行逐行求和自洽）；`audit/records/w164_windows_all.txt`；commit `2f16bbb`、`f034c01`、`3e77ae2` |
+| 2026-10-06 | W-164 | **表格行与正文的引用覆盖：量到第五个洞才见底——原报「R-02 暴露清零」是尺子的假数**（① 台账原来写的「308 行真欠账」是尺子的错（`w164_rows.tsv` 现为 380 行 = 306 全页无据 + 31 漏挂 + 25 不匹配 + 18 挂对），四个洞逐个补、各带测试：**单位盲区**（正文「3.679 亿元」 vs 报表 `RMB367.9 million`，逐字搜差 100 倍就报查不到——台账记过四次的那个根因第五次应验）、**元组下标数错**（`emit_decision` 拿窗口文本当布尔，跑出 0 条差点当成结论；**工具打印 0 先怀疑工具**）、**品牌名当语境词**（讲爱马仕的文章每个窗口都含「爱马仕」，任何数字落在正文附近都算已核；据此落盘的 3 条补挂已回退并记进决策日志）、**版本号与日期被当成量**（`1.2.6`、`2027.12.31` 凭空造出欠账）；② 全站 29 篇 × 两本账共 1,189 个缺数，按**读得到的原文**分三档：557 个就在该行已挂来源里、354 个在同篇别的来源里、**278 个在有原文的来源里查不到**（原文层 2,204/2,860＝77.1%；**这一行初稿写的是 707/502/0，那是第五洞未补时量的，作废见 W-194**）；③ 逐条读命中窗口证明机器不可读：过完三道门槛只剩 12 条候选（旧短名单里大半是换算洞造的），读得清窗口的**全部是撞号，一条都没落**，356 个数转成人读 backlog（W-193）；④ 全站唯一由本次判据推动的内容修改是 4 条人工逐字核过的补挂（名创 S107 的 71.79 亿元、S063 的 2,637 台；爱马仕 S071 的 $13,500/$14,900、S072 的 $28,000–30,000），已随 10-05 那波发出） | `tests/test_evidence_context.py`（9 条：单位换算、跨语言只待眼验、品牌名停用、两字母碎片不算语境、派生数与版本号/日期不当证据）；`audit/tools/w164_measure.py` `scaled_forms`/`row_words`/`claims`；`audit/records/w164_sweep_full.txt`（29 篇逐行 + 合计，逐行求和 == 合计已回读自证）；`audit/tools/w164_sweep.py`（今晚把驱动从 `.probe/` 提进版本库，收尾就是那道回读）；`audit/records/w157_decisions.jsonl`（含 3 条回退的理由）；`audit/records/w164_candidates.json`（21 条候选短名单）与 `audit/records/w164_windows_all.txt`（连命中窗口一起打出来——读得清窗口的 7 条全部手判为假） |
+| 2026-10-06 | W-162 | **挂了来源但 label 盖不住所断：与 W-164 合成一次量完，本条的对象大部分不存在**（两本账现在共用 `w164_measure.ROWS_HEADER`——列名/列序一分叉，同一把尺子读不了另一份，而「读不了」和「没命中」长得一模一样；改这张表时我就把 `缺的数` 与 `当前挂` 写反过一次。prose 的定位统一写 `块型[-]`，块级补挂走 `addids`。量完：本条那 381 条「补源或删数」（`w162_rows.tsv` 现 529 行 = 381 补源或删数 + 114 漏挂 + 34 挂对）绝大多数与 W-164 同因——label 只是摘要，数就在已挂来源的原文里；在有原文的来源里查不到的全站 278 个（**初稿写 0，是第五洞未补时量的**）。剩下 354 条要人读的部分并给 W-193） | `w164_measure.ROWS_HEADER` 与两个写入方共用；`audit/records/w162_rows.tsv`（列名与 w164 对齐）；`audit/tools/w162_measure.py`；`audit/records/w164_sweep_full.txt`（prose 侧分档）；`python scripts/sourcecache.py coverage`（原文层 2,188/2,860 = 76.5%，数字随抓取变，所以指针给命令、不抄数） |
+| 2026-10-06 | W-192 | **中文财报 PDF 取证走「数字层定位页 + 人眼读页面图」，不装 OCR**。改形的原因是开发者一句「你不是可以识别图片嘛」——问对了：真实分布是这些 PDF **数字抽得出、汉字抽不出**（子集字体没有 ToUnicode，pypdf 与 poppler 都是 0 汉字），缺的不是认字能力，是「这一行左边写的是什么」，那由看一张页面图解决，比装引擎更准也更可核（图留在本地谁都能重看，OCR 的错误会造出「看着像来源」的错数）。`scripts/pdfpage.py`：`find_pages()` 用数字层定位页码、`render()` 光栅化 PNG；引擎只有 PyMuPDF 一个 wheel，**零系统安装**，缺了就报「装什么」而不是偷偷退路。顺手补了 `sourcecache.py rebuild`：4 路并行补覆盖率时各进程整表读改写会互相盖掉地图，而 `sources[].cache` 才是权威指针——第一版 rebuild 把「抓失败/抽不出中文」这类**没有文件的记录**一起抹了，覆盖度报表于是显示「试过 11、拒绝 0」，把失败说成没发生过；已修并加测试 | `tests/test_pdfpage.py`（4 条：数字层定位到页、渲染出真 PNG、页码越界报错并给出总页数、没有引擎时报话术）；`tests/test_sourcecache.py`（14 条，含 rebuild 保留无文件记录）；`scripts/pdfpage.py`；`.probe/pdf_two.txt`、`.probe/pdf_cmp2.txt`（三文件对照：125,270 / 6,661 / 0 汉字） |
+| 2026-10-05 | W-191 | **来源原文层的 PDF 支路：能抽的抽，抽不动的拒绝入库**。三条判据都是量出来的不是猜的：① **抽取质量取决于文件**——泡泡玛特 2025 年报 pdftotext 出 799,944 字符 / CJK 125,270，名创 2026 IRA 中文本出 **0 个汉字**（子集字体没有 ToUnicode，pypdf 同样 0）；② **主路径给 poppler**——同一份 hkexnews 中文公告 6,661 vs pypdf 的 312 个汉字，pypdf 只作无 poppler 时的兜底并写进 requirements（R-07）；③ **抽不出中文就拒绝写指针**（status=pdf_no_cjk）——一份读不了的「原文」比没有更坏，它会让下游每个按原文判的闸门以为查过了。**量完的结论比这条原本设想的要冷**：四篇试点共试 13 份 PDF，只有 4 份入库，**9 份是 pdf_no_cjk**（港交所/IR 站那种中文子集字体），全库覆盖只从 203/2,860 涨到 214/2,860。而这条的原目标**没达成，必须写明**：名创 align-the-rulers 那 6 个股份支付数（3.679 / 0.189 / 2.790 / 1.585 / 0.703 / 16.88 亿元）**一个都没因此变可核**——持有它们的那份 PDF 正是抽不动的那份；真要取证得走 OCR，那是另一件工具、另一条 TODO。过程中还撞到一件更要紧的事：裸匹配在 80 万字的财报与行情 JSON 里把 `0.189` 撞进 `peggedUSD 里的 0.18998100035449358`、把 `2.790` 撞进 `1784215858` 这种时间戳——**字符串匹配分不开同一数与另一件事**，这次是在原文层上重演，所以 evidence 工具加了语境核对档（窗口与该行零词重合 ⇒ 标「仅数字相同·疑撞号」，不计入可用证据）。名创重跑：9 / 16 / 29，其中 10 个是疑撞号 | `tests/test_sourcecache_pdf.py`（6 条：魔数、pdf_no_cjk 拒写、kind/via 入库、backfill 路由 .pdf 而 .csv 仍跳过、poppler 优先 pypdf 兜底、依赖已声明）；`tests/test_evidence_context.py`（3 条钉住语境档）；`scripts/sourcecache.py` `put_pdf`；`python scripts/sourcecache.py coverage`（13 试 / 4 入库 / 9 拒那份）；`audit/records/w191_pdf_extract_cmp.txt`、`audit/records/w191_pdf_more_pdfs.txt`、`audit/records/w191_six_numbers_probe.txt`（三份真 PDF 的实测）；`audit/records/w164_evidence_名创优品与泡泡玛特.txt`（带疑撞号那一行的重跑） |
+| 2026-10-05 | W-168 |  **同名异物的机检形状量完：定为体检 + 采集期日志，不接闸门**）。候选②（每条 image_queries 至少含一个 aliases 里的全名）量出来是793 条里 645 条不合格（81.3%），且娇兰/咖啡/劳力士/爱马仕/百达翡丽/香奈儿/宾利/浪琴9 篇**一个全名别名都没有**——上闸就是惩罚已上架的页面，而点名判据本身依赖的是大纲质量不是检索词。最新几篇（MLCC 0/16、骁龙笔电 0/22、Agent开发、开源权重）本来就已按这条约定写，所以约定是真的，只是不能回溯钉死。落地成 `scripts/query_naming.py`（体检，成因分「作者侧没点名」与「大纲里没有全名可用」两档）+ 配图阶段每章一条日志；「这张图配不配得上这一章」仍然只有联络表那一道 | `tests/test_query_naming.py`（4 条，其中「naming is not a gate」钉住它不进闸门表）；`scripts/query_naming.py`；`audit/records/w168_naming.txt`（81.3% 那一份） |
+| 2026-10-05 | W-189 |  **来源原文层成形：抓到页面就落正文，`sources[].cache` 指得到它**）。`scripts/sourcecache.py`（`text/<sha16(url)>.txt` + `index.json` 地图，失败/空壳/非 HTML 都记原因）；schema、`SOURCE_KEYS`、`w157_hand` 的 newsrc 三处字段名单一次改齐并加了一条「三处必须相等」的测试；`prune_scratch.py` 默认整层免死，显式 `--include-text` 也只删没被产物引用的；研究阶段每条来源登记时就抓（`--no-source-cache` 可关），抓不到不写指针。试点四篇 203/2,860 条来源有原文（4.7 MB）：Cerebras 21/42、名创 86/114、爱马仕 62/75、美债 34/82。**这一层的第一个可核对结论比修了几条更值钱**：`audit/tools/w164_evidence.py` 把前四篇104 行「全页无据」里的 211 个缺数按原文重判一遍——**62 个就在该行已挂来源的原文里**（是 label 没写全，不是欠账）、63 个在同一篇别的来源原文里（chip 候选）、86 个在有原文的来源里都没有（才是真待判）——这组数当天下午就打了折，见 W-191 行的语境档）。另有 4 条补挂据此上线（名创 S107 的 71.79 亿元、S063 的 2,637 台；爱马仕 S071 的 $13,500/$14,900、S072 的 $28,000–30,000） | `tests/test_sourcecache.py`（13 条，含 308 跳转、thin 不写指针、prune 免死、字段名单三处相等）；`scripts/sourcecache.py`；`audit/tools/w164_evidence.py`；`audit/records/` 下四份 `w164_evidence_*.txt`（62/63/86 那三个数就是从这四份来的）；`audit/records/w164_decisions_名创.json`、`audit/records/w164_decisions_爱马仕.json` |
+| 2026-10-05 | W-190 |  **站点开始回答「这些数字什么时候过期」：闸门读 `retrieved`、页面印「核对于」、全站到期清单**）。新增 G-15（只 warn——一条只与时间有关的判据把产物钉死，等于用闸门逼一次全量重研）；阈值不按 13 个中文类别名手抄表，按该篇每章的时点断言密度（≥6→30 天、≥2→60 天、其余 90 天），数与档都在 `config/quality_bar.json` 的 `freshness`；页面 meta 行第三个日期「核对于 <最晚那条 retrieved>」与 G-15 读同一个数；schema 把 `retrieved` 钉成 ISO 日期（2,860 条实测全合，钉死之后一条写法不同的日期不会再静默逃出新鲜度） | `tests/test_freshness.py`（7 条，含「阈值跟密度走」「过期不 fail」「页面印出核对日」）；`scripts/freshness.py`（今天 0/29 到期，最陈是劳力士 15 天/阈值 30 天）；`config/quality_bar.json` `freshness` |
+| 2026-10-05 | W-188 |  **图注 alt/caption 收尾：alt 不再与可见图注重复，第四处阻碍查清并修掉**。三步改动落地时撞出的第四处是 `generate.image_ref`——它把空串一律丢掉，于是 `alt=""` 到 data.json 里成了「没有 alt 这个键」，撞 schema 的 required，21 条集成测试红成 `assert 1 == 0`（10-04 那次回滚就是这个原因，不是三步没写对）。现在：schema `$defs/image.alt` 去 minLength、`cover` 用 allOf 把 alt 收紧回非空（封面框没有 figcaption，alt 是它唯一的可读文本）；G-03 改判「空 alt 又没有可见图注」，并按 src 对齐而不是按出现位置对齐；generate 只写 caption；模板给没声明封面的那几篇拿本页标题兜底 alt。**存量也清了**：465 张图的 alt 全部清空（逐张核对过每张都有可见图注，`.probe/w188_alt_clear.py` 对没有图注的那张直接跳过不动）。① 带来源站页尾的图注**决定不做批量裁剪**（两版裁剪器都量过都否决：会造残句、会剪空、切完仍是 SEO 标签串），改由 G-03 的价格闸门拦住有害的那部分；③「10元店」是别名不是价格，按名词处理、不放宽判据 | `tests/test_alt_caption_pair.py`（5 条，含 `image_ref` 那条第四处阻碍）；`config/topic_data.schema.json` `$defs/image.alt` 与 `cover`；`scripts/validate.py` `g03_images`；`scripts/generate.py` `image_ref`/配图阶段 |
+| 2026-09-27 | W-161 | **第 23 篇「Jev」上线：一个不写字的模型，凭什么、能干什么、怎么验**。开发者点题的六个问题按章拆开，其中「怎么判断它挑得对不对」是全篇骨头：格式合法 ≠ 判断正确，要看准确率 + 阈值—覆盖率曲线 + 校准度 + 每单总成本。量化那一章按边界写（不给建议、不给方向，把"会不会赚钱"换成可核验观察条件）；「为什么八天没有同类涌现」明确写**一周这个长度本身不构成证据**；未来差异化不预测，只写"如果 X 则说明 Y"并给推翻条件。新增主题 `jev-choice`（橄榄与紫，配对前量过：与 22 套既有主题没有一对两条腿同时靠近）+ 记忆点 `choice_bars`（封闭选项上的概率条，第一版画错成两个黄点、截图自查才发现）。9 张示意图全部手绘（D-22：图里不写数字与日期）。反方材料进正文（36氪实测、36氪范式质疑、MIT 科技评论中文、钛媒体），**只抄厂商宣称数字的页面等于软文** | 提交 `4b1d145`；`python scripts/validate.py --all` → **23 个领域 0 fail**；线上 <https://jev-gtqdc11h6po.qoder.website/> `curl` 200 且 `template-fingerprint` 与本地一致、`access_mode: public`；主页 23 张卡 0 `<script>`；`publish.py check` 账实一致。遗留：开发者提到的 EP227《Top 9 Places to Use Jev》按标题搜不到、WebFetch 撞配额，链接仍待补，补到就折进 `where-it-fits` 一章 |
 | 2026-09-26 | W-159 | **卡片指标条的来源改成链接，G-06 开始读渲染产物**。线上 21 篇印着 587 处点不开的 `[S033]`/`[S031,S034]`，而 `data.json` 里内嵌标号 0 处、数据级闸门全绿——根因是模板 9 个引用位里唯一没走 `<Refs>` 的那处（`renderers.tsx:210` 自己 `join(",")`）。**这类缺陷的形状是"数据对、闸门绿、页面错"，只读输入的检查看不见它**，所以新校验判的是页面可见文字（`_visible_text` 先剥 style/script 再剥标签，属性值里的方括号不算）。22 篇重渲染重发布，主页站同步重发 | `tests/test_render.py::test_a_card_metric_cites_with_a_link_not_a_printed_label` 等 4 条先红后绿（`.probe/w159_red*.txt`）；`python -m pytest` → **428 passed** rc=0；`validate.py --all` → **22 个领域 0 fail / 31 warn**（G-14 归零）；全站数页面标号 **587 → 0**；22 篇 `template-fingerprint` 本地与线上逐篇相等（`.probe/w159_fp.txt`：指纹不一致 0 个）；最密两篇 `measure-layout` 通过 + 元素级截图人眼过（`.probe/shots/chips_MLCC_375_0.png`） |
 | 2026-09-26 | W-160 | **`prepare_site` 掉在仓库根的站点描述符：ignore、快照排除、自查三处同源**。`.浪琴 · 知识专题.qoder.site` 这类文件内嵌整份 index.html 的 base64，一轮重发掉 22 个，此前既不在 `.gitignore` 也不在 `public_exclude.txt` 的覆盖范围（那里的规则全是 `output/…` 形状）。**说准**：快照从 ref 造树，未提交的描述符当天并没有真的漏进公开仓库；真洞是下一次 `git add -A` 会把 22 份页面副本提交进去，而排除与自查都不认得它 | `tests/test_publish_public.py` 两条先红后绿（`has no attribute 'is_scratch'` → `2 passed`）；`publish_public.py` dry-run → `216 个文件｜图片残留 0｜中间文件残留 0｜身份痕迹 0` |
 | 2026-09-26 | W-153 | **`check_home`：主页卡片与账本对账**。`dist/home/index.html` 是 gitignore 的中间产物，`record` 不重建它、G-14 以前也不读它，于是「文章都重发了、主页还链着旧地址」这件事没有任何一处会报警——而主页恰恰是人唯一会点进去的那个链接。现在双向比：账本里有、主页没链 → 报；主页链着、账本里没有 → 也报（指向没有记录的站）。**缺构建只报 `!`、不进 drift**：否则「还没做那一步」变成「账对不上」，rc=1 的下一步永远是有人去关闸门 | `tests/test_publish.py` 三条（链错地址被点名、一致时沉默、缺构建不算 drift）先红后绿；真实仓库 `publish.py check` → `✓ 账实一致` 且无 `!` 行 |
@@ -248,3 +309,25 @@
 | 2026-09-19 | W-S4 | handover skill 装配：先装 `adobe/skills@handover`，实测判定其为 AEM Edge Delivery 专用（要求 `scripts/aem.js` 存在，否则终止），与需求 5 的"TODO/COMPLETE 台账删减"语义不符 → 卸载并自研项目版 `handover` skill | `.qoder/skills/handover/SKILL.md` |
 | 2026-09-19 | W-S5 | R1 风险闭环：验证 qodercli 无头联网 —— 默认拒绝工具，`--permission-mode bypass_permissions` 可拿到真实 URL 与具体数字；同时发现 `web_search_requests` 遥测恒为 0 不可信 | `design.md` §2 + `memo.md` 踩坑节 |
 | 2026-09-19 | W-S6 | 图片源可达性勘察：`cn.bing.com/images/async` 可用（12–35 条/查询，murl 原图 + turl 兜底，实测下到真 JPEG/PNG）；Wikimedia、DuckDuckGo 本网络不可达；Baidu acjson 反爬 | `memo.md` 环境事实节 |
+| 2026-10-01 | W-157 | prose 块数字欠账 182 → 0：22 篇逐篇裁决（挂源/改写/换标签/补新源/删无据数字/修表格错挂行），每笔都带 because | `.probe/w157_debt.json` 现为空数组；裁决文件 `.probe/w157_decisions_*.json` 与工具 `.probe/w157_hand.py`；过程记录 `memo.md` T-95…T-116；最后一块（劳斯莱斯 spirit blk0）在 commit 972e95b，全站闸门 `python scripts/validate.py --all` = 24 篇 0 fail（`.probe/morgan_all.txt`） |
+| 2026-10-01 | W-166 | 新增领域「摩根」：11 章成页并发布为第 24 个站点，回答开发者七问（发家史／摩根系名字差别／大摩小摩／谁最赚钱／还有哪些业务／家族还是财团／中国最像摩根的集团）；新类别「金融史」、新主题 `morgan-split`、新记忆点 `morgan_split` | <https://morgan-gtqdc11h6po.qoder.website/>；大纲 `config/topics/摩根.json`；闸门 `validate --all` = 24 篇 0 fail / 13 warn（`.probe/morgan_all.txt`）；配图三轮肉眼验收（`.probe/sheet_摩根.png`）；上线核验 `.probe/livecmp.py` 逐字节相等；commit a1477f2 + a22884e |
+| 2026-10-01 | W-165 | 篇幅口径裁决（D-25）：引用性文字计入预算、不豁免；证据优先于删字。13 篇的 `reading_target_minutes` 按实测重设成 ceil(汉字/625)，R-05 条文与 4,500/8,500 上下限不动 | `memo.md` D-25；`validate --all` 的 G-05 warn 13 → 0；页面显示的时长一直是实测（`TopicPage.tsx` minutes），声明值只是闸门目标 |
+| 2026-10-01 | W-169 | 每篇加「返回主页」：本地链 `../index.html`，出包时按 `config/home_site.json` 整串换成主页站地址，标记非恰好一处就拒绝出包。24 篇全部重发并逐篇核过 live==dist | `tests/test_publish.py::test_pack_rewrites_the_back_home_link_to_the_hosted_site` 等 5 条 + `tests/test_render.py::test_the_page_links_back_home_exactly_once`；commit 5d79e4a + 9cae10c；顺带修掉两个缺陷（pack 没传 output、G-05 硬上限可被大纲顶掉）|
+| 2026-10-01 | W-163 | 模板源哈希侧车补上 G-08 的盲区：区块枚举与 rev 看不见改 CSS、改措辞 | `tests/test_gates.py::test_G08_notices_a_template_edit_the_old_fingerprint_cannot_see`；算法单点在 `scripts/render.mjs::sourcesHash()`，侧车按页面文件配对（`咖啡.html.srchash`）；顺带发现并修掉夹具里手抄的区块清单（少了 bar_chart，passing_ctx 一直红着 G-08）；`validate --all` = 24 篇 **0 fail / 0 warn**（`.probe/w163_all.txt`）|
+| 2026-10-02 | W-170 | 审计链搬进版本库：判据工具与逐笔裁决记录从 gitignore 的 `.probe/` 移到 `audit/tools/` + `audit/records/`（6 个工具、39 份记录），历史条目的指针不改写、另加一张路径对照表；公开快照先用 `^audit/` 排除 | `tests/test_audit_trail.py`（工具/记录未进版本库、或台账指向不存在的 audit/ 文件即红）；`audit/README.md`；决策见 `memo.md` D-26 |
+| 2026-10-02 | W-171 | 教学篇《Agent开发》：模板加第 12 种区块 `code`（四处枚举一起改 + `oneOf` 契约测试）、13 章正文 24 个代码块、13 张自画机制图（一份定义同时出 PNG 与可编辑 .drawio）、封面是示意图时页面上必须有「示意图 · 非实拍」角标 | tests/test_code_gates.py + tests/test_contract.py::test_data_schema_oneOf_offers_every_block_type + tests/test_render.py::test_an_illustration_cover_carries_the_visible_badge；dist/agent-dev（14 文件 1.2 MB）；memo D-28/D-29、T-121/T-122 |
+| 2026-10-03 | W-172 | 情景篇《美债 7%》按开发者裁决拆成两篇：《美债7%情景》7 章 4619 字（口径与四类资产）、《利率外溢》6 章 4225 字（港股/A 股/美国楼市/MSTR/SOFI + 观察条件）；两篇来源分区 82/78 零重叠；R-05 的 8500 一个字没动 | python scripts/validate.py --all → 0 fail；.probe/split_ust7.py 的自检行；新主题 rate-spillover 过 G-11 与 G-13；audit/records/w172_fred_facts.txt |
+| 2026-10-03 | W-173 | 《Cerebras》拆成两篇：《Cerebras》6 章 4742 字（前提核对 / 晶圆级架构 / 收入 / 客户 / 单位经济学 / 产能）、《开源权重与算力估值》6 章 4225 字（租金搬家 / 估值阶梯 / 可比性 / 三种失效 / 八个口径陷阱 / 可证伪条件）；新主题 open-weight-collision + 新记忆点 rent_shift；15 张机制图（照片召回实测判定这个领域没有可用照片，整篇自画） | audit/records/w173_photo_recall.{txt,png}（英文品牌词第一屏是游戏壁纸/化学导图/猪肝/WWE 选手）；python scripts/generate.py Cerebras --offline 与 …开源权重与算力估值 --offline 各 0 fail；dist/cerebras、dist/open-weight-valuation；memo D-31/D-32、T-125~T-127 |
+| 2026-10-03 | W-176 | 发布波：24 个旧站全部重发（模板改了四轮，字节必须跟上）+ 4 个新站首发并设为 public；第 5 个新站被 `sites_total` 30/30 挡住，另开 W-177 | 每一笔 `publish_site` 的 Operation 都 `state:succeeded, committed:true`；`python scripts/publish.py check` → `✓ 账实一致`；`while read url; curl` 扫 `web_list.md` 里 28 个站 **非 200 的：0**；`validate.py --all` 的 24 条 G-14「线上是旧版」清零（`.probe/va_after_pub.txt`） |
+| 2026-10-04 | W-180 | 图片入库压缩策略定稿：删掉 PNG 的整条有损路径（≤256 色那一档是恒等变换、>256 色就是照片，两端都没有收益），四条解按保真度排序（第一个达标 → 第一个够软上限 → 最小的无损解 → 原图），分辨率锚从长边 2400 换成显示宽度 1472（`--measure:46rem` × 2 倍屏）；`collect()` 落盘前接 `fit_bytes`，去重改按 `.srcsha` 源哈希，删图连侧车一起删；G-03 加一条「超软上限又没有侧车」判 fail——今天 465 张全有侧车，实测一条不响 | `tests/test_image_policy.py` 18 条（其中 3 条最初**空过**，靠 `_geom()` 先断言阶梯真的动了才抓出来，见 memo T-130）；`python -m pytest` → 492 passed, 1 skipped；`validate --all` → 0 fail / 33 warn；memo D-35、T-129~T-132 |
+| 2026-10-04 | W-181 | 全库图片迁移落地：190.5 → **101.7 MB**，131 张重编码、358 张一个字节没动、**示意图 0 张被动过**；48 张在自己的格式里到不了 400 KB，保留无损结果并逐张点名，不砍颜色、不改扩展名。按类别估包 13 组、最大「人工智能」29.22 MB < 40 MiB 工作上限 → **合站方案成立** | `python scripts/shrink_images.py --apply` rc=1（唯一非零项是封面漂移报告，已逐张处置）；`audit/records/image_exceptions.txt` 48 条例外点名（10-04 从 `.probe/shrink_images.txt` 落进版本库——原来那条指针指向 gitignore 里的文件，克隆下来就查无此据）；`.probe/fid_*.png` 1:1 抽查（最低 0.060 B/px 那张仍干净）；`.probe/cover_flips.png` 五张对照；封面断言 flips=2 且两笔都是有意改的 |
+| 2026-10-04 | W-182 | 合站代码落地：`config/site_groups.json` 为组身份唯一权威；`publish.py` 出包/记账/清单全部改成组粒度（`pack_group` / `own_sha`+`group_sha` 两级指纹 / `record-group` / `pending-groups` / `playbook` 一组一条）；`build_index` 加 `--topics --out --title --home-url --slug-paths`，组落地页与全站主页是同一段代码的两次调用；「返回主页」那套字符串契约整块删掉；`site.slug` 退场、换成 `site.group`+`site.path`（28 份 data.json 同步剥掉）；G-03 加"绕过入库策略的大图"判 fail | 13 组全部打包通过、实测最大 `ai` 30.90 MB < 40 MiB（`.probe/pack_sizes.txt`）；`tests/test_groups.py` 30 条 + `test_publish.py` 22 条 + `test_playbook.py` 6 条；`python -m pytest` → 523 passed, 1 skipped；`validate --all` → 0 fail / 33 warn；memo D-36、T-133~T-135 |
+| 2026-10-04 | W-183 | 组落地页进闸门（此前归零覆盖）：`publish.check_group()` 要求卡片集合**正好等于**成员集合且每个相对链接在包内可解析；G-12 一并开真浏览器量 375/1440 两档；`measure-layout.mjs` 加 `--widths`；没打包的组保持沉默 | 那次事故的回归测试 `test_check_group_catches_the_layout_mismatch_that_pack_reported_as_success`；`_landing_geometry` 对真仓库 13 组实测 15.3 秒、0 问题（`.probe/g12_real.txt`）；`tests/test_gates.py`+`test_index.py` 139 passed |
+| 2026-10-04 | W-186 | **滚动迁移跑完：13 组全部上线，29 篇全部可访问，28 个旧单篇站删除**。三波：`ai-compute`+`ai-industry`（试点与第二组）→ `watches`/`fashion`/`cars`/`macro-finance`（11 篇）→ 其余 7 个单篇组。每组都是同一串：`pack` → `prepare_site` → 读回 host → `publish_site` → `update_access_policy(public)` → `verify_live` → `record-group`；**每波都是先重建并重发 hosted 主页，再删旧站**（顺序反过来线上主页就会挂 404 卡片）。主页这一轮重发 3 次，最后一次 29 卡全部指向深链 | `.probe/live_all13.txt` 13/13 组全绿：落地页与每条深链 200、逐页每张 `<img>` 200、剥掉平台注入脚本之后**线上字节等于包**；`.probe/home_live3.txt` = `✓ 卡 29 / 账上应 29，卡片全部 200`；删站后 18 个旧 host 实测 404（`.probe/` 两次逐 host 扫）；`publish.py check` → `✓ 账实一致`；`playbook` → `✓ 没有待发布的组`；`python -m pytest` → **529 passed, 1 skipped**；`validate.py --all` → **29 个领域，0 fail / 1 warn**（唯一那条是 Agent开发 G-05 软超长，D-11 可接受） |
+| 2026-10-04 | W-177 | 《开源权重与算力估值》**上线**——它不是被"等到配额放开"，是 D-34 换结构之后不再需要一个自己的站：它与 Cerebras 同住 `ai-compute` 组。留了大半年的那份草稿参数（actionId `9736db0d…`、slug `open-weight-valuation`）作废，出包改由 `pack_group` 统一做 | 深链 `https://ai-compute-gtqdc11h6po.qoder.website/open-weight-valuation/open-weight-valuation.html` 200 且逐字节等于包（`.probe/live_all13.txt` 内）；`web_list.md` 该篇「站点」列写 `ai-compute` |
+| 2026-10-04 | W-178 | **hosted 主页解冻**：`NotPublished` 的判据重新定范围——只对"声明在某个组里、但那篇自己没有 `own_sha` 记录"报错，**不再因为"某篇还没有组可去"而冻住整张主页**。D-33 那条"维持拒绝"没被放松，是被收窄回它原本要防的那件事。主页从 24 卡走到 29 卡，中途每波重发一次，任何时刻线上都没有指向已删站的卡片 | `build_index` 的 `dropped` 现在会喊（组落地页里被跳过的篇目直接报错）；`.probe/home_live2.txt` / `home_live3.txt` 两次都是 `✓ 卡 29`；memo D-34 末尾写了"重新定范围"这件事 |
+| 2026-10-04 | W-187 | 新发现的判据：**组名就是公开地址的前缀，必须 3–51 字符，读组表时判死**。起因是当场撞的坑——`ai` 两个字符，`check_subdomain` 回 `sites_invalid_subdomain`，而 `prepare_site` 不报错、静默给回 `5d8a0008…`；`deep_link()` 拼出的每一条卡片链接从第一天起全是 404，本地闸门一条不响。改 `publish._require_addressable()`：`load_groups()` 读到每个键就判死 + `group_host()` 也判（两条出口），组名 `ai` → `ai-industry`。**没有新增 `subdomain` 字段**：两处名字就要有人维护相等，而这次坏掉的恰恰是"相等" | 三条测试先红后绿：`test_a_group_name_the_platform_cannot_host_is_refused`、`test_load_groups_refuses_it_before_anything_else`、`test_a_group_name_of_52_characters_is_refused`；收紧之后第一条红的是**自己的夹具**（`test_index.py` 的 `g1`），见 memo T-136；memo D-37 |
+| 2026-10-04 | W-184 | **包目录里的文件集合必须恰好等于包清单**——不写排除名单。`.packed-sha` 与渲染顺带写出的 `<页面>.html.srchash` 曾跟着整目录上公网（`prepare_site` 拿的是整个目录）。改法：marker 搬到 `dist/.packed/<组>.sha`（包之外），`_prune_stale_dirs` 换成 `_prune_to_package`（递归、自底向上），并且**任何一次失败的 pack 都不留包目录** | 两条只有把断言写强才会现形的 bug：① 我第一版只清顶层，而 `<slug>/<slug>.html.srchash` 住在成员目录**里面**——是新测试摆的那颗嵌套雷抓的；② `test_slug_is_declared_not_inferred` 从"marker 不在"改成"包目录整体不存在"之后，`NoSlug` 那条早退出口**不清场**当场露出来（原来只有超限与链接对不上两条出口清场），改成整段 try/except。清理必须在"指纹未变就跳过"那条分叉**之前**，否则真渲染写出的侧车会从旁路活下来。证据：`test_the_package_directory_holds_nothing_but_the_package`（先红后绿，含跳过分叉那一半）；13 组重打包之后组目录里内部文件 0 个，而 `check` 仍 `✓ 账实一致`、`playbook` 仍空——**被清掉的东西从来不在指纹里，线上不需要为此重发**；`python -m pytest` → 530 passed, 1 skipped；`validate --all` → 0 fail / 1 warn |
+| 2026-10-04 | W-179 | **13 篇的封面全部过完人眼，10 张留用并写死进 `data.cover`，3 篇确认无封面是设计态**。判据不是"挑得更好看"，是**不再无声变动**。做法换了：不按 CSS 公式自己复算 3.7:1 裁切（框高是 `clamp(220px,26vw,420px)` 加 `object-position:center 40%`，复算等于"用自己的猜测验自己的猜测"），改成 `python .probe/covers13.py` 开真浏览器截 `.cover-media` **那个元素本身**，截到的就是读者看到的首图。三篇（Agent开发 / 开源权重与算力估值 / 美国中期选举与全球资产）配图全是自画示意图，按规则不许当门面，退到主题记忆点——**没有"最宽的一张"可钉，保持沉默** | **另一半天然是机检**：G-03 现在对"有实拍图却没声明 `data.cover`"喊 warn（消息里点名当前轮到哪张图），先红后绿 `test_G03_warns_when_the_cover_is_still_decided_by_widest_image` + 反向 `test_G03_says_nothing_when_the_page_has_only_self_drawn_diagrams`；既有 `test_G03_accepts_a_page_with_no_cover` 的断言从"不许提封面"收窄成"不许提封面的 **fail**"——没有封面仍是合法形态，这条闸门没有把它变成强制。**冻结动作零成本上线**：写的是 `cover_of` 原样返回的那个对象，10 篇 `--offline` 重渲染之后 `.html` 一个字节没动、`own_sha` 10/10 不变、`playbook` 仍空 → **不需要为此重发任何站**。证据：`.probe/covers13.png`（13 张真框拼图，分三页看过）；`validate --all` → 29 个领域 0 fail / **1 warn**，且那一条是 Agent开发 的 G-05 软超长（D-11 容忍），**新封面的 warn 在真库上一条不响**＝26 篇有照片的全都声明完了；`python -m pytest` → 532 passed, 1 skipped |
+| 2026-10-04 | W-185 | **hosted 主页 9.9 MB → 2.7 MB**：卡片封面不再内联原文那张图，改成 `scripts/thumbs.py` 生成的**卡片尺寸缩略图**。宽度不是拍的——`node .probe/measure_cards.mjs` 开真浏览器在 375/1440/2560 三档量 `.ph` 框，只有 **316–343 CSS px**（固定列数网格，不随视口长大），2 倍屏 ≈686 → `quality_bar.index.card_cover_px = 700`；改之前 29 张卡里 26 张超出预算，最宽的一张内联的是 **2400 px**。**缩略图缓存按源图内容哈希命名**，住在 `dist/.thumbs/`（包外，`prepare_site` 永远拿不到它）——按路径缓存会在换封面之后继续显示旧图，而旧图看起来完全正常，没有任何一处会报错 | 六条测试先红后绿：`tests/test_thumbs.py` 四条（含"换了封面不许拿回同一份缓存"与"源图比目标窄就不许放大"）、`test_index.py` 两条（内联宽度 ≤700；Pillow 缺位时**退到原图并在 stderr 喊**，不许静默回到 9.9 MB）。上线证据：`artifact_size` 7,453,494 → **2,097,024**；live `sha256 == local`（`ec960f77ef9660a8`，2,810,467 B，且这次响应里**没有**注入水印脚本——runbook 那条"必须剥掉才相等"已按实测改口）；`verify_home.py` ✓ 卡 29 / 全部 200；`shot.mjs` 1440 档 `brokenImgs=0 pendingImgs=0 zeroBoxImgs=0`，`bodyScrollH` 与改前一致（4876）＝排版没动。**组站一个都没重发**：落地页走 local 变体，`playbook` 全程为空。`validate --all` → 0 fail / 1 warn；`python -m pytest` → 538 passed, 1 skipped |
+| 2026-10-04 | W-158 | **量的结论是这条判据不成立，不做**。原假设：图注不含本章词 ⇒ 地标照退化，所以在 `accept_image` 拦。三条实测各杀掉一种写法：① `caption` 不是对图的描述，是**图片所在网页的标题**（museum 章那张的图注是「【百达翡丽手表价格及图片】…官网型号查询\|腕表之家触屏版」，另一张古董钟表是「摘下星星给你，摘下月亮给你\|百达翡丽」），拿它做语义闸门量的是"标题有没有复述我们的词"；② 退到按来源页类型拦，词表命中 **297/297** 张可判图，零区分力、不可证伪；③ 就算成立，代价先撞 G-03：全站 240 个有图章里 **53 章会被清空**，而"该章无配图"是 fail、`build_index` 又跳过闸门不过的篇目 ⇒ 首页少卡（D-33 那一类：防呆判据在第二种成因下变阻塞器）。真问题拆成 W-188；「这张图配不配得上这一章」第四次确认只有联络表那一道 | `.probe/w158_measure.py`→`w158_report.txt`（63% 撞本章 / 35% 只撞主语 / 2% 都不撞，尺子修了五次才敢报数，memo T-140）、`.probe/w158_blast.py`→`w158_blast.txt`（53/240 章会清空）、`.probe/w158_cause.py`（297/297＝无区分力）、`.probe/w158_alt.py`（露出真问题：455 条图注里 416 条 alt==caption、94 条带来源站页尾、11 条整句是经销商行情）；memo T-145 |

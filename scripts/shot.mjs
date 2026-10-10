@@ -131,6 +131,17 @@ for (const w of widths) {
         fullPage: true });
       shots.push(bp);
     }
+  } else if (opt("element", null)) {
+    // 只截一个元素：整页 5 万像素高时，缩略图里什么都看不出来，
+    // 而"新加的区块类型到底长什么样"必须用眼睛过（R-09）。
+    const sel = opt("element", "");
+    const loc = page.locator(sel).first();
+    const ep = path.join(outDir, `${base}_${w}_${sel.replace(/[^a-z0-9]+/gi, "")}.png`);
+    await loc.screenshot({ path: ep });
+    shots.push(ep);
+    console.log(JSON.stringify({ element: sel, shot: ep }));
+    await page.screenshot({ path: shot, fullPage: false });
+    shots.push(shot);
   } else {
     await page.screenshot({ path: shot, fullPage: !!wantFull });
     shots.push(shot);

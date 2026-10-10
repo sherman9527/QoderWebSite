@@ -47,6 +47,19 @@ def main():
                                 os.path.join(d, "images", f))
         payload = json.loads(json.dumps(data))
         payload["theme"]["token"] = tok
+        # 每套主题都必须被量到**每一种会涂身份色的小字**。咖啡那篇没有 bar_chart，
+        # 于是 .chart .val 用 primary 原色涂小字这件事，扫描全绿而线上 27 篇里
+        # 有一篇被 G-13 当场拦下（深芥压在 surface 上 3.25:1）。
+        # 这块是几何探针，不是内容：数值是编的，扫描不跑 G-06。
+        payload["sections"][0]["blocks"].append({
+            "type": "bar_chart", "heading": u"扫描探针：条形数值是身份色小字，必须过对比度",
+            "unit": u"%", "as_of": u"2026-01",
+            "bars": [{"label": u"甲", "value": 42}, {"label": u"乙", "value": 78},
+                     {"label": u"丙", "value": 15}]})
+        payload["sections"][0]["blocks"].append({
+            "type": "steps", "title": u"扫描探针：步骤序号是身份色小字",
+            "items": [{"n": i, "title": u"第%d步" % i, "text": u"序号涂在 soft 底上，量的是它。",
+                       "spec": u"探针"} for i in (1, 2, 3)]})
         if not with_photo:
             payload.pop("cover", None)
             for s in payload["sections"]:
