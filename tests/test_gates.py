@@ -600,6 +600,62 @@ def test_G13_is_a_real_browser_gate_not_a_stub(passing_ctx):
     assert not good or "浏览器不可用" in str(good[0]), [str(f) for f in good][:3]
 
 
+class _Done(object):
+    def __init__(self, rc, out):
+        self.returncode = rc
+        self.stdout = out
+        self.stderr = b""
+
+
+def _g13_stubbed(monkeypatch, quality_bar, tmp_path, fake):
+    """把 measure-layout 那一层换掉，只验判据本身怎么读它的下场。"""
+    p = tmp_path / u"page.html"
+    p.write_text(u"<html><body><p>x</p></body></html>", encoding="utf-8")
+    ctx = V.Ctx(u"咖啡", str(tmp_path), str(p), u"", {"sections": [], "sources": []}, quality_bar)
+    monkeypatch.setattr(V.subprocess, "run", lambda *a, **k: fake)
+    return by_id("G-13").check(ctx) or []
+
+
+def test_G13_refuses_to_call_a_silent_tool_a_pass(monkeypatch, quality_bar, tmp_path):
+    """W-199 的根因：工具**没吐出结果**就退出（空 stdout + 非 0），判据把 stdout 缺省成 `{}`，
+    于是「没量成」与「这一页没有布局问题」在闸门里长得一模一样——实测三种死法全报 0 条。
+    这条不是给那次偶发补的装饰：整套跑时 node 死在 import 阶段，29 篇的 G-13 就是静默跳过。
+    """
+    for rc, out in [(2, b""), (-1073741819, b""), (1, b"")]:
+        got = _g13_stubbed(monkeypatch, quality_bar, tmp_path, _Done(rc, out))
+        assert got and all(f.level == "fail" for f in got), \
+            u"工具 rc=%d 且 stdout 为空，G-13 必须判 fail（实得：%s）" % (rc, [str(f) for f in got][:2])
+
+
+def test_G13_refuses_to_call_a_crashed_tool_a_pass(monkeypatch, quality_bar, tmp_path):
+    """半截输出同理：解不出 JSON 是「没量成」，不是「查过了」。
+    以前它给 warn，而 warn 在任何只看 fail 的读数里都等于通过。"""
+    got = _g13_stubbed(monkeypatch, quality_bar, tmp_path, _Done(0, b'{"ok": tr'))
+    assert got and all(f.level == "fail" for f in got), \
+        u"stdout 不是 JSON 时 G-13 必须判 fail（实得：%s）" % [str(f) for f in got][:2]
+    assert not any(f.level == "warn" for f in got), u"这条不许退化成 warn"
+
+
+def test_G13_refuses_to_call_a_timeout_a_pass(monkeypatch, quality_bar, tmp_path):
+    def raise_timeout(*a, **k):
+        raise V.subprocess.TimeoutExpired("measure-layout", 300)
+    p = tmp_path / u"page.html"
+    p.write_text(u"<html><body><p>x</p></body></html>", encoding="utf-8")
+    ctx = V.Ctx(u"咖啡", str(tmp_path), str(p), u"", {"sections": [], "sources": []}, quality_bar)
+    monkeypatch.setattr(V.subprocess, "run", raise_timeout)
+    got = by_id("G-13").check(ctx) or []
+    assert got and all(f.level == "fail" for f in got), \
+        u"量不了就是没查，不能记成 warn（实得：%s）" % [str(f.level) for f in got]
+
+
+def test_G13_accepts_a_clean_real_result(monkeypatch, quality_bar, tmp_path):
+    """反向也要钉住：修成「没结果就 fail」之后，别把真跑成的干净结果一起判死。"""
+    import json as _j
+    out = _j.dumps({"ok": True, "widths": [375, 3737], "problems": []}).encode("utf-8")
+    got = _g13_stubbed(monkeypatch, quality_bar, tmp_path, _Done(0, out))
+    assert not got, u"工具明明报了 ok=true，G-13 不该再喊（实得：%s）" % [str(f) for f in got][:2]
+
+
 def test_G13_detects_a_deliberately_broken_page(tmp_path, quality_bar):
     """把已知缺陷注回产物，G-13 必须抓到——否则这条闸门等于没写。"""
     real = os.path.join(V.ROOT, "demo_site", "output", u"咖啡")
@@ -619,8 +675,12 @@ def test_G13_detects_a_deliberately_broken_page(tmp_path, quality_bar):
     d = tmp_path / u"咖啡"; (d / "images").mkdir(parents=True)
     p = d / (u"咖啡_2026-09-19.html"); p.write_text(bad, encoding="utf-8")
     ctx = V.Ctx(u"咖啡", str(d), str(p), bad, {"sections": [], "sources": []}, quality_bar)
-    fails = [f for f in (by_id("G-13").check(ctx) or []) if f.level == "fail"]
-    assert any("h1" in str(f) or "浏览器不可用" in str(f) for f in fails),         "标题被 overflow:hidden 裁掉，G-13 却没报错"
+    allf = by_id("G-13").check(ctx) or []
+    fails = [f for f in allf if f.level == "fail"]
+    # 「浏览器不可用」算合格的结果：那也是**响亮地**说没查成，不是静默跳过。
+    # 要拦的是空列表——它让"没查"和"查过且没问题"长得一模一样。
+    assert any("h1" in str(f) or "浏览器不可用" in str(f) for f in fails), (
+        u"标题被 overflow:hidden 裁掉，G-13 却没报错（全部发现：%s）" % [str(f) for f in allf][:4])
 
 
 @pytest.mark.parametrize("css,gate", [
@@ -644,9 +704,13 @@ def test_G13_detects_wide_screen_defects(tmp_path, quality_bar, css, gate):
         shutil.copyfile(os.path.join(real, "images", f), os.path.join(str(d), "images", f))
     p = d / (u"咖啡_2026-09-19.html"); p.write_text(bad, encoding="utf-8")
     ctx = V.Ctx(u"咖啡", str(d), str(p), bad, {"sections": [], "sources": []}, quality_bar)
-    fails = [f for f in (by_id("G-13").check(ctx) or []) if f.level == "fail"]
-    assert any(gate in str(f) for f in fails), "%s 注错后 G-13 没抓到（实际：%s）" % (
-        gate, [str(f).split(u"：", 1)[-1][:70] for f in fails][:8])
+    allf = by_id("G-13").check(ctx) or []
+    fails = [f for f in allf if f.level == "fail"]
+    # 打印的是**全部**发现而不是过滤后的 fail：10-10 那次偶发报的是「实际：[]」，
+    # 把「工具没吐出结果」这条唯一有用的线索连同 warn 一起滤掉了，
+    # 于是我花了一整轮去证它到底是崩了、超时了、还是真没抓到。
+    assert any(gate in str(f) for f in fails), "%s 注错后 G-13 没抓到（全部发现：%s）" % (
+        gate, ["%s %s" % (f.level, str(f).split(u"：", 1)[-1][:60]) for f in allf][:8])
 
 
 def test_cjk_count_only_counts_hanzi():

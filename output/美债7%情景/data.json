@@ -15,7 +15,7 @@
  ],
  "subtitle": "10 年期国债并没有破 7%（它在 5.29%，上一次 ≥7% 是 1996 年），但 30 年房贷已经在 7.28%：先把口径钉死，再算它打到美股、美债、黄金与比特币上各是多重",
  "reader": "看到「美债破 7%」这类标题想知道到底发生了什么的人；想知道 5.29% 里哪一块在动、以及它凭什么影响股票和黄金的人",
- "generated_date": "2026-10-10",
+ "generated_date": "2026-10-11",
  "created_date": "2026-10-02",
  "theme": {
   "token": "ust-yieldcurve",
@@ -1772,8 +1772,8 @@
   "group": "macro-finance",
   "path": "/ust7/ust7.html",
   "project_id": "01a104e8-7f52-7adb-a795-b1263101ba98",
-  "content_sha": "fb98be1c68e9a4bd",
-  "published_date": "2026-10-10",
+  "content_sha": "6f518594a237d3dc",
+  "published_date": "2026-10-11",
   "access": "public"
  }
 }

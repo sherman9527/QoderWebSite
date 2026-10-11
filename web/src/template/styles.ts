@@ -357,6 +357,21 @@ blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);ma
 .cover-noimg .motif-morgan{height:100%;padding:1.2rem;gap:.9rem}
 .cover-noimg .motif-morgan .stem{height:1.1rem}
 .cover-noimg .motif-morgan .leg{height:1.1rem}
+/* 本地大模型芯片篇：四路内存 → 收口 → 芯片。脖子用强调色，因为这一篇的论点
+   就是"卡住你的是搬运不是计算"；芯片画成空心框 + 内芯，读起来在等活，不是满载。 */
+.motif-lane{display:flex;align-items:center;gap:.42rem;height:2.6rem}
+.motif-lane .pool{flex:1;display:grid;grid-template-rows:repeat(4,1fr);gap:.2rem;height:100%;min-width:0}
+.motif-lane .pool i{background:var(--primary);opacity:.22;border-radius:2px}
+.motif-lane .neck{flex:0 0 1.55rem;height:100%;background:var(--accent);opacity:.92;
+  clip-path:polygon(0 0,100% 36%,100% 64%,0 100%)}
+.motif-lane .chip{flex:0 0 1.75rem;height:1.75rem;border:2px solid var(--primary);border-radius:.3rem;
+  background:var(--soft);position:relative}
+.motif-lane .chip::after{content:"";position:absolute;left:.34rem;top:.34rem;right:.34rem;bottom:.34rem;
+  background:var(--primary);opacity:.3;border-radius:2px}
+.cover-noimg .motif-lane{height:100%;padding:1.2rem;gap:.9rem}
+.cover-noimg .motif-lane .neck{flex-basis:3rem}
+.cover-noimg .motif-lane .chip{flex-basis:3.4rem;height:3.4rem;border-radius:.5rem}
+.cover-noimg .motif-lane .chip::after{left:.7rem;top:.7rem;right:.7rem;bottom:.7rem}
 .cover-noimg .motif-attn{height:100%;padding:1.2rem}
 /* Agent 开发篇记忆点：一轮对话。绿条是模型吐出来的那一句，蓝条是它调用的
    tool / 数据库，右下角实心方块是还在等的光标。

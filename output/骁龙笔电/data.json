@@ -2506,7 +2506,7 @@
   "hero_motif": "perf_per_watt",
   "hero_note": "这条路的争论全在每瓦性能上：横轴是性能、纵轴是功耗，画的是一条等能效斜线，而不是任何一方的绝对优势。"
  },
- "generated_date": "2026-10-10",
+ "generated_date": "2026-10-11",
  "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 17,
@@ -2525,8 +2525,8 @@
   "group": "ai-industry",
   "path": "/snapdragon-laptop/snapdragon-laptop.html",
   "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
-  "content_sha": "746f27d8c15144ef",
-  "published_date": "2026-10-10",
+  "content_sha": "337297ba70aa1571",
+  "published_date": "2026-10-11",
   "access": "public"
  }
 }

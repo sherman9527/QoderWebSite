@@ -25,12 +25,29 @@
 
 ## IN PROGRESS（正在做）
 
-
-
-
-
+（无。取下一条 TODO 时把它移进来，这是并行会话的互斥标记。）
 
 ## TODO（待办）
+
+- [ ] **W-199 全站回归里 G-13 的宽屏注错测试偶发抓不到，要修的是「量不到不响」，不是给测试加 retry**
+      10-10 撞的：pre-commit 第一次拦下 `tests/test_gates.py::test_G13_detects_wide_screen_defects[p,li{max-width:none}-prose-measure]`，
+      断言打印的是 `实际：[]`——G-13 一条 fail 都没报，而不是报错了别的东西。同一个提交信息重跑一次就绿（`275d920`，rc=0）。
+      已量的边界：单跑那一条 param **3/3 绿**（各 16–17s）；整套 `python -m pytest` 也全绿过一次（648 passed, 1 skipped）。
+      所以是**整套跑时的偶发**，两个候选成因都没排掉：① 前面测试攒下的 Edge/playwright 进程把资源挤没；
+      ② 注入在第一个 `</style>` 后的那条规则在该次导航里还没生效（`measure-layout.mjs:109` 只等 `document.fonts.ready`，
+      那管字体不管样式）。
+      **不许这样收口**：给这条测试加重试、或把断言放宽成「抓到或没抓到都算过」。判据就写在 `memo.md` 那条 09-26 的坑里——
+      **「让检查跳过」和「让检查通过」在测试里长得一模一样**。要修的是 `scripts/measure-layout.mjs`：
+      某一档视口一个可测元素都没量到时，必须把「这一档我没量到」喊出来（图那一类当年补过 `if (!im.complete…) continue`
+      的静默跳过，版式/样式这一类还没有对应机制）。
+      **10-11 已经做掉一半，别再重做**：根因量到了——`g13_layout` 把「工具没吐出结果」洗成「这一页没问题」
+      （`stdout or "{}"` + 从不看 rc）。实测三种死法（空 stdout+rc=2、被 OS 杀掉、半截 JSON）分别报 `[]`、`[]`、warn，
+      与「查过且没问题」完全同形。已改成判 fail（`test_G13_refuses_to_call_a_silent_tool_a_pass` 等三条，先跑到红再实现），
+      并把注错测试的断言从「只打印过滤后的 fail」改成打印全部发现——那次偶发正是被这个过滤骗掉线索的。
+      **剩下的才是本条要查的**：为什么整套跑时 node 会在 import 阶段死掉（候选：playwright/Edge 句柄挤压）。
+      修完之后整套连跑两次未再复现，所以触发条件仍是推测，不要当成已解决。
+      复现入口：`PYTHONIOENCODING=utf-8 python -m pytest -q -v`（**必须带 `-v`**：`pytest.ini` 的 addopts 已有 `-q`，
+      `-q -q` 会把整个 FAILURES 段咽掉，只留下一串点和 rc=1——我差点把这次当成进程崩了）。
 
 
 
@@ -41,6 +58,7 @@
 
 | 日期 | 编号 | 工作项 | 证据 |
 |---|---|---|---|
+| 2026-10-11 | W-200 | **新领域《本地大模型芯片》上线**（开发者 10-10 夜提的问题直接变成大纲）：核显凭什么能跑本地大模型、AMD 大核显那一族／NVIDIA GB10（DGX Spark）与 RTX Spark／苹果 M 系列三条路的对照、轻薄是怎么换来的、是否对标 MacBook。第 1 章是 premise-check，把提问里的名词先对上实物：395/390/385 是 Strix Halo 一代，**495 查得到**（Ryzen AI Max+ PRO 495，Gorgon Halo，最高 192 GB）；「Spark」是两颗不同的芯片（DGX Spark 里的 GB10 是桌面小盒，RTX Spark 才是装进笔电的那颗）；「Surface 配 Spark」只成立一台（Surface Laptop Ultra，微软官方页 2,599.99 美元），标准版 Surface Laptop 全是骁龙——**这三条我另走了一次独立复核**（微软官方产品页与 NVIDIA DGX Spark 硬件文档），没有只信生成链路。配图按 D-22 处置：联络表眼验发现六张是「看不出区别的笔记本」图库图与一张 Benchmark 剪贴画，而 `audit_images.py` 对这批报的是**全部合格**——它量点名与空章，量不到「这张图配不配得上这一章」；于是摘掉六张、补六张自画机制图（解码是搬运／薄是删出来的／三笔钱三个时间点／比数字前对齐四项／两个 Spark 不是一个东西／三步复核法），图上不写任何数字。R-05 是硬上限且**不许靠调大声明时长绕过**（代码注释里就记着这条曾被钻过），所以正文从 9170 砍到 8390 汉字：删三块复述同章正文的 steps 清单 + 收紧自我复述的句子，带来源的数字一个没删。新领域必须有自己的记忆点（`test_contract.py::test_every_topic_has_its_own_hero_motif` 判死复用），所以真加了一个 motif `bandwidth_neck`（四路内存→收口→芯片，强调色给脖子）而不是复用现成的；改模板又欠下一轮全站重渲染与重发：30 篇重渲染 → 13 组 + 主页共 14 个站全部重发，逐个 pack → L3（findings=0）→ prepare → 读 API 返回的 host → publish → 逐字节验收 → record-group。 | `config/topics/本地大模型芯片.json`（11 章、slug `local-llm-chips`、类别 AI算力、组 ai-compute）；`web/src/tokens/index.ts` 的 `silicon-copper`（身份色按 G-11 真实判据在 29 套里搜出：安全边际 41.4、违规对数 0、最近邻 lv-monogram，见 `.probe/nearest2.txt`）；`web/src/template/TopicPage.tsx` + `styles.ts` 的 `bandwidth_neck`；`scripts/diagrams/本地大模型芯片.py`、`本地大模型芯片_机制图.py`（六张示意图，确定性可复现）；`python -m pytest` = **652 passed, 1 skipped**；`validate --all` = **30 个领域，0 fail / 2 warn**（两条均 G-05 超长）；`sweep_tokens.py` = 翻车主题：无；`publish.py check` = 账实一致；14 份验收 `.probe/live2_*.txt` 合计 43 条「逐字节一致」+ 主页 30 张卡全 200；新篇 165 条来源、14 张图全 200；`memo.md` 2026-10-11 那条 |
 | 2026-10-10 | W-198 | **开发者报的导航 bug 修完，并为新指纹重发全部 14 个站**：文章页页首那条「返回目录」在合站之后落到的是**本组**落地页（模板里写死 `../index.html`，一篇一站时代它是总站首页，29 篇装进 13 组后它变成了组目录——地址没变、语义变了）。改法：`TopicData` 加可选 `home_url?`（可选是因为**本地产物没有总站**，只有 hosted 那份有），`render.mjs` 仅在缺席时读 `config/home_site.json` 兜上——总站地址放一处，改托管账号不动 29 份大纲；页首现在是两条并排链接（本组目录 + 总站首页）。**连带代价是本轮真实工作量**：模板指纹一变，G-08 把 29 篇全判陈，于是要重渲染 29 篇 + 重发 13 组 + 主页共 14 个站，逐个走 pack → L3 深审（findings=0）→ prepare → **读 API 返回的 host** → publish → `verify_live` 逐字节 → `record-group`。过程中我自己造了两起账本事故并各留下一条守卫：① `.probe/params.txt` 的 CRLF 行尾毒掉 `read` 的最后一个字段（`--project-id` 收到带 `\r` 的值，G-10 判 29 条 fail 才拦住）→ 从 Windows 文本喂循环变量必须先 `tr -d '\r'`；② 该文件列序是 `组|projectId|…|actionId`，我把末位 actionId 当 projectId 记进了 13 个组——**格式完全合法，G-10 与 `check` 全部放行**（`check` 查自洽，而脏值同时写进两处当然自洽），靠"修回后 `git diff` 只剩 group_sha/content_sha 两组差集、project_id 一行没动"才证明修干净。为此补一条硬不变量：**地址没变就不许换站**（`record_group` 拒绝同 URL 改 project_id，真换账号时后缀带主人必然改地址，不误伤迁移）。 | `tests/test_groups.py::test_record_group_refuses_to_rebind_the_same_address`（先跑到 DID NOT RAISE 再实现）与 `..._allows_rebind_when_the_address_changes`；`tests/test_render.py::test_the_page_offers_the_site_home_as_well_as_the_category_index`；`python -m pytest` = **648 passed, 1 skipped**，rc=0；`validate --all` = **29 个领域，0 fail / 2 warn**（两条均 G-05 超长，已知可接受）；`publish.py check` = 账实一致；14 份验收输出 `.probe/live_*.txt` 全 `✓`（逐字节一致 + 每张图 200），主页 `.probe/live_home.txt` = 卡 29/账上 29 且全部 200；代码 commit `0f8667e`；`memo.md` 2026-10-10（下午）那条 |
 | 2026-10-10 | W-193 | **引用审计的欠账全部走完：A 类「真要动」57 个数 → 0，并把判据的四个洞补完**（判据侧：⑨来源侧单位词写法；⑩量级声明写在表头——`scaled_forms()` 把因子带回 `hits()`、`declared_scale()` 只认因子配套；`块型[-]` 重影行改带真实下标；量族可见性 `classify(fam_missing)`，方向只会 A→B；取整只认「来源细、正文粗」。台账侧：`行文本` 不再截断——截断会让 `split_derived()` 看不见操作数，把页面自己算出来的数当成欠账；`fixrow` 补 `card_grid` 的 `metrics[]`；新增 `dropslot`——删不可逆，所以 loc 之外还要用 `must_contain` 验内容、并且不许删空整块。内容侧：删 5 处（Cerebras 195.3 与今日聚合页 190.1 不符；积家「在售 1907」整卡官方三页无据、现阵容也无此款；劳力士 timeline 三格 8,897/11,785/27,642 正文没有数字形状）＋摘 1 个数（阿里云节点 17.25 秒）＋把算式写进行里 3 处（1,344＝768红＋576白、1520÷60ml、0.000056＋0.000036＝0.000092）＋修一个真错数（Wafer 输入 0.0248 → 0.024，接口是 0.000000024/秒；连带约 40 倍改约 41 倍）。每一次定性靠的都是联网渲染读原文或读缓存原文，**没有一次是判不出来就先删**。发布：ai-industry / ai-compute / cars / fashion / watches 五组按 pack → L3 → prepare → publish → verify_live 逐字节 → record-group 走完；`publish.py check` 账实一致、无待发布条目。） | `audit/records/w193_A_list.txt`（工具自己写，现 0 行 0 个数）；`.probe/rechain.log` 末段 `A=22/27 B=143/219 派生=27 真=0（与合计 none=246 自洽）`；`tests/test_evidence_context.py`、`tests/test_w193_triage.py`、`tests/test_w162_locs.py`、`tests/test_chip_action.py`（新守卫全部先红后绿）；`audit/records/w157_decisions.jsonl`（每条动作带 because）；`.probe/vl_*.txt`（五组逐字节验收）；`validate.py --all` 29 篇 0 fail / 2 warn（G-05 篇幅） |
 | 2026-10-08 | W-197 | **取整那一档补完：判据按整块数值比，不再逐字找——只认「来源细、正文粗」**（`number_cells()` 把来源的数按**千分位形状**切块（1–3 位开头 + 若干个『分隔符 + 恰好 3 位』），所以 `41 060 37 770` 得到 41060 / 37770 而 `Total 2025 5 358` 得到 2025 / 5358，相邻两格不再互相污染；`decimals_of()` 用**正文自己写的小数位**定区间半格宽，`rounded_cover()` 判 `|来源值×f − 正文值×单位| ≤ 0.5·10^−p·单位`；`prepare_text()` 因此多带一份数值索引（三元组），调用方只是原样传进 `hits()`，签名不牵动四个工具；语境门槛一点没降：这一档仍然要求词面重合或量级声明配套，否则不认）。**方向不对称是这条的核心**：`13,209` 百万 ⇒ 正文 `132.1` 亿 认；`86184.39` ⇒ 正文 `86,209` 不认——那是精度本身没出处。反例两条一起写进测试：`13,159`（区间外一格）必须查不到。**我自己在这条上引入过一次全站故障**：新函数用 heredoc 接到文件**末尾**，正好落在 `if __name__ == "__main__"` 之后——`import` 得到（pytest 639 全绿），但 sweep 以子进程跑它时先执行 main()，`number_cells` 还没定义 ⇒ 29 篇全炸，且把 `audit/records/w164_sweep_full.txt` 写成空文件；抓它的正是本项目原有的 `test_importing_a_tool_must_not_truncate_its_own_report`（空报告自己不肯装绿）。补了 `test_the_evidence_tool_still_runs_as_a_cli`：判据文件的**函数定义顺序**也是会被改坏的，而「只跑 pytest」证明不了 CLI 那条路通。 | `tests/test_evidence_context.py`（3 条，先红 `assert []`：LVMH 取整认、`13,159` 不认、K 线 `86,209` 不认）；`tests/test_audit_trail.py::test_the_evidence_tool_still_runs_as_a_cli`；`.probe/after197.txt`（真实来源：LV S113/S111 的 `132.1` 各命中 1 且标为换算＋只靠单位词）；`.probe/rechain.log`（`A=36/52 B=143/219 派生=20 真=32（与合计 none=271 自洽）`、`24 行 / 32 个数`）；`audit/records/w164_sweep_full.txt`（`556/360/271＝1,187`，逐行回读自洽）；`python -m pytest` 639 passed / 1 skipped |

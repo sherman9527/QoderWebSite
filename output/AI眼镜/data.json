@@ -2983,7 +2983,7 @@
   "hero_motif": "waveguide_rainbow",
   "hero_note": "以光波导的耦出栅为母题：光在几毫米厚的玻璃里靠全反射前传，每过一段栅就漏出一丝，越靠近出瞳越亮，最后三格才出射成蓝紫——这是全彩画面真正离开镜片的位置。"
  },
- "generated_date": "2026-10-10",
+ "generated_date": "2026-10-11",
  "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 17,
@@ -3002,8 +3002,8 @@
   "group": "ai-industry",
   "path": "/ai-glasses/ai-glasses.html",
   "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
-  "content_sha": "cc02dc276f125197",
-  "published_date": "2026-10-10",
+  "content_sha": "f0ef88e880cddbfa",
+  "published_date": "2026-10-11",
   "access": "public"
  }
 }

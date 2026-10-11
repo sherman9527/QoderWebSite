@@ -630,6 +630,33 @@ export const THEMES: Record<string, ThemeTokens> = {
     /* 四条传导路径没有先后，序号不开。 */
     numberedSections: false,
   },
+  "silicon-copper": {
+    /* 本地大模型芯片篇。这套是按 G-11 的真实判据在 29 套里搜出来的：
+       判据要 primary 与 accent **两个都近**才算雷同，所以安全边际取的是
+       「对每个既有主题，两个身份色里较远那一个」的最小值。
+       实测最深的那对是 Δ=41.4（vs lv-monogram 的 #6E5A38/#C08A4E 那一族暖棕），
+       全站 29 套里违规对数 0；比它远的「深林绿/磷光绿」有 66.4，但磷光绿配纸白
+       读起来是终端而不是评测页，宁可让边际小一点也要留住"器件"的味道。
+       深硅绿是 PCB 与晶圆的那层绿，铜橙是封装、导线与散热鳍——这一篇讲的是
+       内存带宽与功耗，颜色该来自器件本身，不该来自厂商 PPT。
+       字形按原样给（这一篇的数字密度高于任何一篇：tokens/s、GB/s、W、¥ 四列并排）。 */
+    id: "silicon-copper",
+    label: "本地大模型芯片 · 硅绿与铜橙",
+    bg: "#F2F4F1",
+    surface: "#E6EAE6",
+    ink: "#171A17",
+    muted: "#5E6660",
+    rule: "#D5DBD6",
+    primary: "#125912",
+    accent: "#C87137",
+    soft: "#DFE9DC",
+    displayFamily: SANS,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "bandwidth_neck",
+    /* 三家没有先后，序号不开。 */
+    numberedSections: false,
+  },
 };
 
 export function themeOf(token: string | undefined): ThemeTokens {

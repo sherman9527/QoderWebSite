@@ -372,6 +372,24 @@ function Motif({ token }: { token?: string }) {
       </div>
     );
   }
+  if (token === "bandwidth_neck") {
+    /* 本地大模型芯片篇：四路内存并排很宽，中间收成一个脖子，右边那颗芯片大多时候在等。
+       强调色给脖子——这一篇的论点就是"卡住你的是搬运，不是计算"。
+       不画成横条阶梯：`.motif-choice` 已经是"几条不等长横条 + 一条 hot"，
+       两个领域的记忆点撞形状，就等于其中一个白设。 */
+    return (
+      <div className="motif motif-lane" aria-hidden="true">
+        <div className="pool">
+          <i />
+          <i />
+          <i />
+          <i />
+        </div>
+        <i className="neck" />
+        <i className="chip" />
+      </div>
+    );
+  }
   if (token) {
     return (
       <div className="motif motif-bar" aria-hidden="true">

@@ -1014,13 +1014,26 @@ def g13_layout(ctx):
         pr = subprocess.run(
             [os.environ.get("NODE", "node"), script, "--file", ctx.page_path, "--json"],
             cwd=ROOT, capture_output=True, timeout=300)
-        res = json.loads(pr.stdout.decode("utf-8", "ignore").strip() or "{}")
+        raw = (pr.stdout or b"").decode("utf-8", "ignore").strip()
+        res = json.loads(raw) if raw else {}
     except Exception as e:
-        return [Finding(g13_layout, ctx.rel_page, u"几何检查无法运行：%s" % e, level="warn")]
+        # 判 fail 不判 warn：warn 在任何只看 fail 的读数里都等于通过。
+        return [Finding(g13_layout, ctx.rel_page,
+                        u"几何检查没跑成：%s——没量到就是没查过，不得当作通过" % e,
+                        level="fail")]
     if res.get("browserUnavailable"):
         return [Finding(g13_layout, ctx.rel_page,
                         u"浏览器不可用，布局未被验证（%s）——不得当作通过" % res.get("error"),
                         level="fail")]
+    # W-199 的根因就在上一行的旧写法里：`stdout or "{}"` 把**工具没吐出结果**
+    # （空 stdout、被 OS 杀掉、死在 import 阶段）洗成一份「没有问题」的报告，
+    # 于是「让检查跳过」和「让检查通过」在闸门里长得一模一样——实测三种死法全报 0 条。
+    # 认结果而不是认 rc：工具正常通过时 rc=0 且带 ok，正常查出问题 rc=1 也带 ok，
+    # 唯独"死了且没输出"两样都没有，那正是必须喊出来的那一档。
+    if "ok" not in res:
+        return [Finding(g13_layout, ctx.rel_page,
+                        u"几何检查没吐出结果（rc=%s，stdout %d 字节）——没量到就是没查过，"
+                        u"不得当作通过" % (pr.returncode, len(raw)), level="fail")]
     for q in res.get("problems", []):
         out.append(Finding(g13_layout, "%s %s" % (ctx.rel_page, q.get("tag", "")),
                            u"%s：%s" % (q.get("gate"), q.get("detail"))))
