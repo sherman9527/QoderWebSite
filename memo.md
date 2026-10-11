@@ -3321,6 +3321,23 @@ pre-commit **第一次拦下**了这次提交，报的是 `tests/test_gates.py::
 **判这条套件要看带 `-v` 的那一份**，否则 rc=1 会伪装成崩溃。（AGENTS.md 记过「-q 会吞掉 N passed 那行」，
 这次是同一颗坑的更深一层：它连失败原因都吞。）
 
+### 兜底后端从构造上就是死的：`copilot -p` 要求带值，而提示词走 stdin
+
+生成星链篇时 qodercli 连续 1500s 超时，**第一次**把「copilot 兜底」这条路走到，
+一走到就现形：当前版本 `copilot -p/--prompt <text>` 要求带值，空 `-p` 立刻 rc=1 用法报错
+（`error: a value is required for '--prompt <text>'`），而 `llm._run` 本来就把提示词写进 stdin。
+于是 `build_argv("copilot")` 产出的命令**永远在第一步就失败**——AGENTS.md 里
+「qodercli 优先，copilot 兜底」这条，在 10-11 之前从未真正成立过。
+
+修法只有一处：argv 不带 `-p`。实测两条路都通了（离线 25s、在线 16s，都返回正文 `ok`），
+顺带证明 `--available-tools ""` 那个写法也是对的——它同样从没被执行过。
+`tests/test_llm.py::test_copilot_prompt_is_not_passed_as_a_bare_dash_p` 钉住它（先跑到红）。
+
+**教训不是"copilot 有 bug"，而是"一条从未被走到的兜底路径，等于没有兜底"**：
+它和 09-26 那条「让检查跳过和让检查通过在测试里长得一模一样」是同一颗坑，
+只是这次躺在后端选择上。已有的 `test_copilot_offline_flag_actually_exists` 说明
+这个项目此前已经用同类测试抓过一次"旗标根本不存在"——**同一类错误值得再钉一颗，不是重复**。
+
 ## 2026-10-11 《本地大模型芯片》上线：一篇由开发者提问直接变大纲的页面，和三次"机器说合格、人眼说不合格"
 
 新领域第 30 篇。链条：提问 → 11 章大纲 → 生成（165 来源）→ 闸门 3 fail → 修 → 重渲染 30 篇 → 重发 14 个站。
@@ -3354,4 +3371,114 @@ Surface 只有一台用 Spark），我另外走了一次公开检索复核：微
 那是猜的，而生成链路随后查到了它。教训：**没读过的来源不能拿来当"我查过了"讲**，
 哪怕只是聊天回答。同一轮里我还把「额度用完切 codex」当成了开发者的指令（并没有说过），
 同样是把想象当事实。这两条都属于同一类错，记在这里防下次。
+
+
+## 2026-10-12 两篇太空文章：一次 G-11 撞色暴露出"挑色脚本漏量了一对"
+
+开发者 10-11 的问题变成 11 章，11 章超了 R-05 硬上限，按 10-03 的先例**拆成两篇**而不是砍事实：
+《星链的运营商之路》6 章（`starlink-carrier`）+《星座的物理墙》5 章（`constellation-physics`）。
+链条：拆篇 → 16 张全自画示意图 → 两篇各过 G-03 的 8 张下限 → G-11 判两篇撞色 → 重挑 →
+模板指纹一变重渲染 32 篇 → `validate --all` 0 fail → `pytest` 657 passed → 建组待发。
+
+### 一、G-11 那次 fail 的根因不在颜色，在比对口径
+
+`FAIL [G-11/fail] 星座的物理墙 vs 星链的运营商之路：配色过于雷同（ΔE primary 21.3、accent 20.8，两个都没拉开到 25）`。
+两套主题各自都"量过"：挑色脚本 `.probe/pal_phys.py` 第 7 行写着
+`cur = [(p, a) for p, a in cur if p != "#16273F"]`，注释是「排除刚加的那套，避免自己撞自己」。
+**那是两套不同的主题、又住在同一个组里**——G-11 成对判的恰恰是它们俩。排除掉它，等于把唯一会撞的那一对从比对里摘掉。
+教训：**"我量过了"要看量的是哪几对**。同一套数字换个排除条件就完全相反，而且脚本自己不会说它排除了谁。
+
+重挑的做法记一下，因为纯按边际选会选错：
+- 先按主题圈定色相带（这一篇是真空/辐射/热，primary 走深空紫、accent 走辐射暖色），
+  再在带内比边际。**网格头名是纯绿（边际 64.4）**——那是"绿色没人占"的假优势，W-200/W-201 已经为这句话付过一次学费。
+- 对同组姊妹篇单独提一条更严的要求：**两个通道都 ≥25**，不许只靠 accent 一个人顶
+  （旧那套的 primary ΔE 是 21.3，靠 accent 拉开，正是 G-11 判 fail 的形状）。
+- 定案前把最近邻逐套打出来看，不只看一个"边际"数字：`#5D1772 / #F2873F`，
+  全站边际 33.6、两通道都近的对数 0，最近邻 indigo-coral（p 33.6）与 guerlain-abeille（a 33.9），各自只一个通道近。
+- **改主题色要连图一起改**：示意图的配色是抄 tokens 的那一套身份色（`_common.py` 里写死了这条约定）。
+  八张图重画后按字节刷新一遍——走 `drop`+`add` 会重排 `NN_` 编号、把 manifest 与 data.json 各抖一次，
+  而这里 alt/caption/based_on/宽高全没变，变的只有像素。所以量的是"尺寸一致 + 确实换了字节"。
+
+### 二、一张图活在**四**处，`drop_image` 只清了三处
+
+`images.py` 的注释早就写着 cover、文件、manifest、页面引用四处，但反向操作 `drop_image` 只做了三处。
+摘掉那张当封面的图之后，`data.cover` 还指着它，下一次渲染 G-03 立刻报
+`引用的图片不存在：images/10_satellite_spacecraft_solar.jpg`。
+先写红测试再补（`test_dropping_the_cover_image_clears_the_cover_too`，实得 `assert 'images/01_test.jpg' != 'images/01_test.jpg'`）。
+**实现上有个坑**：第一版写 `data["cover"] = None`，`topic_data.schema.json` 直接把渲染打死
+（`cover 不是 {"required": ["source_page"]}：None is not of type 'object'`）——
+cover 是**可选键**，"没有封面"的正确写法是**删键**。测试里因此多钉了一条 `assert "cover" not in after`。
+
+### 三、这一轮摘掉的三张引用图，全是"闸门绿而来源站不住"
+
+1. `Starlink coverage map` 的来源页登记在 `greenbeltmapboise.github.io/new-ipgrph-...-pics/`——
+   一个内容农场镜像仓库。图上有 SpaceX 水印，但**能核查的那一层是假的**：R-03 要的 `source_page` 形似而神不备。
+2. `3GPP specification NTN` 是通信媒体转述的一页 Release-19 幻灯片，
+   而它所在那一章正文写的恰恰是「认编号不认转述」，且页面引的是 Rel-17/18 的 TS 编号。
+3. 一张中国卫星互联网的通用效果图放在讲星链单星功率预算的章节里——**连对象都不是这一篇的**。
+   三张全部换成有 `based_on` 的自画图。`audit_images.py` 对这三张一个都没报——它量点名与空章，量不到来源与对象。
+
+### 四、13 个已上线组要不要跟着这次的新指纹重发？量完再答
+
+模板动了（3 套主题 + 3 个 motif），CSS 内联进每一页，`G-14` 于是对 30 篇文章 + 13 个组各喊一声「线上是旧版」（43 条 warn）。
+但这次的改动是**纯增量**（`git diff` 132 增 1 删，删的那行是注释），新 CSS 对已有 30 页一条都不触发。
+所以别按"以前都重发"办，直接量：把每篇 `</style>` 之后的正文与 HEAD 比 sha256 →
+**30/30 完全相同**（唯一的差异是「生成于 2026-10-11 → 10-12」那个日期串，而 `own_sha` 本来就不算它）。
+重发 13 个组等于把同一个页面加 1.5 KB 死 CSS 再传一遍，用户可见变化为零。**决定不重发**，
+43 条 warn 留在 `validate` 输出里当**看得见**的欠账，判据与这条测量放在一起。
+
+**这里差点量错一次**：第一版用 `git ls-files output/ | sed ...` 喂文件列表，
+git 默认把非 ASCII 路径转义输出，于是**所有中文页被静默丢掉**，只比了 7 篇就报"7 篇正文都变了、长度还一样"。
+改成在 Python 里 `os.listdir` 列目录、并把日期串归一化，才量出 30/30 未变。
+两个信号当时就该拦住我：篇数对不上 30、以及"变了但字节数一模一样"。
+
+### 五、W-199 那个偶发当场复现了，而这次它响了出来
+
+全量重渲染 32 篇时 `Muse产业逻辑` 报 `几何检查没吐出结果（rc=4294967295，stdout 0 字节）`，
+单跑那一篇立刻绿。签名与 10-10 那次一致，性质也一致（只在整套/批量跑时犯）。
+上一轮把「工具没吐出结果」从洗成"通过"改成判 fail，这次它没有静默——**这就是那条改动的价值**。
+同一天补上第二段：`capture_output=True` 早就把 stderr 抓回来了，只是没人读，
+所以 fail 消息里现在带 stderr 末尾三行（`test_G13_names_the_error_when_the_tool_dies`，先红：
+消息只有 `rc=-1，stdout 0 字节`，没有任何一句解释为什么）。
+
+### 测试日志（本轮真实读数）
+
+| 命令 | 读数 | 判定 |
+|---|---|---|
+| `PYTHONIOENCODING=utf-8 python -m pytest` | `657 passed, 1 skipped in 431.82s`，rc=0 | 绿 |
+| `python scripts/validate.py --all` | `32 个领域，0 fail / 45 warn（生效红线 9 条）`，rc=0 | 绿（45 = 2 条 G-05 超长 + 43 条 G-14 线上是旧版，见第四节） |
+| `python scripts/sweep_tokens.py` | 每套主题 × 有/无封面全部过 G-13，含 `vacuum-radiance-motif`，rc=0 | 绿 |
+| `python .probe/_body_same.py` | `tracked 页面 30 篇：正文（去掉生成日期）未变 30 篇，变了 0 篇` | 13 组不重发的依据 |
+| `PYTHONIOENCODING=utf-8 python -m pytest tests/test_drop_image.py -v` | `9 passed`（新增 2 条，先红 1 条） | 绿 |
+| `PYTHONIOENCODING=utf-8 python -m pytest tests/test_gates.py -v -k G13` | `11 passed`（新增 1 条，先红 1 条） | 绿 |
+| `python scripts/publish.py groups` | 14 组，`space-comms 太空与通信 2 篇（未发布）` | 账上第 15 个站待建 |
+
+### 环境事实（重新发现一次要几十分钟）
+
+- **`git ls-files` / `git diff --name-only` 在非 ASCII 路径上会转义输出**（`core.quotepath` 默认 true），
+  按行喂给 shell 参数会**静默丢文件**，不报错。要遍历中文路径就在 Python 里列目录，或 `-z` + `xargs -0`。
+- **`topic_data.schema.json` 里 `cover` 是可选 object，不是 nullable**：置 `null` 会让渲染在 schema 校验那一步死掉，
+  "没有封面"只能删键。
+- **`drop_image` 摘封面之后必须重渲染才看得出破图**——它自己那一步不跑闸门（HTML 还引用着刚删的文件，跑了必然假报破链）。
+- 生成命令一律带 `KE_LLM_BACKENDS=qodercli`（开发者 10-11 指定本项目只用 qodercli 帮忙）。
+
+### 发布：第 15 个站，两篇都逐字节对上
+
+`space-comms` 建成 → 读 API 返回的 host（`space-comms-gtqdc11h6po.qoder.website`，这次没被静默换成十六进制）
+→ publish → `published: true` 且 `active_release_id` 非空 → 单独授权 public（发布 ≠ 可见，新站默认 private）
+→ `verify_live` 落地页 + 两条深链 + 16 张图全部 200 且逐字节一致 → `record-group` →
+`build_index --variant hosted` 重建成 **32 张卡**并重发主页 → `verify_home` 卡 32/账上 32、卡片全部 200 →
+`publish.py check` = 账实一致。L3 深审 findings=0。
+`list_sites` 读数 `total_size: 15`（13 组 + 主页 + 这一组）。
+
+**`absorbed` 报了两个不存在的旧站，差点照着清单去删。**
+它给《星座的物理墙》和《星链的运营商之路》各列了一条「旧站 `<slug>-gtqdc11h6po...` 可删」——
+而这两篇是 10-11 新写的，**从来没有过一篇一站**，10-04 那批删站删的是另外 28 个。
+根因写在它自己的 docstring 里：`record-group` 会把成员的 `site.url` 覆盖成深链，旧地址在 data.json 里查不到，
+所以它**按规则重建**旧 host（`<slug>` + 后缀）。规则只能算出"如果有一篇一站，它叫什么"，
+算不出"到底有没有过"。这次是 `list_sites` 兜住的（15 个站里根本没有那两个名字）。
+已开 W-202：判据改成**成员 `published_date` 早于组的 `published_date` 才算被吸收**
+（发组之前发布过的篇，才可能有一篇一站），这样不联网也不会列出没存在过的站。
+**留在这里的那条纪律**：删站是不可逆的共享状态动作，`absorbed` 的清单不是许可，
+`list_sites` 按 host 对上号才动得了手。
 

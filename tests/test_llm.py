@@ -296,6 +296,17 @@ def test_copilot_offline_flag_actually_exists():
     assert "--available-tools" in argv, argv
 
 
+def test_copilot_prompt_is_not_passed_as_a_bare_dash_p():
+    """`copilot -p` 在当前版本要求**带值**（--prompt <text>），空 -p 立刻 rc=1 用法错误。
+    提示词是走 stdin 喂的，所以 argv 里根本不该出现 -p/--prompt。
+    10-11 生成《星链的运营商之路》时 qodercli 连续 1500s 超时，
+    才第一次把这条兜底路走到——一走到就现出"兜底后端从构造上就是死的"。"""
+    for online in (True, False):
+        argv = L.build_argv("copilot", online)
+        assert "-p" not in argv, "空 -p 会让 copilot 直接用法报错：%s" % argv
+        assert "--prompt" not in argv, "提示词走 stdin，不当参数传：%s" % argv
+
+
 def test_parse_picks_the_result_line_not_a_decoy():
     """copilot 的 JSONL 里每行都是独立事件，过程事件也可能含 "result" 字样。
     取"最后一条像 JSON 的行"会拿到状态事件，正文于是变成一坨元数据。"""
@@ -329,3 +340,18 @@ def test_copilot_real_output_is_not_returned_as_raw_blob():
     text, meta = L.parse_cli_output(raw)
     assert meta is not None and meta.get("type") == "assistant.message"
     assert not text.startswith('{"type":"session'), "返回的还是整坨 JSONL"
+
+
+def test_available_backends_honors_the_allowlist_env(monkeypatch):
+    """开发者 10-11 指定「只用 qodercli 帮忙」。这不该靠我记得，做成开关：
+    KE_LLM_BACKENDS 是白名单——只保留既装了又在名单里的后端，顺序按名单给（名单即优先级）。
+    没装的后端不许凭空出现在名单结果里，否则 call() 会以为有兜底。"""
+    monkeypatch.setattr(L, "_which", lambda x: x)
+    monkeypatch.setenv("KE_LLM_BACKENDS", "qodercli")
+    assert L.available_backends() == ["qodercli"]
+    monkeypatch.setenv("KE_LLM_BACKENDS", "copilot,qodercli")
+    assert L.available_backends() == ["copilot", "qodercli"]
+    monkeypatch.setenv("KE_LLM_BACKENDS", "codex")
+    assert L.available_backends() == [], "没装的后端不能凭空可用"
+    monkeypatch.delenv("KE_LLM_BACKENDS", raising=False)
+    assert L.available_backends() == ["qodercli", "copilot"]

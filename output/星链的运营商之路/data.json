@@ -1,0 +1,2021 @@
+{
+ "topic": "星链的运营商之路",
+ "sections": [
+  {
+   "id": "premise-check",
+   "title": "先把四件事分清：星链是什么业务、买了什么频谱、\"革谁的命\"在哪些市场成立、以及散热那句前提错了",
+   "anchor": "名",
+   "blocks": [
+    {
+     "type": "note",
+     "tone": "glossary",
+     "title": "这一节只做核查",
+     "text": "本章不做判断，只把后面每一步要用的四条事实钉死，并标注证据强度：强＝官方新闻稿／FCC 文件／Starlink 产品页／NASA 工程手册；中＝第三方在轨计数；查不到的一律写「未公开」，不替 SpaceX 编数字。"
+    },
+    {
+     "type": "prose",
+     "heading": "一、星链不是一个「东西」，是四种生意",
+     "text": "① 家庭零售宽带：主体是 SpaceX 的电信子公司 Starlink Services LLC，覆盖约 160 个市场。② 企业与海事/航空：Business 档官方标价 55 美元/月起、硬件 349 美元；Maritime、Aviation、in-motion 走优先级带宽。③ 运营商回传：2025 年官方进展报告称多家电信商已把星链接入蜂窝 backhaul。④ Direct-to-Cell（Starlink Mobile）：官方说法是配现有 LTE 手机、卫星天线「像太空里的手机塔」，第一代 2025 年部署超 650 颗。四类的客户、计费、监管身份各不同。在轨规模取第三方计数（中）：2026-08-27 约 11,102 颗在轨、11,087 颗在役。",
+     "source_ids": [
+      "S0113",
+      "S019",
+      "S0111",
+      "S0110",
+      "S0114"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "二、「买了频谱」到底买了什么（EchoStar，原 Dish）",
+     "rows": [
+      {
+       "k": "宣布日期",
+       "v": "2025-09-08 正式公告",
+       "source_ids": [
+        "S011",
+        "S012"
+       ]
+      },
+      {
+       "k": "金额结构",
+       "v": "约 170 亿美元：现金最高 85 亿 + SpaceX 股票最高 85 亿",
+       "source_ids": [
+        "S011"
+       ]
+      },
+      {
+       "k": "频段",
+       "v": "AWS-4（2000–2020 / 2180–2200 MHz）与 H-block，两者合计约 65 MHz",
+       "source_ids": [
+        "S013",
+        "S017"
+       ]
+      },
+      {
+       "k": "追加",
+       "v": "2025-11-06 议定非配对 AWS-3，约 26 亿美元",
+       "source_ids": [
+        "S014"
+       ]
+      },
+      {
+       "k": "毫米波",
+       "v": "本批 SpaceX 交易未列入——未公开",
+       "source_ids": [
+        "S011"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "三、牌照的监管状态：批了，但建设义务改了",
+     "text": "FCC 已作出授予令（DA-26-471，2026 年 5 月），批准把 EchoStar 的 AWS-4、AWS-H Block 与非配对 AWS-3 转让给 SpaceX。关键在附条件：AWS-4 原本带有「建地面网络」的建设义务（build-out），SpaceX 举证 EchoStar 几乎未使用该频段，授予令遂豁免原地面建设要求、另给新到期期限，而续期年限按各执照自身条款分别计算。",
+     "source_ids": [
+      "S015",
+      "S016",
+      "S018",
+      "S017"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "四、「革传统运营商的命」只在部分市场成立",
+     "text": "无地面网的地区：这是零售宽带的真实落点，覆盖的多是光纤与基站稀疏处。成熟 4G/5G 的城市：星链是共享容量的尽力而为服务，单颗波束覆盖面积大、可用频谱仅 65 MHz 量级，与密集城区的蜂窝小网不是同一门生意。漫游与海事：官方支持页写明可在公海与境外 in-motion 使用，才是它相对地面网的结构性优势。此处只标成立/不成立各自的可查依据，判断留给后文。",
+     "source_ids": [
+      "S0113",
+      "S017",
+      "S0112"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "五、散热那句前提错在哪",
+     "text": "「真空里水冷不行、辐射也不行」说反了。NASA 的工程口径是：真空下没有对流，传热只剩传导与辐射；向太空排热的唯一途径就是辐射——难点不在「行不行」，而在它的上限受辐射面积与绝对温度四次方约束。可行做法是在舱内用密封的机械泵流体回路把热带到辐射器：国际空间站的主动热控系统正是泵驱动闭式回路，负责集热、输热、排热三步。这条会在后面的散热章给出可核查的在轨做法。",
+     "source_ids": [
+      "S0115",
+      "S0116"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "warn",
+     "title": "两处刻意留白",
+     "text": "SpaceX 未公开单一的「系统总容量」口径；毫米波等更高频段是否并入本批频谱，官方稿亦未明确——两者均记为未公开。能核查的只有上文表格里带来源的频段、金额，与在轨计数。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/01_示意图_非实拍_星链是四条业务线_各自面对不同的对手与准入身份.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：星链是四条业务线，各自面对不同的对手与准入身份",
+     "caption": "按正文的名词核查绘制；图上不写价格、用户数与频段代号，四条业务线的官方定义与准入清单见正文带来源的对照表",
+     "based_on": [
+      "premise-check#直连手机是容量批发而非零售经营",
+      "premise-check#海事航空是地面够不着的场景"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "spectrum-is-a-license",
+   "title": "频谱是一门什么生意：为什么卫星直连手机非买地面频段不可",
+   "anchor": "频",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "频率不是地皮，是三样东西",
+     "text": "先把三样东西分开：哪一段频率、以什么业务身份用、附什么使用义务。FCC 在 2026 年 5 月批准 EchoStar 向 SpaceX 转让频谱的那份文件里，把直连手机分成两套框架。一套叫 SCS（补充覆盖）：频段以地面无线业务为主用、卫星业务只列为次要地位，卫星方靠租约从地面持牌者手里取使用权——它此前向 T-Mobile 租的就是 10 兆赫。另一套是正牌 MSS：频率以 MSS 为主分配，终端按 Part 25 领地球站执照，而且主用 MSS 频率在全球协调一致。同一段 2 GHz 能同时挂两种身份，所以「买了牌照」这句话得再往下问一层。",
+     "source_ids": [
+      "S021"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "手机为什么只能用地面授权频段",
+     "text": "终端这一侧是硬约束。iPhone 16（型号 A3288，官方规格页检索于 2026 年 10 月）列出的 5G NR 频段是 16 个 FDD 加 7 个 TDD，全是地面频段，没有一个 NTN 频段。3GPP 在 Rel-17 为卫星直连新增 n255（L 波段）与 n256（S 波段），写进 TS 38.101-5 和 TS 38.108，假设就是透明转发载荷、功率等级 3 的手持机，与地面网的共存指标出自 TR 38.863。频段清单在射频前端出厂前就定死，天上功率再大也变不出一台不认识它的终端。",
+     "source_ids": [
+      "S023",
+      "S022"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "免授权频段能不能走捷径",
+     "text": "能走一半。Rel-18 新增的 NTN 频段 n254 把卫星下行放在 2483.5 至 2500 MHz，那是 2.4 GHz 免授权段的顶边；上行仍要落在受保护的 1610 至 1626.5 MHz。原因不是口味：免授权段拿不到干扰保护，而链路里最弱的一跳恰恰是手机发出的那一段。",
+     "source_ids": [
+      "S022"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "EchoStar 转给 SpaceX 的三段频谱（FCC DA 26-471，2026 年 5 月）",
+     "rows": [
+      {
+       "k": "AWS-4（含 2 GHz MSS）",
+       "v": "2000–2020 与 2180–2200 MHz，共 40 兆赫，两个频道各 10 兆赫",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "k": "AWS-H Block",
+       "v": "1915–1920 与 1995–2000 MHz，共 10 兆赫",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "k": "AWS-3（未配对）",
+       "v": "1695–1700 与 1700–1710 MHz，共 5–15 兆赫",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "k": "总量与价",
+       "v": "约 65 兆赫，对价 170 亿美元；按这两个数换算，约每兆赫 2.6 亿美元",
+       "source_ids": [
+        "S021"
+       ]
+      },
+      {
+       "k": "单市场叠加",
+       "v": "交易后任一本地市场最多 75 兆赫，且无一段低于 1 GHz",
+       "source_ids": [
+        "S021"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "到手 65 兆赫，不等于一段连续 65 兆赫",
+     "text": "把总量读成可用带宽是最常见的误读。AWS-4 单侧连续最多 20 兆赫，靠 A、B 两个相邻频道拼成，上下行之间隔着 180 兆赫，是配对双工不是连续频谱；H Block 每向只有 5 兆赫，而 FCC 在这份文件里明写：3GPP 的 NTN 标准目前不支持 1915–1920 MHz 的卫星通信。标准侧原本只给 n255、n256 定义 5、10、15、20 兆赫的信道带宽，Rel-18 才补进 30 兆赫，去对齐 ITU 为卫星无线接口设的最大 30 兆赫假设。监管文件只给牌照总量与单市场上限，SpaceX 未公布单载波实际可用连续带宽这个口径——这一项未公开。",
+     "source_ids": [
+      "S021",
+      "S022"
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "myth",
+     "title": "买了频谱，不等于可以经营",
+     "text": "这段频率带着义务：AWS-3 与 H Block 的持牌方要让至少 75% 的人口用得上业务，AWS-4 要求 70% 的地面覆盖，达不到授权自动终止。牌照也不出国境：SpaceX 这次同时要的是在美国以外多国运营 MSS 的授权，非美国卫星进入美国另需市场准入，EchoStar 手里 93°W.L. 与 111°W.L. 两张就是准入。复核时可以把这两条当尺子：它是否背着覆盖义务，它的授权在几个国家有效。",
+     "source_ids": [
+      "S021"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/04_示意图_非实拍_同一段频率上地面蜂窝与卫星移动是两种业务身份.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：同一段频率上地面蜂窝与卫星移动是两种业务身份",
+     "caption": "按正文的牌照机制绘制；图上不写频段代号、金额与建设义务的具体期限，逐条监管口径见正文带来源的表格",
+     "based_on": [
+      "spectrum-is-a-license#买了频谱不等于可以跨国经营",
+      "spectrum-is-a-license#共用频率要做干扰协调"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "what-an-operator-is",
+   "title": "\"运营商\"到底经营什么：把它拆成一张能力清单，逐项对照",
+   "anchor": "能",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "拆开看：十项能力，它手上只有三项",
+     "text": "买频谱和办电信是两件事。别看卫星数，看这张清单——每项都要有主体、有资产、有文件。时点 2026 年 10 月。",
+     "source_ids": [
+      "S031"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "十项经营能力对照（据公开文件）",
+     "rows": [
+      {
+       "k": "号码 / SIM / 鉴权",
+       "v": "无自有号码段。美国侧它以独立 MNC（830 或 210）广播，区别于 T-Mobile 地面网的 260；号码与账单仍在伙伴手里，语音走 over-the-top。",
+       "source_ids": [
+        "S033",
+        "S031"
+       ]
+      },
+      {
+       "k": "计费、客服、门店",
+       "v": "半有。固定宽带自营，靠全球数千家授权零售店分销；手机侧账单与客服归运营商。",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "落地站与回程",
+       "v": "有，是硬约束。截至 2026-03-31 全球 400 余处地面站；星间激光 2.3 万条只减少而非取消对光纤回程的依赖。",
+       "source_ids": [
+        "S031"
+       ]
+      },
+      {
+       "k": "国际关口与漫游结算",
+       "v": "有对接、无自主结算。官方口径是「像标准漫游伙伴那样接入运营商」；短信自 2025-02 起先在美国（T-Mobile）与新西兰（One NZ）商用，账单仍归运营商。结算协议文本未见公开。",
+       "source_ids": [
+        "S032"
+       ]
+      },
+      {
+       "k": "本地法人牌照",
+       "v": "逐国在拿：宽带 164 个市场、手机约 30 国，每国要星座许可、频率使用、牌照转移三件套，越南要先设本地实体再试点。地面牌照也在买：2025-09-07 签 EchoStar 的 AWS-3 / AWS-4 / H-Block 购买协议（11-05 修订重签），美方转移已获 FCC 批准，其余授权预计到 2026 年二三季度。",
+       "source_ids": [
+        "S031",
+        "S036"
+       ]
+      },
+      {
+       "k": "执法监听与数据本地化",
+       "v": "义务有，能力未见公开。德国《电信法》第 170 条要求电信提供商自建监听与查询答复能力；SpaceX 则把「设本地实体、设施留境内、数据本地化」列为长期成本。",
+       "source_ids": [
+        "S034",
+        "S031"
+       ]
+      },
+      {
+       "k": "99.9% SLA 与 24×7 运维",
+       "v": "分档。官方只给 Local / Global Priority 固定企业档承诺每计费周期 99.9% 可用；直连手机档无对应公开 SLA。文件里的 99.9% 是卫星在轨可靠性，非用户端承诺。",
+       "source_ids": [
+        "S035",
+        "S031"
+       ]
+      },
+      {
+       "k": "应急与灾备频段",
+       "v": "有，靠临时授权。Helene、Milton 飓风与洛杉矶山火期间获 FCC 特别授权，向卫星覆盖区内所有无线用户发过应急警报。",
+       "source_ids": [
+        "S032"
+       ]
+      },
+      {
+       "k": "铁塔 / 管道 / 市电接口",
+       "v": "自有落地资产，也继承其故障面。2026-09-23 波兰 Wola Krobowska（Grójec 县）一座由国有 Exatel 运营的星链地面站起火，配电柜与发电机受损。",
+       "source_ids": [
+        "S037"
+       ]
+      },
+      {
+       "k": "终端入网与射频合规",
+       "v": "手机不改硬件即可接入伙伴 1.6–2.7 GHz 频段；美方星站执照 SAT-LOA-20210511-00064 用的正是 T-Mobile 持牌的 1900 MHz PCS G Block（2×5 MHz）。FCC 2024-03 拒过它的 2 GHz 申请，2024-11 才附防干扰条件放行。",
+       "source_ids": [
+        "S032",
+        "S033"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "compare",
+     "left": {
+      "title": "活法一：自办完整运营商",
+      "tone": "con",
+      "points": [
+       "号码段、本地法人、监听接口、客服与结算，缺一不可",
+       "成本随国家数线性增长，每国牌照还带续期与建设里程碑条件",
+       "已见的地面动作是买牌照，不是建客服与结算体系"
+      ]
+     },
+     "right": {
+      "title": "活法二：做地面运营商的批发容量供应商",
+      "tone": "pro",
+      "points": [
+       "频谱、核心网、客服、合规主体都由伙伴出",
+       "星链只负责天上那一段容量，接得像漫游伙伴",
+       "短信先行；伙伴名单含澳、加、瑞士、智利、秘鲁、乌克兰、日本"
+      ]
+     },
+     "verdict": "公开证据指向第二种：它卖容量，牌照与用户关系留在地面。买 EchoStar 牌照说明它在往第一种挪，但挪不等于跨过去。"
+    },
+    {
+     "type": "prose",
+     "heading": "你自己复核，只看三处",
+     "text": "一、账单上写谁的名字，计费主体就是运营商。二、那段频率执照登记在谁名下——美国用的是 T-Mobile 的 PCS G Block。三、所在国文件里有没有它自己的法人、监听与本地化承诺。三项哪天换成星链，才算它开始经营电信。",
+     "source_ids": [
+      "S031",
+      "S033"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/02_示意图_非实拍_运营商能力栈五层_最上层是星链自有的容量.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：运营商能力栈五层，最上层是星链自有的容量",
+     "caption": "按正文的能力清单绘制；图上不写牌照数量、用户数与价格，逐层持有方的出处见正文带来源的清单",
+     "based_on": [
+      "what-an-operator-is#落地与回程要一国一国谈",
+      "what-an-operator-is#号码计费客服由合作运营商持有"
+     ],
+     "width": 1500,
+     "height": 950
+    },
+    {
+     "file": "images/08_two_contracts.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：直连手机有两种签法，零售与批发革的不是同一家的命",
+     "caption": "自画示意图（非实拍）：左为零售自营，右为批发容量；判断只看用户关系在谁手里。图上不含任何金额、用户数与速率。",
+     "based_on": [
+      "what-an-operator-is#活法一自办完整运营商缺一不可",
+      "what-an-operator-is#活法二做地面运营商的批发容量供应商",
+      "what-an-operator-is#判断只看账单名字频率执照与本地法人"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "constellation-economics",
+   "title": "这门生意的钱怎么算：造星、发射、补网，与它真正的成本对手",
+   "anchor": "钱",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "寿命写在会计政策里",
+     "text": "SpaceX 在 2026 年递交的上市文件里把宽带卫星的预计使用寿命定为 5 年，第一代直连手机卫星只有 3 年；平均寿命每变动 1 年，2025 年营业利润就跟着动约 4.8 亿美元。截至 2026 年 3 月底约 9,600 颗在轨，2025 年部署 3,000 余颗——按 5 年回推，稳态下每年光替换就要补约 1,900 颗。退轨说明里，2024 年主动下撤的早期 V1 多在轨五年以上。单星制造成本没有官方数字，第三方普遍估在 25 万到 50 万美元。",
+     "source_ids": [
+      "S081",
+      "S082",
+      "S084"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "发射进了资产负债表",
+     "text": "打自家星链卫星不确认部门间收入，发射成本直接资本化进“卫星”这一行——文件里的记账口径就是这么直白。于是 2025 年卫星账面净值从 75.91 亿涨到 119.49 亿美元，43.6 亿增量还没扣折旧，摊到当年上轨的 3,000 余颗，每颗“制造加发射”约 145 万美元起。而 2025 年 122 次内部发射送了 3,000 余颗，一箭约 25 颗；对外一次猎鹰 9 报价 7,400 万美元，按 25 颗折算单星发射价就近 300 万美元。省下的是这段差价，代价也在同一张表上：发射部门 2025 年营收 40.86 亿美元、经营亏损 6.57 亿，还掏了 30.04 亿给星舰研发。",
+     "source_ids": [
+      "S081",
+      "S083"
+     ]
+    },
+    {
+     "type": "price_table",
+     "as_of": "2026-10",
+     "columns": [
+      "项目",
+      "数字"
+     ],
+     "rows": [
+      {
+       "cells": [
+        "猎鹰 9 专属发射报价",
+        "7,400 万美元（自 7,000 万上调）"
+       ],
+       "source_ids": [
+        "S083"
+       ]
+      },
+      {
+       "cells": [
+        "同箭拼单",
+        "7,000 美元/公斤（自 6,500 上调）"
+       ],
+       "source_ids": [
+        "S083"
+       ]
+      },
+      {
+       "cells": [
+        "卫星预计使用寿命",
+        "5 年；一代直连手机星 3 年"
+       ],
+       "source_ids": [
+        "S081"
+       ]
+      },
+      {
+       "cells": [
+        "星链 ARPU",
+        "66 美元/月（2023 年 99 美元）"
+       ],
+       "source_ids": [
+        "S081"
+       ]
+      },
+      {
+       "cells": [
+        "农村新建一座 4G 塔",
+        "前期 33 万美元，年运维 5.7 万美元"
+       ],
+       "source_ids": [
+        "S085"
+       ]
+      },
+      {
+       "cells": [
+        "铱星资产成交价",
+        "约 2,500 万美元（2001 年 3 月）"
+       ],
+       "source_ids": [
+        "S087"
+       ]
+      },
+      {
+       "cells": [
+        "V3 单星设计容量",
+        "下行 1 Tbps、上行 160 Gbps"
+       ],
+       "source_ids": [
+        "S0813"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "交叉点在用户密度上",
+     "text": "地面什么时候更贵，有一份可照抄的口径。CostQuest 在 2017 年为美国农村电信联盟算过：要给全美没被 4G 覆盖的道路补网，得新建约 37,500 座塔、前期 125 亿美元，此后每年运维 21.3 亿，预期年收入只有 2.36 亿，约等于成本的 11%，十年净现值负 256 亿。换成单站：每座塔每年摊 5.7 万美元，按星链 66 美元的月费要 72 个付费用户才够付当年的钱。密度低于这条线，地面永远算不平。反过来，天上那份容量是整个波束覆盖区共享的，用户一密人均带宽就见底，而地面加密小区只是边际成本很低的一步。",
+     "source_ids": [
+      "S085",
+      "S081"
+     ]
+    },
+    {
+     "type": "timeline",
+     "items": [
+      {
+       "year": "1998",
+       "text": "11 月 1 日铱星放号：手机 3,000 美元、通话每分钟 3 到 8 美元，前期广告 1.8 亿，系统建成总成本超过 50 亿美元。",
+       "source_ids": [
+        "S086"
+       ]
+      },
+      {
+       "year": "1999",
+       "text": "8 月只有 2 万用户，而贷款契约要求 5.2 万；拖欠 15 亿美元贷款后申请 Chapter 11，位列当时美国史上前二十大破产。",
+       "source_ids": [
+        "S086"
+       ]
+      },
+      {
+       "year": "2001",
+       "text": "3 月整套资产以约 2,500 万美元拍出，抹掉超过 40 亿美元债务，此后靠美国政府的订单把网续住。",
+       "source_ids": [
+        "S087"
+       ]
+      },
+      {
+       "year": "2019",
+       "text": "2 月铱星宣布约 30 亿美元的 NEXT 星座替换完成，66 颗工作星加在轨备份。",
+       "source_ids": [
+        "S088"
+       ]
+      },
+      {
+       "year": "2020",
+       "text": "3 月 27 日 OneWeb 申请 Chapter 11，在轨仅 74 颗、规划 650 颗；7 月法院批准英国政府与 Bharti 各持约 45%。",
+       "source_ids": [
+        "S089",
+        "S0810",
+        "S0811"
+       ]
+      },
+      {
+       "year": "2023",
+       "text": "9 月并入 Eutelsat，交易约 34 亿美元；那批频率与轨道申报随破产拍卖换了东家。",
+       "source_ids": [
+        "S0812"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "谁在付钱",
+     "text": "文件里，2025 年消费者订阅占连接业务收入六成以上，企业、政府、海事与航空、运营商批发合起来不到四成；卫星直连手机按与地面运营商的收入分成入账。ARPU 从 2023 年的每月 99 美元降到 2026 年一季度的 66 美元，同期用户从 230 万涨到 1,030 万，是标准的以价换量。政府口径只有任务：2025 年美国 12 次国家安全航天发射中 11 次由它执行，最大单一客户占全公司收入 20.9%。买频谱、上卫星都不等于收得到钱——铱星第一次倒下时缺的不是技术，是签约用户。",
+     "source_ids": [
+      "S081"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/03_示意图_非实拍_星座的钱分四笔_造星_发射_补网_地面段.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：星座的钱分四笔——造星、发射、补网、地面段",
+     "caption": "按正文的成本结构绘制；单星成本、发射报价与两次失败案例的数字全在正文带来源的价格表与时间线里，图上不写",
+     "based_on": [
+      "constellation-economics#自家运力压的是边际成本",
+      "constellation-economics#寿命短必须持续补网"
+     ],
+     "width": 1500,
+     "height": 950
+    },
+    {
+     "file": "images/09_replenish_loop.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：造发用退役是一条没有出口的循环，补网是常流而非一次性投资",
+     "caption": "自画示意图（非实拍）：寿命一到就得重发，循环没有退出选项。寿命年数、补网速率与失败案例的数字见正文带来源的时间线与价格表。",
+     "based_on": [
+      "constellation-economics#寿命短必须持续补网",
+      "constellation-economics#自家运力压的是边际成本",
+      "constellation-economics#铱星缺的不是技术是签约用户"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "china-playbook",
+   "title": "中国在太空电信上的布局：三张星座、一套标准、一个运力瓶颈",
+   "anchor": "中",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "三张星座：申报数是排队凭证，不是订单",
+     "text": "先分清两个数：写进 ITU 申报名单的卫星数，和真正入轨的数。前者是频轨资源的排队凭证，后者才决定容量。最大的一张是国网（GW）星座，申报 12,992 颗，分 GW-A59（6,080 颗）与 GW-A2 两个子星座，分别布在 500 公里以下和 1,145 公里轨道。上海垣信的千帆申报超过 15,000 颗，按一期 648 颗做区域覆盖、二期累计 1,296 颗做全球覆盖推进。蓝箭鸿擎的鸿鹄-3 在 2024 年 5 月曝光的申报材料里是 160 个轨道面、10,000 颗。加总之后，中国向 ITU 申报的低轨卫星已在 20 万颗量级。",
+     "source_ids": [
+      "S091",
+      "S092",
+      "S093",
+      "S094",
+      "S095"
+     ]
+    },
+    {
+     "type": "keyvalue_table",
+     "caption": "纸面规模与已入轨数量（统计日期见各行）",
+     "rows": [
+      {
+       "k": "国网 GW（中国星网）",
+       "v": "申报 12,992 颗；在轨约 180 颗（新华社，2026-07-31）",
+       "source_ids": [
+        "S091",
+        "S096"
+       ]
+      },
+      {
+       "k": "千帆（上海垣信）",
+       "v": "申报超 15,000 颗；在轨 238 颗（2026-07-31），9 月 16 日一箭发射后规模增至 256 颗",
+       "source_ids": [
+        "S093",
+        "S096",
+        "S097"
+       ]
+      },
+      {
+       "k": "鸿鹄-3（蓝箭鸿擎）",
+       "v": "申报材料 10,000 颗、160 个轨道面（2024-05）；本章未检索到其批量组网发射的权威统计",
+       "source_ids": [
+        "S094"
+       ]
+      },
+      {
+       "k": "2026 年公开目标",
+       "v": "千帆：年内累计在轨 324 颗；GW 与千帆均计划年内完成骨干网组网",
+       "source_ids": [
+        "S098",
+        "S096"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "标准与准入：3GPP 里有席位，牌照刚开门",
+     "text": "标准这条线不缺人。3GPP 的 NTN（非地面网络）把卫星写进 5G 规范，2025 年 3 月仁川 SA 第 107 次会议上，中国信科与荷兰 TNO 共同牵头新项目并出任第一报告人，这是它牵头的第 16 项卫星 NTN 国际标准项目。准入侧更实质：工信部 2025 年 8 月印发《关于优化业务准入促进卫星通信产业发展的指导意见》，明确以不换卡不换号模式支持手机直连卫星；9 月 8 日向中国联通、9 月 29 日向中国移动颁发卫星移动通信业务经营许可。试验同步在跑：2026 年 6 月 9 日，垣信千帆 DTC01 星与中国移动 02 星同箭入轨，02 星 6 月底完成上下行链路测试，03 星待择机发射。但星座运营方自己那张牌照仍是空白——《IT 时报》2026 年 7 月报道星网、垣信的卫星互联网业务许可仍在待批，工信部未见正式公告。",
+     "source_ids": [
+      "S099",
+      "S0910",
+      "S0911",
+      "S0912",
+      "S0913",
+      "S0914",
+      "S0915"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "频轨的代价：七年时钟加三级里程碑",
+     "text": "频率不是买断。按《无线电规则》，卫星网络须在七年监管期内投入使用；WRC-19 通过、WRC-23 修订的第 35 号决议又给大型非静止轨道星座叠了里程碑：监管期结束后两年部署申报总量的 10%、五年 50%、七年 100%，没按期完成的那部分，对应的频率使用权利不再保留。中文产业报道把它概括成两年 10%、五年 50%、七年全部。这条规则同时解释两件看着矛盾的事：申报数远大于入轨数，是因为先占位；2026 年 8 月出现 12 天连发两组，是因为时钟在倒计时。",
+     "source_ids": [
+      "S0916",
+      "S0917",
+      "S0918",
+      "S0919"
+     ]
+    },
+    {
+     "type": "timeline",
+     "items": [
+      {
+       "year": "2025",
+       "title": "12 月 3 日 朱雀三号遥一",
+       "text": "国家航天局确认入轨成功；首飞未实现一子级回收，公开参数为一次性低轨运力 21.3 吨、航区回收任务 18.3 吨。",
+       "source_ids": [
+        "S0920",
+        "S0921",
+        "S0922"
+       ]
+      },
+      {
+       "year": "2026",
+       "title": "7 月 10 日 长征十号乙",
+       "text": "海南商业航天发射场，官方称我国首次成功实施重复使用运载火箭一子级回收，并属全球首次海上网系回收。",
+       "source_ids": [
+        "S0923"
+       ]
+      },
+      {
+       "year": "2026",
+       "title": "8 月 19 日 首次陆地回收",
+       "text": "朱雀三号遥二一子级在甘肃民勤按程序着陆。截至本章统计日，公开渠道未见回收箭体再次执行入轨任务的记录。",
+       "source_ids": [
+        "S0924"
+       ]
+      },
+      {
+       "year": "2026",
+       "title": "9 月 15 日 一箭十星",
+       "text": "朱雀二号改进型遥七送 10 颗千帆卫星入轨，新华社称系民营商业火箭首次执行规模化星座组网任务。",
+       "source_ids": [
+        "S0926",
+        "S097"
+       ]
+      },
+      {
+       "year": "2026",
+       "title": "10 月 10 日 低轨 27 组",
+       "text": "长征十二号在海南商发发射卫星互联网低轨 27 组；同一子星座今年 3 月才打到 20 组。",
+       "source_ids": [
+        "S0927",
+        "S0928"
+       ]
+      }
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "对照：差距写在入轨速度上，不写在概念上",
+     "text": "并排放公开数字：截至 2026 年 1 月初，星链约 9,400 颗在轨、其中超过 8,000 颗已投入运营；截至 2026 年 7 月 31 日，千帆与 GW 在轨合计 418 颗。发射频次也差一档：2025 年 SpaceX 完成 167 次轨道发射，中国全年 92 次。成本要小心比——证券时报援引咨询机构测算千帆与 GW 单星平均造价约 1,500 万元，而马斯克关于星链单星约 25 万美元的说法被 Eurospace 归为 v1 口径；两者版本不同、是否含发射费不同，只能当量级参照，别当比值用。概念上中国没有代差：相控阵、星间链路、手机直连都已写进自己的申报材料并已上试验星。真正待解的是同一个时间窗里能送多少吨上去、送多少次，以及回收下来的箭体何时真正复飞。",
+     "source_ids": [
+      "S0929",
+      "S096",
+      "S0930",
+      "S0931",
+      "S0932",
+      "S0933"
+     ]
+    }
+   ],
+   "images": [
+    {
+     "file": "images/05_示意图_非实拍_频轨是排队时钟_申报之后每格都有期限与量化义务.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：频轨是排队时钟，申报之后每格都有期限与量化义务",
+     "caption": "按正文的 ITU 里程碑规则绘制；图上不写年份、百分比与数量，三张星座的公开统计与统计日期见正文表格",
+     "based_on": [
+      "china-playbook#申报规模不等于已入轨数量",
+      "china-playbook#瓶颈在入轨速度"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  },
+  {
+   "id": "falsify",
+   "title": "判断会错在哪：盯六个信号，越线就该改结论",
+   "anchor": "反",
+   "blocks": [
+    {
+     "type": "prose",
+     "heading": "把判断题改成六个格子",
+     "text": "这一章不替读者下判断，只给可打勾的格子。六条信号，每条写清现在读到哪一格、越过哪条线就必须改结论。任意两条走到反向格，本篇那句「补盲区成立、抢城市不成立」就得重写；单条走到支持格，不足以翻案。"
+    },
+    {
+     "type": "prose",
+     "heading": "① 频谱交易：批了，而且附了会自动失效的义务",
+     "text": "FCC 已在 2026 年 5 月 12 日发出 DA 26-471（GN Docket 25-302），批准 EchoStar 把约 65 MHz 的 AWS-4、AWS-H 与未配对 AWS-3 以 170 亿美元转给 SpaceX；同时豁免原有的地面建设义务，换成 SpaceX 自报的绩效承诺：以 2027 年 11 月 30 日为起点，两年内每个 BEA 要做到九成面积、七成时间可用，下行 SINR 5 dB、上行第 5 百分位速率每 MHz 100 kbps；四年是八成与 200 kbps；九年是九成、10 dB、300 kbps。任一期全不达，终点提前一年；最终不达，牌照自动失效且不得再取。批文另外点出，3GPP NTN 目前并不支持 1915–1920 MHz。现在这一格读到的是批了、且带义务；越线是 FCC 无线局认定任一档未达标，或那 5 MHz 的标准迟迟不来。",
+     "source_ids": [
+      "S101",
+      "S102"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "② 与运营商的合作：现在是分销，不是替代",
+     "text": "星链目前仍是批发方：SCS 规则（47 CFR 25.125(a)）要求空间站申请人先与一家或多家地面持牌商签租赁安排。2025 年 7 月 23 日 T-Mobile 把该服务商用，合同、账单、客服都留在运营商侧；EchoStar 卖完频谱后转做它自称的混合 MNO，面向用户的仍是 Boost。SpaceX 则在 2025 年 9 月 19 日另案申请新的 NGSO 系统与 MSS 授权（ICFS SAT-LOA-20250916-00282）。越线是两件事同时发生：该案获批，且出现星链自有品牌的零售账单；缺一件，它就还是运营商的上游。",
+     "source_ids": [
+      "S101"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "③ 单星口径与④ 星舰运力",
+     "text": "V3 单星官方只公布通信口径：1 Tbps 下行、160 Gbps 上行，约十倍与二十二倍于上一代；SpaceX 写进 FCC 案卷的目标是总容量超过第一代直连系统 100 倍以上，但单星电功率与相控阵口径没有公开数字，城市热点这一格只能等 FCC 要求提交的那张 BEA 级 SINR 与速率地图。运力刚翻格：2026 年 9 月 28 日 Starship Flight 14 首次入轨至约 275 公里，放出 26 颗 V3——2023 年以来第 14 次飞行才达成，上升段还有一台 Raptor 3 提前停车。越线是入轨成为常态、单次入轨质量稳定进百吨级；否则百倍容量只是排期。",
+     "source_ids": [
+      "S1011",
+      "S101",
+      "S106",
+      "S107"
+     ]
+    },
+    {
+     "type": "prose",
+     "heading": "⑤ 各国准入与⑥ 中国星座的失期后果",
+     "text": "英国：2 GHz MSS 牌照 2027 年 5 月 13 日到期，政府于 2025 年 11 月 7 日至 12 月 5 日咨询后决定废止 2010 年条例，让 Ofcom 能依国内法继续授权这一频段，答复方里有 Starlink Services UK；美国则把 §2.106 与 §25.115 的豁免单列进 GN Docket 25-340，仍未决。ITU 的钟更硬：No.11.44 与 No.11.48 给七年投入使用期，其后第 35 号决议（WRC-19）在这七年之后再按 2、5、7 年设 10%、50%、100% 三档部署里程碑，达不到就要缩小申报规模。中国：千帆到 2026 年 7 月 9 日在轨 238 颗，运营方今年目标 324 颗，而早前的规划是 2025 年底 648 颗；GW 规划 12,992 颗。越线是准入收紧叠加本地落地，或年内目标与 ITU 档位双双落空。",
+     "source_ids": [
+      "S103",
+      "S101",
+      "S104",
+      "S105",
+      "S108",
+      "S109",
+      "S1010"
+     ]
+    },
+    {
+     "type": "steps",
+     "title": "怎么给这六格记分",
+     "items": [
+      {
+       "n": 1,
+       "title": "记文号与日期",
+       "text": "逐条写下案号、批文日期和当天的读数，不要只记「批了/没批」。"
+      },
+      {
+       "n": 2,
+       "title": "只看增量",
+       "text": "下次复查先问状态有没有变，再问数字有没有达标；两者是两件事。"
+      },
+      {
+       "n": 3,
+       "title": "两条反向就改写",
+       "text": "改写时把触发它的究竟是哪两条、以及各自越过的具体线，一起写进结论。"
+      }
+     ]
+    },
+    {
+     "type": "note",
+     "tone": "myth",
+     "title": "两格最容易读混",
+     "text": "买了频谱不等于能卖电话卡：批文给的是使用权与建设义务，未达还会自动失去。总容量翻一百倍也不等于城市里挤得进：验收尺度是面积与时间双达标，那说的是可用，不是够快。"
+    }
+   ],
+   "images": [
+    {
+     "file": "images/06_示意图_非实拍_六个信号各有一条改结论的线.png",
+     "kind": "illustration",
+     "alt": "示意图·非实拍：六个信号各有一条改结论的线",
+     "caption": "按正文的可证伪清单绘制；图上不写阈值数字与日期，每格的当前读数与来源见正文带来源的清单",
+     "based_on": [
+      "falsify#官方目标与已实现不是同一格",
+      "falsify#申报规模与已入轨不是同一格"
+     ],
+     "width": 1500,
+     "height": 950
+    }
+   ]
+  }
+ ],
+ "sources": [
+  {
+   "id": "S021",
+   "url": "https://docs.fcc.gov/public/attachments/DA-26-471A1.pdf",
+   "label": "FCC《Memorandum Opinion and Order》DA 26-471，GN Docket 25-302，2026 年 5 月 12 日通过并发布：批准 EchoStar 的 AWS-4、AWS-H Block、未配对 AWS-3 频谱执照与地球站执照转让给 SpaceX 用于下一代直连手机（D2D）网络，内含各频段范围、SCS 与 MSS 两套业务身份、建设义务与干扰规则",
+   "retrieved": "2026-10-11",
+   "publisher": "Federal Communications Commission"
+  },
+  {
+   "id": "S022",
+   "url": "https://www.3gpp.org/technologies/ntn-overview",
+   "label": "3GPP 官方 NTN 技术概览页：Rel-17 工作项 NR_NTN_solutions 新增 n255（L 波段）与 n256（S 波段），写入 TS 38.101-5 与 TS 38.108，假设为透明转发载荷、功率等级 3 手持机，共存研究为 TR 38.863；Rel-18 新增 n254（上行 1610–1626.5、下行 2483.5–2500 MHz）并把信道带宽加到 30 MHz",
+   "retrieved": "2026-10-11",
+   "publisher": "3GPP",
+   "cache": "text/316fd165c90968bf.txt"
+  },
+  {
+   "id": "S023",
+   "url": "https://support.apple.com/zh-cn/121029",
+   "label": "Apple 官方 iPhone 16 技术规格页，型号 A3288 的 5G NR / LTE 频段清单（本会话检索于 2026 年 10 月）",
+   "retrieved": "2026-10-11",
+   "publisher": "Apple",
+   "cache": "text/2d9470c6aa69f585.txt"
+  },
+  {
+   "id": "S031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm",
+   "label": "SpaceX 向美国 SEC 提交的招股说明书（Form S-1）：Starlink 与 Starlink Mobile 的口径数据（截至 2026-03-31）——9,600 颗卫星、1030 万用户、164 个市场、手机业务约 30 国、400 余处地面站、2.3 万余条星间激光、MNO 合作定义、EchoStar AWS-3/AWS-4/H-Block 牌照购买协议、逐国许可要求、数据本地化风险表述",
+   "retrieved": "2026-10-11",
+   "publisher": "SEC EDGAR"
+  },
+  {
+   "id": "S032",
+   "url": "https://starlink.com/public-files/DIRECT_TO_CELL_SERVICE_FEB_25.pdf",
+   "label": "Starlink 官方通告《Direct to Cell Service Now Available》（2025-02）：伙伴提供 1.6–2.7 GHz LTE 频谱、「像标准漫游伙伴那样接入」、2024-11 获 FCC 批准、美新西兰商用、飓风与山火特别授权",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink"
+  },
+  {
+   "id": "S033",
+   "url": "https://arxiv.org/html/2506.00283v3",
+   "label": "基于百万级众测的 Starlink 直连手机测量研究：星链以独立 MNC（830/210）与 T-Mobile 的 260 并存、FCC 星站执照 SAT-LOA-20210511-00064 使用 T-Mobile 持牌 1900 MHz PCS G Block 的 2×5 MHz、2024-03 FCC 拒绝其 2 GHz MSS 申请（DA-24-300）、2024-11 附干扰条件放行",
+   "retrieved": "2026-10-11",
+   "publisher": "arXiv",
+   "cache": "text/3d0df17d794eb9f9.txt"
+  },
+  {
+   "id": "S034",
+   "url": "https://www.bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/OeffentlicheSicherheit/Ueberwachung_Auskunftsert/_Links/Text_TKG_110.html",
+   "label": "德国联邦网络局（BNetzA）专页：《电信法》监听实施与信息查询答复义务（§ 170 TKG，原 § 110 TKG，另含 § 174 手动查询程序）",
+   "retrieved": "2026-10-11",
+   "publisher": "Bundesnetzagentur",
+   "cache": "text/a8d8430b571b0d28.txt"
+  },
+  {
+   "id": "S035",
+   "url": "https://starlink.com/support/article/b7142f8e-9762-6fcf-03f5-0d53c2895b3f",
+   "label": "Starlink 官方支持条目《What is the Starlink Service Level Agreement?》：Local Priority 与 Global Priority 计划每计费周期 99.9% 可用承诺（该页为脚本渲染，条款文字取自官方页面检索摘要）",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink"
+  },
+  {
+   "id": "S036",
+   "url": "https://theinvestor.vn/starlink-sets-up-12-mln-vietnam-unit-after-pilot-satellite-internet-service-okayed-d18413.html",
+   "label": "越南《投资报》（2026-02）：星链先在越南设立 120 万美元本地实体，随后获批试点卫星互联网服务",
+   "retrieved": "2026-10-11",
+   "publisher": "The Investor",
+   "cache": "text/d7debb3251eea087.txt"
+  },
+  {
+   "id": "S037",
+   "url": "https://brusselssignal.eu/2026/09/starlink-ground-station-hit-by-suspected-arson-in-poland/",
+   "label": "Brussels Signal（2026-09-24）：2026-09-23 波兰 Wola Krobowska（Grójec 县）一座由国有 Exatel 运营的星链地面站起火，配电柜、发电机与天线受损",
+   "retrieved": "2026-10-11",
+   "publisher": "Brussels Signal",
+   "cache": "text/3a08cc6af15dc090.txt"
+  },
+  {
+   "id": "S051",
+   "url": "https://www.itu.int/rec/R-REC-P.525-5-202411-I/en",
+   "label": "ITU-R P.525-5《Calculation of free-space attenuation》，2024-11-03 批准、现行有效的自由空间衰减标准",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU-R",
+   "cache": "text/97a7c6d448dcd9a2.txt"
+  },
+  {
+   "id": "S052",
+   "url": "https://rfessentials.com/resources/rf-glossary/free-space-path-loss/",
+   "label": "自由空间损耗的工程回归式 FSPL(dB)=20log10(d_km)+20log10(f_MHz)+32.44",
+   "retrieved": "2026-10-11",
+   "publisher": "RF Essentials",
+   "cache": "text/b13e77c4b0522b00.txt"
+  },
+  {
+   "id": "S053",
+   "url": "https://arstechnica.com/tech-policy/2021/04/fcc-lets-spacex-cut-satellite-altitude-to-improve-starlink-speed-and-latency/",
+   "label": "FCC 2019 年 4 月批准 1,584 颗星链卫星在 550 公里高度运行",
+   "retrieved": "2026-10-11",
+   "publisher": "Ars Technica"
+  },
+  {
+   "id": "S054",
+   "url": "https://www.eoportal.org/satellite-missions/starlink",
+   "label": "星链星座轨道参数：高度 207–630 公里、多数在 559 公里、倾角 43°–97.6°",
+   "retrieved": "2026-10-11",
+   "publisher": "EO Portal (ESA/CNES)",
+   "cache": "text/90bba44d6382765d.txt"
+  },
+  {
+   "id": "S055",
+   "url": "https://www.transfinite.com/content/D2D_Uplink_Link_Budgets_Services_and_Constellation_Design",
+   "label": "直连手机上行链路预算：终端最大发射功率受限于 23 dBm（−7 dBW）",
+   "retrieved": "2026-10-11",
+   "publisher": "Transfinite",
+   "cache": "text/e37995ba1bc2298c.txt"
+  },
+  {
+   "id": "S056",
+   "url": "https://www.frontiersin.org/journals/communications-and-networks/articles/10.3389/frcmn.2021.643095/full",
+   "label": "LEO 相对地面约 7.5 km/s、轨道周期 90–110 分钟的星座参数比较",
+   "retrieved": "2026-10-11",
+   "publisher": "Frontiers in Communications and Networks (2021)",
+   "cache": "text/2a82cefeb88110af.txt"
+  },
+  {
+   "id": "S057",
+   "url": "https://futurenetworks.ieee.org/images/files/pdf/tutorials/RS_5G_NTN_Takes_Flight_IEEE_Sept2024_1.pdf",
+   "label": "5G NTN 教程：2 GHz 载波、LEO 星座多普勒频移 ±48 kHz",
+   "retrieved": "2026-10-11",
+   "publisher": "IEEE Future Networks (2024-09)"
+  },
+  {
+   "id": "S058",
+   "url": "https://www.3gpp.org/technologies/ntn-overview",
+   "label": "3GPP Rel-17 NTN 概览，为手机直连新增 n255（L 波段）与 n256（S 波段）",
+   "retrieved": "2026-10-11",
+   "publisher": "3GPP",
+   "cache": "text/316fd165c90968bf.txt"
+  },
+  {
+   "id": "S059",
+   "url": "https://dspace.networks.imdea.org/bitstream/handle/20.500.12761/2039/Blind_5G_NR_Leo_Initial_Access_Receiver.pdf?sequence=1",
+   "label": "基础设施侧多普勒预补偿可将 2.5 GHz 载波残余频偏压到约 4.7 kHz 以下",
+   "retrieved": "2026-10-11",
+   "publisher": "IMDEA Networks"
+  },
+  {
+   "id": "S0510",
+   "url": "https://cdn.arstechnica.net/wp-content/uploads/2023/05/SpaceX-T-Mobile-Technical-Narrative.pdf",
+   "label": "SpaceX Gen2 Direct-to-Cellular 技术说明（提交 FCC 的附件）：每星多波束、波束中心在地面保持静止并做频偏/时延补偿",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX"
+  },
+  {
+   "id": "S0511",
+   "url": "https://www.semanticscholar.org/paper/Measuring-the-Satellite-Links-of-a-LEO-Network-Pan-Zhao/2b0db4c60f4d1a0f23f993eede5cce8a4e268c1c",
+   "label": "实测研究：星链以 15 秒为粒度做终端-卫星切换",
+   "retrieved": "2026-10-11",
+   "publisher": "Measuring the Satellite Links of a LEO Network"
+  },
+  {
+   "id": "S0512",
+   "url": "https://henryfang.net/assets/pdf/fang2024robust.pdf",
+   "label": "引述前述测量：星链以 15 秒粒度更新终端与卫星链路，并分析其对实时业务的影响",
+   "retrieved": "2026-10-11",
+   "publisher": "Robust Live Streaming over LEO Satellite Constellations (2024)"
+  },
+  {
+   "id": "S0513",
+   "url": "http://www.iaeej.com/xxydzgc/article/html/202403002",
+   "label": "智能超表面辅助低轨卫星通信综述：城市、峡谷、森林等视线遮蔽区出现严重视距衰落与多径",
+   "retrieved": "2026-10-11",
+   "publisher": "电子学报（电子与信息学报系）",
+   "cache": "text/a409bb43b981a2f6.txt"
+  },
+  {
+   "id": "S0514",
+   "url": "https://jeit.ac.cn/cn/article/doi/10.11999/JEIT230941?viewType=HTML",
+   "label": "面向低轨卫星的星地信道模型综述，含大气/降雨与遮挡衰减建模",
+   "retrieved": "2026-10-11",
+   "publisher": " Journal of Electronics & Information Technology",
+   "cache": "text/b309c2ccca8c99b7.txt"
+  },
+  {
+   "id": "S0515",
+   "url": "https://www.cernet.edu.cn/info/fei/wang_luo/ji_shu_ying_yong/200604/t20060419_174876.shtml",
+   "label": "复用系数取 3 或 7 时抑制同频干扰、但频谱效率降到三分之一或七分之一",
+   "retrieved": "2026-10-11",
+   "publisher": "CERNET 技术新知"
+  },
+  {
+   "id": "S0516",
+   "url": "https://www.zte.com.cn/china/about/magazine/zte-communications/2011/6/cn_687/273658.html",
+   "label": "小区间干扰协调（ICIC）原理：在空、时、频域协调资源以降低邻区干扰",
+   "retrieved": "2026-10-11",
+   "publisher": "中兴通讯技术",
+   "cache": "text/b49f6a74f10d4b8c.txt"
+  },
+  {
+   "id": "S0517",
+   "url": "https://starlink.com/technology",
+   "label": "官方技术页：每颗卫星 5 副 Ku 波段相控阵天线、3 副 Ka/E 双频天线",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink / SpaceX"
+  },
+  {
+   "id": "S0518",
+   "url": "https://starlink.com/public-files/starlinkProgressReport_2024.pdf",
+   "label": "Starlink 2024 年度进展报告，重复同一卫星天线硬件口径",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX"
+  },
+  {
+   "id": "S0519",
+   "url": "http://www.news.cn/20260128/1270268485b94f8ea0c3da3c712d0497/c.html",
+   "label": "截至 2025 年底中国 5G 基站 483.8 万个、平均每万人 34.4 个（工信部数据）",
+   "retrieved": "2026-10-11",
+   "publisher": "新华社",
+   "cache": "text/9a6276a1a674b6ca.txt"
+  },
+  {
+   "id": "S0520",
+   "url": "https://www.china-tower.com/Index/show/catid/17/id/1648.html",
+   "label": "中国铁塔 2025 年业绩：塔类站址 214.9 万个、塔类业务收入 754.98 亿元、运营商塔类租户 356.7 万户",
+   "retrieved": "2026-10-11",
+   "publisher": "中国铁塔",
+   "cache": "text/2ec07b2c84a23250.txt"
+  },
+  {
+   "id": "S0521",
+   "url": "http://www.eeo.com.cn/2020/1020/423432.shtml",
+   "label": "公开数据：2018 年中国电信运营商电费支出占网络运营总费用 16%、占收入 3.59%",
+   "retrieved": "2026-10-11",
+   "publisher": "经济日报网",
+   "cache": "text/3c7f9bfa3e62e350.txt"
+  },
+  {
+   "id": "S0522",
+   "url": "https://techblog.comsoc.org/2026-06-27/ft-spacex-considering-starlink-direct-to-consumer-mobile-service-terrestrial-cellular-network-infrastructure-in-the-u-s/",
+   "label": "转述 FT 报道：2025 年 9 月 SpaceX 以约 170 亿美元向 EchoStar 购买无线频谱许可",
+   "retrieved": "2026-10-11",
+   "publisher": "IEEE ComSoc Technology Blog"
+  },
+  {
+   "id": "S0523",
+   "url": "https://starlink.com/public-files/DIRECT_TO_CELL_SERVICE_FEB_25.pdf",
+   "label": "官方公告：Direct to Cell 短信服务 2025 年 2 月在美国与新西兰商用",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink / SpaceX"
+  },
+  {
+   "id": "S0524",
+   "url": "https://starlink.com/business/mobile",
+   "label": "Starlink Mobile 官方页：合作对象是 T-Mobile、Optus、Telstra 等地面上运营商，并强调合作国互惠接入",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink"
+  },
+  {
+   "id": "S0525",
+   "url": "https://www.thefastmode.com/technology-solutions/46696-fcc-approves-spacex-starlink-gen2-expansion-with-7-500-additional-satellites",
+   "label": "FCC 批准再加 7500 颗 Gen2 并允许新增 340–485 公里轨道壳层",
+   "retrieved": "2026-10-11",
+   "publisher": "The Fast Mode",
+   "cache": "text/cc3ab5501bcffac9.txt"
+  },
+  {
+   "id": "S011",
+   "url": "https://ir.echostar.com/news-releases/news-release-details/echostar-announces-spectrum-sale-and-commercial-agreement-spacex",
+   "label": "EchoStar 官方新闻稿：与 SpaceX 的频谱出售与商业协议，AWS-4/H-block 约 170 亿美元（现金+股票各最高 85 亿），2025-09-08",
+   "retrieved": "2026-10-11",
+   "publisher": "EchoStar Investor Relations"
+  },
+  {
+   "id": "S012",
+   "url": "https://www.reuters.com/business/media-telecom/spacex-buys-wireless-spectrum-echostar-17-billion-deal-2025-09-08/",
+   "label": "路透：SpaceX 以约 170 亿美元购买 EchoStar 无线频谱，2025-09-08",
+   "retrieved": "2026-10-11",
+   "publisher": "Reuters"
+  },
+  {
+   "id": "S013",
+   "url": "https://www.lightreading.com/satellite/how-the-echostar-spacex-deal-reshapes-the-u-s-wireless-and-satellite-landscape",
+   "label": "Light Reading：AWS-4 频段为 2000–2020/2180–2200 MHz 及交易结构",
+   "retrieved": "2026-10-11",
+   "publisher": "Light Reading",
+   "cache": "text/8651d3b9a6390412.txt"
+  },
+  {
+   "id": "S014",
+   "url": "https://ir.echostar.com/news-releases/news-release-details/echostar-agrees-sell-full-unpaired-aws-3-spectrum-license",
+   "label": "EchoStar 官方新闻稿：向 SpaceX 出售非配对 AWS-3，约 26 亿美元，2025-11-06",
+   "retrieved": "2026-10-11",
+   "publisher": "EchoStar Investor Relations"
+  },
+  {
+   "id": "S015",
+   "url": "https://www.fcc.gov/document/order-granting-spacex-echostar-applications",
+   "label": "FCC 授予令：批准 EchoStar AWS-4、AWS-H Block 与非配对 AWS-3 牌照转让给 SpaceX",
+   "retrieved": "2026-10-11",
+   "publisher": "FCC"
+  },
+  {
+   "id": "S016",
+   "url": "https://docs.fcc.gov/public/attachments/DA-26-471A1.pdf",
+   "label": "FCC DA-26-471 令文：豁免原地面建设义务，为 AWS-4/AWS-H 另定新建设期限，2026-05",
+   "retrieved": "2026-10-11",
+   "publisher": "FCC"
+  },
+  {
+   "id": "S017",
+   "url": "https://totaltele.com/fcc-greenlights-echostars-40bn-spectrum-sale-to-spacex-att/",
+   "label": "TotalTele：FCC 放行 EchoStar 对 SpaceX/AT&T 频谱出售，AWS-4+H-block 约 65 MHz",
+   "retrieved": "2026-10-11",
+   "publisher": "TotalTele"
+  },
+  {
+   "id": "S018",
+   "url": "https://broadbandbreakfast.com/fcc-told-to-deny-or-condition-echostar-waivers-tied-to-spacex-spectrum-transfer/",
+   "label": "Broadband Breakfast：关于是否豁免/附加 AWS-4 地面建设义务的争论",
+   "retrieved": "2026-10-11",
+   "publisher": "Broadband Breakfast",
+   "cache": "text/ab01c50ef1647d0f.txt"
+  },
+  {
+   "id": "S019",
+   "url": "https://starlink.com/business",
+   "label": "Starlink Business 官方产品页：55 美元/月起、硬件 349 美元",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink"
+  },
+  {
+   "id": "S0110",
+   "url": "https://starlink.com/business/mobile",
+   "label": "Starlink Mobile（Direct-to-Cell）官方页：配现有 LTE 手机、卫星天线如太空中的手机塔",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink"
+  },
+  {
+   "id": "S0111",
+   "url": "https://starlink.com/public-files/starlinkProgressReport_2025.pdf",
+   "label": "SpaceX/Starlink 2025 进展报告：第一代 DTC 星座部署超 650 颗；多家电信商接入蜂窝 backhaul",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX/Starlink"
+  },
+  {
+   "id": "S0112",
+   "url": "https://starlink.com/support/article/4497c64e-d214-803a-bd8d-1f0c957b894d",
+   "label": "Starlink 移动（in-motion）官方支持页：可在公海与境外使用",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink"
+  },
+  {
+   "id": "S0113",
+   "url": "https://en.wikipedia.org/wiki/Starlink",
+   "label": "维基百科：Starlink Services LLC 为 SpaceX 电信子公司，服务约 160 个国家/地区",
+   "retrieved": "2026-10-11",
+   "publisher": "Wikipedia"
+  },
+  {
+   "id": "S0114",
+   "url": "https://www.space.com/spacex-starlink-satellites.html",
+   "label": "Space.com：2026-08-27 约 11,102 颗在轨、11,087 颗在役（Jonathan McDowell 计数）",
+   "retrieved": "2026-10-11",
+   "publisher": "Space.com",
+   "cache": "text/6f99a63fbf36e652.txt"
+  },
+  {
+   "id": "S0115",
+   "url": "https://www.nasa.gov/smallsat-institute/sst-soa/thermal-control/",
+   "label": "NASA 小卫星研究所《热控制》：真空中传热只剩辐射与传导、无对流",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA",
+   "cache": "text/f0224e5b78904820.txt"
+  },
+  {
+   "id": "S0116",
+   "url": "https://www.nasa.gov/wp-content/uploads/2021/02/473486main_iss_atcs_overview.pdf",
+   "label": "NASA ISS 主动热控系统（ATCS）概述：机械泵驱动闭式回路，负责集热、输热、排热",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA"
+  },
+  {
+   "id": "S041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm",
+   "label": "SpaceX 上市招股书（S-1，SEC EDGAR），官方申报文件：截至 2026-03-31 约 9,600 颗在轨宽带与手机星、约 1,030 万订户、住宅高峰下行中位 225 Mbps、V3 每星 1 Tbps 下行与单发 60 颗/二十倍表述、约 650 颗 V1 Mobile 星服务约 740 万月度唯一设备与约 30 个国家、EchoStar 65 MHz 加全球 MSS 共 196 亿美元、企业客户名单",
+   "retrieved": "2026-10-11",
+   "publisher": "SEC / SpaceX"
+  },
+  {
+   "id": "S042",
+   "url": "https://www.ookla.com/articles/starlink-hits-new-us-highs",
+   "label": "Ookla Research 实测报告（Sue Marek，2026-05-05）：2025 下半年 Speedtest 用户数据，除阿拉斯加外各州中位下行均超 100 Mbps，内布拉斯加最高 200.80 Mbps，44.7% 用户达 FCC 100/20 Mbps 标准",
+   "retrieved": "2026-10-11",
+   "publisher": "Ookla",
+   "cache": "text/05d999a4338048cf.txt"
+  },
+  {
+   "id": "S043",
+   "url": "https://arxiv.org/abs/2506.00283",
+   "label": "马德里理工大学（UPM）DS2D 实测研究摘要：美国 2024-10 至 2025-07 众包移动网络测量，由 SINR 估出每波束约 3 Mbps，可扩至 18 Mbps；直连卫星中位 RSRP 比地面网络低 24 dB",
+   "retrieved": "2026-10-11",
+   "publisher": "arXiv",
+   "cache": "text/42738314a7cf6a76.txt"
+  },
+  {
+   "id": "S044",
+   "url": "https://uk.pcmag.com/networking/158404/how-fast-is-t-mobiles-cellular-starlink-service-new-study-breaks-it-down",
+   "label": "PCMag 对该研究的报道（2025-06-04 更新）：样本超一百万条测量、SpaceX 自测出现过 17 Mbps、2025 年 6 月在轨手机星 618 颗（2 月中约 460 颗）、FCC 三月给予aggregate 功率豁免",
+   "retrieved": "2026-10-11",
+   "publisher": "PCMag",
+   "cache": "text/531f8a58a1839ecd.txt"
+  },
+  {
+   "id": "S045",
+   "url": "https://www.ookla.com/articles/att-users-show-interest-in-t-mobiles-starlink-satellite-service",
+   "label": "Ookla Research（Mike Dano，2025-10-16）：T-Satellite 短信 2025-07-23 正式上线，数据取自 2024-12 至 2025-09 注册到星链手机的安卓设备；洛杉矶县活跃度最高、2025 年初山火期间在当地放开免费短信；美国 4G 运营商 2024 年中位下行 33 Mbps、上行 4 Mbps；手机星与宽带星为两套卫星、共用回传链路",
+   "retrieved": "2026-10-11",
+   "publisher": "Ookla",
+   "cache": "text/41023f5ce341b32b.txt"
+  },
+  {
+   "id": "S081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm",
+   "label": "SpaceX 向 SEC 递交的上市申报文件 S-1 正文：卫星预计使用寿命（宽带 5 年、一代直连手机 3 年）、Starlink 发射成本资本化进卫星账面、分部收入与经营盈亏、在轨约 9,600 颗与 2025 年部署 3,000 余颗、用户数与 ARPU、122 次内部发射、客户 A 占比 20.9%",
+   "retrieved": "2026-10-11",
+   "publisher": "U.S. Securities and Exchange Commission / SpaceX"
+  },
+  {
+   "id": "S082",
+   "url": "https://starlink.com/public-files/Starlink_Approach_to_Satellite_Demisability.pdf",
+   "label": "星链官方《卫星退轨与烧毁》说明：2024 年起主动大规模下撤早期 V1，多数在轨五年以上；在轨失效星仅一颗",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink (SpaceX)"
+  },
+  {
+   "id": "S083",
+   "url": "https://arstechnica.com/space/2026/03/rocket-report-spacex-launch-prices-are-going-up-russia-fixes-broken-launch-pad/",
+   "label": "Ars Technica Rocket Report（2026-03-06）报道 SpaceX 公开价目调整：猎鹰 9 专属发射由 7,000 万升至 7,400 万美元，拼单由 6,500 升至 7,000 美元/公斤",
+   "retrieved": "2026-10-11",
+   "publisher": "Ars Technica"
+  },
+  {
+   "id": "S084",
+   "url": "https://www.fool.com/investing/2024-02-22/spacex-secret-could-cost-musk-82-billion-a-year/",
+   "label": "第三方对单星制造成本的估算口径（每颗约 50 万美元、每次猎鹰 9 约 6,700 万美元），非官方数字",
+   "retrieved": "2026-10-11",
+   "publisher": "The Motley Fool"
+  },
+  {
+   "id": "S085",
+   "url": "https://www.costquest.com/wp-content/uploads/2020/10/4g-cost-study-us.pdf",
+   "label": "CostQuest Associates 为 United States Cellular Corp 做的《美国 4G LTE 未覆盖区成本研究》（2017-02-15）：约 37,500 座新塔、前期 125 亿美元、年维护资本 10.5 亿加年运营 10.8 亿、年收入 2.36 亿、十年净现值 −256 亿",
+   "retrieved": "2026-10-11",
+   "publisher": "CostQuest Associates"
+  },
+  {
+   "id": "S086",
+   "url": "https://mba.tuck.dartmouth.edu/pages/faculty/syd.finkelstein/articles/Iridium.pdf",
+   "label": "Dartmouth Tuck 商学院《铱星的兴衰》案例研究：1998 年 11 月 1 日放号、手机 3,000 美元、每分钟 3–8 美元、广告 1.8 亿、总成本逾 50 亿、1999 年 8 月 2 万用户与拖欠 15 亿美元贷款后申请 Chapter 11",
+   "retrieved": "2026-10-11",
+   "publisher": "Tuck School of Business"
+  },
+  {
+   "id": "S087",
+   "url": "https://en.wikipedia.org/wiki/Iridium_Communications",
+   "label": "铱星公司沿革条目：2001 年 3 月以 2,500 万美元购入资产、抹去逾 40 亿美元债务，此后由美国政府订单维持网络运行",
+   "retrieved": "2026-10-11",
+   "publisher": "Wikipedia"
+  },
+  {
+   "id": "S088",
+   "url": "https://investor.iridium.com/2019-02-06-Iridium-Declares-Victory-3-Billion-Satellite-Constellation-Upgrade-Complete",
+   "label": "铱星官方公告：投入约 30 亿美元的 NEXT 星座替换完成",
+   "retrieved": "2026-10-11",
+   "publisher": "Iridium Communications 投资者关系",
+   "cache": "text/34fa5fb86ee3e78a.txt"
+  },
+  {
+   "id": "S089",
+   "url": "https://runwaygirlnetwork.com/2020/03/oneweb-files-for-bankruptcy-pursues-sale-of-the-business/",
+   "label": "OneWeb 申请破产保护时的在轨规模：已成功发射 74 颗，星座规划 650 颗",
+   "retrieved": "2026-10-11",
+   "publisher": "Runway Girl Network"
+  },
+  {
+   "id": "S0810",
+   "url": "https://www.aviationtoday.com/2020-03-31/oneweb-files-chapter-11-bankruptcy/",
+   "label": "OneWeb 于 2020 年 3 月 27 日在纽约南区联邦破产法院申请 Chapter 11",
+   "retrieved": "2026-10-11",
+   "publisher": "Aviation Today"
+  },
+  {
+   "id": "S0811",
+   "url": "https://www.ft.com/content/fbb3e996-f2bd-4d12-89eb-d7413ba5f737",
+   "label": "英国法院批准重整方案：英国政府与 Bharti Global 各持有 OneWeb 约 45%",
+   "retrieved": "2026-10-11",
+   "publisher": "Financial Times"
+  },
+  {
+   "id": "S0812",
+   "url": "https://www.reuters.com/business/media-telecom/starlink-rival-eutelsat-plans-oneweb-expansion-after-1-billion-satellite-order-2026-09-10/",
+   "label": "路透报道提及 Eutelsat 与 OneWeb 约 34 亿美元的并购及其后续融资与扩张",
+   "retrieved": "2026-10-11",
+   "publisher": "Reuters"
+  },
+  {
+   "id": "S0813",
+   "url": "https://starlink.com/updates/starlink-version-3-satellites",
+   "label": "星链官方产品页：V3 单星设计下行容量 1 Tbps、上行 160 Gbps",
+   "retrieved": "2026-10-11",
+   "publisher": "Starlink (SpaceX)"
+  },
+  {
+   "id": "S091",
+   "url": "https://m.c114.com.cn/w2514-1283117.html",
+   "label": "通信业媒体：GW 星座规划 12,992 颗，其中 GW-A59 子星座 6,080 颗",
+   "retrieved": "2026-10-11",
+   "publisher": "C114 通信网",
+   "cache": "text/db965fe70a7ab0ee.txt"
+  },
+  {
+   "id": "S092",
+   "url": "https://www.21jingji.com/article/20260409/herald/b20e158b221bffb82ea806e6b0a8da60.html",
+   "label": "21 世纪经济报道：GW-A59 布在 500 公里以下、GW-A2 布在 1,145 公里，及 2026 年组网节奏",
+   "retrieved": "2026-10-11",
+   "publisher": "21 世纪经济报道",
+   "cache": "text/9e212f50a4c18e49.txt"
+  },
+  {
+   "id": "S093",
+   "url": "https://m.21jingji.com/article/20260706/herald/9ed7ad5e6c5f1998e00c39d619e1d12b_zaker.html",
+   "label": "千帆星座密集发射、在轨总数升至 238 颗；一期 648/二期 1,296/三期超 1.5 万颗的分阶段口径（2026-07-06）",
+   "retrieved": "2026-10-11",
+   "publisher": "21 世纪经济报道",
+   "cache": "text/ad7c5195ead00fe6.txt"
+  },
+  {
+   "id": "S094",
+   "url": "https://m.cls.cn/detail/1688664",
+   "label": "《科创板日报》披露 Honghu-3（鸿鹄-3）向 ITU 提交的申报材料：160 个轨道面、10,000 颗（2024-05）",
+   "retrieved": "2026-10-11",
+   "publisher": "财联社 科创板日报",
+   "cache": "text/3dd58486e19a1902.txt"
+  },
+  {
+   "id": "S095",
+   "url": "https://news.bjd.com.cn/2026-01-13/11520133.shtml",
+   "label": "京报网：中国向 ITU 申报的低轨卫星总量已达 20 万颗量级",
+   "retrieved": "2026-10-11",
+   "publisher": "京报网"
+  },
+  {
+   "id": "S096",
+   "url": "https://www.news.cn/tech/20260731/289612ee2876499da01167f2bbf2f411/c.html",
+   "label": "新华社 2026-07-31：千帆 238 颗稳定在轨、GW 约 180 颗运转，两大星座均计划年内完成骨干网组网",
+   "retrieved": "2026-10-11",
+   "publisher": "新华社",
+   "cache": "text/a3f924ce8451456f.txt"
+  },
+  {
+   "id": "S097",
+   "url": "https://tech.cnr.cn/techgsrw/20260916/t20260916_527815153.shtml",
+   "label": "央广网：2026-09-16 引力一号遥三发射千帆极轨 26 组，星座规模增至 256 颗",
+   "retrieved": "2026-10-11",
+   "publisher": "央广网",
+   "cache": "text/b7b0edfde57b46e6.txt"
+  },
+  {
+   "id": "S098",
+   "url": "https://www.shkjdw.gov.cn/c/2026-07-13/534489.shtml",
+   "label": "上海科技党建（垣信方面表述）：目标 2026 年内累计在轨 324 颗；6 月 9 日垣信首颗手机直连试验星入轨",
+   "retrieved": "2026-10-11",
+   "publisher": "上海市科技党委",
+   "cache": "text/c635ff99d58e4e39.txt"
+  },
+  {
+   "id": "S099",
+   "url": "https://finance.sina.com.cn/tech/roll/2025-04-08/doc-inesmvkw4932266.shtml",
+   "label": "中国信科 2025 年 3 月在 3GPP SA 第 107 次会议（仁川）与荷兰 TNO 共同牵头 NTN 项目并任第一报告人，为其第 16 项卫星 NTN 国际标准立项",
+   "retrieved": "2026-10-11",
+   "publisher": "新浪科技 转 人民邮电报系",
+   "cache": "text/10c389065ed9f101.txt"
+  },
+  {
+   "id": "S0910",
+   "url": "http://finance.people.com.cn/n1/2025/0827/c1004-40551348.html",
+   "label": "工信部《关于优化业务准入促进卫星通信产业发展的指导意见》：创新不换卡不换号模式支持手机直连卫星",
+   "retrieved": "2026-10-11",
+   "publisher": "人民网 财经",
+   "cache": "text/6296333328880aa9.txt"
+  },
+  {
+   "id": "S0911",
+   "url": "https://m.bjnews.com.cn/detail/1757319121129772.html",
+   "label": "2025-09-08 工信部向中国联通颁发卫星移动通信业务经营许可",
+   "retrieved": "2026-10-11",
+   "publisher": "新京报",
+   "cache": "text/3e6d4233ec39946b.txt"
+  },
+  {
+   "id": "S0912",
+   "url": "https://www.news.cn/politics/20250929/e19cf8bd1e624a6ca3266791c3cf5e2d/c.html",
+   "label": "2025-09-29 工信部向中国移动颁发卫星移动通信业务经营许可，获许可后可依法开展手机直连卫星等业务",
+   "retrieved": "2026-10-11",
+   "publisher": "新华社",
+   "cache": "text/de1495be4526da0f.txt"
+  },
+  {
+   "id": "S0913",
+   "url": "https://www.news.cn/20260609/4958e6730eba485fae66a56a5b21458a/c.html",
+   "label": "新华社：2026-06-09 朱雀二号改进型遥六发射千帆 DTC01 星与中国移动 02 星",
+   "retrieved": "2026-10-11",
+   "publisher": "新华社",
+   "cache": "text/676d0ea97e00f1f0.txt"
+  },
+  {
+   "id": "S0914",
+   "url": "https://www.cls.cn/detail/2411103",
+   "label": "《科创板日报》2026-06-28：中国移动 02 星已完成上下行链路测试，03 星或将择机发射",
+   "retrieved": "2026-10-11",
+   "publisher": "财联社 科创板日报",
+   "cache": "text/2a6cf1ca5109e802.txt"
+  },
+  {
+   "id": "S0915",
+   "url": "https://m.thepaper.cn/newsDetail_forward_33494461",
+   "label": "《IT 时报》MWC26 上海报道（2026-07）：星网与垣信的卫星互联网业务许可仍待发放",
+   "retrieved": "2026-10-11",
+   "publisher": "澎湃新闻 转 IT时报",
+   "cache": "text/2ab5a997d95af1c9.txt"
+  },
+  {
+   "id": "S0916",
+   "url": "https://www.itu.int/en/ITU-R/seminars/wrs/Documents/2024/Space-Workshops/Resolution%208%20and%2035.pdf",
+   "label": "ITU 官方研讨材料：第 35 号决议的部署里程碑（10% / 50% / 100%）",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU-R"
+  },
+  {
+   "id": "S0917",
+   "url": "https://www.itu.int/en/ITU-R/space/Pages/res35main.aspx",
+   "label": "ITU 专页：Resolution 35 (REV. WRC-23) 以里程碑方式管理空间站频率分配的实施",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU",
+   "cache": "text/4720972655207b88.txt"
+  },
+  {
+   "id": "S0918",
+   "url": "https://stcn.com/article/detail/3242546.html",
+   "label": "证券时报：把频轨义务概括为 2 年完成 10%、5 年 50%、7 年完成全部部署",
+   "retrieved": "2026-10-11",
+   "publisher": "证券时报",
+   "cache": "text/e456c23d56a40a0a.txt"
+  },
+  {
+   "id": "S0919",
+   "url": "https://www.guancha.cn/GongSi/2026_08_16_827515.shtml",
+   "label": "观察者网：2026 年 8 月 12 天连发两组卫星互联网低轨卫星",
+   "retrieved": "2026-10-11",
+   "publisher": "观察者网",
+   "cache": "text/cb592cd56e235501.txt"
+  },
+  {
+   "id": "S0920",
+   "url": "https://www.cnsa.gov.cn/n6758823/n6758838/c10720622/content.html",
+   "label": "国家航天局：朱雀三号遥一重复使用运载火箭发射入轨（2025-12-03）",
+   "retrieved": "2026-10-11",
+   "publisher": "国家航天局"
+  },
+  {
+   "id": "S0921",
+   "url": "https://stcn.com/article/detail/3523300.html",
+   "label": "证券时报：朱雀三号首飞入轨成功、一级回收失利；一次性任务近地轨道运力约 21.3 吨",
+   "retrieved": "2026-10-11",
+   "publisher": "证券时报",
+   "cache": "text/90ea8d69dccab481.txt"
+  },
+  {
+   "id": "S0922",
+   "url": "https://www.landspace.com/news-detail.html?itemid=46",
+   "label": "蓝箭航天官网：朱雀三号一子级设计复用不少于 20 次，一次性低轨运力 21.3 吨、航区回收任务 18.3 吨",
+   "retrieved": "2026-10-11",
+   "publisher": "蓝箭航天",
+   "cache": "text/81c92b9e6874fc74.txt"
+  },
+  {
+   "id": "S0923",
+   "url": "https://www.cnsa.gov.cn/n6758823/n6758838/c10761540/content.html",
+   "label": "国家航天局：我国首次成功实施重复使用运载火箭一子级回收，也是全球首次运载火箭海上网系回收（2026-07-10）",
+   "retrieved": "2026-10-11",
+   "publisher": "国家航天局",
+   "cache": "text/21828f3ae3cf6731.txt"
+  },
+  {
+   "id": "S0924",
+   "url": "https://www.news.cn/politics/20260819/1a901f63eb2c43fd9793eaf6849bce47/c.html",
+   "label": "新华社：2026-08-19 朱雀三号遥二一子级按预定程序成功完成陆地回收",
+   "retrieved": "2026-10-11",
+   "publisher": "新华社",
+   "cache": "text/7681e4359aa831d6.txt"
+  },
+  {
+   "id": "S0925",
+   "url": "https://finance.cnr.cn/cjtt/20260819/t20260819_527782895.shtml",
+   "label": "央广财经：朱雀三号一子级设计复用不少于 20 次，终极目标把每公斤发射费用降到 2 万元人民币以下",
+   "retrieved": "2026-10-11",
+   "publisher": "央广网",
+   "cache": "text/4a7af8281876b781.txt"
+  },
+  {
+   "id": "S0926",
+   "url": "https://www.news.cn/20260915/4d976180953f4b07be03dbd323f7f1d4/c.html",
+   "label": "新华社：2026-09-15 商业火箭一箭十星，民营商业火箭首次执行规模化卫星互联网星座组网任务",
+   "retrieved": "2026-10-11",
+   "publisher": "新华社",
+   "cache": "text/ba286e7676087ebe.txt"
+  },
+  {
+   "id": "S0927",
+   "url": "https://finance.sina.cn/tech/2026-10-10/detail-iniustfu0722743.d.html",
+   "label": "2026-10-10 长征十二号在海南商业航天发射场发射卫星互联网低轨 27 组",
+   "retrieved": "2026-10-11",
+   "publisher": "新浪科技",
+   "cache": "text/67c88a828e789b6c.txt"
+  },
+  {
+   "id": "S0928",
+   "url": "http://www.cww.net.cn/article?id=608054",
+   "label": "通信世界网：2026-03-13 长征八号甲发射卫星互联网低轨 20 组",
+   "retrieved": "2026-10-11",
+   "publisher": "通信世界网",
+   "cache": "text/d21785e4267f0bb4.txt"
+  },
+  {
+   "id": "S0929",
+   "url": "http://www.news.cn/milpro/20260104/3abb7bf936ba45f693546a3baf845f9f/c.html",
+   "label": "新华社转引统计（2026-01-04）：SpaceX 约 9,400 颗卫星在轨，其中超过 8,000 颗已投入运营",
+   "retrieved": "2026-10-11",
+   "publisher": "新华社",
+   "cache": "text/46ca5c63e9bdd039.txt"
+  },
+  {
+   "id": "S0930",
+   "url": "https://tech.huanqiu.com/article/4PmIbIrBCxU",
+   "label": "环球网：SpaceX 2025 年完成 167 次轨道发射",
+   "retrieved": "2026-10-11",
+   "publisher": "环球网",
+   "cache": "text/eeacb95b7331a066.txt"
+  },
+  {
+   "id": "S0931",
+   "url": "http://www.china.com.cn/txt/2026-01/04/content_118260021.shtml",
+   "label": "中国网：2025 年中国航天全年发射 92 次，创历史新高",
+   "retrieved": "2026-10-11",
+   "publisher": "中国网"
+  },
+  {
+   "id": "S0932",
+   "url": "https://stcn.com/article/detail/3377954.html",
+   "label": "证券时报引咨询机构测算：千帆与 GW 单星平均造价约 1,500 万元（2025-10-14）",
+   "retrieved": "2026-10-11",
+   "publisher": "证券时报",
+   "cache": "text/82f9e227841a487d.txt"
+  },
+  {
+   "id": "S0933",
+   "url": "https://www.kratosspace.com/constellations/articles/eurospace-in-2022-nearly-1000-metric-tons-of-hardware-was-placed-into-orbit-half-was-starlink",
+   "label": "Eurospace 把马斯克关于星链单星成本约 25 万美元的公开表述归为 v1 口径",
+   "retrieved": "2026-10-11",
+   "publisher": "Kratos Space / Eurospace"
+  },
+  {
+   "id": "S101",
+   "url": "https://docs.fcc.gov/public/attachments/DA-26-471A1.pdf",
+   "label": "FCC《Memorandum Opinion and Order》DA 26-471（GN Docket No. 25-302），2026-05-12 通过并发布，44 页；含 §25.125(a) 租赁安排、第 57 段的 buildout 豁免条件（SINR/时间可用度/上行速率三档、逾期加速与牌照自动失效）、1915–1920 MHz 的 3GPP NTN 缺口、附录 B 的 24 亿美元信托条件",
+   "retrieved": "2026-10-11",
+   "publisher": "FCC"
+  },
+  {
+   "id": "S102",
+   "url": "https://www.fcc.gov/document/order-granting-spacex-echostar-applications",
+   "label": "FCC 该案文档页：批准 SpaceX/EchoStar 转让 AWS-4、AWS-H Block 与未配对 AWS-3 频率牌照",
+   "retrieved": "2026-10-11",
+   "publisher": "FCC"
+  },
+  {
+   "id": "S103",
+   "url": "https://www.gov.uk/government/consultations/revocation-of-the-2-ghz-mobile-satellite-services-regulations/outcome/revocation-of-the-2-ghz-mobile-satellite-services-regulations-government-response",
+   "label": "英国政府（DSIT）对废止《2 GHz 移动卫星业务条例》的咨询回复，2026-01-12 发布：牌照 2027-05-13 到期、咨询期 2025-11-07 至 12-05、答复方含 Starlink Services UK Ltd",
+   "retrieved": "2026-10-11",
+   "publisher": "GOV.UK",
+   "cache": "text/5095db02c37f2c34.txt"
+  },
+  {
+   "id": "S104",
+   "url": "https://www.itu.int/en/ITU-R/space/Pages/FAQspace.aspx",
+   "label": "ITU-R 空间业务官方问答：No.11.48 的七年监管期限、No.11.44.1/11.44B/11.47 的投入使用与 90 天规则、星座其余卫星按第 35 号决议里程碑监督",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU",
+   "cache": "text/d389a7d268001f72.txt"
+  },
+  {
+   "id": "S105",
+   "url": "https://www.itu.int/en/ITU-R/space/Documents/RES35(WRC-19).pdf",
+   "label": "ITU《第 35 号决议（WRC-19）》正式文本：七年期之后第 2/5/7 年三档报告，部署低于 10%/50%/100% 时须修改申报特征（首档修正后卫星总数不超过已部署数的十倍）",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU"
+  },
+  {
+   "id": "S106",
+   "url": "https://www.spacex.com/launches/starship-flight-14",
+   "label": "SpaceX 官方任务页：2026-09-28 星舰第 14 次飞行首次入轨，短暂滑行后放出 26 颗星链 V3",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX"
+  },
+  {
+   "id": "S107",
+   "url": "https://www.space.com/news/live/spacex-starship-flight-14-live-updates-sept-28-2026-starship-first-orbital-launch-attempt",
+   "label": "space.com 当日实时记录：上升段一台猛禽 3 提前关机仍完成入轨圆化（约 275 公里）、26 颗 V3 全部部署；自 2023 年以来第 14 次飞行",
+   "retrieved": "2026-10-11",
+   "publisher": "Space.com",
+   "cache": "text/a27c541db6e370d1.txt"
+  },
+  {
+   "id": "S108",
+   "url": "https://www.shkjdw.gov.cn/c/2026-07-13/534489.shtml",
+   "label": "上海科技党建 2026-07-13 转载澎湃新闻：垣信副总裁称截至 2026-07-09 千帆在轨 238 颗，2026 年计划累计在轨 324 颗；2026 年 6 月首颗手机直连试验星发射",
+   "retrieved": "2026-10-11",
+   "publisher": "shkjdw.gov.cn",
+   "cache": "text/c635ff99d58e4e39.txt"
+  },
+  {
+   "id": "S109",
+   "url": "https://www.21jingji.com/article/20260409/herald/b20e158b221bffb82ea806e6b0a8da60.html",
+   "label": "21 世纪经济报道 2026-04-09：千帆自 2024-08 起七批一箭十八星、累计 126 颗；此前规划为 2026 年中 324 颗、年底 648 颗、一期 1296 颗",
+   "retrieved": "2026-10-11",
+   "publisher": "21jingji",
+   "cache": "text/9e212f50a4c18e49.txt"
+  },
+  {
+   "id": "S1010",
+   "url": "https://www.news.cn/science/20240903/5bf288c1f58a434f97e5b0cb16fb7f64/c.html",
+   "label": "新华网科普频道 2024-09-03：GW 星座规划 12,992 颗（GW-A59 6,080 颗/GW-A2 6,912 颗）；千帆原规划 2025 年底完成 648 颗、2027 年底 1296 颗",
+   "retrieved": "2026-10-11",
+   "publisher": "新华网",
+   "cache": "text/f555cff3b100a55b.txt"
+  },
+  {
+   "id": "S1011",
+   "url": "https://starlink.com/updates/starlink-version-3-satellites",
+   "label": "Starlink 官方更新页：V3 单星设计支持 1 Tbps 下行、160 Gbps 上行，约为上一代的 10 倍与 22 倍",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX/Starlink"
+  },
+  {
+   "id": "S071",
+   "url": "https://www.nasa.gov/wp-content/uploads/2025/02/7-soa-thermal-2024.pdf",
+   "label": "NASA《Small Spacecraft Technology State of the Art》第 7 章 Thermal Control（2024 版）：整星热平衡式、真空中只由辐射与传导换热、涂层 α/ε 取舍与在轨退化",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA / Small Satellite Institute"
+  },
+  {
+   "id": "S072",
+   "url": "https://physics.nist.gov/cgi-bin/cuu/Value?sigma",
+   "label": "NIST CODATA 常数页：Stefan-Boltzmann 常数 σ = 5.670 374 419…×10⁻⁸ W m⁻² K⁻⁴（2022 推荐值，精确）",
+   "retrieved": "2026-10-11",
+   "publisher": "NIST",
+   "cache": "text/0a67b3ce7e120508.txt"
+  },
+  {
+   "id": "S073",
+   "url": "https://www.nasa.gov/wp-content/uploads/2021/02/473486main_iss_atcs_overview.pdf",
+   "label": "NASA《Active Thermal Control System (ATCS) Overview》：EATCS 每路 35 kW／合计 70 kW、PVR 14 kW、Radiator ORU 23.3 m × 3.4 m、两翼各三块与旋转关节",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA"
+  },
+  {
+   "id": "S074",
+   "url": "https://www.1-act.com/wp-content/uploads/2023/05/Loop-Heat-Pipe-for-TacSat-4.pdf",
+   "label": "Loop Heat Pipe for TacSat-4（铝/氨环路热管，传热能力 5 至 700 W，送到两块辐射器段）",
+   "retrieved": "2026-10-11",
+   "publisher": "Applied Thermodynamics & Technology, Inc."
+  },
+  {
+   "id": "S075",
+   "url": "https://ecss.nl/wp-content/uploads/handbooks/ecss-e-hb/ECSS-E-HB-31-01_Part6A.pdf",
+   "label": "ECSS-E-HB-31-01 Part 6A《Spacecraft thermal design handbook – Part 6: Thermal Control Surfaces》(2011-12-05)：PSZ 184 与 OCLI 二次表面镜的发射率/太阳吸收率实测表",
+   "retrieved": "2026-10-11",
+   "publisher": "ESA / ECSS Secretariat"
+  },
+  {
+   "id": "S076",
+   "url": "https://www.ti.com/lit/pdf/sprabx4",
+   "label": "TI 应用笔记 SPRABX4《Calculating Useful Lifetimes of Embedded Processors》：温度每升 10 ℃ 寿命约减半的经验法则及其对半导体的适用性说明",
+   "retrieved": "2026-10-11",
+   "publisher": "Texas Instruments",
+   "cache": "text/05c8d153de37e69b.txt"
+  },
+  {
+   "id": "S077",
+   "url": "https://www.dbcontrol.com/the-future-of-rf-amplification-twtas-vs-sspas-revisited/",
+   "label": "dB Control（空间级行波管/放大器厂商）：在轨 TWT 效率接近 60%，自家产品中段 40%；合路器损耗进一步降效率并产生需排出的热",
+   "retrieved": "2026-10-11",
+   "publisher": "dB Control",
+   "cache": "text/10ceb82dffdd6648.txt"
+  },
+  {
+   "id": "S078",
+   "url": "https://arxiv.org/abs/2607.14172",
+   "label": "Kees van Berkel，《The Cost and Network Limits of Space-Based AI Compute》(arXiv:2607.14172, 2026-07-15)：III-C Cooling 节按 P=AσT⁴ 反推 Starlink V2 mini 在 370 K 排 40 kW 需约 38 m²，并据照片指出实际辐射器小 2–3 倍",
+   "retrieved": "2026-10-11",
+   "publisher": "arXiv",
+   "cache": "text/fbff65a6e6c44b43.txt"
+  },
+  {
+   "id": "S079",
+   "url": "https://patents.google.com/patent/US11834205B1/en",
+   "label": "美国专利 US 11,834,205 B1《Spacecraft chassis and component configuration》（SpaceX）：发热器件直接固定于骨架、散热特征朝外辐射；专利文本，非飞行件证明",
+   "retrieved": "2026-10-11",
+   "publisher": "USPTO / Google Patents"
+  },
+  {
+   "id": "S111",
+   "url": "https://www.itu.int/dms_pubrec/itu-r/rec/p/R-REC-P.525-5-202411-I!!PDF-E.pdf",
+   "label": "Recommendation ITU-R P.525-5（11/2024）《Calculation of free-space attenuation》正文 PDF；§2.3 式 (6)：Lbf = 32.4 + 20 log f(MHz) + 20 log d(km)",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU-R"
+  },
+  {
+   "id": "S112",
+   "url": "https://www.itu.int/rec/r-rec-p.525",
+   "label": "ITU-R P.525 系列页：P.525-5 (11/2024) 为现行主版本（In force），前一版 P.525-4 (08/2019)",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU",
+   "cache": "text/80e1b9b1a4d025ad.txt"
+  },
+  {
+   "id": "S113",
+   "url": "https://ecss.nl/wp-content/uploads/handbooks/ecss-e-hb/ECSS-E-HB-31-01_Part9A.pdf",
+   "label": "ECSS-E-HB-31-01 Part 9A《Space engineering — Thermal design handbook, Part 9: Radiators》2011-12-05，ECSS Secretariat / ESA-ESTEC（90 页）；p.13 给 σ = 5.6697×10⁻⁸ W·m⁻²·K⁻⁴，p.77 辐射器试验件给高发射率黑漆 ε = 0.9、第二级外露面 6.88 m²",
+   "retrieved": "2026-10-11",
+   "publisher": "ECSS / ESA"
+  },
+  {
+   "id": "S114",
+   "url": "https://www.3gpp.org/technologies/ntn-overview",
+   "label": "3GPP《Non-Terrestrial Networks (NTN)》技术综述：Rel-17（ASN.1 2022-06 冻结）为首个含 NTN 规范性要求的版本；Rel-17 WI NR_NTN_solutions 产出 TS 38.101-5 / TS 38.108 / TS 38.181；n255(L)、n256(S) 信道带宽 5/10/15/20 MHz，Rel-18 增 30 MHz；LEO 典型 500–2000 km，GEO 35 786 km",
+   "retrieved": "2026-10-11",
+   "publisher": "3GPP",
+   "cache": "text/316fd165c90968bf.txt"
+  },
+  {
+   "id": "S115",
+   "url": "https://www.etsi.org/deliver/etsi_ts/122200_122299/122261/17.14.00_60/ts_122261v171400p.pdf",
+   "label": "ETSI 镜像的 3GPP TS 122 261 V17.14.0（5G 卫星接入 Stage-1 要求正文）",
+   "retrieved": "2026-10-11",
+   "publisher": "ETSI / 3GPP"
+  },
+  {
+   "id": "S116",
+   "url": "https://www.itu.int/itu-r/space/apps/public/spaceexplorer/",
+   "label": "ITU Space Explorer 公开查询入口，查无线电通信局（BR）的 Space Networks/Systems 数据库",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU"
+  },
+  {
+   "id": "S117",
+   "url": "https://www.itu.int/en/ITU-R/software/Pages/srs.aspx",
+   "label": "SRS（Space Radiocommunication Stations）说明：BR 依《无线电规则》第 20 条发布的业务文件，收录已登入 MIFR、正按第 9 条第 2 款协调或按第 9 条第 1 款提前公布的卫星网络与地球站；信息由主管部门以 Appendix 4 通知表或电子形式提交；2012 年 1 月起 DVD-ROM 版由 BR IFIC (Space services) 取代",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU",
+   "cache": "text/b1905f8d8a156d3d.txt"
+  },
+  {
+   "id": "S118",
+   "url": "https://www.itu.int/en/ITU-R/space/brific/Pages/brificOnline.aspx",
+   "label": "BR IFIC (Space services) online：自 2023-01-10 第 2987 期起收录，2024-01-23 上线，完整访问需向 ITU 销售部门注册",
+   "retrieved": "2026-10-11",
+   "publisher": "ITU",
+   "cache": "text/76b3196950b45fd7.txt"
+  },
+  {
+   "id": "S119",
+   "url": "https://www.starlink.com/public-files/DIRECT_TO_CELL_SERVICE_FEB_25.pdf",
+   "label": "SpaceX/Starlink 官方新闻稿《Starlink Direct to Cell Service Now Available》（2025-02）：D2C 星座 400 余颗、合作运营商提供 1.6–2.7 GHz 的 LTE 频谱、2024-11 获 FCC 商用批准、首批商用为美国 T-Mobile 与新西兰 One NZ",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX"
+  },
+  {
+   "id": "S061",
+   "url": "https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/",
+   "label": "NASA《小卫星技术现状》第 3 章 Power：统计显示靠太阳翼供电的任务，整阵比功率不论整星大小都集中在约 30 W/kg 一条线上",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA SmallSat Institute",
+   "cache": "text/f50c1486de702d0d.txt"
+  },
+  {
+   "id": "S062",
+   "url": "https://www.spectrolab.com/pv/support/Law%20et%20al.,%20%20WCPEC-4%202006,%20Thin,%20Flexible%20III-V%20MJ%20-%20Final.pdf",
+   "label": "Spectrolab（波音）2006 年会议论文：典型蜂窝基板多结组件比功率 150 W/kg、功率密度 350 W/m²",
+   "retrieved": "2026-10-11",
+   "publisher": "Spectrolab / Boeing"
+  },
+  {
+   "id": "S063",
+   "url": "https://www.nasa.gov/image-article/solar-arrays-international-space-station-2/",
+   "label": "NASA：国际空间站太阳翼共 262,400 片电池、覆盖面积约 27,000 平方英尺（2,500 平方米）",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA",
+   "cache": "text/a81d4b9da92a5d48.txt"
+  },
+  {
+   "id": "S064",
+   "url": "https://www.nasa.gov/directorates/stmd/impact-story-roll-out-solar-arrays/",
+   "label": "NASA iROSA 项目页：每张展开式阵列寿命初期可发 28 kW 以上，六张装完后全站合计超过 250 kW（增幅超 30%）",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA STMD",
+   "cache": "text/f0c83cb3fdf5fed8.txt"
+  },
+  {
+   "id": "S065",
+   "url": "https://nss.org/settlement/nasa/spaceresvol2/technologies.html",
+   "label": "NASA《Space Resources》第二卷（国家空间学会存档）：砷化镓阵列约 160–180 W/m²、比功率 25–40 W/kg，且比硅阵列更耐辐照",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA / National Space Society",
+   "cache": "text/18f592fbb6cc6efa.txt"
+  },
+  {
+   "id": "S066",
+   "url": "https://www.valispace.com/wp-content/uploads/2018/12/EPS-sizing-tutorial-1.pdf",
+   "label": "Valispace 电源子系统选型教程：年衰减系数 0.0092，5 年后阵列输出剩约 95.5%，并给出按地影选面积/电池的算法",
+   "retrieved": "2026-10-11",
+   "publisher": "Valispace"
+  },
+  {
+   "id": "S067",
+   "url": "https://arxiv.org/pdf/2306.06657",
+   "label": "Mallama 等 2023 年测光观测论文：V2 mini 天线板面积 11.07 m²、两片太阳翼 104.96 m²，合计 116.03 m²，是前代的四倍",
+   "retrieved": "2026-10-11",
+   "publisher": "arXiv",
+   "cache": "text/442185794f889ba1.txt"
+  },
+  {
+   "id": "S068",
+   "url": "https://www.nasa.gov/wp-content/uploads/2024/01/otps-sbsp-report-final-tagged-approved-1-8-24-tagged-v2.pdf",
+   "label": "NASA 2024 年《Space-Based Solar Power》报告：按每颗 Starlink v2 太阳翼 105 m²、整星 1,250 kg 作计算假设",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA"
+  },
+  {
+   "id": "S069",
+   "url": "https://www.eucass.eu/component/docindexer/?task=download&id=5072",
+   "label": "EUCASS 论文：SPT-100 霍尔推力器自 1994 年起用于多颗地球同步卫星的电推系统，标称功率 1.35 kW、推力 85 mN",
+   "retrieved": "2026-10-11",
+   "publisher": "EUCASS",
+   "cache": "text/10aab0a5a6c6596a.txt"
+  },
+  {
+   "id": "S0610",
+   "url": "https://ntrs.nasa.gov/api/citations/19940019157/downloads/19940019157.pdf",
+   "label": "NASA NTRS（Sankovic 1994）SPT-100 性能评测：比冲 1,600 s、效率约 0.50",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA NTRS"
+  },
+  {
+   "id": "S0611",
+   "url": "https://starlink.com/technology",
+   "label": "Starlink 官方技术页：星座运行在约 550 km 高度",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX / Starlink"
+  },
+  {
+   "id": "S0612",
+   "url": "https://ntrs.nasa.gov/api/citations/19630000622/downloads/19630000622.pdf",
+   "label": "NASA 技术备忘录（Cunningham，1962）：推导卫星一个轨道周期中处于地球阴影所占比例的方程",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA NTRS"
+  },
+  {
+   "id": "S0613",
+   "url": "https://commons.erau.edu/cgi/viewcontent.cgi?article=1412&context=ijaaa",
+   "label": "ERAU《International Journal of Aviation and Aeronautics》：地影时长等于占比乘以轨道周期，低轨立方星地影典型约 35 分钟（2,100 秒）",
+   "retrieved": "2026-10-11",
+   "publisher": "Embry-Riddle Aeronautical University"
+  },
+  {
+   "id": "S0614",
+   "url": "https://ntrs.nasa.gov/api/citations/19860015405/downloads/19860015405.pdf",
+   "label": "NASA 工程技术报告：电池容量主要取决于地影期的负载功率与轨道参数（高度、周期）",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA NTRS"
+  },
+  {
+   "id": "S0615",
+   "url": "https://hawklogicsystems.com/blog/cubesat-power-budget-solar-array-battery",
+   "label": "电源预算教程：一圈里只有约 62% 时间在日照中，故 11 W 平均负载要按 22 W 的寿命末期阵列功率来配",
+   "retrieved": "2026-10-11",
+   "publisher": "HawkLogic Systems"
+  },
+  {
+   "id": "S0616",
+   "url": "https://spaceflightnow.com/2023-02-26/spacex-unveils-first-batch-of-larger-upgraded-starlink-satellites/",
+   "label": "2023-02-26 报道 SpaceX 首批 V2 mini：总表面积 1,248 平方英尺（116 m²），比前代大四倍多；星体宽 13 英尺（4.1 m），几乎占满 Falcon 9 整流罩",
+   "retrieved": "2026-10-11",
+   "publisher": "Spaceflight Now",
+   "cache": "text/79ce441ddd3a578b.txt"
+  },
+  {
+   "id": "S0617",
+   "url": "https://everydayastronaut.com/starlink-group-6-13-falcon-9-block-5/",
+   "label": "Falcon 9 整流罩直径 5.2 m，星链采用平板式堆叠设计以在一罩内塞进尽可能多的卫星",
+   "retrieved": "2026-10-11",
+   "publisher": "Everyday Astronaut",
+   "cache": "text/f789d1a74c878e00.txt"
+  },
+  {
+   "id": "S0618",
+   "url": "https://space-safety.starlink.com/docs/space-safety-articles/constellation_altitudes/",
+   "label": "Starlink 官方空间安全页：正把所有卫星降至 500 km 以下，以加快失效后的离轨",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX / Starlink",
+   "cache": "text/bd0180f3e9157f7c.txt"
+  },
+  {
+   "id": "S0619",
+   "url": "https://www.nasa.gov/smallsat-institute/sst-soa/in-space_propulsion/",
+   "label": "NASA《小卫星技术现状》第 4 章推进：记录星链航天器是首个以氩气作霍尔推力器工质在轨运行的任务",
+   "retrieved": "2026-10-11",
+   "publisher": "NASA SmallSat Institute",
+   "cache": "text/0c9aab87093a7d4f.txt"
+  },
+  {
+   "id": "S0620",
+   "url": "https://www.spacex.com/vehicles/starship",
+   "label": "SpaceX 官方星舰页：称其在完全可复用构型下的设计运力为 100 吨以上入轨，属设计目标而非已实现数字",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX"
+  },
+  {
+   "id": "S0621",
+   "url": "https://www.spacex.com/launches/starship-flight-14",
+   "label": "SpaceX 官方任务页：Flight 14（2026-09-28）是星舰首次进入轨道并向轨道交付有效载荷——26 颗 Starlink V3",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX"
+  },
+  {
+   "id": "S0622",
+   "url": "https://starlink.com/updates/starlink-version-3-satellites",
+   "label": "Starlink 官方 V3 页：单星设计容量为下行 1 Tbps、上行 160 Gbps",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX / Starlink"
+  },
+  {
+   "id": "S0623",
+   "url": "https://www.spacex.com/updates",
+   "label": "SpaceX 官方更新页：轨道数据中心的算术写作“每年发射百万吨卫星、每吨产生 100 kW 算力”，即整星 100 W/kg",
+   "retrieved": "2026-10-11",
+   "publisher": "SpaceX"
+  }
+ ],
+ "category": "太空与通信",
+ "tags": [
+  "Starlink",
+  "卫星直连手机",
+  "频谱牌照",
+  "低轨星座",
+  "电信运营商",
+  "链路预算",
+  "太空光伏",
+  "辐射散热",
+  "非地面网络",
+  "中国星网"
+ ],
+ "subtitle": "SpaceX 买频谱、做直连手机，是在革传统运营商的命还是换了一种活法：把「运营商」拆成能力清单逐项对照，再算清这门生意的钱怎么流、中国在同一个赛道上的布局与瓶颈，以及哪六个信号一翻就该改结论",
+ "reader": "写给关心这件事到底成不成的人：想知道买了频谱离真正经营电信还有多远、星链现在算不算运营商、为什么天上的连接和地面基站不是同一门生意、太空供电与散热这两道物理墙怎么过，以及用什么判据自己复核",
+ "theme": {
+  "token": "orbital-midnight",
+  "hero_motif": "orbit_doppler",
+  "hero_note": "一条轨道上四颗星掠过，只有亮着的那颗在为你服务：这一篇所有争论——切换、多普勒、频谱复用、容量随仰角起伏——都从这张图上长出来。"
+ },
+ "generated_date": "2026-10-12",
+ "created_date": "2026-10-11",
+ "data_as_of": "2026-10",
+ "research_mode": "online",
+ "reading_minutes": 12,
+ "site": {
+  "url": "https://space-comms-gtqdc11h6po.qoder.website/starlink-carrier/starlink-carrier.html",
+  "group": "space-comms",
+  "path": "/starlink-carrier/starlink-carrier.html",
+  "project_id": "01a12c3b-a3a5-7473-8516-7fc747387042",
+  "content_sha": "cc987d9eee5b9dda",
+  "published_date": "2026-10-12",
+  "access": "public"
+ }
+}

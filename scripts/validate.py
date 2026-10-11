@@ -1031,9 +1031,15 @@ def g13_layout(ctx):
     # 认结果而不是认 rc：工具正常通过时 rc=0 且带 ok，正常查出问题 rc=1 也带 ok，
     # 唯独"死了且没输出"两样都没有，那正是必须喊出来的那一档。
     if "ok" not in res:
+        # capture_output 早就把 stderr 抓回来了，只是没人读。10-12 全量重渲染时
+        # 有一篇就是这么死的（rc=-1、stdout 0 字节），消息里却没有任何一句解释，
+        # 于是"知道它死了"和"知道它为什么死"之间还差一次复现。
+        err = [l.strip() for l in (pr.stderr or b"").decode("utf-8", "ignore")
+               .splitlines() if l.strip()]
+        tail = u"；stderr：%s" % u" ⏎ ".join(err[-3:]) if err else u"；stderr 也是空的"
         return [Finding(g13_layout, ctx.rel_page,
-                        u"几何检查没吐出结果（rc=%s，stdout %d 字节）——没量到就是没查过，"
-                        u"不得当作通过" % (pr.returncode, len(raw)), level="fail")]
+                        u"几何检查没吐出结果（rc=%s，stdout %d 字节%s）——没量到就是没查过，"
+                        u"不得当作通过" % (pr.returncode, len(raw), tail), level="fail")]
     for q in res.get("problems", []):
         out.append(Finding(g13_layout, "%s %s" % (ctx.rel_page, q.get("tag", "")),
                            u"%s：%s" % (q.get("gate"), q.get("detail"))))

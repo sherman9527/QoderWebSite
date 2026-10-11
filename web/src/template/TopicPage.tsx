@@ -372,6 +372,40 @@ function Motif({ token }: { token?: string }) {
       </div>
     );
   }
+  if (token === "link_budget_fall") {
+    /* 星座的物理墙篇：链路预算是一路往下掉的——自由空间损耗、极化失配、大气与雨衰、
+       指向与遮挡，最后一级用强调色，因为那一级是地面小区根本没有的：距离。
+       不画成"卫星往地面发光束"的科普图：那个形状任何一篇航天稿都在用，
+       读完记不住"掉多少分贝"这件事本身。 */
+    return (
+      <div className="motif motif-fall" aria-hidden="true">
+        <i />
+        <i />
+        <i />
+        <i />
+        <i />
+        <i className="last" />
+      </div>
+    );
+  }
+  if (token === "orbit_doppler") {
+    /* 星链的运营商之路篇：同一轨道面上一串星掠过，地面终端只跟得住其中一颗。
+       亮那颗是"此刻正在服务你的那颗"，虚线是它到终端的那一跳——这一篇所有争论
+       （切换、多普勒、频谱复用、容量随仰角变化）都从这张图上长出来。
+       不画成"地球加一圈卫星"的科普插画：那是任何一篇航天稿的默认皮，读完记不住机制。 */
+    return (
+      <div className="motif motif-orbit" aria-hidden="true">
+        <i className="ring r1" />
+        <i className="ring r2" />
+        <i className="sat s1" />
+        <i className="sat s2" />
+        <i className="sat s3" />
+        <i className="sat s4" />
+        <i className="beam" />
+        <i className="term" />
+      </div>
+    );
+  }
   if (token === "bandwidth_neck") {
     /* 本地大模型芯片篇：四路内存并排很宽，中间收成一个脖子，右边那颗芯片大多时候在等。
        强调色给脖子——这一篇的论点就是"卡住你的是搬运，不是计算"。

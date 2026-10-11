@@ -166,6 +166,19 @@
    "published_date": "2026-10-04",
    "group_sha": "e3662ef9fc478e4c"
   },
+  "space-comms": {
+   "display_name": "太空与通信",
+   "members": [
+    "星座的物理墙",
+    "星链的运营商之路"
+   ],
+   "project_id": "01a12c3b-a3a5-7473-8516-7fc747387042",
+   "site_id": null,
+   "url": "https://space-comms-gtqdc11h6po.qoder.website/",
+   "access": "public",
+   "published_date": "2026-10-12",
+   "group_sha": "3e95959efa73b94a"
+  },
   "watches": {
    "display_name": "腕表",
    "members": [

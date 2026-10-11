@@ -654,7 +654,63 @@ export const THEMES: Record<string, ThemeTokens> = {
     bodyFamily: SANS,
     numFamily: MONO,
     heroMotif: "bandwidth_neck",
-    /* 三家没有先后，序号不开。 */
+    /* 三条路各管一件事，序号不开。 */
+    numberedSections: false,
+  },
+  "orbital-midnight": {
+    /* 星链的运营商之路篇。身份色按 G-11 的真实判据在 30 套里量过：
+       判据要 primary 与 accent **两个都近**才算雷同，所以取「对每个既有主题，
+       两个身份色里较远那一个」的最小值当安全边际——实测 40.7，违规对数 0，
+       最近邻是 coffee-roast（#4A2C17/#1E6B52，两个通道都远）。
+       为什么不取搜出来边际最大的那批（#238C23/#32F21D 一类，边际 88）：
+       那只是"纯绿没人占"的假优势，读起来像仪表盘而不像夜空。
+       午夜钢蓝是轨道的夜半球，磷光青是链路建立时那盏灯——这一篇讲的是
+       天上那颗东西怎么变成你手机上有信号，颜色该来自链路本身。 */
+    id: "orbital-midnight",
+    label: "星链的运营商之路 · 午夜钢蓝与磷光青",
+    bg: "#F1F3F6",
+    surface: "#E2E7EE",
+    ink: "#14171C",
+    muted: "#5C6672",
+    rule: "#D2D9E2",
+    primary: "#16273F",
+    accent: "#2FD3C4",
+    soft: "#DCE7EF",
+    displayFamily: SERIF,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "orbit_doppler",
+    /* 天上与地面是两套并行的账，不是先后步骤，序号不开。 */
+    numberedSections: false,
+  },
+  "vacuum-radiance": {
+    /* 星座的物理墙篇——与《星链的运营商之路》是同一轮拆篇的姊妹篇（超 R-05 硬上限时
+       按 10-03 的先例拆成两篇，不砍事实）。
+       这一套是**改过一次的**：原先是深靛紫 #33295C + 冷光青 #38C6D9，注释里写着
+       "暖色系实测全部撞车"。那个实测把同组的 orbital-midnight 排除在比对之外
+       （挑色脚本的原话是"排除刚加的那套，避免自己撞自己"），而它俩是两套不同的主题、
+       又住在同一个组里——G-11 成对判的恰恰是它们俩。结果 validate --all 报
+       primary 21.3 / accent 20.8，两个通道都没拉开，判 fail。
+       重挑时把候选锁在主题说得通的区间（primary 深空紫、accent 辐射暖色），
+       再要求**对同组那一篇两个通道都 ≥25**（不是只靠 accent 一个人顶），
+       全站边际 33.6、两通道都近的对数 0，最近邻 indigo-coral（p 33.6）与
+       guerlain-abeille（a 33.9），各自只有一个通道近。冷色不是不能选，
+       是上一次"冷色没撞车"的结论建立在漏了一对的比对上。 */
+    id: "vacuum-radiance",
+    label: "星座的物理墙 · 深空紫与辐射琥珀",
+    bg: "#F3F2F7",
+    surface: "#E7E5EF",
+    ink: "#17161D",
+    muted: "#5F5C6E",
+    rule: "#DAD7E4",
+    primary: "#5D1772",
+    accent: "#F2873F",
+    soft: "#E2E7F0",
+    displayFamily: SERIF,
+    bodyFamily: SANS,
+    numFamily: MONO,
+    heroMotif: "link_budget_fall",
+    /* 四道物理墙没有先后，序号不开。 */
     numberedSections: false,
   },
 };

@@ -2883,7 +2883,7 @@
   "hero_motif": "bandwidth_neck",
   "hero_note": "三层从上到下是内存池、可用带宽、能装下的模型规模——本地推理的瓶颈从来在这条竖轴上，不在最上面那行算力数字里。"
  },
- "generated_date": "2026-10-11",
+ "generated_date": "2026-10-12",
  "created_date": "2026-10-11",
  "data_as_of": "2026-10",
  "research_mode": "online",

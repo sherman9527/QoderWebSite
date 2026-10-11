@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
-"""把一张图从产物里摘掉：文件、data.json 的引用、manifest 的记录三处一起清。
+"""把一张图从产物里摘掉：文件、data.json 的引用、manifest 的记录、data.cover 四处一起清。
 
-`add_illustration.install` 的反向操作，存在的理由同一条（W-143）：一张图同时活在三个地方，
+`add_illustration.install` 的反向操作，存在的理由同一条（W-143）：一张图同时活在几个地方，
 手删一次就迟早漏一处。默认 dry-run——`output/<领域>/images/` 不在 git 里，删了拿不回来。
+
+第四处是 10-12 补上的：那张图如果正是封面，清了三处而留着 `data.cover`，
+下一次渲染就指着已经不存在的文件破图。
 """
 import argparse
 import io
@@ -97,12 +100,21 @@ def drop(topic, target, root=None, apply=False, config_root=None):
     # 09-26 就是先删了才想到这件事，15 个来源页随记录一起消失，只能按 origin 补。
     source_page = unicode_(rows[0].get("source_page") or u"") if rows else \
         unicode_(rec.get("source_page") or u"")
+    cov = data.get("cover") or {}
+    cover_hit = _norm(cov.get("file") or u"") == want
     if not apply:
         return {"file": want, "section": sec.get("id"), "emptied_sections": [],
                 "applied": False, "in_manifest": in_man, "source_page": source_page,
-                "excluded": False}
+                "excluded": False, "cover_cleared": False, "would_clear_cover": cover_hit}
 
     sec["images"] = [im for im in sec["images"] if _norm(im.get("file") or u"") != want]
+    if cover_hit:
+        # 封面是那张图的**第四**处住所。清了三处而留着它，下一次渲染就指着
+        # 一个已经不存在的文件破图（10-12 实测）。宁可让这一页退到主题记忆点，
+        # 也不留一个指向空气的门面。
+        # 是**删键**不是置 null：topic_data.schema.json 里 cover 是可选 object，
+        # 写成 null 会被 schema 判死（实测「None is not of type 'object'」）。
+        data.pop("cover", None)
     emptied = [s.get("id") for s in data.get("sections") or [] if not (s.get("images") or [])]
 
     from generate import _save
@@ -123,7 +135,7 @@ def drop(topic, target, root=None, apply=False, config_root=None):
     excluded = _exclude_page(topic, source_page, config_root)
     return {"file": want, "section": sec.get("id"), "emptied_sections": emptied,
             "applied": True, "in_manifest": in_man, "source_page": source_page,
-            "excluded": excluded}
+            "excluded": excluded, "cover_cleared": cover_hit, "would_clear_cover": False}
 
 
 def main(argv=None):
@@ -139,10 +151,16 @@ def main(argv=None):
             res = drop(a.topic, t, apply=a.apply)
             emptied += res["emptied_sections"]
             excluded += 1 if res.get("excluded") else 0
-            sys.stdout.write(u"%s %s ← 章节 %s%s%s\n" % (
+            extra = []
+            if res["emptied_sections"]:
+                extra.append(u"（摘完这章就没图了）")
+            if res.get("cover_cleared") or res.get("would_clear_cover"):
+                extra.append(u"，正是封面——一并摘掉，这一页将退到主题记忆点")
+            if res.get("excluded"):
+                extra.append(u"，来源页已记进排除表")
+            sys.stdout.write(u"%s %s ← 章节 %s%s\n" % (
                 u"已摘" if res["applied"] else u"将摘", res["file"], res["section"],
-                u"（摘完这章就没图了）" if res["emptied_sections"] else u"",
-                u"，来源页已记进排除表" if res.get("excluded") else u""))
+                u"".join(extra)))
     except DropError as e:
         sys.stderr.write(u"✗ %s\n" % e)
         return 2

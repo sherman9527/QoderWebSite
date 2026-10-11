@@ -25,9 +25,21 @@
 
 ## IN PROGRESS（正在做）
 
-（无。取下一条 TODO 时把它移进来，这是并行会话的互斥标记。）
+（空。下一条从 TODO 提升，提升即并行互斥标记。）
 
 ## TODO（待办）
+
+- [ ] **W-202 `absorbed` 会列出从来没存在过的旧站，删站清单不许只按规则重建**
+      10-12 发 `space-comms` 之后跑 `publish.py absorbed space-comms`，它给两篇新文章各列了一条
+      「旧站 `<slug>-gtqdc11h6po...` 的深链已承接，可删」——而这两篇是 10-11 才写的，
+      **从来没有过一篇一站**（10-04 删掉的是另外 28 个）。`list_sites` 读数 15 个站，里面根本没有那两个名字。
+      根因在它自己的 docstring 里写得很清楚：`record-group` 会把成员 `site.url` 覆盖成深链，
+      旧地址在 data.json 里查不到，所以它**按规则重建**旧 host。
+      规则只能回答"如果有一篇一站，它该叫什么"，回答不了"到底有没有过"。
+      **修法**：只有成员 `published_date` **早于**所在组 `published_date` 的篇才算被吸收
+      （发组之前发布过，才可能有一篇一站）。判据要能在离线跑，不引入 `list_sites` 依赖。
+      这次没出事是因为我先查了平台再动手；**下一次别靠人记得查**。
+      先写红测试：给一个"成员与组同日发布"的夹具，`absorbed_sites` 必须返回空。
 
 - [ ] **W-199 全站回归里 G-13 的宽屏注错测试偶发抓不到，要修的是「量不到不响」，不是给测试加 retry**
       10-10 撞的：pre-commit 第一次拦下 `tests/test_gates.py::test_G13_detects_wide_screen_defects[p,li{max-width:none}-prose-measure]`，
@@ -46,6 +58,12 @@
       并把注错测试的断言从「只打印过滤后的 fail」改成打印全部发现——那次偶发正是被这个过滤骗掉线索的。
       **剩下的才是本条要查的**：为什么整套跑时 node 会在 import 阶段死掉（候选：playwright/Edge 句柄挤压）。
       修完之后整套连跑两次未再复现，所以触发条件仍是推测，不要当成已解决。
+      **10-12 又复现了一次，而且这次留下了可查的东西**：全量重渲染 32 篇时 `Muse产业逻辑` 报
+      `rc=4294967295、stdout 0 字节`——同一签名，同一个"整套跑才犯"的性质，
+      单跑那一篇立刻绿。区别只在于上一轮改过的判据**把它喊出来了**（旧写法会记成"这一页没问题"）。
+      同一天补上第二段：fail 消息现在带 `pr.stderr` 末尾三行（`capture_output` 早就抓回来了，只是没人读），
+      见 `test_G13_names_the_error_when_the_tool_dies`。下一次再犯，消息里应该直接写着死因，
+      不必再靠复现去赌。
       复现入口：`PYTHONIOENCODING=utf-8 python -m pytest -q -v`（**必须带 `-v`**：`pytest.ini` 的 addopts 已有 `-q`，
       `-q -q` 会把整个 FAILURES 段咽掉，只留下一串点和 rc=1——我差点把这次当成进程崩了）。
 
@@ -58,6 +76,7 @@
 
 | 日期 | 编号 | 工作项 | 证据 |
 |---|---|---|---|
+| 2026-10-12 | W-201 | **两篇太空文章上线（第 31、32 篇，新组 `space-comms` 是第 15 个站）**：开发者 10-11 的问题（星链是不是革运营商的命、买频谱意味着什么、做全球运营商还缺什么、现在够不够、天上那一跳与地面基站的差别、太空光伏与散热、中国布局）写成 11 章后**超了 R-05 硬上限**，按 10-03 的先例拆成两篇而不是砍带来源的数字——《星链的运营商之路》6 章 + 《星座的物理墙》5 章。第 1 章把提问里的错误前提改掉并写满一整章：真空断的是传导与对流，**辐射不但行，而且是向太空排热的唯一途径**，难点在它的上限与涂层选择性。配图 16 张全自画（两篇各 8 张过 G-03 下限），换掉三张"闸门全绿而来源站不住"的引用图：内容农场镜像页登记的 SpaceX 覆盖图、媒体转述的 Release-19 幻灯片（而所在章正文写的恰是"认编号不认转述"）、中国卫星互联网通用效果图放在讲星链单星功率的章节。**两篇撞了 G-11**（primary ΔE 21.3 / accent 20.8），根因不在颜色在比对口径——挑色脚本把"同组那一篇"排除在比对之外，唯一会撞的那对恰好没量过；重挑时先按主题圈定色相带（网格头名是纯绿 64.4，那是"绿色没人占"的假优势，没取），再要求对姊妹篇两个通道都 ≥25，定案前逐套打最近邻看。**连带补两个真漏洞，都先写红测试**：① 一张图活在四处而 `drop_image` 只清三处（`data.cover` 留着 → 下一次渲染破图；实现上 cover 是可选 object 不是 nullable，"没有封面"只能删键）；② G-13 的 fail 消息只说"没吐出结果"、不带上早就 `capture_output` 回来的 stderr（全量重渲染当场又复现一次那个偶发：`rc=4294967295、stdout 0 字节`，这次它响了出来）。**13 个已上线组没有跟着这次新指纹重发**，是量出来的不是推断的：30 篇 `</style>` 之后的正文与 HEAD 逐篇比 sha256，30/30 完全相同（差异只有 `own_sha` 本来就不算的生成日期），本轮模板改动是纯增量 CSS；43 条 G-14 warn 作为看得见的欠账留在输出里。发布走完整链条：pack → L3（findings=0）→ prepare → **读 API 返回的 host** → publish → `published:true` + `active_release_id` 非空 → 单独授权 public → `verify_live` 逐字节 → `record-group` → 主页重建成 32 卡重发 → `verify_home`。`absorbed` 报了两个从来没存在过的旧站，靠 `list_sites` 对上号才没照着清单去删（已开 W-202）。 | `config/topics/星链的运营商之路.json`（6 章、slug `starlink-carrier`）、`config/topics/星座的物理墙.json`（5 章、slug `constellation-physics`、5 章全 `illustration_only`）；`web/src/tokens/index.ts` 的 `orbital-midnight` 与 `vacuum-radiance`（后者本轮改过一次：`#5D1772/#F2873F`，全站边际 33.6、两通道都近的对数 0）与两个 motif `orbit_doppler`/`link_budget_fall`；`scripts/diagrams/星链的运营商之路_{规则图,第二轮}.py`、`星链与物理墙_机制图.py`、`星座的物理墙_第二轮.py`（16 张，确定性可复现，业务篇六张重画前后 md5 逐张比对一致）；`tests/test_drop_image.py::test_dropping_the_cover_image_clears_the_cover_too`（先红 `assert 'images/01_test.jpg' != 'images/01_test.jpg'`）与 `..._leaves_the_cover_alone`；`tests/test_gates.py::test_G13_names_the_error_when_the_tool_dies`（先红：消息里只有 `rc=-1，stdout 0 字节`）；`python -m pytest` = **657 passed, 1 skipped**，rc=0；`validate --all` = **32 个领域 0 fail / 45 warn**（2 条 G-05 超长 + 43 条 G-14 线上是旧版，判据见 memo）；`sweep_tokens.py` = 翻车主题：无；`python .probe/_body_same.py` = `30 篇正文（去掉生成日期）未变 30 篇，变了 0 篇`；`.probe/_vl_space.txt` = 落地页 + 两条深链 + 16 张图全 200 且逐字节一致；`.probe/_vh.txt` = `卡 32 / 账上应 32，卡片全部 200`；`publish.py check` = 账实一致；`list_sites` = `total_size: 15`；线上 <https://space-comms-gtqdc11h6po.qoder.website/starlink-carrier/starlink-carrier.html> 与 <https://space-comms-gtqdc11h6po.qoder.website/constellation-physics/constellation-physics.html>；`memo.md` 2026-10-12 那条 |
 | 2026-10-11 | W-200 | **新领域《本地大模型芯片》上线**（开发者 10-10 夜提的问题直接变成大纲）：核显凭什么能跑本地大模型、AMD 大核显那一族／NVIDIA GB10（DGX Spark）与 RTX Spark／苹果 M 系列三条路的对照、轻薄是怎么换来的、是否对标 MacBook。第 1 章是 premise-check，把提问里的名词先对上实物：395/390/385 是 Strix Halo 一代，**495 查得到**（Ryzen AI Max+ PRO 495，Gorgon Halo，最高 192 GB）；「Spark」是两颗不同的芯片（DGX Spark 里的 GB10 是桌面小盒，RTX Spark 才是装进笔电的那颗）；「Surface 配 Spark」只成立一台（Surface Laptop Ultra，微软官方页 2,599.99 美元），标准版 Surface Laptop 全是骁龙——**这三条我另走了一次独立复核**（微软官方产品页与 NVIDIA DGX Spark 硬件文档），没有只信生成链路。配图按 D-22 处置：联络表眼验发现六张是「看不出区别的笔记本」图库图与一张 Benchmark 剪贴画，而 `audit_images.py` 对这批报的是**全部合格**——它量点名与空章，量不到「这张图配不配得上这一章」；于是摘掉六张、补六张自画机制图（解码是搬运／薄是删出来的／三笔钱三个时间点／比数字前对齐四项／两个 Spark 不是一个东西／三步复核法），图上不写任何数字。R-05 是硬上限且**不许靠调大声明时长绕过**（代码注释里就记着这条曾被钻过），所以正文从 9170 砍到 8390 汉字：删三块复述同章正文的 steps 清单 + 收紧自我复述的句子，带来源的数字一个没删。新领域必须有自己的记忆点（`test_contract.py::test_every_topic_has_its_own_hero_motif` 判死复用），所以真加了一个 motif `bandwidth_neck`（四路内存→收口→芯片，强调色给脖子）而不是复用现成的；改模板又欠下一轮全站重渲染与重发：30 篇重渲染 → 13 组 + 主页共 14 个站全部重发，逐个 pack → L3（findings=0）→ prepare → 读 API 返回的 host → publish → 逐字节验收 → record-group。 | `config/topics/本地大模型芯片.json`（11 章、slug `local-llm-chips`、类别 AI算力、组 ai-compute）；`web/src/tokens/index.ts` 的 `silicon-copper`（身份色按 G-11 真实判据在 29 套里搜出：安全边际 41.4、违规对数 0、最近邻 lv-monogram，见 `.probe/nearest2.txt`）；`web/src/template/TopicPage.tsx` + `styles.ts` 的 `bandwidth_neck`；`scripts/diagrams/本地大模型芯片.py`、`本地大模型芯片_机制图.py`（六张示意图，确定性可复现）；`python -m pytest` = **652 passed, 1 skipped**；`validate --all` = **30 个领域，0 fail / 2 warn**（两条均 G-05 超长）；`sweep_tokens.py` = 翻车主题：无；`publish.py check` = 账实一致；14 份验收 `.probe/live2_*.txt` 合计 43 条「逐字节一致」+ 主页 30 张卡全 200；新篇 165 条来源、14 张图全 200；`memo.md` 2026-10-11 那条 |
 | 2026-10-10 | W-198 | **开发者报的导航 bug 修完，并为新指纹重发全部 14 个站**：文章页页首那条「返回目录」在合站之后落到的是**本组**落地页（模板里写死 `../index.html`，一篇一站时代它是总站首页，29 篇装进 13 组后它变成了组目录——地址没变、语义变了）。改法：`TopicData` 加可选 `home_url?`（可选是因为**本地产物没有总站**，只有 hosted 那份有），`render.mjs` 仅在缺席时读 `config/home_site.json` 兜上——总站地址放一处，改托管账号不动 29 份大纲；页首现在是两条并排链接（本组目录 + 总站首页）。**连带代价是本轮真实工作量**：模板指纹一变，G-08 把 29 篇全判陈，于是要重渲染 29 篇 + 重发 13 组 + 主页共 14 个站，逐个走 pack → L3 深审（findings=0）→ prepare → **读 API 返回的 host** → publish → `verify_live` 逐字节 → `record-group`。过程中我自己造了两起账本事故并各留下一条守卫：① `.probe/params.txt` 的 CRLF 行尾毒掉 `read` 的最后一个字段（`--project-id` 收到带 `\r` 的值，G-10 判 29 条 fail 才拦住）→ 从 Windows 文本喂循环变量必须先 `tr -d '\r'`；② 该文件列序是 `组|projectId|…|actionId`，我把末位 actionId 当 projectId 记进了 13 个组——**格式完全合法，G-10 与 `check` 全部放行**（`check` 查自洽，而脏值同时写进两处当然自洽），靠"修回后 `git diff` 只剩 group_sha/content_sha 两组差集、project_id 一行没动"才证明修干净。为此补一条硬不变量：**地址没变就不许换站**（`record_group` 拒绝同 URL 改 project_id，真换账号时后缀带主人必然改地址，不误伤迁移）。 | `tests/test_groups.py::test_record_group_refuses_to_rebind_the_same_address`（先跑到 DID NOT RAISE 再实现）与 `..._allows_rebind_when_the_address_changes`；`tests/test_render.py::test_the_page_offers_the_site_home_as_well_as_the_category_index`；`python -m pytest` = **648 passed, 1 skipped**，rc=0；`validate --all` = **29 个领域，0 fail / 2 warn**（两条均 G-05 超长，已知可接受）；`publish.py check` = 账实一致；14 份验收输出 `.probe/live_*.txt` 全 `✓`（逐字节一致 + 每张图 200），主页 `.probe/live_home.txt` = 卡 29/账上 29 且全部 200；代码 commit `0f8667e`；`memo.md` 2026-10-10（下午）那条 |
 | 2026-10-10 | W-193 | **引用审计的欠账全部走完：A 类「真要动」57 个数 → 0，并把判据的四个洞补完**（判据侧：⑨来源侧单位词写法；⑩量级声明写在表头——`scaled_forms()` 把因子带回 `hits()`、`declared_scale()` 只认因子配套；`块型[-]` 重影行改带真实下标；量族可见性 `classify(fam_missing)`，方向只会 A→B；取整只认「来源细、正文粗」。台账侧：`行文本` 不再截断——截断会让 `split_derived()` 看不见操作数，把页面自己算出来的数当成欠账；`fixrow` 补 `card_grid` 的 `metrics[]`；新增 `dropslot`——删不可逆，所以 loc 之外还要用 `must_contain` 验内容、并且不许删空整块。内容侧：删 5 处（Cerebras 195.3 与今日聚合页 190.1 不符；积家「在售 1907」整卡官方三页无据、现阵容也无此款；劳力士 timeline 三格 8,897/11,785/27,642 正文没有数字形状）＋摘 1 个数（阿里云节点 17.25 秒）＋把算式写进行里 3 处（1,344＝768红＋576白、1520÷60ml、0.000056＋0.000036＝0.000092）＋修一个真错数（Wafer 输入 0.0248 → 0.024，接口是 0.000000024/秒；连带约 40 倍改约 41 倍）。每一次定性靠的都是联网渲染读原文或读缓存原文，**没有一次是判不出来就先删**。发布：ai-industry / ai-compute / cars / fashion / watches 五组按 pack → L3 → prepare → publish → verify_live 逐字节 → record-group 走完；`publish.py check` 账实一致、无待发布条目。） | `audit/records/w193_A_list.txt`（工具自己写，现 0 行 0 个数）；`.probe/rechain.log` 末段 `A=22/27 B=143/219 派生=27 真=0（与合计 none=246 自洽）`；`tests/test_evidence_context.py`、`tests/test_w193_triage.py`、`tests/test_w162_locs.py`、`tests/test_chip_action.py`（新守卫全部先红后绿）；`audit/records/w157_decisions.jsonl`（每条动作带 because）；`.probe/vl_*.txt`（五组逐字节验收）；`validate.py --all` 29 篇 0 fail / 2 warn（G-05 篇幅） |

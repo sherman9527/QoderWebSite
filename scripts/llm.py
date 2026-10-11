@@ -41,6 +41,15 @@ def _which(cmd):
 
 
 def available_backends():
+    """装了哪些后端。`KE_LLM_BACKENDS` 是白名单（逗号分隔，顺序即优先级）：
+    开发者指定只用某一个后端时，这该是配置而不是靠 agent 记着——
+    写死在代码里，下一个人改回来只是时间问题。
+    名单里没装的后端**不凭空出现**：否则 `call()` 会以为有兜底，
+    而 10-11 之前那条兜底恰恰是死的，没人发现。"""
+    allow = [x.strip() for x in os.environ.get("KE_LLM_BACKENDS", "").split(",") if x.strip()]
+    if allow:
+        by = {"qodercli": QODER, "copilot": COPILOT}
+        return [name for name in allow if name in by and _which(by[name])]
     out = []
     if _which(QODER):
         out.append("qodercli")
@@ -62,7 +71,10 @@ def build_argv(backend, online):
     if backend == "copilot":
         # 默认 text 模式会把"● Checking my documentation"这类过程播报写进 stdout，
         # 兜底后端于是永远解析不到 JSON —— 等于没有兜底。
-        argv = [COPILOT, "-p", "--no-color", "--silent", "--output-format", "json"]
+        # **不带 -p**：当前版本里 `-p/--prompt <text>` 要求带值，空 -p 立刻 rc=1 用法错误，
+        # 而提示词本来就由 `_run` 走 stdin 喂（实测 stdin 模式正常出 assistant.message）。
+        # 10-11 生成星链篇时 qodercli 连续超时，才第一次走到这条路上。
+        argv = [COPILOT, "--no-color", "--silent", "--output-format", "json"]
         if not online:
             # 没有 --no-tools 这个旗标；清空可用工具才是它的等价写法。
             argv += ["--available-tools", ""]

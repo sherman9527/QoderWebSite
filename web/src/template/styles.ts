@@ -372,6 +372,53 @@ blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);ma
 .cover-noimg .motif-lane .neck{flex-basis:3rem}
 .cover-noimg .motif-lane .chip{flex-basis:3.4rem;height:3.4rem;border-radius:.5rem}
 .cover-noimg .motif-lane .chip::after{left:.7rem;top:.7rem;right:.7rem;bottom:.7rem}
+/* 星座的物理墙篇：六级往下掉的阶梯，最后一级是强调色（地面小区没有的那一级——距离）。
+   台阶必须**单调下降**且最后一级明显不同色，否则读起来只是"几条不等长横条"，
+   而 motif-choice 已经是那个形状了。 */
+.motif-fall{display:grid;grid-template-columns:repeat(6,1fr);align-items:start;height:2.9rem;gap:.18rem}
+.motif-fall i{height:.46rem;border-radius:3px;background:var(--primary);opacity:.88}
+.motif-fall i:nth-child(1){margin-top:0}
+.motif-fall i:nth-child(2){margin-top:.34rem}
+.motif-fall i:nth-child(3){margin-top:.68rem}
+.motif-fall i:nth-child(4){margin-top:1.02rem}
+.motif-fall i:nth-child(5){margin-top:1.36rem}
+.motif-fall i:nth-child(6){margin-top:1.7rem;background:var(--accent);opacity:1}
+.cover-noimg .motif-fall{height:100%;min-height:9rem;align-content:center;gap:.4rem}
+.cover-noimg .motif-fall i{height:1.05rem}
+.cover-noimg .motif-fall i:nth-child(2){margin-top:.9rem}
+.cover-noimg .motif-fall i:nth-child(3){margin-top:1.8rem}
+.cover-noimg .motif-fall i:nth-child(4){margin-top:2.7rem}
+.cover-noimg .motif-fall i:nth-child(5){margin-top:3.6rem}
+.cover-noimg .motif-fall i:nth-child(6){margin-top:4.5rem}
+/* 星链的运营商之路篇：一条压扁的轨道上四颗星，只有亮那颗在给你服务。
+   虚线必须**接在星与终端之间**——第一版把 beam 的 left 写成和 sat 一样的百分数，
+   于是虚线偏出半颗星宽，读起来像"信号从天上随便哪里下来"。两者都用
+   calc(同一个百分数 + 半个星宽) 对齐，改任意一个都不会再错开。 */
+.motif-orbit{position:relative;height:2.9rem}
+.motif-orbit .ring{position:absolute;left:2%;right:2%;top:.62rem;height:1.75rem;
+  border:1.5px solid var(--primary);opacity:.34;border-radius:50%}
+.motif-orbit .ring.r2{top:1.02rem;height:.95rem;opacity:.16}
+.motif-orbit .sat{position:absolute;width:.44rem;height:.44rem;border-radius:50%;
+  background:var(--primary);opacity:.72}
+.motif-orbit .sat.s1{left:9%;top:.34rem}
+.motif-orbit .sat.s2{left:28%;top:.18rem}
+.motif-orbit .sat.s3{left:61%;top:.2rem;background:var(--accent);opacity:1;
+  box-shadow:0 0 0 .18rem rgba(47,211,196,.22)}
+.motif-orbit .sat.s4{left:84%;top:.4rem}
+.motif-orbit .beam{position:absolute;left:calc(61% + .22rem);top:.7rem;height:1.6rem;
+  width:0;border-left:1.5px dashed var(--accent);opacity:.9}
+.motif-orbit .term{position:absolute;left:calc(61% + .22rem - .75rem);bottom:.06rem;
+  width:1.5rem;height:.5rem;border-radius:3px;background:var(--primary);opacity:.92}
+.cover-noimg .motif-orbit{height:100%;min-height:8rem}
+.cover-noimg .motif-orbit .ring{top:22%;height:46%}
+.cover-noimg .motif-orbit .ring.r2{top:38%;height:26%}
+.cover-noimg .motif-orbit .sat{width:.9rem;height:.9rem}
+.cover-noimg .motif-orbit .sat.s1{top:14%}
+.cover-noimg .motif-orbit .sat.s2{top:8%}
+.cover-noimg .motif-orbit .sat.s3{top:9%}
+.cover-noimg .motif-orbit .sat.s4{top:16%}
+.cover-noimg .motif-orbit .beam{left:calc(61% + .45rem);top:1.6rem;height:60%}
+.cover-noimg .motif-orbit .term{left:calc(61% + .45rem - 1.6rem);bottom:8%;width:3.2rem;height:1.1rem}
 .cover-noimg .motif-attn{height:100%;padding:1.2rem}
 /* Agent 开发篇记忆点：一轮对话。绿条是模型吐出来的那一句，蓝条是它调用的
    tool / 数据库，右下角实心方块是还在等的光标。

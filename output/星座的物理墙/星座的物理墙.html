@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>星座的物理墙 · 同一句话从手机走到卫星要多掉 55 分贝、掠过时频偏逼出频繁切换、电只能靠太阳翼且每圈都要过地影、热只能靠辐射——这四道物理墙怎么算、工程上怎么过，以及用什么式子自己复核</title>
+<meta name="description" content="同一句话从手机走到卫星要多掉 55 分贝、掠过时频偏逼出频繁切换、电只能靠太阳翼且每圈都要过地影、热只能靠辐射——这四道物理墙怎么算、工程上怎么过，以及用什么式子自己复核">
+<!--template-fingerprint:{"blocks":["prose","keyvalue_table","timeline","price_table","card_grid","steps","quote","fact_strip","bar_chart","compare","note","code"],"rev":"ke-template-1"}-->
+<style>:root{
+  --pad:clamp(1.1rem, 4vw, 5rem);
+  --cap:168rem;
+  --col:min(100% - var(--pad) * 2, var(--cap));
+  /* 文章版心与索引版心是两回事：索引是照片墙，越宽越好；
+     文章是长文，宽度用来放"结构"（目录栏 + 正文列），不是用来拉长句子。
+     一条列只有一个右边界：封面、正文、图、表、卡片全部收在同一个边上。
+     以前正文 44rem、图 50rem、表格/卡片撑满"正文 + 24rem 余量"，
+     三条边差到 384px，开发者实测反馈"看上去很不平整"（W-81）。
+     外壳 = 目录栏 14 + 间距 2.5 + 正文列 46，正好等于「一栏 + 正文列」，
+     封面标题才和正文左边缘对齐、右边缘也一起收口。 */
+  --shell:min(100% - var(--pad) * 2, 62.5rem);
+  --rail:14rem;
+  --measure:46rem;
+}
+:root{
+  --bg:#F3F2F7;--surface:#E7E5EF;--ink:#17161D;--muted:#5F5C6E;--rule:#DAD7E4;
+  --primary:#5D1772;--accent:#F2873F;--soft:#E2E7F0;
+  --accent-ink:#a55c2b;--primary-ink:#5D1772;--muted-ink:#5F5C6E;
+  --display:'Songti SC','Noto Serif SC','Source Han Serif SC','SimSun',Georgia,'Times New Roman',serif;--body:'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Source Han Sans SC','Noto Sans SC',system-ui,sans-serif;--num:'SFMono-Regular','Cascadia Mono',Consolas,'Courier New',monospace;
+  --r-card:14px;--r-img:12px;--r-pill:999px;--r-chip:8px;
+  --sh-1:0 1px 2px rgba(17,17,20,.045);
+  --sh-2:0 1px 2px rgba(17,17,20,.045),0 10px 28px -14px rgba(17,17,20,.18);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);
+  font-size:clamp(16px, .95rem + .3vw, 22px);line-height:1.78;letter-spacing:.01em;
+  text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:.18em;text-decoration-thickness:1px}
+a:hover{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+p{margin:.75rem 0}
+
+/* ---------- 封面型 hero：图占主导，标题压在图上或紧随其后 ---------- */
+.cover{position:relative;width:var(--shell);margin:clamp(1rem,2vw,2.2rem) auto 0;padding:0}
+/* 封面必须封顶高度。只给 aspect-ratio 的话，容器多宽图就多高：
+   3737px 视口下容器 2688px → 封面 1512px 高，整屏被一张（还是从小图放大来的）
+   糊图占满，标题被推到屏幕外。横幅化：高度锁在视口一半以内，多余部分裁掉。 */
+.cover-media{position:relative;border-radius:var(--r-card);overflow:hidden;background:var(--soft);
+  box-shadow:var(--sh-2);width:100%;height:clamp(220px,26vw,420px);
+  max-width:var(--cover-w,100%);margin-inline:auto}
+.cover-media img{width:100%;height:100%;object-fit:cover;object-position:center 40%;display:block}
+/* 标题不压图：封面图来自检索、亮度完全不可控，白字压浅图必然糊。
+   小红书详情页本身就是"图在上、标题在下"，照做顺带消掉对比度风险。 */
+/* 没有合格封面时由领域记忆点撑场。记忆点必须铺满整块封面——
+   之前是一条 8px 色带浮在 240px 空色块里，开发者评价"像坏版"。 */
+.cover-noimg .cover-media{height:clamp(180px,20vw,320px);padding:0;aspect-ratio:auto}
+.cover-noimg .motif{position:absolute;inset:0;margin:0}
+.cover-noimg .motif-roast,.cover-noimg .motif-bar,.cover-noimg .motif-dots,.cover-noimg .motif-comb,.cover-noimg .motif-attn,.cover-noimg .motif-choice{height:100%;border-radius:0}
+.cover-noimg .motif-tiles{height:100%;gap:0;border:0}
+.cover-noimg .motif-tiles i{height:100%;border-radius:0;border-left:1px solid var(--rule)}
+.cover-noimg .motif-tiles i:first-child{border-left:0}
+/* 通用条状记忆点铺满后会变成一块纯色油漆样块——加斜向光泽与细刻度线，
+   让它读起来像"领域图形"而不是一屏底色。 */
+.cover-noimg .motif-bar{height:100%;border-radius:0;
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 44px),
+    linear-gradient(115deg,var(--primary),var(--accent) 52%,var(--primary))}
+.cover-noimg .motif-label{position:absolute;left:0;right:0;bottom:0;margin:0;
+  padding:2.2rem 1.4rem .95rem;color:#fff;font-size:.74rem;
+  background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.cover-noimg .motif-label span{color:#fff}
+.cover-body{margin:1.15rem 0 0}
+.cover-body h1{font-family:var(--display);font-size:clamp(1.55rem,4vw,2.35rem);line-height:1.3;
+  margin:0;font-weight:500;letter-spacing:.01em;max-width:26ch;color:var(--ink)}
+.cover-kicker{font-family:var(--num);font-size:.72rem;font-weight:600;letter-spacing:.1em;
+  color:var(--accent-ink);margin-bottom:.45rem}
+
+.wrap{width:var(--shell);margin:0 auto;padding:0 0 clamp(3rem,6vw,6rem)}
+/* 返回主页：一个文字链接，不做按钮——它不是这一篇的行动号召，
+   而且按钮化的东西压在封面下面会把封面构图的注意力抢走。 */
+.backhome{padding-top:clamp(.7rem,2vw,1.1rem);display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
+.backhome-link{font-size:.82rem;color:var(--muted);text-decoration:none;
+  border-bottom:1px solid var(--rule);padding-bottom:.15rem}
+.backhome-link:hover{color:var(--accent-ink);border-bottom-color:var(--accent-ink)}
+
+/* ---------- 宽屏用"结构"填，而不是用"行长"填 ----------
+   目录进左侧常驻栏，正文锁在可读行长（44rem ≈ 32 个汉字/行）。
+   之前把整页铺到 2688px 的结果是：一行 120 字 + 一张 828px 的原图被放大到
+   2688px 的糊图。宽度给图和目录，句子不给。 */
+.layout{display:block}
+.body{margin:0}
+@media (min-width:60rem){
+  /* 正文列不再预留"图表余量"：一条列只有一个宽度，图与表想宽只能整栏出血（目前没有）。
+     注意：grid 子项上写 margin-inline:auto 会关掉 stretch，
+     列宽会塌成内容宽（实测 1272 的列被压成 704 并居中），别这么干。 */
+  .layout{display:grid;align-items:start;gap:2.5rem;
+    grid-template-columns:var(--rail) minmax(0,var(--measure))}
+  /* 标题跟正文左边缘对齐，不然封面标题会往左戳出去一个目录栏的宽度 */
+  .cover-body{padding-left:calc(var(--rail) + 2.5rem)}
+}
+/* 一条列一个右边界（W-81）：正文、图、表、卡片全部收到 --measure 上。
+   以前是 44rem / 50rem / 撑满"正文+24rem"三条边，差到 384px，看着参差。
+   文字叶子仍单独锁 --measure，是为了窄屏时盒子贴边、文字不贴边。 */
+p,li,blockquote,.note p,.blk h3,.chap-head h2,.cover-body h1,.foot>div{
+  max-width:var(--measure)}
+.lede,.note{max-width:var(--measure)}
+.figs,.steps,.timeline{max-width:none}
+.figs.c2,.tablewrap,.cards,.facts,.chart,.cmp{max-width:none}
+
+/* ---------- 笔记式 meta 行 + tag pill ---------- */
+.meta{display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;margin:1.1rem 0 .2rem;
+  font-size:.78rem;color:var(--muted)}
+.meta .who{font-weight:600;color:var(--ink)}
+.meta .dot{width:3px;height:3px;border-radius:50%;background:var(--rule)}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0 0}
+.tag{font-size:.74rem;padding:.2rem .68rem;border-radius:var(--r-pill);
+  background:var(--soft);color:var(--primary-ink);border:1px solid transparent;text-decoration:none}
+a.tag:hover{border-color:var(--accent);color:var(--accent)}
+
+.lede{margin:1.5rem 0 0;padding:1.1rem 1.25rem;background:var(--surface);
+  border:1px solid var(--rule);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.lede p{margin:0;font-size:1.02em}
+
+/* ---------- 目录：宽屏是左侧常驻栏，窄屏退回两列卡片 ---------- */
+nav.toc{margin:2.2rem 0 0;padding:1.15rem 1.25rem;background:var(--surface);
+  border:1px solid var(--rule);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+@media (min-width:60rem){
+  nav.toc{position:sticky;top:1.5rem;margin:0;padding:.4rem 0;background:transparent;
+    border:0;box-shadow:none}
+  nav.toc ol{grid-template-columns:1fr}
+}
+nav.toc h2{font-size:.72rem;font-weight:600;letter-spacing:.12em;margin:0 0 .8rem;color:var(--muted)}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(min(15rem,100%),1fr));gap:.3rem .9rem}
+nav.toc li a{display:flex;gap:.6rem;align-items:baseline;font-size:.87rem;max-width:none;
+  text-decoration:none;padding:.34rem .4rem;border-radius:var(--r-chip)}
+nav.toc li a:hover{background:var(--soft);color:var(--primary-ink)}
+nav.toc .anch{flex:none;font-family:var(--display);font-size:.8rem;color:var(--primary-ink);
+  font-weight:600;min-width:1.4em}
+
+/* ---------- 章节：图先于文 ---------- */
+section.chap{margin:2.8rem 0 0;padding:0}
+.chap-head{display:flex;align-items:baseline;gap:.7rem;margin-bottom:.15rem}
+.chap-head .num{font-family:var(--num);font-size:.74rem;font-weight:600;color:var(--accent-ink);
+  min-width:2.2em;letter-spacing:.06em}
+.chap-head h2{font-family:var(--display);font-size:1.5rem;line-height:1.32;margin:0;
+  font-weight:400;letter-spacing:.012em}
+.chap > .intro{color:var(--muted);font-size:.95em;margin:.35rem 0 0 0}
+
+figure{margin:1.2rem 0 0}
+figcaption{font-size:.75rem;color:var(--muted);margin-top:.5rem;line-height:1.6;
+  overflow-wrap:anywhere}
+figcaption a{color:var(--muted)}
+/* 自画示意图的角标（kind=illustration 才渲染）。压在图左上角，
+   不依赖图片本身有没有留白，也不参与 G-13 的正文对比度检查（它是白字深底）。 */
+figure .ratio{position:relative}
+.fig-kind{position:absolute;left:.55rem;top:.55rem;font-size:.66rem;font-weight:600;
+  letter-spacing:.02em;padding:.16rem .5rem;border-radius:999px;
+  background:rgba(20,18,16,.74);color:#FFFDFB}
+.figs{display:grid;gap:.9rem;margin:1.2rem 0 0}
+.figs.c2{grid-template-columns:repeat(auto-fit,minmax(min(14rem,100%),1fr))}
+/* 文章内配图不能用 feed 的 4:5 竖幅：915px 宽 × 4/5 = 1144px 高的空色块，
+   图没加载出来时就是开发者截图里那一大片"白色遮挡"。横图 + 高度封顶。 */
+.figs .ratio{aspect-ratio:16/10;overflow:hidden;
+  border-radius:var(--r-img);background:var(--soft)}
+.figs .ratio img{margin:0;width:100%;height:100%;object-fit:cover;border-radius:0;box-shadow:none}
+.figs.c2 .ratio{aspect-ratio:4/3}
+
+/* 网格/弹性子项一律允许收缩到 0，并让长 URL、型号串在叶子节点内断行。
+   缺了这两条，一个不可断 token 就能把整页顶出横向滚动条。 */
+.cards>*,.facts>*,.cmp>*,.cmp .col,.figs>*,.figs .ratio,.figs figure,
+nav.toc ol>*,nav.toc li,nav.toc li a,.motif-tiles>*,.mets span,
+.chart,.chart .row,.chart .row>*{min-width:0}
+.facts .v,.facts .l,.card p,.card .mets span,.cmp li,.cmp .verdict,.steps .spec,
+.timeline li>span,.note p,.lede p,.blk p,td,th,.tag,.chart .lab,.chart .val,.chart .axis,
+h1,h2,h3,h4{overflow-wrap:anywhere}
+
+/* ---------- 区块卡片 ---------- */
+.blk{margin:1.4rem 0 0}
+.blk h3{font-family:var(--display);font-size:1.02rem;margin:0 0 .1rem;
+  font-weight:600;letter-spacing:.01em}
+.blk p:last-child{margin-bottom:0}
+
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+.tablewrap{margin:1.2rem 0 0;border:1px solid var(--rule);border-radius:var(--r-card);
+  overflow-x:auto;overflow-y:hidden;background:var(--surface);box-shadow:var(--sh-1);
+  overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch}
+.tablewrap table{min-width:32rem}
+th,td{padding:.7rem .85rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule)}
+thead th{background:transparent;color:var(--muted);font-size:.7rem;font-weight:600;
+  letter-spacing:.1em;border-bottom:1px solid var(--rule);white-space:normal}
+tbody tr:last-child td{border-bottom:0}
+td.k{font-weight:600}
+.num,td.num{font-family:var(--num);font-variant-numeric:tabular-nums;font-size:.86em}
+caption{caption-side:bottom;text-align:left;font-size:.74rem;color:var(--muted);padding:.55rem .85rem}
+
+/* ---------- 代码块：示例代码 / API 请求响应 / 文件树 ----------
+   滚动容器是 <pre> 本身，不是外面的 figure：语言标要留在原地，
+   跟着代码一起横滚的话第一行字会被推出可视区；两块代码也绝不共用一个滚动容器。
+   字族用 var(--num)——24 套主题的 numFamily 全是同一份等宽栈，不再抄第二份。 */
+figure.codewrap{margin:1.2rem 0 0;padding:0;border:1px solid var(--rule);border-radius:var(--r-card);
+  background:var(--surface);box-shadow:var(--sh-1);overflow:hidden}
+.codebar{display:flex;flex-wrap:wrap;align-items:baseline;gap:.45rem .8rem;
+  padding:.5rem .9rem;border-bottom:1px solid var(--rule)}
+.codebar .lang{font-family:var(--num);font-size:.68rem;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--primary-ink)}
+.codecap{font-size:.76rem;color:var(--muted-ink)}
+pre.code{margin:0;padding:.85rem .95rem;overflow-x:auto;overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;background:transparent;color:var(--ink);
+  font-family:var(--num);font-size:.79rem;line-height:1.72;letter-spacing:0;
+  white-space:pre;tab-size:2}
+
+@media (max-width:47.99rem){
+  pre.code{font-size:.72rem;padding:.7rem .75rem}
+  .codebar{padding:.45rem .7rem}
+}
+
+.timeline{list-style:none;margin:.5rem 0 0;padding:0 0 0 .35rem}
+.timeline li{position:relative;padding:0 0 1.05rem 1.3rem;border-left:1px solid var(--rule)}
+.timeline li:last-child{border-left-color:transparent;padding-bottom:0}
+.timeline li::before{content:"";position:absolute;left:-.36rem;top:.55rem;width:.68rem;height:.68rem;
+  background:var(--accent);border-radius:50%;box-shadow:0 0 0 3px var(--surface)}
+.timeline .yr{font-family:var(--num);font-size:.76rem;font-weight:600;color:var(--accent-ink);display:block}
+.timeline .tl-title{font-weight:600;display:block;margin-top:.12rem}
+
+.cards{display:grid;gap:.8rem;margin:.8rem 0 0;
+  grid-template-columns:repeat(auto-fit,minmax(min(14rem,100%),20rem));justify-content:start}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:var(--r-card);
+  padding:1rem 1.05rem;box-shadow:var(--sh-1)}
+.card:hover{box-shadow:var(--sh-2)}
+.card .kick{font-size:.7rem;color:var(--muted);font-weight:600;letter-spacing:.06em}
+.card h4{font-family:var(--display);font-size:1rem;margin:.2rem 0 .35rem;font-weight:600}
+.card p{font-size:.87rem;margin:.25rem 0}
+.card .mets{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem;font-size:.72rem}
+.card .mets span{background:var(--soft);padding:.16rem .55rem;border-radius:var(--r-pill)}
+
+.steps{counter-reset:st;list-style:none;margin:.6rem 0 0;padding:0}
+.steps li{counter-increment:st;position:relative;padding:.6rem 0 .6rem 2.5rem;
+  border-bottom:1px solid var(--rule)}
+.steps li:last-child{border-bottom:0}
+.steps li::before{content:counter(st);position:absolute;left:0;top:.62rem;
+  font-family:var(--num);font-size:.74rem;font-weight:600;color:var(--primary-ink);
+  background:var(--soft);width:1.7rem;height:1.7rem;display:grid;place-items:center;
+  border-radius:var(--r-pill)}
+.steps .sp-title{font-weight:600;display:block}
+.steps .spec{font-family:var(--num);font-size:.76rem;color:var(--accent-ink)}
+
+blockquote{margin:1.3rem 0 0;padding:1rem 1.15rem;background:var(--surface);
+  border:1px solid var(--rule);border-left:3px solid var(--accent);
+  border-radius:var(--r-card);font-family:var(--display);font-size:1.04rem;line-height:1.62}
+blockquote footer{font-family:var(--body);font-size:.78rem;color:var(--muted);margin-top:.4rem}
+
+.facts{display:grid;gap:.9rem;justify-content:start;
+  grid-template-columns:repeat(auto-fit,minmax(min(8.5rem,100%),15rem));
+  margin:1.2rem 0 0;padding:1.05rem 1.1rem;background:var(--surface);
+  border:1px solid var(--rule);border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.facts .f .v{font-family:var(--num);font-size:1.55rem;font-weight:400;color:var(--primary);line-height:1.15}
+.facts .f .l{font-size:.75rem;color:var(--muted);margin-top:.18rem}
+
+/* 评分图：柱子是画出来的数字，不是榜单截图，所以每个数都能挂自己的来源。
+   数值单独占一列而不是贴在柱头——那样每行的右边界才落在同一条线上，
+   能被 G-13 的"同一列右边界一致"量到（W-81 的教训：量不到的地方就会跑偏）。 */
+.chart{display:grid;gap:.6rem;margin:1.2rem 0 0;padding:1.05rem 1.1rem;
+  background:var(--surface);border:1px solid var(--rule);
+  border-radius:var(--r-card);box-shadow:var(--sh-1)}
+.chart .row{display:grid;gap:.35rem .8rem;align-items:center;
+  grid-template-columns:minmax(0,11rem) minmax(0,1fr) auto}
+.chart .lab{font-size:.82rem;font-weight:500;color:var(--ink)}
+.chart .track{height:.6rem;border-radius:var(--r-pill);background:var(--soft);overflow:hidden}
+.chart .bar{height:100%;border-radius:var(--r-pill);background:var(--primary)}
+/* 小字用 --primary-ink 而不是 --primary：inkFor() 就是为这件事存在的（见文件末尾），
+   系统里 .tag / .chap-head .num / .timeline .yr / .refs .ref 全都走它。
+   这三处是漏改：G-13 实测 深芥 #8A8421 压在 surface 上只有 3.25:1。
+   别改回 var(--primary)——品牌色是为识别选的，不是为易读选的。 */
+.chart .val{font-family:var(--num);font-size:.95rem;color:var(--primary-ink)}
+.chart .val .unit{font-size:.7rem;color:var(--muted);margin-left:.16rem}
+.chart .axis{font-size:.7rem;color:var(--muted);margin-top:.1rem}
+@media(max-width:640px){
+  .chart .row{grid-template-columns:minmax(0,1fr) auto;
+    grid-template-areas:"lab val" "track track"}
+  .chart .lab{grid-area:lab}.chart .val{grid-area:val}.chart .track{grid-area:track}
+}
+
+/* 对照块天生两列；auto-fit 会因为 verdict 的 1/-1 跨列而保住 5 个 229px 窄条 */
+.cmp{display:grid;gap:.8rem;grid-template-columns:repeat(2,minmax(0,1fr));margin:.8rem 0 0}
+.cmp .col{border:1px solid var(--rule);padding:.9rem 1rem;background:var(--surface);
+  border-radius:var(--r-card)}
+.cmp .col.pro{border-top:3px solid var(--accent)}
+.cmp .col.con{border-top:3px solid var(--muted)}
+.cmp h4{font-family:var(--display);margin:0 0 .45rem;font-size:.96rem;font-weight:600}
+.cmp ul{margin:.2rem 0 0;padding-left:1.1rem;font-size:.87rem}
+.cmp .verdict{grid-column:1/-1;font-size:.88rem;background:var(--soft);
+  padding:.8rem .95rem;border-radius:var(--r-card);color:var(--primary-ink)}
+
+.note{margin:1.2rem 0 0;padding:.9rem 1rem;border-radius:var(--r-card);
+  background:var(--surface);border:1px solid var(--rule);font-size:.88rem}
+.note.warn{border-color:var(--accent);background:var(--soft);color:var(--ink)}
+.note.myth{border-color:var(--primary);background:var(--soft);color:var(--ink)}
+.note.tip{border-color:var(--rule);color:var(--ink)}
+.note h4{margin:0 0 .3rem;font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--muted-ink)}
+.note p{margin:.2rem 0}
+
+.srcs{margin-top:2.8rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+.srcs h2{font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--muted);margin:0 0 .6rem}
+.srcs ol{margin:0;padding-left:1.5rem;font-size:.76rem;color:var(--muted)}
+.srcs li{margin:.3rem 0;overflow-wrap:anywhere}
+.foot{margin-top:1.8rem;padding-top:1.1rem;font-size:.74rem;color:var(--muted);line-height:1.75}
+.warnbox{margin:1.4rem 0 0;padding:.9rem 1.05rem;border:1px solid var(--accent);background:var(--soft);
+  font-size:.85rem;border-radius:var(--r-card)}
+
+.refs{font-family:var(--num);font-size:.66em;font-weight:600}
+.refs .ref{color:var(--accent-ink);margin-left:.18em;text-decoration:none}
+.refs .ref:hover{text-decoration:underline}
+
+.motif{margin:1.3rem 0 0;position:relative}
+.motif-roast{display:flex;height:.5rem;border-radius:var(--r-pill);overflow:hidden}
+.motif-roast i{flex:1}
+.motif-label{font-size:.7rem;color:var(--muted);display:flex;justify-content:space-between;margin-top:.35rem}
+.motif-dots{height:3.4rem;border-radius:var(--r-card);overflow:hidden;background:var(--soft);position:relative}
+.motif-dots i{position:absolute;width:.2rem;height:.2rem;border-radius:50%;background:var(--accent)}
+.motif-tiles{display:grid;grid-template-columns:repeat(12,1fr);gap:.22rem}
+.motif-tiles i{height:1.2rem;border-radius:4px;background:var(--soft);border:1px solid var(--rule)}
+.motif-bar{height:.3rem;border-radius:var(--r-pill);background:var(--primary)}
+.motif-bar i{display:none}
+/* 娇兰：蜂巢。三件事缺一不可——铺满（换行 + 自动填充）、偶数列下沉半格（才像巢）、
+   空格用主色 12% 透明（在 soft 底色上原来那版几乎看不见，只剩两颗金格像 bug）。 */
+.motif-comb{display:flex;flex-wrap:wrap;gap:.34rem;align-items:center;height:2.4rem}
+.motif-comb i{width:1.5rem;height:1.72rem;background:var(--primary);opacity:.12;
+  clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.motif-comb i:nth-child(even){transform:translateY(.32rem)}
+.motif-comb i.gold{background:var(--accent);opacity:.95}
+/* 无封面的大色块里：垂直居中铺几行，而不是贴顶堆一层 */
+.cover-noimg .motif-comb{align-content:center;padding:1.2rem}
+
+/* 注意力方阵：12×7 的格子，亮格沿对角线扫过去 */
+.motif-attn{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));
+  grid-auto-rows:minmax(0,1fr);gap:.3rem;height:2.4rem}
+.motif-attn i{border-radius:2px;background:var(--primary);opacity:.1;min-height:.28rem}
+.motif-attn i.near{opacity:.3}
+.motif-attn i.hot{background:var(--accent);opacity:.95}
+.motif-choice{display:flex;flex-direction:column;gap:.34rem;justify-content:center;height:100%;padding:.2rem 0}
+.motif-choice i{display:block;height:.42rem;border-radius:99px;background:var(--primary);opacity:.26}
+.motif-choice i.hot{background:var(--accent);opacity:.95;height:.62rem}
+/* 摩根：一条干在 1933 那道口子上断成两条腿。左边是家族干（一条连续实线），
+   中间那道虚线是分家本身——它是断开而不是接上的，所以画成 gap + 断口，
+   不能画成一条实线穿过（那读起来像"延续"，正是这个记忆点要反对的误读）。
+   右边两条腿粗细一致、长度一致：两条腿都是独立法人，谁也不是谁的分支，
+   所以不画成一大一小。区别只放在颜色上——主色是银行、强调色是证券。 */
+.motif-morgan{display:grid;grid-template-columns:38% 2px 1fr;grid-template-rows:1fr 1fr;
+  gap:.42rem 0;align-items:center;height:2.6rem}
+.motif-morgan .stem{grid-column:1;grid-row:1/3;height:.52rem;border-radius:99px;
+  background:var(--primary);opacity:.9}
+.motif-morgan .cut{grid-column:2;grid-row:1/3;align-self:stretch;
+  background:repeating-linear-gradient(180deg,var(--muted) 0 4px,transparent 4px 9px);opacity:.7}
+.motif-morgan .leg{grid-column:3;height:.52rem;border-radius:99px}
+.motif-morgan .leg.bank{grid-row:1;background:var(--primary);opacity:.85}
+.motif-morgan .leg.sec{grid-row:2;background:var(--accent);opacity:.85}
+.cover-noimg .motif-morgan{height:100%;padding:1.2rem;gap:.9rem}
+.cover-noimg .motif-morgan .stem{height:1.1rem}
+.cover-noimg .motif-morgan .leg{height:1.1rem}
+/* 本地大模型芯片篇：四路内存 → 收口 → 芯片。脖子用强调色，因为这一篇的论点
+   就是"卡住你的是搬运不是计算"；芯片画成空心框 + 内芯，读起来在等活，不是满载。 */
+.motif-lane{display:flex;align-items:center;gap:.42rem;height:2.6rem}
+.motif-lane .pool{flex:1;display:grid;grid-template-rows:repeat(4,1fr);gap:.2rem;height:100%;min-width:0}
+.motif-lane .pool i{background:var(--primary);opacity:.22;border-radius:2px}
+.motif-lane .neck{flex:0 0 1.55rem;height:100%;background:var(--accent);opacity:.92;
+  clip-path:polygon(0 0,100% 36%,100% 64%,0 100%)}
+.motif-lane .chip{flex:0 0 1.75rem;height:1.75rem;border:2px solid var(--primary);border-radius:.3rem;
+  background:var(--soft);position:relative}
+.motif-lane .chip::after{content:"";position:absolute;left:.34rem;top:.34rem;right:.34rem;bottom:.34rem;
+  background:var(--primary);opacity:.3;border-radius:2px}
+.cover-noimg .motif-lane{height:100%;padding:1.2rem;gap:.9rem}
+.cover-noimg .motif-lane .neck{flex-basis:3rem}
+.cover-noimg .motif-lane .chip{flex-basis:3.4rem;height:3.4rem;border-radius:.5rem}
+.cover-noimg .motif-lane .chip::after{left:.7rem;top:.7rem;right:.7rem;bottom:.7rem}
+/* 星座的物理墙篇：六级往下掉的阶梯，最后一级是强调色（地面小区没有的那一级——距离）。
+   台阶必须**单调下降**且最后一级明显不同色，否则读起来只是"几条不等长横条"，
+   而 motif-choice 已经是那个形状了。 */
+.motif-fall{display:grid;grid-template-columns:repeat(6,1fr);align-items:start;height:2.9rem;gap:.18rem}
+.motif-fall i{height:.46rem;border-radius:3px;background:var(--primary);opacity:.88}
+.motif-fall i:nth-child(1){margin-top:0}
+.motif-fall i:nth-child(2){margin-top:.34rem}
+.motif-fall i:nth-child(3){margin-top:.68rem}
+.motif-fall i:nth-child(4){margin-top:1.02rem}
+.motif-fall i:nth-child(5){margin-top:1.36rem}
+.motif-fall i:nth-child(6){margin-top:1.7rem;background:var(--accent);opacity:1}
+.cover-noimg .motif-fall{height:100%;min-height:9rem;align-content:center;gap:.4rem}
+.cover-noimg .motif-fall i{height:1.05rem}
+.cover-noimg .motif-fall i:nth-child(2){margin-top:.9rem}
+.cover-noimg .motif-fall i:nth-child(3){margin-top:1.8rem}
+.cover-noimg .motif-fall i:nth-child(4){margin-top:2.7rem}
+.cover-noimg .motif-fall i:nth-child(5){margin-top:3.6rem}
+.cover-noimg .motif-fall i:nth-child(6){margin-top:4.5rem}
+/* 星链的运营商之路篇：一条压扁的轨道上四颗星，只有亮那颗在给你服务。
+   虚线必须**接在星与终端之间**——第一版把 beam 的 left 写成和 sat 一样的百分数，
+   于是虚线偏出半颗星宽，读起来像"信号从天上随便哪里下来"。两者都用
+   calc(同一个百分数 + 半个星宽) 对齐，改任意一个都不会再错开。 */
+.motif-orbit{position:relative;height:2.9rem}
+.motif-orbit .ring{position:absolute;left:2%;right:2%;top:.62rem;height:1.75rem;
+  border:1.5px solid var(--primary);opacity:.34;border-radius:50%}
+.motif-orbit .ring.r2{top:1.02rem;height:.95rem;opacity:.16}
+.motif-orbit .sat{position:absolute;width:.44rem;height:.44rem;border-radius:50%;
+  background:var(--primary);opacity:.72}
+.motif-orbit .sat.s1{left:9%;top:.34rem}
+.motif-orbit .sat.s2{left:28%;top:.18rem}
+.motif-orbit .sat.s3{left:61%;top:.2rem;background:var(--accent);opacity:1;
+  box-shadow:0 0 0 .18rem rgba(47,211,196,.22)}
+.motif-orbit .sat.s4{left:84%;top:.4rem}
+.motif-orbit .beam{position:absolute;left:calc(61% + .22rem);top:.7rem;height:1.6rem;
+  width:0;border-left:1.5px dashed var(--accent);opacity:.9}
+.motif-orbit .term{position:absolute;left:calc(61% + .22rem - .75rem);bottom:.06rem;
+  width:1.5rem;height:.5rem;border-radius:3px;background:var(--primary);opacity:.92}
+.cover-noimg .motif-orbit{height:100%;min-height:8rem}
+.cover-noimg .motif-orbit .ring{top:22%;height:46%}
+.cover-noimg .motif-orbit .ring.r2{top:38%;height:26%}
+.cover-noimg .motif-orbit .sat{width:.9rem;height:.9rem}
+.cover-noimg .motif-orbit .sat.s1{top:14%}
+.cover-noimg .motif-orbit .sat.s2{top:8%}
+.cover-noimg .motif-orbit .sat.s3{top:9%}
+.cover-noimg .motif-orbit .sat.s4{top:16%}
+.cover-noimg .motif-orbit .beam{left:calc(61% + .45rem);top:1.6rem;height:60%}
+.cover-noimg .motif-orbit .term{left:calc(61% + .45rem - 1.6rem);bottom:8%;width:3.2rem;height:1.1rem}
+.cover-noimg .motif-attn{height:100%;padding:1.2rem}
+/* Agent 开发篇记忆点：一轮对话。绿条是模型吐出来的那一句，蓝条是它调用的
+   tool / 数据库，右下角实心方块是还在等的光标。
+   两条的宽度用内缩百分比表达"一次回合里模型的话总比一次调用长"，
+   它不代表任何数量关系，图上也不写数字（D-22）。
+   光标是**静态**的：产物零运行时 JS，闪不动，也不该闪。 */
+.motif-turn{position:relative;display:flex;flex-direction:column;justify-content:center;
+  gap:.4rem;height:2.6rem}
+.motif-turn .turn{height:.52rem;border-radius:99px}
+.motif-turn .turn.out{width:82%;background:var(--primary);opacity:.88}
+.motif-turn .turn.call{width:56%;background:var(--accent);opacity:.88}
+.motif-turn .caret{position:absolute;right:.1rem;bottom:.16rem;width:.6rem;height:1rem;
+  background:var(--primary)}
+.cover-noimg .motif-turn{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-turn .turn{height:1.1rem}
+.cover-noimg .motif-turn .caret{width:1.1rem;height:2.1rem;right:.9rem;bottom:1.1rem}
+/* 晶圆记忆点：左半是切开的 die 阵列，右半是整片不切。
+   两边的格子密度刻意不同——右半的线是"还在晶圆上的划格线"，
+   左半的缝是"已经切开的道"，读出来就是这道切割线落没落下。 */
+.motif-wafer{display:grid;grid-template-columns:1fr 3px 1fr;gap:.5rem;align-items:stretch;
+  height:2.6rem}
+.motif-wafer .half{border-radius:6px;min-width:0}
+.motif-wafer .half.diced{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);
+  gap:.16rem;padding:.16rem;background:var(--soft);border:1px solid var(--rule)}
+.motif-wafer .half.diced i{background:var(--primary);border-radius:1px;opacity:.85}
+.motif-wafer .scribe{background:repeating-linear-gradient(180deg,var(--accent) 0 4px,transparent 4px 9px);
+  opacity:.85}
+.motif-wafer .half.whole{background-color:var(--primary);opacity:.9;
+  background-image:linear-gradient(to right,rgba(255,255,255,.34) 1px,transparent 1px),
+    linear-gradient(to bottom,rgba(255,255,255,.34) 1px,transparent 1px);
+  background-size:12.5% 12.5%}
+.cover-noimg .motif-wafer{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-wafer .scribe{width:6px}
+/* 外溢记忆点：左边一条主干，右边四条长短错开的分叉。
+   用 align-items:center 让主干垂直居中，四条臂从它右端散开。 */
+.motif-fan{display:grid;grid-template-columns:6px 1fr;gap:.42rem;align-items:center;height:2.6rem}
+.motif-fan .trunk{align-self:stretch;border-radius:99px;background:var(--accent);opacity:.9}
+.motif-fan .fan{display:flex;flex-direction:column;justify-content:center;gap:.28rem;min-width:0}
+.motif-fan .fan i{height:.34rem;border-radius:99px;background:var(--primary)}
+.motif-fan .fan .a0{width:96%;opacity:.9}
+.motif-fan .fan .a1{width:78%;opacity:.72}
+.motif-fan .fan .a2{width:60%;opacity:.55}
+.motif-fan .fan .a3{width:42%;opacity:.4}
+.cover-noimg .motif-fan{height:100%;padding:1.2rem;gap:1rem}
+.cover-noimg .motif-fan .trunk{width:10px}
+.cover-noimg .motif-fan .fan i{height:.85rem}
+/* 收益率曲线：两条等高柱阵，上面正常、下面倒挂。
+   align-items:end 让柱高读成"从基线长起来"，而不是从顶上挂下来。 */
+.motif-curve{display:grid;grid-template-rows:1fr 1fr;gap:.34rem;height:2.6rem}
+.motif-curve .cline{display:flex;align-items:flex-end;gap:.24rem;min-height:0}
+.motif-curve .cline i{flex:1 1 0;min-width:0;background:var(--primary);
+  border-radius:2px 2px 0 0;opacity:.85}
+.motif-curve .cline.inv i{background:var(--muted);opacity:.5}
+.motif-curve .cline.inv i.hot{background:var(--accent);opacity:.92}
+.cover-noimg .motif-curve{height:100%;padding:1.2rem;gap:1.1rem}
+.cover-noimg .motif-curve .cline i{border-radius:3px 3px 0 0}
+/* 光波导：一排耦出栅，越靠出瞳越亮 */
+.motif-guide{display:flex;align-items:stretch;gap:.22rem;height:2.4rem}
+.motif-guide i{flex:1 1 0;min-width:0;background:var(--primary);border-radius:1px}
+.motif-guide i.hot{opacity:.95}
+.motif-guide i.alt{background:var(--accent)}
+
+/* 多数门槛线：25 格席位，第 13 格左边那道粗线就是"过半"的位置 */
+.motif-seats{display:flex;align-items:stretch;gap:.14rem;height:2.4rem}
+.motif-seats i{flex:1 1 0;min-width:0;border-radius:2px}
+.motif-seats i.a{background:var(--primary);opacity:.85}
+.motif-seats i.b{background:var(--accent);opacity:.85}
+.motif-seats i.line{border-left:3px solid var(--ink);margin-left:-.07rem}
+.cover-noimg .motif-seats{height:100%;align-items:center;padding:1.2rem;gap:.3rem}
+.cover-noimg .motif-seats i{height:55%}
+
+/* 思考预算：左三格「立刻答」，右二十一格「先想清楚再答」 */
+.motif-budget{display:flex;align-items:stretch;gap:.16rem;height:2.4rem}
+.motif-budget i{flex:1 1 0;min-width:0;border-radius:2px;background:var(--accent);
+  border:1px solid var(--rule)}
+.motif-budget i.quick{background:var(--primary);border-color:var(--primary)}
+.cover-noimg .motif-budget{height:100%;align-items:center;padding:1.2rem;gap:.3rem}
+.cover-noimg .motif-budget i{height:55%}
+
+/* 货架 vs 盲盒：左半三排货架（每格一样），右半一格一格盲盒（三格亮着），共用一条基线 */
+.motif-duel{display:flex;align-items:flex-end;gap:1rem;height:2.4rem;
+  border-bottom:2px solid var(--primary)}
+.motif-duel-shelf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.3rem;flex:1 1 0}
+.motif-duel-shelf i{height:.5rem;border-radius:2px;background:var(--primary);opacity:.82}
+.motif-duel-boxes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.3rem;flex:1 1 0}
+.motif-duel-boxes i{aspect-ratio:1;border-radius:4px;background:var(--soft);
+  border:1px solid var(--rule)}
+.motif-duel-boxes i.lit{background:var(--accent);border-color:var(--accent)}
+.cover-noimg .motif-duel{height:100%;align-items:center;padding:1.2rem;border-bottom-width:3px}
+.cover-noimg .motif-duel-shelf i{height:.8rem}
+.cover-noimg .motif-guide{height:100%;padding:1.2rem;gap:.4rem}
+
+/* 沙箱矩阵：一格一台实例，绝大多数已经销毁、只有几格还在跑。
+   格子尺寸用 minmax 而不是固定列数：固定 12 列在 375px 会把每格压到 24px 以下，
+   记忆点就糊了。反过来，1440 的封面是 1000×288，格数不够就变成三行方块漂在
+   一大片空白里（第一版实测就是这样，桌面截图才发现）——所以要够密，
+   并且超出封面的部分直接裁掉：它是装饰，不是内容。 */
+.motif-rack{display:grid;grid-template-columns:repeat(auto-fill,minmax(24px,1fr));
+  gap:.3rem;align-content:center;height:2.4rem;overflow:hidden}
+.motif-rack i{aspect-ratio:1/1;min-width:0;background:var(--primary);
+  opacity:.13;border-radius:2px}
+.motif-rack i.on{opacity:.9}
+.motif-rack i.alt{background:var(--accent);opacity:.95}
+.cover-noimg .motif-rack{height:100%;padding:1.2rem;gap:.34rem;align-content:start}
+
+/* 架构分层堆栈：五条从窄到宽的横条，越往下越厚=越像生意。
+   高度用 fr 而不是固定值，封面从 288px（桌面）压到 180px（手机）时
+   五层都还在——固定 px 高在窄封面上会把最下面两层挤出去。 */
+.motif-stack{display:flex;flex-direction:column;justify-content:center;
+  gap:.3rem;height:2.4rem}
+.motif-stack i{height:.34rem;min-height:0;background:var(--primary);
+  opacity:.42;border-radius:99px}
+.motif-stack i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-stack{height:100%;padding:1.4rem 1.2rem;gap:.55rem;justify-content:center}
+.cover-noimg .motif-stack i{height:.62rem}
+
+/* 价值链三层与"钱搬到了哪一层"：三条左对齐的横带，宽度由组件按含义给。
+   最上面那条只描边——它表示开源权重这一层**不收钱**，画成实心就把整幅的意思反了。
+   高度同样用固定 rem 而非 fr：这里只有三条，窄封面上挤不出去。 */
+.motif-rent{display:flex;flex-direction:column;align-items:flex-start;
+  justify-content:center;gap:.34rem;height:2.6rem}
+.motif-rent i{height:.42rem;min-height:0;border-radius:99px}
+.motif-rent i.open{background:transparent;border:1px solid var(--primary);opacity:.75}
+.motif-rent i.hot{background:var(--accent);opacity:.95}
+.motif-rent i.capex{background:var(--primary);opacity:.82}
+.cover-noimg .motif-rent{height:100%;padding:1.4rem 1.2rem;gap:.8rem;justify-content:center}
+.cover-noimg .motif-rent i{height:.8rem}
+
+/* MLCC 的交错内电极：竖条一半挂顶、一半挂底，交错才成电容。
+   高度用百分比、条宽用 flex:1，封面从桌面压到手机窄盒时条数与交错关系都还在。 */
+.motif-interleave{display:flex;align-items:stretch;gap:.14rem;height:2.4rem}
+.motif-interleave i{flex:1 1 0;min-width:0;height:64%;background:var(--primary);
+  opacity:.38;border-radius:2px}
+.motif-interleave i.up{align-self:flex-start}
+.motif-interleave i.down{align-self:flex-end}
+.motif-interleave i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-interleave{height:100%;padding:1.4rem 1.2rem;gap:.26rem}
+.cover-noimg .motif-interleave i{height:70%}
+
+/* 大模型与加密货币篇：无限层联立。一层压一层、越往下越窄、收到一个点，
+   最后两层用强调色——那是 AI 补上的唯一一步。层数与耗时都不标。 */
+.motif-cascade{display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:.2rem;height:2.4rem}
+.motif-cascade i{height:.26rem;min-height:0;border-radius:99px;
+  background:var(--primary);opacity:.34}
+.motif-cascade i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-cascade{height:100%;padding:1.6rem 1.4rem;gap:.44rem}
+.cover-noimg .motif-cascade i{height:.5rem}
+
+/* AI制药篇的漏斗：五条逐段收窄的横条，最后一条是强调色——
+   只有它进了实验室。宽度按对数收，线性收到最后两格会看不见。 */
+.motif-funnel{display:flex;flex-direction:column;justify-content:center;
+  gap:.22rem;height:2.4rem}
+.motif-funnel i{height:.34rem;min-height:0;border-radius:99px;
+  background:var(--primary);opacity:.42}
+.motif-funnel i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-funnel{height:100%;padding:1.6rem 1.4rem;gap:.5rem}
+.cover-noimg .motif-funnel i{height:.7rem}
+
+/* 骁龙篇的等能效线：点阵里那条斜穿的亮线。数值一个都不标，
+   标了它就成了一张没有来源的图表。 */
+.motif-ppw{display:grid;grid-template-columns:repeat(6,1fr);gap:.22rem;
+  align-content:center;height:2.4rem}
+.motif-ppw i{height:.3rem;min-height:0;border-radius:99px;background:var(--primary);opacity:.16}
+.motif-ppw i.near{opacity:.34}
+.motif-ppw i.hot{opacity:.95;background:var(--accent)}
+.cover-noimg .motif-ppw{height:100%;padding:1.2rem;gap:.55rem}
+.cover-noimg .motif-ppw i{height:.7rem}
+
+@media (max-width:640px){:root{--pad:.95rem}}
+@media (max-width:640px){
+  body{font-size:15.5px;line-height:1.74}
+  /* 手机上封面改横幅比例：不给 height:auto 的话桌面那条 clamp() 高度还在，
+     aspect-ratio 会被忽略；给 max-height 又会被 aspect-ratio 反推宽度。 */
+  .cover-media{height:auto;aspect-ratio:4/3}
+  .cover-body{margin-top:.9rem}
+  .facts,.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  nav.toc ol{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:no-preference){
+  @keyframes ke-rise{from{opacity:0;transform:translateY(.6rem)}to{opacity:1;transform:none}}
+  .cover{animation:ke-rise .55s cubic-bezier(.2,.7,.3,1) both}
+  .card{transition:box-shadow .18s ease}
+}
+</style>
+</head>
+<body>
+<header class="cover cover-noimg"><div class="cover-media"><div class="motif motif-fall" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i class="last"></i></div></div><div class="cover-body"><div class="cover-kicker">太空与通信 · 知识专题</div><h1>同一句话从手机走到卫星要多掉 55 分贝、掠过时频偏逼出频繁切换、电只能靠太阳翼且每圈都要过地影、热只能靠辐射——这四道物理墙怎么算、工程上怎么过，以及用什么式子自己复核</h1></div></header><div class="wrap"><nav class="backhome" aria-label="返回目录"><a class="backhome-link" href="../index.html">← 太空与通信全部专题</a><a class="backhome-link backhome-site" href="https://knoweverything-gtqdc11h6po.qoder.website/">← 全部领域 · 总站首页</a></nav><div class="layout"><nav class="toc" aria-label="目录"><h2>目录</h2><ol><li><a href="#is-starlink-enough"><span class="anch">量</span><span>现在的星链够不够：容量、覆盖、并发，三个词各算一遍</span></a></li><li><a href="#space-vs-base-station"><span class="anch">异</span><span>天上那一跳和地面基站有什么不一样：五处结构性差异</span></a></li><li><a href="#power-from-sun"><span class="anch">电</span><span>电从哪来：太阳翼的功率密度、阴影期与&quot;越大的卫星越难&quot;</span></a></li><li><a href="#heat-into-vacuum"><span class="anch">热</span><span>热往哪排：真空里没有风，辐射不是&quot;不行&quot;，而是唯一的路且有硬上限</span></a></li><li><a href="#how-to-verify"><span class="anch">验</span><span>自己复核：三条能算的式子、四个能查的出处</span></a></li></ol></nav><div class="body"><div class="meta"><span class="who">星座的物理墙</span><span class="dot"></span><span>11 分钟读完</span><span class="dot"></span><span>5 章</span><span class="dot"></span><span>数据时点 2026-10</span><span class="dot"></span><span>核对于 2026-10-11</span><span class="dot"></span><span>生成于 2026-10-12</span></div><div class="tags"><span class="tag">#链路预算</span><span class="tag">#多普勒与切换</span><span class="tag">#仰角遮挡</span><span class="tag">#频率复用</span><span class="tag">#太阳翼</span><span class="tag">#阴影期</span><span class="tag">#辐射散热</span><span class="tag">#流体回路</span><span class="tag">#点波束</span><span class="tag">#星间激光链路</span></div><div class="meta"><span>写给：写给想知道「天上的连接凭什么和地面基站不是一回事」的人：不满足于「卫星慢」这种说法，要的是能自己复算的链路式、功率账与热账</span></div><section class="chap" id="is-starlink-enough"><div class="chap-head"><h2>现在的星链够不够：容量、覆盖、并发，三个词各算一遍</h2></div><div class="figs c2"><figure class="drawn"><div class="ratio"><img src="images/03_three_rulers.png" alt="示意图·非实拍：容量、覆盖、并发是三把不同的尺，各算一遍" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>自画示意图（非实拍）：三件事各自手上有什么数、缺什么数。图上不含任何数量与速率，逐项口径见正文带来源的对照表。</figcaption></figure><figure class="drawn"><div class="ratio"><img src="images/06_coverage_three.png" alt="示意图·非实拍：覆盖、足迹内人口、同一时刻能被服务是三件事" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>自画示意图（非实拍）：覆盖图只回答第一件；第三件要波束数与调度。图上不含任何数量、速率与人口数字。</figcaption></figure></div><div><div class="blk"><h3>总量除以人数：算得出量级，给不出判据</h3><p>官方文件里没有「星链系统总下行容量」这个数。SpaceX 2026 年递交的招股书只给到单星设计值：V3 每星 1 Tbps 下行，2026 年下半起由 Starship 部署，单发最多 60 颗、所部署的下行容量约为猎鹰 9 单发的二十倍；现役主力仍是 V2 Mini。总量只能自己乘：取截至 2026 年 3 月 31 日约 9,600 颗在轨星与约 1,030 万订户，按「V3 约为现役十倍」这条官方倍率反推单星 0.1 Tbps，得约 960 Tbps，人均约 93 Mbps。换成 ICAIIT 2023 年 3 月的口径——3,300 颗在轨、计入实际调制后约 20 Tbps——配同年末 230 万订户，人均只剩 8.7 Mbps。同一个除法差出十倍，差的全是输入。更要紧的是它本身不成立：订户不同时在线，容量按波束与时窗分配，不能跨波束调拨。招股书自己就推翻了它——同一时点住宅高峰下行中位 225 Mbps，是最乐观人均份额的两倍以上。</p><span class="refs"><wbr/><a href="#src-S041" class="ref" title="SpaceX 上市招股书（S-1，SEC EDGAR），官方申报文件：截至 2026-03-31 约 9,600 颗在轨宽带与手机星、约 1,030 万订户、住宅高峰下行中位 225 Mbps、V3 每星 1 Tbps 下行与单发 60 颗/二十倍表述、约 650 颗 V1 Mobile 星服务约 740 万月度唯一设备与约 30 个国家、EchoStar 65 MHz 加全球 MSS 共 196 亿美元、企业客户名单">S041</a></span></div></div><div><div class="blk"><div class="tablewrap"><table><caption>三条口径各自手上有什么数、缺什么数</caption><tbody><tr><td class="k">在轨卫星</td><td>约 9,600 颗，宽带星与手机星合计 <span class="refs"><wbr/><a href="#src-S041" class="ref" title="SpaceX 上市招股书（S-1，SEC EDGAR），官方申报文件：截至 2026-03-31 约 9,600 颗在轨宽带与手机星、约 1,030 万订户、住宅高峰下行中位 225 Mbps、V3 每星 1 Tbps 下行与单发 60 颗/二十倍表述、约 650 颗 V1 Mobile 星服务约 740 万月度唯一设备与约 30 个国家、EchoStar 65 MHz 加全球 MSS 共 196 亿美元、企业客户名单">S041</a></span></td></tr><tr><td class="k">订户</td><td>约 1,030 万，口径是一条服务线路而非一个人 <span class="refs"><wbr/><a href="#src-S041" class="ref" title="SpaceX 上市招股书（S-1，SEC EDGAR），官方申报文件：截至 2026-03-31 约 9,600 颗在轨宽带与手机星、约 1,030 万订户、住宅高峰下行中位 225 Mbps、V3 每星 1 Tbps 下行与单发 60 颗/二十倍表述、约 650 颗 V1 Mobile 星服务约 740 万月度唯一设备与约 30 个国家、EchoStar 65 MHz 加全球 MSS 共 196 亿美元、企业客户名单">S041</a></span></td></tr><tr><td class="k">单星下行</td><td>V3 设计值 1 Tbps；现役未公布，按官方倍率反推约 0.1 Tbps <span class="refs"><wbr/><a href="#src-S041" class="ref" title="SpaceX 上市招股书（S-1，SEC EDGAR），官方申报文件：截至 2026-03-31 约 9,600 颗在轨宽带与手机星、约 1,030 万订户、住宅高峰下行中位 225 Mbps、V3 每星 1 Tbps 下行与单发 60 颗/二十倍表述、约 650 颗 V1 Mobile 星服务约 740 万月度唯一设备与约 30 个国家、EchoStar 65 MHz 加全球 MSS 共 196 亿美元、企业客户名单">S041</a></span></td></tr><tr><td class="k">每波束下行（直连手机）</td><td>约 3 Mbps（第三方估算），监管与功率放开后有望 18 Mbps <span class="refs"><wbr/><a href="#src-S043" class="ref" title="马德里理工大学（UPM）DS2D 实测研究摘要：美国 2024-10 至 2025-07 众包移动网络测量，由 SINR 估出每波束约 3 Mbps，可扩至 18 Mbps；直连卫星中位 RSRP 比地面网络低 24 dB">S043</a></span></td></tr><tr><td class="k">每星可用波束数、单波束带宽、EIRP</td><td>三项均未公开，波束级容量无法自行推算 </td></tr><tr><td class="k">系统总下行容量</td><td>官方从未公布，只给单星值与代际倍率 </td></tr></tbody></table></div></div></div><div><div class="blk"><h3>波束这一级：三项输入都没有</h3><p>波束这一级推不动，缺的就是那三项。目前只能引马德里理工团队的实测反推：用美国 2024 年 10 月至 2025 年 7 月的众包移动网络测量（规模超一百万条），筛出注册到星链手机的运营商码，再由 SINR 估谱效，得每波束约 3 Mbps；论文明确说这是「一个用户独占整波束带宽、在偏远空旷处户外」的量，不是多人共享后的速率。同一批测量给出物理原因：直连卫星的中位 RSRP 比地面网络低 24 dB。</p><span class="refs"><wbr/><a href="#src-S043" class="ref" title="马德里理工大学（UPM）DS2D 实测研究摘要：美国 2024-10 至 2025-07 众包移动网络测量，由 SINR 估出每波束约 3 Mbps，可扩至 18 Mbps；直连卫星中位 RSRP 比地面网络低 24 dB">S043</a><wbr/><a href="#src-S044" class="ref" title="PCMag 对该研究的报道（2025-06-04 更新）：样本超一百万条测量、SpaceX 自测出现过 17 Mbps、2025 年 6 月在轨手机星 618 颗（2 月中约 460 颗）、FCC 三月给予aggregate 功率豁免">S044</a></span></div></div><div><div class="blk"><h3>五个下行 Mbps，口径各不相同，别当同一件事读</h3><div class="chart"><div class="row"><div class="lab">星链宽带住宅高峰中位（官方）</div><div class="track"><div class="bar" style="width:100.00%"></div></div><div class="val">225<span class="unit">Mbps</span> <span class="refs"><wbr/><a href="#src-S041" class="ref" title="SpaceX 上市招股书（S-1，SEC EDGAR），官方申报文件：截至 2026-03-31 约 9,600 颗在轨宽带与手机星、约 1,030 万订户、住宅高峰下行中位 225 Mbps、V3 每星 1 Tbps 下行与单发 60 颗/二十倍表述、约 650 颗 V1 Mobile 星服务约 740 万月度唯一设备与约 30 个国家、EchoStar 65 MHz 加全球 MSS 共 196 亿美元、企业客户名单">S041</a></span></div></div><div class="row"><div class="lab">Ookla 州级最高中位（内布拉斯加）</div><div class="track"><div class="bar" style="width:89.24%"></div></div><div class="val">200.8<span class="unit">Mbps</span> <span class="refs"><wbr/><a href="#src-S042" class="ref" title="Ookla Research 实测报告（Sue Marek，2026-05-05）：2025 下半年 Speedtest 用户数据，除阿拉斯加外各州中位下行均超 100 Mbps，内布拉斯加最高 200.80 Mbps，44.7% 用户达 FCC 100/20 Mbps 标准">S042</a></span></div></div><div class="row"><div class="lab">美国 4G 移动网中位</div><div class="track"><div class="bar" style="width:14.67%"></div></div><div class="val">33<span class="unit">Mbps</span> <span class="refs"><wbr/><a href="#src-S045" class="ref" title="Ookla Research（Mike Dano，2025-10-16）：T-Satellite 短信 2025-07-23 正式上线，数据取自 2024-12 至 2025-09 注册到星链手机的安卓设备；洛杉矶县活跃度最高、2025 年初山火期间在当地放开免费短信；美国 4G 运营商 2024 年中位下行 33 Mbps、上行 4 Mbps；手机星与宽带星为两套卫星、共用回传链路">S045</a></span></div></div><div class="row"><div class="lab">SpaceX 自测直连手机峰值</div><div class="track"><div class="bar" style="width:7.56%"></div></div><div class="val">17<span class="unit">Mbps</span> <span class="refs"><wbr/><a href="#src-S044" class="ref" title="PCMag 对该研究的报道（2025-06-04 更新）：样本超一百万条测量、SpaceX 自测出现过 17 Mbps、2025 年 6 月在轨手机星 618 颗（2 月中约 460 颗）、FCC 三月给予aggregate 功率豁免">S044</a></span></div></div><div class="row"><div class="lab">直连手机每波束估算（第三方）</div><div class="track"><div class="bar" style="width:1.33%"></div></div><div class="val">3<span class="unit">Mbps</span> <span class="refs"><wbr/><a href="#src-S043" class="ref" title="马德里理工大学（UPM）DS2D 实测研究摘要：美国 2024-10 至 2025-07 众包移动网络测量，由 SINR 估出每波束约 3 Mbps，可扩至 18 Mbps；直连卫星中位 RSRP 比地面网络低 24 dB">S043</a></span></div></div><div class="axis">榜单时点 2026-03 · 刻度 Mbps，最大值 225</div></div></div></div><div><div class="blk"><h3>地面小区：一道乘法，一条分界线</h3><p>地面这侧反而算得清：一个 100 MHz 的蜂窝小区，聚合量按「谱效 × 带宽」就能估出量级，而 IMT-2020 对密集城区的最小谱效、第 5 百分位用户速率、热点流量密度与连接密度都定了明文要求（本篇两次尝试读 ITU 官方原文未取到，故不在此引用它的具体数值）。把这条量级和每波束约 3 Mbps 摆在一起就是分界线：一座航站楼或一场演唱会的人均需求，靠 650 颗手机星（同期服务约 740 万月度唯一设备、约 30 个国家）不可能承接。</p><span class="refs"><wbr/><a href="#src-S043" class="ref" title="马德里理工大学（UPM）DS2D 实测研究摘要：美国 2024-10 至 2025-07 众包移动网络测量，由 SINR 估出每波束约 3 Mbps，可扩至 18 Mbps；直连卫星中位 RSRP 比地面网络低 24 dB">S043</a></span></div></div><div><div class="blk"><h3>城市比密度，海上比有无</h3><p>反过来，海事、航空、偏远与灾备没有地面小区可比。招股书点名的企业客户是 United Airlines、Carnival、Maersk、John Deere——邮轮、货轮、农机、飞机，都不在地面网络的射程里。Ookla 的数据印证需求的形状：T-Satellite 活跃度最高的县是洛杉矶县，边界外就是 Angeles National Forest 的步道；2025 年初山火时，T-Mobile 正是在该县放开免费卫星短信。至于直连手机到底多快，两家都没给过官方速率：T-Mobile 只说这不是高速数据，SpaceX 的自测出现过 17 Mbps；而手机星与宽带星是两套卫星，Ookla 也观测到 T-Satellite 上线期间美国固定宽带中位速率没被拖累。</p><span class="refs"><wbr/><a href="#src-S041" class="ref" title="SpaceX 上市招股书（S-1，SEC EDGAR），官方申报文件：截至 2026-03-31 约 9,600 颗在轨宽带与手机星、约 1,030 万订户、住宅高峰下行中位 225 Mbps、V3 每星 1 Tbps 下行与单发 60 颗/二十倍表述、约 650 颗 V1 Mobile 星服务约 740 万月度唯一设备与约 30 个国家、EchoStar 65 MHz 加全球 MSS 共 196 亿美元、企业客户名单">S041</a><wbr/><a href="#src-S045" class="ref" title="Ookla Research（Mike Dano，2025-10-16）：T-Satellite 短信 2025-07-23 正式上线，数据取自 2024-12 至 2025-09 注册到星链手机的安卓设备；洛杉矶县活跃度最高、2025 年初山火期间在当地放开免费短信；美国 4G 运营商 2024 年中位下行 33 Mbps、上行 4 Mbps；手机星与宽带星为两套卫星、共用回传链路">S045</a></span></div></div></section><section class="chap" id="space-vs-base-station"><div class="chap-head"><h2>天上那一跳和地面基站有什么不一样：五处结构性差异</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/01_示意图_非实拍_同一条消息走几百米与走几百公里_瓶颈从密度换成预算.png" alt="示意图·非实拍：同一条消息走几百米与走几百公里，瓶颈从密度换成预算" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>按正文的链路预算论证绘制；分贝、距离与实测速率全部在正文带来源的段落与图里，图上刻意不写</figcaption></figure></div><div><div class="blk"><h3>链路预算：多掉 55 分贝</h3><p>自由空间损耗只由频率与距离决定，ITU-R P.525 的工程式是 L(dB)=32.44+20log10(f/MHz)+20log10(d/km)。把 550 公里和直连手机的 L 波段 2 GHz 代进去得 153 分贝；同频段只隔 1 公里的地面基站是 98.5 分贝。同一副接收天线，天上这一跳多掉 55 分贝，功率差 30 万倍。这个数值得你自己代一遍，别接我的。</p><p>接收功率等于发射功率加两端天线增益减路径损耗，并且要盖过噪声底：噪声底=−174 dBm/Hz+10log10(带宽)+噪声系数，10 MHz 带宽配 3 分贝噪声系数约 −101 dBm。天线那端还要看噪声温度 T——同一副阵列指向海面与指向城市，G/T 并不等价。紧的一翼是上行：手机直连的终端最大发射功率被卡在 23 dBm，天线小又握在手里；下行却有卫星上几副大阵列撑着。差额只能靠阵列增益和窄带宽补，补到多少，就决定它先只承诺短信和语音。</p><span class="refs"><wbr/><a href="#src-S051" class="ref" title="ITU-R P.525-5《Calculation of free-space attenuation》，2024-11-03 批准、现行有效的自由空间衰减标准">S051</a><wbr/><a href="#src-S052" class="ref" title="自由空间损耗的工程回归式 FSPL(dB)=20log10(d_km)+20log10(f_MHz)+32.44">S052</a><wbr/><a href="#src-S053" class="ref" title="FCC 2019 年 4 月批准 1,584 颗星链卫星在 550 公里高度运行">S053</a><wbr/><a href="#src-S054" class="ref" title="星链星座轨道参数：高度 207–630 公里、多数在 559 公里、倾角 43°–97.6°">S054</a><wbr/><a href="#src-S055" class="ref" title="直连手机上行链路预算：终端最大发射功率受限于 23 dBm（−7 dBW）">S055</a></span></div></div><div><div class="blk"><h3>三步，自己复算</h3><ol class="steps"><li><span class="sp-title">定斜距</span><span>用 r=√((R_E+h)²−R_E²cos²El)−R_E·sinEl，取本文开头那个壳层高度，按天顶、25 度、10 度各算一次。</span><span class="spec"> R_E 取 6371 公里</span></li><li><span class="sp-title">换成分贝</span><span>两档斜距之比取对数乘 20，就是相对天顶多掉的损耗；再把它加进自由空间损耗式里看总账。</span><span class="spec"> 20log10(r₂/r₁)</span></li><li><span class="sp-title">比噪声底</span><span>发射功率减损耗、加接收增益，和噪声底比。上行总是先不够的那一翼，卫星造得越大越占便宜。</span></li></ol></div></div><div><div class="blk"><h3>掠过与频偏：多普勒和切换</h3><p>低轨不是把天线架高。它相对地面约 7.5 公里每秒、周期 90 至 110 分钟，2 GHz 载波上的多普勒被拉到 ±48 千赫。3GPP 在 Rel-17 为手机直连开出 n255 与 n256 两个频段，并把补偿压在基础设施侧：波束中心预补偿能把 2.5 GHz 的残余频偏压到约 4.7 千赫以下。SpaceX 2023 年递交 FCC 的 Gen2 直连技术说明另走一步——让波束中心在地面保持静止、由卫星补频偏和时延，把一颗掠过的卫星做成不动的虚拟小区。切换同样频繁：实测研究显示终端与卫星的链路以 15 秒为粒度更换，而单星掠过某地上空不过十来分钟。</p><span class="refs"><wbr/><a href="#src-S056" class="ref" title="LEO 相对地面约 7.5 km/s、轨道周期 90–110 分钟的星座参数比较">S056</a><wbr/><a href="#src-S057" class="ref" title="5G NTN 教程：2 GHz 载波、LEO 星座多普勒频移 ±48 kHz">S057</a><wbr/><a href="#src-S058" class="ref" title="3GPP Rel-17 NTN 概览，为手机直连新增 n255（L 波段）与 n256（S 波段）">S058</a><wbr/><a href="#src-S059" class="ref" title="基础设施侧多普勒预补偿可将 2.5 GHz 载波残余频偏压到约 4.7 kHz 以下">S059</a><wbr/><a href="#src-S0510" class="ref" title="SpaceX Gen2 Direct-to-Cellular 技术说明（提交 FCC 的附件）：每星多波束、波束中心在地面保持静止并做频偏/时延补偿">S0510</a><wbr/><a href="#src-S0511" class="ref" title="实测研究：星链以 15 秒为粒度做终端-卫星切换">S0511</a><wbr/><a href="#src-S0512" class="ref" title="引述前述测量：星链以 15 秒粒度更新终端与卫星链路，并分析其对实时业务的影响">S0512</a></span></div></div><div><div class="blk"><h3>仰角与遮挡：城市里最贵的不是距离</h3><p>按上面两式，仰角从 90 度降到 25 度，斜距翻倍、损耗多 6 分贝；10 度时约 1815 公里，多 10 分贝。可这些只是小头，致命的是几何：信号要斜穿树冠、屋檐和玻璃。低轨星地信道综述与超表面辅助 LEO 综述都指出，城市、峡谷、森林这类视线受阻区域会出现严重视距衰落与多径，而天上这一条链路没有第二条路径可绕，遮挡就是硬断。地面的对策是把小区做小：宏站盖不满就上微蜂窝和室内分布，用绕射反射的余量补洞。手机直连卫星只能要求用户看得见天。</p><span class="refs"><wbr/><a href="#src-S051" class="ref" title="ITU-R P.525-5《Calculation of free-space attenuation》，2024-11-03 批准、现行有效的自由空间衰减标准">S051</a><wbr/><a href="#src-S053" class="ref" title="FCC 2019 年 4 月批准 1,584 颗星链卫星在 550 公里高度运行">S053</a><wbr/><a href="#src-S0513" class="ref" title="智能超表面辅助低轨卫星通信综述：城市、峡谷、森林等视线遮蔽区出现严重视距衰落与多径">S0513</a><wbr/><a href="#src-S0514" class="ref" title="面向低轨卫星的星地信道模型综述，含大气/降雨与遮挡衰减建模">S0514</a></span></div></div><div><div class="blk"><h3>频率复用：一个分裂小区，一个靠空间隔离</h3><p>地面扩容靠小区分裂加干扰协调。同频不能在相邻小区随便重复：复用系数取 3 或 7，干扰压住了，频谱效率却掉到三分之一或七分之一，3GPP 从 R8 起用小区间干扰协调在时频域上找回一部分。天上的对应手段是窄点波束加空间隔离，官方给的硬件口径是每颗卫星 5 副 Ku 波段相控阵、3 副 Ka 与 E 双频回传天线。注意公布的是阵列数而不是用户波束数——同一段频率到底能重复几次，星链这边没有权威公开口径，只能从 FCC 附件和专利里推。</p><span class="refs"><wbr/><a href="#src-S0515" class="ref" title="复用系数取 3 或 7 时抑制同频干扰、但频谱效率降到三分之一或七分之一">S0515</a><wbr/><a href="#src-S0516" class="ref" title="小区间干扰协调（ICIC）原理：在空、时、频域协调资源以降低邻区干扰">S0516</a><wbr/><a href="#src-S0517" class="ref" title="官方技术页：每颗卫星 5 副 Ku 波段相控阵天线、3 副 Ka/E 双频天线">S0517</a><wbr/><a href="#src-S0518" class="ref" title="Starlink 2024 年度进展报告，重复同一卫星天线硬件口径">S0518</a></span></div></div><div><div class="blk"><h3>资产与成本结构：两本不同的账</h3><p>地面那本账查得到：截至 2025 年底中国 5G 基站 483.8 万个、平均每万人 34.4 个；站址多为租用，中国铁塔 2025 年塔类站址 214.9 万个、塔类收入 754.98 亿元；电力是长账，2018 年中国电信运营商的电费已占网络运营总费用 16%。天上那本账是造星、发射、补网和地面站，多一个用户不多一座站，但频谱与落地权仍要一项一项谈：2025 年 9 月 SpaceX 以约 170 亿美元向 EchoStar 购买无线频谱许可，直连短信到 2025 年 2 月才先在美国与新西兰商用，官方 Mobile 页列的合作方是 T-Mobile、Optus、Telstra 这类地面运营商，轨道壳层高度也要审批——2026 年 1 月 FCC 批准再加 7500 颗并放开 340 至 485 公里的新壳层。</p><span class="refs"><wbr/><a href="#src-S0519" class="ref" title="截至 2025 年底中国 5G 基站 483.8 万个、平均每万人 34.4 个（工信部数据）">S0519</a><wbr/><a href="#src-S0520" class="ref" title="中国铁塔 2025 年业绩：塔类站址 214.9 万个、塔类业务收入 754.98 亿元、运营商塔类租户 356.7 万户">S0520</a><wbr/><a href="#src-S0521" class="ref" title="公开数据：2018 年中国电信运营商电费支出占网络运营总费用 16%、占收入 3.59%">S0521</a><wbr/><a href="#src-S0522" class="ref" title="转述 FT 报道：2025 年 9 月 SpaceX 以约 170 亿美元向 EchoStar 购买无线频谱许可">S0522</a><wbr/><a href="#src-S0523" class="ref" title="官方公告：Direct to Cell 短信服务 2025 年 2 月在美国与新西兰商用">S0523</a><wbr/><a href="#src-S0524" class="ref" title="Starlink Mobile 官方页：合作对象是 T-Mobile、Optus、Telstra 等地面上运营商，并强调合作国互惠接入">S0524</a><wbr/><a href="#src-S0525" class="ref" title="FCC 批准再加 7500 颗 Gen2 并允许新增 340–485 公里轨道壳层">S0525</a></span></div></div><div><div class="blk"><div class="cmp"><div class="col pro"><h4>卫星补盲区，顺的是哪几处差异</h4><ul><li>覆盖以公里计，多一个用户不改变成本结构</li><li>业务降到短信和语音时，功率缺口能用窄带宽与阵列增益填</li><li>盲区本来就没有邻区干扰，复用次数不是瓶颈</li><li>天上不需要站址、市电引入与物业谈判</li></ul></div><div class="col con"><h4>卫星抢城市热点，撞的是哪几处墙</h4><ul><li>热点要的是单位面积可重复的信道数，受波束数与卫星数限制</li><li>楼与树在低仰角同时出现，链路余量最先被吃掉</li><li>地面能在几百米的街区把同一段频率再用一次，天上做不到</li><li>话务量密度决定每兆赫的产出，这一项它不占优</li></ul></div><div class="verdict">真正构成墙的是链路预算、仰角遮挡、频率复用这三处差异；多普勒与切换只是工程负担，有标准做法，不是物理限制。成本结构则决定它先做覆盖生意、再谈容量生意。</div></div></div></div></section><section class="chap" id="power-from-sun"><div class="chap-head"><h2>电从哪来：太阳翼的功率密度、阴影期与&quot;越大的卫星越难&quot;</h2></div><div class="figs c2"><figure class="drawn"><div class="ratio"><img src="images/04_power_deductions.png" alt="示意图·非实拍：从组件账面到手上可用，功率一路都在扣" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>自画示意图（非实拍）：账面值与手上可用之间隔着基板与机构、入射角、辐照与温度；阴影期决定按哪一档配。图上不含瓦、公斤、平方米与百分比。</figcaption></figure><figure class="drawn"><div class="ratio"><img src="images/08_power_routes.png" alt="示意图·非实拍：单星功率没人公布，三条独立的路去反推" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>自画示意图（非实拍）：测光反照给面积、已建系统给可校准的量级、厂商账面给上限；三条路交在同一个量级，分项比例仍然全空。</figcaption></figure></div><div><div class="blk"><h3>整阵口径才是真功率</h3><p>太阳能在这里不是取之不尽，而是每平方米百来瓦的稀缺产能。NASA《小卫星技术现状》电力章节的统计是：凡用太阳翼的任务，整阵比功率不论整星大小都贴在 30 W/kg 一条线上。厂商账面是另一头——波音 Spectrolab 文档给蜂窝基板多结组件 150 W/kg、350 W/m²。差距不在电池片，在基板、展开机构与余弦损失。ISS 可校准：NASA 说阵列面积约 2,500 m²，六张 iROSA 装完后全站超过 250 kW，折算约 100 W/m²。这些千瓦标的是寿命初期：辐照与温度都在扣，公开教程给的年衰减约 0.9%。</p><span class="refs"><wbr/><a href="#src-S061" class="ref" title="NASA《小卫星技术现状》第 3 章 Power：统计显示靠太阳翼供电的任务，整阵比功率不论整星大小都集中在约 30 W/kg 一条线上">S061</a><wbr/><a href="#src-S062" class="ref" title="Spectrolab（波音）2006 年会议论文：典型蜂窝基板多结组件比功率 150 W/kg、功率密度 350 W/m²">S062</a><wbr/><a href="#src-S063" class="ref" title="NASA：国际空间站太阳翼共 262,400 片电池、覆盖面积约 27,000 平方英尺（2,500 平方米）">S063</a><wbr/><a href="#src-S064" class="ref" title="NASA iROSA 项目页：每张展开式阵列寿命初期可发 28 kW 以上，六张装完后全站合计超过 250 kW（增幅超 30%）">S064</a><wbr/><a href="#src-S066" class="ref" title="Valispace 电源子系统选型教程：年衰减系数 0.0092，5 年后阵列输出剩约 95.5%，并给出按地影选面积/电池的算法">S066</a></span></div></div><div><div class="blk"><h3>一颗星吃多少电</h3><p>SpaceX 不公布单星功率，转发器、波束成形、姿控、推进也没有官方分项，只能推算。面积有两个来源对得上：Mallama 团队 2023 年测光反照算出 V2 mini 两翼 104.96 m²，NASA 2024 年空间太阳能报告按 105 m²、整星 1,250 kg 假设。按砷化镓阵列 160–180 W/m²（该口径并称比硅耐辐照）算，寿命初期约 17–19 kW；按 ISS 折算的 100 W/m² 算约 10 kW。万瓦级是合理区间，分项比例是缺项。推进有个硬参照：SPT-100 霍尔推力器标称 1.35 kW、85 mN、比冲 1,600 秒，一台就占掉万瓦级平台的一到两成。</p><span class="refs"><wbr/><a href="#src-S067" class="ref" title="Mallama 等 2023 年测光观测论文：V2 mini 天线板面积 11.07 m²、两片太阳翼 104.96 m²，合计 116.03 m²，是前代的四倍">S067</a><wbr/><a href="#src-S068" class="ref" title="NASA 2024 年《Space-Based Solar Power》报告：按每颗 Starlink v2 太阳翼 105 m²、整星 1,250 kg 作计算假设">S068</a><wbr/><a href="#src-S065" class="ref" title="NASA《Space Resources》第二卷（国家空间学会存档）：砷化镓阵列约 160–180 W/m²、比功率 25–40 W/kg，且比硅阵列更耐辐照">S065</a><wbr/><a href="#src-S063" class="ref" title="NASA：国际空间站太阳翼共 262,400 片电池、覆盖面积约 27,000 平方英尺（2,500 平方米）">S063</a><wbr/><a href="#src-S064" class="ref" title="NASA iROSA 项目页：每张展开式阵列寿命初期可发 28 kW 以上，六张装完后全站合计超过 250 kW（增幅超 30%）">S064</a><wbr/><a href="#src-S069" class="ref" title="EUCASS 论文：SPT-100 霍尔推力器自 1994 年起用于多颗地球同步卫星的电推系统，标称功率 1.35 kW、推力 85 mN">S069</a><wbr/><a href="#src-S0610" class="ref" title="NASA NTRS（Sankovic 1994）SPT-100 性能评测：比冲 1,600 s、效率约 0.50">S0610</a></span></div></div><div><div class="blk"><h3>阴影期定峰值功率</h3><ol class="steps"><li><span class="sp-title">复算周期</span><span>星链官方页写卫星约在 550 km 高度；开普勒第三定律给出周期约 95.6 分钟，每圈都要过一次地影。</span></li><li><span class="sp-title">复算占比</span><span>把地影近似成圆柱，半角 φ 满足 sinφ=R⊕/(R⊕+h)，得 φ≈67°，每圈约 134° 弧在影中，即 37%、35 分钟上下。这套占比方程见 NASA 1962 年技术备忘录；公开论文把低轨地影写成约 35 分钟。</span></li><li><span class="sp-title">按最坏情况配电池</span><span>β 角越大地影越短，同式给出 β 超过约 67° 可整圈不见影，晨昏轨道就靠这点；β=0 最坏，电池按它配——NASA 工程文件写着，电池容量取决于地影期负载与轨道参数。</span></li><li><span class="sp-title">乘数落在谁头上</span><span>日照只占约六成的一圈，阵列得一边带负载一边回充，公开教程的结论是要做到平均负载两倍上下；推力器点火只能排在日照期，一点火用户波束就得让电。</span></li></ol></div></div><div><div class="blk"><h3>面积的另一面</h3><p>功率要涨就得铺面积，而面积既是阻力板也是展开复杂度。V2 mini 星体宽 4.1 米，几乎填满 Falcon 9 的 5.2 米整流罩，两翼加天线板共 116 m²、是前代四倍多——所以整体式 V2 只能削成 mini，全尺寸留给星舰。另一头是高度：星链官方说正把全部卫星降到 500 km 以下加快离轨，但越低阻力越大、轨道维持越靠电推进；NASA 推进章节记录，星链是首个用氩作霍尔推力器工质上天的航天器。更大、更低、点得更勤，都进同一张账单。</p><span class="refs"><wbr/><a href="#src-S0616" class="ref" title="2023-02-26 报道 SpaceX 首批 V2 mini：总表面积 1,248 平方英尺（116 m²），比前代大四倍多；星体宽 13 英尺（4.1 m），几乎占满 Falcon 9 整流罩">S0616</a><wbr/><a href="#src-S067" class="ref" title="Mallama 等 2023 年测光观测论文：V2 mini 天线板面积 11.07 m²、两片太阳翼 104.96 m²，合计 116.03 m²，是前代的四倍">S067</a><wbr/><a href="#src-S0617" class="ref" title="Falcon 9 整流罩直径 5.2 m，星链采用平板式堆叠设计以在一罩内塞进尽可能多的卫星">S0617</a><wbr/><a href="#src-S0618" class="ref" title="Starlink 官方空间安全页：正把所有卫星降至 500 km 以下，以加快失效后的离轨">S0618</a><wbr/><a href="#src-S0619" class="ref" title="NASA《小卫星技术现状》第 4 章推进：记录星链航天器是首个以氩气作霍尔推力器工质在轨运行的任务">S0619</a></span></div></div><div><div class="blk"><h3>星舰改的是包络</h3><p>官方页说星舰设计可送 100 吨以上入轨（全复用），这是目标口径；2026 年 9 月 28 日 Flight 14 才是第一次入轨并释放 26 颗 V3，官方给的 V3 设计容量是下行 1 Tbps、上行 160 Gbps。更激进的一句出自同一批官方文本：SpaceX 按每吨卫星 100 kW 算轨道数据中心的账。这能当场验算——100 kW/吨等于整星 100 W/kg，按 30 W/kg 的整阵口径，光太阳翼就得是整星质量的三倍，按 Spectrolab 150 W/kg 的组件账面也要占三分之二。方向明确：单星功率上限在往万瓦级以上走，能否兑现取决于展开面积、辐照余量与散热。</p><span class="refs"><wbr/><a href="#src-S0620" class="ref" title="SpaceX 官方星舰页：称其在完全可复用构型下的设计运力为 100 吨以上入轨，属设计目标而非已实现数字">S0620</a><wbr/><a href="#src-S0621" class="ref" title="SpaceX 官方任务页：Flight 14（2026-09-28）是星舰首次进入轨道并向轨道交付有效载荷——26 颗 Starlink V3">S0621</a><wbr/><a href="#src-S0622" class="ref" title="Starlink 官方 V3 页：单星设计容量为下行 1 Tbps、上行 160 Gbps">S0622</a><wbr/><a href="#src-S0623" class="ref" title="SpaceX 官方更新页：轨道数据中心的算术写作“每年发射百万吨卫星、每吨产生 100 kW 算力”，即整星 100 W/kg">S0623</a><wbr/><a href="#src-S061" class="ref" title="NASA《小卫星技术现状》第 3 章 Power：统计显示靠太阳翼供电的任务，整阵比功率不论整星大小都集中在约 30 W/kg 一条线上">S061</a><wbr/><a href="#src-S062" class="ref" title="Spectrolab（波音）2006 年会议论文：典型蜂窝基板多结组件比功率 150 W/kg、功率密度 350 W/m²">S062</a></span></div></div></section><section class="chap" id="heat-into-vacuum"><div class="chap-head"><h2>热往哪排：真空里没有风，辐射不是&quot;不行&quot;，而是唯一的路且有硬上限</h2></div><div class="figs"><figure class="drawn"><div class="ratio"><img src="images/02_示意图_非实拍_内部可以靠流体回路搬运_外部只能靠辐射_且有硬上限.png" alt="示意图·非实拍：内部可以靠流体回路搬运，外部只能靠辐射，且有硬上限" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>按正文的热平衡论证绘制；瓦数、面积、温度与涂层指标见正文带来源的表格，图上不写数字</figcaption></figure></div><div><div class="blk"><h3>真空里没有风</h3><p>没有空气就没有对流；热走到外壳，就再也交不出去。NASA 小卫星热控综述的原文是：真空中热量只由辐射与传导传递，没有对流；星内以传导为主，对外只有辐射。能复算的只剩一个式子：P = ε·σ·A·(T⁴ − T₀⁴)，ε 是表面红外发射率、A 是辐射面积、T 与 T₀ 是辐射器与热沉的绝对温度，σ = 5.670 374 419 × 10⁻⁸ W·m⁻²·K⁻⁴（CODATA 2022 精确值）。整星平衡写成 q_solar + q_albedo + q_planetshine + Q_gen = Q_stored + Q_out,rad：前三项是太阳直射、行星反照与地球红外，Q_gen 是耗电变的热，只有末项能把热送走。</p><span class="refs"><wbr/><a href="#src-S071" class="ref" title="NASA《Small Spacecraft Technology State of the Art》第 7 章 Thermal Control（2024 版）：整星热平衡式、真空中只由辐射与传导换热、涂层 α/ε 取舍与在轨退化">S071</a><wbr/><a href="#src-S072" class="ref" title="NIST CODATA 常数页：Stefan-Boltzmann 常数 σ = 5.670 374 419…×10⁻⁸ W m⁻² K⁻⁴（2022 推荐值，精确）">S072</a></span></div></div><div><div class="blk"><h3>星内照旧搬热</h3><p>“水冷不行”只对向太空排热那一步成立。热从芯片走到面板，星内照旧用泵和工质：空间站 EATCS 是两条无水氨机械泵循环，官方口径每路排热 35 kW、合计 70 kW，辐射器两翼共六块 ORU、单块 23.3 m × 3.4 m，靠旋转关节持续转动优化排热；光伏那一路的 PVR 另可排 14 kW。不用泵也行：TacSat-4 用一根铝/氨环路热管把 5 至 700 W 废热从电子设备搬到两块辐射器段，毛细结构自行回流。搬运加辐射收尾，少一环都不成立。</p><span class="refs"><wbr/><a href="#src-S073" class="ref" title="NASA《Active Thermal Control System (ATCS) Overview》：EATCS 每路 35 kW／合计 70 kW、PVR 14 kW、Radiator ORU 23.3 m × 3.4 m、两翼各三块与旋转关节">S073</a><wbr/><a href="#src-S074" class="ref" title="Loop Heat Pipe for TacSat-4（铝/氨环路热管，传热能力 5 至 700 W，送到两块辐射器段）">S074</a></span></div></div><div><div class="blk"><h3>借温度的代价</h3><p>面积不够才借温度：T 翻倍，辐射涨 16 倍。代价写在两头。器件上，TI 的寿命笔记引那条经验法则——温度每升 10 ℃ 寿命约减半，它注明半导体只是类似。涂层上，得在两个波段同时成立：红外发射率高、太阳吸收率低。ESA 热控表面手册给的白漆 PSZ 184 是 ε 0.94 ± 0.02 配 α 0.14 ± 0.02，OCLI 二次表面镜是 0.758 至 0.788 配 0.063 至 0.069，后者更抗太阳加热、发射率却更低。NASA 综述还提醒：原子氧与紫外会让涂层发暗、α 上升，厂商初值不能拿来算寿命末期。</p><span class="refs"><wbr/><a href="#src-S075" class="ref" title="ECSS-E-HB-31-01 Part 6A《Spacecraft thermal design handbook – Part 6: Thermal Control Surfaces》(2011-12-05)：PSZ 184 与 OCLI 二次表面镜的发射率/太阳吸收率实测表">S075</a><wbr/><a href="#src-S076" class="ref" title="TI 应用笔记 SPRABX4《Calculating Useful Lifetimes of Embedded Processors》：温度每升 10 ℃ 寿命约减半的经验法则及其对半导体的适用性说明">S076</a><wbr/><a href="#src-S071" class="ref" title="NASA《Small Spacecraft Technology State of the Art》第 7 章 Thermal Control（2024 版）：整星热平衡式、真空中只由辐射与传导换热、涂层 α/ε 取舍与在轨退化">S071</a></span></div></div><div><div class="blk"><div class="tablewrap"><table><caption>三笔当场能算的账</caption><tbody><tr><td class="k">ISS 实测</td><td>六块 ORU 合计约 475 m² 排 70 kW，每平方米约 150 W，属大面积低温差。 <span class="refs"><wbr/><a href="#src-S073" class="ref" title="NASA《Active Thermal Control System (ATCS) Overview》：EATCS 每路 35 kW／合计 70 kW、PVR 14 kW、Radiator ORU 23.3 m × 3.4 m、两翼各三块与旋转关节">S073</a></span></td></tr><tr><td class="k">黑体上界</td><td>按 P = σAT⁴、T = 370 K，每平方米约 1.1 kW；ε = 1 且不计太阳吸收，是上界。 <span class="refs"><wbr/><a href="#src-S072" class="ref" title="NIST CODATA 常数页：Stefan-Boltzmann 常数 σ = 5.670 374 419…×10⁻⁸ W m⁻² K⁻⁴（2022 推荐值，精确）">S072</a><wbr/><a href="#src-S078" class="ref" title="Kees van Berkel，《The Cost and Network Limits of Space-Based AI Compute》(arXiv:2607.14172, 2026-07-15)：III-C Cooling 节按 P=AσT⁴ 反推 Starlink V2 mini 在 370 K 排 40 kW 需约 38 m²，并据照片指出实际辐射器小 2–3 倍">S078</a></span></td></tr><tr><td class="k">直流到射频</td><td>行波管厂商 dbControl 称在轨 TWT 效率接近 60%，自家产品 40% 出头；没变成射频的电都成了热。 <span class="refs"><wbr/><a href="#src-S077" class="ref" title="dB Control（空间级行波管/放大器厂商）：在轨 TWT 效率接近 60%，自家产品中段 40%；合路器损耗进一步降效率并产生需排出的热">S077</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><h3>功率与面积不同步</h3><p>功率与面积不同步：下行功率随波束与通道数近似线性叠加，废热跟着功率长；辐射器受平铺包装限制，加面积就是加块数、加质量、加关节，摊不到 ISS 那种大面积低温差。Starlink 一侧能查到的公开热控材料只有一项 SpaceX 专利 US 11,834,205 B1：发热器件固定在骨架一面，另一面的散热特征朝外辐射，等于拿结构当辐射器；专利是设计而非飞行件证明，发射率、涂层、面积与排热能力均未见公开。一篇 2026 年 arXiv 分析按理想黑体反推 V2 mini 在 370 K 排 40 kW 需约 38 m²（双面合计），作者目视认为实际小 2 至 3 倍——差值说明被略掉的发射率、太阳吸收与热容缓冲不能省。</p><span class="refs"><wbr/><a href="#src-S073" class="ref" title="NASA《Active Thermal Control System (ATCS) Overview》：EATCS 每路 35 kW／合计 70 kW、PVR 14 kW、Radiator ORU 23.3 m × 3.4 m、两翼各三块与旋转关节">S073</a><wbr/><a href="#src-S078" class="ref" title="Kees van Berkel，《The Cost and Network Limits of Space-Based AI Compute》(arXiv:2607.14172, 2026-07-15)：III-C Cooling 节按 P=AσT⁴ 反推 Starlink V2 mini 在 370 K 排 40 kW 需约 38 m²，并据照片指出实际辐射器小 2–3 倍">S078</a><wbr/><a href="#src-S079" class="ref" title="美国专利 US 11,834,205 B1《Spacecraft chassis and component configuration》（SpaceX）：发热器件直接固定于骨架、散热特征朝外辐射；专利文本，非飞行件证明">S079</a></span></div></div><div><div class="blk"><h3>峰值工况怎么躲</h3><ol class="steps"><li><span class="sp-title">先改姿态</span><span>NASA 综述把指向列为热控手段：热耗散大的阶段改姿态，让辐射面朝向深空；空间站让辐射翼持续转动。</span></li><li><span class="sp-title">再借热容</span><span>相变材料峰值吸热、低负荷放热，对应平衡式里的 Q_stored，让面板按平均值而非峰值定尺寸。</span></li><li><span class="sp-title">后调功率</span><span>可调发射率涂层、热控百叶与限功率同属一类：降热阻不如降热流。功耗排程、推进与下行同开时的热余量未见公开。</span></li></ol></div></div></section><section class="chap" id="how-to-verify"><div class="chap-head"><h2>自己复核：三条能算的式子、四个能查的出处</h2></div><div class="figs c2"><figure class="drawn"><div class="ratio"><img src="images/05_three_boundaries.png" alt="示意图·非实拍：三条能算的式子各锁一条硬边界" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>自画示意图（非实拍）：自由空间损耗定链路下限、辐射定排热上限、每平方公里容量逼两边同单位。图上不含任何具体数值，可照抄的式子与出处清单在正文。</figcaption></figure><figure class="drawn"><div class="ratio"><img src="images/07_four_sources.png" alt="示意图·非实拍：四个能查的出处，各答什么、不答什么" loading="lazy"/><span class="fig-kind">示意图 · 非实拍</span></div><figcaption>自画示意图（非实拍）：备案给请求参数、规范给接口要求、手册给设计口径、官方稿给发布方立场——都不是此刻在轨的实际。</figcaption></figure></div><div><div class="blk"><div class="tablewrap"><table><caption>三条能算的式子</caption><tbody><tr><td class="k">自由空间损耗（频率 + 距离）</td><td>这条给链路预算定下限。ITU-R P.525-5（2024-11 生效）式 (6)：Lbf = 32.4 + 20 log f + 20 log d，f 取 MHz、d 取 km，常数按正文取 32.4。频率读备案里的下行频段；斜距由轨道高度加最低仰角算，缺仰角只能报区间，量级可用 3GPP 综述里的 LEO 500–2000 km、GEO 35 786 km。 <span class="refs"><wbr/><a href="#src-S111" class="ref" title="Recommendation ITU-R P.525-5（11/2024）《Calculation of free-space attenuation》正文 PDF；§2.3 式 (6)：Lbf = 32.4 + 20 log f(MHz) + 20 log d(km)">S111</a><wbr/><a href="#src-S112" class="ref" title="ITU-R P.525 系列页：P.525-5 (11/2024) 为现行主版本（In force），前一版 P.525-4 (08/2019)">S112</a><wbr/><a href="#src-S114" class="ref" title="3GPP《Non-Terrestrial Networks (NTN)》技术综述：Rel-17（ASN.1 2022-06 冻结）为首个含 NTN 规范性要求的版本；Rel-17 WI NR_NTN_solutions 产出 TS 38.101-5 / TS 38.108 / TS 38.181；n255(L)、n256(S) 信道带宽 5/10/15/20 MHz，Rel-18 增 30 MHz；LEO 典型 500–2000 km，GEO 35 786 km">S114</a></span></td></tr><tr><td class="k">辐射排热上限（面积 × 发射率 × T⁴）</td><td>真空无对流，排热只剩辐射，上限是硬的。ECSS-E-HB-31-01 Part 9A 取 σ = 5.6697×10⁻⁸ W·m⁻²·K⁻⁴，其试验件外露面涂高发射率黑漆、ε = 0.9，第二级面积 6.88 m²。净排热写成 εσA(T⁴ − T₀⁴)，T₀ 对应太阳直射、地球反照与隔热层漏热，不扣就算高。面积能从照片量，工作温度公开资料里通常查不到。 <span class="refs"><wbr/><a href="#src-S113" class="ref" title="ECSS-E-HB-31-01 Part 9A《Space engineering — Thermal design handbook, Part 9: Radiators》2011-12-05，ECSS Secretariat / ESA-ESTEC（90 页）；p.13 给 σ = 5.6697×10⁻⁸ W·m⁻²·K⁻⁴，p.77 辐射器试验件给高发射率黑漆 ε = 0.9、第二级外露面 6.88 m²">S113</a></span></td></tr><tr><td class="k">每平方公里容量（地上与天上）</td><td>地面：小区数 × 单小区容量 ÷ 覆盖面积；天上：波束数 × 单波束容量 ÷ 足迹面积。单小区/单波束容量都退回带宽 × 频谱效率，而带宽是公开的：3GPP 为 n255（L 频段）、n256（S 频段）定的信道带宽是 5、10、15、20 MHz，Rel-18 补了 30 MHz。两边归到 bit/s/km² 才能同图比；把任何一边换成“覆盖人口”，比较即作废。 <span class="refs"><wbr/><a href="#src-S114" class="ref" title="3GPP《Non-Terrestrial Networks (NTN)》技术综述：Rel-17（ASN.1 2022-06 冻结）为首个含 NTN 规范性要求的版本；Rel-17 WI NR_NTN_solutions 产出 TS 38.101-5 / TS 38.108 / TS 38.181；n255(L)、n256(S) 信道带宽 5/10/15/20 MHz，Rel-18 增 30 MHz；LEO 典型 500–2000 km，GEO 35 786 km">S114</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><h3>一段能跑的核对脚本</h3><figure class="codewrap"><figcaption class="codebar"><span class="lang">python</span><span class="codecap">自写脚本，不是官方工具的输出；数字只用来暴露量级。</span></figcaption><pre class="code">import math
+
+def fspl_db(f_mhz, d_km):
+    # Rec. ITU-R P.525-5, eq. (6)
+    return 32.4 + 20 * math.log10(f_mhz) + 20 * math.log10(d_km)
+
+def q_rad_w(area_m2, eps, t_hot_k, t_sink_k, sigma=5.6697e-8):
+    # ECSS-E-HB-31-01 Part 9A: sigma and the coating emittance
+    return eps * sigma * area_m2 * (t_hot_k ** 4 - t_sink_k ** 4)
+
+def per_km2(n_units, unit_bps, area_km2):
+    return n_units * unit_bps / area_km2
+
+print(&quot;FSPL  1980 MHz / 1500 km : %.1f dB&quot; % fspl_db(1980, 1500))
+print(&quot;FSPL  1980 MHz / 35786 km: %.1f dB&quot; % fspl_db(1980, 35786))
+print(&quot;rad   6.88 m2, eps 0.9, 293 K vs 253 K : %.0f W&quot; % q_rad_w(6.88, 0.9, 293, 253))
+print(&quot;dens  8 beams x 2 Mbit/s over 5000 km2 : %.2g bit/s/km2&quot; % per_km2(8, 2e6, 5e3))</pre></figure><span class="refs"><wbr/><a href="#src-S111" class="ref" title="Recommendation ITU-R P.525-5（11/2024）《Calculation of free-space attenuation》正文 PDF；§2.3 式 (6)：Lbf = 32.4 + 20 log f(MHz) + 20 log d(km)">S111</a><wbr/><a href="#src-S113" class="ref" title="ECSS-E-HB-31-01 Part 9A《Space engineering — Thermal design handbook, Part 9: Radiators》2011-12-05，ECSS Secretariat / ESA-ESTEC（90 页）；p.13 给 σ = 5.6697×10⁻⁸ W·m⁻²·K⁻⁴，p.77 辐射器试验件给高发射率黑漆 ε = 0.9、第二级外露面 6.88 m²">S113</a></span></div></div><div><div class="blk"><div class="tablewrap"><table><caption>四个能查的出处</caption><tbody><tr><td class="k">频谱与轨道备案</td><td>公开入口先查 ITU Space Explorer（Space Networks/Systems 库）。SRS 按《无线电规则》第 20 条发布，收已入 MIFR、正在协调或提前公布的网络，内容来自各主管部门填的 Appendix 4 通知表；BR IFIC (Space services) online 自 2023-01-10 第 2987 期起收录，完整访问要注册。 <span class="refs"><wbr/><a href="#src-S116" class="ref" title="ITU Space Explorer 公开查询入口，查无线电通信局（BR）的 Space Networks/Systems 数据库">S116</a><wbr/><a href="#src-S117" class="ref" title="SRS（Space Radiocommunication Stations）说明：BR 依《无线电规则》第 20 条发布的业务文件，收录已登入 MIFR、正按第 9 条第 2 款协调或按第 9 条第 1 款提前公布的卫星网络与地球站；信息由主管部门以 Appendix 4 通知表或电子形式提交；2012 年 1 月起 DVD-ROM 版由 BR IFIC (Space services) 取代">S117</a><wbr/><a href="#src-S118" class="ref" title="BR IFIC (Space services) online：自 2023-01-10 第 2987 期起收录，2024-01-23 上线，完整访问需向 ITU 销售部门注册">S118</a></span></td></tr><tr><td class="k">3GPP NTN 规范编号</td><td>认编号不认转述。Rel-17 是首个含 NTN 规范性要求的版本，ASN.1 于 2022 年 6 月冻结；射频侧落在 TS 38.101-5、TS 38.108、TS 38.181，Stage-1 要求写在 TS 22.261。 <span class="refs"><wbr/><a href="#src-S114" class="ref" title="3GPP《Non-Terrestrial Networks (NTN)》技术综述：Rel-17（ASN.1 2022-06 冻结）为首个含 NTN 规范性要求的版本；Rel-17 WI NR_NTN_solutions 产出 TS 38.101-5 / TS 38.108 / TS 38.181；n255(L)、n256(S) 信道带宽 5/10/15/20 MHz，Rel-18 增 30 MHz；LEO 典型 500–2000 km，GEO 35 786 km">S114</a><wbr/><a href="#src-S115" class="ref" title="ETSI 镜像的 3GPP TS 122 261 V17.14.0（5G 卫星接入 Stage-1 要求正文）">S115</a></span></td></tr><tr><td class="k">热控制工程手册</td><td>Part 9A 共 90 页，辐射器分类、σ、发射率、视角系数都在，可对着自己那颗星的几何代入；它给的是设计口径，不给在轨实测温度。 <span class="refs"><wbr/><a href="#src-S113" class="ref" title="ECSS-E-HB-31-01 Part 9A《Space engineering — Thermal design handbook, Part 9: Radiators》2011-12-05，ECSS Secretariat / ESA-ESTEC（90 页）；p.13 给 σ = 5.6697×10⁻⁸ W·m⁻²·K⁻⁴，p.77 辐射器试验件给高发射率黑漆 ε = 0.9、第二级外露面 6.88 m²">S113</a></span></td></tr><tr><td class="k">运营商与 SpaceX 官方稿</td><td>只取发布方页面。SpaceX 2025 年 2 月的 Direct to Cell 稿写明：D2C 卫星 400 余颗，合作运营商提供 1.6–2.7 GHz 的 LTE 频谱，2024 年 11 月拿到 FCC 商用批准，首批商用落在美国与新西兰。转载里多出的数字不算。 <span class="refs"><wbr/><a href="#src-S119" class="ref" title="SpaceX/Starlink 官方新闻稿《Starlink Direct to Cell Service Now Available》（2025-02）：D2C 星座 400 余颗、合作运营商提供 1.6–2.7 GHz 的 LTE 频谱、2024-11 获 FCC 商用批准、首批商用为美国 T-Mobile 与新西兰 One NZ">S119</a></span></td></tr></tbody></table></div></div></div><div><div class="blk"><div class="tablewrap"><table><caption>看到这类说法，先问三句</caption><tbody><tr><td class="k">“覆盖 N 亿人口”</td><td>是足迹里住了多少人，还是同一时刻能被服务的用户数？前者备案等值线能算，后者要波束数 × 单波束容量 ÷ 面积。两个量不同名。 </td></tr><tr><td class="k">“峰值 X Gbps”</td><td>单星、单波束还是全星座？给了频段和调制没有？还原不成带宽 × 频谱效率，就当宣传语。 </td></tr><tr><td class="k">“散热不是问题”</td><td>面积、ε 与太阳吸收比、峰值温度定在哪一挡？缺一项就答“算不出来”。 </td></tr><tr><td class="k">“频段已拿到授权”</td><td>落地站位置、漫游条件、功率通量密度限值写了什么？拿到频谱不等于拿到经营权。 </td></tr></tbody></table></div></div></div><div><div class="blk"><h3>这套自测的边界</h3><ol class="steps"><li><span class="sp-title">步骤 1</span><span>官方数字多是申报或宣传口径：备案填的是请求参数，协调中的网络可改可撤；授权书写许可上限；新闻稿给最好情况。三者都不含此刻在轨实际。</span></li><li><span class="sp-title">步骤 2</span><span>缺输入就写“算不出来”：辐射器温度、仰角分布、单波束实际调度、地面站回程带宽，公开材料里通常全空。填个猜测值，后面每步都在替它背书。</span></li><li><span class="sp-title">步骤 3</span><span>算得动也只到量级：三条式子回答“这句话物理上可能吗”，不复算商业指标。它能否掉不可能，否不掉合理但夸大，后者要按期回查。</span></li></ol></div></div></section><div class="srcs" id="sources"><h2>来源</h2><ol><li id="src-S021"><a href="https://docs.fcc.gov/public/attachments/DA-26-471A1.pdf" rel="noreferrer" target="_blank">FCC《Memorandum Opinion and Order》DA 26-471，GN Docket 25-302，2026 年 5 月 12 日通过并发布：批准 EchoStar 的 AWS-4、AWS-H Block、未配对 AWS-3 频谱执照与地球站执照转让给 SpaceX 用于下一代直连手机（D2D）网络，内含各频段范围、SCS 与 MSS 两套业务身份、建设义务与干扰规则</a>（Federal Communications Commission） · 查阅 2026-10-11</li><li id="src-S022"><a href="https://www.3gpp.org/technologies/ntn-overview" rel="noreferrer" target="_blank">3GPP 官方 NTN 技术概览页：Rel-17 工作项 NR_NTN_solutions 新增 n255（L 波段）与 n256（S 波段），写入 TS 38.101-5 与 TS 38.108，假设为透明转发载荷、功率等级 3 手持机，共存研究为 TR 38.863；Rel-18 新增 n254（上行 1610–1626.5、下行 2483.5–2500 MHz）并把信道带宽加到 30 MHz</a>（3GPP） · 查阅 2026-10-11</li><li id="src-S023"><a href="https://support.apple.com/zh-cn/121029" rel="noreferrer" target="_blank">Apple 官方 iPhone 16 技术规格页，型号 A3288 的 5G NR / LTE 频段清单（本会话检索于 2026 年 10 月）</a>（Apple） · 查阅 2026-10-11</li><li id="src-S031"><a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm" rel="noreferrer" target="_blank">SpaceX 向美国 SEC 提交的招股说明书（Form S-1）：Starlink 与 Starlink Mobile 的口径数据（截至 2026-03-31）——9,600 颗卫星、1030 万用户、164 个市场、手机业务约 30 国、400 余处地面站、2.3 万余条星间激光、MNO 合作定义、EchoStar AWS-3/AWS-4/H-Block 牌照购买协议、逐国许可要求、数据本地化风险表述</a>（SEC EDGAR） · 查阅 2026-10-11</li><li id="src-S032"><a href="https://starlink.com/public-files/DIRECT_TO_CELL_SERVICE_FEB_25.pdf" rel="noreferrer" target="_blank">Starlink 官方通告《Direct to Cell Service Now Available》（2025-02）：伙伴提供 1.6–2.7 GHz LTE 频谱、「像标准漫游伙伴那样接入」、2024-11 获 FCC 批准、美新西兰商用、飓风与山火特别授权</a>（Starlink） · 查阅 2026-10-11</li><li id="src-S033"><a href="https://arxiv.org/html/2506.00283v3" rel="noreferrer" target="_blank">基于百万级众测的 Starlink 直连手机测量研究：星链以独立 MNC（830/210）与 T-Mobile 的 260 并存、FCC 星站执照 SAT-LOA-20210511-00064 使用 T-Mobile 持牌 1900 MHz PCS G Block 的 2×5 MHz、2024-03 FCC 拒绝其 2 GHz MSS 申请（DA-24-300）、2024-11 附干扰条件放行</a>（arXiv） · 查阅 2026-10-11</li><li id="src-S034"><a href="https://www.bundesnetzagentur.de/DE/Fachthemen/Telekommunikation/OeffentlicheSicherheit/Ueberwachung_Auskunftsert/_Links/Text_TKG_110.html" rel="noreferrer" target="_blank">德国联邦网络局（BNetzA）专页：《电信法》监听实施与信息查询答复义务（§ 170 TKG，原 § 110 TKG，另含 § 174 手动查询程序）</a>（Bundesnetzagentur） · 查阅 2026-10-11</li><li id="src-S035"><a href="https://starlink.com/support/article/b7142f8e-9762-6fcf-03f5-0d53c2895b3f" rel="noreferrer" target="_blank">Starlink 官方支持条目《What is the Starlink Service Level Agreement?》：Local Priority 与 Global Priority 计划每计费周期 99.9% 可用承诺（该页为脚本渲染，条款文字取自官方页面检索摘要）</a>（Starlink） · 查阅 2026-10-11</li><li id="src-S036"><a href="https://theinvestor.vn/starlink-sets-up-12-mln-vietnam-unit-after-pilot-satellite-internet-service-okayed-d18413.html" rel="noreferrer" target="_blank">越南《投资报》（2026-02）：星链先在越南设立 120 万美元本地实体，随后获批试点卫星互联网服务</a>（The Investor） · 查阅 2026-10-11</li><li id="src-S037"><a href="https://brusselssignal.eu/2026/09/starlink-ground-station-hit-by-suspected-arson-in-poland/" rel="noreferrer" target="_blank">Brussels Signal（2026-09-24）：2026-09-23 波兰 Wola Krobowska（Grójec 县）一座由国有 Exatel 运营的星链地面站起火，配电柜、发电机与天线受损</a>（Brussels Signal） · 查阅 2026-10-11</li><li id="src-S051"><a href="https://www.itu.int/rec/R-REC-P.525-5-202411-I/en" rel="noreferrer" target="_blank">ITU-R P.525-5《Calculation of free-space attenuation》，2024-11-03 批准、现行有效的自由空间衰减标准</a>（ITU-R） · 查阅 2026-10-11</li><li id="src-S052"><a href="https://rfessentials.com/resources/rf-glossary/free-space-path-loss/" rel="noreferrer" target="_blank">自由空间损耗的工程回归式 FSPL(dB)=20log10(d_km)+20log10(f_MHz)+32.44</a>（RF Essentials） · 查阅 2026-10-11</li><li id="src-S053"><a href="https://arstechnica.com/tech-policy/2021/04/fcc-lets-spacex-cut-satellite-altitude-to-improve-starlink-speed-and-latency/" rel="noreferrer" target="_blank">FCC 2019 年 4 月批准 1,584 颗星链卫星在 550 公里高度运行</a>（Ars Technica） · 查阅 2026-10-11</li><li id="src-S054"><a href="https://www.eoportal.org/satellite-missions/starlink" rel="noreferrer" target="_blank">星链星座轨道参数：高度 207–630 公里、多数在 559 公里、倾角 43°–97.6°</a>（EO Portal (ESA/CNES)） · 查阅 2026-10-11</li><li id="src-S055"><a href="https://www.transfinite.com/content/D2D_Uplink_Link_Budgets_Services_and_Constellation_Design" rel="noreferrer" target="_blank">直连手机上行链路预算：终端最大发射功率受限于 23 dBm（−7 dBW）</a>（Transfinite） · 查阅 2026-10-11</li><li id="src-S056"><a href="https://www.frontiersin.org/journals/communications-and-networks/articles/10.3389/frcmn.2021.643095/full" rel="noreferrer" target="_blank">LEO 相对地面约 7.5 km/s、轨道周期 90–110 分钟的星座参数比较</a>（Frontiers in Communications and Networks (2021)） · 查阅 2026-10-11</li><li id="src-S057"><a href="https://futurenetworks.ieee.org/images/files/pdf/tutorials/RS_5G_NTN_Takes_Flight_IEEE_Sept2024_1.pdf" rel="noreferrer" target="_blank">5G NTN 教程：2 GHz 载波、LEO 星座多普勒频移 ±48 kHz</a>（IEEE Future Networks (2024-09)） · 查阅 2026-10-11</li><li id="src-S058"><a href="https://www.3gpp.org/technologies/ntn-overview" rel="noreferrer" target="_blank">3GPP Rel-17 NTN 概览，为手机直连新增 n255（L 波段）与 n256（S 波段）</a>（3GPP） · 查阅 2026-10-11</li><li id="src-S059"><a href="https://dspace.networks.imdea.org/bitstream/handle/20.500.12761/2039/Blind_5G_NR_Leo_Initial_Access_Receiver.pdf?sequence=1" rel="noreferrer" target="_blank">基础设施侧多普勒预补偿可将 2.5 GHz 载波残余频偏压到约 4.7 kHz 以下</a>（IMDEA Networks） · 查阅 2026-10-11</li><li id="src-S0510"><a href="https://cdn.arstechnica.net/wp-content/uploads/2023/05/SpaceX-T-Mobile-Technical-Narrative.pdf" rel="noreferrer" target="_blank">SpaceX Gen2 Direct-to-Cellular 技术说明（提交 FCC 的附件）：每星多波束、波束中心在地面保持静止并做频偏/时延补偿</a>（SpaceX） · 查阅 2026-10-11</li><li id="src-S0511"><a href="https://www.semanticscholar.org/paper/Measuring-the-Satellite-Links-of-a-LEO-Network-Pan-Zhao/2b0db4c60f4d1a0f23f993eede5cce8a4e268c1c" rel="noreferrer" target="_blank">实测研究：星链以 15 秒为粒度做终端-卫星切换</a>（Measuring the Satellite Links of a LEO Network） · 查阅 2026-10-11</li><li id="src-S0512"><a href="https://henryfang.net/assets/pdf/fang2024robust.pdf" rel="noreferrer" target="_blank">引述前述测量：星链以 15 秒粒度更新终端与卫星链路，并分析其对实时业务的影响</a>（Robust Live Streaming over LEO Satellite Constellations (2024)） · 查阅 2026-10-11</li><li id="src-S0513"><a href="http://www.iaeej.com/xxydzgc/article/html/202403002" rel="noreferrer" target="_blank">智能超表面辅助低轨卫星通信综述：城市、峡谷、森林等视线遮蔽区出现严重视距衰落与多径</a>（电子学报（电子与信息学报系）） · 查阅 2026-10-11</li><li id="src-S0514"><a href="https://jeit.ac.cn/cn/article/doi/10.11999/JEIT230941?viewType=HTML" rel="noreferrer" target="_blank">面向低轨卫星的星地信道模型综述，含大气/降雨与遮挡衰减建模</a>（ Journal of Electronics &amp; Information Technology） · 查阅 2026-10-11</li><li id="src-S0515"><a href="https://www.cernet.edu.cn/info/fei/wang_luo/ji_shu_ying_yong/200604/t20060419_174876.shtml" rel="noreferrer" target="_blank">复用系数取 3 或 7 时抑制同频干扰、但频谱效率降到三分之一或七分之一</a>（CERNET 技术新知） · 查阅 2026-10-11</li><li id="src-S0516"><a href="https://www.zte.com.cn/china/about/magazine/zte-communications/2011/6/cn_687/273658.html" rel="noreferrer" target="_blank">小区间干扰协调（ICIC）原理：在空、时、频域协调资源以降低邻区干扰</a>（中兴通讯技术） · 查阅 2026-10-11</li><li id="src-S0517"><a href="https://starlink.com/technology" rel="noreferrer" target="_blank">官方技术页：每颗卫星 5 副 Ku 波段相控阵天线、3 副 Ka/E 双频天线</a>（Starlink / SpaceX） · 查阅 2026-10-11</li><li id="src-S0518"><a href="https://starlink.com/public-files/starlinkProgressReport_2024.pdf" rel="noreferrer" target="_blank">Starlink 2024 年度进展报告，重复同一卫星天线硬件口径</a>（SpaceX） · 查阅 2026-10-11</li><li id="src-S0519"><a href="http://www.news.cn/20260128/1270268485b94f8ea0c3da3c712d0497/c.html" rel="noreferrer" target="_blank">截至 2025 年底中国 5G 基站 483.8 万个、平均每万人 34.4 个（工信部数据）</a>（新华社） · 查阅 2026-10-11</li><li id="src-S0520"><a href="https://www.china-tower.com/Index/show/catid/17/id/1648.html" rel="noreferrer" target="_blank">中国铁塔 2025 年业绩：塔类站址 214.9 万个、塔类业务收入 754.98 亿元、运营商塔类租户 356.7 万户</a>（中国铁塔） · 查阅 2026-10-11</li><li id="src-S0521"><a href="http://www.eeo.com.cn/2020/1020/423432.shtml" rel="noreferrer" target="_blank">公开数据：2018 年中国电信运营商电费支出占网络运营总费用 16%、占收入 3.59%</a>（经济日报网） · 查阅 2026-10-11</li><li id="src-S0522"><a href="https://techblog.comsoc.org/2026-06-27/ft-spacex-considering-starlink-direct-to-consumer-mobile-service-terrestrial-cellular-network-infrastructure-in-the-u-s/" rel="noreferrer" target="_blank">转述 FT 报道：2025 年 9 月 SpaceX 以约 170 亿美元向 EchoStar 购买无线频谱许可</a>（IEEE ComSoc Technology Blog） · 查阅 2026-10-11</li><li id="src-S0523"><a href="https://starlink.com/public-files/DIRECT_TO_CELL_SERVICE_FEB_25.pdf" rel="noreferrer" target="_blank">官方公告：Direct to Cell 短信服务 2025 年 2 月在美国与新西兰商用</a>（Starlink / SpaceX） · 查阅 2026-10-11</li><li id="src-S0524"><a href="https://starlink.com/business/mobile" rel="noreferrer" target="_blank">Starlink Mobile 官方页：合作对象是 T-Mobile、Optus、Telstra 等地面上运营商，并强调合作国互惠接入</a>（Starlink） · 查阅 2026-10-11</li><li id="src-S0525"><a href="https://www.thefastmode.com/technology-solutions/46696-fcc-approves-spacex-starlink-gen2-expansion-with-7-500-additional-satellites" rel="noreferrer" target="_blank">FCC 批准再加 7500 颗 Gen2 并允许新增 340–485 公里轨道壳层</a>（The Fast Mode） · 查阅 2026-10-11</li><li id="src-S011"><a href="https://ir.echostar.com/news-releases/news-release-details/echostar-announces-spectrum-sale-and-commercial-agreement-spacex" rel="noreferrer" target="_blank">EchoStar 官方新闻稿：与 SpaceX 的频谱出售与商业协议，AWS-4/H-block 约 170 亿美元（现金+股票各最高 85 亿），2025-09-08</a>（EchoStar Investor Relations） · 查阅 2026-10-11</li><li id="src-S012"><a href="https://www.reuters.com/business/media-telecom/spacex-buys-wireless-spectrum-echostar-17-billion-deal-2025-09-08/" rel="noreferrer" target="_blank">路透：SpaceX 以约 170 亿美元购买 EchoStar 无线频谱，2025-09-08</a>（Reuters） · 查阅 2026-10-11</li><li id="src-S013"><a href="https://www.lightreading.com/satellite/how-the-echostar-spacex-deal-reshapes-the-u-s-wireless-and-satellite-landscape" rel="noreferrer" target="_blank">Light Reading：AWS-4 频段为 2000–2020/2180–2200 MHz 及交易结构</a>（Light Reading） · 查阅 2026-10-11</li><li id="src-S014"><a href="https://ir.echostar.com/news-releases/news-release-details/echostar-agrees-sell-full-unpaired-aws-3-spectrum-license" rel="noreferrer" target="_blank">EchoStar 官方新闻稿：向 SpaceX 出售非配对 AWS-3，约 26 亿美元，2025-11-06</a>（EchoStar Investor Relations） · 查阅 2026-10-11</li><li id="src-S015"><a href="https://www.fcc.gov/document/order-granting-spacex-echostar-applications" rel="noreferrer" target="_blank">FCC 授予令：批准 EchoStar AWS-4、AWS-H Block 与非配对 AWS-3 牌照转让给 SpaceX</a>（FCC） · 查阅 2026-10-11</li><li id="src-S016"><a href="https://docs.fcc.gov/public/attachments/DA-26-471A1.pdf" rel="noreferrer" target="_blank">FCC DA-26-471 令文：豁免原地面建设义务，为 AWS-4/AWS-H 另定新建设期限，2026-05</a>（FCC） · 查阅 2026-10-11</li><li id="src-S017"><a href="https://totaltele.com/fcc-greenlights-echostars-40bn-spectrum-sale-to-spacex-att/" rel="noreferrer" target="_blank">TotalTele：FCC 放行 EchoStar 对 SpaceX/AT&amp;T 频谱出售，AWS-4+H-block 约 65 MHz</a>（TotalTele） · 查阅 2026-10-11</li><li id="src-S018"><a href="https://broadbandbreakfast.com/fcc-told-to-deny-or-condition-echostar-waivers-tied-to-spacex-spectrum-transfer/" rel="noreferrer" target="_blank">Broadband Breakfast：关于是否豁免/附加 AWS-4 地面建设义务的争论</a>（Broadband Breakfast） · 查阅 2026-10-11</li><li id="src-S019"><a href="https://starlink.com/business" rel="noreferrer" target="_blank">Starlink Business 官方产品页：55 美元/月起、硬件 349 美元</a>（Starlink） · 查阅 2026-10-11</li><li id="src-S0110"><a href="https://starlink.com/business/mobile" rel="noreferrer" target="_blank">Starlink Mobile（Direct-to-Cell）官方页：配现有 LTE 手机、卫星天线如太空中的手机塔</a>（Starlink） · 查阅 2026-10-11</li><li id="src-S0111"><a href="https://starlink.com/public-files/starlinkProgressReport_2025.pdf" rel="noreferrer" target="_blank">SpaceX/Starlink 2025 进展报告：第一代 DTC 星座部署超 650 颗；多家电信商接入蜂窝 backhaul</a>（SpaceX/Starlink） · 查阅 2026-10-11</li><li id="src-S0112"><a href="https://starlink.com/support/article/4497c64e-d214-803a-bd8d-1f0c957b894d" rel="noreferrer" target="_blank">Starlink 移动（in-motion）官方支持页：可在公海与境外使用</a>（Starlink） · 查阅 2026-10-11</li><li id="src-S0113"><a href="https://en.wikipedia.org/wiki/Starlink" rel="noreferrer" target="_blank">维基百科：Starlink Services LLC 为 SpaceX 电信子公司，服务约 160 个国家/地区</a>（Wikipedia） · 查阅 2026-10-11</li><li id="src-S0114"><a href="https://www.space.com/spacex-starlink-satellites.html" rel="noreferrer" target="_blank">Space.com：2026-08-27 约 11,102 颗在轨、11,087 颗在役（Jonathan McDowell 计数）</a>（Space.com） · 查阅 2026-10-11</li><li id="src-S0115"><a href="https://www.nasa.gov/smallsat-institute/sst-soa/thermal-control/" rel="noreferrer" target="_blank">NASA 小卫星研究所《热控制》：真空中传热只剩辐射与传导、无对流</a>（NASA） · 查阅 2026-10-11</li><li id="src-S0116"><a href="https://www.nasa.gov/wp-content/uploads/2021/02/473486main_iss_atcs_overview.pdf" rel="noreferrer" target="_blank">NASA ISS 主动热控系统（ATCS）概述：机械泵驱动闭式回路，负责集热、输热、排热</a>（NASA） · 查阅 2026-10-11</li><li id="src-S041"><a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm" rel="noreferrer" target="_blank">SpaceX 上市招股书（S-1，SEC EDGAR），官方申报文件：截至 2026-03-31 约 9,600 颗在轨宽带与手机星、约 1,030 万订户、住宅高峰下行中位 225 Mbps、V3 每星 1 Tbps 下行与单发 60 颗/二十倍表述、约 650 颗 V1 Mobile 星服务约 740 万月度唯一设备与约 30 个国家、EchoStar 65 MHz 加全球 MSS 共 196 亿美元、企业客户名单</a>（SEC / SpaceX） · 查阅 2026-10-11</li><li id="src-S042"><a href="https://www.ookla.com/articles/starlink-hits-new-us-highs" rel="noreferrer" target="_blank">Ookla Research 实测报告（Sue Marek，2026-05-05）：2025 下半年 Speedtest 用户数据，除阿拉斯加外各州中位下行均超 100 Mbps，内布拉斯加最高 200.80 Mbps，44.7% 用户达 FCC 100/20 Mbps 标准</a>（Ookla） · 查阅 2026-10-11</li><li id="src-S043"><a href="https://arxiv.org/abs/2506.00283" rel="noreferrer" target="_blank">马德里理工大学（UPM）DS2D 实测研究摘要：美国 2024-10 至 2025-07 众包移动网络测量，由 SINR 估出每波束约 3 Mbps，可扩至 18 Mbps；直连卫星中位 RSRP 比地面网络低 24 dB</a>（arXiv） · 查阅 2026-10-11</li><li id="src-S044"><a href="https://uk.pcmag.com/networking/158404/how-fast-is-t-mobiles-cellular-starlink-service-new-study-breaks-it-down" rel="noreferrer" target="_blank">PCMag 对该研究的报道（2025-06-04 更新）：样本超一百万条测量、SpaceX 自测出现过 17 Mbps、2025 年 6 月在轨手机星 618 颗（2 月中约 460 颗）、FCC 三月给予aggregate 功率豁免</a>（PCMag） · 查阅 2026-10-11</li><li id="src-S045"><a href="https://www.ookla.com/articles/att-users-show-interest-in-t-mobiles-starlink-satellite-service" rel="noreferrer" target="_blank">Ookla Research（Mike Dano，2025-10-16）：T-Satellite 短信 2025-07-23 正式上线，数据取自 2024-12 至 2025-09 注册到星链手机的安卓设备；洛杉矶县活跃度最高、2025 年初山火期间在当地放开免费短信；美国 4G 运营商 2024 年中位下行 33 Mbps、上行 4 Mbps；手机星与宽带星为两套卫星、共用回传链路</a>（Ookla） · 查阅 2026-10-11</li><li id="src-S081"><a href="https://www.sec.gov/Archives/edgar/data/1181412/000162828026036936/spaceexplorationtechnologi.htm" rel="noreferrer" target="_blank">SpaceX 向 SEC 递交的上市申报文件 S-1 正文：卫星预计使用寿命（宽带 5 年、一代直连手机 3 年）、Starlink 发射成本资本化进卫星账面、分部收入与经营盈亏、在轨约 9,600 颗与 2025 年部署 3,000 余颗、用户数与 ARPU、122 次内部发射、客户 A 占比 20.9%</a>（U.S. Securities and Exchange Commission / SpaceX） · 查阅 2026-10-11</li><li id="src-S082"><a href="https://starlink.com/public-files/Starlink_Approach_to_Satellite_Demisability.pdf" rel="noreferrer" target="_blank">星链官方《卫星退轨与烧毁》说明：2024 年起主动大规模下撤早期 V1，多数在轨五年以上；在轨失效星仅一颗</a>（Starlink (SpaceX)） · 查阅 2026-10-11</li><li id="src-S083"><a href="https://arstechnica.com/space/2026/03/rocket-report-spacex-launch-prices-are-going-up-russia-fixes-broken-launch-pad/" rel="noreferrer" target="_blank">Ars Technica Rocket Report（2026-03-06）报道 SpaceX 公开价目调整：猎鹰 9 专属发射由 7,000 万升至 7,400 万美元，拼单由 6,500 升至 7,000 美元/公斤</a>（Ars Technica） · 查阅 2026-10-11</li><li id="src-S084"><a href="https://www.fool.com/investing/2024-02-22/spacex-secret-could-cost-musk-82-billion-a-year/" rel="noreferrer" target="_blank">第三方对单星制造成本的估算口径（每颗约 50 万美元、每次猎鹰 9 约 6,700 万美元），非官方数字</a>（The Motley Fool） · 查阅 2026-10-11</li><li id="src-S085"><a href="https://www.costquest.com/wp-content/uploads/2020/10/4g-cost-study-us.pdf" rel="noreferrer" target="_blank">CostQuest Associates 为 United States Cellular Corp 做的《美国 4G LTE 未覆盖区成本研究》（2017-02-15）：约 37,500 座新塔、前期 125 亿美元、年维护资本 10.5 亿加年运营 10.8 亿、年收入 2.36 亿、十年净现值 −256 亿</a>（CostQuest Associates） · 查阅 2026-10-11</li><li id="src-S086"><a href="https://mba.tuck.dartmouth.edu/pages/faculty/syd.finkelstein/articles/Iridium.pdf" rel="noreferrer" target="_blank">Dartmouth Tuck 商学院《铱星的兴衰》案例研究：1998 年 11 月 1 日放号、手机 3,000 美元、每分钟 3–8 美元、广告 1.8 亿、总成本逾 50 亿、1999 年 8 月 2 万用户与拖欠 15 亿美元贷款后申请 Chapter 11</a>（Tuck School of Business） · 查阅 2026-10-11</li><li id="src-S087"><a href="https://en.wikipedia.org/wiki/Iridium_Communications" rel="noreferrer" target="_blank">铱星公司沿革条目：2001 年 3 月以 2,500 万美元购入资产、抹去逾 40 亿美元债务，此后由美国政府订单维持网络运行</a>（Wikipedia） · 查阅 2026-10-11</li><li id="src-S088"><a href="https://investor.iridium.com/2019-02-06-Iridium-Declares-Victory-3-Billion-Satellite-Constellation-Upgrade-Complete" rel="noreferrer" target="_blank">铱星官方公告：投入约 30 亿美元的 NEXT 星座替换完成</a>（Iridium Communications 投资者关系） · 查阅 2026-10-11</li><li id="src-S089"><a href="https://runwaygirlnetwork.com/2020/03/oneweb-files-for-bankruptcy-pursues-sale-of-the-business/" rel="noreferrer" target="_blank">OneWeb 申请破产保护时的在轨规模：已成功发射 74 颗，星座规划 650 颗</a>（Runway Girl Network） · 查阅 2026-10-11</li><li id="src-S0810"><a href="https://www.aviationtoday.com/2020-03-31/oneweb-files-chapter-11-bankruptcy/" rel="noreferrer" target="_blank">OneWeb 于 2020 年 3 月 27 日在纽约南区联邦破产法院申请 Chapter 11</a>（Aviation Today） · 查阅 2026-10-11</li><li id="src-S0811"><a href="https://www.ft.com/content/fbb3e996-f2bd-4d12-89eb-d7413ba5f737" rel="noreferrer" target="_blank">英国法院批准重整方案：英国政府与 Bharti Global 各持有 OneWeb 约 45%</a>（Financial Times） · 查阅 2026-10-11</li><li id="src-S0812"><a href="https://www.reuters.com/business/media-telecom/starlink-rival-eutelsat-plans-oneweb-expansion-after-1-billion-satellite-order-2026-09-10/" rel="noreferrer" target="_blank">路透报道提及 Eutelsat 与 OneWeb 约 34 亿美元的并购及其后续融资与扩张</a>（Reuters） · 查阅 2026-10-11</li><li id="src-S0813"><a href="https://starlink.com/updates/starlink-version-3-satellites" rel="noreferrer" target="_blank">星链官方产品页：V3 单星设计下行容量 1 Tbps、上行 160 Gbps</a>（Starlink (SpaceX)） · 查阅 2026-10-11</li><li id="src-S091"><a href="https://m.c114.com.cn/w2514-1283117.html" rel="noreferrer" target="_blank">通信业媒体：GW 星座规划 12,992 颗，其中 GW-A59 子星座 6,080 颗</a>（C114 通信网） · 查阅 2026-10-11</li><li id="src-S092"><a href="https://www.21jingji.com/article/20260409/herald/b20e158b221bffb82ea806e6b0a8da60.html" rel="noreferrer" target="_blank">21 世纪经济报道：GW-A59 布在 500 公里以下、GW-A2 布在 1,145 公里，及 2026 年组网节奏</a>（21 世纪经济报道） · 查阅 2026-10-11</li><li id="src-S093"><a href="https://m.21jingji.com/article/20260706/herald/9ed7ad5e6c5f1998e00c39d619e1d12b_zaker.html" rel="noreferrer" target="_blank">千帆星座密集发射、在轨总数升至 238 颗；一期 648/二期 1,296/三期超 1.5 万颗的分阶段口径（2026-07-06）</a>（21 世纪经济报道） · 查阅 2026-10-11</li><li id="src-S094"><a href="https://m.cls.cn/detail/1688664" rel="noreferrer" target="_blank">《科创板日报》披露 Honghu-3（鸿鹄-3）向 ITU 提交的申报材料：160 个轨道面、10,000 颗（2024-05）</a>（财联社 科创板日报） · 查阅 2026-10-11</li><li id="src-S095"><a href="https://news.bjd.com.cn/2026-01-13/11520133.shtml" rel="noreferrer" target="_blank">京报网：中国向 ITU 申报的低轨卫星总量已达 20 万颗量级</a>（京报网） · 查阅 2026-10-11</li><li id="src-S096"><a href="https://www.news.cn/tech/20260731/289612ee2876499da01167f2bbf2f411/c.html" rel="noreferrer" target="_blank">新华社 2026-07-31：千帆 238 颗稳定在轨、GW 约 180 颗运转，两大星座均计划年内完成骨干网组网</a>（新华社） · 查阅 2026-10-11</li><li id="src-S097"><a href="https://tech.cnr.cn/techgsrw/20260916/t20260916_527815153.shtml" rel="noreferrer" target="_blank">央广网：2026-09-16 引力一号遥三发射千帆极轨 26 组，星座规模增至 256 颗</a>（央广网） · 查阅 2026-10-11</li><li id="src-S098"><a href="https://www.shkjdw.gov.cn/c/2026-07-13/534489.shtml" rel="noreferrer" target="_blank">上海科技党建（垣信方面表述）：目标 2026 年内累计在轨 324 颗；6 月 9 日垣信首颗手机直连试验星入轨</a>（上海市科技党委） · 查阅 2026-10-11</li><li id="src-S099"><a href="https://finance.sina.com.cn/tech/roll/2025-04-08/doc-inesmvkw4932266.shtml" rel="noreferrer" target="_blank">中国信科 2025 年 3 月在 3GPP SA 第 107 次会议（仁川）与荷兰 TNO 共同牵头 NTN 项目并任第一报告人，为其第 16 项卫星 NTN 国际标准立项</a>（新浪科技 转 人民邮电报系） · 查阅 2026-10-11</li><li id="src-S0910"><a href="http://finance.people.com.cn/n1/2025/0827/c1004-40551348.html" rel="noreferrer" target="_blank">工信部《关于优化业务准入促进卫星通信产业发展的指导意见》：创新不换卡不换号模式支持手机直连卫星</a>（人民网 财经） · 查阅 2026-10-11</li><li id="src-S0911"><a href="https://m.bjnews.com.cn/detail/1757319121129772.html" rel="noreferrer" target="_blank">2025-09-08 工信部向中国联通颁发卫星移动通信业务经营许可</a>（新京报） · 查阅 2026-10-11</li><li id="src-S0912"><a href="https://www.news.cn/politics/20250929/e19cf8bd1e624a6ca3266791c3cf5e2d/c.html" rel="noreferrer" target="_blank">2025-09-29 工信部向中国移动颁发卫星移动通信业务经营许可，获许可后可依法开展手机直连卫星等业务</a>（新华社） · 查阅 2026-10-11</li><li id="src-S0913"><a href="https://www.news.cn/20260609/4958e6730eba485fae66a56a5b21458a/c.html" rel="noreferrer" target="_blank">新华社：2026-06-09 朱雀二号改进型遥六发射千帆 DTC01 星与中国移动 02 星</a>（新华社） · 查阅 2026-10-11</li><li id="src-S0914"><a href="https://www.cls.cn/detail/2411103" rel="noreferrer" target="_blank">《科创板日报》2026-06-28：中国移动 02 星已完成上下行链路测试，03 星或将择机发射</a>（财联社 科创板日报） · 查阅 2026-10-11</li><li id="src-S0915"><a href="https://m.thepaper.cn/newsDetail_forward_33494461" rel="noreferrer" target="_blank">《IT 时报》MWC26 上海报道（2026-07）：星网与垣信的卫星互联网业务许可仍待发放</a>（澎湃新闻 转 IT时报） · 查阅 2026-10-11</li><li id="src-S0916"><a href="https://www.itu.int/en/ITU-R/seminars/wrs/Documents/2024/Space-Workshops/Resolution%208%20and%2035.pdf" rel="noreferrer" target="_blank">ITU 官方研讨材料：第 35 号决议的部署里程碑（10% / 50% / 100%）</a>（ITU-R） · 查阅 2026-10-11</li><li id="src-S0917"><a href="https://www.itu.int/en/ITU-R/space/Pages/res35main.aspx" rel="noreferrer" target="_blank">ITU 专页：Resolution 35 (REV. WRC-23) 以里程碑方式管理空间站频率分配的实施</a>（ITU） · 查阅 2026-10-11</li><li id="src-S0918"><a href="https://stcn.com/article/detail/3242546.html" rel="noreferrer" target="_blank">证券时报：把频轨义务概括为 2 年完成 10%、5 年 50%、7 年完成全部部署</a>（证券时报） · 查阅 2026-10-11</li><li id="src-S0919"><a href="https://www.guancha.cn/GongSi/2026_08_16_827515.shtml" rel="noreferrer" target="_blank">观察者网：2026 年 8 月 12 天连发两组卫星互联网低轨卫星</a>（观察者网） · 查阅 2026-10-11</li><li id="src-S0920"><a href="https://www.cnsa.gov.cn/n6758823/n6758838/c10720622/content.html" rel="noreferrer" target="_blank">国家航天局：朱雀三号遥一重复使用运载火箭发射入轨（2025-12-03）</a>（国家航天局） · 查阅 2026-10-11</li><li id="src-S0921"><a href="https://stcn.com/article/detail/3523300.html" rel="noreferrer" target="_blank">证券时报：朱雀三号首飞入轨成功、一级回收失利；一次性任务近地轨道运力约 21.3 吨</a>（证券时报） · 查阅 2026-10-11</li><li id="src-S0922"><a href="https://www.landspace.com/news-detail.html?itemid=46" rel="noreferrer" target="_blank">蓝箭航天官网：朱雀三号一子级设计复用不少于 20 次，一次性低轨运力 21.3 吨、航区回收任务 18.3 吨</a>（蓝箭航天） · 查阅 2026-10-11</li><li id="src-S0923"><a href="https://www.cnsa.gov.cn/n6758823/n6758838/c10761540/content.html" rel="noreferrer" target="_blank">国家航天局：我国首次成功实施重复使用运载火箭一子级回收，也是全球首次运载火箭海上网系回收（2026-07-10）</a>（国家航天局） · 查阅 2026-10-11</li><li id="src-S0924"><a href="https://www.news.cn/politics/20260819/1a901f63eb2c43fd9793eaf6849bce47/c.html" rel="noreferrer" target="_blank">新华社：2026-08-19 朱雀三号遥二一子级按预定程序成功完成陆地回收</a>（新华社） · 查阅 2026-10-11</li><li id="src-S0925"><a href="https://finance.cnr.cn/cjtt/20260819/t20260819_527782895.shtml" rel="noreferrer" target="_blank">央广财经：朱雀三号一子级设计复用不少于 20 次，终极目标把每公斤发射费用降到 2 万元人民币以下</a>（央广网） · 查阅 2026-10-11</li><li id="src-S0926"><a href="https://www.news.cn/20260915/4d976180953f4b07be03dbd323f7f1d4/c.html" rel="noreferrer" target="_blank">新华社：2026-09-15 商业火箭一箭十星，民营商业火箭首次执行规模化卫星互联网星座组网任务</a>（新华社） · 查阅 2026-10-11</li><li id="src-S0927"><a href="https://finance.sina.cn/tech/2026-10-10/detail-iniustfu0722743.d.html" rel="noreferrer" target="_blank">2026-10-10 长征十二号在海南商业航天发射场发射卫星互联网低轨 27 组</a>（新浪科技） · 查阅 2026-10-11</li><li id="src-S0928"><a href="http://www.cww.net.cn/article?id=608054" rel="noreferrer" target="_blank">通信世界网：2026-03-13 长征八号甲发射卫星互联网低轨 20 组</a>（通信世界网） · 查阅 2026-10-11</li><li id="src-S0929"><a href="http://www.news.cn/milpro/20260104/3abb7bf936ba45f693546a3baf845f9f/c.html" rel="noreferrer" target="_blank">新华社转引统计（2026-01-04）：SpaceX 约 9,400 颗卫星在轨，其中超过 8,000 颗已投入运营</a>（新华社） · 查阅 2026-10-11</li><li id="src-S0930"><a href="https://tech.huanqiu.com/article/4PmIbIrBCxU" rel="noreferrer" target="_blank">环球网：SpaceX 2025 年完成 167 次轨道发射</a>（环球网） · 查阅 2026-10-11</li><li id="src-S0931"><a href="http://www.china.com.cn/txt/2026-01/04/content_118260021.shtml" rel="noreferrer" target="_blank">中国网：2025 年中国航天全年发射 92 次，创历史新高</a>（中国网） · 查阅 2026-10-11</li><li id="src-S0932"><a href="https://stcn.com/article/detail/3377954.html" rel="noreferrer" target="_blank">证券时报引咨询机构测算：千帆与 GW 单星平均造价约 1,500 万元（2025-10-14）</a>（证券时报） · 查阅 2026-10-11</li><li id="src-S0933"><a href="https://www.kratosspace.com/constellations/articles/eurospace-in-2022-nearly-1000-metric-tons-of-hardware-was-placed-into-orbit-half-was-starlink" rel="noreferrer" target="_blank">Eurospace 把马斯克关于星链单星成本约 25 万美元的公开表述归为 v1 口径</a>（Kratos Space / Eurospace） · 查阅 2026-10-11</li><li id="src-S101"><a href="https://docs.fcc.gov/public/attachments/DA-26-471A1.pdf" rel="noreferrer" target="_blank">FCC《Memorandum Opinion and Order》DA 26-471（GN Docket No. 25-302），2026-05-12 通过并发布，44 页；含 §25.125(a) 租赁安排、第 57 段的 buildout 豁免条件（SINR/时间可用度/上行速率三档、逾期加速与牌照自动失效）、1915–1920 MHz 的 3GPP NTN 缺口、附录 B 的 24 亿美元信托条件</a>（FCC） · 查阅 2026-10-11</li><li id="src-S102"><a href="https://www.fcc.gov/document/order-granting-spacex-echostar-applications" rel="noreferrer" target="_blank">FCC 该案文档页：批准 SpaceX/EchoStar 转让 AWS-4、AWS-H Block 与未配对 AWS-3 频率牌照</a>（FCC） · 查阅 2026-10-11</li><li id="src-S103"><a href="https://www.gov.uk/government/consultations/revocation-of-the-2-ghz-mobile-satellite-services-regulations/outcome/revocation-of-the-2-ghz-mobile-satellite-services-regulations-government-response" rel="noreferrer" target="_blank">英国政府（DSIT）对废止《2 GHz 移动卫星业务条例》的咨询回复，2026-01-12 发布：牌照 2027-05-13 到期、咨询期 2025-11-07 至 12-05、答复方含 Starlink Services UK Ltd</a>（GOV.UK） · 查阅 2026-10-11</li><li id="src-S104"><a href="https://www.itu.int/en/ITU-R/space/Pages/FAQspace.aspx" rel="noreferrer" target="_blank">ITU-R 空间业务官方问答：No.11.48 的七年监管期限、No.11.44.1/11.44B/11.47 的投入使用与 90 天规则、星座其余卫星按第 35 号决议里程碑监督</a>（ITU） · 查阅 2026-10-11</li><li id="src-S105"><a href="https://www.itu.int/en/ITU-R/space/Documents/RES35(WRC-19).pdf" rel="noreferrer" target="_blank">ITU《第 35 号决议（WRC-19）》正式文本：七年期之后第 2/5/7 年三档报告，部署低于 10%/50%/100% 时须修改申报特征（首档修正后卫星总数不超过已部署数的十倍）</a>（ITU） · 查阅 2026-10-11</li><li id="src-S106"><a href="https://www.spacex.com/launches/starship-flight-14" rel="noreferrer" target="_blank">SpaceX 官方任务页：2026-09-28 星舰第 14 次飞行首次入轨，短暂滑行后放出 26 颗星链 V3</a>（SpaceX） · 查阅 2026-10-11</li><li id="src-S107"><a href="https://www.space.com/news/live/spacex-starship-flight-14-live-updates-sept-28-2026-starship-first-orbital-launch-attempt" rel="noreferrer" target="_blank">space.com 当日实时记录：上升段一台猛禽 3 提前关机仍完成入轨圆化（约 275 公里）、26 颗 V3 全部部署；自 2023 年以来第 14 次飞行</a>（Space.com） · 查阅 2026-10-11</li><li id="src-S108"><a href="https://www.shkjdw.gov.cn/c/2026-07-13/534489.shtml" rel="noreferrer" target="_blank">上海科技党建 2026-07-13 转载澎湃新闻：垣信副总裁称截至 2026-07-09 千帆在轨 238 颗，2026 年计划累计在轨 324 颗；2026 年 6 月首颗手机直连试验星发射</a>（shkjdw.gov.cn） · 查阅 2026-10-11</li><li id="src-S109"><a href="https://www.21jingji.com/article/20260409/herald/b20e158b221bffb82ea806e6b0a8da60.html" rel="noreferrer" target="_blank">21 世纪经济报道 2026-04-09：千帆自 2024-08 起七批一箭十八星、累计 126 颗；此前规划为 2026 年中 324 颗、年底 648 颗、一期 1296 颗</a>（21jingji） · 查阅 2026-10-11</li><li id="src-S1010"><a href="https://www.news.cn/science/20240903/5bf288c1f58a434f97e5b0cb16fb7f64/c.html" rel="noreferrer" target="_blank">新华网科普频道 2024-09-03：GW 星座规划 12,992 颗（GW-A59 6,080 颗/GW-A2 6,912 颗）；千帆原规划 2025 年底完成 648 颗、2027 年底 1296 颗</a>（新华网） · 查阅 2026-10-11</li><li id="src-S1011"><a href="https://starlink.com/updates/starlink-version-3-satellites" rel="noreferrer" target="_blank">Starlink 官方更新页：V3 单星设计支持 1 Tbps 下行、160 Gbps 上行，约为上一代的 10 倍与 22 倍</a>（SpaceX/Starlink） · 查阅 2026-10-11</li><li id="src-S071"><a href="https://www.nasa.gov/wp-content/uploads/2025/02/7-soa-thermal-2024.pdf" rel="noreferrer" target="_blank">NASA《Small Spacecraft Technology State of the Art》第 7 章 Thermal Control（2024 版）：整星热平衡式、真空中只由辐射与传导换热、涂层 α/ε 取舍与在轨退化</a>（NASA / Small Satellite Institute） · 查阅 2026-10-11</li><li id="src-S072"><a href="https://physics.nist.gov/cgi-bin/cuu/Value?sigma" rel="noreferrer" target="_blank">NIST CODATA 常数页：Stefan-Boltzmann 常数 σ = 5.670 374 419…×10⁻⁸ W m⁻² K⁻⁴（2022 推荐值，精确）</a>（NIST） · 查阅 2026-10-11</li><li id="src-S073"><a href="https://www.nasa.gov/wp-content/uploads/2021/02/473486main_iss_atcs_overview.pdf" rel="noreferrer" target="_blank">NASA《Active Thermal Control System (ATCS) Overview》：EATCS 每路 35 kW／合计 70 kW、PVR 14 kW、Radiator ORU 23.3 m × 3.4 m、两翼各三块与旋转关节</a>（NASA） · 查阅 2026-10-11</li><li id="src-S074"><a href="https://www.1-act.com/wp-content/uploads/2023/05/Loop-Heat-Pipe-for-TacSat-4.pdf" rel="noreferrer" target="_blank">Loop Heat Pipe for TacSat-4（铝/氨环路热管，传热能力 5 至 700 W，送到两块辐射器段）</a>（Applied Thermodynamics &amp; Technology, Inc.） · 查阅 2026-10-11</li><li id="src-S075"><a href="https://ecss.nl/wp-content/uploads/handbooks/ecss-e-hb/ECSS-E-HB-31-01_Part6A.pdf" rel="noreferrer" target="_blank">ECSS-E-HB-31-01 Part 6A《Spacecraft thermal design handbook – Part 6: Thermal Control Surfaces》(2011-12-05)：PSZ 184 与 OCLI 二次表面镜的发射率/太阳吸收率实测表</a>（ESA / ECSS Secretariat） · 查阅 2026-10-11</li><li id="src-S076"><a href="https://www.ti.com/lit/pdf/sprabx4" rel="noreferrer" target="_blank">TI 应用笔记 SPRABX4《Calculating Useful Lifetimes of Embedded Processors》：温度每升 10 ℃ 寿命约减半的经验法则及其对半导体的适用性说明</a>（Texas Instruments） · 查阅 2026-10-11</li><li id="src-S077"><a href="https://www.dbcontrol.com/the-future-of-rf-amplification-twtas-vs-sspas-revisited/" rel="noreferrer" target="_blank">dB Control（空间级行波管/放大器厂商）：在轨 TWT 效率接近 60%，自家产品中段 40%；合路器损耗进一步降效率并产生需排出的热</a>（dB Control） · 查阅 2026-10-11</li><li id="src-S078"><a href="https://arxiv.org/abs/2607.14172" rel="noreferrer" target="_blank">Kees van Berkel，《The Cost and Network Limits of Space-Based AI Compute》(arXiv:2607.14172, 2026-07-15)：III-C Cooling 节按 P=AσT⁴ 反推 Starlink V2 mini 在 370 K 排 40 kW 需约 38 m²，并据照片指出实际辐射器小 2–3 倍</a>（arXiv） · 查阅 2026-10-11</li><li id="src-S079"><a href="https://patents.google.com/patent/US11834205B1/en" rel="noreferrer" target="_blank">美国专利 US 11,834,205 B1《Spacecraft chassis and component configuration》（SpaceX）：发热器件直接固定于骨架、散热特征朝外辐射；专利文本，非飞行件证明</a>（USPTO / Google Patents） · 查阅 2026-10-11</li><li id="src-S111"><a href="https://www.itu.int/dms_pubrec/itu-r/rec/p/R-REC-P.525-5-202411-I!!PDF-E.pdf" rel="noreferrer" target="_blank">Recommendation ITU-R P.525-5（11/2024）《Calculation of free-space attenuation》正文 PDF；§2.3 式 (6)：Lbf = 32.4 + 20 log f(MHz) + 20 log d(km)</a>（ITU-R） · 查阅 2026-10-11</li><li id="src-S112"><a href="https://www.itu.int/rec/r-rec-p.525" rel="noreferrer" target="_blank">ITU-R P.525 系列页：P.525-5 (11/2024) 为现行主版本（In force），前一版 P.525-4 (08/2019)</a>（ITU） · 查阅 2026-10-11</li><li id="src-S113"><a href="https://ecss.nl/wp-content/uploads/handbooks/ecss-e-hb/ECSS-E-HB-31-01_Part9A.pdf" rel="noreferrer" target="_blank">ECSS-E-HB-31-01 Part 9A《Space engineering — Thermal design handbook, Part 9: Radiators》2011-12-05，ECSS Secretariat / ESA-ESTEC（90 页）；p.13 给 σ = 5.6697×10⁻⁸ W·m⁻²·K⁻⁴，p.77 辐射器试验件给高发射率黑漆 ε = 0.9、第二级外露面 6.88 m²</a>（ECSS / ESA） · 查阅 2026-10-11</li><li id="src-S114"><a href="https://www.3gpp.org/technologies/ntn-overview" rel="noreferrer" target="_blank">3GPP《Non-Terrestrial Networks (NTN)》技术综述：Rel-17（ASN.1 2022-06 冻结）为首个含 NTN 规范性要求的版本；Rel-17 WI NR_NTN_solutions 产出 TS 38.101-5 / TS 38.108 / TS 38.181；n255(L)、n256(S) 信道带宽 5/10/15/20 MHz，Rel-18 增 30 MHz；LEO 典型 500–2000 km，GEO 35 786 km</a>（3GPP） · 查阅 2026-10-11</li><li id="src-S115"><a href="https://www.etsi.org/deliver/etsi_ts/122200_122299/122261/17.14.00_60/ts_122261v171400p.pdf" rel="noreferrer" target="_blank">ETSI 镜像的 3GPP TS 122 261 V17.14.0（5G 卫星接入 Stage-1 要求正文）</a>（ETSI / 3GPP） · 查阅 2026-10-11</li><li id="src-S116"><a href="https://www.itu.int/itu-r/space/apps/public/spaceexplorer/" rel="noreferrer" target="_blank">ITU Space Explorer 公开查询入口，查无线电通信局（BR）的 Space Networks/Systems 数据库</a>（ITU） · 查阅 2026-10-11</li><li id="src-S117"><a href="https://www.itu.int/en/ITU-R/software/Pages/srs.aspx" rel="noreferrer" target="_blank">SRS（Space Radiocommunication Stations）说明：BR 依《无线电规则》第 20 条发布的业务文件，收录已登入 MIFR、正按第 9 条第 2 款协调或按第 9 条第 1 款提前公布的卫星网络与地球站；信息由主管部门以 Appendix 4 通知表或电子形式提交；2012 年 1 月起 DVD-ROM 版由 BR IFIC (Space services) 取代</a>（ITU） · 查阅 2026-10-11</li><li id="src-S118"><a href="https://www.itu.int/en/ITU-R/space/brific/Pages/brificOnline.aspx" rel="noreferrer" target="_blank">BR IFIC (Space services) online：自 2023-01-10 第 2987 期起收录，2024-01-23 上线，完整访问需向 ITU 销售部门注册</a>（ITU） · 查阅 2026-10-11</li><li id="src-S119"><a href="https://www.starlink.com/public-files/DIRECT_TO_CELL_SERVICE_FEB_25.pdf" rel="noreferrer" target="_blank">SpaceX/Starlink 官方新闻稿《Starlink Direct to Cell Service Now Available》（2025-02）：D2C 星座 400 余颗、合作运营商提供 1.6–2.7 GHz 的 LTE 频谱、2024-11 获 FCC 商用批准、首批商用为美国 T-Mobile 与新西兰 One NZ</a>（SpaceX） · 查阅 2026-10-11</li><li id="src-S061"><a href="https://www.nasa.gov/smallsat-institute/sst-soa/power-subsystems/" rel="noreferrer" target="_blank">NASA《小卫星技术现状》第 3 章 Power：统计显示靠太阳翼供电的任务，整阵比功率不论整星大小都集中在约 30 W/kg 一条线上</a>（NASA SmallSat Institute） · 查阅 2026-10-11</li><li id="src-S062"><a href="https://www.spectrolab.com/pv/support/Law%20et%20al.,%20%20WCPEC-4%202006,%20Thin,%20Flexible%20III-V%20MJ%20-%20Final.pdf" rel="noreferrer" target="_blank">Spectrolab（波音）2006 年会议论文：典型蜂窝基板多结组件比功率 150 W/kg、功率密度 350 W/m²</a>（Spectrolab / Boeing） · 查阅 2026-10-11</li><li id="src-S063"><a href="https://www.nasa.gov/image-article/solar-arrays-international-space-station-2/" rel="noreferrer" target="_blank">NASA：国际空间站太阳翼共 262,400 片电池、覆盖面积约 27,000 平方英尺（2,500 平方米）</a>（NASA） · 查阅 2026-10-11</li><li id="src-S064"><a href="https://www.nasa.gov/directorates/stmd/impact-story-roll-out-solar-arrays/" rel="noreferrer" target="_blank">NASA iROSA 项目页：每张展开式阵列寿命初期可发 28 kW 以上，六张装完后全站合计超过 250 kW（增幅超 30%）</a>（NASA STMD） · 查阅 2026-10-11</li><li id="src-S065"><a href="https://nss.org/settlement/nasa/spaceresvol2/technologies.html" rel="noreferrer" target="_blank">NASA《Space Resources》第二卷（国家空间学会存档）：砷化镓阵列约 160–180 W/m²、比功率 25–40 W/kg，且比硅阵列更耐辐照</a>（NASA / National Space Society） · 查阅 2026-10-11</li><li id="src-S066"><a href="https://www.valispace.com/wp-content/uploads/2018/12/EPS-sizing-tutorial-1.pdf" rel="noreferrer" target="_blank">Valispace 电源子系统选型教程：年衰减系数 0.0092，5 年后阵列输出剩约 95.5%，并给出按地影选面积/电池的算法</a>（Valispace） · 查阅 2026-10-11</li><li id="src-S067"><a href="https://arxiv.org/pdf/2306.06657" rel="noreferrer" target="_blank">Mallama 等 2023 年测光观测论文：V2 mini 天线板面积 11.07 m²、两片太阳翼 104.96 m²，合计 116.03 m²，是前代的四倍</a>（arXiv） · 查阅 2026-10-11</li><li id="src-S068"><a href="https://www.nasa.gov/wp-content/uploads/2024/01/otps-sbsp-report-final-tagged-approved-1-8-24-tagged-v2.pdf" rel="noreferrer" target="_blank">NASA 2024 年《Space-Based Solar Power》报告：按每颗 Starlink v2 太阳翼 105 m²、整星 1,250 kg 作计算假设</a>（NASA） · 查阅 2026-10-11</li><li id="src-S069"><a href="https://www.eucass.eu/component/docindexer/?task=download&amp;id=5072" rel="noreferrer" target="_blank">EUCASS 论文：SPT-100 霍尔推力器自 1994 年起用于多颗地球同步卫星的电推系统，标称功率 1.35 kW、推力 85 mN</a>（EUCASS） · 查阅 2026-10-11</li><li id="src-S0610"><a href="https://ntrs.nasa.gov/api/citations/19940019157/downloads/19940019157.pdf" rel="noreferrer" target="_blank">NASA NTRS（Sankovic 1994）SPT-100 性能评测：比冲 1,600 s、效率约 0.50</a>（NASA NTRS） · 查阅 2026-10-11</li><li id="src-S0611"><a href="https://starlink.com/technology" rel="noreferrer" target="_blank">Starlink 官方技术页：星座运行在约 550 km 高度</a>（SpaceX / Starlink） · 查阅 2026-10-11</li><li id="src-S0612"><a href="https://ntrs.nasa.gov/api/citations/19630000622/downloads/19630000622.pdf" rel="noreferrer" target="_blank">NASA 技术备忘录（Cunningham，1962）：推导卫星一个轨道周期中处于地球阴影所占比例的方程</a>（NASA NTRS） · 查阅 2026-10-11</li><li id="src-S0613"><a href="https://commons.erau.edu/cgi/viewcontent.cgi?article=1412&amp;context=ijaaa" rel="noreferrer" target="_blank">ERAU《International Journal of Aviation and Aeronautics》：地影时长等于占比乘以轨道周期，低轨立方星地影典型约 35 分钟（2,100 秒）</a>（Embry-Riddle Aeronautical University） · 查阅 2026-10-11</li><li id="src-S0614"><a href="https://ntrs.nasa.gov/api/citations/19860015405/downloads/19860015405.pdf" rel="noreferrer" target="_blank">NASA 工程技术报告：电池容量主要取决于地影期的负载功率与轨道参数（高度、周期）</a>（NASA NTRS） · 查阅 2026-10-11</li><li id="src-S0615"><a href="https://hawklogicsystems.com/blog/cubesat-power-budget-solar-array-battery" rel="noreferrer" target="_blank">电源预算教程：一圈里只有约 62% 时间在日照中，故 11 W 平均负载要按 22 W 的寿命末期阵列功率来配</a>（HawkLogic Systems） · 查阅 2026-10-11</li><li id="src-S0616"><a href="https://spaceflightnow.com/2023-02-26/spacex-unveils-first-batch-of-larger-upgraded-starlink-satellites/" rel="noreferrer" target="_blank">2023-02-26 报道 SpaceX 首批 V2 mini：总表面积 1,248 平方英尺（116 m²），比前代大四倍多；星体宽 13 英尺（4.1 m），几乎占满 Falcon 9 整流罩</a>（Spaceflight Now） · 查阅 2026-10-11</li><li id="src-S0617"><a href="https://everydayastronaut.com/starlink-group-6-13-falcon-9-block-5/" rel="noreferrer" target="_blank">Falcon 9 整流罩直径 5.2 m，星链采用平板式堆叠设计以在一罩内塞进尽可能多的卫星</a>（Everyday Astronaut） · 查阅 2026-10-11</li><li id="src-S0618"><a href="https://space-safety.starlink.com/docs/space-safety-articles/constellation_altitudes/" rel="noreferrer" target="_blank">Starlink 官方空间安全页：正把所有卫星降至 500 km 以下，以加快失效后的离轨</a>（SpaceX / Starlink） · 查阅 2026-10-11</li><li id="src-S0619"><a href="https://www.nasa.gov/smallsat-institute/sst-soa/in-space_propulsion/" rel="noreferrer" target="_blank">NASA《小卫星技术现状》第 4 章推进：记录星链航天器是首个以氩气作霍尔推力器工质在轨运行的任务</a>（NASA SmallSat Institute） · 查阅 2026-10-11</li><li id="src-S0620"><a href="https://www.spacex.com/vehicles/starship" rel="noreferrer" target="_blank">SpaceX 官方星舰页：称其在完全可复用构型下的设计运力为 100 吨以上入轨，属设计目标而非已实现数字</a>（SpaceX） · 查阅 2026-10-11</li><li id="src-S0621"><a href="https://www.spacex.com/launches/starship-flight-14" rel="noreferrer" target="_blank">SpaceX 官方任务页：Flight 14（2026-09-28）是星舰首次进入轨道并向轨道交付有效载荷——26 颗 Starlink V3</a>（SpaceX） · 查阅 2026-10-11</li><li id="src-S0622"><a href="https://starlink.com/updates/starlink-version-3-satellites" rel="noreferrer" target="_blank">Starlink 官方 V3 页：单星设计容量为下行 1 Tbps、上行 160 Gbps</a>（SpaceX / Starlink） · 查阅 2026-10-11</li><li id="src-S0623"><a href="https://www.spacex.com/updates" rel="noreferrer" target="_blank">SpaceX 官方更新页：轨道数据中心的算术写作“每年发射百万吨卫星、每吨产生 100 kW 算力”，即整星 100 W/kg</a>（SpaceX） · 查阅 2026-10-11</li></ol></div><footer class="foot"><div>《星座的物理墙》知识专题 · 生成于 2026-10-12 · 价格与状态类信息截至 2026-10</div><div>本文为科普整理，不构成购买建议；价格、产期、政策随时间变化，请以品牌官方与权威来源为准。</div></footer></div></div></div>
+</body>
+</html>

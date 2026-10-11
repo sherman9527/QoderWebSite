@@ -49,6 +49,46 @@ def test_dropping_clears_all_three_places(tmp_path):
     assert target not in [m["file"] for m in man], u"manifest 还记着它"
 
 
+def test_dropping_the_cover_image_clears_the_cover_too(tmp_path):
+    """一张图其实活在**四**处：`images/` 的文件、`data.json` 的章节引用、manifest 的记录，
+    还有 `data.cover`。前三处一起清了而第四处留着，下一次渲染直接破图——
+    10-12 实测：摘掉那张当封面的卫星效果图之后，G-03 报
+    「引用的图片不存在：images/10_satellite_spacecraft_solar.jpg」。
+    """
+    d, data = _domain(tmp_path)
+    _outline(tmp_path)
+    target = "images/" + _files(d)[0]
+    data["cover"] = {"file": target, "alt": u"封面就是这张", "width": 1920, "height": 1080,
+                     "source_page": "https://example.com/a"}
+    (d / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    res = DI.drop(u"测试领域", target, root=str(d.parent), config_root=str(tmp_path), apply=True)
+
+    after = json.loads(io.open(os.path.join(str(d), "data.json"), encoding="utf-8").read())
+    assert (after.get("cover") or {}).get("file") != target, \
+        u"摘掉的正是封面，data.cover 还指着它 → 下一次渲染破图"
+    # 是删键不是置 null：topic_data.schema.json 把 cover 定成可选 object，null 过不了 schema。
+    assert "cover" not in after, u"cover 要整个删掉，写成 null 会被 topic_data schema 判死"
+    assert res.get("cover_cleared"), u"清了封面却不报告：这一页从此没有门面，得让人知道"
+
+
+def test_dropping_an_ordinary_image_leaves_the_cover_alone(tmp_path):
+    """反向：摘的不是封面时，不许顺手把封面清了（否则一次误删会静默改掉页面门面）。"""
+    d, data = _domain(tmp_path)
+    _outline(tmp_path)
+    files = _files(d)
+    assert len(files) >= 2, u"这个夹具至少要两张图才测得出方向"
+    target = "images/" + files[0]
+    data["cover"] = {"file": "images/" + files[1], "alt": u"封面是另一张",
+                     "width": 1920, "height": 1080, "source_page": "https://example.com/b"}
+    (d / "data.json").write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
+
+    DI.drop(u"测试领域", target, root=str(d.parent), config_root=str(tmp_path), apply=True)
+
+    after = json.loads(io.open(os.path.join(str(d), "data.json"), encoding="utf-8").read())
+    assert (after.get("cover") or {}).get("file") == "images/" + files[1], u"摘错对象却把封面洗掉了"
+
+
 def test_default_is_a_dry_run_that_touches_nothing(tmp_path):
     """删文件是不可逆动作（产物目录里图片不在 git 里），默认必须只报告。"""
     d, _ = _domain(tmp_path)

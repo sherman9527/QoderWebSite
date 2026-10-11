@@ -627,6 +627,22 @@ def test_G13_refuses_to_call_a_silent_tool_a_pass(monkeypatch, quality_bar, tmp_
             u"工具 rc=%d 且 stdout 为空，G-13 必须判 fail（实得：%s）" % (rc, [str(f) for f in got][:2])
 
 
+def test_G13_names_the_error_when_the_tool_dies(monkeypatch, quality_bar, tmp_path):
+    """喊出「没量到」只是第一步。消息里必须带上 stderr，否则下一次偶发还得靠复现才知道死因。
+
+    10-12 全量重渲染时 Muse产业逻辑 就是这么死的：rc=4294967295、stdout 0 字节，
+    闸门如实报了 fail，但消息里没有任何一句解释为什么——错误本身在 `pr.stderr` 里，
+    `capture_output=True` 已经把它抓回来了，只是没人读。
+    """
+    fake = _Done(-1, b"")
+    fake.stderr = b"Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'playwright'"
+    got = _g13_stubbed(monkeypatch, quality_bar, tmp_path, fake)
+    assert got and all(f.level == "fail" for f in got), u"这条仍然要是 fail"
+    text = u" ".join(str(f) for f in got)
+    assert "ERR_MODULE_NOT_FOUND" in text, \
+        u"fail 消息要把 stderr 带上，否则读的人只能重跑一次才知道死因：%s" % text
+
+
 def test_G13_refuses_to_call_a_crashed_tool_a_pass(monkeypatch, quality_bar, tmp_path):
     """半截输出同理：解不出 JSON 是「没量成」，不是「查过了」。
     以前它给 warn，而 warn 在任何只看 fail 的读数里都等于通过。"""
