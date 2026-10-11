@@ -2191,7 +2191,7 @@
   "hero_motif": "thinking_budget",
   "hero_note": "全篇的记忆点：一条横杠代表同一道题的推理预算，左边一小格是「立刻答」，右边大格是「先想清楚再答」。这一版的差别不在模型更大，而在预算被允许花在哪——所以读它的能力数字之前，必须先问「这次给了多少思考预算」，否则两个分数不可比。格子上不标任何数值：一标数值它就成了一张没有来源的图表（R-02）。"
  },
- "generated_date": "2026-10-08",
+ "generated_date": "2026-10-10",
  "created_date": "2026-09-25",
  "data_as_of": "2026-10",
  "research_mode": "online",
@@ -2201,7 +2201,7 @@
   "group": "ai-industry",
   "path": "/claude-opus-55/claude-opus-55.html",
   "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
-  "content_sha": "1d0326a3798e6850",
+  "content_sha": "327d780392aaf798",
   "published_date": "2026-10-10",
   "access": "public"
  },

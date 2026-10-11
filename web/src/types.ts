@@ -41,6 +41,10 @@ export interface Theme {
 }
 
 export interface TopicData {
+  /** 全站主页在**另一个子域**上的地址（config/home_site.json 的 url）。
+   *  合站之后文章页那句 `../index.html` 正好落在本组落地页上，回总站只能靠绝对地址；
+   *  没有这个字段（本地 file:// 直接打开、或旧 data.json）就只渲染回本组那一条。 */
+  home_url?: string;
   topic: string;
   category?: string;
   tags?: string[];

@@ -591,6 +591,17 @@ def record_group(group, url, root=ROOT, output=None, access=u"private",
         raise PublishError(u"地址 %s 的主机名不是组 %s 的那个（应为 %s）。"
                           u"换账号请设 KE_HOST_SUFFIX。"
                           % (url, group, group_host(group)))
+    prev = _read_json(os.path.join(root, "config", "site_groups.json"))["groups"][group]
+    # 同一个主机名就是同一个站，所以 project_id 不该跟着重发变。
+    # 我 10-10 把 playbook 的 actionId 当成 projectId 记了一遍：它也是合法 UUID，
+    # G-10 的格式检查和 `check` 的自洽核对都放行，而账本从此指着一个不存在的站。
+    # 真换账号时地址必然跟着换（后缀带主人，D-37），所以这条不误伤迁移。
+    old_pid = prev.get("project_id")
+    if old_pid and old_pid != project_id and prev.get("url") == url:
+        raise PublishError(u"组 %s 已记着 project_id %s，现在要给同一个地址记 %s。"
+                          u"同一个主机名就是同一个站——重发只换内容不换站。"
+                          u"（确认是记错了就拿正确的 id 重来；真换站请先改地址。）"
+                          % (group, old_pid, project_id))
     members = members_of(group, root)
     if not members:
         raise PublishError(u"组 %s 没有成员，没什么可记" % group)

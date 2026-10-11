@@ -26,7 +26,7 @@
    "url": "https://ai-industry-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "573a88be99c1c42a"
+   "group_sha": "05c94b532ec53590"
   },
   "ai-compute": {
    "display_name": "AI算力",
@@ -39,7 +39,7 @@
    "url": "https://ai-compute-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "9c40050be9c07e90"
+   "group_sha": "7da1d84c9fa247f2"
   },
   "ai-engineering": {
    "display_name": "AI工程",
@@ -51,7 +51,7 @@
    "url": "https://ai-engineering-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "123ee0e9b805f292"
+   "group_sha": "a0b02e21f209e09a"
   },
   "cars": {
    "display_name": "汽车",
@@ -64,7 +64,7 @@
    "url": "https://cars-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "b6dd46b1494d9dc1"
+   "group_sha": "fd090dd45ebc4cbd"
   },
   "components": {
    "display_name": "电子元件",
@@ -76,7 +76,7 @@
    "url": "https://components-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "a8f8783e1b831f47"
+   "group_sha": "04f0c384685a53e4"
   },
   "fashion": {
    "display_name": "箱包时装",
@@ -90,7 +90,7 @@
    "url": "https://fashion-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "cd6fb165673b5793"
+   "group_sha": "289ff9c3710ee511"
   },
   "financial-history": {
    "display_name": "金融史",
@@ -102,7 +102,7 @@
    "url": "https://financial-history-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "49be437497a2aeda"
+   "group_sha": "7bcc3c2238b92e26"
   },
   "food": {
    "display_name": "饮食风物",
@@ -114,7 +114,7 @@
    "url": "https://food-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "579205639235b815"
+   "group_sha": "9c3f0e5d7c4dedca"
   },
   "fragrance": {
    "display_name": "香水美妆",
@@ -126,7 +126,7 @@
    "url": "https://fragrance-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "ba26c9147d8a60eb"
+   "group_sha": "4b0752ae35d24bbe"
   },
   "macro-assets": {
    "display_name": "宏观与资产",
@@ -138,7 +138,7 @@
    "url": "https://macro-assets-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "f214a1458d2892df"
+   "group_sha": "fa86985b8ece583c"
   },
   "macro-finance": {
    "display_name": "宏观金融",
@@ -151,7 +151,7 @@
    "url": "https://macro-finance-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "a6fe13c78c55bfd3"
+   "group_sha": "03e4265525482b95"
   },
   "retail": {
    "display_name": "消费零售",
@@ -163,7 +163,7 @@
    "url": "https://retail-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "cfa8f041872ecfce"
+   "group_sha": "acb5f6acba1cec7f"
   },
   "watches": {
    "display_name": "腕表",
@@ -178,7 +178,7 @@
    "url": "https://watches-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "9cce780a94adb9c4"
+   "group_sha": "6501d16beda59ae2"
   }
  }
 }

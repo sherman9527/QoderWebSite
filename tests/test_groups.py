@@ -566,6 +566,40 @@ def test_record_group_writes_every_member_with_the_same_project(tmp_path):
         assert site["path"] == u"/%s/%s.html" % (stem, stem)
 
 
+OTHER_PROJECT = "11111111-2222-4333-8444-555555555555"
+
+
+def test_record_group_refuses_to_rebind_the_same_address(tmp_path):
+    """同一个主机名 = 同一个站 = 同一个 project。今天我把 playbook 的 actionId
+    当成 projectId 记了一遍，格式完全合法（也是 UUID），G-10 与 check 都抓不到，
+    而账本从此说出一个不存在的站——下一次 `prepare_site` 会照着它去改错的站。"""
+    _recorded(tmp_path)
+    url = u"https://watches%s/" % P.HOST_SUFFIX
+    P.record_group("watches", url, project_id=PROJECT, published_date="2026-10-04",
+                   root=str(tmp_path), output=str(tmp_path / "output"))
+    with pytest.raises(P.PublishError) as e:
+        P.record_group("watches", url, project_id=OTHER_PROJECT,
+                       published_date="2026-10-05",
+                       root=str(tmp_path), output=str(tmp_path / "output"))
+    assert u"project" in str(e.value).lower()
+    assert PROJECT in str(e.value), u"报错必须说出原来记的是哪个，否则没法判断是谁错了"
+
+
+def test_record_group_allows_rebind_when_the_address_changes(tmp_path, monkeypatch):
+    """换账号是真事（D-37：主机名后缀带主人），而那时地址一定跟着变——
+    所以「地址没变而站换了」才是要拦的那件事，别把合法迁移一起拦死。"""
+    _recorded(tmp_path)
+    P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX, project_id=PROJECT,
+                   published_date="2026-10-04",
+                   root=str(tmp_path), output=str(tmp_path / "output"))
+    monkeypatch.setattr(P, "HOST_SUFFIX", "-newowner.qoder.website")
+    P.record_group("watches", u"https://watches-newowner.qoder.website/",
+                   project_id=OTHER_PROJECT, published_date="2026-10-05",
+                   root=str(tmp_path), output=str(tmp_path / "output"))
+    gp = json.loads((tmp_path / "config" / "site_groups.json").read_text(encoding="utf-8"))
+    assert gp["groups"]["watches"]["project_id"] == OTHER_PROJECT
+
+
 # ------------------------------------------------------------------ 账本与 pending
 
 def test_pending_groups_names_a_stale_landing_page(tmp_path):

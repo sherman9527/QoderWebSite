@@ -2558,7 +2558,7 @@
   "hero_motif": "stack_layers",
   "hero_note": "以 agent 一次调用穿过的五层为母题：模型、编排、执行、网络出口、算力与机房。条子从窄到宽——越往下越厚、越贵、越像生意，强调色标在执行层，因为这一篇的争论全在这一层。"
  },
- "generated_date": "2026-10-05",
+ "generated_date": "2026-10-10",
  "data_as_of": "2026-10",
  "research_mode": "online",
  "reading_minutes": 18,
@@ -2577,7 +2577,7 @@
   "group": "ai-industry",
   "path": "/muse-industry/muse-industry.html",
   "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
-  "content_sha": "bc56d6140c1133fa",
+  "content_sha": "9068deeb10c5e559",
   "published_date": "2026-10-10",
   "access": "public"
  }

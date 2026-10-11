@@ -10,7 +10,7 @@
  *       node scripts/render.mjs --print-fingerprint    区块枚举 + rev + 模板源哈希
  *       node scripts/render.mjs --print-sources-hash   只打印模板源哈希（validate.py 取同一个值）
  */
-import { mkdtempSync, readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, mkdtempSync, readdirSync, readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { createRequire } from "node:module";
@@ -116,6 +116,12 @@ async function main() {
   }
 
   const data = JSON.parse(readFileSync(path.resolve(dataPath), "utf8"));
+  // 「回总站」那条链接的地址不在 data.json 里——主页不是一篇文章，没有地方住它的 url。
+  // 配置文件坏了就直接抛（宁可构建失败，也不要悄悄少一条链接）。
+  if (!data.home_url) {
+    const homeCfg = path.join(ROOT, "config", "home_site.json");
+    if (existsSync(homeCfg)) data.home_url = JSON.parse(readFileSync(homeCfg, "utf8")).url;
+  }
   const html = mod.renderDocument(data);
 
   // 自包含闸门在 Python 侧（validate.py G-04）做，这里先挡一道明显的漏网：

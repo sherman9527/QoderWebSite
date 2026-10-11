@@ -77,7 +77,7 @@ p{margin:.75rem 0}
 .wrap{width:var(--shell);margin:0 auto;padding:0 0 clamp(3rem,6vw,6rem)}
 /* 返回主页：一个文字链接，不做按钮——它不是这一篇的行动号召，
    而且按钮化的东西压在封面下面会把封面构图的注意力抢走。 */
-.backhome{padding-top:clamp(.7rem,2vw,1.1rem)}
+.backhome{padding-top:clamp(.7rem,2vw,1.1rem);display:flex;flex-wrap:wrap;gap:.5rem 1.6rem}
 .backhome-link{font-size:.82rem;color:var(--muted);text-decoration:none;
   border-bottom:1px solid var(--rule);padding-bottom:.15rem}
 .backhome-link:hover{color:var(--accent-ink);border-bottom-color:var(--accent-ink)}

@@ -666,3 +666,20 @@ def test_a_photo_cover_does_not_claim_to_be_a_diagram(tmp_path):
     html = _render(tmp_path, data, u"封面引用")
     i = html.index(u'class="cover-media"')
     assert u"示意图 · 非实拍" not in html[i:i + 1200], u"引用图被标成了示意图"
+
+
+def test_the_page_offers_the_site_home_as_well_as_the_category_index(tmp_path):
+    """合站之后文章页那句 `../index.html` **正好落在本组落地页上**——
+    从总站点进一篇文章的人按「返回」，回到的是类别目录，不是全站目录；
+    组落地页本来就有「全部专题 →」回总站，文章页却没有，于是回总站要两跳。
+
+    所以两个落点都要在，且**文案必须区分**：两个都叫「全部专题」等于把 bug 藏进措辞里。
+    回总站只能是绝对地址——文章在另一个子域上，任何相对路径都到不了。
+    """
+    data = json.load(io.open(FIX, encoding="utf-8"))
+    html = _render(tmp_path, data, "coffee")
+    assert u'href="../index.html"' in html, u"回本组目录的那条不许被改掉（出包布局就是 <组>/<篇>/<篇>.html）"
+    site = re.search(u'<a class="backhome-link backhome-site" href="([^"]+)">([^<]*)</a>', html)
+    assert site, u"文章页没有回总站首页的入口"
+    assert site.group(1).startswith(u"https://"), u"回总站必须是绝对地址：%s" % site.group(1)
+    assert u"全部领域" in site.group(2), u"两条返回链接的文案要能分清落点：%s" % site.group(2)

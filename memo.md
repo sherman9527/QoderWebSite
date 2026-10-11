@@ -3246,3 +3246,56 @@ G-14 那两条 warn 才算闭环。
 教训不是"小心点"，是**跑写操作的脚本一律别往控制台打印中文，写文件再读**（这条 memo 里记过三次了）。
 
 线上闭环还差四组重发（ai-compute / cars / fashion / watches），10 条 G-14 就是这个。
+
+### 10-10 收口：W-193 归档，台账上开项归零；公开快照也推了（远端 sha 与作者都回读确认过）
+
+- `HANDOVER.md` 现在 **0 个 `- [ ]`**：W-193 移进 COMPLETE，判据四洞（⑨⑩＋定位下标＋量族＋取整）
+  与两条台账级缺陷（行文本截断、`[-]` 重影行）都在 COMPLETE 带证据指针。
+- 发布闭环：五组（ai-industry / ai-compute / cars / fashion / watches）都是
+  pack → L3 深审（findings=0）→ prepare → **读 API 返回的 host** → publish →
+  `verify_live` 逐字节 → record-group；`publish.py check` 报「账实一致、没有待发布的条目」。
+- 公开快照：`publish_public.py` 自查 328 文件、图片残留 0、中间文件 0、身份痕迹 0；
+  推送用中性作者（`KnowEverything Research <AdminContact@example.com>`，工具缺环境变量时直接拒推——
+  这条守卫是对的，我没有绕过它）。远端 `commits/main` 回读：sha `159293748739…`、作者名与邮箱就是那对中性值。
+- 一次假警报值得记：watches 首跑报「图坏 2 张」，我看清是 `IncompleteRead`/`URLError`（连接抖动）不是 404，
+  而我顺手用被正则截坏的文件名去 curl，拿到的那个 404 是**我自己造的**。重跑验收 23 张图全 200。
+  —— 判据看错一次，就会把一次网络抖动当成内容损坏去改页面。
+
+## 2026-10-10（下午）开发者报的导航 bug：合站之后「返回目录」只回得到本组
+
+现象：从总站首页点进一篇文章，按页首那条返回链接，落到的是**这一组**的目录页，不是完整目录。
+根因是我 10-04 合站时留下的：文章页里写死了 `../index.html`，一篇一站时代那是总站首页；
+29 篇装进 13 个组之后，`../index.html` 变成了组的落地页。地址没变、语义变了——这类 bug 结构上看不见。
+
+修法与一条必须记的连带代价：
+· `TopicData` 加 `home_url?`（可选，因为**本地产物没有总站**，只有 hosted 那一份有），
+  `render.mjs` 在 `data.home_url` 缺席时才去读 `config/home_site.json` 兜上——
+  把「总站地址」放在组的配置里而不是抄进 29 份大纲，改托管账号只动一个文件。
+· 模板一改，指纹变，**29 篇全部判陈**（G-08），于是这一轮的真实工作量是「重发 13 组 + 主页」这 14 个站。
+  这不是可以省的一步：`AGENTS.md` 第 5 步写的就是"改模板必须重渲染全部产物"。
+  做完的实际数：全 14 个 `published: true` 且 `active_release_id` 非空 → `verify_live` 逐字节一致
+  → `record-group` 全部记回 → `validate --all` = **0 fail / 2 warn**（两条都是 G-05 超长，已知且可接受）。
+
+### 两个都是我自己造的账本事故，值得钉住
+
+**① CRLF 把最后一个字段毒掉了。** `.probe/params.txt` 是 Windows 写的，行尾带 `\r`。
+bash `while IFS='|' read` 把它留在**最后一个字段**上，于是 `--project-id` 收到
+`b0abe7e0-…\r`。这次 G-10 抓住了（29 条 fail，UUID 正则不认尾随 `\r`），但抓住之前我已经把
+13 份 `site_groups.json` 与 29 份 `data.json` 写脏了。**从 Windows 文本文件喂循环变量，先 `tr -d '\r'`**——
+不是"记得小心点"，是这一步必须成为流水线里的一截。
+
+**② 列序猜反，而没有任何闸门能看见。** `params.txt` 的列是
+`组|projectId|显示名|webDirectory|actionId`——**projectId 在第 2 列、actionId 在最后一列**。
+我把循环变量末位命名为 `pid` 直接喂给 `--project-id`，于是**13 个组的站身份全被换成草稿 actionId**。
+这件事危险的地方在于格式完全合法（actionId 也是 UUID）：G-10 放行，`publish.py check` 也报"账实一致"——
+因为 `check` 查的是**自洽**，而我把脏值同时写进了两处，它当然自洽。
+**一份说出不存在的站的账本，可以处处自洽。** 修回来之后 `git diff` 只剩 13 行 `group_sha`
+加 29 行 `content_sha`（`project_id` 一行都没动）——这个"剩下的差集"是我判断修干净了的依据，不是"看起来对了"。
+
+**所以补了一条守卫**（先红后绿）：`record_group` 在**地址没变**而 project_id 要变时直接拒——
+同一个主机名就是同一个站，重发只换内容不换站；真换账号时后缀带主人（D-37），地址必然跟着变，
+所以合法迁移不误伤。测试两条：`tests/test_groups.py::test_record_group_refuses_to_rebind_the_same_address`
+（先跑到 DID NOT RAISE）与 `..._allows_rebind_when_the_address_changes`（monkeypatch `HOST_SUFFIX` 验放行）。
+真库上做过冒烟：拿一个错 UUID 跑 `record-group` → rc=2 并报出**原来记的是哪个**，`git diff --stat` 一字未动。
+
+`python -m pytest` = **648 passed, 1 skipped in 436.47s**，rc=0。

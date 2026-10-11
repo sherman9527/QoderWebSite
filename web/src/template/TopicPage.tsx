@@ -516,10 +516,15 @@ export function TopicPage({ data, tagHref, hideStyle }: TopicPageProps): ReactNo
             也不再有"标记必须恰好出现一次"的契约——那是一篇一站时代的产物，
             当时 `../index.html` 在托管域名上会指回自己。
             文案跟着落地页走：落地页列的是本类别的专题，不是全站。 */}
-        <nav className="backhome" aria-label="返回专题主页">
+        <nav className="backhome" aria-label="返回目录">
           <a className="backhome-link" href="../index.html">
-            ← {data.category ? `${data.category}全部专题` : "全部专题"}
+            ← {data.category ? `${data.category}全部专题` : "本组全部专题"}
           </a>
+          {data.home_url ? (
+            <a className="backhome-link backhome-site" href={data.home_url}>
+              ← 全部领域 · 总站首页
+            </a>
+          ) : null}
         </nav>
         <div className="layout">
         <nav className="toc" aria-label="目录">
