@@ -262,6 +262,15 @@
         "published_date": {
           "type": "string"
         },
+        "first_url": {
+          "type": "string",
+          "pattern": "^https?://",
+          "description": "这一篇**第一次**发布时的地址，write-once。为什么要有：published_date 每轮重发都会被覆盖（组那侧刻意「重发不改」，篇这侧没有），于是「这篇最早上线在哪个地址」彻底失忆——30 篇现在全写着最后一次重发的日子。`publish.py absorbed` 判「这篇有没有过一篇一站」靠的就是它：first_url 是单篇主机 → 真有过旧站；first_url 已经是某个组的深链 → 生在组里，从来没有过（W-202 就是被这个假阳性绊的：它给两篇新文章各列了一条「旧站可删」，账号里根本没有那两个站）。**老记录缺这个字段时不许拿当前 url 补**——当前 url 已是深链，补上去等于替它们下「没有旧站」的结论，那是会漏删的方向；判不出来就明说判不出来。"
+        },
+        "first_published_date": {
+          "type": "string",
+          "description": "第一次成功发布的日期，write-once，与 first_url 同一批落下"
+        },
         "access": {
           "type": "string",
           "enum": [

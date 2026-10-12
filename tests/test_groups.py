@@ -73,6 +73,28 @@ def _g(*members):
             "published_date": None, "group_sha": None}
 
 
+def _site_path(root, topic):
+    return root / "output" / topic / "data.json"
+
+
+def _site_of(root, topic):
+    return json.loads(_site_path(root, topic).read_text(encoding="utf-8"))["site"]
+
+
+def _write_site(root, topic, site):
+    dp = _site_path(root, topic)
+    data = json.loads(dp.read_text(encoding="utf-8"))
+    data["site"] = site
+    dp.write_text(json.dumps(data, ensure_ascii=False), encoding="utf-8")
+
+
+def _mark_first_url(root, topic, url):
+    """把这篇标成"一篇一站时代发过"——那是 absorbed 唯一愿意列进清单的证据形态。"""
+    site = _site_of(root, topic)
+    site["first_url"] = url
+    _write_site(root, topic, site)
+
+
 def _landing(root, group, extra_refs=()):
     """手写一份落地页。测试里不跑 node：pack_group(render=False) 直接吃它。"""
     dest = root / "dist" / group
@@ -348,7 +370,12 @@ def test_absorbed_sites_lists_only_the_published_group_members(tmp_path):
     《大模型与加密货币》属于 `ai-industry` 组而不是 `ai-compute`，
     在只发了 ai-compute 时删掉它的旧站，等于把一篇线上文章删了。
     而 record-group 已经把 site.url 覆盖成深链，旧地址在 data.json 里查不到——
-    所以"能删哪些"必须由规则算出来，不能靠记忆。"""
+    所以"能删哪些"必须由规则算出来，不能靠记忆。
+
+    夹具里显式标了 `first_url` 是一篇一站主机：这才是"这篇曾经有自己的站"的证据。
+    10-12 之前不需要标，因为那时 `absorbed` 假定**每一篇**都有过——那个假定
+    正好给两篇生在组里的文章列了一条"可删"（W-202）。
+    """
     _topic(tmp_path, u"咖啡")
     _topic(tmp_path, u"茶")
     _groups(tmp_path, {"watches": _g(u"咖啡"), "food": _g(u"茶")})
@@ -357,10 +384,51 @@ def test_absorbed_sites_lists_only_the_published_group_members(tmp_path):
     P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
                    root=str(tmp_path), project_id=PROJECT, published_date="2026-10-04",
                    output=str(tmp_path / "output"))
+    _mark_first_url(tmp_path, u"咖啡", u"https://coffee%s/" % P.HOST_SUFFIX)
     rows = P.absorbed_sites("watches", str(tmp_path))
     assert [r["topic"] for r in rows] == [u"咖啡"], \
         u"把别的组的成员也列进来了：删了就少一篇线上文章"
     assert rows[0]["old_host"] == u"coffee" + P.HOST_SUFFIX
+    assert rows[0]["evidence"] == "single-site"
+
+
+def test_absorbed_sites_excludes_a_member_born_into_the_group(tmp_path):
+    """生在组里的文章从来没有过一篇一站，一条都不许列。
+    10-12 实测：`absorbed space-comms` 给两篇新文章各列了一条"旧站可删"，
+    而 `list_sites` 里根本没有那两个 host——清单是按规则重建 host 算出来的，
+    它只能回答"如果有，该叫什么"，回答不了"到底有没有过"。
+    """
+    _topic(tmp_path, u"咖啡")
+    _groups(tmp_path, {"watches": _g(u"咖啡")})
+    _landing(tmp_path, "watches")
+    P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
+                   root=str(tmp_path), project_id=PROJECT, published_date="2026-10-12",
+                   output=str(tmp_path / "output"))
+    # record-group 写下的第一条 site.url 就是深链——first_url 应当记住这件事
+    site = _site_of(tmp_path, u"咖啡")
+    assert site.get("first_url") == site["url"], u"没记住第一次发布的地址"
+    assert P.absorbed_sites("watches", str(tmp_path)) == [], \
+        u"这篇从来没有过一篇一站，列出来就是让人去删一个不存在的站"
+
+
+def test_absorbed_sites_calls_a_legacy_member_unverifiable_not_deletable(tmp_path):
+    """老记录里没有 first_url（那字段是 W-202 才加的）。
+    判不出来就必须喊"判不出来，先按 host 用 list_sites 核对"，
+    不许沿用"可删"那两个字——「让检查跳过」和「让检查通过」长得一样是老毛病。
+    """
+    _topic(tmp_path, u"咖啡")
+    _groups(tmp_path, {"watches": _g(u"咖啡")})
+    _landing(tmp_path, "watches")
+    P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
+                   root=str(tmp_path), project_id=PROJECT, published_date="2026-10-04",
+                   output=str(tmp_path / "output"))
+    site = _site_of(tmp_path, u"咖啡")
+    site.pop("first_url", None)
+    _write_site(tmp_path, u"咖啡", site)
+    rows = P.absorbed_sites("watches", str(tmp_path))
+    assert len(rows) == 1
+    assert rows[0]["evidence"] == "unknown", \
+        u"没有证据的成员被当成「可删」了：%s" % rows[0]
 
 
 def test_absorbed_sites_skips_a_member_whose_old_host_is_the_group_host(tmp_path):
@@ -371,7 +439,29 @@ def test_absorbed_sites_skips_a_member_whose_old_host_is_the_group_host(tmp_path
     P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
                    root=str(tmp_path), project_id=PROJECT, published_date="2026-10-04",
                    output=str(tmp_path / "output"))
+    _mark_first_url(tmp_path, u"咖啡", u"https://watches%s/" % P.HOST_SUFFIX)
     assert P.absorbed_sites("watches", str(tmp_path)) == []
+
+
+def test_record_group_keeps_the_first_url_across_republish(tmp_path):
+    """`first_url` 是 write-once，照组那条「第一次成功发布的日期，重发不改」的规矩。
+    每轮重发都覆盖 published_date 的那个大坑就在这：30 篇的 site.published_date
+    现在全写着最后一次重发的日子（2026-10-11），"这篇最早哪天上线的"彻底失忆。
+    """
+    _topic(tmp_path, u"咖啡")
+    _groups(tmp_path, {"watches": _g(u"咖啡")})
+    _landing(tmp_path, "watches")
+    out = str(tmp_path / "output")
+    P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
+                   root=str(tmp_path), project_id=PROJECT, published_date="2026-10-04",
+                   output=out)
+    first = _site_of(tmp_path, u"咖啡")["first_url"]
+    P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
+                   root=str(tmp_path), project_id=PROJECT, published_date="2026-10-12",
+                   output=out)
+    again = _site_of(tmp_path, u"咖啡")
+    assert again["first_url"] == first, u"重发把第一次发布的地址改掉了"
+    assert again["published_date"] == "2026-10-12", u"这一轮哪天发的还是要记"
 
 
 def test_pack_group_lays_out_articles_under_their_own_slug_dir(tmp_path):

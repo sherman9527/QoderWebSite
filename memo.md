@@ -3482,3 +3482,85 @@ git 默认把非 ASCII 路径转义输出，于是**所有中文页被静默丢�
 **留在这里的那条纪律**：删站是不可逆的共享状态动作，`absorbed` 的清单不是许可，
 `list_sites` 按 host 对上号才动得了手。
 
+## 2026-10-12（续）W-202：我上一条里写下的修法，一量就不能用
+
+上一条给 W-202 写的修法是「成员 `published_date` 早于组 `published_date` 才算被吸收」。
+**这条判据是错的，而且错得很典型**——它假设两个同名字段说的是同一件事。
+把 32 篇的组日期与成员日期并排打出来（`.probe/_dates.txt`）：
+
+```
+ai-industry 等 13 组   group=2026-10-04  member=2026-10-11   ← 30 篇全写着 10-11
+space-comms            group=2026-10-12  member=2026-10-12   ← 只有这两篇"相等"
+```
+
+`record_group` 里两行挨着写，语义却相反：
+组那一行是 `"published_date": doc[...].get("published_date") or published_date`——**第一次记下来就不改**；
+篇那一行是 `"published_date": published_date`——**每轮重发都覆盖**。
+所以 30 篇的 `site.published_date` 现在说的是"最后一次哪天重发的"，
+对"这篇最早哪天上线、上线在哪个地址"完全失忆。按它比日期，会把 10-10/10-11 两次重发
+误读成"这两篇比组还晚出生"。
+**教训：同名不同义的字段，比它俩就是在比两个问题的答案。** 先量字段实际装着什么，再定判据。
+
+### 真正的判据在历史里，而且不用日期
+
+翻 `output/<篇>/data.json` 的每一版，取**第一版非空的 `site.url`**（`.probe/_first_dates.py`）：
+29 篇的第一版地址是一篇一站主机（`coffee-…`、`rolex-…`），
+3 篇（开源权重与算力估值、本地大模型芯片、以及这两篇太空文章）的第一版地址**已经是组深链**。
+后者就是"从来没有过一篇一站"的正面证据——不是靠日期推的，是它自己第一次记账时写的地址。
+
+于是落成 write-once 字段 `first_url` / `first_published_date`（`_stamp_site`），
+`absorbed_sites` 三态定性：
+· `first_url` 等于按规则重建的单篇 host → `evidence="single-site"`，列出来；
+· `first_url` 是别的地址（生在组里，或从别的组搬来）→ **不列**；
+· 没记过 `first_url` → `evidence="unknown"`，列出来但明说"判不出来，先按 host 用 list_sites 核对"。
+
+**两处刻意不做什么，比做什么更值得记**：
+1. `_stamp_site` 对"已有 site 块但没有 first_url"的老记录**不补戳**。拿当前的 `site.url`
+   （已经是深链）当 first_url，等于替这 30 篇下"它们从来没有过一篇一站"的结论——
+   那会把该删的漏掉，是比今天这个假阳性更危险的方向。
+2. 回填走的是**历史读出来的值**（`.probe/_backfill_first_url.py`，32/32 有着落），
+   不是从现状推的。判据从此只看账，账只由 record 维护，不在每次跑的时候翻 git。
+
+回填后 `absorbed space-comms` = 「没有任何成员曾经有一篇一站——一个都不许删」，
+今天那条假清单就地消失。
+
+### 还差一件事实，另开 W-203
+
+`absorbed watches` 现在列 4 条"旧站内容已由深链承接"——**四条历史上全对**，
+那些站 10-04 当天就删完了。工具记的是"有没有过旧站"，没人记"删过没有"，
+所以 13 个老组的清单会永远挂着。缺的是每组一个 `absorbed_deleted`（删完之后显式写），
+不是"看起来删过了"的猜测。按台账的规矩，开发中途冒出来的新需求另开一条，不塞进 W-202。
+
+### 测试日志（本轮真实读数）
+
+| 命令 | 读数 | 判定 |
+|---|---|---|
+| `python -m pytest tests/test_groups.py -v -k "absorbed or first_url"`（实现前） | `4 failed, 1 passed`，红在 `KeyError: 'first_url'` 与断言 | 先红 |
+| 同上（实现后） | `5 passed` | 绿 |
+| `python -m pytest` | `660 passed, 1 skipped in 426.21s`，rc=0（上一轮 657，+3 条新测试） | 绿 |
+| `python scripts/publish.py check` | `✓ 账实一致`（回填 32 份 data.json 之后没翻） | 绿 |
+| `python scripts/publish.py absorbed space-comms` | 「没有任何成员曾经有一篇一站——一个都不许删」 | 假清单已消 |
+| `python .probe/_backfill_first_url.py` | `backfilled=32 skipped=0 missing=0` | 历史里 32 篇都读得出来 |
+
+**`own_sha` 明确不含 data.json**（docstring 写着"不含 `data.json`"），
+所以往 site 块里加字段不会把 13 个组推成"待发布"——这一点我是查了代码才动手的，
+不是赌的；`publish.py check` 回填后仍报账实一致，是这件事的证据。
+
+### 但我把契约改坏了，而且是自己花 20 分钟才知道
+
+第一次 `validate --all` 回来是 **`32 个领域，32 fail`**：
+`G-10/fail @ site：Additional properties are not allowed ('first_published_date', 'first_url' were unexpected)`。
+`topic_data.schema.json` 的 `site` 写着 `additionalProperties: false`——
+**我给数据加了两个字段，却没动那份定义字段的契约**。32/32 一起响，说明不是哪篇的偶发，
+是判据本身不接受这个形状，这种"全量同形失败"其实最好查。
+
+两条记下来：
+1. **加字段先改 schema，再改写入方**。契约是 `additionalProperties: false` 的时候，
+   代码写得再对，产物也是坏的。
+2. **改完 data.json 的形状，先 `--domain 一篇` 验，再 `--all`**。我这次直接跑了全量，
+   20 分钟才知道的事情，单篇 15 秒就能知道。
+   （顺带一个环境事实：`validate.py` 收中文领域名要 `PYTHONUTF8=1`，
+   否则 argv 按 ANSI 码页解出来是乱码，报的是"unrecognized arguments"而不是"名字不存在"。）
+
+
+

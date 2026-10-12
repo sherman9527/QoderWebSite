@@ -327,6 +327,17 @@ def deep_link(group, topic, root=ROOT):
     return u"https://%s/%s/%s.html" % (group_host(group), stem, stem)
 
 
+def _first_url(topic, output):
+    """这篇**第一次**发布时的地址；没记过就返回 None（不编）。"""
+    dp = os.path.join(output, topic, "data.json")
+    if not os.path.isfile(dp):
+        return None
+    try:
+        return (_read_json(dp).get("site") or {}).get("first_url") or None
+    except (ValueError, KeyError):
+        return None
+
+
 def absorbed_sites(group, root=ROOT, output=None):
     """这一组**发布之后**，哪些旧的单篇站已经不再承载任何内容、可以删。
 
@@ -334,10 +345,19 @@ def absorbed_sites(group, root=ROOT, output=None):
     《大模型与加密货币》属于 `ai-industry` 组而不是 `ai-compute`，
     在只发了 ai-compute 的时候删掉 `llm-and-crypto`，等于把一篇线上文章删了。
     而 `record-group` 已经把成员的 `site.url` 覆盖成深链，旧地址在 data.json 里查不到了——
-    所以这里按**规则**重建旧地址：一篇一站时代的 host 就是 `<slug>-<后缀>`。
+    所以旧地址按**规则**重建：一篇一站时代的 host 就是 `<slug>-<后缀>`。
 
-    返回 [(领域, 旧站 projectId 待定, 旧 host, 深链是否已经线上可取)]。
-    只有 `live` 为真的才可以删；`live` 要由调用方拿 HTTP 证据填进来，
+    但规则只能回答"如果有一篇一站，它该叫什么"，回答不了"到底有没有过"。
+    10-12 就是被这一点绊的：`absorbed space-comms` 给两篇**生在组里**的新文章
+    各列了一条"旧站可删"，而账号里 15 个站根本没有那两个名字。
+    所以现在看 `site.first_url` 定性，三种结果：
+    · 等于重建出来的那个单篇 host → `evidence="single-site"`，这才是真有旧站；
+    · 是别的地址（组深链，含换过组的）→ 从来没有过一篇一站，**不列**；
+    · 没记过（W-202 之前的老账）→ `evidence="unknown"`，列出来但明说判不出来。
+    **不许把"判不出来"写成"可删"**，也不许为了清单好看替老记录补一个 first_url——
+    那等于替它们下"没有旧站"的结论，而那正是会少删、把线上文章留成孤本的反方向。
+
+    返回每行带 `evidence`；`live` 一律 False，要由调用方拿 HTTP 证据填进来，
     脚本不猜——猜就是把"没验证"当成"验证过"。
     """
     output = output or os.path.join(root, "output")
@@ -353,8 +373,16 @@ def absorbed_sites(group, root=ROOT, output=None):
         old_host = stem + HOST_SUFFIX
         if old_host == group_host(group):
             continue                    # 旧站就是组站本身（同名），没有可删的
+        first = _first_url(topic, output)
+        evidence = "unknown"
+        if first:
+            first_host = urlparse.urlparse(first).netloc
+            if first_host and first_host != old_host:
+                continue                # 第一次发布就住在某个组里——没有旧站可删
+            evidence = "single-site"
         out.append({"topic": topic, "old_host": old_host,
-                    "deep_link": deep_link(group, topic, root), "live": False})
+                    "deep_link": deep_link(group, topic, root),
+                    "evidence": evidence, "live": False})
     return out
 
 
@@ -566,6 +594,30 @@ def pending_groups(root=ROOT, output=None):
     return out
 
 
+def _stamp_site(prev, block):
+    """给 `first_url` / `first_published_date` 上一次性戳记。
+
+    为什么要单独一个字段：`published_date` 每轮重发都要改，于是"这篇最早哪天上线、
+    上线在哪个地址"就被覆盖没了——30 篇现在全写着最后一次重发的日子。
+    而 `absorbed_sites` 判"这篇有没有过一篇一站"靠的正是这件事（W-202：
+    它给两篇生在组里的文章各列了一条"旧站可删"，而账号里根本没有那两个站）。
+
+    **老记录不补戳**：prev 存在但没有 first_url 时，它的 url 已经是深链了，
+    拿它当 first_url 等于替这篇编一个"从来没有过一篇一站"的结论——
+    那是把危险方向（该删的没列出来）反过来犯。宁可让它停在"判不出来"。
+    """
+    prev = prev or {}
+    if prev.get("first_url"):
+        block["first_url"] = prev["first_url"]
+    elif not prev:
+        block["first_url"] = block["url"]
+    if prev.get("first_published_date"):
+        block["first_published_date"] = prev["first_published_date"]
+    elif not prev:
+        block["first_published_date"] = block.get("published_date")
+    return block
+
+
 def record_group(group, url, root=ROOT, output=None, access=u"private",
                  published_date=None, project_id=None, group_sha_value=None):
     """记一个组的发布，并把每个成员的深链写回各自的 data.json。
@@ -621,7 +673,7 @@ def record_group(group, url, root=ROOT, output=None, access=u"private",
         data = _read_json(dp)
         stem = topic_stem(topic, _config_of(root))
         path = u"/%s/%s.html" % (stem, stem)
-        data["site"] = {
+        data["site"] = _stamp_site(data.get("site"), {
             "url": u"https://%s%s" % (group_host(group), path),
             "group": group,
             "path": path,
@@ -629,7 +681,7 @@ def record_group(group, url, root=ROOT, output=None, access=u"private",
             "content_sha": own_sha(topic, output, root),
             "published_date": published_date,
             "access": access,
-        }
+        })
         _write_json(dp, data)
     write_ledger(root=root, output=output)
     return doc["groups"][group]
@@ -666,7 +718,7 @@ def record(topic, url, sha=None, root=ROOT, output=None, access=u"private",
                           u"包里的布局就是 `<篇>/<篇>.html`，路径错了线上 404 而账上写着一致"
                           % (url, parts.path or u"/", want_path))
     data = _read_json(dp)
-    data["site"] = {
+    data["site"] = _stamp_site(data.get("site"), {
         "url": url,
         "group": group,
         "path": parts.path,
@@ -674,7 +726,7 @@ def record(topic, url, sha=None, root=ROOT, output=None, access=u"private",
         "content_sha": sha or own_sha(topic, output, root),
         "published_date": published_date,
         "access": access,
-    }
+    })
     _write_json(dp, data)
     write_ledger(root=root, output=output)
     return data["site"]
@@ -967,15 +1019,31 @@ def main(argv=None):
                                     load_groups().get(grp, {}).get("url") or u"（未发布）"))
             return 0
         if args.cmd == "absorbed":
-            rows = absorbed_sites(args.group)
-            if not rows:
+            spec = load_groups().get(args.group) or {}
+            if not spec.get("url"):
                 sys.stdout.write(u"组 %s 还没有发布记录，一个旧站都不许删"
                                  u"（删了就少一篇）\n" % args.group)
                 return 0
-            sys.stdout.write(u"组 %s 已发布。以下旧站的内容已由深链承接：\n" % args.group)
-            for r in rows:
-                sys.stdout.write(u"  %-22s 旧站 %-42s 深链 %s\n"
-                                 % (r["topic"], r["old_host"], r["deep_link"]))
+            rows = absorbed_sites(args.group)
+            if not rows:
+                sys.stdout.write(u"组 %s 已发布，没有任何成员曾经有一篇一站——一个都不许删。\n"
+                                 % args.group)
+                return 0
+            sure = [r for r in rows if r["evidence"] == "single-site"]
+            unknown = [r for r in rows if r["evidence"] == "unknown"]
+            if sure:
+                sys.stdout.write(u"组 %s 已发布。以下成员**第一次发布就在单篇主机上**，"
+                                 u"旧站内容已由深链承接：\n" % args.group)
+                for r in sure:
+                    sys.stdout.write(u"  %-22s 旧站 %-42s 深链 %s\n"
+                                     % (r["topic"], r["old_host"], r["deep_link"]))
+            if unknown:
+                sys.stdout.write(u"以下成员没有记过 first_url（那是 W-202 才加的字段），"
+                                 u"**判不出来有没有过一篇一站**——不许按本清单删，"
+                                 u"要删先用 list_sites 按 host 核到真实存在的站：\n")
+                for r in unknown:
+                    sys.stdout.write(u"  ?  %-22s 假定的旧站 %-42s 深链 %s\n"
+                                     % (r["topic"], r["old_host"], r["deep_link"]))
             sys.stdout.write(u"删除前逐条 curl 深链必须 200；本清单不含 projectId，"
                              u"要用 list_sites 按 host 核对后再删。\n")
             return 0
