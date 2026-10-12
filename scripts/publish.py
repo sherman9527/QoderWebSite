@@ -364,6 +364,8 @@ def absorbed_sites(group, root=ROOT, output=None):
     spec = load_groups(root).get(group) or {}
     if not spec.get("url"):
         return []                       # 组还没发布，一个都不许删
+    if spec.get("absorbed_deleted"):
+        return []                       # 吸收已经执行完（W-203），清单该空，不该永远挂着
     out = []
     for topic in sorted(spec.get("members") or []):
         try:
@@ -616,6 +618,49 @@ def _stamp_site(prev, block):
     elif not prev:
         block["first_published_date"] = block.get("published_date")
     return block
+
+
+def mark_absorbed(group, date, root=ROOT):
+    """记一笔"这一组吸收掉的旧单篇站已经删完"。W-203。
+
+    为什么需要这个字段：`absorbed_sites` 能判"这篇有没有过一篇一站"（看 first_url），
+    但判不了"那个旧站删了没有"。10-04 把 28 个站删完之后，那 13 个组的清单就一直挂着，
+    每跑一次都像在催一次删不存在的站。缺的是一件**已办事实**，不是又一个推测。
+
+    三条不许，都是为了这件事实不许被写歪：
+    · 组还没发布 → 根本没有"吸收"这回事；
+    · 日期早于组上线 → 旧站只可能在组上线之后才失去内容，早了就是笔误或回填填错；
+    · 改成一个**不同的**已办日期 → write-once，和 first_url 同一套纪律。同值重放允许。
+    """
+    if not re.match(r"^\d{4}-\d{2}-\d{2}$", str(date or u"")):
+        raise PublishError(u"日期 %r 不是 YYYY-MM-DD；比不了先后顺序的日期不能进账"
+                           % (date,))
+    gp = os.path.join(root, "config", "site_groups.json")
+    doc = _read_json(gp)
+    groups = doc.get("groups") or {}
+    if group not in groups:
+        raise PublishError(u"没有组 %s" % group)
+    spec = groups[group]
+    if not spec.get("url"):
+        raise PublishError(u"组 %s 还没有发布记录，谈不上「吸收」——一个旧站都还没被承接"
+                           % group)
+    pub = spec.get("published_date")
+    if not pub:
+        raise PublishError(u"组 %s 已发布却没记 published_date，先把上线那天补上"
+                           % group)
+    if date < pub:
+        raise PublishError(u"组 %s 是 %s 上线的，旧站不可能在 %s 之前就删完——"
+                           u"这个日期只能来自别的地方" % (group, pub, date))
+    had = spec.get("absorbed_deleted")
+    if had and had != date:
+        raise PublishError(u"组 %s 已经记着吸收完成于 %s，现在要改成 %s。"
+                           u"已办事实是 write-once；真记错了就改 site_groups.json 并说明为什么"
+                           % (group, had, date))
+    if had == date:
+        return spec
+    spec["absorbed_deleted"] = date
+    _write_json(gp, doc)
+    return spec
 
 
 def record_group(group, url, root=ROOT, output=None, access=u"private",
@@ -965,6 +1010,10 @@ def main(argv=None):
     g = sub.add_parser("groups", help=u"列出 config/site_groups.json 里的组与成员")
     ab = sub.add_parser("absorbed", help=u"这一组发布后，哪些旧单篇站已不再承载内容（可删）")
     ab.add_argument("group")
+    ma = sub.add_parser("mark-absorbed",
+                        help=u"记一笔：这一组吸收的旧站**已经删完**（删站之后才跑）")
+    ma.add_argument("group")
+    ma.add_argument("date", help=u"删完那天 YYYY-MM-DD，不得早于该组上线日")
     s = sub.add_parser("slug", help=u"只打印某篇的 slug")
     s.add_argument("topic")
     p = sub.add_parser("pending", help=u"哪些篇的线上版和本份不是同一个东西")
@@ -1026,8 +1075,12 @@ def main(argv=None):
                 return 0
             rows = absorbed_sites(args.group)
             if not rows:
-                sys.stdout.write(u"组 %s 已发布，没有任何成员曾经有一篇一站——一个都不许删。\n"
-                                 % args.group)
+                if spec.get("absorbed_deleted"):
+                    sys.stdout.write(u"组 %s 吸收的旧站已于 %s 删完（`absorbed_deleted` 记着），"
+                                     u"清单为空。\n" % (args.group, spec["absorbed_deleted"]))
+                else:
+                    sys.stdout.write(u"组 %s 已发布，没有任何成员曾经有一篇一站——"
+                                     u"一个都不许删。\n" % args.group)
                 return 0
             sure = [r for r in rows if r["evidence"] == "single-site"]
             unknown = [r for r in rows if r["evidence"] == "unknown"]
@@ -1046,6 +1099,11 @@ def main(argv=None):
                                      % (r["topic"], r["old_host"], r["deep_link"]))
             sys.stdout.write(u"删除前逐条 curl 深链必须 200；本清单不含 projectId，"
                              u"要用 list_sites 按 host 核对后再删。\n")
+            return 0
+        if args.cmd == "mark-absorbed":
+            spec = mark_absorbed(args.group, args.date)
+            sys.stdout.write(u"✓ 组 %s 的旧站记为已于 %s 删完；此后 absorbed 对这组返回空。\n"
+                             % (args.group, spec["absorbed_deleted"]))
             return 0
         if args.cmd == "slug":
             sys.stdout.write(slug_of(args.topic) + u"\n")

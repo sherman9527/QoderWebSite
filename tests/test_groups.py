@@ -443,6 +443,62 @@ def test_absorbed_sites_skips_a_member_whose_old_host_is_the_group_host(tmp_path
     assert P.absorbed_sites("watches", str(tmp_path)) == []
 
 
+def test_absorbed_sites_is_empty_once_the_deletion_is_recorded(tmp_path):
+    """W-203：`absorbed watches` 会一直列出 10-04 当天就删完的旧站。
+    工具记的是"有没有过旧站"，没人记"删过没有"，所以那份清单永远挂着，
+    每跑一次就像在催一次删不存在的站。删完之后要能把它结掉。
+    """
+    _topic(tmp_path, u"咖啡")
+    _groups(tmp_path, {"watches": _g(u"咖啡")})
+    _landing(tmp_path, "watches")
+    P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
+                   root=str(tmp_path), project_id=PROJECT, published_date="2026-10-04",
+                   output=str(tmp_path / "output"))
+    _mark_first_url(tmp_path, u"咖啡", u"https://coffee%s/" % P.HOST_SUFFIX)
+    assert [r["topic"] for r in P.absorbed_sites("watches", str(tmp_path))] == [u"咖啡"]
+
+    P.mark_absorbed("watches", "2026-10-04", root=str(tmp_path))
+    assert P.absorbed_sites("watches", str(tmp_path)) == [], \
+        u"已经删完的一组还列在清单上"
+
+
+def test_mark_absorbed_refuses_an_unpublished_group(tmp_path):
+    """没发布过的组没有"吸收"这回事，记一笔等于凭空造一条已办事实。"""
+    _topic(tmp_path, u"咖啡")
+    _groups(tmp_path, {"watches": _g(u"咖啡")})
+    with pytest.raises(P.PublishError):
+        P.mark_absorbed("watches", "2026-10-04", root=str(tmp_path))
+
+
+def test_mark_absorbed_refuses_a_date_before_the_group_went_live(tmp_path):
+    """旧站只可能在组上线**之后**才失去内容。日期早于组，只能是笔误或回填填错。"""
+    _topic(tmp_path, u"咖啡")
+    _groups(tmp_path, {"watches": _g(u"咖啡")})
+    _landing(tmp_path, "watches")
+    P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
+                   root=str(tmp_path), project_id=PROJECT, published_date="2026-10-04",
+                   output=str(tmp_path / "output"))
+    with pytest.raises(P.PublishError):
+        P.mark_absorbed("watches", "2026-10-01", root=str(tmp_path))
+
+
+def test_mark_absorbed_does_not_overwrite_a_different_date(tmp_path):
+    """write-once，和 first_url 同一套纪律：已办事实不许被后一次手滑改掉。"""
+    _topic(tmp_path, u"咖啡")
+    _groups(tmp_path, {"watches": _g(u"咖啡")})
+    _landing(tmp_path, "watches")
+    P.record_group("watches", u"https://watches%s/" % P.HOST_SUFFIX,
+                   root=str(tmp_path), project_id=PROJECT, published_date="2026-10-04",
+                   output=str(tmp_path / "output"))
+    _mark_first_url(tmp_path, u"咖啡", u"https://coffee%s/" % P.HOST_SUFFIX)
+    P.mark_absorbed("watches", "2026-10-04", root=str(tmp_path))
+    with pytest.raises(P.PublishError):
+        P.mark_absorbed("watches", "2026-11-01", root=str(tmp_path))
+    P.mark_absorbed("watches", "2026-10-04", root=str(tmp_path))   # 同值重放不许报错
+    spec = P.load_groups(str(tmp_path))["watches"]
+    assert spec["absorbed_deleted"] == "2026-10-04"
+
+
 def test_record_group_keeps_the_first_url_across_republish(tmp_path):
     """`first_url` 是 write-once，照组那条「第一次成功发布的日期，重发不改」的规矩。
     每轮重发都覆盖 published_date 的那个大坑就在这：30 篇的 site.published_date

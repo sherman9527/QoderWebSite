@@ -3562,5 +3562,51 @@ space-comms            group=2026-10-12  member=2026-10-12   ← 只有这两篇
    （顺带一个环境事实：`validate.py` 收中文领域名要 `PYTHONUTF8=1`，
    否则 argv 按 ANSI 码页解出来是乱码，报的是"unrecognized arguments"而不是"名字不存在"。）
 
+## 2026-10-12（再续）W-203：给"吸收已执行"补一件事实
+
+`absorbed watches` 在 W-202 之后仍列 4 条"旧站内容已由深链承接"——**四条历史上全对**，
+那些站 10-04 当天就删完了。工具判得了"有没有过旧站"（看 `first_url`），判不了"删了没有"，
+所以那 13 个组的清单会永远挂着，每跑一次就像在催一次删不存在的站。
+
+加的是 `site_groups.json` 每组一个 `absorbed_deleted`，由 `publish.py mark-absorbed <组> <日期>`
+在**删完之后**显式写。三条拒绝，都是为了这件事实不许被写歪：
+组没发布 → 根本没有"吸收"这回事；日期早于组上线 → 旧站只可能在组上线之后才失去内容，
+早了就是笔误或回填填错；改成一个**不同的**已办日期 → write-once，同值重放允许。
+
+**13 个老组的回填也是走同一条命令**（13 次 `mark-absorbed … 2026-10-04`），
+所以回填一样得通过"不得早于上线日"这道校验——不是直接编辑 JSON 把字段刷上去。
+出处是台账里那条已记录的事实（10-04 十三组全部上线、28 个旧站当天删完、host 实测 404）。
+
+**`space-comms` 刻意不标。** 它没有删过任何东西：两篇成员生在组里，从来没有过一篇一站。
+给它写一个 `absorbed_deleted` 等于记一件没发生过的删除。
+它现在的输出是「没有任何成员曾经有一篇一站——一个都不许删」，
+和 watches 的「已于 2026-10-04 删完」是**两种不同的空**，消息分开说，
+不然下一次读的人无法区分"本来就没有"和"已经有了、办完了"。
+
+### 两个我自己造的错，都是红测试在收集阶段就拦下来的
+
+1. `unicode_(date or u"")` → `NameError`。那个 helper 在 `drop_image.py`/`add_illustration.py` 里，
+   `publish.py` 从来没有过——我是**凭手感抄的**。四条测试全红在收集期，一秒都不用等。
+2. `u"…谈不上"吸收"——…"` → `SyntaxError`。中文句子里嵌了 ASCII 双引号，把字符串截断了。
+   项目里中文文案的引号一律用「」，这条在 `styles.ts` 的反引号那次就吃过一次同族的亏（模板字面量里
+   的反引号会打断整页渲染），当时记了，这次又犯了同一个"引号会截断字符串"的错，只是换了个字符。
+
+还有一处**碰巧对了的写法**：`if group not in doc.get("groups") or {}:`。
+它被解析成 `(group not in doc.get("groups")) or {}`，两种分支下恰好都走到该去的地方，
+测试也不会红——但"恰好对"不是对，已改成显式取 `groups = doc.get("groups") or {}` 再判。
+**测试抓不到的正确性问题，得靠读自己写的代码抓。**
+
+### 测试日志（本轮真实读数）
+
+| 命令 | 读数 | 判定 |
+|---|---|---|
+| `pytest tests/test_groups.py -k "absorbed or first_url"`（实现前） | `4 failed`，红在 `AttributeError: module 'publish' has no attribute 'mark_absorbed'` | 先红 |
+| 同上（实现后） | `9 passed` | 绿 |
+| `python -m pytest` | `664 passed, 1 skipped in 448.44s`，rc=0（上一轮 660，+4 条） | 绿 |
+| `python scripts/validate.py --all` | `32 个领域，0 fail / 45 warn`，rc=0（与 W-201/W-202 同一基线） | 绿 |
+| `python scripts/publish.py check` | `✓ 账实一致`（13 组各加一个字段之后没翻） | 绿 |
+| `absorbed watches` / `absorbed space-comms` | 「已于 2026-10-04 删完，清单为空」 / 「没有任何成员曾经有一篇一站」 | 两种空，说得开 |
+
+
 
 
