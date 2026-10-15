@@ -3607,6 +3607,84 @@ space-comms            group=2026-10-12  member=2026-10-12   ← 只有这两篇
 | `python scripts/publish.py check` | `✓ 账实一致`（13 组各加一个字段之后没翻） | 绿 |
 | `absorbed watches` / `absorbed space-comms` | 「已于 2026-10-04 删完，清单为空」 / 「没有任何成员曾经有一篇一站」 | 两种空，说得开 |
 
+## 2026-10-16 W-199 查到这儿：两条候选假设都被量掉了，剩下的那个我不能宣布修好
+
+隔了三天回来做最后一条 TODO。按 systematic-debugging 走完 Phase 1，
+**结论是台账里记的两条候选成因都不成立**，而这条不能收口。
+
+### 先分开两件被当成一件的事
+
+台账把两次目击写成同一个 bug，其实签名不一样：
+- **10-10 那次**：注入测试报 `实际：[]`。在**旧**判据下 `[]` 有两种来源（工具死了被洗成"没问题" /
+  工具跑了且真没抓到）。改完之后第一种会明确说「没吐出结果 + stderr」，
+  所以今天再遇到 `[]` 只剩第二种含义。
+- **10-12 那次**（全量重渲染，`Muse产业逻辑`）：`rc=4294967295、stdout 0 字节`。这是第一种，工具死了。
+
+**两次不是同一个失败。** 之前当成一个，所以"候选成因"其实只对其中一种有意义。
+
+### 四条探针，量掉两条假设
+
+| 探针 | 量什么 | 读数 |
+|---|---|---|
+| `audit/tools/w199_probe.py --stage import --n 120` | 只 `import browser.mjs`（顶层会 `require('playwright-core')`） | `bad=0`，43s |
+| `--stage launch --n 25` | 起一次真内核再关掉 | `bad=0`，22s |
+| `audit/tools/w199_leak.py 8` | `close()` 之后进程数回不回基线 | 8 次全部回到基线，**拖尾 +0** |
+| `audit/tools/w199_real.py <那一篇> 20` | 闸门真实命令、真实页面，串行 20 次 | `bad=0`，每次 ~15.8s |
+| `audit/tools/w199_conc.py 6 5` | 6 并发 × 5 轮 = 30 次同时起内核 | `bad=0` |
+
+四个探针原本写在 `.probe/`（gitignore 里），10-16 搬进 `audit/tools/`——
+**"两条假设都被量掉"这个结论只有可重跑才算证据**，否则下一次会话读到这句只能选择信我。
+搬过来第一件事就是 `ROOT` 层数（`.probe/` 深一层、`audit/tools/` 深两层），
+四个都补进了既有的 `test_moved_tool_resolves_the_repo_root` 参数表；
+我自己第一版就写错成多一个右括号，`ast.parse` 当场拦下。
+
+- **假设①「前面攒下的浏览器进程把资源挤没」被否掉**：`browser.close()` 是干净的，
+  连测 8 次进程数一次都没往上走。当时看到"37 个 msedge 进程"是**开发者自己开着的 Edge**，
+  是常量基线，不是泄漏——第一眼看成泄漏，差点据此去改回收逻辑。
+- **假设②「并发/资源挤压」也没能复现**：30 次并发全绿；当场机器 9.0 GB 空闲、
+  页面文件 16 GB 只用了 566 MB。
+- 合计 ~145 次真实/半真实调用，跨串行、并发、后台任务三种上下文，**一次都没复现**。
+
+### 顺手抓到自己两个测量错误
+
+1. **我的仪表是坏的**：探针里 `free_mem_mib()` 用 `wmic`，而这台机器（OS 10.0.26300）已经没有 `wmic` 了
+   ——它一直静默返回 `-1`。这次因为压根没有失败样本，所以没污染结论；
+   但"仪表读的是 -1 我却以为读的是内存"正是本项目反复在抓的那一类。改用
+   `Get-CimInstance Win32_OperatingSystem` 才拿到真数（注意在 bash 里要用**单引号**包 PowerShell，
+   双引号会让 bash 把 `$os` 吃掉，报出来是一串看不懂的 ParserError）。
+2. **会话跨了天，台账日期得跟钟不能跟聊天**：现在 `date` 是 2026-10-16 01:00，上一次提交是 10-12 19:47。
+   前面那些条目标 10-12 是对的（发布确实发生在那一刻），但今天这一批必须记 10-16。
+
+### 能做的那一半做了：让它下次自己带证据出现
+
+不可复现的偶发，正确处置不是猜修法，是**加监控**（skill 里"确实是非复现"那一支）。
+`g13_layout` 现在在两条死路上都往一个追加式文件记一行
+（`KE_G13_DEATH_LOG`，默认 `.probe/g13-deaths.jsonl`）：时间、哪一页、rc、stdout 字节数、stderr 末尾 8 行。
+判据消息里那句 stderr 只在"有人把那次运行的输出留下来"时才存在——
+跑完一轮就换名字的日志会把唯一一次目击冲掉；今天攒到的两次就是这样只剩一句签名的。
+端到端验过：`NODE=does-not-exist-node python scripts/validate.py --domain 咖啡`
+→ 落下 `{"rc": null, "stdout_bytes": 0, "stderr_tail": ["FileNotFoundError: [WinError 2] …"], "page": "output/咖啡/咖啡.html"}`。
+测试两条：`test_G13_records_a_death_where_the_next_person_will_look`（先红：文件根本没创建）
+与 `test_G13_logging_a_death_never_changes_the_verdict`（记不上日志不许影响判据，也不许抛出来盖掉那条 fail）。
+
+### 为什么我不把 W-199 标成完成
+
+根因还没找到，而台账规则写得很死：**不许拿没验证过的话标完成**。
+现在能确定的是——它不是进程泄漏、不是并发挤压、不是模块加载本身的问题；
+下一次发生时会自带 rc/stderr/页面/时间，攒到两三次大概能对上号。
+在那之前它该留在 TODO。**要收口就得先等到一次带证据的复现，不是先猜一个修法。**
+
+### 测试日志
+
+| 命令 | 读数 | 判定 |
+|---|---|---|
+| `pytest tests/test_gates.py -v -k "records_a_death or never_changes"`（实现前） | `1 failed, 1 passed`，红在 `assert cap.is_file()` | 先红 |
+| 同上（实现后） | `13 passed`（G-13 全组） | 绿 |
+| `python -m pytest` | `666 passed, 1 skipped in 448.25s`，rc=0（上一轮 664，+2 条） | 绿 |
+| `NODE=does-not-exist-node validate --domain 咖啡` | 1 fail（响亮）+ 落一行捕获记录 | 监控端到端有效 |
+| `python scripts/validate.py --all` | 见下 | 基线没动 |
+
+
 
 
 

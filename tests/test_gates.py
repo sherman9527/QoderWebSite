@@ -627,6 +627,41 @@ def test_G13_refuses_to_call_a_silent_tool_a_pass(monkeypatch, quality_bar, tmp_
             u"工具 rc=%d 且 stdout 为空，G-13 必须判 fail（实得：%s）" % (rc, [str(f) for f in got][:2])
 
 
+def test_G13_records_a_death_where_the_next_person_will_look(monkeypatch, quality_bar, tmp_path):
+    """W-199 剩下的那一半是"偶发抓不住"，而偶发的正确处置不是猜修法，
+    是**让它下一次自己带着证据出现**。
+
+    闸门消息里的 stderr 只在"有人把那次运行的输出留了下来"时才存在——
+    跑完一轮就换名字的日志会把唯一一次目击冲掉。所以死一次要往一个
+    追加式文件里记一行，跨运行攒样本。
+    """
+    cap = tmp_path / "g13-deaths.jsonl"
+    monkeypatch.setenv("KE_G13_DEATH_LOG", str(cap))
+    fake = _Done(-1, b"")
+    fake.stderr = b"out of memory\nAllocation failed"
+    got = _g13_stubbed(monkeypatch, quality_bar, tmp_path, fake)
+    assert got and all(f.level == "fail" for f in got)
+    assert cap.is_file(), u"工具死了却没留下任何跨运行的记录"
+    import json as _json
+    rec = _json.loads(cap.read_text(encoding="utf-8").splitlines()[-1])
+    assert rec["rc"] == -1
+    assert rec["stdout_bytes"] == 0
+    assert "out of memory" in rec["stderr_tail"], u"记的正是判据里那句死因"
+    assert rec["page"], u"没记是哪一页，攒再多样本也对不上号"
+
+
+def test_G13_logging_a_death_never_changes_the_verdict(monkeypatch, quality_bar, tmp_path):
+    """记录是旁路。写不进去（目录不存在、只读盘）也不许把这次检查变成"通过"，
+    更不许它抛出来盖掉真正那条 fail。"""
+    cap = tmp_path / "no" / "such" / "dir" / "x.jsonl"     # 父目录不存在
+    monkeypatch.setenv("KE_G13_DEATH_LOG", str(cap))
+    fake = _Done(-1, b"")
+    fake.stderr = b"boom"
+    got = _g13_stubbed(monkeypatch, quality_bar, tmp_path, fake)
+    assert got and all(f.level == "fail" for f in got), \
+        u"记不上日志不该影响判据本身"
+
+
 def test_G13_names_the_error_when_the_tool_dies(monkeypatch, quality_bar, tmp_path):
     """喊出「没量到」只是第一步。消息里必须带上 stderr，否则下一次偶发还得靠复现才知道死因。
 

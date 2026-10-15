@@ -38,6 +38,9 @@ def test_audit_records_are_tracked():
     "w164_evidence.py", "w164_sweep.py", "w164_windows.py",
     "w193_read.py", "w193_triage.py", "w193_rollup.py", "w193_ledger.py", "w193_alist.py",
     "livecmp.py", "fill_sections.py",
+    # W-199 那批探针从 .probe/ 搬进来了：台账留着它们，是因为"两条候选假设都被量掉了"
+    # 这个结论只有可重跑才算证据。搬过来第一件事就是 ROOT 层数——见下面那条测试的说明。
+    "w199_probe.py", "w199_leak.py", "w199_real.py", "w199_conc.py",
 ])
 def test_moved_tool_resolves_the_repo_root(name):
     """搬家最容易坏的不是 import 而是 ROOT 层数：`.probe/` 深一层，`audit/tools/` 深两层。

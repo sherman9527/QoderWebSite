@@ -1004,6 +1004,34 @@ def _landing_geometry(PUB, gate, repo, output):
 
 # 显式绑定编号，不按位置自动编号——加一条闸门不该让别的闸门悄悄改号。
 # G-11 保留给跨领域配色闸门（_ThemeGate），它不接单领域 Ctx。
+def _record_g13_death(page, rc, stdout_bytes, stderr_text):
+    """W-199 的旁路记录：偶发抓不住，就让它下次自己带着证据出现。
+
+    闸门消息里已经带了 stderr，但那条消息只在"有人把这次运行的输出留下来"时才存在——
+    跑完一轮就换名字的日志会把唯一一次目击冲掉。今天已经攒到两次死亡样本，
+    两次都只留下一句签名，没有可对比的环境信息。
+    所以往一个**追加式**文件里记一行，跨运行攒：攒到几次之后，
+    rc / stderr / 当时在跑哪一页 才可能显出规律。
+
+    记不上就算了（只读盘、目录不存在），绝不让它影响判据，也绝不抛出去。
+    """
+    path = os.environ.get("KE_G13_DEATH_LOG") or os.path.join(ROOT, ".probe", "g13-deaths.jsonl")
+    try:
+        d = os.path.dirname(path)
+        if d and not os.path.isdir(d):
+            os.makedirs(d)
+        tail = [l.strip() for l in (stderr_text or u"").splitlines() if l.strip()][-8:]
+        import datetime
+        with io.open(path, "a", encoding="utf-8") as f:
+            f.write(json.dumps({
+                "ts": datetime.datetime.now().isoformat(timespec="seconds"),
+                "page": str(page), "rc": rc, "stdout_bytes": stdout_bytes,
+                "stderr_tail": tail,
+            }, ensure_ascii=False) + u"\n")
+    except Exception:
+        pass
+
+
 def g13_layout(ctx):
     """G-13 布局几何：真开浏览器量产物（specs/golden-template）"""
     out = []
@@ -1018,6 +1046,7 @@ def g13_layout(ctx):
         res = json.loads(raw) if raw else {}
     except Exception as e:
         # 判 fail 不判 warn：warn 在任何只看 fail 的读数里都等于通过。
+        _record_g13_death(ctx.rel_page, None, 0, u"%s: %s" % (type(e).__name__, e))
         return [Finding(g13_layout, ctx.rel_page,
                         u"几何检查没跑成：%s——没量到就是没查过，不得当作通过" % e,
                         level="fail")]
@@ -1037,6 +1066,7 @@ def g13_layout(ctx):
         err = [l.strip() for l in (pr.stderr or b"").decode("utf-8", "ignore")
                .splitlines() if l.strip()]
         tail = u"；stderr：%s" % u" ⏎ ".join(err[-3:]) if err else u"；stderr 也是空的"
+        _record_g13_death(ctx.rel_page, pr.returncode, len(raw), u"\n".join(err))
         return [Finding(g13_layout, ctx.rel_page,
                         u"几何检查没吐出结果（rc=%s，stdout %d 字节%s）——没量到就是没查过，"
                         u"不得当作通过" % (pr.returncode, len(raw), tail), level="fail")]
