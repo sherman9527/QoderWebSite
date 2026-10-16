@@ -100,6 +100,7 @@ async function measurePage(file) {
   // 用开发者实际看页面的那颗内核（默认浏览器是 Edge），不是恰好装了哪颗
   const browser = await launch();
   const problems = [];
+  const visible = {};
   try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
     await page.goto("file:///" + file.replace(/\\/g, "/"), { waitUntil: "load" });
@@ -132,6 +133,13 @@ async function measurePage(file) {
             tracks: [],
             cover: null,
           };
+          // 0) 这一档到底量到了没有。下面每一条检查都写着 `if (b.width <= 0) continue`
+          //    之类的跳过条件，所以"页面在这档根本没渲染出来"和"查过且没问题"
+          //    在报告里长得一模一样——都是零条。图那一类当年补过这个机制
+          //    （images-not-loaded），版式/样式这一类一直没有。
+          out.visible = [...document.querySelectorAll("body *")]
+            .filter((n) => { const b = n.getBoundingClientRect(); return b.width > 0 && b.height > 0; })
+            .length;
           // 1) 版心一致性：同一组内的块必须左右对齐，否则说明有的块自己造宽度
           const groups = [];
           for (const sels of COL_GROUPS) {
@@ -291,6 +299,14 @@ async function measurePage(file) {
       );
 
       // ── 断言
+      if (!r.visible) {
+        problems.push({
+          gate: "nothing-measured", tag,
+          detail: `这一档一个有尺寸的盒都没量到（body 里可见元素 0 个）——`
+            + `页面没渲染出来时每条检查都会各自 continue，报"通过"就是假绿`,
+        });
+      }
+      visible[tag] = r.visible;
       if (r.docScrollW > r.docClientW + 1) {
         problems.push({ gate: "overflow-x", tag, detail: `文档 ${r.docScrollW} > 视口 ${r.docClientW}` });
       }
@@ -353,15 +369,15 @@ async function measurePage(file) {
   } finally {
     await browser.close();
   }
-  return problems;
+  return { problems, visible };
 }
 
 async function main() {
   const file = arg("file");
   if (!file) { console.error("用法: node scripts/measure-layout.mjs --file <html>"); process.exit(2); }
-  let problems;
+  let problems, visible;
   try {
-    problems = await measurePage(path.resolve(file));
+    ({ problems, visible } = await measurePage(path.resolve(file)));
   } catch (e) {
     // 浏览器不可用时不能算通过——否则 G-13 会静默失效，正是它要防的那类问题
     console.log(JSON.stringify({ ok: false, browserUnavailable: true, error: String(e && e.message || e) }));
@@ -369,7 +385,9 @@ async function main() {
   }
   const ok = problems.length === 0;
   if (process.argv.includes("--json")) {
-    console.log(JSON.stringify({ ok, widths: WIDTHS, problems }, null, 1));
+    // visible 每档量到几个可见元素。留着它是因为 W-199 那种偶发报的是"零条问题"，
+    // 而"零条问题"可能是"查过且干净"，也可能是"根本没查成"——有这个数才分得开。
+    console.log(JSON.stringify({ ok, widths: WIDTHS, visible, problems }, null, 1));
   } else {
     for (const p of problems) console.log(`FAIL [G-13/${p.gate}] ${p.tag} ${p.detail}`);
     console.log(ok ? "布局几何检查通过" : `${problems.length} 个布局问题`);

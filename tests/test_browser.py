@@ -51,6 +51,47 @@ def test_geometry_gate_engine_matches_the_users_default_browser():
         assert got == "msedge", "装了 Edge 却不用它量几何：%s" % got
 
 
+def test_measure_layout_shouts_when_a_viewport_measured_nothing(tmp_path):
+    """W-204：某一档视口**一个可测元素都没量到**时，必须喊出来，不能报"通过"。
+
+    这是 W-199 那条台账里点名要修而一直没修的机制：量几何的每条检查都写着
+    `if (b.width <= 0) continue` / `if (!im.complete) continue`，
+    所以"这一档页面根本没渲染出来"和"这一档查过且没问题"在报告里**一模一样**
+    ——都是零条问题、rc=0。图那一类当年补过这个机制（上面那条测试），
+    版式/样式这一类还没有。
+    """
+    page = tmp_path / "blank.html"
+    page.write_text(
+        u'<html><head><style>body *{display:none}</style></head>'
+        u'<body><p>字在但盒子不存在</p><h2>也是</h2></body></html>',
+        encoding="utf-8")
+    r = subprocess.run(["node", os.path.join(ROOT, "scripts", "measure-layout.mjs"),
+                        "--file", str(page), "--widths", "375"],
+                       capture_output=True, timeout=300)
+    blob = (r.stdout or b"").decode("utf-8", "ignore") + (r.stderr or b"").decode("utf-8", "ignore")
+    assert r.returncode != 2, u"CLI 用错了，脚本根本没跑：\n%s" % blob[-400:]
+    assert r.returncode == 1, \
+        u"整档一个可测元素都没量到，却仍然 rc=0（这就是静默跳过）：\n%s" % blob[-400:]
+    assert u"nothing-measured" in blob, \
+        u"失败了，但没说是「这一档没量到」：\n%s" % blob[-400:]
+
+
+def test_measure_layout_does_not_cry_empty_on_a_normal_page(tmp_path):
+    """反向钉住：机制不许见页面就喊。有一两个可见元素就必须照常往下查。
+    没有这条，上一条测试可以靠"永远报 nothing-measured"蒙过。"""
+    page = tmp_path / "ok.html"
+    page.write_text(
+        u'<html><body><h1>标题</h1><p>一段正常的正文。</p></body></html>',
+        encoding="utf-8")
+    r = subprocess.run(["node", os.path.join(ROOT, "scripts", "measure-layout.mjs"),
+                        "--file", str(page), "--widths", "375"],
+                       capture_output=True, timeout=300)
+    blob = (r.stdout or b"").decode("utf-8", "ignore") + (r.stderr or b"").decode("utf-8", "ignore")
+    assert r.returncode != 2, u"CLI 用错了，脚本根本没跑：\n%s" % blob[-400:]
+    assert u"nothing-measured" not in blob, \
+        u"正常页面被判成「没量到」，这条机制会变成噪声：\n%s" % blob[-400:]
+
+
 def test_measure_layout_refuses_to_report_when_images_never_loaded(tmp_path):
     """`waitForFunction(...).catch(() => {})` 把超时咽掉了，于是"图还没加载完"
     不是失败而是**静默跳过**——`if (!im.complete || !im.naturalWidth) continue`

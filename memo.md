@@ -3684,6 +3684,58 @@ space-comms            group=2026-10-12  member=2026-10-12   ← 只有这两篇
 | `NODE=does-not-exist-node validate --domain 咖啡` | 1 fail（响亮）+ 落一行捕获记录 | 监控端到端有效 |
 | `python scripts/validate.py --all` | 见下 | 基线没动 |
 
+## 2026-10-16（续）W-204：把"这一档我根本没量到"补进量几何的闸门
+
+W-199 的台账里有一句点名要修而一直没修的机制，这次单独拆出来做掉了。
+
+**形状**：`measure-layout.mjs` 每一条几何检查都写着 `if (b.width <= 0) continue`、
+`if (!im.complete || !im.naturalWidth) continue`。于是"这一档视口页面压根没渲染出来"
+和"这一档查过、干干净净"在报告里**完全一样**：零条问题、rc=0。
+图那一类 09 月就补过这个机制（`images-not-loaded`），版式/样式这一类一直没补。
+—— 又是那句老判据：**「让检查跳过」和「让检查通过」长得一模一样**。
+
+**做法**：每档数一遍 `body *` 里有尺寸的盒，0 个就报 `nothing-measured`；
+并把每档的 `visible` 计数带进 `--json`。后一半其实是给 W-199 留的：
+以后再见"零条问题"，能当场分清是"查过且干净"还是"根本没查成"。
+
+**两条测试一起写，是因为一条能被"永远报错"蒙过**：
+`..._shouts_when_a_viewport_measured_nothing`（先红，实得 `rc=0`）
++ `..._does_not_cry_empty_on_a_normal_page`（反向钉住，不然机制退化成一有页面就喊，
+照样"过"）。两条都照 `test_browser.py` 里已经写死的两条纪律：必须用 `--file`
+（把路径当位置参数传 → rc=2 用法错 → 测试**因为用错 CLI 而假绿**，第一版就栽过），
+不用 `text=True`（Windows 按 GBK 解码，中文输出整段变空 blob）。
+真页面实测 `visible` = 1469 / 847，`validate --all` 32 篇 × 7 档 **0 次误报**。
+
+### 又抓到自己的仪表在说谎（这次是我一小时前装的）
+
+`validate --all` 回来 **0 fail**，而 `.probe/g13-deaths.jsonl` 有 **12 行**。
+两个数对不上——只可能是其中一个在骗人。逐行看 `page`，12 行全是
+`pytest-of-<用户名>/pytest-…` 临时路径：**是我那几条"工具死了必须判 fail"的单测，
+每跑一次就往生产遥测里记一条假死亡**。
+第一次跑全量没发现，是因为那次没有先跑 pytest；这次顺序反过来才撞上。
+
+修法和仓库里已有的先例一模一样（`KE_REJECT_DIR` 那条注释写着"别让它落进项目的
+`.research-scratch/`"）：`tests/conftest.py` 里 `setdefault` 把测试的捕获改道到临时目录。
+用 `setdefault` 而不是硬设，单测自己 `monkeypatch.setenv` 过的仍然生效。
+验过：清空两处 → 跑 `-k G13` → 项目那份**仍然不存在**，临时目录那份 6 行；
+再跑整套 672 条之后项目那份依旧不存在。
+
+**同一种错第二次在这里出现**：第一次是"闸门全绿而图跑题"，这次是"日志在记而记的是假事件"。
+共同点是我造的那个观测手段，本身没被任何一条判据检查过。
+**加仪表的时候，要顺手回答"谁会读它、读到的值会不会被我的测试污染"。**
+
+### 测试日志
+
+| 命令 | 读数 | 判定 |
+|---|---|---|
+| `pytest tests/test_browser.py::test_measure_layout_shouts_when_a_viewport_measured_nothing`（实现前） | `1 failed`：`整档一个可测元素都没量到，却仍然 rc=0` | 先红 |
+| `pytest tests/test_browser.py -v`（实现后） | `6 passed` | 绿 |
+| 真页面 `--json --widths 375,1440` | `visible={'@375px':1469,'@1440px':1469}` / `847`，`ok=True` | 不误报 |
+| `python scripts/validate.py --all` | `32 个领域，0 fail / 45 warn`，`grep -c nothing-measured` = **0** | 基线没动 |
+| 清空日志后 `pytest -k G13` | 项目 `.probe/g13-deaths.jsonl` 不存在；临时目录那份 6 行 | 污染已断 |
+| `python -m pytest` | `672 passed, 1 skipped in 474.66s`，rc=0（上一轮 666，+2 条几何 +4 条 audit 工具参数） | 绿 |
+
+
 
 
 

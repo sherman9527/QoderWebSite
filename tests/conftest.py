@@ -18,6 +18,14 @@ if SCRIPTS not in sys.path:
 os.environ.setdefault(
     "KE_REJECT_DIR", os.path.join(tempfile.gettempdir(), "ke-test-rejects"))
 
+# 同一件事的第二处，10-16 被自己绊出来的：G-13 的死因捕获默认落在 `.probe/g13-deaths.jsonl`，
+# 而验"工具死了必须判 fail"的那几条单测**每次跑都会往那个文件里写几行假死亡**。
+# 第一次 `validate --all` 报 0 fail、那个文件却有 12 行——对不上的那一刻才发现：
+# 仪表记的不是它在名字上说的那件事。所以测试一律把捕获改道到临时目录
+# （`setdefault`：单测自己 monkeypatch 过的仍然生效）。
+os.environ.setdefault(
+    "KE_G13_DEATH_LOG", os.path.join(tempfile.gettempdir(), "ke-test-g13-deaths.jsonl"))
+
 CONFIG_DIR = os.path.join(ROOT, "config")
 OUTPUT_DIR = os.path.join(ROOT, "output")
 WEB_DIR = os.path.join(ROOT, "web")
