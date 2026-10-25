@@ -146,7 +146,7 @@ python scripts/publish.py pack watches      # 出组包 → dist/watches/（逐�
 python scripts/publish.py record-group watches https://watches-xxx.qoder.website/ \
        --project-id <pid> --access public --published-date 2026-10-04
 python scripts/publish.py check             # 账实核对（G-14 用的就是这个）
-python .probe/verify_live.py watches        # 上线验收：深链、每张图、字节等于包
+python scripts/verify_live.py watches        # 上线验收：深链、每张图、字节等于包
 ```
 
 - **`pack` 不改一个字节**：包里那份 HTML 和 `output/<领域>/<领域>.html` 逐字节相同。

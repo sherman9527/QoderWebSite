@@ -98,7 +98,7 @@ python scripts/publish.py pack <组>
 6. `update_access_policy(siteId, mode=public, confirmPublic=true, expectedRevision=<当前>)`
    —— **发布 ≠ 可见**。新站默认 private，`published: true` 之后 curl 仍会 401。
    改可见性需要用户明确授权；`expectedRevision` 是**字符串**。
-7. 验收：`python .probe/verify_live.py <组>`。它判三件事——落地页与每条深链是否 200、
+7. 验收：`python scripts/verify_live.py <组>`。它判三件事——落地页与每条深链是否 200、
    每页每张 `<img>` 是否 200（中文要百分号编码、相对路径要按**页面所在目录**解析），
    以及剥掉平台注入的水印脚本之后**线上字节是否等于包内那份**。
    第三条才是"包就是验证过的那份产物"在线上的唯一证据；手 curl 只会证明"有个页面在那儿"。
@@ -128,7 +128,7 @@ python scripts/publish.py check      # 账实核对
 
 ```bash
 python scripts/build_index.py --variant hosted     # → dist/home/index.html（29 张卡）
-python .probe/verify_home.py                       # 线上主页：卡数 + 每张卡 200
+python scripts/verify_home.py                       # 线上主页：卡数 + 每张卡 200
 python scripts/publish.py absorbed <组>            # 这组吸收掉哪些旧单篇站
 python .probe/absorbed_ids.py <组>                 # 附上 projectId，账本与规则两边对上才列
 ```
@@ -171,8 +171,8 @@ python .probe/absorbed_ids.py <组>                 # 附上 projectId，账本�
 python -m pytest                       # 别接管道；rc 与"N passed"都要看真的
 python scripts/validate.py --all       # 29 篇 0 fail（组落地页也在闸门里）
 python scripts/publish.py check        # ✓ 账实一致
-python .probe/verify_live.py <组>      # ✓ 深链、每张图、字节等于包
-python .probe/verify_home.py           # ✓ 线上 29 张卡全 200
+python scripts/verify_live.py <组>      # ✓ 深链、每张图、字节等于包
+python scripts/verify_home.py           # ✓ 线上 29 张卡全 200
 python scripts/publish.py playbook     # ✓ 没有待发布的组
 ```
 

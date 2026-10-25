@@ -48,7 +48,7 @@
 7. 把命令 + 真实输出摘要写进 `memo.md` 测试日志。不许写"应该没问题"。
 8. 工作项从 TODO 删除、追加进 COMPLETE，带**可点开的证据指针**（文件路径 / 测试名 / 命令），"done" 不算证据。
 9. 冒出新需求 → TODO 加一条；砍掉功能 → 删该项并在 `memo.md` 决策记录写为什么砍。
-10. **要把文章发成公开站点**：照 [`docs/publishing-for-agents.md`](docs/publishing-for-agents.md) 走。第一步永远是 `python scripts/publish.py playbook`——它按**组**算出 `projectId`、`webDirectory` 和逐步参数。发布是**半自动**的：`pack <组>` / `record-group` / `absorbed <组>` / `check` 是脚本，`prepare_site` → `publish_site` → `update_access_policy` 只有 agent 能调。四条不能省的判断：`get_publish_status` 回来先**读 host**，别信本地拼的那个地址（`memo.md` D-37：组名太短会被平台静默换成十六进制）；`published: true` 且 `active_release_id` 非空才算发出去；**发布 ≠ 可见**（新站默认 private）；最后逐篇 curl 深链到 200，用 `python .probe/verify_live.py <组>`，别手抄。**主页重建与重发必须在删旧站之前**，否则线上主页出现 404 卡片。
+10. **要把文章发成公开站点**：照 [`docs/publishing-for-agents.md`](docs/publishing-for-agents.md) 走。第一步永远是 `python scripts/publish.py playbook`——它按**组**算出 `projectId`、`webDirectory` 和逐步参数。发布是**半自动**的：`pack <组>` / `record-group` / `absorbed <组>` / `check` 是脚本，`prepare_site` → `publish_site` → `update_access_policy` 只有 agent 能调。四条不能省的判断：`get_publish_status` 回来先**读 host**，别信本地拼的那个地址（`memo.md` D-37：组名太短会被平台静默换成十六进制）；`published: true` 且 `active_release_id` 非空才算发出去；**发布 ≠ 可见**（新站默认 private）；最后逐篇 curl 深链到 200，用 `python scripts/verify_live.py <组>`，别手抄。**主页重建与重发必须在删旧站之前**，否则线上主页出现 404 卡片。
 
 `.qoder/skills/handover/` 把第 1、8、9 步变成可触发的流程。
 
@@ -114,8 +114,8 @@ python scripts/publish.py pack watches        # 出**组包**到 dist/<组>/（�
 python scripts/publish.py record-group watches <组地址> --project-id <pid> --access public --published-date <真实那天>
 python scripts/publish.py absorbed watches    # 这组发完后哪些旧单篇站可删（账本与规则两边对得上才列）
 python scripts/publish.py check                # 账实核对（G-14 用的就是这个）
-python .probe/verify_live.py watches          # 上线验收：落地页+每条深链+每张图 200，且字节等于包
-python .probe/verify_home.py                  # 线上主页验收：卡数对不对、每张卡 200
+python scripts/verify_live.py watches          # 上线验收：落地页+每条深链+每张图 200，且字节等于包
+python scripts/verify_home.py                  # 线上主页验收：卡数对不对、每张卡 200
 python scripts/audit_images.py                   # 配图语义体检（闸门量形式，跑题只有这道看得见）
 python scripts/audit_images.py --fix             # 只重做体检不合格的领域，跑完自动复查
 python scripts/contact_sheet.py 咖啡             # 一篇的配图拼成带标签联络表（.probe/sheet_*.png）

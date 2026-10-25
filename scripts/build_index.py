@@ -277,6 +277,25 @@ def collect(date=None, output_dir=None, variant="local", topics=None, slug_paths
     return entries
 
 
+def _published_topics(root):
+    """账上写着"已经发布"的篇：`data.json` 里有 `site.url` 就算一篇。"""
+    out = {}
+    if not os.path.isdir(root):
+        return out
+    for topic in sorted(os.listdir(root)):
+        dp = os.path.join(root, topic, "data.json")
+        if not os.path.isfile(dp):
+            continue
+        try:
+            data = json.load(io.open(dp, encoding="utf-8"))
+        except ValueError:
+            continue
+        url = (data.get("site") or {}).get("url")
+        if url:
+            out[topic] = url
+    return out
+
+
 def build(date=None, output_dir=None, variant="local", topics=None, out=None,
           root=None, home_url=None, title=None, slug_paths=False):
     """`output_dir` 让调用方（generate.py）把它自己那套产物目录传进来。
@@ -289,6 +308,19 @@ def build(date=None, output_dir=None, variant="local", topics=None, out=None,
     """
     root = output_dir or OUTPUT
     entries = collect(date, root, variant, topics=topics, slug_paths=slug_paths)
+    if variant == "hosted" and not topics:
+        # 账上已发布（有 site.url）却没进卡片 = 线上一篇从入口页消失，而它的地址照样能访问。
+        # 少一张卡在产物上看不出来，只能数。上面那些「索引跳过 …」就是原因，
+        # 最常见的是改了模板没重渲染（G-08 判旧产物陈）。
+        # 只管全站主页：组落地页是按 topics 显式点名的，那一路另有判据。
+        have = set(e["topic"] for e in entries)
+        lost = [t for t in sorted(_published_topics(root)) if t not in have]
+        if lost:
+            raise RuntimeError(
+                u"线上版主页拒绝生成：%d 篇账上已发布却不在卡片里——%s\n"
+                u"  先照上面「索引跳过」那几行修掉原因（多半是 `generate.py <领域> --offline` 重渲染），"
+                u"再重建主页。不许少一张卡就发出去。"
+                % (len(lost), u"、".join(lost)))
     if not entries:
         candidates = _candidates(root) if not topics else []
         if not candidates:

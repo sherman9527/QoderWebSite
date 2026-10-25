@@ -13,7 +13,7 @@
 | 未决问题 | ①`memo.md` / `HANDOVER.md` 要不要继续进公开快照（现在进，已验证无身份痕迹）；②自绘示意图进不进公开快照的 `output/*/images/`（现在不进 → 克隆下来的仓库里图是坏的，**这一轮又多了 28 张**）；③开发者提过的 EP227《Top 9 Places to Use Jev》链接仍未给到；④悬停态对比度与伪元素小字两处盲区记在「已知没修」，等第二例证据再动；⑤**旧单篇地址已断**这件事对外分享的口径：只给主页或组落地页，不给深链（D-36 末尾记了为什么做不到跳转） |
 
 
-| 别碰 | `images.prev/` 是中间态，发布成功才删；`.probe/queue*.sh` **不要在跑的时候改**（bash 按字节偏移续读脚本）；**改过 `web/src/` 先跑 `node scripts/render.mjs --print-fingerprint` 再跑闸门**（模板没编译成功时 G-08 报的是"N 个产物全部过期"，看着像产物问题——在 CSS 模板字面量里用反引号包选择器就会这样）；`data.json` 里人声明的 `cover` 会被 `--offline` 保留；**`generate.py` 重定向到文件写的是 GBK 不是 UTF-8**（要 `encoding='gbk'` 读回再转，否则 grep 中文永不命中）；**`pytest.ini` 的 `addopts` 已含 `-q`，再敲 `pytest -q` 等于 `-qq`，"N passed" 那行会被整个吞掉**——今天因此报过一个不存在的测试数（写进 MLCC 那次提交的"354 项"就是这么来的，已更正为 348）；判绿一律 `> 文件 2>&1` + `echo rc=$?`，**不要接管道**（管道的 rc 是最后一个命令的，会把真实 rc 洗成 0）；**搬动脚本后要原位跑一遍**——`ROOT` 少一层 `dirname` 就是这么漏过去的；**python 源码里别在双引号串内嵌双引号**（`u"所以"能不能""` 是 SyntaxError，今天第三次踩引号类坑）；**`image_primary_subject` 声明成单一产品名会让整页退到那一个产品**——AI制药 第一轮 14 张里 13 张是 AlphaFold，品牌词要配多个实测活的簇轮换；**`grep -c` 数的是行数不是出现次数**——产物是单行 HTML，`grep -c 示意图` 对 11 张图永远返回 1；要数出现次数用 `grep -o ... \| wc -l`（今天差点据此报"线上只有 2 张图"）；**`git ls-tree` 默认转义非 ASCII**——所有按路径匹配的检查都要 `-c core.quotePath=false`，否则中文路径的正则永不命中而检查"全绿"；**Sites 插件按 `projectRoot` 只记一个绑定**（`~/.qoder/plugins/data/qoder-sites-builtin/site-bindings/<digest(root)>/<digest(scope)>.qoder.site`），绑定指向 A 站时 prepare B 站一律 `sites_document_ambiguous`，仓库根出现 >1 个 `.qoder.site` 也是同一个码——这个仓库是"13 个组站 + 1 个主页站共用一个根"，天生跟它冲突，**每轮 prepare 前跑 `.probe/ke-clear.sh`**（移走不删，描述符里内嵌整页 base64）；**子代理会话没有 MCP 工具**，发布的写半条链路（prepare/publish）只有主 agent 能走，委派出去会 0 动作返回；**本地重新出包之后必须换 actionId**（actionId 绑的是那一份上传，复用旧的就是拿旧字节去发）；**只读 `data.json` 的闸门看不见模板的错**——读者看得见的一切都要读渲染产物（W-159 那 587 处就是这个形状）；**拆篇必须先拷图再渲染**——`_drop_orphan_images()` 按"这一页引用了什么"删文件，先渲染的那篇会把另一篇还没拷走的图删掉，未提交的图删了就没了（W-172 撞过，W-173 写进脚本顺序）；**起了全站重渲染波就别再改 `web/src/`**——波跑到一半改模板，先渲完的那批立刻重新变陈，那一轮整个作废（10-03 撞两次）；**`pack` 打"跳过"时也要报包里的真实数量**——它曾经打"0 个文件 0.0 MB"，与"出了个空包"在终端上长得一样；**`prepare_site` 之后必须读回 `site.host`**——组名短于 3 字符（`ai` 就是这么栽的）平台不报错，静默换成十六进制前缀，账上地址与线上地址分家，`deep_link()` 拼出的每条卡片从第一天起就是 404（D-37）；**删站之前先看 `display_name` 还是不是文章名**——`llm-and-crypto` 那次的名字是「归因探针 · 中文文件名小包」，账上的 project_id 没错，但它被复用过当实验载体，名字对不上就该停下来查（第 6 节那条经验）；**`.probe/verify_live.py` 是验收不是记账的下游**——它曾要求账上先有 url，顺序反了：验收才是记账的证据 |
+| 别碰 | `images.prev/` 是中间态，发布成功才删；`.probe/queue*.sh` **不要在跑的时候改**（bash 按字节偏移续读脚本）；**改过 `web/src/` 先跑 `node scripts/render.mjs --print-fingerprint` 再跑闸门**（模板没编译成功时 G-08 报的是"N 个产物全部过期"，看着像产物问题——在 CSS 模板字面量里用反引号包选择器就会这样）；`data.json` 里人声明的 `cover` 会被 `--offline` 保留；**`generate.py` 重定向到文件写的是 GBK 不是 UTF-8**（要 `encoding='gbk'` 读回再转，否则 grep 中文永不命中）；**`pytest.ini` 的 `addopts` 已含 `-q`，再敲 `pytest -q` 等于 `-qq`，"N passed" 那行会被整个吞掉**——今天因此报过一个不存在的测试数（写进 MLCC 那次提交的"354 项"就是这么来的，已更正为 348）；判绿一律 `> 文件 2>&1` + `echo rc=$?`，**不要接管道**（管道的 rc 是最后一个命令的，会把真实 rc 洗成 0）；**搬动脚本后要原位跑一遍**——`ROOT` 少一层 `dirname` 就是这么漏过去的；**python 源码里别在双引号串内嵌双引号**（`u"所以"能不能""` 是 SyntaxError，今天第三次踩引号类坑）；**`image_primary_subject` 声明成单一产品名会让整页退到那一个产品**——AI制药 第一轮 14 张里 13 张是 AlphaFold，品牌词要配多个实测活的簇轮换；**`grep -c` 数的是行数不是出现次数**——产物是单行 HTML，`grep -c 示意图` 对 11 张图永远返回 1；要数出现次数用 `grep -o ... \| wc -l`（今天差点据此报"线上只有 2 张图"）；**`git ls-tree` 默认转义非 ASCII**——所有按路径匹配的检查都要 `-c core.quotePath=false`，否则中文路径的正则永不命中而检查"全绿"；**Sites 插件按 `projectRoot` 只记一个绑定**（`~/.qoder/plugins/data/qoder-sites-builtin/site-bindings/<digest(root)>/<digest(scope)>.qoder.site`），绑定指向 A 站时 prepare B 站一律 `sites_document_ambiguous`，仓库根出现 >1 个 `.qoder.site` 也是同一个码——这个仓库是"13 个组站 + 1 个主页站共用一个根"，天生跟它冲突，**每轮 prepare 前跑 `.probe/ke-clear.sh`**（移走不删，描述符里内嵌整页 base64）；**子代理会话没有 MCP 工具**，发布的写半条链路（prepare/publish）只有主 agent 能走，委派出去会 0 动作返回；**本地重新出包之后必须换 actionId**（actionId 绑的是那一份上传，复用旧的就是拿旧字节去发）；**只读 `data.json` 的闸门看不见模板的错**——读者看得见的一切都要读渲染产物（W-159 那 587 处就是这个形状）；**拆篇必须先拷图再渲染**——`_drop_orphan_images()` 按"这一页引用了什么"删文件，先渲染的那篇会把另一篇还没拷走的图删掉，未提交的图删了就没了（W-172 撞过，W-173 写进脚本顺序）；**起了全站重渲染波就别再改 `web/src/`**——波跑到一半改模板，先渲完的那批立刻重新变陈，那一轮整个作废（10-03 撞两次）；**`pack` 打"跳过"时也要报包里的真实数量**——它曾经打"0 个文件 0.0 MB"，与"出了个空包"在终端上长得一样；**`prepare_site` 之后必须读回 `site.host`**——组名短于 3 字符（`ai` 就是这么栽的）平台不报错，静默换成十六进制前缀，账上地址与线上地址分家，`deep_link()` 拼出的每条卡片从第一天起就是 404（D-37）；**删站之前先看 `display_name` 还是不是文章名**——`llm-and-crypto` 那次的名字是「归因探针 · 中文文件名小包」，账上的 project_id 没错，但它被复用过当实验载体，名字对不上就该停下来查（第 6 节那条经验）；**`scripts/verify_live.py`（10-16 从 .probe/ 搬进版本库）是验收不是记账的下游**——它曾要求账上先有 url，顺序反了：验收才是记账的证据 |
 
 
 ## 环境与工具事实（本机实测，不是推测）
@@ -3734,6 +3734,69 @@ W-199 的台账里有一句点名要修而一直没修的机制，这次单独�
 | `python scripts/validate.py --all` | `32 个领域，0 fail / 45 warn`，`grep -c nothing-measured` = **0** | 基线没动 |
 | 清空日志后 `pytest -k G13` | 项目 `.probe/g13-deaths.jsonl` 不存在；临时目录那份 6 行 | 污染已断 |
 | `python -m pytest` | `672 passed, 1 skipped in 474.66s`，rc=0（上一轮 666，+2 条几何 +4 条 audit 工具参数） | 绿 |
+
+### 公开快照这道自查又拦了我一次，而且拦的是我写"仪表说谎"时留下的痕迹
+
+推快照前 `publish_public.py` 报 `身份痕迹 2｜HANDOVER.md、memo.md`，直接不推。
+原因是我在这两条台账里写了 pytest 临时目录的全称（`pytest-of-<本机用户名>/pytest-…`）——**顺手把本机用户名抄进了会被公开的文件**。
+改成 `pytest-of-<用户名>` 之后过检（`身份痕迹 0`）。
+讽刺的是这正是我同一轮里在写的那件事：一个观测手段没被任何判据检查过。
+区别在于这道自查**是**被检查过的，所以它拦住了我，而那个死亡日志没拦住我。
+
+**一个必须记的机制细节**：`publish_public.py` 审的是 **`git rev-parse HEAD` 那个已提交的树**，
+不是工作树。所以我第一次改完红acted 再跑自查，仍然报同样的 2 处 —— 不是检查坏了，
+是它看的根本不是我刚改的那份。**改完台账要提交之后，自查才会认。**
+（判据本身：本机用户名从 `$USERNAME` 取、不写死在源码里，否则这个文件自己就带着那个字符串，
+自查会把自己的源码报成泄漏 —— 09-25 第一次推就是这么拦下来的，注释里写着。）
+
+## 2026-10-16（再续）W-205：发布的最后一步验收，原来一直住在 gitignore 里
+
+做"主页卡片数一致性"这件事之前先查有没有人守着，结果查出一个更大的问题。
+
+### 原来已经守了两半，漏的是中间那种
+
+`build_index` 对 hosted 主页已有两条判据：
+① 声明在某个组里却没有发布记录 → `NotPublished` 报错（记账记漏）；
+② 还没分组的篇 → 跳过并说明（D-33/D-34 定的：一条防呆判据在第二种成因下别把整张主页冻住）。
+**没守的是第三种，也是今天最容易发生的一种：`site.url` 好好写着、但 `_publishable` 把它挡了**
+（最常见成因就是改了模板没重渲染 → G-08 判旧产物陈）。
+这时那一篇**线上照样能访问**，入口页却再也不指向它——而 `build` 打一行
+「索引跳过 乙领域」就带着少一张卡的主页 rc=0 出门。
+
+红测试跑出来正是那个形状：`已渲染 …\dist\home\index.html（1 篇，12 KB）`，什么都没拦。
+现在 hosted 且不是组落地页（`not topics`）时，把"账上有 url 却没进卡片"的篇逐个点名并炸；
+报错文案直接写"先照上面那几行修成因，再重建主页"。
+**没有拿它去管组落地页**：那条路是 `topics` 显式点名的，另已有"一篇都渲染不出来就炸"。
+
+### 顺手查出来的更大一件：`verify_live.py` / `verify_home.py` 在 `.probe/` 里
+
+AGENTS.md 第 10 步、`docs/publishing-for-agents.md`、`docs/sharing.md` **一共 8 处**把
+`python .probe/verify_live.py <组>` 和 `python .probe/verify_home.py` 写成发布收尾的必做验收，
+而 `.probe/` 是 gitignore 的 —— 新克隆下来的仓库**跑不了这条流程的最后一步**，
+台账里那些 `.probe/live_*.txt` 证据指针也全指向一个不在版本库里的工具产出的东西。
+这两个不是探针，是流程的一部分，所以搬进 `scripts/`。
+
+**搬完原位各跑一遍才算数**（这条规矩 memo 里早就写着，这次是照做）：
+- 两个脚本的 `ROOT` 都是按"我在 `.probe/`，往上两层"算的，搬进 `scripts/` 就只剩一层，
+  不改会一路去找 `scripts/scripts/…`。改完用 `os.path.abspath` 打出解析结果核对了一遍。
+- `scripts/verify_home.py` 对线上真跑：`✓ HTTP 200，卡 32 / 账上应 32，卡片全部 200`。
+- `build_index --variant hosted` 真重建：32 张卡、rc=0 —— **新加的守卫没有误伤真实主页**，
+  这条必须先于任何"判据加好了"的话。
+
+历史条目里的 `.probe/verify_*` 一个字没改（那些话在当时是真的），
+只在上面那张「路径变更」表里加了一行映射——和 10-02 那次审计链搬家用的是同一个办法。
+
+### 测试日志
+
+| 命令 | 读数 | 判定 |
+|---|---|---|
+| `pytest tests/test_index.py::test_a_hosted_index_refuses_to_lose_a_published_card`（实现前） | `1 failed`，stderr 里 `已渲染 …dist\home\index.html（1 篇，12 KB）` | 先红 |
+| `pytest tests/test_index.py -v`（实现后） | `30 passed`（含 D-33 那条"没分组就跳过"仍绿） | 绿 |
+| `python scripts/build_index.py --variant hosted` | rc=0，`dist/home/index.html` 卡片数 32 | 守卫不误伤 |
+| `python scripts/verify_home.py`（搬家后原位） | `✓ HTTP 200，卡 32 / 账上应 32，卡片全部 200` | 验收脚本可用 |
+| `python -m pytest` | `673 passed, 1 skipped in 458.27s`，rc=0 | 绿 |
+
+
 
 
 

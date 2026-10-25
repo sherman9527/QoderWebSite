@@ -227,6 +227,25 @@ def test_a_hosted_index_refuses_a_grouped_card_without_a_url(site):
         BI.build("2026-09-25", str(site), variant="hosted")
 
 
+def test_a_hosted_index_refuses_to_lose_a_published_card(site, monkeypatch):
+    """记录齐全、闸门没过 → 主页少一张卡，而退出码是 0。
+
+    上面两条测的是"没发布记录"（记账漏了）和"没分组"（D-34 允许的合法跳过）。
+    这第三条是今天最容易发生的一种：`site.url` 好好写着，但 `_publishable`
+    把它挡了（真实成因就摆在 memo 里——改了模板没重渲染，G-08 判旧产物陈）。
+    线上那一篇照样能访问，入口页却再也不会指向它；**少一张卡在产物上看不出来**，
+    只能靠数出来。
+    """
+    _publish_two(site, {u"甲领域": u"https://jia-abc.qoder.website/jia/jia.html",
+                        u"乙领域": u"https://yi-abc.qoder.website/yi/yi.html"})
+    monkeypatch.setattr(
+        BI, "_publishable",
+        lambda topic, root: [] if topic == u"甲领域" else [u"[G-08/fail] 模板源已改"])
+    with pytest.raises(RuntimeError) as e:
+        BI.build("2026-10-16", str(site), variant="hosted")
+    assert u"乙领域" in str(e.value), u"报了错却没说是哪一篇掉了：%s" % e.value
+
+
 def test_a_hosted_index_skips_a_topic_with_no_group(site):
     """还没分到组的篇：跳过并说明，**不再冻住整张主页**。
 
