@@ -650,6 +650,52 @@ def test_G13_records_a_death_where_the_next_person_will_look(monkeypatch, qualit
     assert rec["page"], u"没记是哪一页，攒再多样本也对不上号"
 
 
+def test_G13_records_the_scene_not_just_the_signature(monkeypatch, quality_bar, tmp_path):
+    """W-199 攒的是**证据**，而现在那一行只有签名。
+
+    两次目击（10-10 的 `实际：[]`、10-12 的 rc=-1 且 stdout 0 字节）留下的信息
+    合起来是"死了、没输出"，六个字。而这条上活着两条候选成因——资源挤没 / 样式没生效——
+    它们唯一的区分量是**死那一刻的现场**：这次跑了多久、还剩多少物理内存、有几个内核在跑。
+    10-16 量过内存，用的是 OS 26300 上已经不存在的 wmic，静默返回 -1，
+    **等于一台没接传感器的仪表**，所以那次"资源假设没被排除"其实根本没人看见数字。
+    """
+    cap = tmp_path / "g13-deaths.jsonl"
+    monkeypatch.setenv("KE_G13_DEATH_LOG", str(cap))
+    fake = _Done(-1, b"")
+    fake.stderr = b" Killed"
+    got = _g13_stubbed(monkeypatch, quality_bar, tmp_path, fake)
+    assert got and all(f.level == "fail" for f in got)
+    import json as _json
+    rec = _json.loads(cap.read_text(encoding="utf-8").splitlines()[-1])
+    assert isinstance(rec.get("elapsed_ms"), int) and rec["elapsed_ms"] >= 0, \
+        u"没记跑了多久——「瞬间死」和「挂了 300 秒被杀」是两种完全不同的死法：%s" % rec
+    assert "free_mem_mib" in rec, u"没记当时的空闲内存，资源这条候选永远只能猜"
+    assert "edge_procs" in rec, u"没记当时有几个内核在跑"
+
+
+def test_G13_death_env_writes_unknown_as_None_not_a_number(monkeypatch, quality_bar, tmp_path):
+    """仪表读不到时要写"读不到"，不许写一个看起来像数据的数。
+
+    -1 那次就是这么骗过我的：台账里写着"量过内存，没涨"，而实际一次都没读到。
+    所以判据不是"有这个键"，是**读不到就必须是 None**——None 与 0 的差别
+    正是"没量到"与"内存真的见底了"的差别。
+    """
+    cap = tmp_path / "g13-deaths.jsonl"
+    monkeypatch.setenv("KE_G13_DEATH_LOG", str(cap))
+    # 让两个探针都失败：subprocess.run 已被替身接走（回 _Done，不是 CompletedProcess），
+    # 内存探针直接 monkeypatch 成抛异常。
+    monkeypatch.setattr(V, "_free_mem_mib", lambda: (_ for _ in ()).throw(OSError("读不到")))
+    fake = _Done(-1, b"")
+    fake.stderr = b"boom"
+    got = _g13_stubbed(monkeypatch, quality_bar, tmp_path, fake)
+    assert got and all(f.level == "fail" for f in got), u"探针坏了也不许改判据"
+    import json as _json
+    rec = _json.loads(cap.read_text(encoding="utf-8").splitlines()[-1])
+    for k in (u"free_mem_mib", u"edge_procs"):
+        assert rec[k] is None, \
+            u"%s 读不到却写了 %r——一个哨兵数字会被当成读数" % (k, rec[k])
+
+
 def test_G13_logging_a_death_never_changes_the_verdict(monkeypatch, quality_bar, tmp_path):
     """记录是旁路。写不进去（目录不存在、只读盘）也不许把这次检查变成"通过"，
     更不许它抛出来盖掉真正那条 fail。"""

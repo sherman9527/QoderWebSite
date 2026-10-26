@@ -20,6 +20,7 @@ import os
 import re
 import subprocess
 import sys
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import outline as outline_mod  # noqa: E402
@@ -1013,15 +1014,64 @@ def _landing_geometry(PUB, gate, repo, output):
 
 # 显式绑定编号，不按位置自动编号——加一条闸门不该让别的闸门悄悄改号。
 # G-11 保留给跨领域配色闸门（_ThemeGate），它不接单领域 Ctx。
-def _record_g13_death(page, rc, stdout_bytes, stderr_text):
+def _free_mem_mib():
+    """死那一刻还剩多少空闲物理内存（MiB）。**读不到就是 None，不是 -1。**
+
+    用 ctypes 的 GlobalMemoryStatusEx 而不是起子进程：10-16 那次量它用的是 wmic，
+    OS 26300 上这命令早没了，函数静默返回 -1，于是"量过、内存没涨"这句话
+    其实一次都没有读到过数——一台没接传感器的仪表也能给出"读数"。
+    非 Windows 上 `ctypes.windll` 直接 AttributeError，落到 except 返回 None。
+    """
+    try:
+        import ctypes
+
+        class _MemStatusEx(ctypes.Structure):
+            _fields_ = [("dwLength", ctypes.c_ulong),
+                        ("dwMemoryLoad", ctypes.c_ulong),
+                        ("ullTotalPhys", ctypes.c_ulonglong),
+                        ("ullAvailPhys", ctypes.c_ulonglong),
+                        ("ullTotalPageFile", ctypes.c_ulonglong),
+                        ("ullAvailPageFile", ctypes.c_ulonglong),
+                        ("ullTotalVirtual", ctypes.c_ulonglong),
+                        ("ullAvailVirtual", ctypes.c_ulonglong),
+                        ("ullAvailExtendedVirtual", ctypes.c_ulonglong)]
+
+        st = _MemStatusEx()
+        st.dwLength = ctypes.sizeof(_MemStatusEx)
+        if not ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(st)):
+            return None
+        return int(st.ullAvailPhys // (1024 * 1024))
+    except Exception:
+        return None
+
+
+def _browser_proc_count():
+    """当时有几个浏览器内核进程在跑。读不到 / 命令失败 → None（不是 0）。
+
+    判 rc 而不是判"有没有吐出行"：`tasklist` 成功而数到 0 是真没有，
+    而子进程压根没跑成时把 0 写进记录，等于伪造一次"没有泄漏"的读数。
+    """
+    try:
+        pr = subprocess.run([u"tasklist", u"/NH", u"/FO", u"CSV"],
+                            capture_output=True, timeout=15)
+        if getattr(pr, "returncode", 1) != 0:
+            return None
+        text = (pr.stdout or b"").decode(u"utf-8", u"ignore").lower()
+        return sum(text.count(n) for n in (u"msedge.exe", u"chrome.exe", u"headless_shell"))
+    except Exception:
+        return None
+
+
+def _record_g13_death(page, rc, stdout_bytes, stderr_text, elapsed_ms=None):
     """W-199 的旁路记录：偶发抓不住，就让它下次自己带着证据出现。
 
     闸门消息里已经带了 stderr，但那条消息只在"有人把这次运行的输出留下来"时才存在——
-    跑完一轮就换名字的日志会把唯一一次目击冲掉。今天已经攒到两次死亡样本，
-    两次都只留下一句签名，没有可对比的环境信息。
+    跑完一轮就换名字的日志会把唯一一次目击冲掉。
     所以往一个**追加式**文件里记一行，跨运行攒：攒到几次之后，
     rc / stderr / 当时在跑哪一页 才可能显出规律。
 
+    现场（跑了多久 / 空闲内存 / 内核进程数）是 10-26 补的：先前两次目击合起来
+    只留下"死了、没输出"六个字，而这条上活着的两条候选成因唯一的区分量就是现场。
     记不上就算了（只读盘、目录不存在），绝不让它影响判据，也绝不抛出去。
     """
     path = os.environ.get("KE_G13_DEATH_LOG") or os.path.join(ROOT, ".probe", "g13-deaths.jsonl")
@@ -1031,14 +1081,29 @@ def _record_g13_death(page, rc, stdout_bytes, stderr_text):
             os.makedirs(d)
         tail = [l.strip() for l in (stderr_text or u"").splitlines() if l.strip()][-8:]
         import datetime
+        # 每个探针单独兜住：一起写在一个 try 里，一个坏探针会把**整行记录**吞掉
+        # （这条测试就是这么抓到的——把 _free_mem_mib 换成抛异常之后文件里一个字都没有）。
+        # 现场读不到只是少了两个字段，死亡本身才是主体，主体不许因为仪表而丢。
+        rec = {
+            "ts": datetime.datetime.now().isoformat(timespec="seconds"),
+            "page": str(page), "rc": rc, "stdout_bytes": stdout_bytes,
+            "elapsed_ms": elapsed_ms,
+            "free_mem_mib": _probe(_free_mem_mib),
+            "edge_procs": _probe(_browser_proc_count),
+            "stderr_tail": tail,
+        }
         with io.open(path, "a", encoding="utf-8") as f:
-            f.write(json.dumps({
-                "ts": datetime.datetime.now().isoformat(timespec="seconds"),
-                "page": str(page), "rc": rc, "stdout_bytes": stdout_bytes,
-                "stderr_tail": tail,
-            }, ensure_ascii=False) + u"\n")
+            f.write(json.dumps(rec, ensure_ascii=False) + u"\n")
     except Exception:
         pass
+
+
+def _probe(fn):
+    """量不到就写 None，并且绝不让它把整行记录带崩。"""
+    try:
+        return fn()
+    except Exception:
+        return None
 
 
 def g13_layout(ctx):
@@ -1048,14 +1113,18 @@ def g13_layout(ctx):
     if not os.path.isfile(script):
         return [Finding(g13_layout, ctx.rel_page, u"缺少 measure-layout.mjs，几何检查未执行", level="warn")]
     try:
+        t0 = time.monotonic()
         pr = subprocess.run(
             [os.environ.get("NODE", "node"), script, "--file", ctx.page_path, "--json"],
             cwd=ROOT, capture_output=True, timeout=300)
+        elapsed = int((time.monotonic() - t0) * 1000)
         raw = (pr.stdout or b"").decode("utf-8", "ignore").strip()
         res = json.loads(raw) if raw else {}
     except Exception as e:
         # 判 fail 不判 warn：warn 在任何只看 fail 的读数里都等于通过。
-        _record_g13_death(ctx.rel_page, None, 0, u"%s: %s" % (type(e).__name__, e))
+        # TimeoutExpired 走到这里时 elapsed≈300000，那与"瞬间死"是两种死法，必须分开攒。
+        _record_g13_death(ctx.rel_page, None, 0, u"%s: %s" % (type(e).__name__, e),
+                          elapsed_ms=int((time.monotonic() - t0) * 1000))
         return [Finding(g13_layout, ctx.rel_page,
                         u"几何检查没跑成：%s——没量到就是没查过，不得当作通过" % e,
                         level="fail")]
@@ -1075,7 +1144,8 @@ def g13_layout(ctx):
         err = [l.strip() for l in (pr.stderr or b"").decode("utf-8", "ignore")
                .splitlines() if l.strip()]
         tail = u"；stderr：%s" % u" ⏎ ".join(err[-3:]) if err else u"；stderr 也是空的"
-        _record_g13_death(ctx.rel_page, pr.returncode, len(raw), u"\n".join(err))
+        _record_g13_death(ctx.rel_page, pr.returncode, len(raw), u"\n".join(err),
+                          elapsed_ms=elapsed)
         return [Finding(g13_layout, ctx.rel_page,
                         u"几何检查没吐出结果（rc=%s，stdout %d 字节%s）——没量到就是没查过，"
                         u"不得当作通过" % (pr.returncode, len(raw), tail), level="fail")]

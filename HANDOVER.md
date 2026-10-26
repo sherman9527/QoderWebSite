@@ -30,17 +30,6 @@
 
 ## TODO（待办）
 
-- [ ] **W-210 公开快照欠着一次推送：W-207/W-208/W-209 这批还没进 `fb732a1` 之后那一份**
-      10-26 晚连着三次 `git ls-remote https://github.com/sherman9527/QoderWebSite` 全 `errno 10054`
-      （Connection was reset），按仓库规矩**探到不可达就不推**，`config/public_snapshot.json`
-      原样指着上一次成功的那份——**账上没记推送，就是真没推送**。
-      快照本身已经自查过、随时可推：`publish_public.py`（不带 `--push`）报
-      `公开树 21a5ae1faa：348 个文件（排除前 1460，删掉 1112）；图片残留 0｜中间文件残留 0｜身份痕迹 0`。
-      **不许为了推上去改走 `gh-proxy.com`**：那是只读镜像，把凭据递给第三方代理是拿账号换便利，
-      比晚一天推严重得多（AGENTS.md 里 gh-proxy 只用于**克隆**）。
-      网络恢复后：`python scripts/publish_public.py --push <远端>`，它会快进推一条新提交
-      并自己回填 `last_commit`（不 force、不改历史，见该脚本第 147 行的理由）。
-
 
 - [ ] **W-199 全站回归里 G-13 的宽屏注错测试偶发抓不到，要修的是「量不到不响」，不是给测试加 retry**
       10-10 撞的：pre-commit 第一次拦下 `tests/test_gates.py::test_G13_detects_wide_screen_defects[p,li{max-width:none}-prose-measure]`，
@@ -57,8 +46,9 @@
       10-10 是 `实际：[]`（改完判据之后，`[]` 只剩"工具跑了且真没抓到"这一种含义），
       10-12 是 `rc=4294967295、stdout 0 字节`（工具死了）。**两个不同的失败，别共用一组候选成因。**
       **本条现在缺的不是修法，是一次带证据的复现**：`g13_layout` 两条死路已改成往追加式文件记一行
-      （`KE_G13_DEATH_LOG`，默认 `.probe/g13-deaths.jsonl`：时间/哪一页/rc/stdout 字节/stderr 末尾 8 行），
-      端到端验过能落下。攒到两三次大概就能对上号。在那之前**这条不许标完成**——
+      （`KE_G13_DEATH_LOG`，默认 `.probe/g13-deaths.jsonl`）。**10-26 这行记录已经从"签名"升级成"现场"**
+      （见下面 W-211/W-212 两行 COMPLETE：耗时、空闲内存、当时几个内核在跑，且 `sweep_tokens` 的死也进同一个文件）。
+      攒到两三次大概就能对上号。在那之前**这条不许标完成**——
       根因没找到，而"不许拿没验证过的话标完成"是本台账自己的规矩。
       **不许这样收口**：给这条测试加重试、或把断言放宽成「抓到或没抓到都算过」。判据就写在 `memo.md` 那条 09-26 的坑里——
       **「让检查跳过」和「让检查通过」在测试里长得一模一样**。
@@ -78,6 +68,11 @@
       不必再靠复现去赌。
       复现入口：`PYTHONIOENCODING=utf-8 python -m pytest -q -v`（**必须带 `-v`**：`pytest.ini` 的 addopts 已有 `-q`，
       `-q -q` 会把整个 FAILURES 段咽掉，只留下一串点和 rc=1——我差点把这次当成进程崩了）。
+      **10-26 又跑了 96 次真实调用（`validate --all` 32 次 + `sweep_tokens` 64 次），0 次死亡**，
+      所以本条仍是"没复现"，不是"已排除"。
+      读现场那两个数时要带基线：**空闲内存 10,190 MiB、内核进程 41 个**是这台机器
+      *开发者自己开着的 Edge* 的常态（10-16 那个"37 个 msedge 是常量基线不是泄漏"同一个道理），
+      所以判据是"**比基线高出去多少**"，不是"非零就是泄漏"——别把 41 读成一次泄漏的证据。
 
 
 
@@ -88,6 +83,9 @@
 
 | 日期 | 编号 | 工作项 | 证据 |
 |---|---|---|---|
+| 2026-10-26 | W-212 | **`sweep_tokens` 读不懂「工具死了」：它在那里会 IndexError 崩掉整轮扫描**。给 W-199 装现场记录时顺手发现的第二个调用方——它是全站对 `measure-layout.mjs` 压力最大的一个（32 套主题 × 有/无封面 = 64 次真浏览器调用），而它写的是 `out = stdout.splitlines(); print(out[-1])`：**stdout 空 = 空列表 = IndexError**，崩出来是一行 traceback，连"第几档死的"都没留下。这正是 W-199 那个 bug 的同一族，只是这次坏的是"读结果的人"。抽成 `_measure_verdict(rc, stdout)`：一行都没吐 → 判翻车并明说「这一档等于没量过（rc=…）」；死讯同时交给 validate 那台记录器（**同一个 jsonl**，两处各写一套格式的话攒到的样本没法放在一起比）。**这脚本此前一条测试都没有**，因为它"只是个手动跑的脚本"——而它恰好是最容易撞上那次死亡的那一个。 | `tests/test_sweep_tokens.py` 三条（先红在 `module 'sweep_tokens' has no attribute '_measure_verdict'`）；真跑 `python scripts/sweep_tokens.py` → rc=0、`翻车主题：无`、64 档全通过、**死亡日志仍为空** |
+| 2026-10-26 | W-211 | **G-13 的死亡记录从「签名」升级成「现场」**。W-199 缺的是一次带证据的复现，而先前两次目击合起来只留下"死了、没输出"六个字——这条上活着的两条候选成因（资源挤没 / 样式没生效）**唯一的区分量是现场**：这次跑了多久、死了还剩多少空闲内存、当时有几个内核在跑。10-16 量过内存，用的是 OS 26300 上早就不存在的 `wmic`，它静默返回 `-1`，于是"量过、没涨"这句话**其实一次都没读到数**——一台没接传感器的仪表也能给出"读数"。现在用 `ctypes` 的 `GlobalMemoryStatusEx`（不起子进程、不碰控制台编码），加上 `tasklist` 数内核进程与 `elapsed_ms`（TimeoutExpired 那条会≈300000，"挂死后被杀"与"瞬间死"从此是两个样本）。**读不到一律写 `None`，不许写哨兵数字**：`-1` 那次骗过台账的正是"看起来像数据的数"。 | `tests/test_gates.py::test_G13_records_the_scene_not_just_the_signature`、`::test_G13_death_env_writes_unknown_as_None_not_a_number`；端到端真逼一次：`NODE=/definitely/not/node python scripts/validate.py --domain 咖啡 --gate G-13` → 落下一行 `elapsed_ms=0, free_mem_mib=10190, edge_procs=41`，**两个仪表在这台机器上真读到了数** |
+| 2026-10-26 | W-210 | **公开快照推上去了：`fb732a1..94e20c6`，348 文件**。中间隔了一段真断网——连着三次 `git ls-remote` 公开仓库全 `errno 10054`，**按规矩没推、`public_snapshot.json` 原样指着上次成功那份**，并先把它登记成一条欠着的 TODO（W-210 就是这么来的），而不是等推成功后再补一段顺利的故事。后来第四次探测通了，且远端 `main` 恰好还停在记账那个提交——**先确认远端停在记账那个提交，快进才是安全的**。顺带一条定下来的边界：**不为了推上去改走 `gh-proxy.com`**，那镜像在本仓库只用于**克隆**；`git push` 走它是把凭据递给第三方，用账号换一次便利，代价完全不对称。中性作者用 `--author-name/--author-email` 显式传（脚本缺它是"不推"而不是报错，这个默认设计是对的）。 | `.probe/pub_push2.txt`：`图片残留 0｜中间文件残留 0｜身份痕迹 0` + `提交 94e20c6f5a（接在 fb732a1e9e 之后）` + `已记录快照状态`；`config/public_snapshot.json` 已回填 |
 | 2026-10-26 | W-209 | **14 个组 + 主页全部重发：线上那 24 篇谎报撤下来了**（W-207 的收尾）。判据问的是**读者看到的像素变了没有**，不是"指纹变了吗"（`own_sha` 故意不含 `data.json`，问错字段会一路答错）。发前逐篇剥掉平台注入的 watermark 再比：**32 篇里 0 篇正文有日期行以外的差别**，另 30 篇只多一段 2,725 字节死 CSS（10-12 新加两套主题、每页内联全量主题）——所以这次重发**只**改该行字的显示，不是夹带一次模板升级。对比 W-201：同一条判据、相反结论，差别就在读者看得见看不见。**没有调 `update_access_policy`**：15 个站的 `access_mode` 从状态里读出来都已是 public，重复授权不是仪式。**两处新坑**：① 同一条 shell 里给 sites 命令加 `sleep` 前缀会报 `sites_auth_required`（宿主按"这条命令就是那条命令"注入凭据），等待必须独立一次调用；② watches 第一次验收"落地页 + 3 篇不一致、积家一致"是 **CDN 混合服务**不是发错内容——同一 URL 再抓即与本地逐字节相等，**红的时候先分辨"旧"还是"错"**。③ 我自己用 `;` 串命令，`verify_live` rc=1 之后 `record-group` 照样执行——「让检查跳过」和「让检查通过」同形那个老坑在命令行层复现，账行事后被重跑的 rc=0 追认，但顺序错了就是错了。 | `verify_live.py` × 14 全 rc=0（逐篇逐图字节相等）；`verify_home.py` = `卡 32 / 账上应 32，卡片全部 200`；`publish.py check` = `✓ 账实一致`（`web_list.md` 33 行全 `一致`）；`validate --all` **57 warn → 11 warn**（G-14 的 43 条清零）；curl 线上复检 **自相矛盾 0 篇 / 一致 32 篇**；过程与读数见 `memo.md` 2026-10-26（再续） |
 | 2026-10-26 | W-207 | **「数据时点」不再由渲染那天的墙钟决定**（决定要不要重查 9 篇到期来源时查出来的，不是审代码审出来的）。`generate.py` 那行 `data["data_as_of"] = today[:7]` **无条件执行**，于是每次 `--offline` 重渲染都把月份刷成当月——**线上 32 篇里 24 篇此刻同时印着「数据时点 2026-10」和「核对于 2026-09-XX」**，两句互相否定，而说谎的那句正是声称新鲜的那句。同一批代码里 `created_date` 上面那句注释（W-128 的性质）写的就是这件事，**我只按住了一个字段，没列它的兄弟**。现在 `data_as_of` 由最近一次**真实核对日**推出：走研究才赋值，`--offline` 只 `setdefault`；抽成 `_stamp_dates(data, today, offline)` 让这条只有一处可以说。存量按事实回写（dry-run：回写 24／本来就对 8／**没有核对日 0**——最后这个 0 是能安全执行的前提）。**第一版测试写成 fixture 造矛盾页，它绿得毫无价值**；改成遍历 32 篇真实 `data.json` 后立刻红在「24 篇的数据时点比它自己的核对日更新」上，这才算抓住了这件事。 | `scripts/generate.py::_stamp_dates`；`tests/test_freshness.py::test_an_offline_rerender_does_not_move_the_data_as_of_label`、`::test_no_published_page_claims_a_data_vintage_newer_than_its_last_check`（扫真实仓库数据）；`audit/tools/repair_data_as_of.py`；口径与"这次必须重发"的判据见 `memo.md` D-41 |
 | 2026-10-26 | W-208 | **会 print 的脚本必须钉住 stdout 编码**（10-26 重渲染第二批 9 篇 `rc=1` 查出来的）。抛点是 `validate.py` **打印一条 G-15 告警**里的 ⇒：`UnicodeEncodeError: 'gbk' codec`。看着像闸门拦下了这 9 篇，实际一个字的内容都没被拒——**失败的样子和失败的原因之间没有因果关系**，按样子去找会去改判据。这台机器码页 GBK 而仓库输出全是中文与 ⇒/≠/·，**19 个会 print 的脚本里原本只有 4 个带守卫**，补齐 10 个并加仓库不变量测试兜住新增。**我自己那个批量插守卫的脚本把守卫插进了 `prune_scratch.py` / `pdfpage.py` 的函数体**（`return` outside function），`validate --all` 全绿、9 篇渲染全过，**这两个坏文件一次都没被跑到**，是 pytest 收集阶段才炸的——我"用 ast.parse 验过没插坏"验的只是当时列出的那几个文件。批量改动之后的自检覆盖面必须是全仓，不能是"我记得改了哪几个"。 | `tests/test_contract.py::test_every_printing_script_pins_its_stdout_encoding`；全仓 `ast.parse` + 「顶层语句是否落在某个 def 跨度内」两个扫描各 0 处；`memo.md` 2026-10-26（续）测试日志 |

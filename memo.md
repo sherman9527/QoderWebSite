@@ -5,11 +5,11 @@
 | 阶段 | **32 篇全部上线，发布单位是组**（D-34 授权 → D-36 落地 → D-37 组名判据 → D-38 依赖口径 → D-41 时效口径）。`config/site_groups.json` 里 **14 个组、成员合计 32、14 个组都有地址**；账号里 15 个站（14 组 + 主页，10-12 `list_sites` 实测 `total_size: 15`）。 |
 | 产物 | 每篇一页、文件名不带日期（W-145）：`output/<领域>/<领域>.html` + `images/`。本地索引与 hosted 索引都 **32 张卡**；`dist/<组>/` 是各组装包（落地页 + 成员 slug 目录）。 |
 | 线上 | 主页 <https://knoweverything-gtqdc11h6po.qoder.website/>（32 卡逐条 200）+ 14 个组站全部 public。**10-26 完成 W-209 重发**：`verify_live` 14 组逐篇逐图字节相等，线上 32 篇「数据时点」与「核对于」**自相矛盾 0 篇**（发前 24 篇谎报，D-41）。 |
-| 公开仓库 | <https://github.com/sherman9527/QoderWebSite>：单提交快照、作者匿名、图片不入库。最近一次**真推成功**是 `fb732a1`（348 文件，10-26 19:06）；W-207/W-208/W-209 这批的快照**自查已过、尚未推送**（三次 `ls-remote` 全 `errno 10054`，见 W-210）。 |
+| 公开仓库 | <https://github.com/sherman9527/QoderWebSite>：单提交快照、作者匿名、图片不入库。最近一次**真推成功**是 `94e20c6`（348 文件，10-26 21:10，快进接在 `fb732a1` 之后）。中途断过一段网：三次 `ls-remote` 全 `errno 10054`，当时**没推、也没记成已推**，先登记成 W-210，第四次探测通了才推。 |
 | 闸门 | `python scripts/validate.py --all` = **`32 个领域，0 fail / 11 warn（生效红线 9 条）`**。重发前是 57（G-14「线上是旧版」43 条），W-209 发完清零；剩下 11 条 = G-15 到期来源 9（钟跳到 10-26 后从 6 涨上来，不是判据坏了）+ G-05 超软上限 2。`publish.py check` = `✓ 账实一致`。 |
-| 测试 | `python -m pytest` = **`678 passed, 1 skipped in 408.20s (0:06:48)`**，rc=0 |
+| 测试 | `python -m pytest` = **`683 passed, 1 skipped in 489.41s (0:08:09)`**，rc=0 |
 | 正在跑 | 无。**没有两个 generate 并发**（这条一直是硬约束）。 |
-| 下一步 | ①**W-210**：网络恢复后推公开快照（脚本自己会回填 `last_commit`）；②**W-199**（TODO 里除它之外只剩 W-210 这条推送），缺的是复现证据不是修法——`KE_G13_DEATH_LOG` 已就位，攒两三次死亡记录再对号；③可选：9 篇 G-15 到期来源重新核一遍（真要花时间，且核完 data_as_of 会跟着走到 2026-10——那是 D-41 这条口径该给的正向反馈）。 |
+| 下一步 | TODO 只剩 **W-199** 一条，缺的是复现证据不是修法——记录器 10-26 已升级成带现场（耗时/空闲内存/内核数，且 `sweep_tokens` 的死也进同一个 jsonl），攒到两三次再对号；读数要带基线（`edge_procs≈41`、空闲 `~10 GB` 是常态）。可选：9 篇 G-15 到期来源重新核一遍（真要花时间，且核完 data_as_of 会跟着走到 2026-10——那是 D-41 这条口径该给的正向反馈）。 |
 | 未决问题 | ①`memo.md` / `HANDOVER.md` 要不要继续进公开快照（现在进，已验证无身份痕迹）；②自绘示意图进不进公开快照的 `output/*/images/`（现在不进）；③主页要不要按类别分栏——32 张卡平铺还能读，但再加就得改结构，不是再加一版 CSS。 |
 
 | 别碰 | `images.prev/` 是中间态，发布成功才删；`.probe/queue*.sh` **不要在跑的时候改**（bash 按字节偏移续读脚本）；**改过 `web/src/` 先跑 `node scripts/render.mjs --print-fingerprint` 再跑闸门**（模板没编译成功时 G-08 报的是"N 个产物全部过期"，看着像产物问题——在 CSS 模板字面量里用反引号包选择器就会这样）；`data.json` 里人声明的 `cover` 会被 `--offline` 保留；**`generate.py` 重定向到文件写的是 GBK 不是 UTF-8**（要 `encoding='gbk'` 读回再转，否则 grep 中文永不命中）；**`pytest.ini` 的 `addopts` 已含 `-q`，再敲 `pytest -q` 等于 `-qq`，"N passed" 那行会被整个吞掉**——今天因此报过一个不存在的测试数（写进 MLCC 那次提交的"354 项"就是这么来的，已更正为 348）；判绿一律 `> 文件 2>&1` + `echo rc=$?`，**不要接管道**（管道的 rc 是最后一个命令的，会把真实 rc 洗成 0）；**搬动脚本后要原位跑一遍**——`ROOT` 少一层 `dirname` 就是这么漏过去的；**python 源码里别在双引号串内嵌双引号**（`u"所以"能不能""` 是 SyntaxError，今天第三次踩引号类坑）；**`image_primary_subject` 声明成单一产品名会让整页退到那一个产品**——AI制药 第一轮 14 张里 13 张是 AlphaFold，品牌词要配多个实测活的簇轮换；**`grep -c` 数的是行数不是出现次数**——产物是单行 HTML，`grep -c 示意图` 对 11 张图永远返回 1；要数出现次数用 `grep -o ... \| wc -l`（今天差点据此报"线上只有 2 张图"）；**`git ls-tree` 默认转义非 ASCII**——所有按路径匹配的检查都要 `-c core.quotePath=false`，否则中文路径的正则永不命中而检查"全绿"；**Sites 插件按 `projectRoot` 只记一个绑定**（`~/.qoder/plugins/data/qoder-sites-builtin/site-bindings/<digest(root)>/<digest(scope)>.qoder.site`），绑定指向 A 站时 prepare B 站一律 `sites_document_ambiguous`，仓库根出现 >1 个 `.qoder.site` 也是同一个码——这个仓库是"13 个组站 + 1 个主页站共用一个根"，天生跟它冲突，**每轮 prepare 前跑 `.probe/ke-clear.sh`**（移走不删，描述符里内嵌整页 base64）；**子代理会话没有 MCP 工具**，发布的写半条链路（prepare/publish）只有主 agent 能走，委派出去会 0 动作返回；**本地重新出包之后必须换 actionId**（actionId 绑的是那一份上传，复用旧的就是拿旧字节去发）；**只读 `data.json` 的闸门看不见模板的错**——读者看得见的一切都要读渲染产物（W-159 那 587 处就是这个形状）；**拆篇必须先拷图再渲染**——`_drop_orphan_images()` 按"这一页引用了什么"删文件，先渲染的那篇会把另一篇还没拷走的图删掉，未提交的图删了就没了（W-172 撞过，W-173 写进脚本顺序）；**起了全站重渲染波就别再改 `web/src/`**——波跑到一半改模板，先渲完的那批立刻重新变陈，那一轮整个作废（10-03 撞两次）；**`pack` 打"跳过"时也要报包里的真实数量**——它曾经打"0 个文件 0.0 MB"，与"出了个空包"在终端上长得一样；**`prepare_site` 之后必须读回 `site.host`**——组名短于 3 字符（`ai` 就是这么栽的）平台不报错，静默换成十六进制前缀，账上地址与线上地址分家，`deep_link()` 拼出的每条卡片从第一天起就是 404（D-37）；**删站之前先看 `display_name` 还是不是文章名**——`llm-and-crypto` 那次的名字是「归因探针 · 中文文件名小包」，账上的 project_id 没错，但它被复用过当实验载体，名字对不上就该停下来查（第 6 节那条经验）；**`scripts/verify_live.py`（10-16 从 .probe/ 搬进版本库）是验收不是记账的下游**——它曾要求账上先有 url，顺序反了：验收才是记账的证据 |
@@ -4015,3 +4015,70 @@ watches 第一次验收报 **落地页 + 3 篇「内容不一致」、只有积�
 一条顺手定下来的边界：**不为了推上去改走 `gh-proxy.com`**。那个镜像在本仓库只用于**克隆**；
 `git push` 会把凭据交给第三方代理，用账号换一次便利，代价完全不对称。
 欠着的代价只是公开仓库晚一点跟上，本地这条主线（32 篇、闸门、账实一致）不受影响。
+
+**结局（21:10 重新探测）**：第四次 `ls-remote` 通了，远端 `main` 仍停在 `fb732a1`
+——**这正是记账那个提交**，所以快进是安全的；如果远端已经领先，说明有我没经手的推送，
+那时该先读回来对齐父提交再动。推成 `fb732a1..94e20c6`，自查
+`图片残留 0｜中间文件残留 0｜身份痕迹 0`，脚本自己回填了 `last_commit`。
+W-210 从 TODO 直接进 COMPLETE，中间那段"欠着"在台账上留了一行——
+**阻塞当天就登记，比事后补一段顺利的流程诚实**。
+
+
+## 2026-10-26（补）给 W-199 装眼睛：死亡记录要有现场，而"仪表读不到"和"读到 0"是两件事
+
+TODO 只剩 W-199，而它明写着"缺的不是修法，是一次带证据的复现"。
+偶发没法催，能催的是**下一次死亡发生时，那一行记录到底能告诉我们什么**。
+先前那一行只有 `ts/page/rc/stdout_bytes/stderr_tail` —— 两次目击合起来是六个字："死了、没输出"。
+
+### 现场三个字的具体内容，以及为什么是这三个
+
+这条上活着两条候选成因：**资源挤没** 与 **注入的样式还没生效**。能让它们分开的量只有：
+- `elapsed_ms`——"瞬间死"与"跑到 300s 被 timeout 杀"是两种完全不同的死法。
+  走到 `except` 那条也记（`TimeoutExpired` 时它 ≈300000），否则最像一个成因的那一档反而没数。
+- `free_mem_mib`——资源这条候选的直接读数。
+- `edge_procs`——当时有几个内核在跑（msedge/chrome/headless_shell 一起数）。
+
+**内存那次曾经"量过"，而量到的是假的**：10-16 用的 `wmic` 在 OS 26300 上已经不存在，
+探针静默返回 `-1`，台账里"进程数没涨、内存没涨"那句话底下**一次都没有真的读数**。
+所以这次的两条硬要求是：
+1. **不起子进程**——`ctypes` 调 `GlobalMemoryStatusEx`，不碰控制台编码（今天刚被 GBK 咬过两轮），
+   非 Windows 上 `ctypes.windll` 直接抛，落到 except。
+2. **读不到写 `None`，绝不写哨兵数字**。`-1` 与 `0` 与 `None` 的差别，
+   正是"没量到"与"内存真的见底了"的差别。`_browser_proc_count` 判 `returncode != 0 → None`：
+   tasklist 成功而数到 0 是真没有，子进程压根没跑成时把 0 写进记录等于**伪造一次"没有泄漏"的读数**。
+
+端到端逼了一次真死亡（`NODE=/definitely/not/node` 跑单篇 G-13）：
+`elapsed_ms=0, free_mem_mib=10190, edge_procs=41` —— **两个仪表在这台机器上真的读到了数**，
+这才敢说"下一次会留下现场"。
+
+### 第二条测试抓到的是我自己的设计错
+
+写"读不到 → None"那条测试时，我把 `_free_mem_mib` monkeypatch 成抛异常，
+结果**整个死亡记录一个字都没落盘**——因为两个探针的调用和 `json.dumps` 在同一个 `try` 里，
+一个坏探针把整行带走了。判据不是"有这个键"而是"**仪表坏了只该少那两个字段，主体（死亡本身）不许丢**"。
+`_probe(fn)` 就是为此存在的。这条如果不写成测试，我会以为"已经兜住了"。
+
+### 顺手发现的第二个调用方：`sweep_tokens` 会在同一处崩
+
+`sweep_tokens.py` 里 `out = m.stdout.splitlines(); print(out[-1])` —— **stdout 空 = `[]` = IndexError**，
+整轮扫描崩在一行 traceback 上，"哪一档死的"都没留下。这脚本此前**零测试**（"只是个手动跑的脚本"），
+而它恰恰是全站对 `measure-layout.mjs` 压力最大的调用方（32 套主题 × 有/无封面 = 64 次真浏览器）。
+抽出 `_measure_verdict`，并把它的死讯也送进**同一个** jsonl——两处各写一套格式，攒到的样本没法放在一起比。
+
+### 读数（这轮之后 W-199 仍开着）
+
+| 命令 | 读数 | 判定 |
+|---|---|---|
+| `pytest tests/test_gates.py -k "records_the_scene or unknown_as_None"`（实现前） | 2 failed：`has no attribute '_free_mem_mib'` / `elapsed_ms` 断言红 | 红在对的地方 |
+| 同上（实现后，第一条版） | 1 failed：`IndexError: list index out of range`（文件是空的） | **抓到整行记录被坏探针带走** |
+| `_probe` 加好后 `-k G13` | 15 passed，rc=0 | 绿 |
+| `pytest tests/test_sweep_tokens.py -v`（实现前） | 3 failed：`no attribute '_measure_verdict'` | 红 |
+| `NODE=/definitely/not/node validate --domain 咖啡 --gate G-13` | rc=1，`FAIL [G-13]…几何检查没跑成`；记录一行含 `free_mem_mib=10190, edge_procs=41, elapsed_ms=0` | 仪表真在读 |
+| `python scripts/sweep_tokens.py` | rc=0，64 档全部"布局几何检查通过"，`翻车主题：无` | 重构没改判据 |
+| `python -m pytest` | **683 passed, 1 skipped in 489.41s**，rc=0 | 绿（前值 680，+3 条） |
+| `python scripts/validate.py --all` | `32 个领域，0 fail / 11 warn`，rc=0 | 闸门通过 |
+| 本轮真实调用累计 | `validate --all` 32 + `sweep_tokens` 64 = **96 次，0 次死亡** | W-199 仍是"没复现"，不是"已排除" |
+
+**基线警告**：`edge_procs=41` 与 `free_mem_mib=10190` 是这台机器的**常态**（41 个里面绝大部分是
+开发者自己开着的 Edge——10-16 那条"37 个 msedge 是常量基线不是泄漏"同一个道理）。
+读现场时判"**比基线高多少**"，不许把非零直接读成泄漏。
