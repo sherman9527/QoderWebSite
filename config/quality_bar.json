@@ -18,9 +18,9 @@
     "min_chars": 4500,
     "max_chars": 6500,
     "prose_min_chars": 40,
-    "hard_max_chars": 8500,
-    "_derivation": "10 分钟 × 500 字/分钟 = 5000 字正文，故目标区间 4500–6500。开发者 2026-09-19 判定：「超出 2000 字以内可接受」→ 6500 之上、8500 之内只 warn；超 8500 才 fail。每章预算由整页预算÷章数算出（见 generate.section_budget），耗时口径同样由开发者确认保持现状：不砍章节、不限制每章来源数。",
-    "overrun_tolerance_chars": 2000,
+    "hard_max_chars": 12000,
+    "_derivation": "10 分钟 × 500 字/分钟 = 5000 字正文，故目标区间 4500–6500。开发者 2026-09-19 判定「超出 2000 字以内可接受」→ 只 warn；再超才 fail。2026-10-16 开发者放宽：「你来决定，字数和时间不用限制的很死」→ 容忍值 2000 提到 5500，硬线 8500 变 12000（约 24 分钟）。旧那条线今天只比全站最长那篇（8436 字）高 64 字，实际作用不是防灌水而是逼内容没毛病的页面拆开——《星链的运营商之路》10-12 就是这么拆成两篇的。**目标区间 4500–6500 与「约 10 分钟读完」的承诺一个字没动**，它仍是软上限（warn）；被放宽的只是「判死」那一档。硬上限依旧**独立于大纲声明的 reading_target_minutes**（见 test_G05_an_outline_cannot_lift_the_hard_cap），放宽数值不等于把那个漏洞重新打开。每章预算仍由整页预算÷章数算出（generate.section_budget）。",
+    "overrun_tolerance_chars": 5500,
     "_prose_min_note": "段落下限。必须与 topic_data.schema.json 的 prose.text.minLength 一致，由 test_prose_floor_in_config_and_schema_is_one_number_not_two 钉住。80 是按旧的每章 900–1400 字标定的；每章预算降到 ~450 后正常段落只有 60–75 字，会被误判。"
   },
   "structure": {

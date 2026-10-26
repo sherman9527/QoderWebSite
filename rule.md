@@ -13,7 +13,7 @@
 - **[R-02]** 禁止编造数字：价格/年份/产量/排名等硬事实必须绑定可点开来源，无来源即生成失败 —— 检测：G-06、G-07
 - **[R-03]** 每张**引用图**必须记录来源页 `source_page`，无源图片不得进产物；本项目自画的示意图必须标 `kind=illustration` + `based_on`（画的是正文里哪几条已溯源事实），**禁止**带 `source_page` 冒充引用图，且页面上必须有「示意图 · 非实拍」角标 —— 检测：G-10（schema 的 if/then 双向约束：photo 缺 source_page 死、illustration 带 source_page 死、缺 based_on 死）+ `tests/test_redlines.py::test_R03_data_schema_rejects_image_without_source_page`、`tests/test_redlines.py::test_R03_self_drawn_illustration_is_allowed_but_cannot_fake_a_source`、`tests/test_render.py::test_a_self_drawn_illustration_is_labeled_and_has_no_source_link`。2026-09-24 开发者授权此改写，见 `memo.md` D-22：允许生图的前提是**标得出种类**，不是放松可核查性。
 - **[R-04]** 禁止用品牌 logo、桌面壁纸、广告大片、海报作为正文配图 —— 检测：`scripts/images.py` DECOR_HINTS + `tests/test_redlines.py::test_R04_rejects_logo_wallpaper_and_ad_creatives`
-- **[R-05]** 每篇正文目标 4,500–6,500 汉字；**超出 2,000 字以内（≤8,500）可接受**，再多才判死 —— 检测：G-05（软上限 warn / 硬上限 fail，容忍值 `quality_bar.words.overrun_tolerance_chars`）。2026-09-19 开发者原话「超出 2000 字以内可接受」，同时判定「默认还是高质量吧」→ 不砍章节、不限制每章来源数
+- **[R-05]** 每篇正文目标 4,500–6,500 汉字（**这条承诺不变**）；**超出容忍值以内只 warn，再多才判死** —— 检测：**G-05**（软上限 warn / 硬上限 fail），容忍值 `quality_bar.words.overrun_tolerance_chars`，硬上限 = 目标上限 + 容忍，由 `tests/test_contract.py` 钉着不许各写一遍。当前 5,500 ⇒ 硬线 **12,000**（约 24 分钟）。沿革：2026-09-19 开发者「超出 2000 字以内可接受」（硬线 8,500）；**2026-10-26 开发者「你来决定，字数和时间不用限制的很死」**→ 我把硬线抬到 12,000，动的是"判死"那一档，**没动**目标区间与软上限的 warn。旧 8,500 当时只比全站最长那篇高 64 字，实际作用已不是防灌水而是逼内容没毛病的页面拆开。两条仍然锁死：① 硬上限**独立于**大纲声明的 `reading_target_minutes`（`tests/test_gates.py::test_G05_an_outline_cannot_lift_the_hard_cap`）——放宽数值不等于把 10-01 那个洞重新打开；② 篇幅口径只数散文，代码不算（D-28）
 - **[R-06]** 未跑 `python scripts/validate.py --all` 全绿，不得在 `HANDOVER.md` 里把任何领域标为已完成 —— 检测：流程（COMPLETE 条目必须带可点开的证据指针）
 - **[R-07]** 依赖安装必须国内镜像优先、官方源其次、源码编译最后，且镜像配置必须写进仓库 —— 检测：`tests/test_redlines.py::test_R07_npm_registry_pinned_in_repo`、`test_R07_pip_index_pinned_in_requirements`
 - **[R-08]** 生成过程不得向项目工作目录落盘无关文件；联网研究的中间文件只允许进 `output/<领域>/` 或 `.research-scratch/` —— 检测：`tests/test_llm.py::test_cli_runs_in_scratch_dir_not_project_root`
@@ -47,6 +47,7 @@
 
 | 编号建议 | 候选规则 | 为什么值得 |
 |---|---|---|
+| 2026-10-26 | R-05 放宽**数值**：容忍 2,000 → 5,500，硬上限 8,500 → 12,000。目标区间 4,500–6,500 与「约 10 分钟读完」的承诺、软上限 warn 全部未动；硬上限依旧独立于大纲声明的时长（10-01 那个洞没重开）。开发者原话「你来决定，字数和时间不用限制的很死」 | 开发者授权放宽，数值由 Agent 定（W-206）|
 | 2026-10-01 | R-05 **执行收紧**（条文未变）：G-05 的硬上限改为独立于大纲声明的软上限判定。原写法允许一份大纲只要把 `reading_target_minutes` 抬高就永远不判死，等于红线可协商 | Agent（修漏洞；开发者指令「全部你来决定」）|
 | 候选-A | 产物 HTML 禁止任何外部网络资源（CDN/外链字体/远程图片），必须离线可开 | 需求要"纯静态 html"；本网络 Wikimedia/DuckDuckGo 不可达，外链必然挂图 |
 | 候选-B | 禁止编造数字：价格/年份/产量/排名等硬事实必须带可点开来源 URL，无来源即生成失败 | 这是科普页的信任底线；参考项目 oreilly 也把它写成筛选标准第 3 条 |

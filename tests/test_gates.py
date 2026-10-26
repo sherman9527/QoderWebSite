@@ -869,6 +869,26 @@ def test_G05_warns_when_slightly_over_the_soft_ceiling(passing_ctx):
     assert [f for f in got if f.level == "warn"], "超软上限却一声不吭，篇幅承诺就没人守了"
 
 
+def test_G05_no_longer_kills_a_page_just_past_the_old_red_line(passing_ctx):
+    """R-05 放宽（开发者 2026-10-16 原话「你来决定，字数和时间不用限制的很死」）。
+
+    旧硬线 8,500 今天只比全站最长那篇（Agent开发 8,436 汉字）高 **64 字**。
+    这条线实际起的作用不是"防灌水"，而是逼着内容没毛病的页面拆开——
+    《星链的运营商之路》就是这么在 10-12 被拆成两篇的，代价是两套身份色、
+    一次 G-11 撞色、16 张示意图和一轮全站重渲染。
+
+    新线 12,000（= 目标 6,500 + 容忍 5,500，约 24 分钟）。
+    这条测的是**放宽之后仍然要保住的那一档**：超软上限、未超硬上限 → warn 而不是 fail。
+    数值本身由 `test_contract.py` 那条 `hard == max + tolerance` 钉着，不在这里重复。
+    """
+    ctx = _pad_to(passing_ctx, 9500)
+    got = run(by_id("G-05"), ctx)
+    assert not [f for f in got if f.level == "fail"], \
+        u"9,500 字就判死，等于还在用旧的 8,500 红线：%s" % [str(f) for f in got][:2]
+    assert [f for f in got if f.level == "warn"], \
+        u"超了目标上限却一声不响——「约 10 分钟读完」那条承诺就没有读数点了"
+
+
 def test_G05_an_outline_cannot_lift_the_hard_cap(passing_ctx):
     """R-05 的硬上限是红线，大纲不能靠声明一个更大的时长把它关掉。
 
