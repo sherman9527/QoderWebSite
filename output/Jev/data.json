@@ -2026,9 +2026,9 @@
   "hero_motif": "choice_bars",
   "hero_note": "母题是「封闭选项上的概率条」：一组等高候选里只有一条被点亮，旁边标着置信度。这就是 Jev 与自回归模型最直观的分界——它的输出空间是人给定的那几个选项，不是开放词表。琥珀色点亮、其余压暗，配深墨底。"
  },
- "generated_date": "2026-10-12",
+ "generated_date": "2026-10-26",
  "created_date": "2026-09-26",
- "data_as_of": "2026-10",
+ "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 16,
  "site": {
@@ -2036,8 +2036,8 @@
   "group": "ai-industry",
   "path": "/jev/jev.html",
   "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
-  "content_sha": "d18767c2b0998541",
-  "published_date": "2026-10-11",
+  "content_sha": "5bbf192d94e62ab5",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://jev-gtqdc11h6po.qoder.website/",
   "first_published_date": "2026-09-27"

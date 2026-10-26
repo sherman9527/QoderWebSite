@@ -523,3 +523,26 @@ def test_data_schema_oneOf_offers_every_block_type():
     assert not missing, u"这些区块类型在枚举里，但 oneOf 没提供：%s" % sorted(missing)
     extra = set(by_const) - want
     assert not extra, u"oneOf 提供了枚举里不存在的类型：%s" % sorted(extra)
+
+
+def test_every_printing_script_pins_its_stdout_encoding():
+    """会 print 中文的脚本必须钉住 stdout 编码，否则在 Windows 上是一枚定时炸弹。
+
+    起因是 10-26 的真实事故：`validate.py` 打印一条 G-15 告警里的 `⇒`，
+    GBK 码页编不下，抛 `UnicodeEncodeError`，把 9 篇的重渲染打成 rc=1。
+    看现象像"质量闸门拦下了 9 篇"，实际是编码 —— 差一个 traceback 最后一行就看错。
+    当时 14 个会输出的脚本里只有 4 个有守卫。
+
+    这条测试防的是"新脚本又忘带守卫"，不是重复测守卫本身好不好用。
+    """
+    root = os.path.join(ROOT, "scripts")
+    bad = []
+    for n in sorted(os.listdir(root)):
+        if not n.endswith(".py"):
+            continue
+        t = io.open(os.path.join(root, n), encoding="utf-8", errors="replace").read()
+        if "print(" not in t:
+            continue
+        if "reconfigure" not in t:
+            bad.append(n)
+    assert not bad, u"这些脚本会 print 却没钉 stdout 编码：%s" % bad

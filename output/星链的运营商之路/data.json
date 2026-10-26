@@ -2004,7 +2004,7 @@
   "hero_motif": "orbit_doppler",
   "hero_note": "一条轨道上四颗星掠过，只有亮着的那颗在为你服务：这一篇所有争论——切换、多普勒、频谱复用、容量随仰角起伏——都从这张图上长出来。"
  },
- "generated_date": "2026-10-12",
+ "generated_date": "2026-10-26",
  "created_date": "2026-10-11",
  "data_as_of": "2026-10",
  "research_mode": "online",
@@ -2014,8 +2014,8 @@
   "group": "space-comms",
   "path": "/starlink-carrier/starlink-carrier.html",
   "project_id": "01a12c3b-a3a5-7473-8516-7fc747387042",
-  "content_sha": "cc987d9eee5b9dda",
-  "published_date": "2026-10-12",
+  "content_sha": "caa863ff81a7dcbf",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://space-comms-gtqdc11h6po.qoder.website/starlink-carrier/starlink-carrier.html",
   "first_published_date": "2026-10-12"

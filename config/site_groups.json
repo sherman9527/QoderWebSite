@@ -26,7 +26,7 @@
    "url": "https://ai-industry-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "8c2bd9fd0b88f13b",
+   "group_sha": "8f74f96a8ea84108",
    "absorbed_deleted": "2026-10-04"
   },
   "ai-compute": {
@@ -41,7 +41,7 @@
    "url": "https://ai-compute-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "995b8a9048dd036b",
+   "group_sha": "990b9ee13391adb0",
    "absorbed_deleted": "2026-10-04"
   },
   "ai-engineering": {
@@ -54,7 +54,7 @@
    "url": "https://ai-engineering-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "012b60021edd93d4",
+   "group_sha": "73eb4b87612debcf",
    "absorbed_deleted": "2026-10-04"
   },
   "cars": {
@@ -68,7 +68,7 @@
    "url": "https://cars-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "cd0c6cbe95423ce6",
+   "group_sha": "4d2a9363b0af292f",
    "absorbed_deleted": "2026-10-04"
   },
   "components": {
@@ -81,7 +81,7 @@
    "url": "https://components-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "d147a41ced4f57c2",
+   "group_sha": "2815537273195133",
    "absorbed_deleted": "2026-10-04"
   },
   "fashion": {
@@ -96,7 +96,7 @@
    "url": "https://fashion-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "22447a6c70a5284c",
+   "group_sha": "1213e91de8b02d91",
    "absorbed_deleted": "2026-10-04"
   },
   "financial-history": {
@@ -109,7 +109,7 @@
    "url": "https://financial-history-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "9975191c60f22694",
+   "group_sha": "63f22467ccfe831d",
    "absorbed_deleted": "2026-10-04"
   },
   "food": {
@@ -122,7 +122,7 @@
    "url": "https://food-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "d316029f340b7dcd",
+   "group_sha": "0bbdf9afbb7b194c",
    "absorbed_deleted": "2026-10-04"
   },
   "fragrance": {
@@ -135,7 +135,7 @@
    "url": "https://fragrance-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "348ba76ae8d4a492",
+   "group_sha": "b1f26da3c649ba20",
    "absorbed_deleted": "2026-10-04"
   },
   "macro-assets": {
@@ -148,7 +148,7 @@
    "url": "https://macro-assets-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "ab9b136a153eaf70",
+   "group_sha": "19c7d50f4a8fab46",
    "absorbed_deleted": "2026-10-04"
   },
   "macro-finance": {
@@ -162,7 +162,7 @@
    "url": "https://macro-finance-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "c0f3e0667df19274",
+   "group_sha": "b503225e4e13d406",
    "absorbed_deleted": "2026-10-04"
   },
   "retail": {
@@ -175,7 +175,7 @@
    "url": "https://retail-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "e3662ef9fc478e4c",
+   "group_sha": "b5031ac5ea06d0f3",
    "absorbed_deleted": "2026-10-04"
   },
   "space-comms": {
@@ -189,7 +189,7 @@
    "url": "https://space-comms-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-12",
-   "group_sha": "3e95959efa73b94a"
+   "group_sha": "5532985526b9de9c"
   },
   "watches": {
    "display_name": "腕表",
@@ -204,7 +204,7 @@
    "url": "https://watches-gtqdc11h6po.qoder.website/",
    "access": "public",
    "published_date": "2026-10-04",
-   "group_sha": "80ccf28277b46558",
+   "group_sha": "cec2c2aa940bc789",
    "absorbed_deleted": "2026-10-04"
   }
  }

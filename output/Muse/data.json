@@ -2754,8 +2754,8 @@
   "hero_motif": "sandbox_rack",
   "hero_note": "以沙箱矩阵为母题：一格是一台几分钟拉起、用完即销毁的 Linux 实例，绝大多数早已暗下去，只有当下还在跑的几格亮着，个别是正在被调度的橙色——「上万台」这件事靠密度说话。"
  },
- "generated_date": "2026-10-12",
- "data_as_of": "2026-10",
+ "generated_date": "2026-10-26",
+ "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 15,
  "cover": {
@@ -2773,8 +2773,8 @@
   "group": "ai-industry",
   "path": "/muse-app/muse-app.html",
   "project_id": "01a104b6-455f-78c4-94fc-3dca5fb48af9",
-  "content_sha": "db2e943123f81e57",
-  "published_date": "2026-10-11",
+  "content_sha": "ea54cc348cabc0a1",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://muse-app-gtqdc11h6po.qoder.website/",
   "first_published_date": "2026-09-25"

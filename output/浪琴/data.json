@@ -2544,8 +2544,8 @@
   "hero_motif": "winged_hourglass",
   "hero_note": "以带翼沙漏徽标与银灰、酒红构成开场母题，取'计时工具'的中性感而非珠宝感"
  },
- "generated_date": "2026-10-12",
- "data_as_of": "2026-10",
+ "generated_date": "2026-10-26",
+ "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 16,
  "created_date": "2026-09-20",
@@ -2554,8 +2554,8 @@
   "group": "watches",
   "path": "/longines/longines.html",
   "project_id": "01a104e6-3ec2-72e3-974a-0811cf4dc8f0",
-  "content_sha": "7c5e0286b1fe886f",
-  "published_date": "2026-10-11",
+  "content_sha": "bed9cbd6ded619ed",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://longines-gtqdc11h6po.qoder.website/",
   "first_published_date": "2026-09-25"

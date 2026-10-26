@@ -2672,9 +2672,9 @@
   "hero_motif": "majority_line",
   "hero_note": "全篇的记忆点：一排席位格，中间那道线是多数门槛——它比任何一格的颜色都重要，因为资产关心的从来不是谁票多，而是**哪一院跨过那条线、跨过多格**。格子上不标任何席位数字（R-02）：席位是随时点变化的量化断言，已经带来源地活在正文里。两色分列两侧，不写哪边是执政党，避免把颜色读成倾向。"
  },
- "generated_date": "2026-10-12",
+ "generated_date": "2026-10-26",
  "created_date": "2026-09-26",
- "data_as_of": "2026-10",
+ "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 18,
  "site": {
@@ -2682,8 +2682,8 @@
   "group": "macro-assets",
   "path": "/us-midterms-and-assets/us-midterms-and-assets.html",
   "project_id": "01a104f3-6b3f-778d-b697-cd17ed2d0061",
-  "content_sha": "10694875b239bc03",
-  "published_date": "2026-10-11",
+  "content_sha": "e46a3372a2dabf88",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://us-midterms-and-assets-gtqdc11h6po.qoder.website/",
   "first_published_date": "2026-09-26"

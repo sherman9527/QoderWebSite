@@ -2586,8 +2586,8 @@
   "hero_motif": "roast_axis",
   "hero_note": "开场用一条从浅焙到深焙的萃取色带，把'烘焙度'这个抽象概念变成一眼可读的视觉轴"
  },
- "generated_date": "2026-10-12",
- "data_as_of": "2026-10",
+ "generated_date": "2026-10-26",
+ "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 15,
  "created_date": "2026-09-20",
@@ -2596,8 +2596,8 @@
   "group": "food",
   "path": "/coffee/coffee.html",
   "project_id": "01a104f3-4ba3-7ecd-8c27-5edffa5982d7",
-  "content_sha": "4e2a765401c1d730",
-  "published_date": "2026-10-11",
+  "content_sha": "7a9705a06bd946c9",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://coffee-gtqdc11h6po.qoder.website/",
   "first_published_date": "2026-09-25"

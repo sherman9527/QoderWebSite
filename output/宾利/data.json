@@ -2470,8 +2470,8 @@
   "hero_motif": "matrix_grille",
   "hero_note": "以直立矩阵格栅与'飞翼 B'剪影开场，配英国赛车绿与皮革酒红，走运动而非仪式的调性"
  },
- "generated_date": "2026-10-12",
- "data_as_of": "2026-10",
+ "generated_date": "2026-10-26",
+ "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 16,
  "created_date": "2026-09-20",
@@ -2480,8 +2480,8 @@
   "group": "cars",
   "path": "/bentley/bentley.html",
   "project_id": "01a104e7-b7ce-7459-820e-92fdbe79970b",
-  "content_sha": "c36cca8feb486342",
-  "published_date": "2026-10-11",
+  "content_sha": "1822b1cb4ac459a7",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://bentley-gtqdc11h6po.qoder.website/",
   "first_published_date": "2026-09-25"

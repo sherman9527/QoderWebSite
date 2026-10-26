@@ -1853,7 +1853,7 @@
   "hero_motif": "link_budget_fall",
   "hero_note": "一条链路从发射到接收逐级掉预算，最下面那道台阶才是地面小区没有的：距离。图不画卫星画台阶，因为这一篇所有结论都从「掉多少分贝」长出来。"
  },
- "generated_date": "2026-10-12",
+ "generated_date": "2026-10-26",
  "created_date": "2026-10-11",
  "data_as_of": "2026-10",
  "research_mode": "online",
@@ -1863,8 +1863,8 @@
   "group": "space-comms",
   "path": "/constellation-physics/constellation-physics.html",
   "project_id": "01a12c3b-a3a5-7473-8516-7fc747387042",
-  "content_sha": "0d9574fe2e96c6e5",
-  "published_date": "2026-10-12",
+  "content_sha": "89668096a017639a",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://space-comms-gtqdc11h6po.qoder.website/constellation-physics/constellation-physics.html",
   "first_published_date": "2026-10-12"

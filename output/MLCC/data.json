@@ -2830,8 +2830,8 @@
   "hero_motif": "interleaved_electrodes",
   "hero_note": "MLCC 的横截面：陶瓷介质层与镍内电极交替叠层，相邻电极分别朝两个端头引出——交错才成电容，对齐就是短路。记忆点用器件原理本身，不用装饰。"
  },
- "generated_date": "2026-10-12",
- "data_as_of": "2026-10",
+ "generated_date": "2026-10-26",
+ "data_as_of": "2026-09",
  "research_mode": "online",
  "reading_minutes": 16,
  "cover": {
@@ -2849,8 +2849,8 @@
   "group": "components",
   "path": "/mlcc/mlcc.html",
   "project_id": "01a104f3-1627-7002-a9fa-7fc436a5d147",
-  "content_sha": "03ff5ca0aec98675",
-  "published_date": "2026-10-11",
+  "content_sha": "fa5d8d0bc93df024",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://mlcc-gtqdc11h6po.qoder.website/",
   "first_published_date": "2026-09-25"

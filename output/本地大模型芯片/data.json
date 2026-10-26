@@ -2883,7 +2883,7 @@
   "hero_motif": "bandwidth_neck",
   "hero_note": "三层从上到下是内存池、可用带宽、能装下的模型规模——本地推理的瓶颈从来在这条竖轴上，不在最上面那行算力数字里。"
  },
- "generated_date": "2026-10-12",
+ "generated_date": "2026-10-26",
  "created_date": "2026-10-11",
  "data_as_of": "2026-10",
  "research_mode": "online",
@@ -2902,8 +2902,8 @@
   "group": "ai-compute",
   "path": "/local-llm-chips/local-llm-chips.html",
   "project_id": "01a104a3-b5d1-737e-8d1c-6a970248f3c2",
-  "content_sha": "2568f334c108224e",
-  "published_date": "2026-10-11",
+  "content_sha": "8d2f29dfa6fbfd87",
+  "published_date": "2026-10-26",
   "access": "public",
   "first_url": "https://ai-compute-gtqdc11h6po.qoder.website/local-llm-chips/local-llm-chips.html",
   "first_published_date": "2026-10-11"

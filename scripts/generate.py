@@ -930,6 +930,30 @@ def verify(topic, page=None):
 
 # ---------------------------------------------------------------- 主流程
 
+def _stamp_dates(data, today, offline=False):
+    """落三个日期，它们各自的生命周期不一样。
+
+    · `generated_date` —— 每次渲染都变，它说的就是"这文件哪天出的"。
+    · `created_date`   —— 第一次落盘就钉住（W-128 的性质；W-145 之后索引再也
+      没法从"最早那篇日期页"反推首上架日，所以显式落盘，`setdefault` 不许被改）。
+    · `data_as_of`     —— **只有真跑了研究才许变**。
+
+    最后一条是 10-26 补的。原来它写成无条件赋值，而 `created_date` 上面那行注释
+    刚刚说清"`--offline` 重跑不许改写它"——同一个坑就在警告下面一行。
+    后果是具体的：改一次模板要全站重渲染（G-08 逼的），于是全站的「数据时点」
+    被集体抬到渲染那个月，可一个来源都没重新核过；而同一页还并排印着
+    「核对于 <真实日期>」，两行当场打架。量到 24/32 篇处于这个状态。
+    守卫在 `tests/test_freshness.py::test_no_published_page_claims_a_data_vintage_newer_than_its_last_check`。
+    """
+    data["generated_date"] = today
+    data.setdefault("created_date", today)
+    if offline:
+        data.setdefault("data_as_of", today[:7])
+    else:
+        data["data_as_of"] = today[:7]
+    return data
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=u"生成一个领域的知识专题页")
     ap.add_argument("topic", help=u"领域名，对应 config/topics/<领域>.json")
@@ -1000,12 +1024,7 @@ def main(argv=None):
     data["subtitle"] = cfg.subtitle or data.get("subtitle", "")
     data["reader"] = cfg.reader or data.get("reader", "")
     data["theme"] = {"token": cfg.token, "hero_motif": cfg.hero_motif, "hero_note": cfg.hero_note}
-    data["generated_date"] = today
-    # 创建时间与重渲染日期是两件事（W-128 的性质）。W-145 之后一篇只留一页、
-    # 文件名不带日期，索引再也无法从"最早那篇日期页"反推它哪天第一次上架，
-    # 所以这里显式落一次盘：setdefault 而不是赋值——`--offline` 重跑不许改写它。
-    data.setdefault("created_date", today)
-    data["data_as_of"] = today[:7]
+    _stamp_dates(data, today, offline=args.offline)
 
     # --only 打错一个字母不会报错，只会什么都不做：research() 过滤后 todo 为空，
     # 于是日志照跑、配图照抓、退出码只反映后面的闸门——你以为重做了那一章，其实一个字没动。

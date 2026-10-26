@@ -103,6 +103,64 @@ def test_G15_is_silent_for_a_fresh_page(tmp_path):
     assert not findings, [str(f) for f in findings]
 
 
+def test_an_offline_rerender_does_not_move_the_data_as_of_label(tmp_path, monkeypatch):
+    """`--offline` 一个来源都没重新核，就不许把"数据时点"抬到新月份。
+
+    `generate.py` 里 `created_date` 上面那行注释刚说清楚"`--offline` 重跑不许改写它"，
+    下一行的 `data_as_of` 用的却是直接赋值 —— 同一个坑就在警告下面一行。
+    后果不是抽象的：改一次模板要全站重渲染（G-08 逼的），于是 32 篇的
+    「数据时点」被集体抬到渲染那个月，而页面上另一行「核对于 <真实日期>」没动，
+    **同一页自相矛盾**，且说谎的那一行正是声称新鲜度的那一行。
+    """
+    import generate as G
+
+    d = tmp_path / u"时点"
+    d.mkdir()
+    dp = d / "data.json"
+    dp.write_text(json.dumps({u"topic": u"时点", u"data_as_of": u"2026-09"},
+                             ensure_ascii=False), encoding="utf-8")
+    data = json.loads(dp.read_text(encoding="utf-8"))
+    today = "2026-10-26"
+
+    G._stamp_dates(data, today, offline=True)
+    assert data["data_as_of"] == u"2026-09", \
+        u"--offline 把数据时点从 2026-09 抬到了 %s，可一个来源都没重新核" % data["data_as_of"]
+    G._stamp_dates(data, "2026-11-05", offline=False)
+    assert data["data_as_of"] == u"2026-11", u"真跑了研究还不更新时点，那这字段就没意义了"
+
+
+def test_no_published_page_claims_a_data_vintage_newer_than_its_last_check():
+    """扫真实仓库：任何一篇的「数据时点」都不许晚于它的「最后核对日」。
+
+    页面上这两个日期并排印着，晚于就是同屏自相矛盾。10-26 量到全站 32 篇
+    全都 `data_as_of=2026-10`，而多数最后核对在 9 月——因为 `--offline` 重渲染
+    会按"渲染当月"改写它（见上一条测试）。这条扫全量，修不干净就一直红。
+    """
+    root = os.path.join(ROOT, "output")
+    bad = []
+    checked = 0
+    for topic in sorted(os.listdir(root)):
+        dp = os.path.join(root, topic, "data.json")
+        if not os.path.isfile(dp):
+            continue
+        data = json.load(io.open(dp, encoding="utf-8"))
+        as_of = data.get("data_as_of")
+        last = F.last_retrieved(data)
+        if not as_of or not last:
+            continue                      # 没有可比的两端，交给别的判据管
+        checked += 1
+        try:
+            claimed = dt.date.fromisoformat(as_of + "-01")
+        except ValueError:
+            bad.append((topic, as_of, str(last), u"时点不是 YYYY-MM"))
+            continue
+        if claimed > last:
+            bad.append((topic, as_of, str(last), u"时点晚于最后核对"))
+    assert checked >= 30, u"只量到 %d 篇，这条扫的不是全站" % checked
+    assert not bad, u"%d 篇的数据时点比它自己的核对日更新，页面同屏矛盾：%s" % (
+        len(bad), "；".join("%s(%s>%s)" % (b[0], b[1], b[2]) for b in bad[:6]))
+
+
 def test_the_page_prints_the_last_check_date(tmp_path):
     """读者看得见的第三个日期。前两个（数据时点、生成于）早就有，
     缺的正是"这些来源最后一次逐条核对是哪天"。"""

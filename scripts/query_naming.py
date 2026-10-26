@@ -21,6 +21,13 @@ import io
 import json
 import os
 import re
+import sys
+
+# 这个文件会 print 中文，Windows 上 stdout 默认是 GBK —— 没有这道守卫就直接崩
+# （10-26 validate.py 打印 G-15 告警里的 ⇒ 就是这么把 9 篇渲染打成 rc=1 的）。
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    sys.stderr.reconfigure(encoding="utf-8", errors="replace")
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
