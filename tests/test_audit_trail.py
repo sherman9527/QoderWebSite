@@ -44,6 +44,9 @@ def test_audit_records_are_tracked():
     # 10-26 回写「数据时点」的工具。它直接改产物目录里的 data.json，
     # ROOT 层数错了就是去改别处的 data.json——比不改更糟。
     "repair_data_as_of.py",
+    # 10-27 W-213 的来源核对器。它读 output/<篇>/data.json 与那份 HTML，
+    # 层数错了就是一条都读不到——而它会安静地报"0 条来源"，看起来像这一篇很干净。
+    "resource_check.py",
 ])
 def test_moved_tool_resolves_the_repo_root(name):
     """搬家最容易坏的不是 import 而是 ROOT 层数：`.probe/` 深一层，`audit/tools/` 深两层。

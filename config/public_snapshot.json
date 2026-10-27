@@ -1,8 +1,8 @@
 {
- "last_commit": "94e20c6f5ae0f75d7863028a71b6d79a7f1db66f",
- "last_tree": "7909c888c8ad689c3fc8653d9c66029f7a4691aa",
+ "last_commit": "992076349e9d1118fdc75a95b300e8ddacad119b",
+ "last_tree": "1476777ce609f37e70ceaa0d99c14178f1135a0d",
  "branch": "main",
- "files": 348,
- "pushed_at": "2026-10-26T21:11:33+08:00",
+ "files": 349,
+ "pushed_at": "2026-10-26T23:58:28+08:00",
  "note": "上一次推给公开仓库的快照。publish_public.py 用它当新快照的父，这样更新是快进而不用 force-push。删掉这个文件就等于重新起一条历史。"
 }

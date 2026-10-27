@@ -39,6 +39,6 @@
 | 百达翡丽 | watches | <https://watches-gtqdc11h6po.qoder.website/patek/patek.html> | 2026-10-26 | public | 一致 |
 | 积家 | watches | <https://watches-gtqdc11h6po.qoder.website/jaeger-lecoultre/jaeger-lecoultre.html> | 2026-10-26 | public | 一致 |
 | 美债7%情景 | macro-finance | <https://macro-finance-gtqdc11h6po.qoder.website/ust7/ust7.html> | 2026-10-26 | public | 一致 |
-| 美国中期选举与全球资产 | macro-assets | <https://macro-assets-gtqdc11h6po.qoder.website/us-midterms-and-assets/us-midterms-and-assets.html> | 2026-10-26 | public | 一致 |
+| 美国中期选举与全球资产 | macro-assets | <https://macro-assets-gtqdc11h6po.qoder.website/us-midterms-and-assets/us-midterms-and-assets.html> | 2026-10-27 | public | 一致 |
 | 香奈儿 | fashion | <https://fashion-gtqdc11h6po.qoder.website/chanel/chanel.html> | 2026-10-26 | public | 一致 |
 | 骁龙笔电 | ai-industry | <https://ai-industry-gtqdc11h6po.qoder.website/snapdragon-laptop/snapdragon-laptop.html> | 2026-10-26 | public | 一致 |

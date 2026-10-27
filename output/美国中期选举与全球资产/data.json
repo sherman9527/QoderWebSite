@@ -9,15 +9,16 @@
     {
      "type": "prose",
      "heading": "通用 ballot 量的是此刻的政党偏好，不是席位",
-     "text": "通用 ballot 问的是一句没有候选人的话：今天投国会选举，你选民主党的那位还是共和党的那位。它量的是全国政党偏好，不是席位——两者之间没有稳定的换算率。9 月 25 日能读到两个均值，一个不加权、一个按机构评级与时效加权，还能再叠一层参选可能性调整。它们都在描述此刻，不是 11 月 3 日。",
+     "text": "通用 ballot 问的是一句没有候选人的话：今天投国会选举，你选民主党的那位还是共和党的那位。它量的是全国政党偏好，不是席位——两者之间没有稳定的换算率。这一页同时给两个均值：一个不加权，一个按机构评级与时效加权，还能再叠一层参选可能性调整。它们都在描述此刻，不是 11 月 3 日。同一张页面我们手里有两个日期的版本：10 月 5 日是 D +8.9、LV 口径 D +9.6；10 月 26 日是 D +9、LV 口径 D +9.5。两周里不加权的涨了 0.1，做完参选可能性调整反倒落了 0.1——两条线能朝相反方向走，这就是为什么这一节把每个读数连着它自己那天一起印，不单独印一个「最新」。",
      "source_ids": [
       "S011",
-      "S016"
+      "S016",
+      "S012"
      ]
     },
     {
      "type": "keyvalue_table",
-     "caption": "同一天的两个均值，口径完全不同（2026-09-25）。LV = 可能参选者，RV = 注册选民。",
+     "caption": "同一条均值曲线上的两个读数，口径完全不同；括号里是各自读到的那天。LV = 可能参选者，RV = 注册选民。",
      "rows": [
       {
        "k": "Ballotpedia · 简单平均",
@@ -28,14 +29,14 @@
       },
       {
        "k": "Silver Bulletin · 加权均值",
-       "v": "D +8.1（9 月初还是 +6.7），标注为本周期高点",
+       "v": "D +9（页面 2026-10-26 更新），文中明写本周期高点为 D +9.2；10 月 5 日那版是 D +8.9",
        "source_ids": [
         "S012"
        ]
       },
       {
        "k": "Silver Bulletin · 参选可能性调整",
-       "v": "同一均值改用 likely voter 口径后为 D +8.8",
+       "v": "同一均值改用 likely voter 口径后为 D +9.5（10 月 26 日那版）；10 月 5 日那版是 D +9.6",
        "source_ids": [
         "S012"
        ]
@@ -1880,7 +1881,7 @@
   {
    "id": "S012",
    "url": "https://www.natesilver.net/p/generic-ballot-average-2026-nate-silver-bulletin-congress-polls",
-   "label": "Silver Bulletin 2026 通用 ballot 均值页（2026-09-25 更新）：加权均值 D +8.1，9 月初为 +6.7，likely voter 调整后 +8.8；按机构评级、样本量、时效赋权并优先采用 LV 版本",
+   "label": "Silver Bulletin 2026 通用 ballot 均值页，页面逐日更新并自标日期：10 月 5 日那版加权均值 D +8.9、likely voter 口径 D +9.6；10 月 26 日那版 D +9、LV 口径 D +9.5，文中明写本周期 all-time high 为 D +9.2（署名 -EMD, 10/26/26）；按机构评级、样本量、时效赋权并优先采用 LV 版本",
    "retrieved": "2026-09-26",
    "publisher": "Silver Bulletin / Nate Silver",
    "cache": "text/8b7a22de927155eb.txt"
@@ -2672,7 +2673,7 @@
   "hero_motif": "majority_line",
   "hero_note": "全篇的记忆点：一排席位格，中间那道线是多数门槛——它比任何一格的颜色都重要，因为资产关心的从来不是谁票多，而是**哪一院跨过那条线、跨过多格**。格子上不标任何席位数字（R-02）：席位是随时点变化的量化断言，已经带来源地活在正文里。两色分列两侧，不写哪边是执政党，避免把颜色读成倾向。"
  },
- "generated_date": "2026-10-26",
+ "generated_date": "2026-10-27",
  "created_date": "2026-09-26",
  "data_as_of": "2026-09",
  "research_mode": "online",
@@ -2682,8 +2683,8 @@
   "group": "macro-assets",
   "path": "/us-midterms-and-assets/us-midterms-and-assets.html",
   "project_id": "01a104f3-6b3f-778d-b697-cd17ed2d0061",
-  "content_sha": "e46a3372a2dabf88",
-  "published_date": "2026-10-26",
+  "content_sha": "f283c6a5a8f5355b",
+  "published_date": "2026-10-27",
   "access": "public",
   "first_url": "https://us-midterms-and-assets-gtqdc11h6po.qoder.website/",
   "first_published_date": "2026-09-26"
